@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::any('users/{id}', function ($id) {
+    return view('ejemplo')
+});
