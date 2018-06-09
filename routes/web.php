@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::any('users/{id}', function ($id) {
     return view('ejemplo')
 });
+Route::controller('users', 'UserController');
