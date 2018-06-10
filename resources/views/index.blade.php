@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">comeme un pie</a>
+                    <a href="https://laravel.com/docs">chupame un pie</a>
   
                 </div>
             </div>
