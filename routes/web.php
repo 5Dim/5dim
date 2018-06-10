@@ -15,4 +15,6 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::any('users/{id}', 'index');
+
 
