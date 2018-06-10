@@ -233,18 +233,7 @@
 		Cufon.now(); 
         
 		autolog=0;
-<?php echo $varjava; ?>
 
-
-
-if (autolog>0) {
-document.form1.nick.value=user;
-document.form1.pass.value=pas;
-document.form1.submit();
-	
-};
-
-        </script>
 		<!-- ENDS start cufon -->
 	
 	</body>
