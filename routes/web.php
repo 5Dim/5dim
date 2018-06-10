@@ -11,11 +11,8 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::any('users/{id}', function ($id) {
-    return view('ejemplo33')
-});
-Route::controller('users', 'UserController');
+
