@@ -24,7 +24,7 @@
 
 					<div class="shadow-divider"></div>
 					<!-- headline -->
-					<div class="headline">web12
+					<div class="headline">{{ trans(‘webIndex.web12’) }}
                         <h5>Ronda 2015-2016 cerrada</h5>
 					</div>
                     <!-- ENDS headline -->
@@ -87,7 +87,7 @@
 							<li class="block">
 								<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#">echo $ntex8;</a></div>
+										<div class="block-title"><a href="#">$ntex8;</a></div>
 										<div class="block-date">$ntex9;</div>
 									</div>
 									<div class="right"></div>
@@ -97,7 +97,7 @@
 							<li class="block">
 									<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#">echo $ntex10;</a></div>
+										<div class="block-title"><a href="#"> $ntex10;</a></div>
 										<div class="block-date">$ntex11;</div>
 									</div>
 									<div class="right"></div>
@@ -126,8 +126,8 @@
         <div class="post"> 
           <!-- post-header -->
           <div class="bullet-title">
-            <div class="big">echo $web13; </div>
-            <div class="small">echo $web14; </div>
+            <div class="big">{{ trans(‘webIndex.web13’) }}</div>
+            <div class="small">{{ trans(‘webIndex.web14’) }} </div>
           </div>
           <!-- ENDS post-header --> 
           <div class="excerpt">
