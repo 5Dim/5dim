@@ -24,9 +24,7 @@
 
 					<div class="shadow-divider"></div>
 					<!-- headline -->
-					<div class="headline"><?php echo $web12;
-					//echo " <a href=\"registro2.php\">  $web20 </a>";
-					?>
+					<div class="headline">{{ trans(‘webIndex.web12’) }}
                         <h5>Ronda 2015-2016 cerrada</h5>
 					</div>
                     <!-- ENDS headline -->
@@ -52,8 +50,8 @@
 					<!-- front-left-col -->
 					<div class="front-left-col">
 						<div class="bullet-title">
-							<div class="big"><?php echo $ntex1; ?></div>
-							<div class="small"><?php echo $ntex2; ?></div>
+							<div class="big">$ntex1</div>
+							<div class="small">$ntex2;</div>
 						</div>
 
     <div id="example1"></div>
@@ -62,7 +60,7 @@
 
 
 
-						<p><a href="https://twitter.com/5_Dim" class="link-button right" target="_blank"><span><?php echo $ntex3; ?></span></a></p>
+						<p><a href="https://twitter.com/5_Dim" class="link-button right" target="_blank"><span> $ntex3;</span></a></p>
 
                         
 					</div>
@@ -72,15 +70,15 @@
 					<!-- front-right-col-->
 					<div class="front-right-col">
 						<div class="bullet-title">
-							<div class="big"><?php echo $ntex4; ?></div>
-							<div class="small"><?php echo $ntex5; ?></div>
+							<div class="big">$ntex4;</div>
+							<div class="small"> $ntex5;</div>
 						</div>
 						<ul class="blocks-holder">
 							<li class="block">
 								<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#"><?php echo $ntex6; ?></a></div>
-										<div class="block-date"><?php echo $ntex7; ?></div>
+										<div class="block-title"><a href="#">$ntex6;</a></div>
+										<div class="block-date"> $ntex7;</div>
 									</div>
 									<div class="right"></div>
 								</div>
@@ -89,8 +87,8 @@
 							<li class="block">
 								<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#"><?php echo $ntex8; ?></a></div>
-										<div class="block-date"><?php echo $ntex9; ?></div>
+										<div class="block-title"><a href="#">$ntex8;</a></div>
+										<div class="block-date">$ntex9;</div>
 									</div>
 									<div class="right"></div>
 								</div>
@@ -99,8 +97,8 @@
 							<li class="block">
 									<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#"><?php echo $ntex10; ?></a></div>
-										<div class="block-date"><?php echo $ntex11; ?></div>
+										<div class="block-title"><a href="#"> $ntex10;</a></div>
+										<div class="block-date">$ntex11;</div>
 									</div>
 									<div class="right"></div>
 								</div>
@@ -110,8 +108,8 @@
 							<li class="block">
 								<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#"><?php echo $ntex12; ?></a></div>
-										<div class="block-date"><?php echo $ntex13; ?></div>
+										<div class="block-title"><a href="#"> $ntex12</a></div>
+										<div class="block-date">$ntex13</div>
 									</div>
 									<div class="right"></div>
 								</div>
@@ -128,16 +126,12 @@
         <div class="post"> 
           <!-- post-header -->
           <div class="bullet-title">
-            <div class="big"><?php echo $web13; ?></div>
-            <div class="small"><?php echo $web14; ?></div>
+            <div class="big">{{ trans(‘webIndex.web13’) }}</div>
+            <div class="small">{{ trans(‘webIndex.web14’) }} </div>
           </div>
           <!-- ENDS post-header --> 
           <div class="excerpt">
-            <p><?php echo $web15; ?></p><br />
-            <p><?php echo $web16; ?></p><br />
-            <p><?php echo $web17; ?></p><br />
-            <p><?php echo $web18; ?></p><br />
-            <p><?php echo $web19; ?></p>
+
           </div>
          
         </div>
@@ -151,40 +145,40 @@
         
         <!-- recent posts -->
         <li class="recent-posts">
-          <h2 class="custom"><span><?php echo $cabezo1; ?></span></h2>
+          <h2 class="custom"><span> $cabezo1;</span></h2>
           <ul>
             <li> 
               <div class="recent-excerpt ">
-                <div><a><?php echo $cara10; ?></a></div>
-                <div><?php echo $cara11; ?></div>
+                <div><a>$cara10; </a></div>
+                <div> $cara11;</div>
               </div>
             </li>
             <li> 
               <div class="recent-excerpt">
-                <div><a><?php echo $cabezo2; ?></a></div>
-                <div><?php echo $cara20; ?></div>
+                <div><a> $cabezo2;</a></div>
+                <div> $cara20;</div>
               </div>
             </li>
             <li> 
               <div class="recent-excerpt">
-                <div><a><?php echo $cara21; ?></a></div>
+                <div><a> $cara21; </a></div>
               </div>
             </li>
             <li> 
               <div class="recent-excerpt">
-                <div><a><?php echo $cabezo3; ?></a></div>
-                <div><?php echo $cara30; ?></div>
+                <div><a>$cabezo3; </a></div>
+                <div> $cara30;</div>
               </div>
             </li>
             <li> 
               <div class="recent-excerpt">
-                <div><a><?php echo $cabezo4; ?></a></div>
-                <div><?php echo $cara40; ?></div>
+                <div><a>$cabezo4; </a></div>
+                <div> $cara40;</div>
               </div>
             </li>  
             <li> 
               <div class="recent-excerpt">
-                <div><a><?php echo $cabezo5; ?></a></div>
+                <div><a> $cabezo5;</a></div>
               </div>
             </li>                      
           </ul>
