@@ -7,13 +7,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class IndexController extends Controller
-{
-    
-public function index(){
-
-return "caracola";
-
-}
-
+class IndexController extends Controller{
+    public function index(){
+        return view('index');
+    }
 }

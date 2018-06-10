@@ -15,7 +15,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::any('/', 'indexController');
+Route::get('/', 'indexController');
 
 
 
