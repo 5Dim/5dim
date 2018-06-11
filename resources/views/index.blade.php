@@ -25,7 +25,7 @@
 					<div class="shadow-divider"></div>
 					<!-- headline -->
 					<div class="headline">{{ trans(‘webIndex.web12’) }}
-                        <h5>Ronda 2015-2016 cerrada</h5>
+                        <h5>Ronda 2015-2016 cerrada </h5>
 					</div>
                     <!-- ENDS headline -->
                     
