@@ -18,7 +18,7 @@ Route::get('/welcome', function () {
 Route::get('/{locale}', function () {
     App::setLocale($locale);
     return view('indexController@index');
-})
+});
 
 //Route::get('/', 'indexController@index');
 
