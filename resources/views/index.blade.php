@@ -119,116 +119,117 @@
                                                
 					</div>
 					<!-- ENDS front-left-col -->
-          
-<!-- POSTS -->
-      <div id="posts"> 
-        <!-- post -->
-        <div class="post"> 
-          <!-- post-header -->
-          <div class="bullet-title">
-            <div class="big">{{ trans(‘webIndex.web13’) }}</div>
-            <div class="small">{{ trans(‘webIndex.web14’) }} </div>
-          </div>
-          <!-- ENDS post-header --> 
-          <div class="excerpt">
-
-          </div>
-         
-        </div>
-        <!-- ENDS post --> 
-                
-      </div>
-      <!-- ENDS POSTS --> 
-      
-      <!-- sidebar -->
-      <ul id="sidebar">
-        
-        <!-- recent posts -->
-        <li class="recent-posts">
-          <h2 class="custom"><span> $cabezo1;</span></h2>
-          <ul>
-            <li> 
-              <div class="recent-excerpt ">
-                <div><a>$cara10; </a></div>
-                <div> $cara11;</div>
-              </div>
-            </li>
-            <li> 
-              <div class="recent-excerpt">
-                <div><a> $cabezo2;</a></div>
-                <div> $cara20;</div>
-              </div>
-            </li>
-            <li> 
-              <div class="recent-excerpt">
-                <div><a> $cara21; </a></div>
-              </div>
-            </li>
-            <li> 
-              <div class="recent-excerpt">
-                <div><a>$cabezo3; </a></div>
-                <div> $cara30;</div>
-              </div>
-            </li>
-            <li> 
-              <div class="recent-excerpt">
-                <div><a>$cabezo4; </a></div>
-                <div> $cara40;</div>
-              </div>
-            </li>  
-            <li> 
-              <div class="recent-excerpt">
-                <div><a> $cabezo5;</a></div>
-              </div>
-            </li>                      
-          </ul>
-        </li>
-        <!-- ENDS recent posts -->
-      </ul>
-      <!-- ENDS sidebar --> 
-                    
-				</div>
-   				
-                <div id="foro">    
-                    <div class="bullet-title">
-                    <div class="big">Actividad del foro</div>
-                    <div class="small">El mejor sitio para estar informado</div>
-                </div>
-			   <div id="mensajes"></div>
-               </div>
-			  <!-- ENDS home-content -->
-				<div class="clear"></div>
-				
-				
-		
-				
-			</div>
-			<!-- ENDS main-wrapper -->
-			
-		
-		</div>		
-		<!-- ENDS MAIN -->	
-		
-		<!-- FOOTER -->
-		<div id="footer">
-		<?php include "footer.php"; ?>
-		</div>
-		<!-- ENDS FOOTER -->
-
-
-		<!-- BOTTOM -->
-		<div id="bottom">
-		</div>
-		<!-- ENDS BOTTOM -->
-
-		<!-- start cufon -->
-		<script type="text/javascript"> 
-		
-		Cufon.now(); 
-        
-		autolog=0;
-
-		<!-- ENDS start cufon -->
+				 
 	
-	</body>
+<!-- POSTS -->
+<div id="posts"> 
+	<!-- post -->
+	<div class="post"> 
+		<!-- post-header -->
+		<div class="bullet-title">
+			<div class="big">echo __('webIndex.web13');</div>
+			<div class="small">echo __('webIndex.web14'); </div>
+		</div>
+		<!-- ENDS post-header --> 
+		<div class="excerpt">
+
+		</div>
+	 
+	</div>
+	<!-- ENDS post --> 
+					
+</div>
+<!-- ENDS POSTS --> 
+
+<!-- sidebar -->
+<ul id="sidebar">
+	
+	<!-- recent posts -->
+	<li class="recent-posts">
+		<h2 class="custom"><span> $cabezo1;</span></h2>
+		<ul>
+			<li> 
+				<div class="recent-excerpt ">
+					<div><a>$cara10; </a></div>
+					<div> $cara11;</div>
+				</div>
+			</li>
+			<li> 
+				<div class="recent-excerpt">
+					<div><a> $cabezo2;</a></div>
+					<div> $cara20;</div>
+				</div>
+			</li>
+			<li> 
+				<div class="recent-excerpt">
+					<div><a> $cara21; </a></div>
+				</div>
+			</li>
+			<li> 
+				<div class="recent-excerpt">
+					<div><a>$cabezo3; </a></div>
+					<div> $cara30;</div>
+				</div>
+			</li>
+			<li> 
+				<div class="recent-excerpt">
+					<div><a>$cabezo4; </a></div>
+					<div> $cara40;</div>
+				</div>
+			</li>  
+			<li> 
+				<div class="recent-excerpt">
+					<div><a> $cabezo5;</a></div>
+				</div>
+			</li>                      
+		</ul>
+	</li>
+	<!-- ENDS recent posts -->
+</ul>
+<!-- ENDS sidebar --> 
+							
+	</div>
+		 
+					<div id="foro">    
+							<div class="bullet-title">
+							<div class="big">Actividad del foro</div>
+							<div class="small">El mejor sitio para estar informado</div>
+					</div>
+	 <div id="mensajes"></div>
+				 </div>
+	<!-- ENDS home-content -->
+	<div class="clear"></div>
+	
+	
+
+	
+</div>
+<!-- ENDS main-wrapper -->
+
+
+</div>		
+<!-- ENDS MAIN -->	
+
+<!-- FOOTER -->
+<div id="footer">
+<?php include "footer.php"; ?>
+</div>
+<!-- ENDS FOOTER -->
+
+
+<!-- BOTTOM -->
+<div id="bottom">
+</div>
+<!-- ENDS BOTTOM -->
+
+<!-- start cufon -->
+<script type="text/javascript"> 
+
+Cufon.now(); 
+	
+autolog=0;
+
+<!-- ENDS start cufon -->
+
+</body>
 </html>
