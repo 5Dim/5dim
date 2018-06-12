@@ -24,7 +24,7 @@
 
 					<div class="shadow-divider"></div>
 					<!-- headline -->
-					<div class="headline">{{echo __('webIndex.web12')}};
+					<div class="headline">@lang('webIndex.web12')
                         <h5>Ronda 2015-2016 cerrada </h5>
 					</div>
                     <!-- ENDS headline -->
