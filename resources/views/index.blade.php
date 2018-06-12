@@ -39,10 +39,10 @@
 						<a href="" id="slideshow-link" ><span></span></a>
 						<!-- slides -->
 						<ul id="slides">
-			                <li><img src="images/1.png"  alt="Imagen" /></li>
-			                <li><img src="images/2.png"  alt="Imagen" /></li>
-			                <li><img src="images/3.png"  alt="Imagen" /></li>
-                            <li><img src="images/4.png"  alt="Imagen" /></li>
+			                <li><img src="images/webIndex/1.png"  alt="Imagen" /></li>
+			                <li><img src="images/webIndex/2.png"  alt="Imagen" /></li>
+			                <li><img src="images/webIndex/3.png"  alt="Imagen" /></li>
+                            <li><img src="images/webIndex/4.png"  alt="Imagen" /></li>
 			          	</ul>
 			          	<!-- ENDS slides -->
 					</div>
@@ -50,8 +50,8 @@
 					<!-- front-left-col -->
 					<div class="front-left-col">
 						<div class="bullet-title">
-							<div class="big">$@lang('webIndex.ntex1')</div>
-							<div class="small">$@lang('webIndex.ntex2')</div>
+							<div class="big">@lang('webIndex.ntex1')</div>
+							<div class="small">@lang('webIndex.ntex2')</div>
 						</div>
 
     <div id="example1"></div>
@@ -60,7 +60,7 @@
 
 
 
-						<p><a href="https://twitter.com/5_Dim" class="link-button right" target="_blank"><span>$@lang('webIndex.ntex3')</span></a></p>
+						<p><a href="https://twitter.com/5_Dim" class="link-button right" target="_blank"><span>@lang('webIndex.ntex3')</span></a></p>
 
                         
 					</div>
@@ -70,15 +70,15 @@
 					<!-- front-right-col-->
 					<div class="front-right-col">
 						<div class="bullet-title">
-							<div class="big">$@lang('webIndex.ntex4')</div>
-							<div class="small">$@lang('webIndex.ntex5')</div>
+							<div class="big">@lang('webIndex.ntex4')</div>
+							<div class="small">@lang('webIndex.ntex5')</div>
 						</div>
 						<ul class="blocks-holder">
 							<li class="block">
 								<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#">$@lang('webIndex.ntex6')</a></div>
-										<div class="block-date">$@lang('webIndex.ntex7')</div>
+										<div class="block-title"><a href="#">@lang('webIndex.ntex6')</a></div>
+										<div class="block-date">@lang('webIndex.ntex7')</div>
 									</div>
 									<div class="right"></div>
 								</div>
@@ -87,8 +87,8 @@
 							<li class="block">
 								<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#">$@lang('webIndex.ntex8')</a></div>
-										<div class="block-date">$@lang('webIndex.ntex9')</div>
+										<div class="block-title"><a href="#">@lang('webIndex.ntex8')</a></div>
+										<div class="block-date">@lang('webIndex.ntex9')</div>
 									</div>
 									<div class="right"></div>
 								</div>
@@ -97,8 +97,8 @@
 							<li class="block">
 									<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#">$@lang('webIndex.ntex10')</a></div>
-										<div class="block-date">$@lang('webIndex.ntex11')</div>
+										<div class="block-title"><a href="#">@lang('webIndex.ntex10')</a></div>
+										<div class="block-date">@lang('webIndex.ntex11')</div>
 									</div>
 									<div class="right"></div>
 								</div>
@@ -108,8 +108,8 @@
 							<li class="block">
 								<div class="block-ribbon">
 									<div class="left">
-										<div class="block-title"><a href="#"> $@lang('webIndex.ntex12')</a></div>
-										<div class="block-date">$@lang('webIndex.ntex13')</div>
+										<div class="block-title"><a href="#"> @lang('webIndex.ntex12')</a></div>
+										<div class="block-date">@lang('webIndex.ntex13')</div>
 									</div>
 									<div class="right"></div>
 								</div>
@@ -146,40 +146,40 @@
 	
 	<!-- recent posts -->
 	<li class="recent-posts">
-		<h2 class="custom"><span> $@lang('webIndex.cabezo1')</span></h2>
+		<h2 class="custom"><span> @lang('webIndex.cabezo1')</span></h2>
 		<ul>
 			<li> 
 				<div class="recent-excerpt ">
-					<div><a>$@lang('webIndex.cara10')</a></div>
-					<div> $@lang('webIndex.cara11')</div>
+					<div><a>@lang('webIndex.cara10')</a></div>
+					<div> @lang('webIndex.cara11')</div>
 				</div>
 			</li>
 			<li> 
 				<div class="recent-excerpt">
-					<div><a> $@lang('webIndex.cabezo2')</a></div>
-					<div> $@lang('webIndex.cara20')</div>
+					<div><a> @lang('webIndex.cabezo2')</a></div>
+					<div> @lang('webIndex.cara20')</div>
 				</div>
 			</li>
 			<li> 
 				<div class="recent-excerpt">
-					<div><a> $@lang('webIndex.cara21') </a></div>
+					<div><a> @lang('webIndex.cara21') </a></div>
 				</div>
 			</li>
 			<li> 
 				<div class="recent-excerpt">
-					<div><a>$@lang('webIndex.cabezo3') </a></div>
-					<div> $@lang('webIndex.cara30')</div>
+					<div><a>@lang('webIndex.cabezo3') </a></div>
+					<div> @lang('webIndex.cara30')</div>
 				</div>
 			</li>
 			<li> 
 				<div class="recent-excerpt">
-					<div><a>$@lang('webIndex.cabezo4')</a></div>
-					<div> $@lang('webIndex.cara40')</div>
+					<div><a>@lang('webIndex.cabezo4')</a></div>
+					<div> @lang('webIndex.cara40')</div>
 				</div>
 			</li>  
 			<li> 
 				<div class="recent-excerpt">
-					<div><a> $@lang('webIndex.cabezo5')</a></div>
+					<div><a> @lang('webIndex.cabezo5')</a></div>
 				</div>
 			</li>                      
 		</ul>
