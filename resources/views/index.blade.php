@@ -127,8 +127,8 @@
 	<div class="post"> 
 		<!-- post-header -->
 		<div class="bullet-title">
-			<div class="big">echo __('webIndex.web13');</div>
-			<div class="small">echo __('webIndex.web14'); </div>
+			<div class="big">@lang('webIndex.web13')</div>
+			<div class="small">@lang('webIndex.web14') </div>
 		</div>
 		<!-- ENDS post-header --> 
 		<div class="excerpt">

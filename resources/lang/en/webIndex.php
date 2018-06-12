@@ -145,7 +145,7 @@ return [
 'siguep4'="TRADE SHOW FEATURES ---->",
 
 
-'cabezo4'=cabezo1;
+//'cabezo4'=cabezo1;
 'cara5'="ECONOMY",
 'cara52'="- System realistic trade and economy, without the existence of magical ways to move resources or obtaining money",
 'cara53'="- Single internal monetary system with its own currency of each player and fluctuation in value",

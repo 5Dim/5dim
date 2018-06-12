@@ -151,7 +151,7 @@ return [
 'siguep4' => 'VER CARACTERISTICAS DE COMERCIO ---->',
 
 
-'cabezo4='cabezo1;
+//'cabezo4='cabezo1;
 'cara5' => 'ECONOMÍA',
 'cara52' => '- Sistema realista de comercio y economía, sin la existencia de formas mágicas de mover recursos o la obtención de dinero',
 'cara53' => '- Sencillo sistema monetario interno con moneda propia de cada jugador y fluctuación de su valor',
