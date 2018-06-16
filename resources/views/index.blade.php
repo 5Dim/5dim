@@ -27,8 +27,6 @@
 
 			<!-- Cufon -->
 
-
-			
 		<!-- superfish -->
 				<link href="{{ asset('cs/superfish-custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 				<script type="text/javascript" src="{{ asset('js/superfish-1.4.8/js/superfish.js') }}"></script>				
