@@ -42,8 +42,8 @@
                     <!-- navigation -->
                     <div id=\"nav-holder\">
                         <ul id=\"nav\" class=\"sf-menu\">
-                            <li @lang('webIndex.soy1')><a href=\"http://5dim.es/\">  @lang('webIndex.web1') </a></li>
-                            <li @lang('webIndex.soy2')><a> @lang('webIndex.ntex14') </a>
+                            <li ><a href=\"http://5dim.es/\">  @lang('webIndex.web1') </a></li>
+                            <li ><a> @lang('webIndex.ntex14') </a>
                                 <ul>
                                     <li ><a href=\"astrometria.php?elidioma=elidioma\"> @lang('webIndex.cara6') </a></li>
                                     <li ><a href=\"economia.php?elidioma=elidioma\"> @lang('webIndex.cara5') </a></li>
@@ -52,9 +52,9 @@
                                     <li ><a href=\"politica.php?elidioma=elidioma\">  @lang('webIndex.cara3')  </a></li>
                                 </ul>
                             </li>
-                            <li @lang('webIndex.soy3')><a href=\"gallery.php?elidioma=elidioma\">  @lang('webIndex.ntex15') </a></li>
-                            <li @lang('webIndex.soy4')><a href=\"http://quintadim.foroactivo.com/\" target=\"_blank\" > @lang('webIndex.web6') </a></li>
-                            <li @lang('webIndex.soy5')><a href=\"contact.php?elidioma=elidioma\"> @lang('webIndex.web7') </a></li>
+                            <li ><a href=\"gallery.php?elidioma=elidioma\">  @lang('webIndex.ntex15') </a></li>
+                            <li ><a href=\"http://quintadim.foroactivo.com/\" target=\"_blank\" > @lang('webIndex.web6') </a></li>
+                            <li ><a href=\"contact.php?elidioma=elidioma\"> @lang('webIndex.web7') </a></li>
                             
                             
                         </ul>
