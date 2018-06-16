@@ -26,6 +26,16 @@
 			<script type="text/javascript" src="{{ asset('js/fonts/bebas-neue_400.font.js') }}"></script>
 
 			<!-- Cufon -->
+
+		<!-- superfish -->
+				<link href="{{ asset('cs/superfish-custom.css') }}" media="all" rel="stylesheet" type="text/css" />
+				<script type="text/javascript" src="{{ asset('js/superfish-1.4.8/js/superfish.js') }}"></script>				
+		<!-- ENDS superfish -->
+
+			<!-- feeds -->
+			<script type="text/javascript" src="{{ asset('js/feeds/jquery.zrssfeed.min.js') }}"></script>	
+			<script type="text/javascript" src="{{ asset('js/feeds/jquery.vticker.min.js') }}"></script>			     
+			<!-- feeds -->
 	
 
 	<link rel="fav icon" href="images/favico.ico"> 	
