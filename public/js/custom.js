@@ -57,7 +57,7 @@ $(document).ready(function () {
 
 
 
-
+/*
     // tooltip
     $.tools.tooltip.addEffect("fade",
         // opening animation
@@ -78,7 +78,7 @@ $(document).ready(function () {
         tipClass: 'tooltip-social'
     });
 
-
+*/
 
 
     //close			
