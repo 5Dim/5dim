@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="parallax-container">
-        <div class="parallax"><img src="images/parallax1.jpg"></div>
+        <div class="parallax">{{ HTML::image('img/principal/fondo2.jpg', 'alt text') }}</div>
     </div>
     <div class="section white">
         <div class="row container">
@@ -11,6 +11,6 @@
         </div>
     </div>
     <div class="parallax-container">
-        <div class="parallax"><img src="images/parallax2.jpg"></div>
+        <div class="parallax">{{ HTML::image('img/principal/índice.jpg', 'alt text') }}</div>
     </div>
 @endsection
