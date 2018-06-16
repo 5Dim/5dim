@@ -1,6 +1,8 @@
 <?php
 return [
 
+    /// poner <html lang="{{ app()->getLocale() }}">   @lang('webIndex.ntex4')
+
     'web1' => 'INICIO',
 'web2' => 'NOTICIAS',
 'web3' => 'CARACTERISTICAS',
