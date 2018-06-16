@@ -1,0 +1,14 @@
+body.bg {
+    background: url('../img/principal/fondo2.jpg') no-repeat !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.bg-transparent {
+    background: rgba(0, 1, 2, 0.1);
+}
+.bg-suave {
+    background: rgba(0, 1, 2, 0.9);
+    margin: 0px;
+}
