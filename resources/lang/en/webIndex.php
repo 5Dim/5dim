@@ -2,7 +2,7 @@
 return [
 // TEXT LANGUAGE 0, SPANISH WEB PPAL
 
-'web1'="HOME",
+'web1'=>"HOME",
 'web2'="NEWS",
 'web3'="FEATURE",
 'web4'="IMAGES",

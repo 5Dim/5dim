@@ -7,8 +7,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class IndexController extends Controller{
+class PrincipalController extends Controller{
     public function index(){
-        return view('index');
+        return view('principal.index');
     }
 }
