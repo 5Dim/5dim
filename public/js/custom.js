@@ -33,13 +33,14 @@ $(document).ready(function() {
 		}, "fast");
 	});
 	
-	
+	/*
 	//superfish
 	$("ul.sf-menu").superfish({
 		  autoArrows:  true, // disable generation of arrow mark-up
 		  animation: {height:'show'},
 		  speed: 'fast'
 	}); 
+	*/
 		
 	// slideshow
   	$('#slides')
