@@ -61,7 +61,8 @@
                     
 					
 					             <!-- slideshow -->
-					<div id="slideshow">						<!--<a href="#" id="prev"></a>
+					<div id="slideshow">				
+						<!--<a href="#" id="prev"></a>
 	          			<a href="#" id="next"></a>-->
 						<a href="" id="slideshow-link" ><span></span></a>
 						<!-- slides -->
