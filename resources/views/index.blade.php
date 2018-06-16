@@ -32,7 +32,10 @@
 				<script type="text/javascript" src="{{ asset('js/superfish-1.4.8/js/superfish.js') }}"></script>				
 		<!-- ENDS superfish -->
 
-	
+			<!-- feeds -->
+			<script type="text/javascript" src="{{ asset('js/feeds/jquery.zrssfeed.min.js') }}"></script>	
+			<script type="text/javascript" src="{{ asset('js/feeds/jquery.vticker.min.js') }}"></script>			     
+			<!-- feeds -->
 	
 
 	<link rel="fav icon" href="images/favico.ico"> 	
