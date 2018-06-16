@@ -66,3 +66,5 @@
             </div>
             </div>
             <!-- ENDS HEADER -->
+
+            @yield('container')

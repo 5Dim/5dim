@@ -1,3 +1,5 @@
+@extends("cabezo")
+@section('container')
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -41,7 +43,7 @@
 
 	<link rel="fav icon" href="images/favico.ico"> 	
 
-@extends("cabezo")
+
 
 
 
@@ -265,3 +267,4 @@ autolog=0;
 
 </body>
 </html>
+@endsection
