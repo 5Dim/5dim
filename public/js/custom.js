@@ -35,16 +35,13 @@ $(document).ready(function() {
 	
 	
 	//superfish
-	/*
+	
 	$("ul.sf-menu").superfish({
 		  autoArrows:  true, // disable generation of arrow mark-up
 		  animation: {height:'show'},
 		  speed: 'fast'
 	}); 
-	*/
-
 	
-	jQuery('ul.sf-menu').superfish(); 
 	
 	
 		
