@@ -11,7 +11,8 @@
 
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('js/bootstrap/bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
 
     <!-- custom.css -->
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
@@ -19,19 +20,16 @@
     <!-- custom.js -->
     <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.bundle.min.css" rel="stylesheet">
-
     <!-- Custom fonts for this template -->
-    <link href="font/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
+    <link href="{{ asset('css/grayscale.min.css') }}" rel="stylesheet">
 
     <!-- Custom JavaScript for this template -->
-    <link href="js/grayscale.min.js" rel="stylesheet">
+    <script src="{{ asset('js/grayscale.min.js') }}" type="text/javascript"></script>
     
 </head>
 <body id="page-top">
