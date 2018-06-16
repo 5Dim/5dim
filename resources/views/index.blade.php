@@ -17,6 +17,7 @@
     <title>5Dim - Quinta Dimension</title>
 
 	<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+	<link href="{{ asset('css/app.css') }}" media="all" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('css/style.css') }}" media="all" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('js/prettyPhoto/css/prettyPhoto.css') }}" media="all" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
