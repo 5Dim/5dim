@@ -32,7 +32,7 @@
 			<!-- Cufon -->
 
 		<!-- superfish -->
-				<link href="{{ asset('cs/superfish-custom.css') }}" media="all" rel="stylesheet" type="text/css" />
+				<link href="{{ asset('css/superfish-custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 				<script type="text/javascript" src="{{ asset('js/superfish-1.4.8/js/superfish.js') }}"></script>				
 		<!-- ENDS superfish -->
 
@@ -46,6 +46,42 @@
 
 
 
+	<script type="text/javascript">
+		$(document).ready(function () {  
+			//carga los últimos temas del foro		
+		$('#mensajes').rssfeed('http://quintadim.foroactivo.com/feed',{header: false, media: true,snippet: true}, function(e) {
+			$(e).find('div.rssBody').vTicker(); // esto le añade la animación
+		});
+	
+		});    
+	
+	</script>  
+	
+	<style>
+	#example1{
+	height: 285px;
+	overflow-y: auto;
+	margin-bottom: 13px;	
+	}
+	
+	#mensajes{
+		width: 1000px;
+		height: 60px;
+		background-color:transparent;
+	}
+	
+	#foro {
+	position: absolute;
+	margin-top: -120px;	
+	}
+	
+	.rssBody h4{
+		font-size:14px;
+	}
+	#footer {
+		margin-bottom: -10px;
+	}
+	</style>	        
 
 
 
