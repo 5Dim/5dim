@@ -213,16 +213,12 @@ There are unique to buildings and research alliances, with players who belong to
 'tregis7'=>"Passwords do not match", 
 'tregis8'=>"username or email account is already in use", 
 'tregis9'=>"If you want to enter without a beacon position, he was a random asiganará validated in this link:", 
-'tregis10'=>"THANKS FOR SIGN IN FIFTH DIMENSION </ p> 
-     </ p> 
-     To authenticate your account <p> must click on the following link before you go 5 days;", 
+'tregis10'=>"THANKS FOR SIGN IN FIFTH DIMENSION </ p>  </ p>  To authenticate your account <p> must click on the following link before you go 5 days;", 
 'tregis11'=>"Remember that your data is:", 
 'tregis12'=>"If you want to delete your registration, please click the following link:", 
-'tregis13'=>"Thanks for registrate.You'll receive an email with a link you must click to activate your account." ;
-'tregis14 '=>"I remember username and password FIFTH DIMENSION </ p> 
-     </ p> 
-     <p> Remember that your details are: </ p> ", 
-'tregis15 '=>"will receive an e-mail with your username and password." ;
+'tregis13'=>"Thanks for registrate.You ll receive an email with a link you must click to activate your account." ,
+'tregis14 '=>"I remember username and password FIFTH DIMENSION </ p> </ p>  <p> Remember that your details are: </ p> ", 
+'tregis15 '=>"will receive an e-mail with your username and password." ,
 'tregis16'=>"5D Registration",
 
 
