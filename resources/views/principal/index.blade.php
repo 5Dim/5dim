@@ -11,6 +11,6 @@
         </div>
     </div>
     <div class="parallax-container">
-        div class="parallax"><img src="images/parallax2.jpg"></div>
+        <div class="parallax"><img src="images/parallax2.jpg"></div>
     </div>
 @endsection
