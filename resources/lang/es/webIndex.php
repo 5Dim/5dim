@@ -17,10 +17,6 @@ return [
 
 
 
-
-
-
-
 'noti1' => '5D con nuevo aspecto',
 'noti2' => 'después de una larga espera por fin tenemos nueva web. No sólo se mejora el aspecto sino que además se añaden cambios significativos para hacer el juego más accesible a más público.',
 'noti3' => 'La lista de cambios',
