@@ -34,6 +34,9 @@
 </head>
 <body id="page-top">
 
+    <div class="container">
+        @yield('container')
+    </div>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
@@ -151,8 +154,5 @@
             <p>Copyright &copy; Your Website 2018</p>
         </div>
     </footer>
-    <div class="container">
-        @yield('container')
-    </div>
 </body>
 </html>
