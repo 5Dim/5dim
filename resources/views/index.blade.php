@@ -26,6 +26,13 @@
 			<script type="text/javascript" src="{{ asset('js/fonts/bebas-neue_400.font.js') }}"></script>
 
 			<!-- Cufon -->
+
+		<!-- superfish -->
+				<link href="{{ asset('cs/superfish-custom.css') }}" media="all" rel="stylesheet" type="text/css" />
+				<script type="text/javascript" src="{{ asset('js/superfish-1.4.8/js/superfish.js') }}"></script>				
+		<!-- ENDS superfish -->
+
+	
 	
 
 	<link rel="fav icon" href="images/favico.ico"> 	
