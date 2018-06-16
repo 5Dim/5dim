@@ -14,6 +14,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>5Dim - Quinta Dimension</title>
 
+	<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+	<link href="{{ asset('css/style.css') }}" media="all" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('js/prettyPhoto/css/prettyPhoto.css') }}" media="all" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/twitterFetcher_v10_min.js') }}"></script>
+
+			<!-- Cufon -->
+			<script type="text/javascript" src="{{ asset('js/cufon-yui.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('js/fonts/bebas-neue_400.font.js') }}"></script>
+
+			<!-- Cufon -->
+	
+
+	<link rel="fav icon" href="images/favico.ico"> 	
+
+
+
 
    <!-- MAIN -->
 		<div id="main">
@@ -33,8 +51,7 @@
                     
 					
 					             <!-- slideshow -->
-					<div id="slideshow">
-						<!--<a href="#" id="prev"></a>
+					<div id="slideshow">						<!--<a href="#" id="prev"></a>
 	          			<a href="#" id="next"></a>-->
 						<a href="" id="slideshow-link" ><span></span></a>
 						<!-- slides -->
@@ -55,9 +72,8 @@
 						</div>
 
     <div id="example1"></div>
-    <script type="text/javascript" src="twitterFetcher_v10_min.js"></script>
+    
     <script>twitterFetcher.fetch('361564690305929216', 'example1', 3, true, false, true);</script>
-
 
 
 						<p><a href="https://twitter.com/5_Dim" class="link-button right" target="_blank"><span>@lang('webIndex.ntex3')</span></a></p>
