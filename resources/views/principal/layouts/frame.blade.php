@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery/jquery-3.3.1.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/jquery/jquery.easing.min.js') }}" type="text/javascript"></script>
 
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
@@ -27,10 +24,6 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/grayscale.min.css') }}" rel="stylesheet">
-
-    <!-- Custom JavaScript for this template -->
-    <script src="{{ asset('js/grayscale.min.js') }}" type="text/javascript"></script>
-    
 </head>
 <body id="page-top">
 
@@ -154,5 +147,15 @@
             <p>Copyright &copy; Your Website 2018</p>
         </div>
     </footer>
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery/jquery-3.3.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery/jquery.easing.min.js') }}" type="text/javascript"></script>
+
+    <!-- Bootstrap -->
+    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+
+    <!-- Custom JavaScript for this template -->
+    <script src="{{ asset('js/grayscale.min.js') }}" type="text/javascript"></script>
 </body>
 </html>
