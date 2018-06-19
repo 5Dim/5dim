@@ -18,5 +18,7 @@ Route::get('/welcome', function () {
 
 Route::get('/', 'PrincipalController@index');
 
+Route::get('/eljuego/', 'JuegoController@index');
+
 
 
