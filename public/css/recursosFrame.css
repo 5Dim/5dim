@@ -1,0 +1,18 @@
+body#recursosFrame {
+    background: url('../img/principal/fondo2.jpg') no-repeat !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+#menuCuenta{
+    background-color: rgba(0,0,0,.7);
+}
+#menuRecursos{
+    background-color: rgba(0,0,0,.5);
+}
+#menuIconos{
+    background-color: rgba(0,0,0,.5);
+}

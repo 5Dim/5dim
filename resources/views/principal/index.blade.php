@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <!-- Bootstrap -->
-    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+    <title>5Dim</title>
 
     <!-- custom.css -->
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
