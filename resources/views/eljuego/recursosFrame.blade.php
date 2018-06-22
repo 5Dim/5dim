@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/recursosFrame.css') }}" media="all" rel="stylesheet" type="text/css" />
 
 </head>
 <body id="recursosFrame">
 
-<div id="menuC" class="container-fluid ">
+<div id="menuC" class="container-fluid borderless">
     <div id="menuCuenta" class="row " > 
        <div class="col-5 text-center"> <div class="row"> 
             <div  id="" class="col-6"></div>             
@@ -41,92 +42,74 @@
         </div></div>        
     </div>
 
-    <div id="menuRecursos" class="row text-center">  
-        <div  class="col">
-                <div class="text-warning">Personal</div>
-                <div class="text-danger">&nbsp;</div>
-                <div> 200.00</div>
-                <div> -12.2 ud/h</div>        
-        </div>
-
-        <div  class="col">
-                <div class="text-warning">Mineral</div>
-                <div class="text-danger">2255</div>
-                <div> 200.0</div>
-                <div> -12. ud/h</div>        
-        </div>
-
-        <div  class="col">
-                <div class="text-warning">Cristal</div>
-                <div class="text-danger">555</div>
-                <div> 200.00</div>
-                <div> -122 ud/h</div>        
-        </div>
-
-        <div  class="col">
-                <div class="text-warning">Gas</div>
-                <div class="text-danger">2555</div>
-                <div> 200.00</div>
-                <div> -122 ud/h</div>        
-        </div>
-
-        <div  class="col">
-                <div class="text-warning">Plástico</div>
-                <div class="text-danger">5555</div>
-                <div> 200.00</div>
-                <div> 12.522 ud/h</div>        
-        </div>
-
-        <div  class="col">
-                <div class="text-warning">Ceramica</div>
-                <div class="text-danger">Ilimitado</div>
-                <div> 200000</div>
-                <div> 22 ud/h</div>        
-        </div>
-
-        <div  class="col">
-                <div class="text-warning">Recargar</div>
-                <div class="text-danger">Almacenes</div>
-                <div class="text-secondary">Producido</div>
-                <div class="text-primary">Produción</div>        
-        </div>
-
-        <div  class="col">
-                <div class="text-warning">Liquido</div>
-                <div class="text-danger">Ilimitado</div>
-                <div> 200.000.000</div>
-                <div> -12.522 ud/h</div>        
-        </div>
-        <div  class="col">
-                <div class="text-warning">Micros</div>
-                <div class="text-danger">Ilimitado</div>
-                <div> 200.000.000</div>
-                <div> -12.522 ud/h</div>        
-        </div>
-        <div  class="col">
-                <div class="text-warning">Fuel</div>
-                <div class="text-danger">Ilimitado</div>
-                <div> 200.000.000</div>
-                <div> -12.522 ud/h</div>        
-        </div>
-        <div  class="col">
-                <div class="text-warning">M-A</div>
-                <div class="text-danger">Ilimitado</div>
-                <div> 200.000.000</div>
-                <div> -12.522 ud/h</div>        
-        </div>
-        <div  class="col">
-                <div class="text-warning">Munición</div>
-                <div class="text-danger">Ilimitado</div>
-                <div> 200.000.000</div>
-                <div> -12.522 ud/h</div>        
-        </div>
-        <div  class="col">
-                <div class="text-warning">Moneda</div>
-                <div class="text-danger">Ilimitado</div>
-                <div> 200.000.000</div>
-                <div> -12.522 ud/h</div>        
-        </div>
+    <div id="menuRecursos" >
+                <table class="table table-hover table-borderless table-sm text-center">
+                        <thead >
+                                  <tr>
+                                    <th scope="col" class="text-warning borderless">Personal</th>
+                                    <th scope="col" class="text-warning borderless">Mineral</th>
+                                    <th scope="col" class="text-warning borderless">Cristal</th>
+                                    <th scope="col" class="text-warning borderless">Gas</th>
+                                    <th scope="col" class="text-warning borderless">Plástico</th>
+                                    <th scope="col" class="text-warning borderless">Cerámica</th>
+                                    <th scope="col" class="text-warning borderless">Recargar</th>
+                                    <th scope="col" class="text-warning borderless">Liquido</th>
+                                    <th scope="col" class="text-warning borderless">Micros</th>
+                                    <th scope="col" class="text-warning borderless">Fuel</th>
+                                    <th scope="col" class="text-warning borderless">M-A</th>
+                                    <th scope="col" class="text-warning borderless">Munición</th>
+                                    <th scope="col" class="text-warning borderless">Moneda</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>                                    
+                                    <td class="text-danger borderless">&nbsp;</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Almacenes</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">Ilimitado</td>
+                                    <td  class="text-danger borderless">3200 ud/d</td>
+                                  </tr>
+                                  <tr>
+                                    <td  class="text-warning borderless">1.200.222</td>
+                                    <td  class="text-warning borderless">200.222</td>
+                                    <td  class="text-warning borderless">222</td>
+                                    <td  class="text-warning borderless">5.555</td>
+                                    <td  class="text-warning borderless">55.55</td>
+                                    <td  class="text-warning borderless">552</td>
+                                    <td  class="text-success borderless">888</td>
+                                    <td  class="text-success borderless">Producido</td>
+                                    <td  class="text-success borderless">99</td>
+                                    <td  class="text-warning borderless">55.222.333</td>
+                                    <td  class="text-warning borderless">552.333</td>
+                                    <td  class="text-warning borderless">1.000.000</td>
+                                    <td  class="text-danger borderless">3200 ud/d</td>
+                                  </tr>
+                                  <tr>
+                                    <td  class="text-primary borderless">1.200 ud/h</td>
+                                    <td  class="text-primary borderless">200 ud/h</td>
+                                    <td  class="text-primary borderless">222 ud/h</td>
+                                    <td  class="text-primary borderless">5.555 ud/h</td>
+                                    <td  class="text-primary borderless">55 ud/h</td>
+                                    <td  class="text-primary borderless">552 ud/h</td>
+                                    <td  class="text-primary borderless">888 ud/h</td>
+                                    <td  class="text-primary borderless">Producción</td>
+                                    <td  class="text-primary borderless">99 ud/h</td>
+                                    <td  class="text-primary borderless">55.222 ud/h</td>
+                                    <td  class="text-primary borderless">552.333 ud/h</td>
+                                    <td  class="text-primary borderless">1.000 ud/h</td>
+                                    <td  class="text-primary borderless">3200 ud/d</td>
+                                  </tr>
+                                </tbody>
+                       </table>  
+        
 </div>
 
 
@@ -221,7 +204,7 @@
     <!-- Bootstrap -->
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
-    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+   
 
 </body>
 </html>

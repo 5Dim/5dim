@@ -16,3 +16,8 @@ body#recursosFrame {
 #menuIconos{
     background-color: rgba(0,0,0,.5);
 }
+.borderless{
+    margin: 0px !important;
+border: 0px !important; 
+padding: 0px !important;
+}
