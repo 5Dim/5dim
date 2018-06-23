@@ -21,3 +21,12 @@ body#recursosFrame {
 border: 0px !important; 
 padding: 0px !important;
 }
+.centradoCeldas{
+    width: 7.5%;
+}
+.centradoDiv60{
+    width: 60%;
+}
+.centradoDiv70{
+    width: 70%;
+}
