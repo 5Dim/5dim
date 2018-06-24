@@ -9,6 +9,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class JuegoController extends Controller{
     public function index(){
-        return view('eljuego.recursosFrame');
+        return view('juego.recursosFrame');
     }
 }
