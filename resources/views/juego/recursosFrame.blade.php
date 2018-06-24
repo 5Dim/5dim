@@ -10,7 +10,7 @@
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 
 </head>
-<body id="recursosFrame">
+<body id="recursosFrame" class="bg">
 
 <div id="menuC" class="container-fluid borderless">
     <div id="menuCuenta" class="row d-flex justify-content-center" > 
