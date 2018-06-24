@@ -82,13 +82,10 @@
                             <div class="card-body">
                                 <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                                     @csrf
-
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-4 col-form-label text-md-right">Email</label>
-
                                         <div class="col-md-6">
                                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
@@ -96,13 +93,10 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
-
                                         <div class="col-md-6">
                                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
                                             @if ($errors->has('password'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('password') }}</strong>
@@ -110,13 +104,11 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="form-group row mb-0">
                                         <div class="col-md-8 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
                                                 Entrar
                                             </button>
-
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                                 ¿Olvidaste la contraseña?
                                             </a>
@@ -130,13 +122,10 @@
                                 <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                                     <p>Es imprescindible que facilites una cuenta de correo a la que tengas acceso para poder completar el registro.</p>
                                     @csrf
-
                                     <div class="form-group row">
                                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
                                         <div class="col-md-6">
                                             <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
                                             @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('name') }}</strong>
@@ -144,13 +133,10 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
                                         <div class="col-md-6">
                                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
@@ -158,13 +144,10 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
                                         <div class="col-md-6">
                                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
                                             @if ($errors->has('password'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('password') }}</strong>
@@ -172,15 +155,12 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
                                         <div class="col-md-6">
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                         </div>
                                     </div>
-
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
@@ -196,7 +176,6 @@
             </div>
         </div>
     </section>
-
     <!-- Juego Section -->
     <section id="juego" class="download-section content-section text-center">
         <div class="container">
@@ -242,7 +221,6 @@
             </div>
         </div>
     </section>
-
     <!-- Contacto Section -->
     <section id="contacto" class="content-section text-center">
         <div class="container">
@@ -263,6 +241,7 @@
             <p>Copyright &copy; Your Website 2018</p>
         </div>
     </footer>
+
     <!-- jQuery -->
     <script src="{{ asset('js/jquery/jquery-3.3.1.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery/jquery.easing.min.js') }}" type="text/javascript"></script>
