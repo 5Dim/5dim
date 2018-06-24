@@ -24,10 +24,6 @@
     <link href="{{ asset('css/grayscale.min.css') }}" rel="stylesheet">
 </head>
 <body id="page-top">
-
-    <div class="container">
-        @yield('container')
-    </div>
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
@@ -70,6 +66,7 @@
             </div>
         </div>
     </header>
+
     <!-- Login -->
     <section id="login" class="content-section text-center">
         <div class="container">
