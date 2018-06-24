@@ -7,7 +7,7 @@
     <title>recursosFrame</title>
 
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/recursosFrame.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 
 </head>
 <body id="recursosFrame">
