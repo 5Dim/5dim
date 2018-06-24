@@ -23,6 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'PrincipalController@index');
 
-Route::get('/eljuego/', 'JuegoController@index');
+Route::get('/juego/', 'JuegoController@index');
 
-Route::get('/eljuego/construccion', 'ConstruccionController@index');
+Route::get('/juego/construccion', 'ConstruccionController@index');
