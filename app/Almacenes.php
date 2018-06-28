@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Almacen extends Model
+class Almacenes extends Model
 {
     public $timestamps = false;
     /**
@@ -17,7 +17,7 @@ class Almacen extends Model
     ];
 
     public function  generarDatosAlmacenes(){
-        $almacen =new Almacen();
+        $almacen =new Almacenes();
         $almacen->nivel=1;
         $almacen->capacidad=222;
         return $almacen;
