@@ -11,20 +11,14 @@
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
+//Rutas para login y registro
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
-Route::get('/', 'PrincipalController@index');
-
-Route::get('/juego/', 'JuegoController@index');
-
-Route::get('/juego/construccion', 'ConstruccionController@index');
-
+//Rutas para administrador
 Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
+
+//Rutas generales
+Route::get('/', 'PrincipalController@index');
+Route::get('/juego', 'JuegoController@index');
+Route::get('/juego/construccion', 'ConstruccionController@index');

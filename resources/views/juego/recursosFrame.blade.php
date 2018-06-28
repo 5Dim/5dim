@@ -9,6 +9,10 @@
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 
+    <script>
+        var recursos = {!! json_encode($recursos->toArray()) !!};
+        console.log(recursos);
+    </script>
 </head>
 <body class="bg" id="recursosFrame">
 
@@ -168,43 +172,43 @@
                 </tr>
                 <tr>
                     <td  class="text-warning borderless">
-                        55.55
+                        {{ $recursos->personal }}
                     </td>
                     <td  class="text-warning borderless">
-                        200.222
+                        {{ $recursos->mineral }}
                     </td>
                     <td  class="text-warning borderless">
-                        222
+                        {{ $recursos->cristal }}
                     </td>
                     <td  class="text-warning borderless">
-                        5.555
+                        {{ $recursos->gas }}
                     </td>
                     <td  class="text-warning borderless">
-                        55.55
+                        {{ $recursos->plastico }}
                     </td>
                     <td  class="text-warning borderless">
-                        552
+                        {{ $recursos->ceramica }}
                     </td>
-                    <td  class="text-success borderless">
-                        888
-                    </td>
-                    <td  class="text-success borderless">
+                    <td  class="text-warning borderless">
                         Producido
                     </td>
-                    <td  class="text-success borderless">
-                        99
+                    <td  class="text-warning borderless">
+                        {{ $recursos->liquidos }}
                     </td>
                     <td  class="text-warning borderless">
-                        55.222.333
+                        {{ $recursos->micros }}
                     </td>
                     <td  class="text-warning borderless">
-                        552.333
+                        {{ $recursos->fuel }}
                     </td>
                     <td  class="text-warning borderless">
-                        1.000.000
+                        {{ $recursos->ma }}
                     </td>
-                    <td  class="text-danger borderless">
-                        3200 ud/d
+                    <td  class="text-warning borderless">
+                        {{ $recursos->municion }}
+                    </td>
+                    <td  class="text-warning borderless">
+                        15
                     </td>
                 </tr>
                 <tr>

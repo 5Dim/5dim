@@ -7,17 +7,14 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Recursos;
+use App\Almacenes;
 
-class JuegoController extends Controller{
-
-
+class JuegoController extends Controller
+{
     public function index()
     {
-        
-        $recurso=new Recursos();
-
-        $resultado=$recurso->actualizaR();
-    
-        return view('juego.recursosFrame', compact('resultado'));
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = Almacenes;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes'));
     }
 }
