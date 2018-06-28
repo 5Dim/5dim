@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class RecursosController extends Controller
 {
-    
-  
+
 
 }
