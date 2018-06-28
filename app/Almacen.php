@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Almacen extends Model
 {
-    protected $table = 'almacen';
-    protected $timestamps = false;
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

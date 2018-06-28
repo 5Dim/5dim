@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlmacenTable extends Migration
+class CreateAlmacensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAlmacenTable extends Migration
      */
     public function up()
     {
-        Schema::create('almacen', function (Blueprint $table) {
+        Schema::create('almacens', function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('nivel');
             $table->integer('capacidad');
@@ -27,6 +27,6 @@ class CreateAlmacenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('almacen');
+        Schema::dropIfExists('almacens');
     }
 }
