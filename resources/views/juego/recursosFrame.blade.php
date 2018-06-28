@@ -168,7 +168,7 @@
                 </tr>
                 <tr>
                     <td  class="text-warning borderless">
-                        {{ $resultado }}
+                        55.55
                     </td>
                     <td  class="text-warning borderless">
                         200.222
