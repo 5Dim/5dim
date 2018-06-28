@@ -10,7 +10,7 @@ class Recursos extends Model
     {
         $resultado=1+100;
 
-        return $resultado; //
+        return $resultado;
     }
 
 }
