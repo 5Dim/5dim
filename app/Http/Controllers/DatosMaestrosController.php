@@ -12,7 +12,7 @@ class DatosMaestrosController extends Controller
     public function index(){
 
 
-        $almacen=new Almacen();
+        $almacen=new Almacenes();
         $almacenes=$almacen->generarDatosAlmacenes();
 
         foreach($almacenes as $estealmacen){
