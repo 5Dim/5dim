@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Almacen;
+use \App\Almacenes;
 
 class DatosMaestrosController extends Controller
 {
