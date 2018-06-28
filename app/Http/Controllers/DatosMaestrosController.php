@@ -10,10 +10,15 @@ class DatosMaestrosController extends Controller
 
 
     public function index(){
-        $almacen=new Almacen();
-        $mialmacen=$almacen->generarDatosAlmacenes();
 
-        $mialmacen->save();
+
+        $almacen=new Almacen();
+        $almacenes=$almacen->generarDatosAlmacenes();
+
+        foreach($almacenes as $estealmacen){
+            $estealmacen->save();
+        }
+    
     }
 
 
