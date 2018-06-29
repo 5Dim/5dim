@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserIdToPlaneta extends Migration
+class AddJugadoresIdToPlaneta extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddUserIdToPlaneta extends Migration
     public function up()
     {
         Schema::table('planetas', function (Blueprint $table) {
-            $table->integer('users_id')->unsigned();
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->integer('jugadores_id')->unsigned();
+            $table->foreign('jugadores_id')->references('id')->on('jugadores');
         });
     }
 
@@ -27,8 +27,8 @@ class AddUserIdToPlaneta extends Migration
     public function down()
     {
         Schema::table('planetas', function (Blueprint $table) {
-            $table->dropforeign(['users_id']);
-            $table->dropColumn('users_id');
+            $table->dropforeign(['jugadores_id']);
+            $table->dropColumn('jugadores_id');
         });
     }
 }

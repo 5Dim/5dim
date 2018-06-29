@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Planetas;
+use App\Jugadores;
 
-class PlanetasSeeder extends Seeder
+class JugadoresSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,10 +13,10 @@ class PlanetasSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        DB::table('planetas')->truncate();
+        DB::table('jugadores')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-        factory(Planetas::class)->create([
-            'jugadores_id' => 1,
+        factory(Jugadores::class)->create([
+            'users_id' => 1,
         ]);
     }
 }

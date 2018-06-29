@@ -8,7 +8,7 @@ class Recursos extends Model
 {
     public static function calcularRecursos ($id)
     {
-        $recursos = Recursos::where('planeta_id', $id)->first();
+        $recursos = Recursos::where('planetas_id', $id)->first();
         return $recursos;
     }
 

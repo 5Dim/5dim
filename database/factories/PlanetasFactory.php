@@ -5,6 +5,6 @@ use App\Planetas;
 
 $factory->define(Planetas::class, function (Faker $faker) {
     return [
-        'users_id' => $faker->randomDigitNotNull()
+        'jugadores_id' => $faker->randomDigitNotNull()
     ];
 });
