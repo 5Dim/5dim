@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
         DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
         factory(User::class)->create([
             'name' => 'McGuten',
             'email' => 'mcguten.videos@gmail.com',

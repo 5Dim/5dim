@@ -14,8 +14,8 @@ class AddUserIdToPlaneta extends Migration
     public function up()
     {
         Schema::table('planetas', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('users_id')->unsigned();
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 
@@ -27,8 +27,8 @@ class AddUserIdToPlaneta extends Migration
     public function down()
     {
         Schema::table('planetas', function (Blueprint $table) {
-            $table->dropforeign(['user_id']);
-            $table->dropColumn('user_id');
+            $table->dropforeign(['users_id']);
+            $table->dropColumn('users_id');
         });
     }
 }
