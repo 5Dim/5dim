@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Relacion de los usuarios con los planetas
+     */
+    public function planetas ()
+    {
+        return $this->hasMany(Planetas::class);
+    }
 }

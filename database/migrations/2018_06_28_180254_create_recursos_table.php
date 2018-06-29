@@ -26,7 +26,6 @@ class CreateRecursosTable extends Migration
             $table->integer('fuel');
             $table->integer('ma');
             $table->integer('municion');
-            $table->integer('planeta_id');
             $table->timestamps();
         });
     }

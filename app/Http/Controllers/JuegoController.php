@@ -14,7 +14,7 @@ class JuegoController extends Controller
     public function index()
     {
         $recursos = Recursos::calcularRecursos(1);
-        $almacenes = Almacenes;
+        //$almacenes = Almacenes::calcularAlmacenes(1);
         return view('juego.recursosFrame', compact('recursos', 'almacenes'));
     }
 }
