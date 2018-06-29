@@ -25,8 +25,6 @@ class Almacenes extends Model
         basicos  $arec3 = $cantalmainir3 + ((10000* (pow ($linearecursos->EDIFICIO12 ,3)))/$potalmar3); */
 
         $result=[];
-
-        //// mineral y cristal
         $cantalmainir=0;
         $potalmar=10;
         
@@ -39,10 +37,6 @@ class Almacenes extends Model
             }
 
         
-
-
-
-      
         return $result;
     }
 }

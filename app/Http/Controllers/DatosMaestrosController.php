@@ -9,7 +9,7 @@ class DatosMaestrosController extends Controller
 {
 
 
-    public function index(){
+    public function index(){   ///http://localhost/admin/DatosMaestros
 
 
         $almacen=new Almacenes();
