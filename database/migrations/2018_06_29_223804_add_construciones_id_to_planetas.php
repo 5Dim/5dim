@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPlanetaIdToEnConstrucciones extends Migration
+class AddConstrucionesIdToPlanetas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddPlanetaIdToEnConstrucciones extends Migration
      */
     public function up()
     {
-        Schema::table('en_construcciones', function (Blueprint $table) {
+        Schema::table('construcciones', function (Blueprint $table) {
             $table->integer('planetas_id')->unsigned();
             $table->foreign('planetas_id')->references('id')->on('planetas');
         });
@@ -26,7 +26,7 @@ class AddPlanetaIdToEnConstrucciones extends Migration
      */
     public function down()
     {
-        Schema::table('en_construcciones', function (Blueprint $table) {
+        Schema::table('construcciones', function (Blueprint $table) {
             $table->dropforeign(['planetas_id']);
             $table->dropColumn('planetas_id');
         });

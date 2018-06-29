@@ -16,6 +16,7 @@ class CreateEnConstruccionesTable extends Migration
         Schema::create('en_construcciones', function (Blueprint $table) {
             $table->increments('id');             
             $table->integer('personal');
+            $table->string('edificio');
             $table->boolean('contruyendo');  
             $table->date('created_at');       
             $table->date('finished_at'); 
