@@ -15,6 +15,7 @@ class JugadoresSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
         DB::table('jugadores')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+        
         factory(Jugadores::class)->create([
             'users_id' => 1,
         ]);
