@@ -11,7 +11,7 @@ $factory->define(Recursos::class, function (Faker $faker) {
         'gas' => $faker->randomDigitNotNull(),
         'plastico' => $faker->randomDigitNotNull(),
         'ceramica' => $faker->randomDigitNotNull(),
-        'liquidos' => $faker->randomDigitNotNull(),
+        'liquido' => $faker->randomDigitNotNull(),
         'micros' => $faker->randomDigitNotNull(),
         'fuel' => $faker->randomDigitNotNull(),
         'ma' => $faker->randomDigitNotNull(),

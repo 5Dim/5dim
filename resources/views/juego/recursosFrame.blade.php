@@ -8,11 +8,6 @@
 
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
-
-    <script>
-        var recursos = {!! json_encode($recursos->toArray()) !!};
-        console.log(recursos);
-    </script>
 </head>
 <body class="bg" id="recursosFrame">
 
@@ -118,8 +113,7 @@
                         Fuel
                     </th>
                     <th scope="col" class="text-warning borderless centradoCeldas">
-                        M
-                        -A</th>
+                        M-A</th>
                     <th scope="col" class="text-warning borderless centradoCeldas">
                         Munición
                     </th>
@@ -139,114 +133,96 @@
                     <td  class="text-danger borderless">
                         Ilimitado
                     </td>
-                    <td  class="text-danger borderless">
-                        Ilimitado
-                    </td>
-                    <td  class="text-danger borderless">
-                        Ilimitado
-                    </td>
-                    <td  class="text-danger borderless">
-                        Ilimitado
-                    </td>
-                    <td  class="text-danger borderless">
-                        Ilimitado
-                    </td>
-                    <td  class="text-danger borderless">
-                        Almacenes
-                    </td>
-                    <td  class="text-danger borderless">
-                        Ilimitado
-                    </td>
-                    <td  class="text-danger borderless">
-                        Ilimitado
-                    </td>
-                    <td  class="text-danger borderless">
-                        Ilimitado
-                    </td>
-                    <td  class="text-danger borderless">
-                        Ilimitado
-                    </td>
+                    @foreach ($almacenes as $almacen)
+                        <td  class="text-danger borderless">
+                            @if ($almacen->capacidad != 'Almacen')
+                                {{ number_format($almacen->capacidad, 0,",",".") }}
+                            @else
+                                {{ $almacen->capacidad }}
+                            @endif
+                        </td>
+                    @endforeach
                     <td  class="text-danger borderless">
                         3200 ud/d
                     </td>
                 </tr>
                 <tr>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->personal }}
+                    <td id="personal" class="text-warning borderless">
+                        {{ number_format($recursos->personal, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->mineral }}
+                    <td id="mineral" class="text-warning borderless">
+                        {{ number_format($recursos->mineral, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->cristal }}
+                    <td id="cristal" class="text-warning borderless">
+                        {{ number_format($recursos->cristal, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->gas }}
+                    <td id="gas" class="text-warning borderless">
+                        {{ number_format($recursos->gas, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->plastico }}
+                    <td id="plastico" class="text-warning borderless">
+                        {{ number_format($recursos->plastico, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->ceramica }}
+                    <td id="ceramica" class="text-warning borderless">
+                        {{ number_format($recursos->ceramica, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
+                    <td class="text-warning borderless">
                         Producido
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->liquidos }}
+                    <td id="liquido" class="text-warning borderless">
+                        {{ number_format($recursos->liquido, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->micros }}
+                    <td id="micros" class="text-warning borderless">
+                        {{ number_format($recursos->micros, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->fuel }}
+                    <td id="fuel" class="text-warning borderless">
+                        {{ number_format($recursos->fuel, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->ma }}
+                    <td id="ma" class="text-warning borderless">
+                        {{ number_format($recursos->ma, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
-                        {{ $recursos->municion }}
+                    <td id="municion" class="text-warning borderless">
+                        {{ number_format($recursos->municion, 0,",",".") }}
                     </td>
-                    <td  class="text-warning borderless">
+                    <td class="text-warning borderless">
                         15
                     </td>
                 </tr>
                 <tr>
                     <td  class="text-primary borderless">
-                        1.200 ud/h
+                        <span>{{ number_format($producciones->personal, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
-                        200 ud/h
+                        <span>{{ number_format($producciones->mineral, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
-                        222 ud/h
+                        <span>{{ number_format($producciones->cristal, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
-                        5.555 ud/h
+                        <span>{{ number_format($producciones->gas, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
-                        55 ud/h
+                        <span>{{ number_format($producciones->plastico, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
-                        552 ud/h
-                    </td>
-                    <td  class="text-primary borderless">
-                        888 ud/h
+                        <span>{{ number_format($producciones->ceramica, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
                         Producción
                     </td>
                     <td  class="text-primary borderless">
-                        99 ud/h
+                        <span>{{ number_format($producciones->liquido, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
-                        55.222 ud/h
+                        <span>{{ number_format($producciones->micros, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
-                        552.333 ud/h
+                        <span>{{ number_format($producciones->fuel, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
-                        1.000 ud/h
+                        <span>{{ number_format($producciones->ma, 0,",",".") }}</span> ud/h
+                    </td>
+                    <td  class="text-primary borderless">
+                        <span>{{ number_format($producciones->municion, 0,",",".") }}</span> ud/h
                     </td>
                     <td  class="text-primary borderless">
                         3200 ud/d
@@ -378,7 +354,15 @@
 <!-- Bootstrap -->
 <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js//custom.js') }}" type="text/javascript"></script>
 
+<!-- Bootstrap -->
+<script>
+    var recursos = {!! json_encode($recursos->toArray()) !!};
+    var produccion = {!! json_encode($producciones->toArray()) !!};
+    var almacenes = {!! json_encode($almacenes) !!};
+    activarIntervalo(recursos, almacenes, produccion, 250);
+</script>
 @yield('content')
 </body>
 </html>

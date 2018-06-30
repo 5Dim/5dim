@@ -21,7 +21,7 @@ class CreateRecursosTable extends Migration
             $table->integer('gas');
             $table->integer('plastico');
             $table->integer('ceramica');
-            $table->integer('liquidos');
+            $table->integer('liquido');
             $table->integer('micros');
             $table->integer('fuel');
             $table->integer('ma');
