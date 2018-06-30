@@ -21,7 +21,7 @@ class Producciones extends Model
 
     */
 
-    $Avelprodminas=1.6;  // produccion de recursoso en minas universo mutante
+    $Avelprodminas=1.6;  // produccion de recursos en minas universo mutante
     $factorprod = 1.7 * $Avelprodminas; //por lo que se multiplica la producción
 
     $cntinic1 = 37 * $factorprod;     $lapotencia1 = 2.2; 
