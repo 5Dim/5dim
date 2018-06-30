@@ -14,8 +14,8 @@ class AddPlanetaIdToEnConstrucciones extends Migration
     public function up()
     {
         Schema::table('en_construcciones', function (Blueprint $table) {
-            $table->integer('planetas_id')->unsigned();
-            $table->foreign('planetas_id')->references('id')->on('planetas');
+            $table->integer('construcciones_id')->unsigned();
+            $table->foreign('construcciones_id')->references('id')->on('construcciones');
         });
     }
 
@@ -27,8 +27,8 @@ class AddPlanetaIdToEnConstrucciones extends Migration
     public function down()
     {
         Schema::table('en_construcciones', function (Blueprint $table) {
-            $table->dropforeign(['planetas_id']);
-            $table->dropColumn('planetas_id');
+            $table->dropforeign(['construcciones_id']);
+            $table->dropColumn('construcciones_id');
         });
     }
 }

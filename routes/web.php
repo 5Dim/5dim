@@ -21,4 +21,4 @@ Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
 //Rutas generales
 Route::get('/', 'PrincipalController@index');
 Route::get('/juego', 'JuegoController@index');
-Route::get('/juego/construccion', 'ConstruccionController@index');
+Route::get('/juego/construccion', 'JuegoController@construcciones');

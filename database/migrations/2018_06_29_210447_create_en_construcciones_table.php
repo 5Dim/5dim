@@ -15,11 +15,12 @@ class CreateEnConstruccionesTable extends Migration
     {
         Schema::create('en_construcciones', function (Blueprint $table) {
             $table->increments('id');             
-            $table->integer('personal');
-            $table->string('edificio');
-            $table->boolean('contruyendo');  
-            $table->date('created_at');       
-            $table->date('finished_at'); 
+            $table->integer('personal');            
+            $table->integer('nivel');  
+           // $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));       
+           // $table->timestamp('finished_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+           $table->date('created_at') ;      
+           $table->date('finished_at');
 
         });
     }
