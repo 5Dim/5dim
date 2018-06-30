@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Almacenes;
+use \App\Producciones;
 
 class DatosMaestrosController extends Controller
 {
@@ -15,9 +16,8 @@ class DatosMaestrosController extends Controller
         $almacen=new Almacenes();
         $almacenes=$almacen->generarDatosAlmacenes();
 
-        foreach($almacenes as $estealmacen){
-            $estealmacen->save();
-        }
+        $produccion=new Producciones();
+        $producciones=$produccion->generarDatosProducciones();
     
     }
 

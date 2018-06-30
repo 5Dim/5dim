@@ -7,14 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Almacenes extends Model
 {
     public $timestamps = false;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'nivel', 'capacidad',
-    ];
 
     public function  generarDatosAlmacenes(){
 
@@ -24,7 +16,7 @@ class Almacenes extends Model
         resto $cantalmainir3 = 0;$potalmar3= 10;
         basicos  $arec3 = $cantalmainir3 + ((10000* (pow ($linearecursos->EDIFICIO12 ,3)))/$potalmar3); */
 
-        $result=[];
+        $almacenes=[];
         $cantalmainir=0;
         $potalmar=10;
         
@@ -33,10 +25,13 @@ class Almacenes extends Model
                 $almacen =new Almacenes();
                 $almacen->nivel=$n;
                 $almacen->capacidad=$capacidad;
-                array_push($result, $almacen);
+                array_push($almacenes, $almacen);
             }
 
+            foreach($almacenes as $estealmacen){
+                $estealmacen->save();
+            }
         
-        return $result;
+        //return $result;
     }
 }
