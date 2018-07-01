@@ -25,5 +25,8 @@ class DatosMaestrosController extends Controller
         $produccion=new Producciones();
         $producciones=$produccion->generarDatosProducciones();
 
+
+        session()->put('planeta', 'raticuli');
+
     }
 }

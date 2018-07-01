@@ -36,6 +36,8 @@ class JuegoController extends Controller
     {
         $recursos = Recursos::calcularRecursos(1);
         $producciones = Producciones::where('nivel', '30')->first();
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones'));
+        $planeta=session()->get('planeta');
+
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones','planeta'));
     }
 }

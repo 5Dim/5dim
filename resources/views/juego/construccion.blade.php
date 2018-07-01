@@ -3,7 +3,7 @@
 
 @section('content')
 
-            
+   {{$planeta}}
 <div class="txt-cons"><cufon class="cufon cufon-canvas" alt="Mina " style="width: 35px; height: 14px;"><canvas width="46" height="18" style="width: 46px; height: 18px; top: -1px; left: -1px;"></canvas><cufontext>Mina </cufontext></cufon><cufon class="cufon cufon-canvas" alt="de " style="width: 20px; height: 14px;"><canvas width="31" height="18" style="width: 31px; height: 18px; top: -1px; left: -1px;"></canvas><cufontext>de </cufontext></cufon><cufon class="cufon cufon-canvas" alt="mineral " style="width: 52px; height: 14px;"><canvas width="63" height="18" style="width: 63px; height: 18px; top: -1px; left: -1px;"></canvas><cufontext>mineral </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Nivel " style="width: 36px; height: 14px;"><canvas width="47" height="18" style="width: 47px; height: 18px; top: -1px; left: -1px;"></canvas><cufontext>Nivel </cufontext></cufon><cufon class="cufon cufon-canvas" alt="40 " style="width: 19px; height: 14px;"><canvas width="30" height="18" style="width: 30px; height: 18px; top: -1px; left: -1px;"></canvas><cufontext>40 </cufontext></cufon><cufon class="cufon cufon-canvas" alt="(De " style="width: 26px; height: 14px;"><canvas width="37" height="18" style="width: 37px; height: 18px; top: -1px; left: -1px;"></canvas><cufontext>(De </cufontext></cufon><cufon class="cufon cufon-canvas" alt="90)" style="width: 20px; height: 14px;"><canvas width="30" height="18" style="width: 30px; height: 18px; top: -1px; left: -1px;"></canvas><cufontext>90)</cufontext></cufon></div>
 <div class="txt-cons-tiempo-prem"><span class="azul">Termina: </span><span id="hastacuando1">Hoy a las 12:03</span></div>
 <div class="txt-cons-tiempo"><span class="azul">Tiempo:  </span><span id="T7C1">0h 0m 0s</span></div>
@@ -22,12 +22,12 @@
                           <td class="EstDiminutoB"></td>
                           <td class="EstDiminutoB"></td>
                           <td class="EstDiminutoB"></td>
-                          <td class="EstDiminutoB"></td>          									
+                          <td class="EstDiminutoB"></td>
                           </tr></tbody></table></div>
 <div class="form-cons">
-<form action="" target="_self"> 
+<form action="" target="_self">
     <label class="label-txt"><cufon class="cufon cufon-canvas" alt="Personal" style="width: 54px; height: 14px;"><canvas width="65" height="18" style="width: 65px; height: 18px; top: -1px; left: -1px;"></canvas><cufontext>Personal</cufontext></cufon></label>
-    <input id="operando1" name="operando1" class="personal-ocupado-cons verde" value="35246505" size="12" maxlength="8" onkeydown="calcula(7655225.6176 ,337.5,1)" onkeyup="calcula(7655225.6176 ,337.5,1)" type="Text">		              
+    <input id="operando1" name="operando1" class="personal-ocupado-cons verde" value="35246505" size="12" maxlength="8" onkeydown="calcula(7655225.6176 ,337.5,1)" onkeyup="calcula(7655225.6176 ,337.5,1)" type="Text">
     <input value="Construir" name="cons" class="bt-verde" onclick="hacer(1,1,1)" type="button">
     <input value="Reciclar" name="edireK" class="bt-rojo" onclick="hacer(-1,1,1)" type="button">
     <input value="Datos" name="inter" class="bt-azul-dat" onclick="interroga(1,40)" type="button">
@@ -35,7 +35,7 @@
 
 </form>
 </div>
-<div class="img-cons"><img src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90"></div>          
+<div class="img-cons"><img src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90"></div>
 
 
 @endsection
