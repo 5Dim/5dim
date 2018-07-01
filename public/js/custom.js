@@ -6,7 +6,7 @@ function calcularRecursos() {
     //console.log(recursos);
     //console.log(produccion);
     //console.log(almacenes);
-    produccion.gas = 654874;
+    produccion.gas = -654874;
     produccion.plastico = 6548740;
     produccion.ceramica = 65487400;
 
@@ -32,6 +32,9 @@ function calcularRecursos() {
     if (recursos.gas >= almacenes[counter].capacidad) {
         $("#gas").addClass('text-danger');
         $("#gas").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.gas <= 0) {
+        $("#gas").addClass('text-info');
+        $("#gas").text(0);
     } else {
         $("#gas").text(Math.trunc(recursos.gas).toLocaleString('es'));
     }
@@ -39,6 +42,9 @@ function calcularRecursos() {
     if (recursos.plastico >= almacenes[counter].capacidad) {
         $("#plastico").addClass('text-danger');
         $("#plastico").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.plastico <= 0) {
+        $("#plastico").addClass('text-info');
+        $("#plastico").text(0);
     } else {
         $("#plastico").text(Math.trunc(recursos.plastico).toLocaleString('es'));
     }
@@ -46,6 +52,9 @@ function calcularRecursos() {
     if (recursos.ceramica >= almacenes[counter].capacidad) {
         $("#ceramica").addClass('text-danger');
         $("#ceramica").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.ceramica <= 0) {
+        $("#ceramica").addClass('text-info');
+        $("#ceramica").text(0);
     } else {
         $("#ceramica").text(Math.trunc(recursos.ceramica).toLocaleString('es'));
     }
@@ -53,6 +62,9 @@ function calcularRecursos() {
     if (recursos.liquido >= almacenes[counter].capacidad) {
         $("#liquido").addClass('text-danger');
         $("#liquido").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.liquido <= 0) {
+        $("#liquido").addClass('text-info');
+        $("#liquido").text(0);
     } else {
         $("#liquido").text(Math.trunc(recursos.liquido).toLocaleString('es'));
     }
@@ -60,6 +72,9 @@ function calcularRecursos() {
     if (recursos.micros >= almacenes[counter].capacidad) {
         $("#micros").addClass('text-danger');
         $("#micros").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.micros <= 0) {
+        $("#micros").addClass('text-info');
+        $("#micros").text(0);
     } else {
         $("#micros").text(Math.trunc(recursos.micros).toLocaleString('es'));
     }
@@ -67,6 +82,9 @@ function calcularRecursos() {
     if (recursos.fuel >= almacenes[counter].capacidad) {
         $("#fuel").addClass('text-danger');
         $("#fuel").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.fuel <= 0) {
+        $("#fuel").addClass('text-info');
+        $("#fuel").text(0);
     } else {
         $("#fuel").text(Math.trunc(recursos.fuel).toLocaleString('es'));
     }
@@ -74,6 +92,9 @@ function calcularRecursos() {
     if (recursos.ma >= almacenes[counter].capacidad) {
         $("#ma").addClass('text-danger');
         $("#ma").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.ma <= 0) {
+        $("#ma").addClass('text-info');
+        $("#ma").text(0);
     } else {
         $("#ma").text(Math.trunc(recursos.ma).toLocaleString('es'));
     }
@@ -81,6 +102,9 @@ function calcularRecursos() {
     if (recursos.municion >= almacenes[counter].capacidad) {
         $("#municion").addClass('text-danger');
         $("#municion").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.municion <= 0) {
+        $("#municion").addClass('text-info');
+        $("#municion").text(0);
     } else {
         $("#municion").text(Math.trunc(recursos.municion).toLocaleString('es'));
     }
