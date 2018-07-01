@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JugadoresSeeder::class);
         $this->call(PlanetasSeeder::class);
         $this->call(RecursosSeeder::class);
+        $this->call(AlmacenesSeeder::class);
+        $this->call(ProduccionesSeeder::class);
     }
 }
