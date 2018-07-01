@@ -11,17 +11,17 @@ function calcularRecursos() {
     produccion.ceramica = 65487400;
 
     //Calculos
-    recursos.personal += produccion.personal / 3600 / 2;
-    recursos.mineral += produccion.mineral / 3600 / 2;
-    recursos.cristal += produccion.cristal / 3600 / 2;
-    recursos.gas += produccion.gas / 3600 / 2;
-    recursos.plastico += produccion.plastico / 3600 / 2;
-    recursos.ceramica += produccion.ceramica / 3600 / 2;
-    recursos.liquido += produccion.liquido / 3600 / 2;
-    recursos.micros += produccion.micros / 3600 / 2;
-    recursos.fuel += produccion.fuel / 3600 / 2;
-    recursos.ma += produccion.ma / 3600 / 2;
-    recursos.municion += produccion.municion / 3600 / 2;
+    recursos.personal += produccion.personal / 3600 / 4;
+    recursos.mineral += produccion.mineral / 3600 / 4;
+    recursos.cristal += produccion.cristal / 3600 / 4;
+    recursos.gas += produccion.gas / 3600 / 4;
+    recursos.plastico += produccion.plastico / 3600 / 4;
+    recursos.ceramica += produccion.ceramica / 3600 / 4;
+    recursos.liquido += produccion.liquido / 3600 / 4;
+    recursos.micros += produccion.micros / 3600 / 4;
+    recursos.fuel += produccion.fuel / 3600 / 4;
+    recursos.ma += produccion.ma / 3600 / 4;
+    recursos.municion += produccion.municion / 3600 / 4;
 
     //Insertar
     $("#personal").text(Math.trunc(recursos.personal).toLocaleString('es'));
@@ -110,9 +110,9 @@ function calcularRecursos() {
     }
 }
 
-function activarIntervalo(recEntrantes, redAlmacenes, proEntrante, intervalo) {
+function activarIntervalo(recEntrantes, almEntrante, proEntrante, intervalo) {
     recursos = recEntrantes;
     produccion = proEntrante;
-    almacenes = redAlmacenes;
+    almacenes = almEntrante;
     setInterval(calcularRecursos, intervalo);
 }

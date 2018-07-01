@@ -27,7 +27,7 @@ class JuegoController extends Controller
             }
             array_push($almacenes, $almacen);
         };
-        $producciones = Producciones::where('nivel', '99')->first();
+        $producciones = Producciones::where('nivel', '10')->first();
         $i = 0;
         return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
     }
@@ -35,7 +35,20 @@ class JuegoController extends Controller
     public function construcciones()
     {
         $recursos = Recursos::calcularRecursos(1);
-        $producciones = Producciones::where('nivel', '30')->first();
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones'));
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '10')->first();
+        $i = 0;
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i'));
     }
 }
