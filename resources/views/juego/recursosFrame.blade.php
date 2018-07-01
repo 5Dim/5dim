@@ -12,7 +12,7 @@
 <body class="bg" id="recursosFrame">
 
 <div id="menuC" class="container-fluid borderless">
-    <div id="menuCuenta" class="row d-flex justify-content-center" > 
+    <div id="menuCuenta" class="row d-flex justify-content-center" >
         <table class="table table-hover table-borderless table-sm text-center centradoDiv60">
             <thead>
                 <tr>
@@ -47,9 +47,9 @@
                     <th scope="col" class="text-warning borderless">
                         <form action="recursosV.php" method="post" name="myform" target="_self" id="premium" align="center">
                             <select id="miraotro" name="miraotro" onChange="cargamerec()">
-                                <option value="0"  class="" style="font-size:10px">NINGUNA</option><option value="3042" selected="selected" class="resaltado" style="font-size:10px">71881x1 SOLARI26</option> 
-                            </select>	
-                        </form>    
+                                <option value="0"  class="" style="font-size:10px">NINGUNA</option><option value="3042" selected="selected" class="resaltado" style="font-size:10px">71881x1 SOLARI26</option>
+                            </select>
+                        </form>
                     </th>
                     <th scope="col" class="text-warning borderless centradoCeldas">
                         <a href="cuenta.php" target="_self"><img src="{{ asset('img/elJuego/skin0/icons/ico-barra-opc.png') }}"  title="Opciones"/>
@@ -123,7 +123,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>                                    
+                <tr>
                     <td class="text-danger borderless">
                         &nbsp;
                     </td>
@@ -229,57 +229,57 @@
                     </td>
                 </tr>
             </tbody>
-        </table>  
+        </table>
     </div>
-    <div id="menuIconos" class="row d-flex justify-content-center" style="margin-top: -15px;">  
+    <div id="menuIconos" class="row d-flex justify-content-center" style="margin-top: -15px;">
         <table class="table table-hover table-borderless table-sm text-center centradoDiv70">
             <thead >
-                <tr>                                           
+                <tr>
                     <th scope="col" class="text-warning borderless">
                         <a id="constr" href="construccion.php" title="Construye tu imperio" target="_self">
                             <img title="Construcción"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}"    
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons1.png') }}" 
+                            src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}"
+                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons1.png') }}"
                             onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}" />
                         </a>
                     </th>
                     <th scope="col" class="text-warning borderless">
                         <a id="constr" href="hangar.php" target="_self">
                                 <img title="Producción"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}"    
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod1.png') }}" 
+                                src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}"
+                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod1.png') }}"
                                 onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}" />
                             </a>
                         </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="planeta3.php"  target="_self"> 
+                        <a id="constr" href="planeta3.php"  target="_self">
                                 <img title="Planeta"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}"    
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla1.png') }}" 
+                                src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}"
+                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla1.png') }}"
                                 onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}" />
                             </a>
                         </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="investigacion.php"  target="_self"> 
+                        <a id="constr" href="investigacion.php"  target="_self">
                                 <img title="Investigación"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-inv0.png') }}"    
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-inv1.png') }}" 
+                                src="{{ asset('img/elJuego/skin0/icons/ico-inv0.png') }}"
+                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-inv1.png') }}"
                                 onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-inv0.png') }}" />
                             </a>
                         </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="defensas.php" target="_self"> 
+                        <a id="constr" href="defensas.php" target="_self">
                                 <img title="Defensa"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-def0.png') }}"    
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-def1.png') }}" 
+                                src="{{ asset('img/elJuego/skin0/icons/ico-def0.png') }}"
+                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-def1.png') }}"
                                 onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-def0.png') }}" />
                             </a>
                         </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="diseno.php"  target="_self"> 
+                        <a id="constr" href="diseno.php"  target="_self">
                                 <img title="Diseños"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-dis0.png') }}"    
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-dis1.png') }}" 
+                                src="{{ asset('img/elJuego/skin0/icons/ico-dis0.png') }}"
+                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-dis1.png') }}"
                                 onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-dis0.png') }}" />
                             </a>
                         </th>
@@ -295,50 +295,50 @@
                         </div>
                     </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="mapa10.php"  target="_blank"> 
+                        <a id="constr" href="mapa10.php"  target="_blank">
                             <img title="Astrometría"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-ast0.png') }}"    
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ast1.png') }}" 
+                            src="{{ asset('img/elJuego/skin0/icons/ico-ast0.png') }}"
+                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ast1.png') }}"
                             onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-ast0.png') }}" />
                         </a>
                     </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="flota.php?nmenu=2"  target="_self"> 
+                        <a id="constr" href="flota.php?nmenu=2"  target="_self">
                             <img title="Flotas"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-flo0.png') }}"    
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-flo1.png') }}" 
+                            src="{{ asset('img/elJuego/skin0/icons/ico-flo0.png') }}"
+                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-flo1.png') }}"
                             onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-flo0.png') }}" />
                         </a>
                     </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="banco1.php"  target="_self"> 
+                        <a id="constr" href="banco1.php"  target="_self">
                             <img title="Banco"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-ban0.png') }}"    
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ban1.png') }}" 
+                            src="{{ asset('img/elJuego/skin0/icons/ico-ban0.png') }}"
+                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ban1.png') }}"
                             onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-ban0.png') }}" />
                         </a>
                     </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="comercio13.php"  target="_self"> 
+                        <a id="constr" href="comercio13.php"  target="_self">
                             <img title="Comercio"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-com0.png') }}"    
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-com1.png') }}" 
+                            src="{{ asset('img/elJuego/skin0/icons/ico-com0.png') }}"
+                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-com1.png') }}"
                             onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-com0.png') }}" />
                         </a>
                     </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="alianza0.php"  target="_self"> 
+                        <a id="constr" href="alianza0.php"  target="_self">
                             <img title="Alianza"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-ali0.png') }}"    
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ali1.png') }}" 
+                            src="{{ asset('img/elJuego/skin0/icons/ico-ali0.png') }}"
+                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ali1.png') }}"
                             onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-ali0.png') }}" />
                         </a>
                     </th>
                     <th scope="col" class="text-warning borderless">
-                        <a id="constr" href="ppal.php"  target="_self"> 
+                        <a id="constr" href="ppal.php"  target="_self">
                             <img title="General"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-gen1.png') }}"    
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-gen1.png') }}" 
+                            src="{{ asset('img/elJuego/skin0/icons/ico-gen1.png') }}"
+                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-gen1.png') }}"
                             onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-gen0.png') }}" />
                         </a>
                     </th>

@@ -17,12 +17,12 @@ class JuegoController extends Controller
         $recursos = Recursos::calcularRecursos(1);
         $almacenes = [];
         $start = 2;
-        $end = $start+9;
-        for ($nivel = $start ; $nivel < $end; $nivel++) {
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
             if ($nivel == ($start + 3)) {
                 $almacen = Almacenes::where('nivel', $nivel)->first();
                 $almacen->capacidad = 'Almacen';
-            }else {
+            } else {
                 $almacen = Almacenes::where('nivel', $nivel)->first();
             }
             array_push($almacenes, $almacen);
@@ -32,7 +32,8 @@ class JuegoController extends Controller
         return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
     }
 
-    public function construcciones(){
+    public function construcciones()
+    {
         $recursos = Recursos::calcularRecursos(1);
         $producciones = Producciones::where('nivel', '30')->first();
         return view('juego.construccion', compact('recursos', 'almacenes', 'producciones'));
