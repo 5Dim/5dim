@@ -6,25 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producciones extends Model
 {
-    
+
     public $timestamps = false;
 
     public function  generarDatosProducciones(){
 
-    /*   
+    /*
     	eval ("\$crCR$ciclico = ((\$cntinic$ciclico * pow ((int) (\$jugones->EDIFICIO$ciclico) , \$lapotencia$ciclico)))/3600;");
-	
+
 	eval ("\$NCRj$ciclico$eljugon = ( \$lapso * \$crCR$ciclico );");
-    eval ("\$crTcogidosr$ciclico = \$crTcogidosr$ciclico + ( \$lapso * \$crCR$ciclico );"); 
-    
+    eval ("\$crTcogidosr$ciclico = \$crTcogidosr$ciclico + ( \$lapso * \$crCR$ciclico );");
+
     (($cntinic1 * pow (nivel , $lapotencia1)))/3600  por segundo
 
     */
 
-    $Avelprodminas=1.6;  // produccion de recursos en minas universo mutante
+    //$Avelprodminas=1.6;  // produccion de recursos en minas
+
+    $Avelprodminas=Constantes::where('codigo','Avelprodminas')->first()->valor;
     $factorprod = 1.7 * $Avelprodminas; //por lo que se multiplica la producción
 
-    $cntinic1 = 37 * $factorprod;     $lapotencia1 = 2.2; 
+    $cntinic1 = 37 * $factorprod;     $lapotencia1 = 2.2;
     $cntinic2 = 27 * $factorprod;     $lapotencia2 = 2.1;
     $cntinic3 = 25  * $factorprod;     $lapotencia3 = 2.0;
     $cntinic4 = 20 * $factorprod;     $lapotencia4 = 1.8;
@@ -36,9 +38,9 @@ class Producciones extends Model
     $cntinic10 = 2 * $factorprod;     $lapotencia10 = 2.3;
     $cntinic11 = 15 * $factorprod;     $lapotencia11 = .9;
 
-        $producciones=[];        
-        
-            for($nivel=1;$nivel<100;$nivel++){ 
+        $producciones=[];
+
+            for($nivel=1;$nivel<100;$nivel++){
                 $produccion =new Producciones();
                 $produccion->nivel=$nivel;
 
@@ -53,7 +55,7 @@ class Producciones extends Model
                 $produccion->ma=(($cntinic9 * pow ($nivel , $lapotencia9)));
                 $produccion->municion=(($cntinic10 * pow ($nivel , $lapotencia10)));
                 $produccion->personal=(($cntinic11 * pow ($nivel , $lapotencia11)));
-                
+
                 array_push($producciones, $produccion);
             }
 
