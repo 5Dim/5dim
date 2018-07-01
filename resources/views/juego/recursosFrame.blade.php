@@ -358,10 +358,12 @@
 
 <!-- Bootstrap -->
 <script>
-    var recursos = {!! json_encode($recursos->toArray()) !!};
-    var produccion = {!! json_encode($producciones->toArray()) !!};
-    var almacenes = {!! json_encode($almacenes) !!};
-    activarIntervalo(recursos, almacenes, produccion, 250);
+    $( document ).ready(function() {
+        var recursos = {!! json_encode($recursos->toArray()) !!};
+        var produccion = {!! json_encode($producciones->toArray()) !!};
+        var almacenes = {!! json_encode($almacenes) !!};
+        activarIntervalo(recursos, almacenes, produccion, 250);
+    });
 </script>
 @yield('content')
 </body>
