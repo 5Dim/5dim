@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="alert alert-dark" role="alert" style="margin-top: 100px">
-        <h4 class="alert-heading">Universo principal</h4>
+        <h4 class="alert-heading text-center">Universo principal</h4>
         <p>
             Este universo tiene los parametros estandar
         </p>
@@ -33,7 +33,7 @@
         </p>
     </div>
     <div class="alert alert-dark" role="alert">
-        <h4 class="alert-heading">Universo Mutante</h4>
+        <h4 class="alert-heading text-center">Universo Mutante</h4>
         <p>
             Este universo tiene los parametros alterados
         </p>

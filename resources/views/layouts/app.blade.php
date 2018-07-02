@@ -31,7 +31,7 @@
                     <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         {{ Auth::user()->name }}
-                        </a>
+                    </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="{{ url('/configuracion') }}">Configuracion</a>
