@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Variables extends Model
 {
-    public function  generarDatosVariables(){
-
+    public function  generarDatosVariables($universo=0){
 
 
         $variables=[];
 
 
                 $variable =new variables();
+                $variable->universoId=$universo;
                 $variable->codigo='catiInvest';
                 $variable->descripcion='investigaciones simultaneas-velocdad produccion';
                 $variable->cambiaCodigo='InvestSimultaneas';
@@ -23,6 +23,7 @@ class Variables extends Model
                 array_push($variables, $variable);
 
                 $variable =new variables();
+                $variable->universoId=$universo;
                 $variable->codigo='catiInvest2';
                 $variable->descripcion='investigaciones simultaneas - ejemplo';
                 $variable->cambiaCodigo='InvestSimultaneas';

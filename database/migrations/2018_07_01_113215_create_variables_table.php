@@ -15,13 +15,14 @@ class CreateVariablesTable extends Migration
     {
         Schema::create('variables', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('universo_id');
             $table->string('codigo');
             $table->string('descripcion');
             $table->string('cambiaCodigo');
             $table->double('variacion');
             $table->string('influyeCodigo');
             $table->double('influyeVariacion');
+            $table->timestamps();
 
         });
     }

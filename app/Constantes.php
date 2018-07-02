@@ -9,12 +9,13 @@ class Constantes extends Model
 
     public $timestamps = false;
 
-    public function  generarDatosConstantes(){
+    public function  generarDatosConstantes($universo=0){
 
         $producciones=[];
 
 
                 $constante =new Constantes();
+                $constante->universoId=$universo;
                 $constante->valor=1.6;
                 $constante->minimo=1;
                 $constante->maximo=3;
@@ -23,6 +24,7 @@ class Constantes extends Model
                 array_push($producciones, $constante);
 
                 $constante =new Constantes();
+                $constante->universoId=$universo;
                 $constante->valor=3;
                 $constante->minimo=1;
                 $constante->maximo=6;

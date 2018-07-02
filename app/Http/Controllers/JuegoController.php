@@ -50,6 +50,9 @@ class JuegoController extends Controller
         $producciones = Producciones::where('nivel', '10')->first();
         $i = 0;
 
+
+        //session()->put('planeta', 'raticuli'); //envio de dato
+        //$planeta=session()->get('planeta'); // recoge dato
         return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i'));
     }
 }
