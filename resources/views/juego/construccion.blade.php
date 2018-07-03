@@ -3,7 +3,7 @@
 
 
 <div class="container">
-    <div class="row " style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo.png');  ">
+    <div class="row " style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo.png');">
         <div class="col-1">
             <img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90" style="margin: 15px; border: 1px solid white">
         </div>
@@ -11,9 +11,10 @@
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless table-sm text-center">
                     <tr>
-                        <td colspan="4" class="text-primary  borderless">Mina mineral nivel 40 (de 90)</td>
-                        <td colspan="3" class="text-primary  borderless">Termina: Hoy a las 20:20</td>
-                        <td colspan="3" class="text-primary  borderless">Tiempo: 0h 20m 50s</td>
+                        <td colspan="1" class="text-primary borderless"></td>
+                        <td colspan="4" class="text-primary text-left borderless">Mina mineral nivel 40 (de 90)</td>
+                        <td colspan="3" class="text-primary  borderless" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo3.png');">Termina: Hoy a las 20:20</td>
+                        <td colspan="3" class="text-primary  borderless" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo3.png');">Tiempo: 0h 20m 50s</td>
                     </tr>
                     <tr>
                         <td class="text-warning borderless">Mineral</td>
