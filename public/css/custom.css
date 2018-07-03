@@ -5,26 +5,39 @@ body.bg {
     background-size: cover;
     -o-background-size: cover;
 }
-#menuCuenta{
-    background-color: rgba(0,0,0,.7);
+
+#menuCuenta {
+    background-color: rgba(0, 0, 0, .7);
 }
-#menuRecursos{
-    background-color: rgba(0,0,0,.5);
+
+#menuRecursos {
+    background-color: rgba(0, 0, 0, .5);
+    padding-top: 5px !important;
 }
-#menuIconos{
-    background-color: rgba(0,0,0,.5);
+
+#menuIconos {
+    background-color: rgba(0, 0, 0, .5);
+    padding-top: 15px !important;
 }
-.borderless{
+
+.borderless {
     margin: 0px !important;
-    border: 0px !important; 
+    border: 0px !important;
     padding: 0px !important;
 }
-.centradoCeldas{
+
+.centradoCeldas {
     width: 7.5%;
 }
-.centradoDiv60{
+
+.centradoDiv60 {
     width: 60%;
 }
-.centradoDiv70{
+
+.centradoDiv70 {
     width: 70%;
+}
+
+#menuCuenta img {
+    padding-bottom: 6px !important;
 }
