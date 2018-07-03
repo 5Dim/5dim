@@ -1,13 +1,13 @@
-@extends('juego.recursosFrame') 
+@extends('juego.recursosFrame')
 @section('content')
 
 
 <div class="container">
-    <div class="row bg-dark">
+    <div class="row " style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo.png');  ">
         <div class="col-1">
             <img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90" style="margin: 15px; border: 1px solid white">
         </div>
-        <div class="col-11">
+        <div class="col-11" >
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless table-sm text-center">
                     <tr>
