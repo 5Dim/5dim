@@ -27,7 +27,7 @@ class JuegoController extends Controller
             }
             array_push($almacenes, $almacen);
         };
-        $producciones = Producciones::where('nivel', '10')->first();
+        $producciones = Producciones::where('nivel', '50')->first();
         $i = 0;
         return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
     }
@@ -47,7 +47,7 @@ class JuegoController extends Controller
             }
             array_push($almacenes, $almacen);
         };
-        $producciones = Producciones::where('nivel', '10')->first();
+        $producciones = Producciones::where('nivel', '50')->first();
         $i = 0;
 
 

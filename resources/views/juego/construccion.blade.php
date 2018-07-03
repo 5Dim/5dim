@@ -3,7 +3,7 @@
 
 
 <div class="container">
-    <div class="row bg-dark">
+    <div class="row bg-dark rounded">
         <div class="col-1">
             <img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90" style="margin: 15px; border: 1px solid white">
         </div>
@@ -11,9 +11,9 @@
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless table-sm text-center">
                     <tr>
-                        <td colspan="4" class="text-primary  borderless">Mina mineral nivel 40 (de 90)</td>
-                        <td colspan="3" class="text-primary  borderless">Termina: Hoy a las 20:20</td>
-                        <td colspan="3" class="text-primary  borderless">Tiempo: 0h 20m 50s</td>
+                        <td colspan="4" class="text-primary borderless">Mina mineral nivel 40 (de 90)</td>
+                        <td colspan="3" class="text-primary borderless">Termina: Hoy a las 20:20</td>
+                        <td colspan="3" class="text-primary borderless">Tiempo: 0h 20m 50s</td>
                     </tr>
                     <tr>
                         <td class="text-warning borderless">Mineral</td>
@@ -71,7 +71,7 @@
                         <td><button type="button" class="btn btn-outline-danger btn-block"><i class="fa fa-trash"></i> Reciclar</button></td>
                         <td><button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-info-circle"></i> Datos</button></td>
                         <td><button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-play"></i> Producir</button></td>
-                        <td><button type="button" class="btn btn-outline-success btn-block"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                        <td><button type="button" class="btn btn-outline-success btn-block" disabled><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
                     </tr>
                     <tr>
                         <td><button type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Reciclar</button></td>
@@ -95,7 +95,7 @@
                         <td><button type="button" class="btn btn-danger btn-block"><i class="fa fa-trash"></i> Reciclar</button></td>
                         <td><button type="button" class="btn btn-primary btn-block"><i class="fa fa-info-circle"></i> Datos</button></td>
                         <td><button type="button" class="btn btn-primary btn-block"><i class="fa fa-play"></i> Producir</button></td>
-                        <td><button type="button" class="btn btn-success btn-block"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                        <td><button type="button" class="btn btn-success btn-block" disabled><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
                     </tr>
                     <tr>
                         <td><button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Reciclar</button></td>
@@ -120,10 +120,10 @@
         <div class="col-11">
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless table-sm text-center">
-                    <tr>
-                        <td colspan="4" class="text-primary  borderless">Mina mineral nivel 40 (de 90)</td>
-                        <td colspan="3" class="text-primary  borderless">Termina: Hoy a las 20:20</td>
-                        <td colspan="3" class="text-primary  borderless">Tiempo: 0h 20m 50s</td>
+                    <tr class="text-danger">
+                        <td colspan="4" class="borderless">Mina mineral nivel 40 (de 90)</td>
+                        <td colspan="3" class="borderless">Termina: Hoy a las 20:20</td>
+                        <td colspan="3" class="borderless">Tiempo: 0h 20m 50s</td>
                     </tr>
                     <tr>
                         <td class="text-warning borderless">Mineral</td>
@@ -172,10 +172,10 @@
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-sm table-borderless text-center">
                     <tr>
-                        <td><button type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Reciclar</button></td>
-                        <td><button type="button" class="btn btn-outline-primary"><i class="fa fa-info-circle"></i> Datos</button></td>
-                        <td><button type="button" class="btn btn-outline-primary"><i class="fa fa-play"></i> Producir</button></td>
-                        <td><button type="button" class="btn btn-outline-success"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                        <td><button type="button" class="btn btn-outline-danger btn-block"><i class="fa fa-trash"></i> Reciclar</button></td>
+                        <td><button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-info-circle"></i> Datos</button></td>
+                        <td><button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-play"></i> Producir</button></td>
+                        <td><button type="button" class="btn btn-outline-danger btn-block"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
                     </tr>
                 </table>
             </div>
@@ -188,10 +188,10 @@
         <div class="col-11">
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless table-sm text-center">
-                    <tr>
-                        <td colspan="4" class="text-primary  borderless">Mina mineral nivel 40 (de 90)</td>
-                        <td colspan="3" class="text-primary  borderless">Termina: Hoy a las 20:20</td>
-                        <td colspan="3" class="text-primary  borderless">Tiempo: 0h 20m 50s</td>
+                    <tr class="text-success">
+                        <td colspan="4" class="borderless">Mina mineral nivel 40 (de 90)</td>
+                        <td colspan="3" class="borderless">Termina: Hoy a las 20:20</td>
+                        <td colspan="3" class="borderless">Tiempo: 0h 20m 50s</td>
                     </tr>
                     <tr>
                         <td class="text-warning borderless">Mineral</td>
