@@ -1,5 +1,5 @@
 body.bg {
-    background: url('../img/principal/fondo2.jpg') no-repeat center top !important;
+    background: url('../img/principal/fondo2.jpg') no-repeat center top fixed !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
