@@ -249,26 +249,10 @@
                     <tr>
                         <th scope="col" class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/construccion')}}" title="Construye tu imperio" target="_self">
-                            <img title="Construcción"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}"
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons1.png') }}"
-                            onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}" />
-                        </a>
-                        </th>
-                        <th scope="col" class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/fabricas')}}" target="_self">
-                                <img title="Producción"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}" />
-                            </a>
-                        </th>
-                        <th scope="col" class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/planeta')}}" target="_self">
-                                <img title="Planeta"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}" />
+                                <img title="Construcción"
+                                src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}"
+                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons1.png') }}"
+                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}" />
                             </a>
                         </th>
                         <th scope="col" class="text-warning borderless">
@@ -281,7 +265,15 @@
                         </th>
                         <th scope="col" class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/planeta')}}" target="_self">
-                                <img title="Defensa"
+                                <img title="Planeta"
+                                src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}"
+                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla1.png') }}"
+                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}" />
+                            </a>
+                        </th>
+                        <th scope="col" class="text-warning borderless">
+                            <a id="constr" href="{{url('/juego/fuselajes')}}" target="_self">
+                                <img title="fuselajes"
                                 src="{{ asset('img/elJuego/skin0/icons/ico-def0.png') }}"
                                 onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-def1.png') }}"
                                 onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-def0.png') }}" />
@@ -293,6 +285,14 @@
                                 src="{{ asset('img/elJuego/skin0/icons/ico-dis0.png') }}"
                                 onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-dis1.png') }}"
                                 onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-dis0.png') }}" />
+                            </a>
+                        </th>
+                        <th scope="col" class="text-warning borderless">
+                            <a id="constr" href="{{url('/juego/fabricas')}}" target="_self">
+                                <img title="Producción"
+                                src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}"
+                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod1.png') }}"
+                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}" />
                             </a>
                         </th>
                         <th scope="col" class="text-warning borderless" align="center">

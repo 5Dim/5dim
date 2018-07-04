@@ -32,7 +32,7 @@ class JuegoController extends Controller
         return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
     }
 
-    public function construcciones()
+    public function construccion()
     {
         $recursos = Recursos::calcularRecursos(1);
         $almacenes = [];
@@ -54,5 +54,205 @@ class JuegoController extends Controller
         //session()->put('planeta', 'raticuli'); //envio de dato
         //$planeta=session()->get('planeta'); // recoge dato
         return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function fabricas()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function planeta()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function investigacion()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function diseño()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function astrometria()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function flota()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function banco()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function comercio()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function general()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
+    }
+
+    public function alianza()
+    {
+        $recursos = Recursos::calcularRecursos(1);
+        $almacenes = [];
+        $start = 2;
+        $end = $start + 9;
+        for ($nivel = $start; $nivel < $end; $nivel++) {
+            if ($nivel == ($start + 3)) {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+                $almacen->capacidad = 'Almacen';
+            } else {
+                $almacen = Almacenes::where('nivel', $nivel)->first();
+            }
+            array_push($almacenes, $almacen);
+        };
+        $producciones = Producciones::where('nivel', '50')->first();
+        $i = 0;
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'i'));
     }
 }
