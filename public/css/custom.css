@@ -41,3 +41,7 @@ body.bg {
 #menuCuenta img {
     padding-bottom: 6px !important;
 }
+
+.anchofijo {
+    width: 8%;
+}
