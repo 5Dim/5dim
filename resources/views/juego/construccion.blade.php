@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo.png'); border: 1px solid grey; margin-top: 5px;">
         <div class="col-1">
             <img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90" style="margin: 15px; border: 1px solid white">
