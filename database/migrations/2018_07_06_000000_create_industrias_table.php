@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConstruccionesTable extends Migration
+class CreateIndustriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateConstruccionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('construcciones', function (Blueprint $table) {
+        Schema::create('industrias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo');
-            $table->integer('nivel');
-
+            $table->boolean('industria1'); // si esta activa la industria
+            $table->boolean('industria2');
+            $table->boolean('industria3');
+            $table->boolean('industria4');
+            $table->boolean('industria5');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateConstruccionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('construcciones');
+        Schema::dropIfExists('industrias');
     }
 }
