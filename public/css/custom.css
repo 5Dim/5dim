@@ -42,8 +42,8 @@ body.bg {
     padding-bottom: 6px !important;
 }
 
-.anchofijo {
-    width: 8%;
+table.anchofijo {
+    table-layout: fixed;
 }
 
 .personal1 {
@@ -58,13 +58,4 @@ textarea {
     background-color: #000000;
     color: white;
     border: 1px solid darkgray;
-}
-
-table {
-    table-layout: fixed;
-}
-
-table th,
-table td {
-    overflow: hidden;
 }
