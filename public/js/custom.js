@@ -6,9 +6,9 @@ function calcularRecursos() {
     //console.log(recursos);
     //console.log(produccion);
     //console.log(almacenes);
-    produccion.gas = -654874;
-    produccion.plastico = 6548740;
-    produccion.ceramica = 65487400;
+    //produccion.gas = -654874;
+    //produccion.plastico = 6548740;
+    //produccion.ceramica = 65487400;
 
     //Calculos
     recursos.personal += produccion.personal / 3600 / 4;

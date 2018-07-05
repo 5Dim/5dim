@@ -50,5 +50,21 @@ body.bg {
     width: 40%;
     font-size: 13px;
     text-align: center;
-    opacity: 0.6;
+    /*opacity: 0.6;*/
+}
+
+input[type="number"],
+textarea {
+    background-color: #000000;
+    color: white;
+    border: 1px solid darkgray;
+}
+
+table {
+    table-layout: fixed;
+}
+
+table th,
+table td {
+    overflow: hidden;
 }
