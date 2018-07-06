@@ -7,6 +7,7 @@ use \App\Constantes;
 use \App\Almacenes;
 use \App\Producciones;
 use \App\Variables;
+use \App\costes_construcciones;
 
 class DatosMaestrosController extends Controller
 {
@@ -24,6 +25,9 @@ class DatosMaestrosController extends Controller
 
         $produccion=new Producciones();
         $producciones=$produccion->generarDatosProducciones();
+
+        $produccion=new costes_construcciones();
+        $costesConstruccion=$produccion->generarDatosCostesConstruccion();
 
 
     }

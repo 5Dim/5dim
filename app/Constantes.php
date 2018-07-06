@@ -15,7 +15,7 @@ class Constantes extends Model
 
 
                 $constante =new Constantes();
-                $constante->universoId=$universo;
+                $constante->universo_id=$universo;
                 $constante->valor=1.6;
                 $constante->minimo=1;
                 $constante->maximo=3;
@@ -24,7 +24,7 @@ class Constantes extends Model
                 array_push($producciones, $constante);
 
                 $constante =new Constantes();
-                $constante->universoId=$universo;
+                $constante->universo_id=$universo;
                 $constante->valor=3;
                 $constante->minimo=1;
                 $constante->maximo=6;

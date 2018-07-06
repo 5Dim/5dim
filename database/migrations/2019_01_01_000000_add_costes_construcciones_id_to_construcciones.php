@@ -13,11 +13,11 @@ class AddCostesConstruccionesIdToConstrucciones extends Migration
      */
     public function up()
     {
-        Schema::table('costes_construcciones', function (Blueprint $table) {
+        Schema::table('construcciones', function (Blueprint $table) {
             $table->integer('codigo')->unsigned();
-            $table->foreign('codigo')->references('id')->on('construcciones');
+            $table->foreign('codigo')->references('id')->on('costes_construcciones');
             $table->integer('nivel')->unsigned();
-            $table->foreign('nivel')->references('id')->on('construcciones');
+            $table->foreign('nivel')->references('id')->on('costes_construcciones');
         });
     }
 
@@ -28,7 +28,7 @@ class AddCostesConstruccionesIdToConstrucciones extends Migration
      */
     public function down()
     {
-        Schema::table('costes_construcciones', function (Blueprint $table) {
+        Schema::table('construcciones', function (Blueprint $table) {
             $table->dropforeign(['codigo']);
             $table->dropColumn('codigo');
             $table->dropforeign(['nivel']);
