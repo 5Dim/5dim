@@ -14,8 +14,8 @@ class AddEnConstruccionesIdToConstrucciones extends Migration
     public function up()
     {
         Schema::table('en_construcciones', function (Blueprint $table) {
-            $table->integer('codigo')->unsigned();
-            $table->foreign('codigo')->references('id')->on('construcciones');
+            $table->integer('construcciones_id')->unsigned();
+            $table->foreign('construcciones_id')->references('id')->on('construcciones');
         });
     }
 
@@ -27,8 +27,8 @@ class AddEnConstruccionesIdToConstrucciones extends Migration
     public function down()
     {
         Schema::table('en_construcciones', function (Blueprint $table) {
-            $table->dropforeign(['codigo']);
-            $table->dropColumn('codigo');
+            $table->dropforeign(['construcciones_id']);
+            $table->dropColumn('construcciones_id');
         });
     }
 }
