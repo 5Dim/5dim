@@ -62,5 +62,27 @@ class Producciones extends Model
             foreach($producciones as $estaproduccion){
                 $estaproduccion->save();
             }
+        }
+
+        public function  generarDatosCostesConstruccion(){
+            $costes=[];
+            for ($nivel=1;$nivel<100;$nivel++){
+
+                $produccion->mineral=(($cntinic1 * pow ($nivel , $lapotencia1)));
+                $produccion->cristal=(($cntinic2 * pow ($nivel , $lapotencia2)));
+                $produccion->gas=(($cntinic3 * pow ($nivel , $lapotencia3)));
+                $produccion->plastico=(($cntinic4 * pow ($nivel , $lapotencia4)));
+                $produccion->ceramica=(($cntinic5 * pow ($nivel , $lapotencia5)));
+                $produccion->liquido=(($cntinic6 * pow ($nivel , $lapotencia6)));
+                $produccion->micros=(($cntinic7 * pow ($nivel , $lapotencia7)));
+
+                array_push($costes, $produccion);
+            }
+
+            foreach($costes as $estaproduccion){
+                $estaproduccion->save();
+            }
+
+        }
+
     }
-}
