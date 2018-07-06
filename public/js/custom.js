@@ -59,6 +59,7 @@ function calcularRecursos() {
         $("#ceramica").text(Math.trunc(recursos.ceramica).toLocaleString('es'));
     }
     counter++;
+    counter++;
     if (recursos.liquido >= almacenes[counter].capacidad) {
         $("#liquido").addClass('text-danger');
         $("#liquido").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
