@@ -15,11 +15,11 @@ class CreateIndustriasTable extends Migration
     {
         Schema::create('industrias', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('industria1'); // si esta activa la industria
-            $table->boolean('industria2');
-            $table->boolean('industria3');
-            $table->boolean('industria4');
-            $table->boolean('industria5');
+            $table->boolean('liquidos'); // si esta activa la industria
+            $table->boolean('micros');
+            $table->boolean('fuel');
+            $table->boolean('m-a');
+            $table->boolean('municion');
         });
     }
 
