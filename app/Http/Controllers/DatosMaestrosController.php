@@ -26,8 +26,8 @@ class DatosMaestrosController extends Controller
         $produccion=new Producciones();
         $producciones=$produccion->generarDatosProducciones();
 
-        $produccion=new costes_construcciones();
-        $costesConstruccion=$produccion->generarDatosCostesConstruccion();
+       // $produccion=new costes_construcciones();
+       // $costesConstruccion=$produccion->generarDatosCostesConstruccion();
 
 
     }
