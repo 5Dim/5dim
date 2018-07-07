@@ -15,7 +15,7 @@ class CreateCostesConstruccionesTable extends Migration
     public function up()
     {
         Schema::create('costes_construcciones', function (Blueprint $table) {
-           // $table->increments('id');
+            $table->increments('id');
             $table->string('codigo');
             $table->integer('nivel');
             $table->integer('mineral');
@@ -25,7 +25,7 @@ class CreateCostesConstruccionesTable extends Migration
             $table->integer('ceramica');
             $table->integer('liquido');
             $table->integer('micros');
-            $table->primary(["codigo","nivel"]);
+           // $table->primary(["codigo","nivel"]);
         });
     }
 

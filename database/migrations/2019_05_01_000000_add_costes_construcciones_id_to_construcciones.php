@@ -15,9 +15,9 @@ class AddCostesConstruccionesIdToConstrucciones extends Migration
     {
         Schema::table('construcciones', function (Blueprint $table) {
             $table->string('codigo');
-            $table->foreign('codigo')->references('codigo')->on('costes_construcciones');
+          //  $table->foreign('codigo')->references('codigo')->on('costes_construcciones');
             $table->integer('nivel');
-            $table->foreign('nivel')->references('nivel')->on('costes_construcciones');
+          //  $table->foreign('nivel')->references('nivel')->on('costes_construcciones');
         });
     }
 
