@@ -59,3 +59,13 @@ textarea {
     color: white;
     border: 1px solid darkgray;
 }
+
+.active {
+    background-color: #495057 !important;
+    color: white !important;
+    border: 1px solid orange !important;
+}
+
+.tab-content>.active {
+    display: contents;
+}
