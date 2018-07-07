@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Recursos;
 use App\Almacenes;
 use App\Producciones;
+use App\Construcciones;
 
 class JuegoController extends Controller
 {
@@ -34,7 +35,9 @@ class JuegoController extends Controller
 
     public function construccion()
     {
-        $recursos = Recursos::calcularRecursos(1);
+        //$planeta = session()->get('planetas_id');
+        $planeta = 1; //hardcode para pruebas
+        $recursos = Recursos::calcularRecursos($planeta);
         $almacenes = [];
         $start = 2;
         $end = $start + 9;
@@ -49,11 +52,15 @@ class JuegoController extends Controller
         };
         $producciones = Producciones::where('nivel', '50')->first();
         $i = 0;
-
-
-        //session()->put('planeta', 'raticuli'); //envio de dato
-        //$planeta=session()->get('planeta'); // recoge dato
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i'));
+        $construcciones = Construcciones::where('planetas_id', $planeta)->get();
+        if (empty($construcciones[0]->nivel)) {
+            $construccion = new Construcciones();
+            $construcciones = $construccion->nuevaColonia($planeta);
+            foreach ($construcciones as $construccion) {
+                $construccion->save();
+            }
+        }
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i', 'construcciones'));
     }
 
     public function fabricas()

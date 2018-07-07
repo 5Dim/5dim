@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producciones extends Model
 {
-
     public $timestamps = false;
 
     public function  generarDatosProducciones(){
