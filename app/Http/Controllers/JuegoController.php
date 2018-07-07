@@ -53,7 +53,7 @@ class JuegoController extends Controller
         $producciones = Producciones::where('nivel', '50')->first();
         $i = 0;
         $construcciones = Construcciones::where('planetas_id', $planeta)->get();
-        if (empty($construcciones[0]->nivel)) {
+        if (empty($construcciones[0]->codigo)) {
             $construccion = new Construcciones();
             $construcciones = $construccion->nuevaColonia($planeta);
             foreach ($construcciones as $construccion) {

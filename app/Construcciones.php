@@ -18,7 +18,7 @@ class Construcciones extends Model
             "industria_micros",
             "industria_fuel",
             "industria_ma",
-            "industria_munision",
+            "industria_municion",
             "academia",
             "almacen_mineral",
             "almacen_cristal",
