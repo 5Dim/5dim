@@ -30,8 +30,8 @@ class User extends Authenticatable
     /**
      * Relacion de los usuarios con los planetas
      */
-    public function planetas ()
+    public function jugadores ()
     {
-        return $this->hasMany(Planetas::class);
+        return $this->hasMany(Jugadores::class);
     }
 }

@@ -7,17 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 class Planetas extends Model
 {
     /**
-     * Relacion de los planetas con los usuarios
+     * Relacion de los planetas con los jugadores
      */
-    public function user ()
+    public function jugadores ()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Jugadores::class);
     }
+
     /**
      * Relacion de los planetas con los usuarios
      */
     public function recursos ()
     {
         return $this->belongsTo(Recursos::class);
+    }
+
+    /**
+     * Relacion de los planetas con las construcciones
+     */
+    public function construcciones ()
+    {
+        return $this->hasMany(Construcciones::class);
     }
 }

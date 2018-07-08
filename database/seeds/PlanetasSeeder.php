@@ -15,8 +15,6 @@ class PlanetasSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
         DB::table('planetas')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-        factory(Planetas::class)->create([
-            'jugadores_id' => 1,
-        ]);
+        factory(Planetas::class, 1000)->create();
     }
 }

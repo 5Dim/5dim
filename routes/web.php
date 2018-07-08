@@ -1,5 +1,6 @@
 <?php
 
+    use App\Planetas;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,30 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Rutas para administrador
 Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
+Route::get('/astrometria', function(){
+    $universo = [];
+    $planetas = Planetas::select('estrella', 'jugadores_id')->orderBy('jugadores_id', 'desc')->distinct()->get(['estrella']);
+    foreach ($planetas as $planeta) {
+        if ($planeta->jugadores_id > 1) {
+            $planetita = new Planetas();
+            $planetita->habitado = 1;
+            $planetita->estrella = $planeta->estrella;
+            array_push($universo, $planetita);
+        } else {
+            $planetita = new Planetas();
+            $planetita->habitado = 0;
+            $planetita->estrella = $planeta->estrella;
+            array_push($universo, $planetita);
+        }
+    }
+    $planetoide = new Planetas();
+    $planetoide->idioma = 0;
+    $planetoide->global = Planetas::max('estrella');
+    $planetoide->ancho = 500;
+    $planetoide->fondo = "img/fondo.png";
+    $planetoide->sistemas = $universo;
+    return $planetoide;
+});
 
 //Rutas generales
 Route::get('/', 'PrincipalController@index');

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class costes_construcciones extends Model
+class CostesConstrucciones extends Model
 {
     public $timestamps = false;
     protected $primaryKey = ['codigo', 'nivel'];

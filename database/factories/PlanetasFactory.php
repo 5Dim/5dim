@@ -5,7 +5,7 @@ use App\Planetas;
 
 $factory->define(Planetas::class, function (Faker $faker) {
     return [
-        'jugadores_id' => 1,
+        'jugadores_id' => $faker->numberBetween($min = 1, $max = 100),
         'estrella' => $faker->numberBetween($min = 0, $max = 10000),
         'orbita' => $faker->numberBetween($min = 0, $max = 9),
         'nombre' => $faker->name(),

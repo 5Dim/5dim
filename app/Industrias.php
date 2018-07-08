@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EnConstrucciones extends Model
+class Industrias extends Model
 {
-
     /**
-     * Relacion de enConstruccion con los construcciones
+     * Relacion de los construcciones con el planeta
      */
-    public function construccion ()
+    public function planeta ()
     {
         return $this->belongsTo(Planetas::class);
     }
