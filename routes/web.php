@@ -19,7 +19,7 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Rutas para administrador
 Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
-Route::get('/astrometria', function(){
+Route::get('/astrometria/ajax/universo', function(){
     $universo = [];
     $planetas = Planetas::select('estrella', 'jugadores_id')->orderBy('jugadores_id', 'desc')->distinct()->get(['estrella']);
     foreach ($planetas as $planeta) {
