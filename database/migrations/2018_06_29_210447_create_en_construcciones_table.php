@@ -18,8 +18,8 @@ class CreateEnConstruccionesTable extends Migration
             $table->integer('personal');
             $table->integer('nivel');
             $table->string('accion');
-            $table->date('created_at') ;
-            $table->date('finished_at');
+            $table->timestamps();
+            $table->timestamp('finished_at')->nullable();
         });
     }
 

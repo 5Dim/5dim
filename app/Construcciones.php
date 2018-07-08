@@ -30,7 +30,7 @@ class Construcciones extends Model
      */
     public function coste ()
     {
-        return $this->belongsTo(CostesConstrucciones::class);
+        return $this->hasOne(CostesConstrucciones::class);
     }
 
     public function listaNombres () {

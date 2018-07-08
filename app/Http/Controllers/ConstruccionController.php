@@ -47,6 +47,15 @@ class ConstruccionController extends Controller
     //Acceso a subir nivel de construccion
     public function subirNivel ($idEdificio = 1)
     {
+        $edificio = Construcciones::where('id', $idEdificio)->first();
+        $fechaFin = time() + 3600;
+        $construyendo = new EnConstrucciones();
+        $construyendo->personal = 15000000;
+        $construyendo->construcciones_id = $edificio->id;
+        $construyendo->nivel = $edificio->nivel + 1;
+        $construyendo->accion = "Construyendo";
+        $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
+        $construyendo->save();
 
         return redirect('/juego/construccion');
     }

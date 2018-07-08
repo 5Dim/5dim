@@ -3,28 +3,28 @@
 <div class="container-fluid">
     <div class="container-fluid">
         @if (count($colaConstruccion) > 0)
-        <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+        <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
             <div class="col-12">
                 <div id="cuadro1" class="table-responsive-sm">
-                    <table class="table table-borderless borderless table-sm text-center anchofijo" style="table-layout: fixed">
+                    <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-bottom: 6px !important;">
                         <tr>
-                            <td class=" text-warning borderless">Edificio</td>
-                            <td class=" text-warning borderless">Accion</td>
-                            <td class=" text-warning borderless">Nivel</td>
-                            <td class=" text-warning borderless">Personal</td>
-                            <td class=" text-warning borderless">Duración</td>
-                            <td class=" text-warning borderless">Acaba a las</td>
+                            <td class=" text-warning">Edificio</td>
+                            <td class=" text-warning">Accion</td>
+                            <td class=" text-warning">Nivel</td>
+                            <td class=" text-warning">Personal</td>
+                            <td class=" text-warning">Empeza a las</td>
+                            <td class=" text-warning">Acaba a las</td>
                             <td>&nbsp;</td>
                         </tr>
                         @for ($i = 0 ; $i
                         < count($colaConstruccion) ; $i++) <tr>
-                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->codigo }}</td>
+                            <td class=" text-light align-middle borderless">{{ trans('construccion.' . $colaConstruccion[$i]->construcciones->codigo) }}</td>
                             <td class=" text-success align-middle borderless">{{ $colaConstruccion[$i]->accion }}</td>
                             <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->nivel }}</td>
-                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->personal }}</td>
-                            <td class=" text-light align-middle borderless">5m 33s</td>
+                            <td class=" text-light align-middle borderless">{{ number_format($colaConstruccion[$i]->personal, 0,",",".") }}</td>
+                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->created_at }}</td>
                             <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->finished_at }}</td>
-                            <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Cancelar</button></td>
+                            <td class=" text-light align-middle borderless"><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Cancelar</button></td>
                             </tr>
                             @endfor
                     </table>
@@ -63,10 +63,10 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
                 @for ($i = 0 ; $i
-                < 5 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+                < 5 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
                     <div class="col-12">
                         <div id="cuadro1" class="table-responsive-sm">
-                            <table class="table table-borderless borderless table-sm text-center anchofijo">
+                            <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                                 <tr>
                                     <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
                                         }} (de 90)</td>
@@ -141,7 +141,7 @@
         </div>
         <div class="tab-pane fade" id="industria" role="tabpanel" aria-labelledby="industria-tab">
             @for ($i = 5 ; $i
-            < 11 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+            < 11 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
                 <div class="col-12">
                     <div id="cuadro1" class="table-responsive-sm">
                         <table class="table table-borderless borderless table-sm text-center anchofijo">
@@ -219,7 +219,7 @@
     </div>
     <div class="tab-pane fade" id="almacenes" role="tabpanel" aria-labelledby="almacenes-tab">
         @for ($i = 13 ; $i
-        < 21 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+        < 21 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
             <div class="col-12">
                 <div id="cuadro1" class="table-responsive-sm">
                     <table class="table table-borderless borderless table-sm text-center anchofijo">
@@ -297,7 +297,7 @@
 </div>
 <div class="tab-pane fade" id="militares" role="tabpanel" aria-labelledby="militares-tab">
     @for ($i = 21 ; $i
-    < 26 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+    < 26 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
         <div class="col-12">
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
@@ -375,7 +375,7 @@
 </div>
 <div class="tab-pane fade" id="desarrollo" role="tabpanel" aria-labelledby="desarrollo-tab">
     @for ($i = 26 ; $i
-    < 29 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+    < 29 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
         <div class="col-12">
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
@@ -454,7 +454,7 @@
 </div>
 <div class="tab-pane fade" id="observacion" role="tabpanel" aria-labelledby="observacion-tab">
     @for ($i = 29 ; $i
-    < 31 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+    < 31 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
         <div class="col-12">
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
