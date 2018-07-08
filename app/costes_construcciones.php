@@ -91,7 +91,7 @@ public function  generarDatosCostesConstruccion($nivel,$codigo){
         array_push($costes, $coste);
         break;
 
-        case "almgas":
+        case "almGas":
         $r1cce=[$codigo,.2,0,0,.2,0,0,0,$nivel];
         $coste= $costesc->calculos($r1cce);
         array_push($costes, $coste);
