@@ -14,10 +14,12 @@
 //Rutas para login y registro
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Rutas para administrador
 Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
+
 //Rutas generales
 Route::get('/', 'PrincipalController@index');
 Route::get('/juego', 'JuegoController@index');
