@@ -1,6 +1,5 @@
 @extends('juego.recursosFrame') 
 @section('content')
-
 <div class="container-fluid">
     <div class="container-fluid">
         @if (count($colaConstruccion) > 0)
@@ -19,7 +18,7 @@
                         </tr>
                         @for ($i = 0 ; $i
                         < count($colaConstruccion) ; $i++) <tr>
-                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->construccion->codigo }}</td>
+                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->codigo }}</td>
                             <td class=" text-success align-middle borderless">{{ $colaConstruccion[$i]->accion }}</td>
                             <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->nivel }}</td>
                             <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->personal }}</td>
@@ -69,14 +68,15 @@
                         <div id="cuadro1" class="table-responsive-sm">
                             <table class="table table-borderless borderless table-sm text-center anchofijo">
                                 <tr>
-                                    <td colspan="4" class="text-success text-center borderless align-middle">{{ $construcciones[$i]->codigo }} nivel {{ $construcciones[$i]->nivel }} (de 90)</td>
+                                    <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
+                                        }} (de 90)</td>
                                     <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
                                     <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
                                     <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="personal" value="{{$recursos->personal}}"></td>
                                 </tr>
                                 <tr>
-                                    <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90"
-                                            height="90"></td>
+                                    <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
+                                            width="90" height="90"></td>
                                     <td colspan="11" class="borderless">&nbsp;</td>
                                 </tr>
                                 <tr>
@@ -146,14 +146,15 @@
                     <div id="cuadro1" class="table-responsive-sm">
                         <table class="table table-borderless borderless table-sm text-center anchofijo">
                             <tr>
-                                <td colspan="4" class="text-success text-center borderless align-middle">{{ $construcciones[$i]->codigo }} nivel {{ $construcciones[$i]->nivel }} (de 90)</td>
+                                <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
+                                    }} (de 90)</td>
                                 <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
                                 <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
                                 <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
                             </tr>
                             <tr>
-                                <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90"
-                                        height="90"></td>
+                                <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
+                                        width="90" height="90"></td>
                                 <td colspan="11" class="borderless">&nbsp;</td>
                             </tr>
                             <tr>
@@ -223,14 +224,15 @@
                 <div id="cuadro1" class="table-responsive-sm">
                     <table class="table table-borderless borderless table-sm text-center anchofijo">
                         <tr>
-                            <td colspan="4" class="text-success text-center borderless align-middle">{{ $construcciones[$i]->codigo }} nivel {{ $construcciones[$i]->nivel }} (de 90)</td>
+                            <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
+                                }} (de 90)</td>
                             <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
                             <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
                             <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
                         </tr>
                         <tr>
-                            <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90"
-                                    height="90"></td>
+                            <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
+                                    width="90" height="90"></td>
                             <td colspan="11" class="borderless">&nbsp;</td>
                         </tr>
                         <tr>
@@ -300,13 +302,15 @@
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
                     <tr>
-                        <td colspan="4" class="text-success text-center borderless align-middle">{{ $construcciones[$i]->codigo }} nivel {{ $construcciones[$i]->nivel }} (de 90)</td>
+                        <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
+                            (de 90)</td>
                         <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
                         <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
                         <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
                     </tr>
                     <tr>
-                        <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90"></td>
+                        <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
+                                width="90" height="90"></td>
                         <td colspan="11" class="borderless">&nbsp;</td>
                     </tr>
                     <tr>
@@ -376,13 +380,15 @@
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
                     <tr>
-                        <td colspan="4" class="text-success text-center borderless align-middle">{{ $construcciones[$i]->codigo }} nivel {{ $construcciones[$i]->nivel }} (de 90)</td>
+                        <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
+                            (de 90)</td>
                         <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
                         <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
                         <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
                     </tr>
                     <tr>
-                        <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90"></td>
+                        <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
+                                width="90" height="90"></td>
                         <td colspan="11" class="borderless">&nbsp;</td>
                     </tr>
                     <tr>
@@ -453,13 +459,15 @@
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
                     <tr>
-                        <td colspan="4" class="text-success text-center borderless align-middle">{{ $construcciones[$i]->codigo }} nivel {{ $construcciones[$i]->nivel }} (de 90)</td>
+                        <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
+                            (de 90)</td>
                         <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
                         <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
                         <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
                     </tr>
                     <tr>
-                        <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90" height="90"></td>
+                        <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
+                                width="90" height="90"></td>
                         <td colspan="11" class="borderless">&nbsp;</td>
                     </tr>
                     <tr>

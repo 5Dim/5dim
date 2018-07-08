@@ -31,27 +31,27 @@
                         </th>
                         <th class="text-warning borderless centradoCeldas">
                             <a href="mensajes.php" target="_self">
-                            <img class="" src="{{ asset('img/elJuego/skin0/icons/ico-barra-men.png') }}" title="Mensajes"/>
+                            <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men.png') }}" title="Mensajes"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
                             <a href="misiones.php?tipo=1" target="_self">
-                            <img  src="{{ asset('img/elJuego/skin0/icons/ico-barra-mis.png') }}" title="Misiones"/>
+                            <img  src="{{ asset('img/juego/skin0/icons/ico-barra-mis.png') }}" title="Misiones"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
                             <a href="estadisticas.php" target="_self">
-                            <img src="{{ asset('img/elJuego/skin0/icons/ico-barra-est.png') }}"  title="Estadisticas"/>
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-est.png') }}"  title="Estadisticas"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
                             <a href="http://es.5dim.wikia.com/wiki/Wiki_5dim" target="_blank">
-                            <img src="{{ asset('img/elJuego/skin0/icons/ico-barra-wik.png') }}"  title="Wikia"/>
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-wik.png') }}"  title="Wikia"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
                             <a href="http://quintadim.foroactivo.com/f21-ayudas-y-preguntas" target="_blank">
-                            <img src="{{ asset('img/elJuego/skin0/icons/ico-barra-sop.png') }}"  title="Soporte"/>
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}"  title="Soporte"/>
                         </a>
                         </th>
                         <th class="text-warning borderless" align="center">
@@ -67,23 +67,23 @@
                             </div>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <a href="cuenta.php" target="_self"><img src="{{ asset('img/elJuego/skin0/icons/ico-barra-opc.png') }}"  title="Opciones"/>
+                            <a href="cuenta.php" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}"  title="Opciones"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <a href="http://quintadim.foroactivo.com" target="_blank"><img src="{{ asset('img/elJuego/skin0/icons/ico-barra-foro.png') }}"  title="Foro"/>
+                            <a href="http://quintadim.foroactivo.com" target="_blank"><img src="{{ asset('img/juego/skin0/icons/ico-barra-foro.png') }}"  title="Foro"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <a href="compra1.php" target="_self"><img src="{{ asset('img/elJuego/skin0/icons/ico-barra-shop.png') }}"  title="Tienda"/>
+                            <a href="compra1.php" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-shop.png') }}"  title="Tienda"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <a href="mensajeC.php?adm=1" target="_self"><img src="{{ asset('img/elJuego/skin0/icons/ico-barra-rep.png') }}"  title="Reportar Admin"/>
+                            <a href="mensajeC.php?adm=1" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-rep.png') }}"  title="Reportar Admin"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <a href="logout.php" target="_self"><img src="{{ asset('img/elJuego/skin0/icons/ico-barra-salir2.png') }}"  title="Salir"/>
+                            <a href="logout.php" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}"  title="Salir"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
@@ -250,49 +250,49 @@
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/construccion')}}" title="Construye tu imperio" target="_self">
                                 <img title="Construcción"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-cons0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-cons1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/investigacion')}}" target="_self">
                                 <img title="Investigación"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-inv0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-inv1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-inv0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-inv1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/planeta')}}" target="_self">
                                 <img title="Planeta"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-pla0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-pla1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/fuselajes')}}" target="_self">
                                 <img title="fuselajes"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-def0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-def1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-def0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-def1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/diseño')}}" target="_self">
                                 <img title="Diseños"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-dis0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-dis1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-dis0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-dis1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/fabricas')}}" target="_self">
                                 <img title="Producción"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-prod0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-prod1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
@@ -311,49 +311,49 @@
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/astrometria')}}" target="_self">
                                 <img title="Astrometría"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-ast0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ast1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-ast0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/flotas')}}" target="_self">
                             <img title="Flotas"
-                            src="{{ asset('img/elJuego/skin0/icons/ico-flo0.png') }}"
-                            onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-flo1.png') }}"
-                            onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-flo0.png') }}" />
+                            src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}"
+                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-flo1.png') }}"
+                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}" />
                         </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/banco')}}" target="_self">
                             <img title="Banco"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-ban0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ban1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-ban0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ban1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/comercio')}}" target="_self">
                                 <img title="Comercio"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-com0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-com1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-com0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-com1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/general')}}" target="_self">
                                 <img title="General"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-gen1.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-gen1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-gen0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/alianza')}}" target="_self">
                                 <img title="Alianza"
-                                src="{{ asset('img/elJuego/skin0/icons/ico-ali0.png') }}"
-                                onmouseover=this.src="{{ asset('img/elJuego/skin0/icons/ico-ali1.png') }}"
-                                onmouseout=this.src="{{ asset('img/elJuego/skin0/icons/ico-ali0.png') }}" />
+                                src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}"
+                                onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ali1.png') }}"
+                                onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}" />
                             </a>
                         </th>
                     </tr>
