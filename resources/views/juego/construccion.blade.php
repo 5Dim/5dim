@@ -6,7 +6,7 @@
         <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
             <div class="col-12">
                 <div id="cuadro1" class="table-responsive-sm">
-                    <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-bottom: 6px !important;">
+                    <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-bottom: 15px !important;">
                         <tr>
                             <td class=" text-warning">Edificio</td>
                             <td class=" text-warning">Accion</td>
