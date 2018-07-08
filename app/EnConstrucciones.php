@@ -12,6 +12,6 @@ class EnConstrucciones extends Model
      */
     public function construccion ()
     {
-        return $this->belongsTo(Planetas::class);
+        return $this->belongsTo(Construcciones::class);
     }
 }

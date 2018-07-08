@@ -8,6 +8,7 @@ use App\Recursos;
 use App\Almacenes;
 use App\Producciones;
 use App\Construcciones;
+use App\EnConstrucciones;
 
 class ConstruccionController extends Controller
 {
@@ -39,12 +40,14 @@ class ConstruccionController extends Controller
                 $construccion->save();
             }
         }
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i', 'construcciones'));
+        $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [$construcciones[0]->id, $construcciones[30]->id])->get();
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i', 'construcciones', 'colaConstruccion'));
     }
 
     //Acceso a subir nivel de construccion
     public function subirNivel ($idEdificio = 1)
     {
+
         return redirect('/juego/construccion');
     }
 }

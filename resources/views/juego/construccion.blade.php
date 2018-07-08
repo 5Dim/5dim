@@ -3,6 +3,7 @@
 
 <div class="container-fluid">
     <div class="container-fluid">
+        @if (count($colaConstruccion) > 0)
         <div class="row rounded" style="background-image: url('http://localhost/img/elJuego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
             <div class="col-12">
                 <div id="cuadro1" class="table-responsive-sm">
@@ -16,38 +17,22 @@
                             <td class=" text-warning borderless">Acaba a las</td>
                             <td>&nbsp;</td>
                         </tr>
-                        <tr>
-                            <td class=" text-light align-middle borderless">Mina de mineral</td>
-                            <td class=" text-success align-middle borderless">Construyendo</td>
-                            <td class=" text-light align-middle borderless">12</td>
-                            <td class=" text-light align-middle borderless">12.254.325</td>
+                        @for ($i = 0 ; $i
+                        < count($colaConstruccion) ; $i++) <tr>
+                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->construccion->codigo }}</td>
+                            <td class=" text-success align-middle borderless">{{ $colaConstruccion[$i]->accion }}</td>
+                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->nivel }}</td>
+                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->personal }}</td>
                             <td class=" text-light align-middle borderless">5m 33s</td>
-                            <td class=" text-light align-middle borderless">23:05:22</td>
+                            <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->finished_at }}</td>
                             <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Cancelar</button></td>
-                        </tr>
-                        <tr>
-                            <td class=" text-light align-middle borderless">Mina de cristal</td>
-                            <td class=" text-danger align-middle borderless">Reciclando</td>
-                            <td class=" text-light align-middle borderless">13</td>
-                            <td class=" text-light align-middle borderless">12.254.325</td>
-                            <td class=" text-light align-middle borderless">5m 33s</td>
-                            <td class=" text-light align-middle borderless">23:05:22</td>
-                            <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Cancelar</button></td>
-                        </tr>
-                        <tr>
-                            <td class=" text-light align-middle borderless">Mina de mineral</td>
-                            <td class=" text-danger align-middle borderless">Reciclando</td>
-                            <td class=" text-light align-middle borderless">13</td>
-                            <td class=" text-light align-middle borderless">12.254</td>
-                            <td class=" text-light align-middle borderless">5m 33s</td>
-                            <td class=" text-light align-middle borderless">23:10:55</td>
-                            <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Cancelar</button></td>
-                        </tr>
-
+                            </tr>
+                            @endfor
                     </table>
                 </div>
             </div>
         </div>
+        @endif
 
         <nav>
             <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
@@ -87,7 +72,7 @@
                                     <td colspan="4" class="text-success text-center borderless align-middle">{{ $construcciones[$i]->codigo }} nivel {{ $construcciones[$i]->nivel }} (de 90)</td>
                                     <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
                                     <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
-                                    <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
+                                    <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="personal" value="{{$recursos->personal}}"></td>
                                 </tr>
                                 <tr>
                                     <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="http://5dim.es/eljuego/web2/skin0/fotos edif/edif1.jpg" width="90"
