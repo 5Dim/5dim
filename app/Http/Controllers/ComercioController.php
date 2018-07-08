@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Recursos;
 use App\Almacenes;
 use App\Producciones;
-use App\Construcciones;
 
-class JuegoController extends Controller
+class ComercioController extends Controller
 {
-    public function index()
+
+    public function index ()
     {
         $recursos = Recursos::calcularRecursos(1);
         $almacenes = [];

@@ -1,6 +1,5 @@
 <?php
 
-    use App\Planetas;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,43 +18,44 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Rutas para administrador
 Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
-Route::get('/astrometria/ajax/universo', function(){
-    $universo = [];
-    $planetas = Planetas::select('estrella', 'jugadores_id')->orderBy('jugadores_id', 'desc')->distinct()->get(['estrella']);
-    foreach ($planetas as $planeta) {
-        if ($planeta->jugadores_id > 1) {
-            $planetita = new Planetas();
-            $planetita->habitado = 1;
-            $planetita->estrella = $planeta->estrella;
-            array_push($universo, $planetita);
-        } else {
-            $planetita = new Planetas();
-            $planetita->habitado = 0;
-            $planetita->estrella = $planeta->estrella;
-            array_push($universo, $planetita);
-        }
-    }
-    $planetoide = new Planetas();
-    $planetoide->idioma = 0;
-    $planetoide->global = Planetas::max('estrella');
-    $planetoide->ancho = 500;
-    $planetoide->fondo = "img/fondo.png";
-    $planetoide->sistemas = $universo;
-    return $planetoide;
-});
-
 //Rutas generales
 Route::get('/', 'PrincipalController@index');
 Route::get('/juego', 'JuegoController@index');
-Route::get('/juego/construccion', 'JuegoController@construccion');
-Route::get('/juego/investigacion', 'JuegoController@investigacion');
-Route::get('/juego/planeta', 'JuegoController@planeta');
-Route::get('/juego/fabricas', 'JuegoController@fabricas');
-Route::get('/juego/fuselajes', 'JuegoController@fuselajes');
-Route::get('/juego/diseño', 'JuegoController@diseño');
-Route::get('/juego/astrometria', 'JuegoController@astrometria');
-Route::get('/juego/flota', 'JuegoController@flota');
-Route::get('/juego/banco', 'JuegoController@banco');
-Route::get('/juego/comercio', 'JuegoController@comercio');
-Route::get('/juego/general', 'JuegoController@general');
-Route::get('/juego/alianza', 'JuegoController@alianza');
+
+//Construccion
+Route::get('/juego/construccion', 'ConstruccionController@index');
+Route::get('/juego/construccion/{id}', ['uses' => 'ConstruccionController@subirNivel']);
+
+//Investigacion
+Route::get('/juego/investigacion', 'InvestigacionController@index');
+
+//Planeta
+Route::get('/juego/planeta', 'PlanetaController@index');
+
+//Fabricas
+Route::get('/juego/fabricas', 'FabricasController@index');
+
+//Fuselajes
+Route::get('/juego/fuselajes', 'FuselajesController@index');
+
+//Diseño
+Route::get('/juego/diseño', 'DiseñoController@index');
+
+//Astrometria
+Route::get('/juego/astrometria', 'AstrometriaController@index');
+Route::get('/juego/astrometria/ajax/universo', 'AstrometriaController@generarUniverso');
+
+//Flota
+Route::get('/juego/flotas', 'FlotaController@index');
+
+//Banco
+Route::get('/juego/banco', 'BancoController@index');
+
+//Comercio
+Route::get('/juego/comercio', 'ComercioController@index');
+
+//General
+Route::get('/juego/general', 'GeneralController@index');
+
+//Alianza
+Route::get('/juego/alianza', 'AlianzaController@index');
