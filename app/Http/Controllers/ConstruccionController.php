@@ -10,6 +10,7 @@ use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
 use App\CostesConstrucciones;
+use App\Constantes;
 
 class ConstruccionController extends Controller
 {
@@ -40,7 +41,9 @@ class ConstruccionController extends Controller
             $construcciones = Construcciones::where('planetas_id', $planeta)->get();
         }
         $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [1, 31])->get();
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i', 'construcciones', 'colaConstruccion'));
+        $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
+
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i', 'construcciones', 'colaConstruccion','velocidadConst'));
     }
 
     //Acceso a subir nivel de construccion

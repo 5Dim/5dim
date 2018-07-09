@@ -121,7 +121,7 @@ function activarIntervalo(recEntrantes, almEntrante, proEntrante, intervalo) {
 function calculaTiempo(preciototal, velocidadConst, dnd) {
 
     premiun = 0;
-    personal = $('#personal' + dnd).attr('value');
+    personal = $('#personal' + dnd).val();
     horaImprimible = "";
     if (personal > 1) {
         result = ((preciototal * velocidadConst) / personal);
@@ -136,8 +136,55 @@ function calculaTiempo(preciototal, velocidadConst, dnd) {
         horaImprimible = "Tiempo: " + lhora + "h " + lminuto + "m " + lsegundo + "s";
 
         $("#tiempo" + dnd).html(horaImprimible);
+        timeg(result, "termina" + dnd);
 
     } else {
         $("#tiempo" + dnd).html(horaImprimible);
     }
 }
+
+
+
+function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas y lo pone en hastacuando'+dndv
+
+    var d = new Date()
+    var diftime = yqmas; // hora españa UTC +3600
+
+    days = diftime / (3600 * 24);
+
+    milisegundos = parseInt(24 * 60 * 60 * 1000);
+    fecha = new Date();
+    day = fecha.getDate();
+    // el mes es devuelto entre 0 y 11
+    month = fecha.getMonth() + 1;
+    year = fecha.getFullYear();
+    diadehoy = day;
+
+    //Obtenemos los milisegundos desde media noche del 1/1/1970
+    tiempot = fecha.getTime();
+    //Calculamos los milisegundos sobre la fecha que hay que sumar o restar...
+    milisegundos = parseInt(days * 24 * 60 * 60 * 1000);
+    //Modificamos la fecha actual
+    total = fecha.setTime(tiempot + milisegundos);
+    day = fecha.getDate();
+    //month=fecha.getMonth()+1;
+    //year=fecha.getFullYear();
+    hora = fecha.getHours();
+    minuto = fecha.getMinutes();
+
+
+    if (minuto < 10) {
+        minuto = "0" + minuto;
+    };
+
+    resultg = "Día " + day + " a las " + hora + ":" + minuto;
+
+    if (diadehoy == day && yqmas < 24 * 3600) {
+        resultg = "Hoy a las " + hora + ":" + minuto;
+    };
+    if (diadehoy == day - 1 && yqmas < 48 * 3600) {
+        resultg = "Mañana a las " + hora + ":" + minuto;
+    };
+
+    $('#' + dndv).html(resultg);
+};
