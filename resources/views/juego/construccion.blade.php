@@ -81,30 +81,44 @@
                                     <td colspan="11" class="borderless">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td class="anchofijo text-warning borderless">Mineral</td>
-                                    <td class="anchofijo text-warning borderless">cristal</td>
-                                    <td class="anchofijo text-warning borderless">Gas</td>
-                                    <td class="anchofijo text-warning borderless">Plástico</td>
-                                    <td class="anchofijo text-warning borderless">Cerámica</td>
-                                    <td class="anchofijo text-warning borderless">Liquido</td>
-                                    <td class="anchofijo text-warning borderless">Micros</td>
-                                    <td class="anchofijo text-warning borderless">Fuel</td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-warning' }} borderless">Mineral</td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-warning' }} borderless">cristal</td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-warning' }} borderless">Gas</td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-warning' }} borderless">Plástico</td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }} borderless">Cerámica</td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-warning' }} borderless">Liquido</td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">Micros</td>
+                                    <td class="anchofijo text-muted borderless">Fuel</td>
                                     <td class="anchofijo text-muted borderless">M-A</td>
                                     <td class="anchofijo text-muted borderless">Munición</td>
-                                    <td class="anchofijo text-warning borderless">Personal</td>
+                                    <td class="anchofijo text-muted borderless">Personal</td>
                                 </tr>
                                 <tr>
-                                    <td class="anchofijo text-white borderless">11.111</td>
-                                    <td class="anchofijo text-white borderless">11.111</td>
-                                    <td class="anchofijo text-white borderless">2.222</td>
-                                    <td class="anchofijo text-white borderless">3.333</td>
-                                    <td class="anchofijo text-white borderless">444.000</td>
-                                    <td class="anchofijo text-danger borderless">55.050</td>
-                                    <td class="anchofijo text-white borderless">66.006</td>
-                                    <td class="anchofijo text-white borderless">777.000</td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                        {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                                    </td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                        {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                                    </td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                        {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                                    </td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                        {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                                    </td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                        {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                                    </td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                        {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                                    </td>
+                                    <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                        {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                                    </td>
+                                    <td class="anchofijo text-white borderless"></td>
                                     <td class="anchofijo text-muted borderless"></td>
                                     <td class="anchofijo text-muted borderless"></td>
-                                    <td class="anchofijo text-white borderless">99.999</td>
+                                    <td class="anchofijo text-white borderless"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="11" class="borderless">&nbsp;</td>
@@ -160,30 +174,44 @@
                                 <td colspan="11" class="borderless">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td class="anchofijo text-warning borderless">Mineral</td>
-                                <td class="anchofijo text-warning borderless">cristal</td>
-                                <td class="anchofijo text-warning borderless">Gas</td>
-                                <td class="anchofijo text-warning borderless">Plástico</td>
-                                <td class="anchofijo text-warning borderless">Cerámica</td>
-                                <td class="anchofijo text-warning borderless">Liquido</td>
-                                <td class="anchofijo text-warning borderless">Micros</td>
-                                <td class="anchofijo text-warning borderless">Fuel</td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-warning' }} borderless">Mineral</td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-warning' }} borderless">cristal</td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-warning' }} borderless">Gas</td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-warning' }} borderless">Plástico</td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }} borderless">Cerámica</td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-warning' }} borderless">Liquido</td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">Micros</td>
+                                <td class="anchofijo text-muted borderless">Fuel</td>
                                 <td class="anchofijo text-muted borderless">M-A</td>
                                 <td class="anchofijo text-muted borderless">Munición</td>
-                                <td class="anchofijo text-warning borderless">Personal</td>
+                                <td class="anchofijo text-muted borderless">Personal</td>
                             </tr>
                             <tr>
-                                <td class="anchofijo text-white borderless">11.111</td>
-                                <td class="anchofijo text-white borderless">11.111</td>
-                                <td class="anchofijo text-white borderless">2.222</td>
-                                <td class="anchofijo text-white borderless">3.333</td>
-                                <td class="anchofijo text-white borderless">444.000</td>
-                                <td class="anchofijo text-danger borderless">55.050</td>
-                                <td class="anchofijo text-white borderless">66.006</td>
-                                <td class="anchofijo text-white borderless">777.000</td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                    {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                                </td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                    {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                                </td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                    {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                                </td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                    {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                                </td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                    {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                                </td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                    {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                                </td>
+                                <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                    {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                                </td>
+                                <td class="anchofijo text-white borderless"></td>
                                 <td class="anchofijo text-muted borderless"></td>
                                 <td class="anchofijo text-muted borderless"></td>
-                                <td class="anchofijo text-white borderless">99.999</td>
+                                <td class="anchofijo text-white borderless"></td>
                             </tr>
                             <tr>
                                 <td colspan="11" class="borderless">&nbsp;</td>
@@ -239,30 +267,44 @@
                             <td colspan="11" class="borderless">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="anchofijo text-warning borderless">Mineral</td>
-                            <td class="anchofijo text-warning borderless">cristal</td>
-                            <td class="anchofijo text-warning borderless">Gas</td>
-                            <td class="anchofijo text-warning borderless">Plástico</td>
-                            <td class="anchofijo text-warning borderless">Cerámica</td>
-                            <td class="anchofijo text-warning borderless">Liquido</td>
-                            <td class="anchofijo text-warning borderless">Micros</td>
-                            <td class="anchofijo text-warning borderless">Fuel</td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-warning' }} borderless">Mineral</td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-warning' }} borderless">cristal</td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-warning' }} borderless">Gas</td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-warning' }} borderless">Plástico</td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }} borderless">Cerámica</td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-warning' }} borderless">Liquido</td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">Micros</td>
+                            <td class="anchofijo text-muted borderless">Fuel</td>
                             <td class="anchofijo text-muted borderless">M-A</td>
                             <td class="anchofijo text-muted borderless">Munición</td>
-                            <td class="anchofijo text-warning borderless">Personal</td>
+                            <td class="anchofijo text-muted borderless">Personal</td>
                         </tr>
                         <tr>
-                            <td class="anchofijo text-white borderless">11.111</td>
-                            <td class="anchofijo text-white borderless">11.111</td>
-                            <td class="anchofijo text-white borderless">2.222</td>
-                            <td class="anchofijo text-white borderless">3.333</td>
-                            <td class="anchofijo text-white borderless">444.000</td>
-                            <td class="anchofijo text-danger borderless">55.050</td>
-                            <td class="anchofijo text-white borderless">66.006</td>
-                            <td class="anchofijo text-white borderless">777.000</td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                            </td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                            </td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                            </td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                            </td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                            </td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                            </td>
+                            <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
+                                {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                            </td>
+                            <td class="anchofijo text-white borderless"></td>
                             <td class="anchofijo text-muted borderless"></td>
                             <td class="anchofijo text-muted borderless"></td>
-                            <td class="anchofijo text-white borderless">99.999</td>
+                            <td class="anchofijo text-white borderless"></td>
                         </tr>
                         <tr>
                             <td colspan="11" class="borderless">&nbsp;</td>
@@ -318,30 +360,44 @@
                         <td colspan="11" class="borderless">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-warning borderless">Mineral</td>
-                        <td class="anchofijo text-warning borderless">cristal</td>
-                        <td class="anchofijo text-warning borderless">Gas</td>
-                        <td class="anchofijo text-warning borderless">Plástico</td>
-                        <td class="anchofijo text-warning borderless">Cerámica</td>
-                        <td class="anchofijo text-warning borderless">Liquido</td>
-                        <td class="anchofijo text-warning borderless">Micros</td>
-                        <td class="anchofijo text-warning borderless">Fuel</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-warning' }} borderless">Mineral</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-warning' }} borderless">cristal</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-warning' }} borderless">Gas</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-warning' }} borderless">Plástico</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }} borderless">Cerámica</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-warning' }} borderless">Liquido</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">Micros</td>
+                        <td class="anchofijo text-muted borderless">Fuel</td>
                         <td class="anchofijo text-muted borderless">M-A</td>
                         <td class="anchofijo text-muted borderless">Munición</td>
-                        <td class="anchofijo text-warning borderless">Personal</td>
+                        <td class="anchofijo text-muted borderless">Personal</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-white borderless">11.111</td>
-                        <td class="anchofijo text-white borderless">11.111</td>
-                        <td class="anchofijo text-white borderless">2.222</td>
-                        <td class="anchofijo text-white borderless">3.333</td>
-                        <td class="anchofijo text-white borderless">444.000</td>
-                        <td class="anchofijo text-danger borderless">55.050</td>
-                        <td class="anchofijo text-white borderless">66.006</td>
-                        <td class="anchofijo text-white borderless">777.000</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                        </td>
+                        <td class="anchofijo text-white borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
-                        <td class="anchofijo text-white borderless">99.999</td>
+                        <td class="anchofijo text-white borderless"></td>
                     </tr>
                     <tr>
                         <td colspan="11" class="borderless">&nbsp;</td>
@@ -397,30 +453,44 @@
                         <td colspan="11" class="borderless">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-warning borderless">Mineral</td>
-                        <td class="anchofijo text-warning borderless">cristal</td>
-                        <td class="anchofijo text-warning borderless">Gas</td>
-                        <td class="anchofijo text-warning borderless">Plástico</td>
-                        <td class="anchofijo text-warning borderless">Cerámica</td>
-                        <td class="anchofijo text-warning borderless">Liquido</td>
-                        <td class="anchofijo text-warning borderless">Micros</td>
-                        <td class="anchofijo text-warning borderless">Fuel</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-warning' }} borderless">Mineral</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-warning' }} borderless">cristal</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-warning' }} borderless">Gas</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-warning' }} borderless">Plástico</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }} borderless">Cerámica</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-warning' }} borderless">Liquido</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">Micros</td>
+                        <td class="anchofijo text-muted borderless">Fuel</td>
                         <td class="anchofijo text-muted borderless">M-A</td>
                         <td class="anchofijo text-muted borderless">Munición</td>
-                        <td class="anchofijo text-warning borderless">Personal</td>
+                        <td class="anchofijo text-muted borderless">Personal</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-white borderless">11.111</td>
-                        <td class="anchofijo text-white borderless">11.111</td>
-                        <td class="anchofijo text-white borderless">2.222</td>
-                        <td class="anchofijo text-white borderless">3.333</td>
-                        <td class="anchofijo text-white borderless">444.000</td>
-                        <td class="anchofijo text-danger borderless">55.050</td>
-                        <td class="anchofijo text-white borderless">66.006</td>
-                        <td class="anchofijo text-white borderless">777.000</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                        </td>
+                        <td class="anchofijo text-white borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
-                        <td class="anchofijo text-white borderless">99.999</td>
+                        <td class="anchofijo text-white borderless"></td>
                     </tr>
                     <tr>
                         <td colspan="11" class="borderless">&nbsp;</td>
@@ -477,30 +547,44 @@
                         <td colspan="11" class="borderless">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-warning borderless">Mineral</td>
-                        <td class="anchofijo text-warning borderless">cristal</td>
-                        <td class="anchofijo text-warning borderless">Gas</td>
-                        <td class="anchofijo text-warning borderless">Plástico</td>
-                        <td class="anchofijo text-warning borderless">Cerámica</td>
-                        <td class="anchofijo text-warning borderless">Liquido</td>
-                        <td class="anchofijo text-warning borderless">Micros</td>
-                        <td class="anchofijo text-warning borderless">Fuel</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-warning' }} borderless">Mineral</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-warning' }} borderless">cristal</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-warning' }} borderless">Gas</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-warning' }} borderless">Plástico</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }} borderless">Cerámica</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-warning' }} borderless">Liquido</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">Micros</td>
+                        <td class="anchofijo text-muted borderless">Fuel</td>
                         <td class="anchofijo text-muted borderless">M-A</td>
                         <td class="anchofijo text-muted borderless">Munición</td>
-                        <td class="anchofijo text-warning borderless">Personal</td>
+                        <td class="anchofijo text-muted borderless">Personal</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-white borderless">11.111</td>
-                        <td class="anchofijo text-white borderless">11.111</td>
-                        <td class="anchofijo text-white borderless">2.222</td>
-                        <td class="anchofijo text-white borderless">3.333</td>
-                        <td class="anchofijo text-white borderless">444.000</td>
-                        <td class="anchofijo text-danger borderless">55.050</td>
-                        <td class="anchofijo text-white borderless">66.006</td>
-                        <td class="anchofijo text-white borderless">777.000</td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                        </td>
+                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
+                            {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                        </td>
+                        <td class="anchofijo text-white borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
-                        <td class="anchofijo text-white borderless">99.999</td>
+                        <td class="anchofijo text-white borderless"></td>
                     </tr>
                     <tr>
                         <td colspan="11" class="borderless">&nbsp;</td>

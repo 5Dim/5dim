@@ -48,11 +48,10 @@ class ConstruccionController extends Controller
     {
         //Recuperar construccion
         $edificio = Construcciones::where('id', $idEdificio)->first();
+        $nivelCola = EnConstrucciones::where('construcciones_id', $idEdificio)->max('nivel');
 
         //Rellenar variables
-        $nivel = !empty($edificio->enConstrucciones) ?
-        $edificio->enConstrucciones[count($edificio->enConstrucciones) - 1]->nivel : $edificio->nivel;
-        $nivel++;
+        $nivel = empty($nivelCola) ? $edificio->nivel + 1 : $nivelCola + 1;
         $codigo = $edificio->codigo;
         $idConstruccion = $edificio->id;
 
@@ -70,8 +69,12 @@ class ConstruccionController extends Controller
 
         //Generamos el coste del edificio
         $costeConstrucciones = new CostesConstrucciones();
+        $costeAntiguo = CostesConstrucciones::where('construcciones_id', $edificio->id)->first();
         $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
-        $coste->save();
+        $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
+        $costeAntiguo->save();
+        //$edificio->coste = $costeAntiguo;
+        //$edificio->coste->save();
 
         return redirect('/juego/construccion');
     }

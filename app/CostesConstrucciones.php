@@ -18,6 +18,17 @@ class CostesConstrucciones extends Model
         return $this->belongsTo(Construcciones::class);
     }
 
+    public function modificarCostes($costeAntiguo, $costeNuevo) {
+        $costeAntiguo->mineral = $costeNuevo->mineral;
+        $costeAntiguo->cristal = $costeNuevo->cristal;
+        $costeAntiguo->gas = $costeNuevo->gas;
+        $costeAntiguo->plastico = $costeNuevo->plastico;
+        $costeAntiguo->ceramica = $costeNuevo->ceramica;
+        $costeAntiguo->liquido = $costeNuevo->liquido;
+        $costeAntiguo->micros = $costeNuevo->micros;
+        return $costeAntiguo;
+    }
+
     public function  generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion)
     {
         $costesc = new CostesConstrucciones();
