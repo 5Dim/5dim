@@ -69,12 +69,12 @@ class CostesConstrucciones extends Model
             break;
 
             case "indMunicion": //10
-            $$r1cce=[$codigo,.2,.3,0,.4,.1,0,0,$nivel];
+            $r1cce=[$codigo,.2,.3,0,.4,.1,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
             case "indPersonal":
-            $r1cce=[$codigo,.2,0,0,.2,0,0,0,$nivel]; //10
+            $r1cce=[$codigo,.2,0,0,.2,0,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 

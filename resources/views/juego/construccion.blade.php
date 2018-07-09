@@ -1,4 +1,4 @@
-@extends('juego.recursosFrame') 
+@extends('juego.recursosFrame')
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
@@ -152,7 +152,7 @@
                                 <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina: Hoy a las 20:20</td>
                                 <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo: 0h 20m 50s</td>
                                 <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
-                                        placeholder="personal" value="{{$recursos->personal}}"></td>
+                                        placeholder="personal" value="{{$recursos->personal}}" onkeyup="calculaTiempo(100 ,600, '{{$construcciones[$i]->codigo}}') "></td>
                             </tr>
                             <tr>
                                 <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
