@@ -36,7 +36,8 @@ class ConstruccionController extends Controller
         $construcciones = Construcciones::where('planetas_id', $planeta)->get();
         if (empty($construcciones[0]->codigo)) {
             $construccion = new Construcciones();
-            //$construccion->nuevaColonia($planeta);
+            $construccion->nuevaColonia($planeta);
+            $construcciones = Construcciones::where('planetas_id', $planeta)->get();
         }
         $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [1, 31])->get();
         return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i', 'construcciones', 'colaConstruccion'));
