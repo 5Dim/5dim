@@ -1,4 +1,4 @@
-@extends('juego.recursosFrame')
+@extends('juego.recursosFrame') 
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
@@ -95,25 +95,25 @@
                                 </tr>
                                 <tr>
                                     <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                                        {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
                                     </td>
                                     <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                                        {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
                                     </td>
                                     <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                                        {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
                                     </td>
                                     <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                                        {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
                                     </td>
                                     <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                                        {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
                                     </td>
                                     <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                                        {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
                                     </td>
                                     <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                                        {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
                                     </td>
                                     <td class="anchofijo text-white borderless"></td>
                                     <td class="anchofijo text-muted borderless"></td>
@@ -188,25 +188,25 @@
                             </tr>
                             <tr>
                                 <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                    {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                                    {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
                                 </td>
                                 <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                    {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                                    {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
                                 </td>
                                 <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                    {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                                    {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
                                 </td>
                                 <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                    {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                                    {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
                                 </td>
                                 <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                    {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                                    {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
                                 </td>
                                 <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                    {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                                    {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
                                 </td>
                                 <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                    {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                                    {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
                                 </td>
                                 <td class="anchofijo text-white borderless"></td>
                                 <td class="anchofijo text-muted borderless"></td>
@@ -281,25 +281,25 @@
                         </tr>
                         <tr>
                             <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                                {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
                             </td>
                             <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                                {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
                             </td>
                             <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                                {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
                             </td>
                             <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                                {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
                             </td>
                             <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                                {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
                             </td>
                             <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                                {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
                             </td>
                             <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                                {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
                             </td>
                             <td class="anchofijo text-white borderless"></td>
                             <td class="anchofijo text-muted borderless"></td>
@@ -374,25 +374,25 @@
                     </tr>
                     <tr>
                         <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                            {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                            {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                            {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                            {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                            {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                            {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                            {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo text-white borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
@@ -467,25 +467,25 @@
                     </tr>
                     <tr>
                         <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                            {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                            {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                            {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                            {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                            {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                            {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                            {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo text-white borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
@@ -561,25 +561,25 @@
                     </tr>
                     <tr>
                         <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->mineral > 0 ? $construcciones[$i]->coste->mineral : '' }}
+                            {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->cristal > 0 ? $construcciones[$i]->coste->cristal : '' }}
+                            {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->gas > 0 ? $construcciones[$i]->coste->gas : '' }}
+                            {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->plastico > 0 ? $construcciones[$i]->coste->plastico : '' }}
+                            {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->ceramica > 0 ? $construcciones[$i]->coste->ceramica : '' }}
+                            {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->liquido > 0 ? $construcciones[$i]->coste->liquido : '' }}
+                            {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                            {{ $construcciones[$i]->coste->micros > 0 ? $construcciones[$i]->coste->micros : '' }}
+                            {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
                         </td>
                         <td class="anchofijo text-white borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
