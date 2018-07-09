@@ -70,9 +70,10 @@
                                 <tr>
                                     <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
                                         }} (de 90)</td>
-                                    <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
-                                    <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
-                                    <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="personal" value="{{$recursos->personal}}"></td>
+                                    <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina: Hoy a las 20:20</td>
+                                    <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo: 0h 20m 50s</td>
+                                    <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
+                                            placeholder="personal" value="{{$recursos->personal}}"></td>
                                 </tr>
                                 <tr>
                                     <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -148,9 +149,10 @@
                             <tr>
                                 <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
                                     }} (de 90)</td>
-                                <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
-                                <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
-                                <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
+                                <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina: Hoy a las 20:20</td>
+                                <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo: 0h 20m 50s</td>
+                                <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
+                                        placeholder="personal" value="{{$recursos->personal}}"></td>
                             </tr>
                             <tr>
                                 <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -226,9 +228,10 @@
                         <tr>
                             <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
                                 }} (de 90)</td>
-                            <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
-                            <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
-                            <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
+                            <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina: Hoy a las 20:20</td>
+                            <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo: 0h 20m 50s</td>
+                            <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1" placeholder="personal"
+                                    value="{{$recursos->personal}}"></td>
                         </tr>
                         <tr>
                             <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -304,9 +307,10 @@
                     <tr>
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
                             (de 90)</td>
-                        <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
-                        <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
-                        <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
+                        <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina: Hoy a las 20:20</td>
+                        <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo: 0h 20m 50s</td>
+                        <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1" placeholder="personal"
+                                value="{{$recursos->personal}}"></td>
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -382,9 +386,10 @@
                     <tr>
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
                             (de 90)</td>
-                        <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
-                        <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
-                        <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
+                        <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina: Hoy a las 20:20</td>
+                        <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo: 0h 20m 50s</td>
+                        <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1" placeholder="personal"
+                                value="{{$recursos->personal}}"></td>
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -461,9 +466,10 @@
                     <tr>
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
                             (de 90)</td>
-                        <td colspan="3" class="text-success text-center borderless align-middle">Termina: Hoy a las 20:20</td>
-                        <td colspan="3" class="text-success text-center borderless align-middle">Tiempo: 0h 20m 50s</td>
-                        <td colspan="2" class="text-success text-right borderless align-middle"><input type="number" class="personal1" placeholder="{{$recursos->personal}}"></td>
+                        <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina: Hoy a las 20:20</td>
+                        <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo: 0h 20m 50s</td>
+                        <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1" placeholder="personal"
+                                value="{{$recursos->personal}}"></td>
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
