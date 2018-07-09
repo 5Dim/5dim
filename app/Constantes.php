@@ -32,6 +32,15 @@ class Constantes extends Model
                 $constante->descripcion='investigaciones simultaneas';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=335;
+                $constante->minimo=200;
+                $constante->maximo=600;
+                $constante->codigo='velocidadConst';
+                $constante->descripcion='velocidad de construccion (mas a menos numero)';
+                array_push($producciones, $constante);
+
 
 
             foreach($producciones as $estaproduccion){

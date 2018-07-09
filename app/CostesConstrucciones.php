@@ -45,47 +45,47 @@ class CostesConstrucciones extends Model
             break;
 
             case "minaGas":
-            $r1cce=[$codigo,.7,.4,0.3,0,0,0,0,$nivel];
-            $coste= $costesc->calculos($r1cce, $idConstruccion);
-            break;
-
-            case "minaPlasticos":
             $r1cce=[$codigo,1,.9,0,0,0,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "minaCeramica":
+            case "minaPlasticos":
             $r1cce=[$codigo,.8,.7,.6,0,0,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "indLiquidos":
+            case "minaCeramica": ///5
             $r1cce=[$codigo,.7,.6,.5,.4,0,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "indMicros":
+            case "indLiquidos":
             $r1cce=[$codigo,.6,.5,.4,.3,.2,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "indFuel":
+            case "indMicros":
             $r1cce=[$codigo,.4,.4,.5,.1,0,.8,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "indMA":
+            case "indFuel":
             $r1cce=[$codigo,1,1.8,.2,0,3,0,1,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "indMunicion":
+            case "indMA":
             $r1cce=[$codigo,1.5,2,.2,.5,3,0,1,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
+            case "indMunicion": //10
+            $r1cce=[$codigo,.2,.3,0,.4,.1,0,0,$nivel];
+            $coste= $costesc->calculos($r1cce, $idConstruccion);
+            break;
+
             case "indPersonal":
-            $r1cce=[$codigo,.2,.3,0,.4,.1,0,0,$nivel]; //10
+            $r1cce=[$codigo,.2,0,0,.2,0,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
