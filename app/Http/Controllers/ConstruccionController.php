@@ -9,6 +9,7 @@ use App\Almacenes;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
+use App\CostesConstrucciones;
 
 class ConstruccionController extends Controller
 {
@@ -35,27 +36,41 @@ class ConstruccionController extends Controller
         $construcciones = Construcciones::where('planetas_id', $planeta)->get();
         if (empty($construcciones[0]->codigo)) {
             $construccion = new Construcciones();
-            $construcciones = $construccion->nuevaColonia($planeta);
-            foreach ($construcciones as $construccion) {
-                $construccion->save();
-            }
+            //$construccion->nuevaColonia($planeta);
         }
-        $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [$construcciones[0]->id, $construcciones[30]->id])->get();
+        $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [1, 31])->get();
         return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i', 'construcciones', 'colaConstruccion'));
     }
 
     //Acceso a subir nivel de construccion
     public function subirNivel ($idEdificio = 1)
     {
+        //Recuperar construccion
         $edificio = Construcciones::where('id', $idEdificio)->first();
+
+        //Rellenar variables
+        $nivel = !empty($edificio->enConstrucciones) ?
+        $edificio->enConstrucciones[count($edificio->enConstrucciones) - 1]->nivel : $edificio->nivel;
+        $nivel++;
+        $codigo = $edificio->codigo;
+        $idConstruccion = $edificio->id;
+
+        //Fecha prueba
         $fechaFin = time() + 3600;
+
+        //Generamos la cola
         $construyendo = new EnConstrucciones();
         $construyendo->personal = 15000000;
-        $construyendo->construcciones_id = $edificio->id;
-        $construyendo->nivel = $edificio->nivel + 1;
+        $construyendo->construcciones_id = $idConstruccion;
+        $construyendo->nivel = $nivel;
         $construyendo->accion = "Construyendo";
         $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
         $construyendo->save();
+
+        //Generamos el coste del edificio
+        $costeConstrucciones = new CostesConstrucciones();
+        $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
+        $coste->save();
 
         return redirect('/juego/construccion');
     }
