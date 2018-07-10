@@ -11,6 +11,7 @@ use App\Construcciones;
 use App\EnConstrucciones;
 use App\CostesConstrucciones;
 use App\Constantes;
+use App\Planetas;
 
 class ConstruccionController extends Controller
 {
@@ -20,21 +21,21 @@ class ConstruccionController extends Controller
         //En que planeta estamos
         if (empty(session()->get('planetas_id'))) {
             session()->put('planetas_id', 1);
-            $planeta = session()->get('planetas_id');
+            $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
         }else {
-            $planeta = session()->get('planetas_id');
+            $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
         }
 
         //Comprobamos construcciones en el planeta, si no las hay las generamos para una colonia nueva
-        $construcciones = Construcciones::where('planetas_id', $planeta)->get();
+        $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
         if (empty($construcciones[0]->codigo)) {
             $construccion = new Construcciones();
-            $construccion->nuevaColonia($planeta);
-            $construcciones = Construcciones::where('planetas_id', $planeta)->get();
+            $construccion->nuevaColonia($planeta->id);
+            $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
         }
 
         //Comprobamos si tiene recursos
-        $recursos = Recursos::where('planetas_id', $planeta)->first();
+        $recursos = Recursos::where('planetas_id', $planeta->id)->first();
         /*
         if (empty($recursos->mineral == 0)) {
             $recursos = new Construcciones();
@@ -63,8 +64,8 @@ class ConstruccionController extends Controller
         }
 
         //Recalculamos los recursos para ese planeta
-        Recursos::calcularRecursos($planeta);
-        $recursos = Recursos::where('planetas_id', $planeta)->first();
+        Recursos::calcularRecursos($planeta->id);
+        $recursos = Recursos::where('planetas_id', $planeta->id)->first();
 
         //Comrpobamos si existe una cola
         $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [$construcciones[0]->id, $construcciones[count($construcciones) - 1]->id])->get();
@@ -72,8 +73,11 @@ class ConstruccionController extends Controller
         //Enviamos los datos para la velocidad de construccion
         $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
 
+        //Enviamos la variable tipo del planeta para ocultar y mostrar cosas
+        $tipoPlaneta = $planeta->tipo;
+
         //Devolvemos la vista con todas las variables
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst'));
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta'));
     }
 
     //Acceso a subir nivel de construccion

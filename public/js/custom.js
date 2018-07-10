@@ -10,20 +10,18 @@ function calcularRecursos() {
     //produccion.plastico = 6548740;
     //produccion.ceramica = 65487400;
 
-    /*
     //Calculos
-    recursos.personal += produccion.personal / 3600 / 4;
-    recursos.mineral += produccion.mineral / 3600 / 4;
-    recursos.cristal += produccion.cristal / 3600 / 4;
-    recursos.gas += produccion.gas / 3600 / 4;
-    recursos.plastico += produccion.plastico / 3600 / 4;
-    recursos.ceramica += produccion.ceramica / 3600 / 4;
-    recursos.liquido += produccion.liquido / 3600 / 4;
-    recursos.micros += produccion.micros / 3600 / 4;
-    recursos.fuel += produccion.fuel / 3600 / 4;
-    recursos.ma += produccion.ma / 3600 / 4;
-    recursos.municion += produccion.municion / 3600 / 4;
-
+    recursos.personal += produccion[10].personal / 3600 / 4;
+    recursos.mineral += produccion[0].mineral / 3600 / 4;
+    recursos.cristal += produccion[1].cristal / 3600 / 4;
+    recursos.gas += produccion[2].gas / 3600 / 4;
+    recursos.plastico += produccion[3].plastico / 3600 / 4;
+    recursos.ceramica += produccion[4].ceramica / 3600 / 4;
+    recursos.liquido += produccion[5].liquido / 3600 / 4;
+    recursos.micros += produccion[6].micros / 3600 / 4;
+    recursos.fuel += produccion[7].fuel / 3600 / 4;
+    recursos.ma += produccion[8].ma / 3600 / 4;
+    recursos.municion += produccion[9].municion / 3600 / 4;
     //Insertar
     $("#personal").text(Math.trunc(recursos.personal).toLocaleString('es'));
     $("#mineral").text(Math.trunc(recursos.mineral).toLocaleString('es'));
@@ -110,7 +108,6 @@ function calcularRecursos() {
     } else {
         $("#municion").text(Math.trunc(recursos.municion).toLocaleString('es'));
     }
-    */
 }
 
 function activarIntervalo(recEntrantes, almEntrante, proEntrante, intervalo) {
