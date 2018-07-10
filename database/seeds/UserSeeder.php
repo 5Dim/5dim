@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Http\Controllers\DatosMaestrosController;
 
 class UserSeeder extends Seeder
 {
@@ -27,5 +28,9 @@ class UserSeeder extends Seeder
             'password' => bcrypt('1234'),
         ]);
         factory(User::class, 98)->create();
+
+        $datosM=new DatosMaestrosController();
+        $datosM->DatosMaestros();
+
     }
 }
