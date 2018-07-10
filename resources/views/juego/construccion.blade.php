@@ -248,7 +248,8 @@
         @endfor
     </div>
     <div class="tab-pane fade" id="almacenes" role="tabpanel" aria-labelledby="almacenes-tab">
-        @for ($i = 13 ; $i
+        @if($tipoPlaneta == 'planeta') @php $i = 15; 
+@endphp @endif @for ($i = 13 ; $i
         < 21 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
             <div class="col-12">
                 <div id="cuadro1" class="table-responsive-sm">

@@ -5,6 +5,7 @@ namespace App;
 use App\Planetas;
 use App\Almacenes;
 use App\Construcciones;
+use App\Constantes;
 use App\Producciones;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,17 +43,34 @@ class Recursos extends Model
         $fechaCalculo = $fechaFin - $fechaInicio;
 
         //Calculamos lo producido
+        //Minas
         $contProducciones = 0;
         $recursos->mineral = ($producciones[$contProducciones]->mineral / 3600 * $fechaCalculo) + $recursos->mineral; $contProducciones++;
         $recursos->cristal = ($producciones[$contProducciones]->cristal / 3600 * $fechaCalculo) + $recursos->cristal; $contProducciones++;
         $recursos->gas = ($producciones[$contProducciones]->gas / 3600 * $fechaCalculo) + $recursos->gas; $contProducciones++;
         $recursos->plastico = ($producciones[$contProducciones]->plastico / 3600 * $fechaCalculo) + $recursos->plastico; $contProducciones++;
         $recursos->ceramica = ($producciones[$contProducciones]->ceramica / 3600 * $fechaCalculo) + $recursos->ceramica; $contProducciones++;
-        $recursos->liquido = ($producciones[$contProducciones]->liquido / 3600 * $fechaCalculo) + $recursos->liquido; $contProducciones++;
-        $recursos->micros = ($producciones[$contProducciones]->micros / 3600 * $fechaCalculo) + $recursos->micros; $contProducciones++;
-        $recursos->fuel = ($producciones[$contProducciones]->fuel / 3600 * $fechaCalculo) + $recursos->fuel; $contProducciones++;
-        $recursos->ma = ($producciones[$contProducciones]->ma / 3600 * $fechaCalculo) + $recursos->ma; $contProducciones++;
-        $recursos->municion = ($producciones[$contProducciones]->municion / 3600 * $fechaCalculo) + $recursos->municion; $contProducciones++;
+
+        //Industrias
+        $liquido = ($producciones[$contProducciones]->liquido / 3600 * $fechaCalculo); $contProducciones++;
+        $micros = ($producciones[$contProducciones]->micros / 3600 * $fechaCalculo); $contProducciones++;
+        $fuel = ($producciones[$contProducciones]->fuel / 3600 * $fechaCalculo); $contProducciones++;
+        $ma = ($producciones[$contProducciones]->ma / 3600 * $fechaCalculo); $contProducciones++;
+        $municion = ($producciones[$contProducciones]->municion / 3600 * $fechaCalculo); $contProducciones++;
+
+        $recursos->mineral -= $liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor;
+        $recursos->cristal -= $micros * Constantes::where('codigo', 'costoMicros')->first()->valor;
+        $recursos->gas -= $fuel * Constantes::where('codigo', 'costoFuel')->first()->valor;
+        $recursos->plastico -= $fuel * Constantes::where('codigo', 'costoMA')->first()->valor;
+        $recursos->ceramica -= $municion * Constantes::where('codigo', 'costoMunicion')->first()->valor;
+
+        $recursos->liquido += $liquido;
+        $recursos->micros += $micros;
+        $recursos->fuel += $fuel;
+        $recursos->ma += $fuel;
+        $recursos->municion += $municion;
+
+        //Personal
         $recursos->personal = ($producciones[$contProducciones]->personal / 3600 * $fechaCalculo) + $recursos->personal; $contProducciones++;
 
         //Comprobamos almacenes
