@@ -149,6 +149,12 @@
                         <td class="text-danger borderless">
                             Ilimitado
                         </td>
+                        @foreach ($almacenes as $almacen)
+                        <td class="text-danger borderless">
+                            @if ($almacen->capacidad != 'Almacen') {{ number_format($almacen->capacidad, 0,",",".") }} @else {{ $almacen->capacidad }}
+                            @endif
+                        </td>
+                        @endforeach
                         <td class="text-danger borderless">
                             3200 ud/d
                         </td>

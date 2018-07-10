@@ -12,5 +12,6 @@ $factory->define(Planetas::class, function (Faker $faker) {
         'imagen' => $faker->numberBetween($min = 0, $max = 50),
         'mov1' => $faker->numberBetween($min = 0, $max = 15),
         'mov2' => $faker->numberBetween($min = 0, $max = 15),
+        'tipo' => 'planeta',
     ];
 });

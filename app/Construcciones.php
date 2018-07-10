@@ -79,7 +79,11 @@ class Construcciones extends Model
             $construccion = new Construcciones();
             $construccion->planetas_id = $planeta;
             $construccion->codigo = $listaNombres[$i];
-            $construccion->nivel = 0;
+            if ($listaNombres[$i] == 'almMineral' or $listaNombres[$i] == 'almCristal') {
+                $construccion->nivel = 99;
+            }else{
+                $construccion->nivel = 0;
+            }
             array_push($listaConstrucciones, $construccion);
         }
 
