@@ -3,13 +3,14 @@ var recursos, produccion, almacenes;
 function calcularRecursos() {
     var counter = 0;
     //Pruebas
-    //console.log(recursos);
+    console.log(recursos);
     //console.log(produccion);
     //console.log(almacenes);
     //produccion.gas = -654874;
     //produccion.plastico = 6548740;
     //produccion.ceramica = 65487400;
 
+    /*
     //Calculos
     recursos.personal += produccion.personal / 3600 / 4;
     recursos.mineral += produccion.mineral / 3600 / 4;
@@ -109,6 +110,7 @@ function calcularRecursos() {
     } else {
         $("#municion").text(Math.trunc(recursos.municion).toLocaleString('es'));
     }
+    */
 }
 
 function activarIntervalo(recEntrantes, almEntrante, proEntrante, intervalo) {

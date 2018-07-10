@@ -17,33 +17,67 @@ class ConstruccionController extends Controller
     //Acceso a construcciones
     public function index()
     {
-        //$planeta = session()->get('planetas_id');
-        $planeta = 1; //hardcode para pruebas
-        $recursos = Recursos::calcularRecursos($planeta);
-        $almacenes = [];
-        $start = 2;
-        $end = $start + 9;
-        for ($nivel = $start; $nivel < $end; $nivel++) {
-            if ($nivel == ($start + 3)) {
-                $almacen = Almacenes::where('nivel', $nivel)->first();
-                $almacen->capacidad = 'Almacen';
-            } else {
-                $almacen = Almacenes::where('nivel', $nivel)->first();
-            }
-            array_push($almacenes, $almacen);
-        };
-        $producciones = Producciones::where('nivel', '50')->first();
-        $i = 0;
+        //En que planeta estamos
+        if (empty(session()->get('planetas_id'))) {
+            session()->put('planetas_id', 1);
+            $planeta = session()->get('planetas_id');
+        }else {
+            $planeta = session()->get('planetas_id');
+        }
+
+        //Comprobamos construcciones en el planeta, si no las hay las generamos para una colonia nueva
         $construcciones = Construcciones::where('planetas_id', $planeta)->get();
         if (empty($construcciones[0]->codigo)) {
             $construccion = new Construcciones();
             $construccion->nuevaColonia($planeta);
             $construcciones = Construcciones::where('planetas_id', $planeta)->get();
         }
-        $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [1, 31])->get();
+
+        //Comprobamos si tiene recursos
+        $recursos = Recursos::where('planetas_id', $planeta)->first();
+        /*
+        if (empty($recursos->mineral == 0)) {
+            $recursos = new Construcciones();
+            $construccion->nuevaColonia($planeta);
+            $construcciones = Construcciones::where('planetas_id', $planeta)->get();
+        }
+        */
+
+        //Inicializamos las variables para produccion y almacenes
+        $producciones = [];
+        $almacenes = [];
+
+        //Calculamos producciones
+        for ($i = 0 ; $i < count($construcciones) ; $i++) {
+            if (substr($construcciones[$i]->codigo, 0, 3) == "ind" and $construcciones[$i]->nivel != 0) {
+                $produccion = $construcciones[$i]->nivel == 0 ? $produccion = 0 : Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                array_push($producciones, $produccion);
+            }elseif (substr($construcciones[$i]->codigo, 0, 4) == "mina" and $construcciones[$i]->nivel != 0) {
+                $produccion = $construcciones[$i]->nivel == 0 ? $produccion = 0 : Producciones::select(strtolower(substr($construcciones[$i]->codigo, 4)))->where('nivel', $construcciones[$i]->nivel)->first();
+                array_push($producciones, $produccion);
+            //Calculamos almacenes
+            }elseif (substr($construcciones[$i]->codigo, 0, 3) == "alm") {
+                if ($construcciones[$i]->nivel != 0) {
+                    $almacen = Almacenes::where('nivel', $construcciones[$i]->nivel)->first();
+                }else{
+                    $almacen->capacidad = 0;
+                }
+                array_push($almacenes, $almacen);
+            }
+        }
+
+        //Recalculamos los recursos para ese planeta
+        Recursos::calcularRecursos($planeta);
+        $recursos = Recursos::where('planetas_id', $planeta)->first();
+
+        //Comrpobamos si existe una cola
+        $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [$construcciones[0]->id, $construcciones[count($construcciones) - 1]->id])->get();
+
+        //Enviamos los datos para la velocidad de construccion
         $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
 
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'i', 'construcciones', 'colaConstruccion','velocidadConst'));
+        //Devolvemos la vista con todas las variables
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst'));
     }
 
     //Acceso a subir nivel de construccion

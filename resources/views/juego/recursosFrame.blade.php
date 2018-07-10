@@ -18,6 +18,7 @@
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body class="bg" id="recursosFrame">
@@ -148,12 +149,6 @@
                         <td class="text-danger borderless">
                             Ilimitado
                         </td>
-                        @foreach ($almacenes as $almacen)
-                        <td class="text-danger borderless">
-                            @if ($almacen->capacidad != 'Almacen') {{ number_format($almacen->capacidad, 0,",",".") }} @else {{ $almacen->capacidad }}
-                            @endif
-                        </td>
-                        @endforeach
                         <td class="text-danger borderless">
                             3200 ud/d
                         </td>
@@ -201,40 +196,40 @@
                     </tr>
                     <tr>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->personal, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[10]->personal, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->mineral, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[0]->mineral, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->cristal, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[1]->cristal, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->gas, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[2]->gas, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->plastico, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[3]->plastico, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->ceramica, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[4]->ceramica, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             Producción
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->liquido, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[5]->liquido, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->micros, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[6]->micros, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->fuel, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[7]->fuel, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->ma, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[8]->ma, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones->municion, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[9]->municion, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             3200 ud/d
@@ -373,9 +368,12 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script>
         $( document ).ready(function() {
-        var recursos = {!! json_encode($recursos->toArray()) !!};
-        var produccion = {!! json_encode($producciones->toArray()) !!};
+        var recursos = {!! json_encode($recursos) !!};
+        console.log(recursos);
+        var produccion = {!! json_encode($producciones) !!};
+        console.log(produccion);
         var almacenes = {!! json_encode($almacenes) !!};
+        console.log(almacenes);
         activarIntervalo(recursos, almacenes, produccion, 250);
     });
     </script>

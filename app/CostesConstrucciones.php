@@ -49,7 +49,7 @@ class CostesConstrucciones extends Model
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "minaPlasticos":
+            case "minaPlastico":
             $r1cce=[$codigo,.8,.7,.6,0,0,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
@@ -59,7 +59,7 @@ class CostesConstrucciones extends Model
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "indLiquidos":
+            case "indLiquido":
             $r1cce=[$codigo,.6,.5,.4,.3,.2,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
@@ -104,13 +104,8 @@ class CostesConstrucciones extends Model
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "almPlasticos":
+            case "almPlastico":
             $r1cce=[$codigo,1,1,0,0,0,0,0,$nivel];
-            $coste= $costesc->calculos($r1cce, $idConstruccion);
-            break;
-
-            case "almPlasticos":
-            $r1cce=[$codigo,1.3,1.3,0,0,0,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
@@ -119,7 +114,7 @@ class CostesConstrucciones extends Model
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
 
-            case "almLiquidos":
+            case "almLiquido":
             $r1cce=[$codigo,1.5,1.1,0,0,1,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion);
             break;
