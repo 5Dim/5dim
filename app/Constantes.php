@@ -45,6 +45,55 @@ class Constantes extends Model
                 array_push($producciones, $constante);
 
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=8;
+                $constante->minimo=3;
+                $constante->maximo=15;
+                $constante->codigo='costoLiquido';
+                $constante->descripcion='costo en mineral de ind liqu';
+                $constante->tipo='construccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=10;
+                $constante->minimo=5;
+                $constante->maximo=15;
+                $constante->codigo='costoMicros';
+                $constante->descripcion='costo en cristal de ind micros';
+                $constante->tipo='construccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=10;
+                $constante->minimo=5;
+                $constante->maximo=15;
+                $constante->codigo='costoFuel';
+                $constante->descripcion='costo en gas de ind fuel';
+                $constante->tipo='construccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=10;
+                $constante->minimo=5;
+                $constante->maximo=15;
+                $constante->codigo='costoMA';
+                $constante->descripcion='costo en plastico de ind MA';
+                $constante->tipo='construccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=2;
+                $constante->minimo=1;
+                $constante->maximo=3;
+                $constante->codigo='costoMunicion';
+                $constante->descripcion='costo en ceramica de ind municion';
+                $constante->tipo='construccion';
+                array_push($producciones, $constante);
 
 
                 $constante =new Constantes();
