@@ -32,6 +32,7 @@ class ConstruccionController extends Controller
             $construccion = new Construcciones();
             $construccion->nuevaColonia($planeta->id);
             $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
+
         }
 
         //Comprobamos si tiene recursos

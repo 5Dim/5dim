@@ -80,7 +80,7 @@ class Constantes extends Model
                 $constante->valor=10;
                 $constante->minimo=5;
                 $constante->maximo=15;
-                $constante->codigo='costoMA';
+                $constante->codigo='costoMa';
                 $constante->descripcion='costo en plastico de ind MA';
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);

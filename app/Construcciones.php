@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\CostesConstrucciones;
+use App\Industrias;
 
 class Construcciones extends Model
 {
@@ -96,5 +97,15 @@ class Construcciones extends Model
             $coste = $costeConstruccion->generarDatosCostesConstruccion(0, $listaNombres[$i], $listaConstrucciones[$i]->id);
             $coste->save();
         }
+
+        $industrias=new Industrias();
+        $industrias->planetas_id=$planeta;
+        $industrias->liquido=false;
+        $industrias->micros=false;
+        $industrias->fuel=false;
+        $industrias->ma=false;
+        $industrias->municion=false;
+        $industrias->save();
+
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Industrias extends Model
 {
+    public $timestamps = false;
     /**
      * Relacion de los construcciones con el planeta
      */
