@@ -53,6 +53,7 @@ class Recursos extends Model
         $recursos->fuel = ($producciones[$contProducciones]->fuel / 3600 * $fechaCalculo) + $recursos->fuel; $contProducciones++;
         $recursos->ma = ($producciones[$contProducciones]->ma / 3600 * $fechaCalculo) + $recursos->ma; $contProducciones++;
         $recursos->municion = ($producciones[$contProducciones]->municion / 3600 * $fechaCalculo) + $recursos->municion; $contProducciones++;
+        $recursos->personal = ($producciones[$contProducciones]->personal / 3600 * $fechaCalculo) + $recursos->personal; $contProducciones++;
 
         //Comprobamos almacenes
         $contAlmacenes = 0;

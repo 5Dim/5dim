@@ -21,6 +21,7 @@ class CreateConstantesTable extends Migration
             $table->double('minimo');
             $table->double('maximo');
             $table->string('descripcion');
+            $table->string('tipo');
 
 
         });
