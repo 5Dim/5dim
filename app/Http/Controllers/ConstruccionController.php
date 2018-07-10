@@ -60,6 +60,7 @@ class ConstruccionController extends Controller
                 if ($construcciones[$i]->nivel != 0) {
                     $almacen = Almacenes::where('nivel', $construcciones[$i]->nivel)->first();
                 }else{
+                    $almacen = new Almacenes();
                     $almacen->capacidad = 0;
                 }
                 array_push($almacenes, $almacen);

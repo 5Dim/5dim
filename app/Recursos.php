@@ -21,15 +21,15 @@ class Recursos extends Model
 
         //Calculamos producciones
         for ($i = 0 ; $i < count($edificios) ; $i++) {
-            if (substr($edificios[$i]->codigo, 0, 3) == "ind" and $edificios[$i]->nivel != 0) {
-                $produccion = $edificios[$i]->nivel == 0 ? $produccion = 0 : Producciones::select(strtolower(substr($edificios[$i]->codigo, 3)))->where('nivel', $edificios[$i]->nivel)->first();
+            if (substr($edificios[$i]->codigo, 0, 3) == "ind") {
+                $produccion = Producciones::select(strtolower(substr($edificios[$i]->codigo, 3)))->where('nivel', $edificios[$i]->nivel)->first();
                 array_push($producciones, $produccion);
-            }elseif (substr($edificios[$i]->codigo, 0, 4) == "mina" and $edificios[$i]->nivel != 0) {
-                $produccion = $edificios[$i]->nivel == 0 ? $produccion = 0 : Producciones::select(strtolower(substr($edificios[$i]->codigo, 4)))->where('nivel', $edificios[$i]->nivel)->first();
+            }elseif (substr($edificios[$i]->codigo, 0, 4) == "mina") {
+                $produccion = Producciones::select(strtolower(substr($edificios[$i]->codigo, 4)))->where('nivel', $edificios[$i]->nivel)->first();
                 array_push($producciones, $produccion);
             //Calculamos almacenes
             }elseif (substr($edificios[$i]->codigo, 0, 3) == "alm") {
-                $almacen = $edificios[$i]->nivel == 0 ? $almacen = 0 : Almacenes::where('nivel', $edificios[$i]->nivel)->first();
+                $almacen = Almacenes::where('nivel', $edificios[$i]->nivel)->first();
                 array_push($almacenes, $almacen);
             }
         }
@@ -70,8 +70,6 @@ class Recursos extends Model
 
         //Guardamos los cambios
         $recursos->save();
-
-        return $recursos;
     }
 
     /**
