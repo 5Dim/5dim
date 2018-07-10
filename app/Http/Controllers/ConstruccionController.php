@@ -49,20 +49,15 @@ class ConstruccionController extends Controller
 
         //Calculamos producciones
         for ($i = 0 ; $i < count($construcciones) ; $i++) {
-            if (substr($construcciones[$i]->codigo, 0, 3) == "ind" and $construcciones[$i]->nivel != 0) {
-                $produccion = $construcciones[$i]->nivel == 0 ? $produccion = 0 : Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+            if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
+                $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
                 array_push($producciones, $produccion);
-            }elseif (substr($construcciones[$i]->codigo, 0, 4) == "mina" and $construcciones[$i]->nivel != 0) {
-                $produccion = $construcciones[$i]->nivel == 0 ? $produccion = 0 : Producciones::select(strtolower(substr($construcciones[$i]->codigo, 4)))->where('nivel', $construcciones[$i]->nivel)->first();
+            }elseif (substr($construcciones[$i]->codigo, 0, 4) == "mina") {
+                $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 4)))->where('nivel', $construcciones[$i]->nivel)->first();
                 array_push($producciones, $produccion);
             //Calculamos almacenes
             }elseif (substr($construcciones[$i]->codigo, 0, 3) == "alm") {
-                if ($construcciones[$i]->nivel != 0) {
-                    $almacen = Almacenes::where('nivel', $construcciones[$i]->nivel)->first();
-                }else{
-                    $almacen = new Almacenes();
-                    $almacen->capacidad = 0;
-                }
+                $almacen = Almacenes::where('nivel', $construcciones[$i]->nivel)->first();
                 array_push($almacenes, $almacen);
             }
         }
