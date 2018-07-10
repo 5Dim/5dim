@@ -39,7 +39,7 @@ class Producciones extends Model
 
         $producciones=[];
 
-            for($nivel=1;$nivel<100;$nivel++){
+            for($nivel=0;$nivel<100;$nivel++){
                 $produccion =new Producciones();
                 $produccion->nivel=$nivel;
 

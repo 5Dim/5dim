@@ -20,7 +20,7 @@ class Almacenes extends Model
         $cantalmainir=0;
         $potalmar=10;
 
-            for($n=1;$n<100;$n++){
+            for($n=0;$n<100;$n++){
                 $capacidad=$cantalmainir + ((10000* (pow ($n ,3)))/$potalmar);
                 $almacen =new Almacenes();
                 $almacen->nivel=$n;
