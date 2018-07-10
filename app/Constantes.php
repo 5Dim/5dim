@@ -21,6 +21,7 @@ class Constantes extends Model
                 $constante->maximo=3;
                 $constante->codigo='Avelprodminas';
                 $constante->descripcion='produccion de recursos en minas';
+                $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
                 $constante =new Constantes();
@@ -30,6 +31,7 @@ class Constantes extends Model
                 $constante->maximo=600;
                 $constante->codigo='velocidadConst';
                 $constante->descripcion='velocidad de construccion (mas a menos numero)';
+                $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
                 $constante =new Constantes();
@@ -39,7 +41,11 @@ class Constantes extends Model
                 $constante->maximo=15;
                 $constante->codigo='colaConstruccion';
                 $constante->descripcion='construcciones simultaneas';
+                $constante->tipo='construccion';
                 array_push($producciones, $constante);
+
+
+
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -48,6 +54,7 @@ class Constantes extends Model
                 $constante->maximo=6;
                 $constante->codigo='colaInvest';
                 $constante->descripcion='investigaciones simultaneas';
+                $constante->tipo='investigacion';
                 array_push($producciones, $constante);
 
 
