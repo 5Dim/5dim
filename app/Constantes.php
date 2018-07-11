@@ -95,6 +95,27 @@ class Constantes extends Model
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.75;
+                $constante->minimo=.5;
+                $constante->maximo=1;
+                $constante->codigo='perdidaCancelar';
+                $constante->descripcion='lo que te queda por cancelar construccion';
+                $constante->tipo='construccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.7;
+                $constante->minimo=.3;
+                $constante->maximo=1;
+                $constante->codigo='perdidaReciclar';
+                $constante->descripcion='lo que te queda por reciclar construccion';
+                $constante->tipo='construccion';
+                array_push($producciones, $constante);
+
+
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;

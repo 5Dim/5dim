@@ -13,9 +13,87 @@ class Dependencias extends Model
         $dependencias=[];
 
         $dependencia =new Dependencias();
-        $dependencia->codigo='Avelprodminas';
-        $dependencia->codigoRequiere='produccion de recursos en minas';
+        $dependencia->codigo='minaCristal';
+        $dependencia->codigoRequiere='minaMineral';
         $dependencia->nivelRequiere=1;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='minaGas';
+        $dependencia->codigoRequiere='minaCristal';
+        $dependencia->nivelRequiere=3;
         array_push($dependencias, $dependencia);
 
 

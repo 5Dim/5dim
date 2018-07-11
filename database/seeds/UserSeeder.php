@@ -29,8 +29,10 @@ class UserSeeder extends Seeder
         ]);
         factory(User::class, 98)->create();
 
+        /*
         $datosM=new DatosMaestrosController();
         $datosM->DatosMaestros();
+        */
 
     }
 }
