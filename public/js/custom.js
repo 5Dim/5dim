@@ -3,7 +3,7 @@ var recursos, produccion, almacenes;
 function calcularRecursos() {
     var counter = 0;
     //Pruebas
-    console.log(recursos);
+    //console.log(recursos);
     //console.log(produccion);
     //console.log(almacenes);
     //produccion.gas = -654874;
@@ -142,8 +142,6 @@ function calculaTiempo(preciototal, velocidadConst, dnd) {
     }
 }
 
-
-
 function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas y lo pone en hastacuando'+dndv
 
     var d = new Date()
@@ -186,4 +184,18 @@ function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas
     };
 
     $('#' + dndv).html(resultg);
-};
+}
+
+function sendConstruir(id, codigo) {
+    var personal = $('#personal' + codigo).val();
+    window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal;
+}
+
+function sendReciclar(id, codigo) {
+    var personal = $('#personal' + codigo).val();
+    window.location.href = "http://localhost/juego/construccion/reciclar/" + id + "/" + personal;
+}
+
+function sendCancelar(id) {
+    window.location.href = "http://localhost/juego/construccion/cancelar/" + id;
+}
