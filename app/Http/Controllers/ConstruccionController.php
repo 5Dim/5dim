@@ -12,6 +12,7 @@ use App\EnConstrucciones;
 use App\CostesConstrucciones;
 use App\Constantes;
 use App\Planetas;
+use App\Dependencias;
 
 class ConstruccionController extends Controller
 {
@@ -77,8 +78,11 @@ class ConstruccionController extends Controller
         //Enviamos la variable tipo del planeta para ocultar y mostrar cosas
         $tipoPlaneta = $planeta->tipo;
 
+        // vemos las dependencias
+        $dependencias=Dependencias::where('id','>','0')->get();
+
         //Devolvemos la vista con todas las variables
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta'));
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias'));
     }
 
     //Acceso a subir nivel de construccion

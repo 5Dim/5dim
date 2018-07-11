@@ -1,7 +1,6 @@
 <?php
 
 namespace App;
-use App\Construcciones;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,8 +10,6 @@ class Dependencias extends Model
 
     public function  generarDatosDependencias(){
 
-        $construccion = new Construcciones();
-        $listaNombres = $construccion->listaNombres();
 
         $dependencias=[];
 
@@ -20,6 +17,12 @@ class Dependencias extends Model
         $dependencia->codigo='minaCristal';
         $dependencia->codigoRequiere='minaMineral';
         $dependencia->nivelRequiere=1;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='almMineral';
+        $dependencia->codigoRequiere='minaMineral';
+        $dependencia->nivelRequiere=2;
         array_push($dependencias, $dependencia);
 
         $dependencia =new Dependencias();
@@ -120,6 +123,12 @@ class Dependencias extends Model
         $dependencia->nivelRequiere=4;
         array_push($dependencias, $dependencia);
 
+        $dependencia =new Dependencias(); //10
+        $dependencia->codigo='almMA';
+        $dependencia->codigoRequiere='indMunicion';
+        $dependencia->nivelRequiere=4;
+        array_push($dependencias, $dependencia);
+
 
         $dependencia =new Dependencias(); //10
         $dependencia->codigo='indMunicion';
@@ -127,10 +136,60 @@ class Dependencias extends Model
         $dependencia->nivelRequiere=2;
         array_push($dependencias, $dependencia);
 
-                                        // 11 academia
+        $dependencia =new Dependencias(); //8
+        $dependencia->codigo='almMunicion';
+        $dependencia->codigoRequiere='indFuel';
+        $dependencia->nivelRequiere=2;
+        array_push($dependencias, $dependencia);
 
 
+        $dependencia =new Dependencias();
+        $dependencia->codigo='fabNaves';
+        $dependencia->codigoRequiere='refugio';
+        $dependencia->nivelRequiere=2;
+        array_push($dependencias, $dependencia);
 
+        $dependencia =new Dependencias();
+        $dependencia->codigo='fabTropas';
+        $dependencia->codigoRequiere='refugio';
+        $dependencia->nivelRequiere=6;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='fabDefensas';
+        $dependencia->codigoRequiere='refugio';
+        $dependencia->nivelRequiere=4;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='escudo';
+        $dependencia->codigoRequiere='refugio';
+        $dependencia->nivelRequiere=8;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='banco';
+        $dependencia->codigoRequiere='laboratorio';
+        $dependencia->nivelRequiere=4;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='comercio';
+        $dependencia->codigoRequiere='banco';
+        $dependencia->nivelRequiere=4;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='comercio';
+        $dependencia->codigoRequiere='observacion';
+        $dependencia->nivelRequiere=4;
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='potenciador';
+        $dependencia->codigoRequiere='observacion';
+        $dependencia->nivelRequiere=4;
+        array_push($dependencias, $dependencia);
 
 
 

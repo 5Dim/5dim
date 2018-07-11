@@ -1,4 +1,4 @@
-@extends('juego.recursosFrame') 
+@extends('juego.recursosFrame')
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
@@ -75,7 +75,7 @@
                                     <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
                                         }} (de 90)
                                         <span class="text-warning">
-                                            {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                            {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola nivel: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
                                         </span>
                                     </td>
                                     <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
@@ -162,8 +162,21 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
-                                            <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                                        @php {{
+                                            $deshabilitado="";
+                                            $texto=" Construir";
+                                            foreach ($dependencias as $dependencia) {
+                                                if ($dependencia->codigo==$construcciones[$i]->codigo){
+                                                        $nivelTengo=$construcciones->where('codigo',$dependencia->codigoRequiere)->first();
+                                                    if ( $nivelTengo->nivel < $dependencia->nivelRequiere){
+                                                        $texto.=" requiere ".trans('construccion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                    }
+                                                }
+                                            }
+                                        }}@endphp
+                                        <button type="button" class="btn btn-outline-success btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                         </button>
                                     </td>
                                 </tr>
@@ -183,7 +196,7 @@
                                 <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
                                     }} (de 90)
                                     <span class="text-warning">
-                                            {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                            {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola nivel: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
                                     </span>
                                 </td>
                                 <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
@@ -287,7 +300,7 @@
         @endfor
     </div>
     <div class="tab-pane fade " id="almacenes" role="tabpanel " aria-labelledby="almacenes-tab">
-        @if($tipoPlaneta == 'planeta') @php $i = 15; 
+        @if($tipoPlaneta == 'planeta') @php $i = 15;
 @endphp @endif @for ($i = 13 ; $i
         < 21 ; $i++) <div class="row rounded " style="background-image: url(
                                         'http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px; ">
@@ -298,7 +311,7 @@
                             <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
                                 }} (de 90)
                                 <span class="text-warning">
-                                        {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                        {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola nivel: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
                                 </span>
                             </td>
                             <td colspan="3 " class="text-success text-center borderless align-middle " id="{{ 'termina'
@@ -407,7 +420,7 @@
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
                             (de 90)
                             <span class="text-warning">
-                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola nivel: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
                             </span>
                         </td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
@@ -515,7 +528,7 @@
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
                             (de 90)
                             <span class="text-warning">
-                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola nivel: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
                             </span>
                         </td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
@@ -624,7 +637,7 @@
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
                             (de 90)
                             <span class="text-warning">
-                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola nivel: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
                             </span>
                         </td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
