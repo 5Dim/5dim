@@ -124,8 +124,6 @@ class Recursos extends Model
             }
             $recursos->ceramica -= $gastoFmunicion;
             $recursos->municion += $municion;
-
-
         }
 
 

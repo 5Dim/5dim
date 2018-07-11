@@ -71,6 +71,14 @@ class Construcciones extends Model
         ];
         return $listaNombres;
     }
+
+    public function calcularTiempoConstrucciones($preciototal,$personal){
+        $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
+        $result = (($preciototal * $velocidadConst) / $personal);
+        return $result*1000;
+    }
+
+
     public function nuevaColonia ($planeta = 1) {
         $listaConstrucciones = [];
         $construccion = new Construcciones();
