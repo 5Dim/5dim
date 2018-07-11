@@ -173,7 +173,7 @@ class ConstruccionController extends Controller
 
         //Comprobamos si ya hay cola de este edificio y cual es accion para no pisarla
         $yaEnCola = EnConstrucciones::where('construcciones_id', $idConstruccion)->get();
-        $accion = empty($yaEnCola[0]) ? 'Construyendo' : $yaEnCola[0]->accion;
+        $accion = empty($yaEnCola[0]) ? 'Reciclando' : $yaEnCola[0]->accion;
 
         //Comprobamos si tiene suficiente personal
         $error = false;

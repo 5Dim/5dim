@@ -73,7 +73,11 @@
                             <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                                 <tr>
                                     <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
-                                        }} (de 90)</td>
+                                        }} (de 90)
+                                        <span class="text-warning">
+                                            {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                        </span>
+                                    </td>
                                     <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                                     <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                                     <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
@@ -177,7 +181,11 @@
                         <table class="table table-borderless borderless table-sm text-center anchofijo">
                             <tr>
                                 <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
-                                    }} (de 90)</td>
+                                    }} (de 90)
+                                    <span class="text-warning">
+                                            {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                    </span>
+                                </td>
                                 <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                                 <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                                 <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
@@ -287,8 +295,12 @@
                 <div id="cuadro1 " class="table-responsive-sm ">
                     <table class="table table-borderless borderless table-sm text-center anchofijo ">
                         <tr>
-                            <td colspan="4 " class="text-success text-center borderless align-middle ">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
-                                }} (de 90)</td>
+                            <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
+                                }} (de 90)
+                                <span class="text-warning">
+                                        {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                                </span>
+                            </td>
                             <td colspan="3 " class="text-success text-center borderless align-middle " id="{{ 'termina'
                                         . $construcciones[$i]->codigo }}">Termina:</td>
                             <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
@@ -393,7 +405,11 @@
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
                     <tr>
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
-                            (de 90)</td>
+                            (de 90)
+                            <span class="text-warning">
+                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                            </span>
+                        </td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1" placeholder="personal"
@@ -497,7 +513,11 @@
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
                     <tr>
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
-                            (de 90)</td>
+                            (de 90)
+                            <span class="text-warning">
+                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                            </span>
+                        </td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1" placeholder="personal"
@@ -602,7 +622,11 @@
                 <table class="table table-borderless borderless table-sm text-center anchofijo">
                     <tr>
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel }}
-                            (de 90)</td>
+                            (de 90)
+                            <span class="text-warning">
+                                    {{ count($construcciones[$i]->enConstrucciones) > 0 ? 'En cola: ' . $construcciones[$i]->enConstrucciones[count($construcciones[$i]->enConstrucciones) - 1]->nivel : '' }}
+                            </span>
+                        </td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1" placeholder="personal"
