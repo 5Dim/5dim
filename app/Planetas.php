@@ -19,7 +19,7 @@ class Planetas extends Model
      */
     public function recursos ()
     {
-        return $this->belongsTo(Recursos::class);
+        return $this->hasOne(Recursos::class);
     }
 
     /**

@@ -14,7 +14,7 @@ class Construcciones extends Model
     /**
      * Relacion de los construcciones con el planeta
      */
-    public function planeta ()
+    public function planetas ()
     {
         return $this->belongsTo(Planetas::class);
     }

@@ -19,12 +19,16 @@
                         @for ($i = 0 ; $i
                         < count($colaConstruccion) ; $i++) <tr>
                             <td class=" text-light align-middle borderless">{{ trans('construccion.' . $colaConstruccion[$i]->construcciones->codigo) }}</td>
-                            <td class=" text-success align-middle borderless">{{ $colaConstruccion[$i]->accion }}</td>
+                            <td class=" {{ $colaConstruccion[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">{{ $colaConstruccion[$i]->accion }}</td>
                             <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->nivel }}</td>
                             <td class=" text-light align-middle borderless">{{ number_format($colaConstruccion[$i]->personal, 0,",",".") }}</td>
                             <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->created_at }}</td>
                             <td class=" text-light align-middle borderless">{{ $colaConstruccion[$i]->finished_at }}</td>
-                            <td class=" text-light align-middle borderless"><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Cancelar</button></td>
+                            <td class=" text-light align-middle borderless">
+                                <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendCancelar('{{ $colaConstruccion[$i]->id }}')">
+                                    <i class="fa fa-trash"></i> Cancelar
+                                </button>
+                            </td>
                             </tr>
                             @endfor
                     </table>
@@ -143,10 +147,21 @@
                         <div id="cuadro1" class="table-responsive-sm ">
                             <table class="table table-sm table-borderless text-center anchofijo">
                                 <tr>
-                                    <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Reciclar</button></td>
-                                    <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-info-circle"></i> Datos</button></td>
-                                    <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-play"></i> Producir</button></td>
-                                    <td><button type="button" class="btn btn-outline-success btn-block btn-sm"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            <i class="fa fa-trash"></i> Reciclar
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                            <i class="fa fa-info-circle"></i> Datos
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                                        </button>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -236,10 +251,26 @@
                     <div id="cuadro1" class="table-responsive-sm ">
                         <table class="table table-sm table-borderless text-center anchofijo">
                             <tr>
-                                <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Reciclar</button></td>
-                                <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-info-circle"></i> Datos</button></td>
-                                <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-play"></i> Producir</button></td>
-                                <td><button type="button" class="btn btn-outline-success btn-block btn-sm"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                        <i class="fa fa-trash"></i> Reciclar
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                        <i class="fa fa-info-circle"></i> Datos
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                        <i class="fa fa-play"></i> Producir
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                        <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                                    </button>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -247,17 +278,19 @@
         </div>
         @endfor
     </div>
-    <div class="tab-pane fade" id="almacenes" role="tabpanel" aria-labelledby="almacenes-tab">
+    <div class="tab-pane fade " id="almacenes" role="tabpanel " aria-labelledby="almacenes-tab">
         @if($tipoPlaneta == 'planeta') @php $i = 15; 
 @endphp @endif @for ($i = 13 ; $i
-        < 21 ; $i++) <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
-            <div class="col-12">
-                <div id="cuadro1" class="table-responsive-sm">
-                    <table class="table table-borderless borderless table-sm text-center anchofijo">
+        < 21 ; $i++) <div class="row rounded " style="background-image: url(
+                                        'http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px; ">
+            <div class="col-12 ">
+                <div id="cuadro1 " class="table-responsive-sm ">
+                    <table class="table table-borderless borderless table-sm text-center anchofijo ">
                         <tr>
-                            <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
+                            <td colspan="4 " class="text-success text-center borderless align-middle ">{{ trans('construccion.' . $construcciones[$i]->codigo) }} nivel {{ $construcciones[$i]->nivel
                                 }} (de 90)</td>
-                            <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
+                            <td colspan="3 " class="text-success text-center borderless align-middle " id="{{ 'termina'
+                                        . $construcciones[$i]->codigo }}">Termina:</td>
                             <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                             <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1" placeholder="personal"
                                     placeholder="personal" value="{{$recursos->personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
@@ -330,10 +363,21 @@
                 <div id="cuadro1" class="table-responsive-sm ">
                     <table class="table table-sm table-borderless text-center anchofijo">
                         <tr>
-                            <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Reciclar</button></td>
-                            <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-info-circle"></i> Datos</button></td>
-                            <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-play"></i> Producir</button></td>
-                            <td><button type="button" class="btn btn-outline-success btn-block btn-sm"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                    <i class="fa fa-trash"></i> Reciclar
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                    <i class="fa fa-info-circle"></i> Datos
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                    <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                                </button>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -423,10 +467,21 @@
             <div id="cuadro1" class="table-responsive-sm ">
                 <table class="table table-sm table-borderless text-center anchofijo">
                     <tr>
-                        <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Reciclar</button></td>
-                        <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-info-circle"></i> Datos</button></td>
-                        <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-play"></i> Producir</button></td>
-                        <td><button type="button" class="btn btn-outline-success btn-block btn-sm"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                <i class="fa fa-trash"></i> Reciclar
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                <i class="fa fa-info-circle"></i> Datos
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -516,10 +571,21 @@
             <div id="cuadro1" class="table-responsive-sm ">
                 <table class="table table-sm table-borderless text-center anchofijo">
                     <tr>
-                        <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Reciclar</button></td>
-                        <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-info-circle"></i> Datos</button></td>
-                        <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-play"></i> Producir</button></td>
-                        <td><button type="button" class="btn btn-outline-success btn-block btn-sm"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                <i class="fa fa-trash"></i> Reciclar
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                <i class="fa fa-info-circle"></i> Datos
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -610,10 +676,21 @@
             <div id="cuadro1" class="table-responsive-sm ">
                 <table class="table table-sm table-borderless text-center anchofijo">
                     <tr>
-                        <td><button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-trash"></i> Reciclar</button></td>
-                        <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-info-circle"></i> Datos</button></td>
-                        <td><button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa fa-play"></i> Producir</button></td>
-                        <td><button type="button" class="btn btn-outline-success btn-block btn-sm"><i class="fa fa-arrow-alt-circle-up "></i> Construir</button></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                    <i class="fa fa-trash"></i> Reciclar
+                                </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                    <i class="fa fa-info-circle"></i> Datos
+                                </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>

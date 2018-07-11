@@ -82,37 +82,136 @@ class ConstruccionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function subirNivel ($idEdificio = 1)
+    public function construir ($idConstruccion = 1, $personal = 15000)
     {
         //Recuperar construccion
-        $edificio = Construcciones::where('id', $idEdificio)->first();
-        $nivelCola = EnConstrucciones::where('construcciones_id', $idEdificio)->max('nivel');
+        $construccion = Construcciones::where('id', $idConstruccion)->first();
+        $nivelCola = EnConstrucciones::where('construcciones_id', $idConstruccion)->max('nivel');
+        $recursos = $construccion->planetas->recursos;
 
         //Rellenar variables
-        $nivel = empty($nivelCola) ? $edificio->nivel + 1 : $nivelCola + 1;
-        $codigo = $edificio->codigo;
-        $idConstruccion = $edificio->id;
+        $nivel = empty($nivelCola) ? $construccion->nivel + 1 : $nivelCola + 1;
+        $codigo = $construccion->codigo;
+        $precio;
 
         //Fecha prueba
-        $fechaFin = time() + 3600;
+        $fechaFin = time() + 3600; //Esperando a la funcion de tiempos en laravel
 
-        //Generamos la cola
-        $construyendo = new EnConstrucciones();
-        $construyendo->personal = 15000000;
-        $construyendo->construcciones_id = $idConstruccion;
-        $construyendo->nivel = $nivel;
-        $construyendo->accion = "Construyendo";
-        $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
-        $construyendo->save();
+        //Comprobamos que el edificio se puede construir
+        $error = false;
+        if ($recursos->mineral < $construccion->coste->mineral) {
+            $error = true;
+        }elseif ($recursos->cristal < $construccion->coste->cristal) {
+            $error = true;
+        }elseif ($recursos->gas < $construccion->coste->gas) {
+            $error = true;
+        }elseif ($recursos->plastico < $construccion->coste->plastico) {
+            $error = true;
+        }elseif ($recursos->ceramica < $construccion->coste->ceramica) {
+            $error = true;
+        }elseif ($recursos->liquido < $construccion->coste->liquido) {
+            $error = true;
+        }elseif ($recursos->micros < $construccion->coste->micros) {
+            $error = true;
+        }
+
+        //Si no tenemos ningun error continuamos
+        if (!$error) {
+            //Restamos el coste a los recursos
+            $recursos->mineral -= $construccion->coste->mineral;
+            $recursos->cristal -= $construccion->coste->cristal;
+            $recursos->gas -= $construccion->coste->gas;
+            $recursos->plastico -= $construccion->coste->plastico;
+            $recursos->ceramica -= $construccion->coste->ceramica;
+            $recursos->liquido -= $construccion->coste->liquido;
+            $recursos->micros -= $construccion->coste->micros;
+            $recursos->save();
+
+            //Generamos la cola
+            $construyendo = new EnConstrucciones();
+            $construyendo->personal = $personal;
+            $construyendo->construcciones_id = $idConstruccion;
+            $construyendo->nivel = $nivel;
+            $construyendo->accion = "Construyendo";
+            $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
+            $construyendo->save();
+
+            //Generamos el coste del edificio
+            $costeConstrucciones = new CostesConstrucciones();
+            $costeAntiguo = CostesConstrucciones::where('construcciones_id', $construccion->id)->first();
+            $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
+            $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
+            $costeAntiguo->save();
+        }
+
+        return redirect('/juego/construccion');
+    }
+
+    //Acceso a subir nivel de construccion
+    public function reciclar ($idConstruccion = 1, $personal = 15000)
+    {
+        //Recuperar construccion
+        $construccion = Construcciones::where('id', $idConstruccion)->first();
+
+        //Rellenar variables
+        $nivel = $construccion->nivel - 1;
+        $codigo = $construccion->codigo;
+
+        //Fecha prueba
+        $fechaFin = time() + 3600; //Esperando a la funcion de tiempos en laravel
+
+        //Comprobamos si tiene suficiente personal
+        $error = false;
+        if ($construccion->planetas->recursos->personal < $personal) {
+            $error = true;
+        }
+
+        //Si no tenemos ningun error continuamos
+        if (!$error) {
+            //Generamos la cola
+            $construyendo = new EnConstrucciones();
+            $construyendo->personal = $personal;
+            $construyendo->construcciones_id = $idConstruccion;
+            $construyendo->nivel = $nivel;
+            $construyendo->accion = "Reciclando";
+            $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
+            $construyendo->save();
+
+            //Generamos el coste del edificio
+            $costeConstrucciones = new CostesConstrucciones();
+            $costeAntiguo = CostesConstrucciones::where('construcciones_id', $construccion->id)->first();
+            $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
+            $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
+            $costeAntiguo->save();
+        }
+
+        return redirect('/juego/construccion');
+    }
+
+    //Acceso a subir nivel de construccion
+    public function cancelar ($idColaConstruccion = 1)
+    {
+        //Recuperar construccion
+        $colaConstruccion = EnConstrucciones::where('id', $idColaConstruccion)->first();
+
+        //Comprobamos si hay algun edificio por encima del nivel que se ha cancelado
+        $listaCola = EnConstrucciones::where([['construcciones_id', '=', $colaConstruccion->construcciones->id], ['nivel', '>', $colaConstruccion->nivel]])->get();
+
+        //Ahora cancelamos toda la cola con nivel superiore a la cancelada
+        foreach ($listaCola as $cola) {
+            $cola->delete();
+        }
+        $colaConstruccion->delete();
+
+        $nivelCola = EnConstrucciones::where('construcciones_id', $colaConstruccion->construcciones->id)->max('nivel');
+        $nivel = empty($nivelCola) ? $colaConstruccion->construcciones->nivel : $nivelCola;
 
         //Generamos el coste del edificio
         $costeConstrucciones = new CostesConstrucciones();
-        $costeAntiguo = CostesConstrucciones::where('construcciones_id', $edificio->id)->first();
-        $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
+        $costeAntiguo = CostesConstrucciones::where('construcciones_id', $colaConstruccion->construcciones->id)->first();
+        $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $colaConstruccion->construcciones->codigo, $colaConstruccion->construcciones->id);
         $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
         $costeAntiguo->save();
-        //$edificio->coste = $costeAntiguo;
-        //$edificio->coste->save();
 
         return redirect('/juego/construccion');
     }
