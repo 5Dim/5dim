@@ -86,16 +86,23 @@ class ConstruccionController extends Controller
     {
         //Recuperar construccion
         $construccion = Construcciones::where('id', $idConstruccion)->first();
+
         $nivelCola = EnConstrucciones::where('construcciones_id', $idConstruccion)->max('nivel');
         $recursos = $construccion->planetas->recursos;
 
         //Rellenar variables
         $nivel = empty($nivelCola) ? $construccion->nivel + 1 : $nivelCola + 1;
         $codigo = $construccion->codigo;
-        $precio;
+        $costeTotal = $construccion->sumarCostes($construccion->coste);
+
+        $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
 
         //Fecha prueba
-        $fechaFin = time() + 3600; //Esperando a la funcion de tiempos en laravel
+        $fechaFin = time() + $tiempo;
+
+        //Comprobamos si ya hay cola de este edificio y cual es accion para no pisarla
+        $yaEnCola = EnConstrucciones::where('construcciones_id', $idConstruccion)->get();
+        $accion = empty($yaEnCola[0]) ? 'Construyendo' : $yaEnCola[0]->accion;
 
         //Comprobamos que el edificio se puede construir
         $error = false;
@@ -112,6 +119,8 @@ class ConstruccionController extends Controller
         }elseif ($recursos->liquido < $construccion->coste->liquido) {
             $error = true;
         }elseif ($recursos->micros < $construccion->coste->micros) {
+            $error = true;
+        }elseif ($accion != "Construyendo") {
             $error = true;
         }
 
@@ -156,13 +165,21 @@ class ConstruccionController extends Controller
         //Rellenar variables
         $nivel = $construccion->nivel - 1;
         $codigo = $construccion->codigo;
+        $costeTotal = $construccion->sumarCostes($construccion->coste);
+        $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal) / 10;
 
         //Fecha prueba
-        $fechaFin = time() + 3600; //Esperando a la funcion de tiempos en laravel
+        $fechaFin = time() + $tiempo;
+
+        //Comprobamos si ya hay cola de este edificio y cual es accion para no pisarla
+        $yaEnCola = EnConstrucciones::where('construcciones_id', $idConstruccion)->get();
+        $accion = empty($yaEnCola[0]) ? 'Construyendo' : $yaEnCola[0]->accion;
 
         //Comprobamos si tiene suficiente personal
         $error = false;
         if ($construccion->planetas->recursos->personal < $personal) {
+            $error = true;
+        }elseif ($accion != "Reciclando") {
             $error = true;
         }
 
