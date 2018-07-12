@@ -18,6 +18,7 @@ class CreateDependenciasTable extends Migration
             $table->string('codigo');
             $table->string('codigoRequiere');
             $table->integer('nivelRequiere');
+            $table->string('tipo');
 
            // $table->timestamps();
         });

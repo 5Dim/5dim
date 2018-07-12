@@ -79,7 +79,7 @@ class ConstruccionController extends Controller
         $tipoPlaneta = $planeta->tipo;
 
         // vemos las dependencias
-        $dependencias=Dependencias::where('id','>','0')->get();
+        $dependencias=Dependencias::where('tipo','construccion')->get();
 
         //Devolvemos la vista con todas las variables
         return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias'));

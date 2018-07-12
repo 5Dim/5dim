@@ -288,8 +288,21 @@
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
-                                        <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                                    @php {{
+                                        $deshabilitado="";
+                                        $texto=" Construir";
+                                        foreach ($dependencias as $dependencia) {
+                                            if ($dependencia->codigo==$construcciones[$i]->codigo){
+                                                    $nivelTengo=$construcciones->where('codigo',$dependencia->codigoRequiere)->first();
+                                                if ( $nivelTengo->nivel < $dependencia->nivelRequiere){
+                                                    $texto.=" requiere ".trans('construccion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                }
+                                            }
+                                        }
+                                    }}@endphp
+                                    <button type="button" class="btn btn-outline-success btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                        <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                     </button>
                                 </td>
                             </tr>
@@ -399,8 +412,21 @@
                                 </button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
-                                    <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                                @php {{
+                                    $deshabilitado="";
+                                    $texto=" Construir";
+                                    foreach ($dependencias as $dependencia) {
+                                        if ($dependencia->codigo==$construcciones[$i]->codigo){
+                                                $nivelTengo=$construcciones->where('codigo',$dependencia->codigoRequiere)->first();
+                                            if ( $nivelTengo->nivel < $dependencia->nivelRequiere){
+                                                $texto.=" requiere ".trans('construccion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
+                                                $deshabilitado=" disabled='disabled' ";
+                                            }
+                                        }
+                                    }
+                                }}@endphp
+                                <button type="button" class="btn btn-outline-success btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                    <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                 </button>
                             </td>
                         </tr>
@@ -507,8 +533,21 @@
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
-                                <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                            @php {{
+                                $deshabilitado="";
+                                $texto=" Construir";
+                                foreach ($dependencias as $dependencia) {
+                                    if ($dependencia->codigo==$construcciones[$i]->codigo){
+                                            $nivelTengo=$construcciones->where('codigo',$dependencia->codigoRequiere)->first();
+                                        if ( $nivelTengo->nivel < $dependencia->nivelRequiere){
+                                            $texto.=" requiere ".trans('construccion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
+                                            $deshabilitado=" disabled='disabled' ";
+                                        }
+                                    }
+                                }
+                            }}@endphp
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                             </button>
                         </td>
                     </tr>
@@ -615,8 +654,21 @@
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
-                                <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                            @php {{
+                                $deshabilitado="";
+                                $texto=" Construir";
+                                foreach ($dependencias as $dependencia) {
+                                    if ($dependencia->codigo==$construcciones[$i]->codigo){
+                                            $nivelTengo=$construcciones->where('codigo',$dependencia->codigoRequiere)->first();
+                                        if ( $nivelTengo->nivel < $dependencia->nivelRequiere){
+                                            $texto.=" requiere ".trans('construccion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
+                                            $deshabilitado=" disabled='disabled' ";
+                                        }
+                                    }
+                                }
+                            }}@endphp
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                             </button>
                         </td>
                     </tr>
@@ -724,8 +776,21 @@
                                 </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
-                                <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                            @php {{
+                                $deshabilitado="";
+                                $texto=" Construir";
+                                foreach ($dependencias as $dependencia) {
+                                    if ($dependencia->codigo==$construcciones[$i]->codigo){
+                                            $nivelTengo=$construcciones->where('codigo',$dependencia->codigoRequiere)->first();
+                                        if ( $nivelTengo->nivel < $dependencia->nivelRequiere){
+                                            $texto.=" requiere ".trans('construccion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
+                                            $deshabilitado=" disabled='disabled' ";
+                                        }
+                                    }
+                                }
+                            }}@endphp
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                             </button>
                         </td>
                     </tr>
