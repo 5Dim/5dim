@@ -86,43 +86,55 @@ class ConstruccionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function construir ($idConstruccion = 1, $personal = 15000)
+    public function construir ($idConstruccion, $personal)
     {
         //Recuperar construccion
         $construccion = Construcciones::where('id', $idConstruccion)->first();
 
-        $nivelCola = EnConstrucciones::where('construcciones_id', $idConstruccion)->max('nivel');
-        $recursos = $construccion->planetas->recursos;
+        //Recuperamos su ultima cola (si existe)
+        $cola = EnConstrucciones::where('construcciones_id', $idConstruccion)->orderBy('id', 'desc')->first();
 
-        //Rellenar variables
-        $nivel = empty($nivelCola) ? $construccion->nivel + 1 : $nivelCola + 1;
+        //Parametros por defecto
         $codigo = $construccion->codigo;
+
+        //Sobreescribimos datos en caso de que la construccion tenga alguna orden en cola
+        if (!empty($cola)) {
+            $inicio = $cola->finished_at;
+            $nivel = $cola->nivel + 1;
+
+            //Comprobamos si ya hay cola de este edificio
+            $accion = $cola->accion;
+        }else{
+            //Valores por defecto
+            $inicio = date("Y-m-d H:i:s");
+            $nivel = $construccion->nivel + 1;
+            $accion = 'Construyendo';
+        }
+
+        //Calculamos el coste para calcular el tiempo
         $costeTotal = $construccion->sumarCostes($construccion->coste);
 
+        //Calcular el tiempo de construccion
         $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
 
         //Fecha prueba
-        $fechaFin = time() + $tiempo;
-
-        //Comprobamos si ya hay cola de este edificio y cual es accion para no pisarla
-        $yaEnCola = EnConstrucciones::where('construcciones_id', $idConstruccion)->get();
-        $accion = empty($yaEnCola[0]) ? 'Construyendo' : $yaEnCola[0]->accion;
+        $fechaFin = strtotime($inicio) + $tiempo;
 
         //Comprobamos que el edificio se puede construir
         $error = false;
-        if ($recursos->mineral < $construccion->coste->mineral) {
+        if ($construccion->planetas->recursos->mineral < $construccion->coste->mineral) {
             $error = true;
-        }elseif ($recursos->cristal < $construccion->coste->cristal) {
+        }elseif ($construccion->planetas->recursos->cristal < $construccion->coste->cristal) {
             $error = true;
-        }elseif ($recursos->gas < $construccion->coste->gas) {
+        }elseif ($construccion->planetas->recursos->gas < $construccion->coste->gas) {
             $error = true;
-        }elseif ($recursos->plastico < $construccion->coste->plastico) {
+        }elseif ($construccion->planetas->recursos->plastico < $construccion->coste->plastico) {
             $error = true;
-        }elseif ($recursos->ceramica < $construccion->coste->ceramica) {
+        }elseif ($construccion->planetas->recursos->ceramica < $construccion->coste->ceramica) {
             $error = true;
-        }elseif ($recursos->liquido < $construccion->coste->liquido) {
+        }elseif ($construccion->planetas->recursos->liquido < $construccion->coste->liquido) {
             $error = true;
-        }elseif ($recursos->micros < $construccion->coste->micros) {
+        }elseif ($construccion->planetas->recursos->micros < $construccion->coste->micros) {
             $error = true;
         }elseif ($accion != "Construyendo") {
             $error = true;
@@ -131,14 +143,14 @@ class ConstruccionController extends Controller
         //Si no tenemos ningun error continuamos
         if (!$error) {
             //Restamos el coste a los recursos
-            $recursos->mineral -= $construccion->coste->mineral;
-            $recursos->cristal -= $construccion->coste->cristal;
-            $recursos->gas -= $construccion->coste->gas;
-            $recursos->plastico -= $construccion->coste->plastico;
-            $recursos->ceramica -= $construccion->coste->ceramica;
-            $recursos->liquido -= $construccion->coste->liquido;
-            $recursos->micros -= $construccion->coste->micros;
-            $recursos->save();
+            $construccion->planetas->recursos->mineral -= $construccion->coste->mineral;
+            $construccion->planetas->recursos->cristal -= $construccion->coste->cristal;
+            $construccion->planetas->recursos->gas -= $construccion->coste->gas;
+            $construccion->planetas->recursos->plastico -= $construccion->coste->plastico;
+            $construccion->planetas->recursos->ceramica -= $construccion->coste->ceramica;
+            $construccion->planetas->recursos->liquido -= $construccion->coste->liquido;
+            $construccion->planetas->recursos->micros -= $construccion->coste->micros;
+            $construccion->planetas->recursos->save();
 
             //Generamos la cola
             $construyendo = new EnConstrucciones();
@@ -146,6 +158,7 @@ class ConstruccionController extends Controller
             $construyendo->construcciones_id = $idConstruccion;
             $construyendo->nivel = $nivel;
             $construyendo->accion = "Construyendo";
+            $construyendo->created_at = $inicio;
             $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
             $construyendo->save();
 
@@ -166,24 +179,43 @@ class ConstruccionController extends Controller
         //Recuperar construccion
         $construccion = Construcciones::where('id', $idConstruccion)->first();
 
-        //Rellenar variables
-        $nivel = $construccion->nivel - 1;
+        //Recuperamos su ultima cola (si existe)
+        $cola = EnConstrucciones::where('construcciones_id', $idConstruccion)->orderBy('id', 'desc')->first();
+
+        //Parametros por defecto
         $codigo = $construccion->codigo;
+
+        //Sobreescribimos datos en caso de que la construccion tenga alguna orden en cola
+        if (!empty($cola)) {
+            $inicio = $cola->finished_at;
+            $nivel = $cola->nivel;
+            $construccion->nivel - 1;
+
+            //Comprobamos si ya hay cola de este edificio
+            $accion = $cola->accion;
+        }else{
+            //Valores por defecto
+            $inicio = date("Y-m-d H:i:s");
+            $nivel = $construccion->nivel - 1;
+            $accion = 'Reciclando';
+        }
+
+        //Calculamos el coste para calcular el tiempo
         $costeTotal = $construccion->sumarCostes($construccion->coste);
-        $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal) / 10;
+
+        //Calcular el tiempo de construccion
+        $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
 
         //Fecha prueba
-        $fechaFin = time() + $tiempo;
-
-        //Comprobamos si ya hay cola de este edificio y cual es accion para no pisarla
-        $yaEnCola = EnConstrucciones::where('construcciones_id', $idConstruccion)->get();
-        $accion = empty($yaEnCola[0]) ? 'Reciclando' : $yaEnCola[0]->accion;
+        $fechaFin = strtotime($inicio) + $tiempo;
 
         //Comprobamos si tiene suficiente personal
         $error = false;
         if ($construccion->planetas->recursos->personal < $personal) {
             $error = true;
         }elseif ($accion != "Reciclando") {
+            $error = true;
+        }elseif ($nivel < 0) {
             $error = true;
         }
 
