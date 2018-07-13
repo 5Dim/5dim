@@ -362,7 +362,7 @@ class ConstruccionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function datos ($codigo, $locale)
+    public function datos ($codigo)
     {
         $nombreConstruccion = trans('construccion.' . $codigo);
         $descripcionConstruccion = trans('construccion.' . $codigo . 'Descripcion');
