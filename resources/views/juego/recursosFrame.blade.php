@@ -141,7 +141,7 @@
                 <tbody>
                     <tr>
                         <td class="text-danger borderless">
-                            &nbsp;
+                            {{ number_format($personal, 0,",",".") }}
                         </td>
                         @foreach ($almacenes as $almacen)
                             @if ($tipoPlaneta == 'planeta' and $loop->index < 2)
@@ -164,7 +164,7 @@
                     </tr>
                     <tr>
                         <td id="personal" class="text-warning borderless">
-                            {{ number_format($recursos->personal, 0,",",".") }}
+                            {{ number_format($recursos->personal-$personal, 0,",",".") }}
                         </td>
                         <td id="mineral" class="text-warning borderless">
                             {{ number_format($recursos->mineral, 0,",",".") }}
@@ -377,6 +377,7 @@
     <script>
         $( document ).ready(function() {
         var recursos = {!! json_encode($recursos) !!};
+        recursos.personal -= {{$personal}}
         //console.log(recursos);
         var produccion = {!! json_encode($producciones) !!};
         //console.log(produccion);

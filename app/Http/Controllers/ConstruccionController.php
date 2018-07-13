@@ -80,7 +80,20 @@ class ConstruccionController extends Controller
                 array_push($colaConstruccion2, $construccion->enConstrucciones);
             }
         }
-        $colaConstruccion=$colaConstruccion2[0];
+        for ($i=0; $i < count($colaConstruccion2); $i++) {
+            if (!empty($colaConstruccion2[$i])) {
+                foreach ($colaConstruccion2[$i] as $colita) {
+                    array_push($colaConstruccion, $colita);
+                }
+            }
+        }
+
+        //Personal en uso
+        $personal = 0;
+        foreach ($colaConstruccion as $cola) {
+            $personal += $cola->personal;
+        }
+
 
         //Enviamos los datos para la velocidad de construccion
         $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
@@ -92,14 +105,44 @@ class ConstruccionController extends Controller
         $dependencias=Dependencias::where('tipo','construccion')->get();
 
         //Devolvemos la vista con todas las variables
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias'));
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal'));
     }
 
     //Acceso a subir nivel de construccion
     public function construir ($idConstruccion, $personal)
     {
+        //En que planeta estamos
+        if (empty(session()->get('planetas_id'))) {
+            session()->put('planetas_id', 1);
+            $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
+        }else {
+            $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
+        }
+
         //Recuperar construccion
         $construccion = Construcciones::where('id', $idConstruccion)->first();
+
+        //Comrpobamos si existe una cola
+        $colaConstruccion= [];
+        $colaConstruccion2=[];
+        foreach ($planeta->construcciones as $construccion){
+            if(!empty($construccion->enConstrucciones[0])){
+                array_push($colaConstruccion2, $construccion->enConstrucciones);
+            }
+        }
+        for ($i=0; $i < count($colaConstruccion2); $i++) {
+            if (!empty($colaConstruccion2[$i])) {
+                foreach ($colaConstruccion2[$i] as $colita) {
+                    array_push($colaConstruccion, $colita);
+                }
+            }
+        }
+
+        //Personal en uso
+        $personalUsado = 0;
+        foreach ($colaConstruccion as $cola) {
+            $personalUsado += $cola->personal;
+        }
 
         //Recuperamos su ultima cola (si existe)
         $cola = EnConstrucciones::where('construcciones_id', $idConstruccion)->orderBy('id', 'desc')->first();
@@ -145,6 +188,8 @@ class ConstruccionController extends Controller
         }elseif ($construccion->planetas->recursos->liquido < $construccion->coste->liquido) {
             $error = true;
         }elseif ($construccion->planetas->recursos->micros < $construccion->coste->micros) {
+            $error = true;
+        }elseif ($construccion->planetas->recursos->personal-$personalUsado < $personal) {
             $error = true;
         }elseif ($accion != "Construyendo") {
             $error = true;
@@ -312,9 +357,10 @@ class ConstruccionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function datos ($codigo)
+    public function datos ($codigo, $locale)
     {
-        $traduccion = trans('construccion.' . $codigo . 'Descripcion');
-        return $traduccion;
+        $nombreConstruccion = trans('construccion.' . $codigo);
+        $descripcionConstruccion = trans('construccion.' . $codigo . 'Descripcion');
+        return compact('descripcionConstruccion', 'nombreConstruccion');
     }
 }

@@ -88,7 +88,7 @@
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
-                                                placeholder="personal" value="{{$recursos->personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
+                                                placeholder="personal" value="{{$recursos->personal - $personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
                                     </tr>
                                     <tr>
                                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -109,26 +109,117 @@
                                         <td class="anchofijo text-muted borderless">Personal</td>
                                     </tr>
                                     <tr>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
+                                        @php
+                                            $error = false;
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->mineral > 0) {
+                                                if ($construcciones[$i]->coste->mineral > $recursos->mineral) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->cristal > 0) {
+                                                if ($construcciones[$i]->coste->cristal > $recursos->cristal) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->gas > 0) {
+                                                if ($construcciones[$i]->coste->gas > $recursos->gas) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->plastico > 0) {
+                                                if ($construcciones[$i]->coste->plastico > $recursos->plastico) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->ceramica > 0) {
+                                                if ($construcciones[$i]->coste->ceramica > $recursos->ceramica) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->liquido > 0) {
+                                                if ($construcciones[$i]->coste->liquido > $recursos->liquido) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->micros > 0) {
+                                                if ($construcciones[$i]->coste->micros > $recursos->micros) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
                                         <td class="anchofijo text-white borderless"></td>
                                         <td class="anchofijo text-muted borderless"></td>
@@ -159,7 +250,17 @@
                                 <table class="table table-sm table-borderless text-center anchofijo">
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            @php
+                                                $deshabilitado="";
+                                                $clase="danger";
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Construyendo") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                            @endphp
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-trash"></i> Reciclar
                                             </button>
                                         </td>
@@ -182,6 +283,16 @@
                                                             $clase="light";
                                                         }
                                                     }
+                                                }
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Reciclando") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                                if ($error) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
                                                 }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
@@ -211,7 +322,7 @@
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
-                                                placeholder="personal" value="{{$recursos->personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
+                                                placeholder="personal" value="{{$recursos->personal - $personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
                                     </tr>
                                     <tr>
                                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -232,26 +343,117 @@
                                         <td class="anchofijo text-muted borderless">Personal</td>
                                     </tr>
                                     <tr>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
+                                        @php
+                                            $error = false;
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->mineral > 0) {
+                                                if ($construcciones[$i]->coste->mineral > $recursos->mineral) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->cristal > 0) {
+                                                if ($construcciones[$i]->coste->cristal > $recursos->cristal) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->gas > 0) {
+                                                if ($construcciones[$i]->coste->gas > $recursos->gas) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->plastico > 0) {
+                                                if ($construcciones[$i]->coste->plastico > $recursos->plastico) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->ceramica > 0) {
+                                                if ($construcciones[$i]->coste->ceramica > $recursos->ceramica) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->liquido > 0) {
+                                                if ($construcciones[$i]->coste->liquido > $recursos->liquido) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->micros > 0) {
+                                                if ($construcciones[$i]->coste->micros > $recursos->micros) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
                                         <td class="anchofijo text-white borderless"></td>
                                         <td class="anchofijo text-muted borderless"></td>
@@ -282,7 +484,17 @@
                                 <table class="table table-sm table-borderless text-center anchofijo">
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            @php
+                                                $deshabilitado="";
+                                                $clase="danger";
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Construyendo") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                            @endphp
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-trash"></i> Reciclar
                                             </button>
                                         </td>
@@ -305,6 +517,16 @@
                                                             $clase="light";
                                                         }
                                                     }
+                                                }
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Reciclando") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                                if ($error) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
                                                 }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
@@ -339,7 +561,7 @@
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
-                                                placeholder="personal" value="{{$recursos->personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
+                                                placeholder="personal" value="{{$recursos->personal - $personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
                                     </tr>
                                     <tr>
                                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -360,26 +582,117 @@
                                         <td class="anchofijo text-muted borderless">Personal</td>
                                     </tr>
                                     <tr>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
+                                        @php
+                                            $error = false;
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->mineral > 0) {
+                                                if ($construcciones[$i]->coste->mineral > $recursos->mineral) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->cristal > 0) {
+                                                if ($construcciones[$i]->coste->cristal > $recursos->cristal) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->gas > 0) {
+                                                if ($construcciones[$i]->coste->gas > $recursos->gas) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->plastico > 0) {
+                                                if ($construcciones[$i]->coste->plastico > $recursos->plastico) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->ceramica > 0) {
+                                                if ($construcciones[$i]->coste->ceramica > $recursos->ceramica) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->liquido > 0) {
+                                                if ($construcciones[$i]->coste->liquido > $recursos->liquido) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->micros > 0) {
+                                                if ($construcciones[$i]->coste->micros > $recursos->micros) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
                                         <td class="anchofijo text-white borderless"></td>
                                         <td class="anchofijo text-muted borderless"></td>
@@ -410,7 +723,17 @@
                                 <table class="table table-sm table-borderless text-center anchofijo">
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            @php
+                                                $deshabilitado="";
+                                                $clase="danger";
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Construyendo") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                            @endphp
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-trash"></i> Reciclar
                                             </button>
                                         </td>
@@ -434,6 +757,16 @@
                                                         }
                                                     }
                                                 }
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Reciclando") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                                if ($error) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
+                                                }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
@@ -447,7 +780,7 @@
                 @endfor
             </div>
             <div class="tab-pane fade" id="militares" role="tabpanel" aria-labelledby="militares-tab">
-                    @for ($i = 21 ; $i < 26 ; $i++)
+                @for ($i = 21 ; $i < 26 ; $i++)
                     <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
                         <div class="col-12">
                             <div id="cuadro1" class="table-responsive-sm">
@@ -462,7 +795,7 @@
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
-                                                placeholder="personal" value="{{$recursos->personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
+                                                placeholder="personal" value="{{$recursos->personal - $personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
                                     </tr>
                                     <tr>
                                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -483,26 +816,117 @@
                                         <td class="anchofijo text-muted borderless">Personal</td>
                                     </tr>
                                     <tr>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
+                                        @php
+                                            $error = false;
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->mineral > 0) {
+                                                if ($construcciones[$i]->coste->mineral > $recursos->mineral) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->cristal > 0) {
+                                                if ($construcciones[$i]->coste->cristal > $recursos->cristal) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->gas > 0) {
+                                                if ($construcciones[$i]->coste->gas > $recursos->gas) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->plastico > 0) {
+                                                if ($construcciones[$i]->coste->plastico > $recursos->plastico) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->ceramica > 0) {
+                                                if ($construcciones[$i]->coste->ceramica > $recursos->ceramica) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->liquido > 0) {
+                                                if ($construcciones[$i]->coste->liquido > $recursos->liquido) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->micros > 0) {
+                                                if ($construcciones[$i]->coste->micros > $recursos->micros) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
                                         <td class="anchofijo text-white borderless"></td>
                                         <td class="anchofijo text-muted borderless"></td>
@@ -533,7 +957,17 @@
                                 <table class="table table-sm table-borderless text-center anchofijo">
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            @php
+                                                $deshabilitado="";
+                                                $clase="danger";
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Construyendo") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                            @endphp
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-trash"></i> Reciclar
                                             </button>
                                         </td>
@@ -556,6 +990,16 @@
                                                             $clase="light";
                                                         }
                                                     }
+                                                }
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Reciclando") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                                if ($error) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
                                                 }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
@@ -585,7 +1029,7 @@
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
-                                                placeholder="personal" value="{{$recursos->personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
+                                                placeholder="personal" value="{{$recursos->personal - $personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
                                     </tr>
                                     <tr>
                                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -606,26 +1050,117 @@
                                         <td class="anchofijo text-muted borderless">Personal</td>
                                     </tr>
                                     <tr>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
+                                        @php
+                                            $error = false;
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->mineral > 0) {
+                                                if ($construcciones[$i]->coste->mineral > $recursos->mineral) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->mineral;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->cristal > 0) {
+                                                if ($construcciones[$i]->coste->cristal > $recursos->cristal) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->cristal;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->gas > 0) {
+                                                if ($construcciones[$i]->coste->gas > $recursos->gas) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->gas;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->plastico > 0) {
+                                                if ($construcciones[$i]->coste->plastico > $recursos->plastico) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->plastico;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->ceramica > 0) {
+                                                if ($construcciones[$i]->coste->ceramica > $recursos->ceramica) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->ceramica;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->liquido > 0) {
+                                                if ($construcciones[$i]->coste->liquido > $recursos->liquido) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->liquido;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
-                                        <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                            {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
+                                        @php
+                                            $clase = 'light';
+                                            $coste = '';
+                                            if ($construcciones[$i]->coste->micros > 0) {
+                                                if ($construcciones[$i]->coste->micros > $recursos->micros) {
+                                                    $clase = 'danger';
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                    $error = true;
+                                                }else {
+                                                    $coste = $construcciones[$i]->coste->micros;
+                                                }
+                                            }
+                                        @endphp
+                                        <td class="anchofijo text-{{ $clase }} borderless">
+                                            {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                         </td>
                                         <td class="anchofijo text-white borderless"></td>
                                         <td class="anchofijo text-muted borderless"></td>
@@ -656,7 +1191,17 @@
                                 <table class="table table-sm table-borderless text-center anchofijo">
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            @php
+                                                $deshabilitado="";
+                                                $clase="danger";
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Construyendo") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                            @endphp
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-trash"></i> Reciclar
                                             </button>
                                         </td>
@@ -679,6 +1224,16 @@
                                                             $clase="light";
                                                         }
                                                     }
+                                                }
+                                                if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                    if ($construcciones[$i]->enConstrucciones[0]->accion == "Reciclando") {
+                                                        $deshabilitado=" disabled='disabled' ";
+                                                        $clase="light";
+                                                    }
+                                                }
+                                                if ($error) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
                                                 }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
@@ -708,7 +1263,7 @@
                                     <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construcciones[$i]->codigo }}">Termina:</td>
                                     <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construcciones[$i]->codigo }}">Tiempo:</td>
                                     <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construcciones[$i]->codigo }}" type="number" class="personal1"
-                                            placeholder="personal" value="{{$recursos->personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
+                                            placeholder="personal" value="{{$recursos->personal - $personal}}" onkeyup="calculaTiempo({{$construcciones[$i]->coste->mineral+$construcciones[$i]->coste->cristal+$construcciones[$i]->coste->gas+$construcciones[$i]->coste->plastico +$construcciones[$i]->coste->ceramica +$construcciones[$i]->coste->liquido + $construcciones[$i]->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construcciones[$i]->codigo}}') "></td>
                                 </tr>
                                 <tr>
                                     <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construcciones[$i]->codigo . '.jpg') }}"
@@ -729,26 +1284,117 @@
                                     <td class="anchofijo text-muted borderless">Personal</td>
                                 </tr>
                                 <tr>
-                                    <td class="anchofijo {{ $construcciones[$i]->coste->mineral == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->mineral > 0 ? number_format($construcciones[$i]->coste->mineral, 0,",",".") : '' }}
+                                    @php
+                                        $error = false;
+                                        $clase = 'light';
+                                        $coste = '';
+                                        if ($construcciones[$i]->coste->mineral > 0) {
+                                            if ($construcciones[$i]->coste->mineral > $recursos->mineral) {
+                                                $clase = 'danger';
+                                                $coste = $construcciones[$i]->coste->mineral;
+                                                $error = true;
+                                            }else {
+                                                $coste = $construcciones[$i]->coste->mineral;
+                                            }
+                                        }
+                                    @endphp
+                                    <td class="anchofijo text-{{ $clase }} borderless">
+                                        {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                     </td>
-                                    <td class="anchofijo {{ $construcciones[$i]->coste->cristal == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->cristal > 0 ? number_format($construcciones[$i]->coste->cristal, 0,",",".") : '' }}
+                                    @php
+                                        $clase = 'light';
+                                        $coste = '';
+                                        if ($construcciones[$i]->coste->cristal > 0) {
+                                            if ($construcciones[$i]->coste->cristal > $recursos->cristal) {
+                                                $clase = 'danger';
+                                                $coste = $construcciones[$i]->coste->cristal;
+                                                $error = true;
+                                            }else {
+                                                $coste = $construcciones[$i]->coste->cristal;
+                                            }
+                                        }
+                                    @endphp
+                                    <td class="anchofijo text-{{ $clase }} borderless">
+                                        {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                     </td>
-                                    <td class="anchofijo {{ $construcciones[$i]->coste->gas == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->gas > 0 ? number_format($construcciones[$i]->coste->gas, 0,",",".") : '' }}
+                                    @php
+                                        $clase = 'light';
+                                        $coste = '';
+                                        if ($construcciones[$i]->coste->gas > 0) {
+                                            if ($construcciones[$i]->coste->gas > $recursos->gas) {
+                                                $clase = 'danger';
+                                                $coste = $construcciones[$i]->coste->gas;
+                                                $error = true;
+                                            }else {
+                                                $coste = $construcciones[$i]->coste->gas;
+                                            }
+                                        }
+                                    @endphp
+                                    <td class="anchofijo text-{{ $clase }} borderless">
+                                        {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                     </td>
-                                    <td class="anchofijo {{ $construcciones[$i]->coste->plastico == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->plastico > 0 ? number_format($construcciones[$i]->coste->plastico, 0,",",".") : '' }}
+                                    @php
+                                        $clase = 'light';
+                                        $coste = '';
+                                        if ($construcciones[$i]->coste->plastico > 0) {
+                                            if ($construcciones[$i]->coste->plastico > $recursos->plastico) {
+                                                $clase = 'danger';
+                                                $coste = $construcciones[$i]->coste->plastico;
+                                                $error = true;
+                                            }else {
+                                                $coste = $construcciones[$i]->coste->plastico;
+                                            }
+                                        }
+                                    @endphp
+                                    <td class="anchofijo text-{{ $clase }} borderless">
+                                        {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                     </td>
-                                    <td class="anchofijo {{ $construcciones[$i]->coste->ceramica == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->ceramica > 0 ? number_format($construcciones[$i]->coste->ceramica, 0,",",".") : '' }}
+                                    @php
+                                        $clase = 'light';
+                                        $coste = '';
+                                        if ($construcciones[$i]->coste->ceramica > 0) {
+                                            if ($construcciones[$i]->coste->ceramica > $recursos->ceramica) {
+                                                $clase = 'danger';
+                                                $coste = $construcciones[$i]->coste->ceramica;
+                                            }else {
+                                                $coste = $construcciones[$i]->coste->ceramica;
+                                            }
+                                        }
+                                    @endphp
+                                    <td class="anchofijo text-{{ $clase }} borderless">
+                                        {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                     </td>
-                                    <td class="anchofijo {{ $construcciones[$i]->coste->liquido == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->liquido > 0 ? number_format($construcciones[$i]->coste->liquido, 0,",",".") : '' }}
+                                    @php
+                                        $clase = 'light';
+                                        $coste = '';
+                                        if ($construcciones[$i]->coste->liquido > 0) {
+                                            if ($construcciones[$i]->coste->liquido > $recursos->liquido) {
+                                                $clase = 'danger';
+                                                $coste = $construcciones[$i]->coste->liquido;
+                                                $error = true;
+                                            }else {
+                                                $coste = $construcciones[$i]->coste->liquido;
+                                            }
+                                        }
+                                    @endphp
+                                    <td class="anchofijo text-{{ $clase }} borderless">
+                                        {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                     </td>
-                                    <td class="anchofijo {{ $construcciones[$i]->coste->micros == 0 ? 'text-muted' : 'text-light' }} borderless">
-                                        {{ $construcciones[$i]->coste->micros > 0 ? number_format($construcciones[$i]->coste->micros, 0,",",".") : '' }}
+                                    @php
+                                        $clase = 'light';
+                                        $coste = '';
+                                        if ($construcciones[$i]->coste->micros > 0) {
+                                            if ($construcciones[$i]->coste->micros > $recursos->micros) {
+                                                $clase = 'danger';
+                                                $coste = $construcciones[$i]->coste->micros;
+                                                $error = true;
+                                            }else {
+                                                $coste = $construcciones[$i]->coste->micros;
+                                            }
+                                        }
+                                    @endphp
+                                    <td class="anchofijo text-{{ $clase }} borderless">
+                                        {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                                     </td>
                                     <td class="anchofijo text-white borderless"></td>
                                     <td class="anchofijo text-muted borderless"></td>
@@ -779,7 +1425,17 @@
                             <table class="table table-sm table-borderless text-center anchofijo">
                                 <tr>
                                     <td>
-                                        <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                        @php
+                                            $deshabilitado="";
+                                            $clase="danger";
+                                            if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                if ($construcciones[$i]->enConstrucciones[0]->accion == "Construyendo") {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
+                                                }
+                                            }
+                                        @endphp
+                                        <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                             <i class="fa fa-trash"></i> Reciclar
                                         </button>
                                     </td>
@@ -802,6 +1458,16 @@
                                                         $clase="light";
                                                     }
                                                 }
+                                            }
+                                            if (!empty($construcciones[$i]->enConstrucciones[0])) {
+                                                if ($construcciones[$i]->enConstrucciones[0]->accion == "Reciclando") {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
+                                                }
+                                            }
+                                            if ($error) {
+                                                $deshabilitado=" disabled='disabled' ";
+                                                $clase="light";
                                             }
                                         @endphp
                                         <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
