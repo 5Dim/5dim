@@ -311,7 +311,11 @@ class ConstruccionController extends Controller
         $listaCola = EnConstrucciones::where([['construcciones_id', '=', $cola->construcciones->id], ['nivel', '>', $cola->nivel]])->get();
 
         $nivelCola = EnConstrucciones::where('construcciones_id', $cola->construcciones->id)->max('nivel');
-        $nivel = empty($nivelCola) ? $cola->construcciones->nivel : $nivelCola;
+        if (empty($nivelCola)) {
+            $nivel = $cola->construcciones->nivel - 1;
+        }else{
+            $nivel = $nivelCola - 1;
+        }
         $reciclaje = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
 
         //Generamos el coste del edificio
