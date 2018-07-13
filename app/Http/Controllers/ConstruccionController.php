@@ -175,6 +175,8 @@ class ConstruccionController extends Controller
 
         //Comprobamos que el edificio se puede construir
         $error = false;
+        if ($nivel>1){
+
         if ($construccion->planetas->recursos->mineral < $construccion->coste->mineral) {
             $error = true;
         }elseif ($construccion->planetas->recursos->cristal < $construccion->coste->cristal) {
@@ -193,6 +195,7 @@ class ConstruccionController extends Controller
             $error = true;
         }elseif ($accion != "Construyendo") {
             $error = true;
+        }
         }
 
         //Si no tenemos ningun error continuamos
