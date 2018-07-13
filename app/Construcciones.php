@@ -68,6 +68,8 @@ class Construcciones extends Model
             "comercio",
             "observacion",
             "potenciador",
+            "nodEstructura",
+            "nodMotorMA",
         ];
         return $listaNombres;
     }
