@@ -310,4 +310,11 @@ class ConstruccionController extends Controller
 
         return redirect('/juego/construccion');
     }
+
+    //Acceso a subir nivel de construccion
+    public function datos ($codigo)
+    {
+        $traduccion = trans('construccion.' . $codigo . 'Descripcion');
+        return $traduccion;
+    }
 }
