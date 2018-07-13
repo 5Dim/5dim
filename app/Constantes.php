@@ -36,9 +36,9 @@ class Constantes extends Model
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
-                $constante->valor=6;
+                $constante->valor=15;
                 $constante->minimo=3;
-                $constante->maximo=15;
+                $constante->maximo=30;
                 $constante->codigo='colaConstruccion';
                 $constante->descripcion='construcciones simultaneas';
                 $constante->tipo='construccion';
