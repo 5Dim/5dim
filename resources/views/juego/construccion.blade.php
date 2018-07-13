@@ -793,7 +793,7 @@
                                                     }
                                                 }
                                             }
-                                        }}@endphp
+                                        @endphp
                                         <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                             <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                         </button>
