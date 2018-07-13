@@ -72,6 +72,13 @@ class ConstruccionController extends Controller
         //Comrpobamos si existe una cola
         $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [$construcciones[0]->id, $construcciones[count($construcciones) - 1]->id])->get();
 
+        /*
+        $colaConstruccion=[];
+        foreach ($planeta->construcciones as $construccion){
+            array_push($colaConstruccion, $construccion->enconstruccion);
+        }
+        */
+
         //Enviamos los datos para la velocidad de construccion
         $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
 
