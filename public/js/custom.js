@@ -201,3 +201,17 @@ function sendReciclar(id, codigo) {
 function sendCancelar(id) {
     window.location.href = "http://localhost/juego/construccion/cancelar/" + id;
 }
+
+function mostrarDatosConstruccion(codigo) {
+    $.ajax({
+        method: "GET",
+        url: "http://localhost/juego/construccion/datos/" + codigo,
+        // data: { name: "John", location: "Boston" }
+        success: function (data) {
+            $("#datosContenido").html(data.descripcionConstruccion)
+            $("#ModalTitulo").html(data.nombreConstruccion)
+
+        }
+    })
+
+}

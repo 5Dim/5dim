@@ -265,7 +265,7 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('{{$construcciones[$i]->codigo}}')">
                                                 <i class="fa fa-info-circle"></i> Datos
                                             </button>
                                         </td>
@@ -499,7 +499,7 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('{{$construcciones[$i]->codigo}}')">
                                                 <i class="fa fa-info-circle"></i> Datos
                                             </button>
                                         </td>
@@ -738,7 +738,7 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('{{$construcciones[$i]->codigo}}')">
                                                 <i class="fa fa-info-circle"></i> Datos
                                             </button>
                                         </td>
@@ -972,7 +972,7 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('{{$construcciones[$i]->codigo}}')">
                                                 <i class="fa fa-info-circle"></i> Datos
                                             </button>
                                         </td>
@@ -1206,7 +1206,7 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('{{$construcciones[$i]->codigo}}')">
                                                 <i class="fa fa-info-circle"></i> Datos
                                             </button>
                                         </td>
@@ -1440,7 +1440,7 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('{{$construcciones[$i]->codigo}}')">
                                             <i class="fa fa-info-circle"></i> Datos
                                         </button>
                                     </td>
@@ -1484,6 +1484,26 @@
     </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="datosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="ModalTitulo"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body" id="datosContenido">
+        ...
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+    </div>
+</div>
+
 <script>
     $( document ).ready(function() {
         @for ($i = 0 ; $i < 31 ; $i++)
@@ -1500,6 +1520,8 @@
                 '{{$construcciones[$i]->codigo}}'
             )
         @endfor
+
+
     });
 
 </script>
