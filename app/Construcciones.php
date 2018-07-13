@@ -84,7 +84,7 @@ class Construcciones extends Model
         return $result;
     }
 
-    public function nuevaColonia ($planeta = 1) {
+    public function nuevaColonia ($planeta) {
         $listaConstrucciones = [];
         $construccion = new Construcciones();
         $listaNombres = $construccion->listaNombres();

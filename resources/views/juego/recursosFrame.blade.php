@@ -143,23 +143,24 @@
                         <td class="text-danger borderless">
                             &nbsp;
                         </td>
-                        @foreach ($almacenes as $almacen) @if ($tipoPlaneta == 'planeta' and $loop->index
-                        < 2) <td class="text-danger borderless">
-                            Ilimitado
-                            </td>
+                        @foreach ($almacenes as $almacen)
+                            @if ($tipoPlaneta == 'planeta' and $loop->index < 2)
+                                <td class="text-danger borderless">
+                                    Ilimitado
+                                </td>
                             @else @if ($loop->index == 5)
-                            <td class="text-danger borderless">
-                                Almacenes
-                            </td>
+                                <td class="text-danger borderless">
+                                    Almacenes
+                                </td>
                             @endif
                             <td class="text-danger borderless">
                                 @if ($almacen->capacidad != 'Almacen') {{ number_format($almacen->capacidad, 0,",",".") }} @else {{ $almacen->capacidad }}
                                 @endif
                             </td>
-                            @endif @endforeach
-                            <td class="text-danger borderless">
-                                3200 ud/d
-                            </td>
+                        @endif @endforeach
+                        <td class="text-danger borderless">
+                            3200 ud/d
+                        </td>
                     </tr>
                     <tr>
                         <td id="personal" class="text-warning borderless">
@@ -300,9 +301,8 @@
                         </th>
                         <th class="text-warning borderless">
                             <div class="dropdown">
-                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                Planetas de colores
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Planetas de colores
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="#">Action</a>

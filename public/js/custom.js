@@ -1,7 +1,6 @@
 var recursos, produccion, almacenes;
 
 function calcularRecursos() {
-    var counter = 0;
     //Pruebas
     //console.log(recursos);
     //console.log(produccion);
@@ -9,6 +8,7 @@ function calcularRecursos() {
     //produccion.gas = -654874;
     //produccion.plastico = 6548740;
     //produccion.ceramica = 65487400;
+    var counter = 0;
 
     //Calculos
     recursos.personal += produccion[10].personal / 3600 / 4;
@@ -22,11 +22,14 @@ function calcularRecursos() {
     recursos.fuel += produccion[7].fuel / 3600 / 4;
     recursos.ma += produccion[8].ma / 3600 / 4;
     recursos.municion += produccion[9].municion / 3600 / 4;
+
     //Insertar
     $("#personal").text(Math.trunc(recursos.personal).toLocaleString('es'));
     $("#mineral").text(Math.trunc(recursos.mineral).toLocaleString('es'));
     $("#cristal").text(Math.trunc(recursos.cristal).toLocaleString('es'));
-
+    counter++;
+    counter++;
+    console.log(counter);
     //Comprobar almacenes
     if (recursos.gas >= almacenes[counter].capacidad) {
         $("#gas").addClass('text-danger');
@@ -57,7 +60,6 @@ function calcularRecursos() {
     } else {
         $("#ceramica").text(Math.trunc(recursos.ceramica).toLocaleString('es'));
     }
-    counter++;
     counter++;
     if (recursos.liquido >= almacenes[counter].capacidad) {
         $("#liquido").addClass('text-danger');

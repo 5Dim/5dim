@@ -27,6 +27,9 @@ class ConstruccionController extends Controller
             $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
         }
 
+        //Calculamos ordenes terminadas
+        EnConstrucciones::terminarColaConstrucciones();
+
         //Comprobamos construcciones en el planeta, si no las hay las generamos para una colonia nueva
         $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
         if (empty($construcciones[0]->codigo)) {
@@ -245,26 +248,58 @@ class ConstruccionController extends Controller
     public function cancelar ($idColaConstruccion = 1)
     {
         //Recuperar construccion
-        $colaConstruccion = EnConstrucciones::where('id', $idColaConstruccion)->first();
+        $cola = EnConstrucciones::where('id', $idColaConstruccion)->first();
 
         //Comprobamos si hay algun edificio por encima del nivel que se ha cancelado
-        $listaCola = EnConstrucciones::where([['construcciones_id', '=', $colaConstruccion->construcciones->id], ['nivel', '>', $colaConstruccion->nivel]])->get();
+        $listaCola = EnConstrucciones::where([['construcciones_id', '=', $cola->construcciones->id], ['nivel', '>', $cola->nivel]])->get();
 
-        //Ahora cancelamos toda la cola con nivel superiore a la cancelada
-        foreach ($listaCola as $cola) {
-            $cola->delete();
-        }
-        $colaConstruccion->delete();
-
-        $nivelCola = EnConstrucciones::where('construcciones_id', $colaConstruccion->construcciones->id)->max('nivel');
-        $nivel = empty($nivelCola) ? $colaConstruccion->construcciones->nivel : $nivelCola;
+        $nivelCola = EnConstrucciones::where('construcciones_id', $cola->construcciones->id)->max('nivel');
+        $nivel = empty($nivelCola) ? $cola->construcciones->nivel : $nivelCola;
+        $reciclaje = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
 
         //Generamos el coste del edificio
         $costeConstrucciones = new CostesConstrucciones();
-        $costeAntiguo = CostesConstrucciones::where('construcciones_id', $colaConstruccion->construcciones->id)->first();
-        $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $colaConstruccion->construcciones->codigo, $colaConstruccion->construcciones->id);
+        $costeAntiguo = CostesConstrucciones::where('construcciones_id', $cola->construcciones->id)->first();
+        $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $cola->construcciones->codigo, $cola->construcciones->id);
         $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
         $costeAntiguo->save();
+
+        //Ahora cancelamos toda la cola con nivel superiore a la cancelada
+        foreach ($listaCola as $cola) {
+            //En caso de ser una construccion debe devolver parte de los recursos
+            if ($cola->accion == "Construyendo") {
+                $costeconstruccion = new CostesConstrucciones();
+                $coste = $costeconstruccion->generarDatosCostesConstruccion($cola->construcciones->codigo, $cola->nivel, $cola->construcciones->id);
+                $recursos = $cola->construcciones->planetas->recursos;
+
+                //Restaurar beneficio por reciclaje
+                $recursos->mineral += ($coste->mineral * $reciclaje);
+                $recursos->cristal += ($coste->cristal * $reciclaje);
+                $recursos->gas += ($coste->gas * $reciclaje);
+                $recursos->plastico += ($coste->plastico * $reciclaje);
+                $recursos->ceramica += ($coste->ceramica * $reciclaje);
+                $recursos->liquido += ($coste->liquido * $reciclaje);
+                $recursos->micros += ($coste->micros * $reciclaje);
+                $recursos->save();
+            }
+            $cola->delete();
+        }
+        //En caso de ser una construccion debe devolver parte de los recursos
+        if ($cola->accion == "Construyendo") {
+            $coste = $cola->construcciones->coste;
+            $recursos = $cola->construcciones->planetas->recursos;
+
+            //Restaurar beneficio por reciclaje
+            $recursos->mineral += ($coste->mineral * $reciclaje);
+            $recursos->cristal += ($coste->cristal * $reciclaje);
+            $recursos->gas += ($coste->gas * $reciclaje);
+            $recursos->plastico += ($coste->plastico * $reciclaje);
+            $recursos->ceramica += ($coste->ceramica * $reciclaje);
+            $recursos->liquido += ($coste->liquido * $reciclaje);
+            $recursos->micros += ($coste->micros * $reciclaje);
+            $recursos->save();
+        }
+        $cola->delete();
 
         return redirect('/juego/construccion');
     }
