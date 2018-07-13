@@ -75,6 +75,13 @@ class ConstruccionController extends Controller
         //Comrpobamos si existe una cola
         $colaConstruccion = EnConstrucciones::whereBetween('construcciones_id', [$construcciones[0]->id, $construcciones[count($construcciones) - 1]->id])->get();
 
+        /*
+        $colaConstruccion=[];
+        foreach ($planeta->construcciones as $construccion){
+            array_push($colaConstruccion, $construccion->enconstruccion);
+        }
+        */
+
         //Enviamos los datos para la velocidad de construccion
         $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
 
@@ -82,7 +89,7 @@ class ConstruccionController extends Controller
         $tipoPlaneta = $planeta->tipo;
 
         // vemos las dependencias
-        $dependencias=Dependencias::where('id','>','0')->get();
+        $dependencias=Dependencias::where('tipo','construccion')->get();
 
         //Devolvemos la vista con todas las variables
         return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias'));
