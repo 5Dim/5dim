@@ -188,9 +188,9 @@ function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas
     $('#' + dndv).html(resultg);
 }
 
-function sendConstruir(id, codigo) {
+function sendConstruir(id, codigo, modal) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal;
+    window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
 }
 
 function sendReciclar(id, codigo) {
