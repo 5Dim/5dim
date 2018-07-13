@@ -259,6 +259,10 @@
                                                         $clase="light";
                                                     }
                                                 }
+                                                if ($construcciones[$i]->nivel < 1) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
+                                                }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-trash"></i> Reciclar
@@ -492,6 +496,10 @@
                                                         $deshabilitado=" disabled='disabled' ";
                                                         $clase="light";
                                                     }
+                                                }
+                                                if ($construcciones[$i]->nivel < 1) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
                                                 }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
@@ -737,6 +745,10 @@
                                                         $clase="light";
                                                     }
                                                 }
+                                                if ($construcciones[$i]->nivel < 1) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
+                                                }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-trash"></i> Reciclar
@@ -970,6 +982,10 @@
                                                         $deshabilitado=" disabled='disabled' ";
                                                         $clase="light";
                                                     }
+                                                }
+                                                if ($construcciones[$i]->nivel < 1) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
                                                 }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
@@ -1205,6 +1221,10 @@
                                                         $clase="light";
                                                     }
                                                 }
+                                                if ($construcciones[$i]->nivel < 1) {
+                                                    $deshabilitado=" disabled='disabled' ";
+                                                    $clase="light";
+                                                }
                                             @endphp
                                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
                                                 <i class="fa fa-trash"></i> Reciclar
@@ -1438,6 +1458,10 @@
                                                     $deshabilitado=" disabled='disabled' ";
                                                     $clase="light";
                                                 }
+                                            }
+                                            if ($construcciones[$i]->nivel < 1) {
+                                                $deshabilitado=" disabled='disabled' ";
+                                                $clase="light";
                                             }
                                         @endphp
                                         <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendReciclar('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
