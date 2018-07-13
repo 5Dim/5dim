@@ -17,7 +17,7 @@ use App\Dependencias;
 class ConstruccionController extends Controller
 {
     //Acceso a construcciones
-    public function index()
+    public function index($tab="")
     {
         //En que planeta estamos
         if (empty(session()->get('planetas_id'))) {
@@ -105,11 +105,11 @@ class ConstruccionController extends Controller
         $dependencias=Dependencias::where('tipo','construccion')->get();
 
         //Devolvemos la vista con todas las variables
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal'));
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab'));
     }
 
     //Acceso a subir nivel de construccion
-    public function construir ($idConstruccion, $personal)
+    public function construir ($idConstruccion, $personal,$tab)
     {
         //En que planeta estamos
         if (empty(session()->get('planetas_id'))) {
@@ -230,7 +230,7 @@ class ConstruccionController extends Controller
             $costeAntiguo->save();
         }
 
-        return redirect('/juego/construccion');
+        return redirect('/juego/construccion/'.$tab);
     }
 
     //Acceso a subir nivel de construccion

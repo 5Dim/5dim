@@ -25,8 +25,8 @@ Route::get('/', 'PrincipalController@index');
 Route::get('/juego', 'JuegoController@index');
 
 //Construccion
-Route::get('/juego/construccion', 'ConstruccionController@index');
-Route::get('/juego/construccion/construir/{id}/{personal}', ['uses' => 'ConstruccionController@construir']);
+Route::get('/juego/construccion/{tab?}', 'ConstruccionController@index');
+Route::get('/juego/construccion/construir/{id}/{personal}/{tab}', ['uses' => 'ConstruccionController@construir']);
 Route::get('/juego/construccion/reciclar/{id}/{personal}', ['uses' => 'ConstruccionController@reciclar']);
 Route::get('/juego/construccion/cancelar/{id}', ['uses' => 'ConstruccionController@cancelar']);
 Route::get('/juego/construccion/datos/{codigo}', ['uses' => 'ConstruccionController@datos']);

@@ -299,7 +299,7 @@
                                                     $clase="light";
                                                 }
                                             @endphp
-                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}','minas-tab')">
                                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                             </button>
                                         </td>
@@ -542,7 +542,7 @@
                                                     $clase="light";
                                                 }
                                             @endphp
-                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}','industria-tab')">
                                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                             </button>
                                         </td>
@@ -785,7 +785,7 @@
                                                     $clase="light";
                                                 }
                                             @endphp
-                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}','almacenes-tab')">
                                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                             </button>
                                         </td>
@@ -1023,7 +1023,7 @@
                                                     $clase="light";
                                                 }
                                             @endphp
-                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}','militares-tab')">
                                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                             </button>
                                         </td>
@@ -1261,7 +1261,7 @@
                                                     $clase="light";
                                                 }
                                             @endphp
-                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo}}','desarrollo-tab')">
                                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                             </button>
                                         </td>
@@ -1499,7 +1499,7 @@
                                                 $clase="light";
                                             }
                                         @endphp
-                                        <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}')">
+                                        <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construcciones[$i]->id }}', '{{ $construcciones[$i]->codigo }}','observacion-tab')">
                                             <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                                         </button>
                                     </td>
@@ -1550,7 +1550,7 @@
             )
         @endfor
 
-
+        $("#{{$tab}}").tab('show');
     });
 
 </script>
