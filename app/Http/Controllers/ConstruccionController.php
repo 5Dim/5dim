@@ -310,12 +310,7 @@ class ConstruccionController extends Controller
         //Comprobamos si hay algun edificio por encima del nivel que se ha cancelado
         $listaCola = EnConstrucciones::where([['construcciones_id', '=', $cola->construcciones->id], ['nivel', '>', $cola->nivel]])->get();
 
-        $nivelCola = EnConstrucciones::where('construcciones_id', $cola->construcciones->id)->max('nivel');
-        if (empty($nivelCola)) {
-            $nivel = $cola->construcciones->nivel - 1;
-        }else{
-            $nivel = $nivelCola - 1;
-        }
+        $nivel = $cola->nivel - 1;
         $reciclaje = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
 
         //Generamos el coste del edificio
@@ -326,12 +321,12 @@ class ConstruccionController extends Controller
         $costeAntiguo->save();
 
         //Ahora cancelamos toda la cola con nivel superiore a la cancelada
-        foreach ($listaCola as $cola) {
+        foreach ($listaCola as $colita) {
             //En caso de ser una construccion debe devolver parte de los recursos
-            if ($cola->accion == "Construyendo") {
+            if ($colita->accion == "Construyendo") {
                 $costeconstruccion = new CostesConstrucciones();
-                $coste = $costeconstruccion->generarDatosCostesConstruccion($cola->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
-                $recursos = $cola->construcciones->planetas->recursos;
+                $coste = $costeconstruccion->generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
+                $recursos = $colita->construcciones->planetas->recursos;
 
                 //Restaurar beneficio por reciclaje
                 $recursos->mineral += ($coste->mineral * $reciclaje);
@@ -343,7 +338,7 @@ class ConstruccionController extends Controller
                 $recursos->micros += ($coste->micros * $reciclaje);
                 $recursos->save();
             }
-            $cola->delete();
+            $colita->delete();
         }
         //En caso de ser una construccion debe devolver parte de los recursos
         if ($cola->accion == "Construyendo") {
