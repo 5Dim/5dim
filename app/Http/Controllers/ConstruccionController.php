@@ -118,6 +118,7 @@ class ConstruccionController extends Controller
         }else {
             $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
         }
+        $error = false;
 
         //Recuperar construccion
         $construccion = Construcciones::where('id', $idConstruccion)->first();
@@ -125,9 +126,9 @@ class ConstruccionController extends Controller
         //Comrpobamos si existe una cola
         $colaConstruccion= [];
         $colaConstruccion2=[];
-        foreach ($planeta->construcciones as $construccion){
-            if(!empty($construccion->enConstrucciones[0])){
-                array_push($colaConstruccion2, $construccion->enConstrucciones);
+        foreach ($planeta->construcciones as $construccioncita){
+            if(!empty($construccioncita->enConstrucciones[0])){
+                array_push($colaConstruccion2, $construccioncita->enConstrucciones);
             }
         }
         for ($i=0; $i < count($colaConstruccion2); $i++) {
@@ -170,11 +171,15 @@ class ConstruccionController extends Controller
         //Calcular el tiempo de construccion
         $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
 
+        //Comprobamos que el tiempo no sea false, seria un error de personal
+        if (!$tiempo) {
+            $error = true;
+        }
+
         //Fecha prueba
         $fechaFin = strtotime($inicio) + $tiempo;
 
         //Comprobamos que el edificio se puede construir
-        $error = false;
         if ($construccion->planetas->recursos->mineral < $construccion->coste->mineral) {
             $error = true;
         }elseif ($construccion->planetas->recursos->cristal < $construccion->coste->cristal) {
@@ -189,7 +194,7 @@ class ConstruccionController extends Controller
             $error = true;
         }elseif ($construccion->planetas->recursos->micros < $construccion->coste->micros) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->personal-$personalUsado < $personal) {
+        }elseif (($construccion->planetas->recursos->personal - $personalUsado) < $personal) {
             $error = true;
         }elseif ($accion != "Construyendo") {
             $error = true;
@@ -321,7 +326,7 @@ class ConstruccionController extends Controller
             //En caso de ser una construccion debe devolver parte de los recursos
             if ($cola->accion == "Construyendo") {
                 $costeconstruccion = new CostesConstrucciones();
-                $coste = $costeconstruccion->generarDatosCostesConstruccion($cola->construcciones->codigo, $cola->nivel, $cola->construcciones->id);
+                $coste = $costeconstruccion->generarDatosCostesConstruccion($cola->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
                 $recursos = $cola->construcciones->planetas->recursos;
 
                 //Restaurar beneficio por reciclaje

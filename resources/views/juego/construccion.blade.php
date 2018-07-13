@@ -16,33 +16,33 @@
                                 <td class=" text-warning">Acaba a las</td>
                                 <td>&nbsp;</td>
                             </tr>
-                            @for ($i = 0 ; $i
-                            < count($colaConstruccion) ; $i++) <tr>
-                                <td class=" text-light align-middle borderless">
-                                    {{ trans('construccion.' . $colaConstruccion[$i]->construcciones->codigo) }}
-                                </td>
-                                <td class=" {{ $colaConstruccion[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">
-                                    {{ $colaConstruccion[$i]->accion }}
-                                </td>
-                                <td class=" text-light align-middle borderless">
-                                    {{ $colaConstruccion[$i]->nivel }}
-                                </td>
-                                <td class=" text-light align-middle borderless">
-                                    {{ number_format($colaConstruccion[$i]->personal, 0,",",".") }}
-                                </td>
-                                <td class=" text-light align-middle borderless">
-                                    {{ $colaConstruccion[$i]->created_at }}
-                                </td>
-                            <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
-                                    {{ $colaConstruccion[$i]->finished_at }}
-                                </td>
-                                <td class=" text-light align-middle borderless">
-                                    <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendCancelar('{{ $colaConstruccion[$i]->id }}')">
-                                        <i class="fa fa-trash"></i> Cancelar
-                                    </button>
-                                </td>
+                            @for ($i = 0 ; $i < count($colaConstruccion) ; $i++)
+                                <tr>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ trans('construccion.' . $colaConstruccion[$i]->construcciones->codigo) }}
+                                    </td>
+                                    <td class=" {{ $colaConstruccion[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">
+                                        {{ $colaConstruccion[$i]->accion }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ $colaConstruccion[$i]->nivel }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ number_format($colaConstruccion[$i]->personal, 0,",",".") }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ $colaConstruccion[$i]->created_at }}
+                                    </td>
+                                    <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
+                                        {{ $colaConstruccion[$i]->finished_at }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendCancelar('{{ $colaConstruccion[$i]->id }}')">
+                                            <i class="fa fa-trash"></i> Cancelar
+                                        </button>
+                                    </td>
                                 </tr>
-                                @endfor
+                            @endfor
                         </table>
                     </div>
                 </div>
@@ -501,6 +501,11 @@
                                         <td>
                                             <button type="button" class="btn btn-outline-primary btn-block btn-sm">
                                                 <i class="fa fa-info-circle"></i> Datos
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                                <i class="fa fa-play"></i> Producir
                                             </button>
                                         </td>
                                         <td>

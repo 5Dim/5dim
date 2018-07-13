@@ -29,7 +29,7 @@ function calcularRecursos() {
     $("#cristal").text(Math.trunc(recursos.cristal).toLocaleString('es'));
     counter++;
     counter++;
-    console.log(counter);
+
     //Comprobar almacenes
     if (recursos.gas >= almacenes[counter].capacidad) {
         $("#gas").addClass('text-danger');

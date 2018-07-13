@@ -82,7 +82,11 @@ class Construcciones extends Model
 
     public function calcularTiempoConstrucciones($preciototal, $personal){
         $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
-        $result = ((($preciototal + 12) * $velocidadConst->valor) / $personal);
+        if ($personal > 0) {
+            $result = ((($preciototal + 12) * $velocidadConst->valor) / $personal);
+        }else{
+            $result = false;
+        }
         return $result;
     }
 
