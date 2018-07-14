@@ -29,4 +29,12 @@ class Planetas extends Model
     {
         return $this->hasMany(Construcciones::class);
     }
+
+    /**
+     * Relacion de los planetas con las construcciones
+     */
+    public function industrias ()
+    {
+        return $this->hasOne(Construcciones::class);
+    }
 }

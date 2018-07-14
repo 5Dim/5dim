@@ -30,7 +30,7 @@ Route::get('/juego/construccion/construir/{id}/{personal}/{tab}', ['uses' => 'Co
 Route::get('/juego/construccion/reciclar/{id}/{personal}', ['uses' => 'ConstruccionController@reciclar']);
 Route::get('/juego/construccion/cancelar/{id}', ['uses' => 'ConstruccionController@cancelar']);
 Route::get('/juego/construccion/datos/{codigo}', ['uses' => 'ConstruccionController@datos']);
-Route::get('/juego/construccion/datos/{industria}', ['uses' => 'ConstruccionController@industrias']);
+Route::get('/juego/construccion/industria/{industria}', ['uses' => 'ConstruccionController@industria']);
 
 //Investigacion
 Route::get('/juego/investigacion', 'InvestigacionController@index');

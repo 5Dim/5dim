@@ -512,7 +512,13 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                                            @php
+                                                $industria = "";
+                                                if (substr($construcciones[$i]->codigo, 0, 3) == 'ind') {
+                                                    $industria = substr($construcciones[$i]->codigo, 3);
+                                                }
+                                            @endphp
+                                            <button type="button" class="btn btn-outline-primary btn-block btn-sm" onclick="sendIndustria('{{ strtolower($industria) }}')">
                                                 <i class="fa fa-play"></i> Producir
                                             </button>
                                         </td>

@@ -13,6 +13,7 @@ use App\CostesConstrucciones;
 use App\Constantes;
 use App\Planetas;
 use App\Dependencias;
+use App\Industrias;
 
 class ConstruccionController extends Controller
 {
@@ -56,7 +57,46 @@ class ConstruccionController extends Controller
         //Calculamos producciones
         for ($i = 0 ; $i < count($construcciones) ; $i++) {
             if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
-                $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                $industrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
+                $industria = strtolower(substr($construcciones[$i]->codigo, 3));
+                if ($industria == 'liquido') {
+                    if ($industrias->liquido == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->liquido = 0;
+                    }
+                }elseif ($industria == 'micros') {
+                    if ($industrias->micros == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->micros = 0;
+                    }
+                }elseif ($industria == 'fuel') {
+                    if ($industrias->fuel == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->fuel = 0;
+                    }
+                }elseif ($industria == 'ma') {
+                    if ($industrias->ma == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->ma = 0;
+                    }
+                }elseif ($industria == 'municion') {
+                    if ($industrias->municion == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->municion = 0;
+                    }
+                }elseif ($industria == 'personal') {
+                    $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                }
                 array_push($producciones, $produccion);
             }elseif (substr($construcciones[$i]->codigo, 0, 4) == "mina") {
                 $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 4)))->where('nivel', $construcciones[$i]->nivel)->first();
@@ -67,6 +107,13 @@ class ConstruccionController extends Controller
                 array_push($almacenes, $almacen);
             }
         }
+
+        //Calcular gastos de producciones
+        $producciones[0]->mineral -= ($producciones[5]->liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor);
+        $producciones[1]->cristal -= ($producciones[6]->micros * Constantes::where('codigo', 'costoMicros')->first()->valor);
+        $producciones[2]->gas -= ($producciones[7]->fuel * Constantes::where('codigo', 'costoFuel')->first()->valor);
+        $producciones[3]->plastico -= ($producciones[8]->ma * Constantes::where('codigo', 'costoMa')->first()->valor);
+        $producciones[4]->ceramica -= ($producciones[9]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
 
         //Recalculamos los recursos para ese planeta
         Recursos::calcularRecursos($planeta->id);
@@ -366,5 +413,44 @@ class ConstruccionController extends Controller
         $nombreConstruccion = trans('construccion.' . $codigo);
         $descripcionConstruccion = trans('construccion.' . $codigo . 'Descripcion');
         return compact('descripcionConstruccion', 'nombreConstruccion');
+    }
+
+    //Acceso a subir nivel de construccion
+    public function industria ($industria)
+    {
+        $industrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
+        if ($industria == 'liquido') {
+            if ($industrias->liquido == 0) {
+                $industrias->liquido = 1;
+            }else{
+                $industrias->liquido = 0;
+            }
+        }elseif ($industria == 'micros') {
+            if ($industrias->micros == 0) {
+                $industrias->micros = 1;
+            }else{
+                $industrias->micros = 0;
+            }
+        }elseif ($industria == 'fuel') {
+            if ($industrias->fuel == 0) {
+                $industrias->fuel = 1;
+            }else{
+                $industrias->fuel = 0;
+            }
+        }elseif ($industria == 'ma') {
+            if ($industrias->ma == 0) {
+                $industrias->ma = 1;
+            }else{
+                $industrias->ma = 0;
+            }
+        }elseif ($industria == 'municion') {
+            if ($industrias->municion == 0) {
+                $industrias->municion = 1;
+            }else{
+                $industrias->municion = 0;
+            }
+        }
+        $industrias->save();
+        return redirect('/juego/construccion');
     }
 }

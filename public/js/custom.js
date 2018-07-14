@@ -202,6 +202,10 @@ function sendCancelar(id) {
     window.location.href = "http://localhost/juego/construccion/cancelar/" + id;
 }
 
+function sendIndustria(industria) {
+    window.location.href = "http://localhost/juego/construccion/industria/" + industria;
+}
+
 function mostrarDatosConstruccion(codigo) {
     $.ajax({
         method: "GET",
