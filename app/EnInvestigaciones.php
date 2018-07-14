@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CostesInvestigacion extends Model
+class EnInvestigaciones extends Model
 {
     //
 }
