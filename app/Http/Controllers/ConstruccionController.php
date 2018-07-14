@@ -281,7 +281,7 @@ class ConstruccionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function reciclar ($idConstruccion = 1, $personal = 15000)
+    public function reciclar ($idConstruccion, $personal)
     {
         //Recuperar construccion
         $construccion = Construcciones::where('id', $idConstruccion)->first();
@@ -295,8 +295,7 @@ class ConstruccionController extends Controller
         //Sobreescribimos datos en caso de que la construccion tenga alguna orden en cola
         if (!empty($cola)) {
             $inicio = $cola->finished_at;
-            $nivel = $cola->nivel;
-            $construccion->nivel - 1;
+            $nivel = $cola->nivel - 1;
 
             //Comprobamos si ya hay cola de este edificio
             $accion = $cola->accion;
@@ -357,7 +356,11 @@ class ConstruccionController extends Controller
         //Comprobamos si hay algun edificio por encima del nivel que se ha cancelado
         $listaCola = EnConstrucciones::where([['construcciones_id', '=', $cola->construcciones->id], ['nivel', '>', $cola->nivel]])->get();
 
-        $nivel = $cola->nivel - 1;
+        if ($cola->accion == 'Construyendo') {
+            $nivel = $cola->nivel - 1;
+        }else{
+            $nivel = $cola->nivel + 1;
+        }
         $reciclaje = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
 
         //Generamos el coste del edificio
