@@ -70,3 +70,9 @@ textarea {
 .tab-content>.active {
     display: contents;
 }
+
+.cajita {
+    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    border: 1px solid orange;
+    margin-top: 5px;
+}

@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="container-fluid">
         @if (count($colaConstruccion) > 0)
-            <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+            <div class="row rounded cajita">
                 <div class="col-12">
                     <div id="cuadro1" class="table-responsive-sm">
                         <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-bottom: 15px !important;">
@@ -74,7 +74,7 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
                 @for ($i = 0 ; $i < 5 ; $i++)
-                    <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+                    <div class="row rounded cajita">
                         <div class="col-12">
                             <div id="cuadro1" class="table-responsive-sm">
                                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
@@ -312,7 +312,7 @@
             </div>
             <div class="tab-pane fade" id="industria" role="tabpanel" aria-labelledby="industria-tab">
                 @for ($i = 5 ; $i < 11 ; $i++)
-                    <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+                    <div class="row rounded cajita">
                         <div class="col-12">
                             <div id="cuadro1" class="table-responsive-sm">
                                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
@@ -566,7 +566,7 @@
                     @endphp
                 @endif
                 @for ($i = 13 ; $i < 21 ; $i++)
-                    <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+                    <div class="row rounded cajita">
                         <div class="col-12">
                             <div id="cuadro1" class="table-responsive-sm">
                                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
@@ -804,7 +804,7 @@
             </div>
             <div class="tab-pane fade" id="militares" role="tabpanel" aria-labelledby="militares-tab">
                 @for ($i = 21 ; $i < 26 ; $i++)
-                    <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+                    <div class="row rounded cajita">
                         <div class="col-12">
                             <div id="cuadro1" class="table-responsive-sm">
                                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
@@ -1042,7 +1042,7 @@
             </div>
             <div class="tab-pane fade" id="desarrollo" role="tabpanel" aria-labelledby="desarrollo-tab">
                 @for ($i = 26 ; $i < 29 ; $i++)
-                    <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+                    <div class="row rounded cajita">
                         <div class="col-12">
                             <div id="cuadro1" class="table-responsive-sm">
                                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
@@ -1280,7 +1280,7 @@
             </div>
             <div class="tab-pane fade" id="observacion" role="tabpanel" aria-labelledby="observacion-tab">
                 @for ($i = 29 ; $i < 31 ; $i++)
-                <div class="row rounded" style="background-image: url('http://localhost/img/juego/skin0/cons-fondo2.png'); border: 1px solid orange; margin-top: 5px;">
+                <div class="row rounded cajita">
                     <div class="col-12">
                         <div id="cuadro1" class="table-responsive-sm">
                             <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
