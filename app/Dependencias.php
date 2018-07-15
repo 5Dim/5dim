@@ -192,6 +192,10 @@ class Dependencias extends Model
         $dependencia->tipo='construccion';
         array_push($dependencias, $dependencia);
 
+        /////  dependencias investigaciones
+
+
+
 
 
         foreach($dependencias as $estaDependencia){

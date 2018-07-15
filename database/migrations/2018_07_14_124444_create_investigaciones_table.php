@@ -15,7 +15,8 @@ class CreateInvestigacionesTable extends Migration
     {
         Schema::create('investigaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('codigo');
+            $table->integer('nivel');
         });
     }
 
