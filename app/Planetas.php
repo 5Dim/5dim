@@ -37,4 +37,9 @@ class Planetas extends Model
     {
         return $this->hasOne(Construcciones::class);
     }
+
+    public function enInvestigaciones ()
+    {
+        return $this->hasMany(EnInvestigaciones::class);
+    }
 }

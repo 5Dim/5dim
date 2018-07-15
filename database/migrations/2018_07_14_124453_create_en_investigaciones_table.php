@@ -15,7 +15,11 @@ class CreateEnInvestigacionesTable extends Migration
     {
         Schema::create('en_investigaciones', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('personal');
+            $table->integer('nivel');
+            $table->string('accion');
             $table->timestamps();
+            $table->timestamp('finished_at')->nullable();
         });
     }
 

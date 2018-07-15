@@ -192,6 +192,79 @@ class Dependencias extends Model
         $dependencia->tipo='construccion';
         array_push($dependencias, $dependencia);
 
+        /////  dependencias investigaciones
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invMa';
+        $dependencia->codigoRequiere='invBalistica';
+        $dependencia->nivelRequiere=6;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invIa';
+        $dependencia->codigoRequiere='invPlasma';
+        $dependencia->nivelRequiere=4;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invPropIon';
+        $dependencia->codigoRequiere='invEnergia';
+        $dependencia->nivelRequiere=5;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invPropPlasma';
+        $dependencia->codigoRequiere='invPlasma';
+        $dependencia->nivelRequiere=8;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invPropMa';
+        $dependencia->codigoRequiere='invMa';
+        $dependencia->nivelRequiere=10;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invIndLiquido';
+        $dependencia->codigoRequiere='invImperio';
+        $dependencia->nivelRequiere=4;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invIndMicros';
+        $dependencia->codigoRequiere='invImperio';
+        $dependencia->nivelRequiere=5;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invIndFuel';
+        $dependencia->codigoRequiere='invImperio';
+        $dependencia->nivelRequiere=6;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invIndMa';
+        $dependencia->codigoRequiere='invImperio';
+        $dependencia->nivelRequiere=7;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia =new Dependencias();
+        $dependencia->codigo='invIndMunicion';
+        $dependencia->codigoRequiere='invImperio';
+        $dependencia->nivelRequiere=8;
+        $dependencia->tipo='investigacion';
+        array_push($dependencias, $dependencia);
+
+
 
 
         foreach($dependencias as $estaDependencia){

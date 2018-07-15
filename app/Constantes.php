@@ -116,7 +116,7 @@ class Constantes extends Model
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
-            ////////  investigaciones
+            ////////  investigaciones  ////////////////////////////////////////////////////////////////
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
