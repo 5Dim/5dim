@@ -63,7 +63,7 @@ class Recursos extends Model
 
         //Calculamos lo producido
         //Minas
-        $contProducciones = 0;
+        $contProducciones = 1;
         $recursos->mineral += ($producciones[$contProducciones]->mineral / 3600 * $fechaCalculo); $contProducciones++;
         $recursos->cristal += ($producciones[$contProducciones]->cristal / 3600 * $fechaCalculo); $contProducciones++;
         $recursos->gas += ($producciones[$contProducciones]->gas / 3600 * $fechaCalculo); $contProducciones++;
@@ -77,13 +77,11 @@ class Recursos extends Model
         $ma = ($producciones[$contProducciones]->ma / 3600 * $fechaCalculo); $contProducciones++;
         $municion = ($producciones[$contProducciones]->municion / 3600 * $fechaCalculo); $contProducciones++;
 
-
-
         //Calculamos industrias
         if (!empty($industrias)) {
 
             $gastoFliquido=0;
-            if ($industrias->liquido != 0){
+            if ($industrias->liquido == 1) {
                 $costo=Constantes::where('codigo', 'costoLiquido')->first()->valor;
                 $gastoFliquido=$liquido * $costo;
                 if ($gastoFliquido > $recursos->mineral){
@@ -95,7 +93,7 @@ class Recursos extends Model
             }
 
             $gastoFmicros=0;
-            if ($industrias->micros != 0){
+            if ($industrias->micros == 1) {
                 $costo=Constantes::where('codigo', 'costoMicros')->first()->valor;
                 $gastoFmicros=$micros * $costo;
                 if ($gastoFmicros>$recursos->cristal){
@@ -107,7 +105,7 @@ class Recursos extends Model
             }
 
             $gastoFfuel=0;
-            if ($industrias->fuel != 0){
+            if ($industrias->fuel == 1) {
                 $costo=Constantes::where('codigo', 'costoFuel')->first()->valor;
                 $gastoFfuel = $fuel *  $costo;
                 if ($gastoFfuel > $recursos->gas){
@@ -119,7 +117,7 @@ class Recursos extends Model
             }
 
             $gastoFma=0;
-            if ($industrias->ma != 0){
+            if ($industrias->ma == 1) {
                 $costo=Constantes::where('codigo', 'costoMa')->first()->valor;
                 $gastoFma=$ma *  $costo;
                 if ($gastoFma>$recursos->plastico){
@@ -131,7 +129,7 @@ class Recursos extends Model
             }
 
             $gastoFmunicion=0;
-            if ($industrias->municion != 0){
+            if ($industrias->municion == 1) {
                 $costo=Constantes::where('codigo', 'costoMunicion')->first()->valor;
                 $gastoFmunicion=$municion *  $costo;
                 if ($gastoFmunicion>$recursos->ceramica){
@@ -146,7 +144,7 @@ class Recursos extends Model
 
 
         //Personal
-        $recursos->personal = ($producciones[$contProducciones]->personal / 3600 * $fechaCalculo) + $recursos->personal; $contProducciones++;
+        $recursos->personal = ($producciones[0]->personal / 3600 * $fechaCalculo) + $recursos->personal;
 
         //Comprobamos almacenes
         $contAlmacenes = 0;

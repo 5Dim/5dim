@@ -23,7 +23,7 @@ class JuegoController extends Controller
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
 
         //Calculamos ordenes terminadas
-        //EnConstrucciones::terminarColaConstrucciones();
+        EnConstrucciones::terminarColaConstrucciones();
 
         //Comprobamos construcciones en el planeta, si no las hay las generamos para una colonia nueva
         $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
@@ -95,11 +95,11 @@ class JuegoController extends Controller
         }
 
         //Calcular gastos de producciones
-        $producciones[0]->mineral -= ($producciones[5]->liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor);
-        $producciones[1]->cristal -= ($producciones[6]->micros * Constantes::where('codigo', 'costoMicros')->first()->valor);
-        $producciones[2]->gas -= ($producciones[7]->fuel * Constantes::where('codigo', 'costoFuel')->first()->valor);
-        $producciones[3]->plastico -= ($producciones[8]->ma * Constantes::where('codigo', 'costoMa')->first()->valor);
-        $producciones[4]->ceramica -= ($producciones[9]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
+        $producciones[1]->mineral -= ($producciones[6]->liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor);
+        $producciones[2]->cristal -= ($producciones[7]->micros * Constantes::where('codigo', 'costoMicros')->first()->valor);
+        $producciones[3]->gas -= ($producciones[8]->fuel * Constantes::where('codigo', 'costoFuel')->first()->valor);
+        $producciones[4]->plastico -= ($producciones[9]->ma * Constantes::where('codigo', 'costoMa')->first()->valor);
+        $producciones[5]->ceramica -= ($producciones[10]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
 
         //Recalculamos los recursos para ese planeta
         Recursos::calcularRecursos($planetaActual->id);

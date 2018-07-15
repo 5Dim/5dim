@@ -99,42 +99,43 @@
                 <thead>
                     <tr>
                         <th class="text-warning borderless centradoCeldas">
-                            Personal
+                            <img src="{{ asset('img/juego/skin0/recursos/personal.gif') }}" alt="Personal"> Personal
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Mineral
+                            <img src="{{ asset('img/juego/skin0/recursos/mineral.gif') }}" alt="Mineral"> Mineral
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Cristal
+                            <img src="{{ asset('img/juego/skin0/recursos/cristal.gif') }}" alt="Cristal"> Cristal
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Gas
+                            <img src="{{ asset('img/juego/skin0/recursos/gas.gif') }}" alt="Gas"> Gas
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Plástico
+                            <img src="{{ asset('img/juego/skin0/recursos/plastico.gif') }}" alt="Plástico"> Plástico
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Cerámica
+                            <img src="{{ asset('img/juego/skin0/recursos/ceramica.gif') }}" alt="Cerámica"> Cerámica
                         </th>
                         <th class="text-warning borderless centradoCeldas">
                             Recargar
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Liquido
+                            <img src="{{ asset('img/juego/skin0/recursos/liquido.gif') }}" alt="Liquido"> Liquido
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Micros
+                            <img src="{{ asset('img/juego/skin0/recursos/micros.gif') }}" alt="Micros"> Micros
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Fuel
+                            <img src="{{ asset('img/juego/skin0/recursos/fuel.gif') }}" alt="Fuel"> Fuel
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            M-A</th>
-                        <th class="text-warning borderless centradoCeldas">
-                            Munición
+                            <img src="{{ asset('img/juego/skin0/recursos/ma.gif') }}" alt="M-A"> M-A
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            Moneda
+                            <img src="{{ asset('img/juego/skin0/recursos/municion.gif') }}" alt="Munición"> Munición
+                        </th>
+                        <th class="text-warning borderless centradoCeldas">
+                            <img src="{{ asset('img/juego/skin0/recursos/moneda.gif') }}" alt="Moneda"> Moneda
                         </th>
                     </tr>
                 </thead>
@@ -205,40 +206,40 @@
                     </tr>
                     <tr>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[10]->personal, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[0]->personal, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[0]->mineral, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[1]->mineral, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[1]->cristal, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[2]->cristal, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[2]->gas, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[3]->gas, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[3]->plastico, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[4]->plastico, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[4]->ceramica, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[5]->ceramica, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             Producción
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[5]->liquido, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[6]->liquido, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[6]->micros, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[7]->micros, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[7]->fuel, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[8]->fuel, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[8]->ma, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[9]->ma, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[9]->municion, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[10]->municion, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             3200 ud/d
@@ -381,11 +382,11 @@
         $( document ).ready(function() {
         var recursos = {!! json_encode($recursos) !!};
         recursos.personal -= {{$personal}}
-        //console.log(recursos);
+        console.log(recursos);
         var produccion = {!! json_encode($producciones) !!};
         console.log(produccion);
         var almacenes = {!! json_encode($almacenes) !!};
-        //console.log(almacenes);
+        console.log(almacenes);
         activarIntervalo(recursos, almacenes, produccion, 250);
     });
     </script>

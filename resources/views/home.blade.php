@@ -26,7 +26,7 @@
             </tbody>
         </table>
         <hr>
-        <p class="mb-0">
+        <p class="mb-0 text-right">
             <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/planeta') }}';">
                 Entrar
             </button>
@@ -69,7 +69,7 @@
             </tbody>
         </table>
         <hr>
-        <p class="mb-0">
+        <p class="mb-0 text-right">
             <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/juego') }}';">
                 Entrar
             </button>

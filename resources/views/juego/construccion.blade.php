@@ -73,7 +73,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
-                @for ($i = 0 ; $i < 5 ; $i++)
+                @for ($i = 0 ; $i < 6 ; $i++)
                     <div class="row rounded cajita">
                         <div class="col-12">
                             <div id="cuadro1" class="table-responsive-sm">
@@ -311,7 +311,7 @@
                 @endfor
             </div>
             <div class="tab-pane fade" id="industria" role="tabpanel" aria-labelledby="industria-tab">
-                @for ($i = 5 ; $i < 11 ; $i++)
+                @for ($i = 6 ; $i < 11 ; $i++)
                     <div class="row rounded cajita">
                         <div class="col-12">
                             <div id="cuadro1" class="table-responsive-sm">

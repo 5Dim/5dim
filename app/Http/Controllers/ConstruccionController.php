@@ -43,7 +43,7 @@ class ConstruccionController extends Controller
         //Calculamos producciones
         for ($i = 0 ; $i < count($construcciones) ; $i++) {
             if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
-                $industrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
+                $industrias = Industrias::where('planetas_id', $planetaActual->id)->first();
                 $industria = strtolower(substr($construcciones[$i]->codigo, 3));
                 if ($industria == 'liquido') {
                     if ($industrias->liquido == 1) {
@@ -95,11 +95,11 @@ class ConstruccionController extends Controller
         }
 
         //Calcular gastos de producciones
-        $producciones[0]->mineral -= ($producciones[5]->liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor);
-        $producciones[1]->cristal -= ($producciones[6]->micros * Constantes::where('codigo', 'costoMicros')->first()->valor);
-        $producciones[2]->gas -= ($producciones[7]->fuel * Constantes::where('codigo', 'costoFuel')->first()->valor);
-        $producciones[3]->plastico -= ($producciones[8]->ma * Constantes::where('codigo', 'costoMa')->first()->valor);
-        $producciones[4]->ceramica -= ($producciones[9]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
+        $producciones[1]->mineral -= ($producciones[6]->liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor);
+        $producciones[2]->cristal -= ($producciones[7]->micros * Constantes::where('codigo', 'costoMicros')->first()->valor);
+        $producciones[3]->gas -= ($producciones[8]->fuel * Constantes::where('codigo', 'costoFuel')->first()->valor);
+        $producciones[4]->plastico -= ($producciones[9]->ma * Constantes::where('codigo', 'costoMa')->first()->valor);
+        $producciones[5]->ceramica -= ($producciones[10]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
 
         //Recalculamos los recursos para ese planeta
         Recursos::calcularRecursos($planetaActual->id);

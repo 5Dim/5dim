@@ -11,17 +11,17 @@ function calcularRecursos() {
     var counter = 0;
 
     //Calculos
-    recursos.personal += produccion[10].personal / 3600 / 4;
-    recursos.mineral += produccion[0].mineral / 3600 / 4;
-    recursos.cristal += produccion[1].cristal / 3600 / 4;
-    recursos.gas += produccion[2].gas / 3600 / 4;
-    recursos.plastico += produccion[3].plastico / 3600 / 4;
-    recursos.ceramica += produccion[4].ceramica / 3600 / 4;
-    recursos.liquido += produccion[5].liquido / 3600 / 4;
-    recursos.micros += produccion[6].micros / 3600 / 4;
-    recursos.fuel += produccion[7].fuel / 3600 / 4;
-    recursos.ma += produccion[8].ma / 3600 / 4;
-    recursos.municion += produccion[9].municion / 3600 / 4;
+    recursos.personal += produccion[0].personal / 3600 / 4;
+    recursos.mineral += produccion[1].mineral / 3600 / 4;
+    recursos.cristal += produccion[2].cristal / 3600 / 4;
+    recursos.gas += produccion[3].gas / 3600 / 4;
+    recursos.plastico += produccion[4].plastico / 3600 / 4;
+    recursos.ceramica += produccion[5].ceramica / 3600 / 4;
+    recursos.liquido += produccion[6].liquido / 3600 / 4;
+    recursos.micros += produccion[7].micros / 3600 / 4;
+    recursos.fuel += produccion[8].fuel / 3600 / 4;
+    recursos.ma += produccion[9].ma / 3600 / 4;
+    recursos.municion += produccion[10].municion / 3600 / 4;
 
     //Insertar
     $("#personal").text(Math.trunc(recursos.personal).toLocaleString('es'));

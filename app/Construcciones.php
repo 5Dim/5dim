@@ -37,6 +37,7 @@ class Construcciones extends Model
 
     public function listaNombres () {
         $listaNombres = [
+            "indPersonal",
             "minaMineral",
             "minaCristal",
             "minaGas",
@@ -47,7 +48,6 @@ class Construcciones extends Model
             "indFuel",
             "indMA",
             "indMunicion",
-            "indPersonal",
             "almMineral",
             "almCristal",
             "almGas",
@@ -58,10 +58,10 @@ class Construcciones extends Model
             "almFuel",
             "almMA",
             "almMunicion",
+            "refugio",
+            "fabDefensas",
             "fabNaves",
             "fabTropas",
-            "fabDefensas",
-            "refugio",
             "escudo",
             "laboratorio",
             "banco",
