@@ -18,7 +18,7 @@ class EnConstrucciones extends Model
 
     //Funcion para terminar las ordenes terminadas
     public static function terminarColaConstrucciones() {
-        $colas = EnConstrucciones::where('finished_at', '<', date("Y-m-d H:i:s"))->get();
+        $colas = EnConstrucciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
         foreach ($colas as $cola) {
             $nivelNuevo = $cola->nivel;
             $cola->construcciones->nivel = $nivelNuevo;

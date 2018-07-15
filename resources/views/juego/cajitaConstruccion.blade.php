@@ -145,13 +145,13 @@
                         <td class="anchofijo text-{{ $clase }} borderless">
                             {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-white borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
                         <td class="anchofijo text-muted borderless"></td>
-                        <td class="anchofijo text-white borderless"></td>
+                        <td class="anchofijo text-muted borderless"></td>
+                        <td class="anchofijo text-muted borderless"></td>
                     </tr>
                     <tr>
-                        {{--@if ()--}}
+                        {{--@if () premium --}}
                             @php
                                 $clase = 'light';
                                 $coste = '';
@@ -165,7 +165,7 @@
                                 }
                             @endphp
                             <td class="text-{{ $clase }} borderless">
-                                {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
                             @php
                                 $clase = 'light';
@@ -180,7 +180,7 @@
                                 }
                             @endphp
                             <td class="text-{{ $clase }} borderless">
-                                {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
                             @php
                                 $clase = 'light';
@@ -195,7 +195,7 @@
                                 }
                             @endphp
                             <td class="text-{{ $clase }} borderless">
-                                {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
                             @php
                                 $clase = 'light';
@@ -210,7 +210,7 @@
                                 }
                             @endphp
                             <td class="text-{{ $clase }} borderless">
-                                {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
                             @php
                                 $clase = 'light';
@@ -225,7 +225,7 @@
                                 }
                             @endphp
                             <td class="text-{{ $clase }} borderless">
-                                {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
                             @php
                                 $clase = 'light';
@@ -240,7 +240,7 @@
                                 }
                             @endphp
                             <td class="text-{{ $clase }} borderless">
-                                {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
                             @php
                                 $clase = 'light';
@@ -255,7 +255,7 @@
                                 }
                             @endphp
                             <td class="text-{{ $clase }} borderless">
-                                {{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
                             <td class="borderless">
                                 &nbsp;
@@ -270,22 +270,6 @@
                                 &nbsp;
                             </td>
                         {{--@endif--}}
-
-                        {{--
-                            <td colspan="11" class="borderless">&nbsp;</td>
-
-                            <td class="anchofijo text-white borderless">11.111</td>
-                            <td class="anchofijo text-white borderless">11.111</td>
-                            <td class="anchofijo text-white borderless">2.222</td>
-                            <td class="anchofijo text-white borderless">3.333</td>
-                            <td class="anchofijo text-white borderless">444.000</td>
-                            <td class="anchofijo text-white borderless">55.050</td>
-                            <td class="anchofijo text-white borderless">66.006</td>
-                            <td class="anchofijo text-white borderless">777.000</td>
-                            <td class="anchofijo text-white borderless">88.888</td>
-                            <td class="anchofijo text-white borderless">99.999</td>
-                            <td class="anchofijo text-white borderless">99.999</td>
-                        --}}
                     </tr>
                 </table>
             </div>

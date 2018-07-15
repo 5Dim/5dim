@@ -74,7 +74,7 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
                 @for ($i = 0 ; $i < 6 ; $i++)
-                    @include('juego.cajita', [
+                    @include('juego.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
@@ -82,10 +82,10 @@
             </div>
             <div class="tab-pane fade" id="industria" role="tabpanel" aria-labelledby="industria-tab">
                 @for ($i = 6 ; $i < 11 ; $i++)
-                @include('juego.cajita', [
-                    'construccion' => $construcciones[$i],
-                    'personal' => $recursos->personal - $personal,
-                ])
+                    @include('juego.cajitaConstruccion', [
+                        'construccion' => $construcciones[$i],
+                        'personal' => $recursos->personal - $personal,
+                    ])
                 @endfor
             </div>
             <div class="tab-pane fade " id="almacenes" role="tabpanel " aria-labelledby="almacenes-tab">
@@ -95,34 +95,34 @@
                     @endphp
                 @endif
                 @for ($i = 13 ; $i < 21 ; $i++)
-                @include('juego.cajita', [
-                    'construccion' => $construcciones[$i],
-                    'personal' => $recursos->personal - $personal,
-                ])
+                    @include('juego.cajitaConstruccion', [
+                        'construccion' => $construcciones[$i],
+                        'personal' => $recursos->personal - $personal,
+                    ])
                 @endfor
             </div>
             <div class="tab-pane fade" id="militares" role="tabpanel" aria-labelledby="militares-tab">
                 @for ($i = 21 ; $i < 26 ; $i++)
-                @include('juego.cajita', [
-                    'construccion' => $construcciones[$i],
-                    'personal' => $recursos->personal - $personal,
-                ])
+                    @include('juego.cajitaConstruccion', [
+                        'construccion' => $construcciones[$i],
+                        'personal' => $recursos->personal - $personal,
+                    ])
                 @endfor
             </div>
             <div class="tab-pane fade" id="desarrollo" role="tabpanel" aria-labelledby="desarrollo-tab">
                 @for ($i = 26 ; $i < 29 ; $i++)
-                @include('juego.cajita', [
-                    'construccion' => $construcciones[$i],
-                    'personal' => $recursos->personal - $personal,
-                ])
+                    @include('juego.cajitaConstruccion', [
+                        'construccion' => $construcciones[$i],
+                        'personal' => $recursos->personal - $personal,
+                    ])
                 @endfor
             </div>
             <div class="tab-pane fade" id="observacion" role="tabpanel" aria-labelledby="observacion-tab">
                 @for ($i = 29 ; $i < 31 ; $i++)
-                @include('juego.cajita', [
-                    'construccion' => $construcciones[$i],
-                    'personal' => $recursos->personal - $personal,
-                ])
+                    @include('juego.cajitaConstruccion', [
+                        'construccion' => $construcciones[$i],
+                        'personal' => $recursos->personal - $personal,
+                    ])
             @endfor
         </div>
     </div>
