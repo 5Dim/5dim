@@ -129,7 +129,7 @@
                             Fuel
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            > M-A
+                            M-A
                         </th>
                         <th class="text-warning borderless centradoCeldas">
                             Munición

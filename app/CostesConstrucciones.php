@@ -33,7 +33,7 @@ class CostesConstrucciones extends Model
     public function  generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion)
     {
 
-        $avelprodminas=Constantes::where('codigo','avelprodminas')->first()->valor;
+        $avelprodminas=Constantes::where('codigo','avelprodminas')->first()->valor /10;
 
         $costesc = new CostesConstrucciones();
 
@@ -104,7 +104,7 @@ class CostesConstrucciones extends Model
             break;
 
             case "almGas":
-            $r1cce=[$codigo,.2,0,0,.2,0,0,0,$nivel];
+            $r1cce=[$codigo,.2,.2,0,0,0,0,0,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion,$avelprodminas);
             break;
 

@@ -13,8 +13,9 @@ class Constantes extends Model
 
         $producciones=[];
 
+        /// construcciones y produccion
 
-                $constante =new Constantes();
+                $constante =new Constantes(); //  /10
                 $constante->universo_id=$universo;
                 $constante->valor=1.6;
                 $constante->minimo=1;
@@ -26,7 +27,7 @@ class Constantes extends Model
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
-                $constante->valor=335;
+                $constante->valor=330;
                 $constante->minimo=200;
                 $constante->maximo=600;
                 $constante->codigo='velocidadConst';
@@ -115,7 +116,7 @@ class Constantes extends Model
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
-
+            ////////  investigaciones
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -134,6 +135,26 @@ class Constantes extends Model
                 $constante->maximo=6;
                 $constante->codigo='velInvest';
                 $constante->descripcion='velocidad  investigaciones';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.5;
+                $constante->maximo=1.5;
+                $constante->codigo='investCorrector';
+                $constante->descripcion='multiplicador del coste de investigacion';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1.35;
+                $constante->minimo=1.2;
+                $constante->maximo=1.5;
+                $constante->codigo='Ifactor';
+                $constante->descripcion='lo que aumenta el costo de un nivel al siguiente';
                 $constante->tipo='investigacion';
                 array_push($producciones, $constante);
 

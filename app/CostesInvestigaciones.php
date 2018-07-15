@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Constantes;
+
 use Illuminate\Database\Eloquent\Model;
 
 class CostesInvestigaciones extends Model
@@ -18,22 +20,137 @@ class CostesInvestigaciones extends Model
     {
         $costesi = new CostesInvestigaciones();
 
+        $IConstantes=Constantes::where('tipo','investigacion')->get();
+
+        $investCorrector=$IConstantes->where('codigo','investCorrector')->first()->valor;
+        $Ifactor=$IConstantes->where('codigo','Ifactor')->first()->valor;
+        $costoInvestArmas=$IConstantes->where('codigo','costoInvestArmas')->first()->valor;
+        $costoInvestMotores=$IConstantes->where('codigo','costoInvestMotores')->first()->valor;
+        $costoInvestIndustrias=$IConstantes->where('codigo','costoInvestIndustrias')->first()->valor;
+        $costoInvestImperio=$IConstantes->where('codigo','costoInvestImperio')->first()->valor;
+
+
+        //  $esteprecio = (int)((pow ($nivel , ($esteexp * $Ifactor))) * $esteinic) * $corrector;
+
         switch($codigo){
             case "invEnergia":
-            $r1cce = [$codigo,.55,0,0,0,0,0,0,$nivel];
-            $coste = $costesi->calculos($r1cce, $idInvestigaciones);
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
-            case "minaCristal":
-            $r1cce=[$codigo,.5,.3,0,0,0,0,0,$nivel];
-            $coste= $costesi->calculos($r1cce, $idInvestigaciones);
+            case "invPlasma":
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,2,0,0,2,0,0,0,0,.0,2,$nivel];
+            $costosIniciales = [$codigo,1000,0,6000,0,10000,0,0,0,0,3000];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
-            case "minaGas":
-            $r1cce=[$codigo,1,.9,0,0,0,0,0,$nivel];
-            $coste= $costesi->calculos($r1cce, $idInvestigaciones);
+            case "invBalistica":
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,1.5,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,1000,0,0,2000,0,0,0,0,0,1000];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
+            case "invMa":
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,0,0,10000,0,8000,500,500,0,15000,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invImperio":
+            $costoIT=$costoInvestImperio;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,0,0,0,0,0,0,25000,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invIa":
+            $costoIT=$costoInvestDiseño;
+            $r1cce = [$codigo,2,1.9,2,2,2,2,2.5,2,2,2,$nivel];
+            $costosIniciales = [$codigo,0,1000,0,0,0,1000,10000,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invObservacion":
+            $costoIT=$costoInvestImperio;
+            $r1cce = [$codigo,1.5,2,2,2,2,2,1.5,2,2,2,$nivel];
+            $costosIniciales = [$codigo,2000,0,0,0,0,0,20000,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invCarga":
+            $costoIT=$costoInvestDiseño;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,15000,0,0,0,0,0,0,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invBlindaje":
+            $costoIT=$costoInvestDiseño;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,1000,0,0,0,12000,0,0,0,0,1200];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invEnsamblajeNaves":
+            $costoIT=$costoInvestDiseño;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,4000,0,0,1000,0,0,6000,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invEnsamblajeTropas":
+            $costoIT=$costoInvestDiseño;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,4000,0,0,1000,0,0,6000,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invEnsamblajeDefensas":
+            $costoIT=$costoInvestDiseño;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,4000,0,0,1000,0,0,6000,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invEnergia":
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invEnergia":
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invEnergia":
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invEnergia":
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invEnergia":
+            $costoIT=$costoInvestArmas;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
 
         }
 
@@ -44,33 +161,24 @@ class CostesInvestigaciones extends Model
 
 
 
-    function calculos($r1cce, $idInvestigaciones){
-
-        $Avelprodminas2=1.6; //para costes edificios, por defecto es igual a $Avelprodminas, para uni mutante
-        $potcosto = .7; //la potencia del costo
-        $factoramort = 5/ $Avelprodminas2; //indica que en esas horas se amortiza la mina mineral nivel 1
-        $factorprod = 1.7 * $Avelprodminas2; //por lo que se multiplica la producción
-
-        $cntinic1 = 37 * $factorprod;     $lapotencia1 = 2.2;
-        $cntinic2 = 27 * $factorprod;     $lapotencia2 = 2.2; //2.1
-        $cntinic3 = 25  * $factorprod;     $lapotencia3 = 2.2; //2
-        $cntinic4 = 20 * $factorprod;     $lapotencia4 = 2.2;  //1.8
-        $cntinic5 = 30 * $factorprod;     $lapotencia5 =2.2;   //1.7
-        $cntinic6 = 19 * $factorprod;     $lapotencia6 = 2.2;  // 1.65
-        $cntinic7 = 19 * $factorprod;     $lapotencia7 = 2.2;  // 1.55
+    function calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT){
 
 
         $coste =new CostesInvestigaciones();
         //$coste->codigo=$r1cce[0];
-        //$coste->nivel=$r1cce[8];
+        $n=1;
+        $nivel=$r1cce[10];
         $coste->investigacion_id = $idInvestigaciones;
-        $coste->mineral=$r1cce[1] * ((pow ($r1cce[8] , $potcosto))*(($cntinic1 * pow ($r1cce[8] , $lapotencia1)))*$factoramort);
-        $coste->cristal=$r1cce[2] * ((pow ($r1cce[8] , $potcosto))*(($cntinic2 * pow ($r1cce[8] , $lapotencia2)))*$factoramort);
-        $coste->gas=    $r1cce[3] * ((pow ($r1cce[8] , $potcosto))*(($cntinic3 * pow ($r1cce[8] , $lapotencia3)))*$factoramort);
-        $coste->plastico=$r1cce[4] * ((pow ($r1cce[8] , $potcosto))*(($cntinic4 * pow ($r1cce[8] , $lapotencia4)))*$factoramort);
-        $coste->ceramica=$r1cce[5] * ((pow ($r1cce[8] , $potcosto))*(($cntinic5 * pow ($r1cce[8] , $lapotencia5)))*$factoramort);
-        $coste->liquido=$r1cce[6] * ((pow ($r1cce[8] , $potcosto))*(($cntinic6 * pow ($r1cce[8] , $lapotencia6)))*$factoramort);
-        $coste->micros=$r1cce[7] * ((pow ($r1cce[8] , $potcosto))*(($cntinic7 * pow ($r1cce[8] , $lapotencia7)))*$factoramort);
+        $coste->mineral=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->cristal=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->gas=    (int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->plastico=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->ceramica=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->liquido=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->micros=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->fuel=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->ma=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->municion=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
 
 
         return($coste);

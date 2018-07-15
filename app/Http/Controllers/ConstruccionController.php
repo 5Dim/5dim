@@ -95,11 +95,13 @@ class ConstruccionController extends Controller
         }
 
         //Calcular gastos de producciones
-        $producciones[1]->mineral -= ($producciones[6]->liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor);
-        $producciones[2]->cristal -= ($producciones[7]->micros * Constantes::where('codigo', 'costoMicros')->first()->valor);
-        $producciones[3]->gas -= ($producciones[8]->fuel * Constantes::where('codigo', 'costoFuel')->first()->valor);
-        $producciones[4]->plastico -= ($producciones[9]->ma * Constantes::where('codigo', 'costoMa')->first()->valor);
-        $producciones[5]->ceramica -= ($producciones[10]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
+        $CConstantes=Constantes::where('tipo','construccion')->get();
+
+        $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
+        $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
+        $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
+        $producciones[4]->plastico -= ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
+        $producciones[5]->ceramica -= ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
 
         //Recalculamos los recursos para ese planeta
         Recursos::calcularRecursos($planetaActual->id);
@@ -128,7 +130,7 @@ class ConstruccionController extends Controller
         }
 
         //Enviamos los datos para la velocidad de construccion
-        $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
+        $velocidadConst=$CConstantes->where('codigo','velocidadConst')->first();
 
         //Enviamos la variable tipo del planeta para ocultar y mostrar cosas
         $tipoPlaneta = $planetaActual->tipo;
