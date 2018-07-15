@@ -6,27 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Recursos;
 use App\Almacenes;
+use App\Planetas;
+use App\Industrias;
+use App\Constantes;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
-use App\CostesConstrucciones;
-use App\Constantes;
-use App\Planetas;
-use App\Dependencias;
-use App\Industrias;
 
 class ConstruccionController extends Controller
 {
     //Acceso a construcciones
     public function index($tab="")
     {
-        //En que planeta estamos
-        if (empty(session()->get('planetas_id'))) {
-            session()->put('planetas_id', 1);
-            $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
-        }else {
-            $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
-        }
+        $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
 
         //Calculamos ordenes terminadas
         EnConstrucciones::terminarColaConstrucciones();
@@ -37,7 +29,6 @@ class ConstruccionController extends Controller
             $construccion = new Construcciones();
             $construccion->nuevaColonia($planeta->id);
             $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
-
         }
 
         //Comprobamos si tiene recursos
@@ -159,12 +150,7 @@ class ConstruccionController extends Controller
     public function construir ($idConstruccion, $personal,$tab)
     {
         //En que planeta estamos
-        if (empty(session()->get('planetas_id'))) {
-            session()->put('planetas_id', 1);
-            $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
-        }else {
-            $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
-        }
+        $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
         $error = false;
 
         //Recuperar construccion

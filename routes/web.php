@@ -23,6 +23,7 @@ Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
 //Rutas generales
 Route::get('/', 'PrincipalController@index');
 Route::get('/juego', 'JuegoController@index');
+Route::get('/planeta/{planeta}', ['uses' => 'JuegoController@planeta']);
 
 //Construccion
 Route::get('/juego/construccion/{tab?}', 'ConstruccionController@index');
@@ -33,7 +34,10 @@ Route::get('/juego/construccion/datos/{codigo}', ['uses' => 'ConstruccionControl
 Route::get('/juego/construccion/industria/{industria}', ['uses' => 'ConstruccionController@industria']);
 
 //Investigacion
-Route::get('/juego/investigacion', 'InvestigacionController@index');
+Route::get('/juego/investigacion/{tab?}', 'InvestigacionController@index');
+Route::get('/juego/investigacion/investigar/{id}/{personal}/{tab}', ['uses' => 'InvestigacionController@construir']);
+Route::get('/juego/investigacion/cancelar/{id}', ['uses' => 'InvestigacionController@cancelar']);
+Route::get('/juego/investigacion/datos/{codigo}', ['uses' => 'InvestigacionController@datos']);
 
 //Planeta
 Route::get('/juego/planeta', 'PlanetaController@index');

@@ -22,6 +22,23 @@ class Recursos extends Model
         $producciones = [];
         $almacenes = [];
 
+        //Si no existen los recursos, los creamos
+        if (empty($recursos)) {
+            $recursos = new Recursos;
+            $recursos->mineral = 0;
+            $recursos->cristal = 0;
+            $recursos->gas = 0;
+            $recursos->plastico = 0;
+            $recursos->ceramica = 0;
+            $recursos->liquido = 0;
+            $recursos->micros = 0;
+            $recursos->fuel = 0;
+            $recursos->ma = 0;
+            $recursos->municion = 0;
+            $recursos->personal = 100;
+            $recursos->planetas_id = session()->get('planetas_id');
+        }
+
         //Calculamos producciones
         for ($i = 0 ; $i < count($construcciones) ; $i++) {
             if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
@@ -73,9 +90,9 @@ class Recursos extends Model
                     $gastoFliquido = $recursos->mineral;
                     $liquido = $gastoFliquido / $costo;
                 }
+                $recursos->mineral -= $gastoFliquido;
+                $recursos->liquido += $liquido;
             }
-            $recursos->mineral -= $gastoFliquido;
-            $recursos->liquido += $liquido;
 
             $gastoFmicros=0;
             if ($industrias->micros != 0){
@@ -85,9 +102,9 @@ class Recursos extends Model
                     $gastoFmicros=$recursos->cristal;
                     $micros=$gastoFmicros /$costo;
                 }
+                $recursos->cristal -= $gastoFmicros;
+                $recursos->micros += $micros;
             }
-            $recursos->cristal -= $gastoFmicros;
-            $recursos->micros += $micros;
 
             $gastoFfuel=0;
             if ($industrias->fuel != 0){
@@ -97,9 +114,9 @@ class Recursos extends Model
                     $gastoFfuel = $recursos->gas;
                     $fuel = $gastoFfuel /$costo;
                 }
+                $recursos->gas -= $gastoFfuel;
+                $recursos->fuel += $fuel;
             }
-            $recursos->gas -= $gastoFfuel;
-            $recursos->fuel += $fuel;
 
             $gastoFma=0;
             if ($industrias->ma != 0){
@@ -109,9 +126,9 @@ class Recursos extends Model
                     $gastoFma=$recursos->plastico;
                     $ma=$gastoFma /$costo;
                 }
+                $recursos->plastico -= $gastoFma;
+                $recursos->ma += $ma;
             }
-            $recursos->plastico -= $gastoFma;
-            $recursos->ma += $ma;
 
             $gastoFmunicion=0;
             if ($industrias->municion != 0){
@@ -121,9 +138,9 @@ class Recursos extends Model
                     $gastoFmunicion=$recursos->ceramica;
                     $municion=$gastoFmunicion /$costo;
                 }
+                $recursos->ceramica -= $gastoFmunicion;
+                $recursos->municion += $municion;
             }
-            $recursos->ceramica -= $gastoFmunicion;
-            $recursos->municion += $municion;
         }
 
 

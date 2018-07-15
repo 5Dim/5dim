@@ -190,26 +190,26 @@ function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas
 
 function sendConstruir(id, codigo, modal) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://79.143.185.11/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
+    window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
 }
 
 function sendReciclar(id, codigo) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://79.143.185.11/juego/construccion/reciclar/" + id + "/" + personal;
+    window.location.href = "http://localhost/juego/construccion/reciclar/" + id + "/" + personal;
 }
 
 function sendCancelar(id) {
-    window.location.href = "http://79.143.185.11/juego/construccion/cancelar/" + id;
+    window.location.href = "http://localhost/juego/construccion/cancelar/" + id;
 }
 
 function sendIndustria(industria) {
-    window.location.href = "http://79.143.185.11/juego/construccion/industria/" + industria;
+    window.location.href = "http://localhost/juego/construccion/industria/" + industria;
 }
 
 function mostrarDatosConstruccion(codigo) {
     $.ajax({
         method: "GET",
-        url: "http://79.143.185.11/juego/construccion/datos/" + codigo,
+        url: "http://localhost/juego/construccion/datos/" + codigo,
         // data: { name: "John", location: "Boston" }
         success: function (data) {
             $("#datosContenido").html(data.descripcionConstruccion)
