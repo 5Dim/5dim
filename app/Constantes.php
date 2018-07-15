@@ -19,7 +19,7 @@ class Constantes extends Model
                 $constante->valor=1.6;
                 $constante->minimo=1;
                 $constante->maximo=3;
-                $constante->codigo='Avelprodminas';
+                $constante->codigo='avelprodminas';
                 $constante->descripcion='produccion de recursos en minas';
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);
@@ -124,6 +124,66 @@ class Constantes extends Model
                 $constante->maximo=6;
                 $constante->codigo='colaInvest';
                 $constante->descripcion='investigaciones simultaneas';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=2;
+                $constante->minimo=1;
+                $constante->maximo=6;
+                $constante->codigo='velInvest';
+                $constante->descripcion='velocidad  investigaciones';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1.03;
+                $constante->minimo=1;
+                $constante->maximo=1.1;
+                $constante->codigo='costoInvestArmas';
+                $constante->descripcion='costo investigaciones armas es EXPONENCIAL aprox 1.1 aumenta el 100%';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1.03;
+                $constante->minimo=1;
+                $constante->maximo=1.1;
+                $constante->codigo='costoInvestMotores';
+                $constante->descripcion='costo investigaciones motores es EXPONENCIAL aprox 1.1 aumenta el 100%';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1.03;
+                $constante->minimo=1;
+                $constante->maximo=1.1;
+                $constante->codigo='costoInvestIndustrias';
+                $constante->descripcion='costo investigaciones industrias es EXPONENCIAL aprox 1.1 aumenta el 100%';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1.03;
+                $constante->minimo=1;
+                $constante->maximo=1.1;
+                $constante->codigo='costoInvestImperio';
+                $constante->descripcion='costo investigaciones imperio es EXPONENCIAL aprox 1.1 aumenta el 100%';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1.03;
+                $constante->minimo=1;
+                $constante->maximo=1.1;
+                $constante->codigo='costoInvestDiseño';
+                $constante->descripcion='costo investigaciones diseño es EXPONENCIAL aprox 1.1 aumenta el 100%';
                 $constante->tipo='investigacion';
                 array_push($producciones, $constante);
 
