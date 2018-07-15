@@ -13,6 +13,7 @@ use App\Dependencias;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
+use App\CostesConstrucciones;
 
 class ConstruccionController extends Controller
 {
@@ -34,13 +35,6 @@ class ConstruccionController extends Controller
 
         //Comprobamos si tiene recursos
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        /*
-        if (empty($recursos->mineral == 0)) {
-            $recursos = new Construcciones();
-            $construccion->nuevaColonia($planetaActual);
-            $construcciones = Construcciones::where('planetas_id', $planetaActual)->get();
-        }
-        */
 
         //Inicializamos las variables para produccion y almacenes
         $producciones = [];
