@@ -53,16 +53,16 @@ class Investigaciones extends Model
             "invImperio",
             "invObservacion",
 
-            "invPropHMA",
-            "invPropIon",
-            "invPropMa",
             "invPropNuk",
+            "invPropIon",
             "invPropPlasma",
+            "invPropMa",
+            "invPropHMA",
 
-            "invIndFuel",
             "invIndLiquido",
-            "invIndMa",
             "invIndMicros",
+            "invIndFuel",
+            "invIndMa",
             "invIndMunicion",
 
 

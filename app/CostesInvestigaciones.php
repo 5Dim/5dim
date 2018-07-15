@@ -86,6 +86,8 @@ class CostesInvestigaciones extends Model
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
+
+
             case "invImperio":
             $costoIT=$costoInvestImperio;
             $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
@@ -123,6 +125,8 @@ class CostesInvestigaciones extends Model
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
+
+
             case "invPropNuk":
             $costoIT=$costoInvestMotores;
             $r1cce = [$codigo,2,2,2,2,2,2,2,2.1,2,2,$nivel];
@@ -157,6 +161,7 @@ class CostesInvestigaciones extends Model
             $costosIniciales = [$codigo,0,0,0,0,0,0,40000,0,0,0];
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
+
 
             case "invIndLiquido":
             $costoIT=$costoInvestIndustrias;
