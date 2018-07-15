@@ -145,29 +145,29 @@ class Dependencias extends Model
 
         $dependencia =new Dependencias();
         $dependencia->codigo='fabNaves';
-        $dependencia->codigoRequiere='refugio';
+        $dependencia->codigoRequiere='fabDefensas';
         $dependencia->nivelRequiere=2;
         $dependencia->tipo='construccion';
         array_push($dependencias, $dependencia);
 
         $dependencia =new Dependencias();
         $dependencia->codigo='fabTropas';
-        $dependencia->codigoRequiere='refugio';
-        $dependencia->nivelRequiere=6;
+        $dependencia->codigoRequiere='fabNaves';
+        $dependencia->nivelRequiere=2;
         $dependencia->tipo='construccion';
         array_push($dependencias, $dependencia);
 
         $dependencia =new Dependencias();
         $dependencia->codigo='fabDefensas';
         $dependencia->codigoRequiere='refugio';
-        $dependencia->nivelRequiere=4;
+        $dependencia->nivelRequiere=2;
         $dependencia->tipo='construccion';
         array_push($dependencias, $dependencia);
 
         $dependencia =new Dependencias();
         $dependencia->codigo='escudo';
-        $dependencia->codigoRequiere='refugio';
-        $dependencia->nivelRequiere=8;
+        $dependencia->codigoRequiere='fabDefensas';
+        $dependencia->nivelRequiere=6;
         $dependencia->tipo='construccion';
         array_push($dependencias, $dependencia);
 
