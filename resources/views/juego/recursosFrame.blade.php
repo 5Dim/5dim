@@ -99,43 +99,43 @@
                 <thead>
                     <tr>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/personal.gif') }}" alt="Personal"> Personal
+                            Personal
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/mineral.gif') }}" alt="Mineral"> Mineral
+                            Mineral
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/cristal.gif') }}" alt="Cristal"> Cristal
+                            Cristal
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/gas.gif') }}" alt="Gas"> Gas
+                            Gas
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/plastico.gif') }}" alt="Plástico"> Plástico
+                            Plástico
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/ceramica.gif') }}" alt="Cerámica"> Cerámica
+                            Cerámica
                         </th>
                         <th class="text-warning borderless centradoCeldas">
                             Recargar
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/liquido.gif') }}" alt="Liquido"> Liquido
+                            Liquido
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/micros.gif') }}" alt="Micros"> Micros
+                            Micros
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/fuel.gif') }}" alt="Fuel"> Fuel
+                            Fuel
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/ma.gif') }}" alt="M-A"> M-A
+                            > M-A
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/municion.gif') }}" alt="Munición"> Munición
+                            Munición
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <img src="{{ asset('img/juego/skin0/recursos/moneda.gif') }}" alt="Moneda"> Moneda
+                            Moneda
                         </th>
                     </tr>
                 </thead>
@@ -350,7 +350,7 @@
                         <th class="text-warning borderless">
                             <a id="constr" href="{{url('/juego/general')}}" target="_self">
                                 <img title="General"
-                                src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}"
+                                src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}"
                                 onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}"
                                 onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}" />
                             </a>
