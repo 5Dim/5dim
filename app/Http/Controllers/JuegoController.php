@@ -20,6 +20,7 @@ class JuegoController extends Controller
 {
     public function index()
     {
+        //Recursos
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
 
         //Calculamos ordenes terminadas
@@ -43,7 +44,7 @@ class JuegoController extends Controller
         //Calculamos producciones
         for ($i = 0 ; $i < count($construcciones) ; $i++) {
             if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
-                $industrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
+                $industrias = Industrias::where('planetas_id', $planetaActual->id)->first();
                 $industria = strtolower(substr($construcciones[$i]->codigo, 3));
                 if ($industria == 'liquido') {
                     if ($industrias->liquido == 1) {
@@ -95,11 +96,13 @@ class JuegoController extends Controller
         }
 
         //Calcular gastos de producciones
-        $producciones[1]->mineral -= ($producciones[6]->liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor);
-        $producciones[2]->cristal -= ($producciones[7]->micros * Constantes::where('codigo', 'costoMicros')->first()->valor);
-        $producciones[3]->gas -= ($producciones[8]->fuel * Constantes::where('codigo', 'costoFuel')->first()->valor);
-        $producciones[4]->plastico -= ($producciones[9]->ma * Constantes::where('codigo', 'costoMa')->first()->valor);
-        $producciones[5]->ceramica -= ($producciones[10]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
+        $CConstantes=Constantes::where('tipo','construccion')->get();
+
+        $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
+        $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
+        $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
+        $producciones[4]->plastico -= ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
+        $producciones[5]->ceramica -= ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
 
         //Recalculamos los recursos para ese planeta
         Recursos::calcularRecursos($planetaActual->id);
@@ -129,6 +132,7 @@ class JuegoController extends Controller
 
         //Enviamos la variable tipo del planeta para ocultar y mostrar cosas
         $tipoPlaneta = $planetaActual->tipo;
+        //Fin recursos
 
         return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
     }

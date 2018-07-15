@@ -20,6 +20,7 @@ class ConstruccionController extends Controller
     //Acceso a construcciones
     public function index($tab="")
     {
+        //Recursos
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
 
         //Calculamos ordenes terminadas
@@ -129,11 +130,12 @@ class ConstruccionController extends Controller
             $personal += $cola->personal;
         }
 
-        //Enviamos los datos para la velocidad de construccion
-        $velocidadConst=$CConstantes->where('codigo','velocidadConst')->first();
-
         //Enviamos la variable tipo del planeta para ocultar y mostrar cosas
         $tipoPlaneta = $planetaActual->tipo;
+        //Fin recursos
+
+        //Enviamos los datos para la velocidad de construccion
+        $velocidadConst=$CConstantes->where('codigo','velocidadConst')->first();
 
         // vemos las dependencias
         $dependencias=Dependencias::where('tipo','construccion')->get();

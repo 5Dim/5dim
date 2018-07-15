@@ -18,21 +18,22 @@ class FuselajesController extends Controller
 
     public function index ()
     {
-        $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
+        //Recursos
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
 
         //Calculamos ordenes terminadas
         EnConstrucciones::terminarColaConstrucciones();
 
         //Comprobamos construcciones en el planeta, si no las hay las generamos para una colonia nueva
-        $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
+        $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         if (empty($construcciones[0]->codigo)) {
             $construccion = new Construcciones();
-            $construccion->nuevaColonia($planeta->id);
-            $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
+            $construccion->nuevaColonia($planetaActual->id);
+            $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         }
 
         //Comprobamos si tiene recursos
-        $recursos = Recursos::where('planetas_id', $planeta->id)->first();
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
 
         //Inicializamos las variables para produccion y almacenes
         $producciones = [];
@@ -41,7 +42,7 @@ class FuselajesController extends Controller
         //Calculamos producciones
         for ($i = 0 ; $i < count($construcciones) ; $i++) {
             if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
-                $industrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
+                $industrias = Industrias::where('planetas_id', $planetaActual->id)->first();
                 $industria = strtolower(substr($construcciones[$i]->codigo, 3));
                 if ($industria == 'liquido') {
                     if ($industrias->liquido == 1) {
@@ -93,20 +94,22 @@ class FuselajesController extends Controller
         }
 
         //Calcular gastos de producciones
-        $producciones[0]->mineral -= ($producciones[5]->liquido * Constantes::where('codigo', 'costoLiquido')->first()->valor);
-        $producciones[1]->cristal -= ($producciones[6]->micros * Constantes::where('codigo', 'costoMicros')->first()->valor);
-        $producciones[2]->gas -= ($producciones[7]->fuel * Constantes::where('codigo', 'costoFuel')->first()->valor);
-        $producciones[3]->plastico -= ($producciones[8]->ma * Constantes::where('codigo', 'costoMa')->first()->valor);
-        $producciones[4]->ceramica -= ($producciones[9]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
+        $CConstantes=Constantes::where('tipo','construccion')->get();
+
+        $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
+        $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
+        $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
+        $producciones[4]->plastico -= ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
+        $producciones[5]->ceramica -= ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
 
         //Recalculamos los recursos para ese planeta
-        Recursos::calcularRecursos($planeta->id);
-        $recursos = Recursos::where('planetas_id', $planeta->id)->first();
+        Recursos::calcularRecursos($planetaActual->id);
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
 
         //Comrpobamos si existe una cola
         $colaConstruccion= [];
         $colaConstruccion2=[];
-        foreach ($planeta->construcciones as $construccion){
+        foreach ($planetaActual->construcciones as $construccion){
             if(!empty($construccion->enConstrucciones[0])){
                 array_push($colaConstruccion2, $construccion->enConstrucciones);
             }
@@ -126,8 +129,9 @@ class FuselajesController extends Controller
         }
 
         //Enviamos la variable tipo del planeta para ocultar y mostrar cosas
-        $tipoPlaneta = $planeta->tipo;
+        $tipoPlaneta = $planetaActual->tipo;
+        //Fin recursos
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta'));
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
     }
 }
