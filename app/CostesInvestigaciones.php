@@ -117,38 +117,74 @@ class CostesInvestigaciones extends Model
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
-            case "invEnergia":
-            $costoIT=$costoInvestArmas;
+            case "invPropNuk":
+            $costoIT=$costoInvestMotores;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2.1,2,2,$nivel];
+            $costosIniciales = [$codigo,0,0,4000,0,0,1500,0,800,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invPropIon":
+            $costoIT=$costoInvestMotores;
+            $r1cce = [$codigo,2,2.2,1.5,2.3,1.1,1.2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,0,8000,0,650,4000,0,0,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invPropPlasma":
+            $costoIT=$costoInvestMotores;
+            $r1cce = [$codigo,1.8,2,2.2,2,1.005,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,100000,0,8000,0,0,0,4000,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invPropMa":
+            $costoIT=$costoInvestMotores;
+            $r1cce = [$codigo,2,2,.5,2,1.9,.5,2.3,2,2.2,2,$nivel];
+            $costosIniciales = [$codigo,300000,200000,0,0,100000,0,8000,6000,9000,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invPropHMA":
+            $costoIT=$costoInvestMotores;
+            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
+            $costosIniciales = [$codigo,0,0,0,0,0,0,40000,0,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
+
+            case "invIndLiquido":
+            $costoIT=$costoInvestIndustrias;
             $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
             $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
-            case "invEnergia":
-            $costoIT=$costoInvestArmas;
+            case "invIndMicros":
+
+            $costoIT=$costoInvestIndustrias;
             $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
-            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            $costosIniciales = [$codigo,0,0,40000,0,0,0,0,0,15000,0];
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
-            case "invEnergia":
-            $costoIT=$costoInvestArmas;
-            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
-            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            case "invIndFuel":
+            $costoIT=$costoInvestIndustrias;
+            $r1cce = [$codigo,2,2,2,1.6,2,2,2,2,1.5,2,$nivel];
+            $costosIniciales = [$codigo,0,0,0,2500,0,0,0,0,6000,0];
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
-            case "invEnergia":
-            $costoIT=$costoInvestArmas;
-            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
-            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            case "invIndMa":
+            $costoIT=$costoInvestIndustrias;
+            $r1cce = [$codigo,1.4,1.3,1,2,.5,2.1,1.2,2,1.8,2,$nivel];
+            $costosIniciales = [$codigo,20000,40000,10000,10000,10000,5000,0,0,150000,0];
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
-            case "invEnergia":
-            $costoIT=$costoInvestArmas;
-            $r1cce = [$codigo,2,2,2,2,2,2,2,2,2,2,$nivel];
-            $costosIniciales = [$codigo,3000,6000,0,0,0,0,0,0,0,0];
+            case "invIndMunicion":
+            $costoIT=$costoInvestIndustrias;
+            $r1cce = [$codigo,.8,2,2,.3,2,2,2,2,2,.2,$nivel];
+            $costosIniciales = [$codigo,3000,0,0,5000,0,0,0,0,15000,10000];
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
 
