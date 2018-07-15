@@ -302,12 +302,15 @@
                         <th class="text-warning borderless">
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Planetas de colores
+                                    {{ $planetaActual->estrella }}x{{ $planetaActual->orbita }} {{ $planetaActual->nombre }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    @php
+                                        $planetas = Auth::user()->jugadores[0]->planetas;
+                                    @endphp
+                                    @foreach ($planetas as $planeta)
+                                        <a class="dropdown-item" href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }} {{ $planeta->nombre }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </th>

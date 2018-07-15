@@ -14,8 +14,8 @@ class AddUsersIdToJugadores extends Migration
     public function up()
     {
         Schema::table('jugadores', function (Blueprint $table) {
-            $table->integer('users_id')->unsigned();
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -27,8 +27,8 @@ class AddUsersIdToJugadores extends Migration
     public function down()
     {
         Schema::table('jugadores', function (Blueprint $table) {
-            $table->dropforeign(['users_id']);
-            $table->dropColumn('users_id');
+            $table->dropforeign(['user_id']);
+            $table->dropColumn('user_id');
         });
     }
 }

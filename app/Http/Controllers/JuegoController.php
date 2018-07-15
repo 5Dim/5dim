@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Auth;
 use App\Recursos;
 use App\Almacenes;
 use App\Planetas;
@@ -19,21 +20,21 @@ class JuegoController extends Controller
 {
     public function index()
     {
-        $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
 
         //Calculamos ordenes terminadas
-        EnConstrucciones::terminarColaConstrucciones();
+        //EnConstrucciones::terminarColaConstrucciones();
 
         //Comprobamos construcciones en el planeta, si no las hay las generamos para una colonia nueva
-        $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
+        $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         if (empty($construcciones[0]->codigo)) {
             $construccion = new Construcciones();
-            $construccion->nuevaColonia($planeta->id);
-            $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
+            $construccion->nuevaColonia($planetaActual->id);
+            $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         }
 
         //Comprobamos si tiene recursos
-        $recursos = Recursos::where('planetas_id', $planeta->id)->first();
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
 
         //Inicializamos las variables para produccion y almacenes
         $producciones = [];
@@ -101,13 +102,13 @@ class JuegoController extends Controller
         $producciones[4]->ceramica -= ($producciones[9]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
 
         //Recalculamos los recursos para ese planeta
-        Recursos::calcularRecursos($planeta->id);
-        $recursos = Recursos::where('planetas_id', $planeta->id)->first();
+        Recursos::calcularRecursos($planetaActual->id);
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
 
         //Comrpobamos si existe una cola
         $colaConstruccion= [];
         $colaConstruccion2=[];
-        foreach ($planeta->construcciones as $construccion){
+        foreach ($planetaActual->construcciones as $construccion){
             if(!empty($construccion->enConstrucciones[0])){
                 array_push($colaConstruccion2, $construccion->enConstrucciones);
             }
@@ -127,9 +128,9 @@ class JuegoController extends Controller
         }
 
         //Enviamos la variable tipo del planeta para ocultar y mostrar cosas
-        $tipoPlaneta = $planeta->tipo;
+        $tipoPlaneta = $planetaActual->tipo;
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta'));
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
     }
 
     //Cambiar de planeta
@@ -137,7 +138,7 @@ class JuegoController extends Controller
     {
         //En que planeta estamos
         if (!$planeta) {
-            session()->put('planetas_id', Auth::user()->jugadores->planetas[0]->id);
+            session()->put('planetas_id', Auth::user()->jugadores[0]->planetas[0]->id);
         }else{
             session()->put('planetas_id', $planeta);
         }

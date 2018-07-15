@@ -17,7 +17,7 @@ class JugadoresSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
         factory(Jugadores::class, 100)->create([
-            'users_id' => 1,
+            'user_id' => 1,
         ]);
     }
 }

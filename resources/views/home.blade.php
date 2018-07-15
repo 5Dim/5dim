@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 <div class="container">
     <div class="alert alert-dark" role="alert" style="margin-top: 100px">
@@ -27,7 +27,7 @@
         </table>
         <hr>
         <p class="mb-0">
-            <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/juego') }}';">
+            <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/planeta') }}';">
                 Entrar
             </button>
         </p>

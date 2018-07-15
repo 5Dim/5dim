@@ -25,8 +25,8 @@ class Recursos extends Model
         //Si no existen los recursos, los creamos
         if (empty($recursos)) {
             $recursos = new Recursos;
-            $recursos->mineral = 0;
-            $recursos->cristal = 0;
+            $recursos->mineral = 1000000000;
+            $recursos->cristal = 1000000000;
             $recursos->gas = 0;
             $recursos->plastico = 0;
             $recursos->ceramica = 0;
@@ -35,7 +35,7 @@ class Recursos extends Model
             $recursos->fuel = 0;
             $recursos->ma = 0;
             $recursos->municion = 0;
-            $recursos->personal = 100;
+            $recursos->personal = 1000000000;
             $recursos->planetas_id = session()->get('planetas_id');
         }
 

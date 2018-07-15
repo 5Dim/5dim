@@ -23,7 +23,7 @@ Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
 //Rutas generales
 Route::get('/', 'PrincipalController@index');
 Route::get('/juego', 'JuegoController@index');
-Route::get('/planeta/{planeta}', ['uses' => 'JuegoController@planeta']);
+Route::get('/planeta/{planeta?}', ['uses' => 'JuegoController@planeta']);
 
 //Construccion
 Route::get('/juego/construccion/{tab?}', 'ConstruccionController@index');

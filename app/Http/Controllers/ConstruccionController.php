@@ -9,6 +9,7 @@ use App\Almacenes;
 use App\Planetas;
 use App\Industrias;
 use App\Constantes;
+use App\Dependencias;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
@@ -18,26 +19,26 @@ class ConstruccionController extends Controller
     //Acceso a construcciones
     public function index($tab="")
     {
-        $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
 
         //Calculamos ordenes terminadas
         EnConstrucciones::terminarColaConstrucciones();
 
         //Comprobamos construcciones en el planeta, si no las hay las generamos para una colonia nueva
-        $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
+        $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         if (empty($construcciones[0]->codigo)) {
             $construccion = new Construcciones();
-            $construccion->nuevaColonia($planeta->id);
-            $construcciones = Construcciones::where('planetas_id', $planeta->id)->get();
+            $construccion->nuevaColonia($planetaActual->id);
+            $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         }
 
         //Comprobamos si tiene recursos
-        $recursos = Recursos::where('planetas_id', $planeta->id)->first();
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         /*
         if (empty($recursos->mineral == 0)) {
             $recursos = new Construcciones();
-            $construccion->nuevaColonia($planeta);
-            $construcciones = Construcciones::where('planetas_id', $planeta)->get();
+            $construccion->nuevaColonia($planetaActual);
+            $construcciones = Construcciones::where('planetas_id', $planetaActual)->get();
         }
         */
 
@@ -107,13 +108,13 @@ class ConstruccionController extends Controller
         $producciones[4]->ceramica -= ($producciones[9]->municion * Constantes::where('codigo', 'costoMunicion')->first()->valor);
 
         //Recalculamos los recursos para ese planeta
-        Recursos::calcularRecursos($planeta->id);
-        $recursos = Recursos::where('planetas_id', $planeta->id)->first();
+        Recursos::calcularRecursos($planetaActual->id);
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
 
         //Comrpobamos si existe una cola
         $colaConstruccion= [];
         $colaConstruccion2=[];
-        foreach ($planeta->construcciones as $construccion){
+        foreach ($planetaActual->construcciones as $construccion){
             if(!empty($construccion->enConstrucciones[0])){
                 array_push($colaConstruccion2, $construccion->enConstrucciones);
             }
@@ -132,25 +133,24 @@ class ConstruccionController extends Controller
             $personal += $cola->personal;
         }
 
-
         //Enviamos los datos para la velocidad de construccion
         $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
 
         //Enviamos la variable tipo del planeta para ocultar y mostrar cosas
-        $tipoPlaneta = $planeta->tipo;
+        $tipoPlaneta = $planetaActual->tipo;
 
         // vemos las dependencias
         $dependencias=Dependencias::where('tipo','construccion')->get();
 
         //Devolvemos la vista con todas las variables
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab'));
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual'));
     }
 
     //Acceso a subir nivel de construccion
     public function construir ($idConstruccion, $personal,$tab)
     {
         //En que planeta estamos
-        $planeta = Planetas::where('id', session()->get('planetas_id'))->first();
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $error = false;
 
         //Recuperar construccion
@@ -159,7 +159,7 @@ class ConstruccionController extends Controller
         //Comrpobamos si existe una cola
         $colaConstruccion= [];
         $colaConstruccion2=[];
-        foreach ($planeta->construcciones as $construccioncita){
+        foreach ($planetaActual->construcciones as $construccioncita){
             if(!empty($construccioncita->enConstrucciones[0])){
                 array_push($colaConstruccion2, $construccioncita->enConstrucciones);
             }
