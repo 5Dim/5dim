@@ -22,8 +22,8 @@ class Jugadores extends Model
         return $this->hasMany(Planetas::class);
     }
 
-    public function investigacion ()
+    public function investigaciones ()
     {
-        return $this->hasMany(Investigacion::class);
+        return $this->hasMany(Investigaciones::class);
     }
 }

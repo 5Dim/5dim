@@ -13,6 +13,7 @@ use App\Dependencias;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
+use App\EnInvestigaciones;
 use App\CostesConstrucciones;
 
 class ConstruccionController extends Controller
@@ -31,7 +32,11 @@ class ConstruccionController extends Controller
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
+        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
+            $personal += $cola->personal;
+        }
+        foreach ($colaInvestigacion as $cola) {
             $personal += $cola->personal;
         }
         $tipoPlaneta = $planetaActual->tipo;

@@ -28,7 +28,11 @@ class AstrometriaController extends Controller
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
+        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
+            $personal += $cola->personal;
+        }
+        foreach ($colaInvestigacion as $cola) {
             $personal += $cola->personal;
         }
         $tipoPlaneta = $planetaActual->tipo;
