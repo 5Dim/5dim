@@ -158,7 +158,7 @@
                 $construcciones[$i]->coste->liquido +
                 $construcciones[$i]->coste->micros +
                 12 }},
-                {{$velocidadConst->valor}},
+                {{$velInvest->valor}},
                 '{{$construcciones[$i]->codigo}}'
             )
         @endfor

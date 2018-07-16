@@ -130,9 +130,9 @@ class Constantes extends Model
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
-                $constante->valor=2;
-                $constante->minimo=1;
-                $constante->maximo=6;
+                $constante->valor=10;
+                $constante->minimo=2;
+                $constante->maximo=12;
                 $constante->codigo='velInvest';
                 $constante->descripcion='velocidad  investigaciones';
                 $constante->tipo='investigacion';
