@@ -15,6 +15,20 @@ class CostesInvestigaciones extends Model
         return $this->belongsTo(Investigaciones::class);
     }
 
+    public function modificarCostes($costeAntiguo, $costeNuevo) {
+        $costeAntiguo->mineral = $costeNuevo->mineral;
+        $costeAntiguo->cristal = $costeNuevo->cristal;
+        $costeAntiguo->gas = $costeNuevo->gas;
+        $costeAntiguo->plastico = $costeNuevo->plastico;
+        $costeAntiguo->ceramica = $costeNuevo->ceramica;
+        $costeAntiguo->liquido = $costeNuevo->liquido;
+        $costeAntiguo->micros = $costeNuevo->micros;
+        $costeAntiguo->fuel = $costeNuevo->fuel;
+        $costeAntiguo->ma = $costeNuevo->ma;
+        $costeAntiguo->municion = $costeNuevo->municion;
+        return $costeAntiguo;
+    }
+
 
     public function  generarDatosCostesInvestigacion($nivel, $codigo, $idInvestigaciones)
     {
