@@ -132,6 +132,6 @@ class InvestigacionController extends Controller
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
+        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
     }
 }

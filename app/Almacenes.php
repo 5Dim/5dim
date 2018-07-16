@@ -34,4 +34,17 @@ class Almacenes extends Model
 
         //return $result;
     }
+
+    public static function calcularAlmacenes ($construcciones) {
+        $almacenes = [];
+
+        for ($i = 0 ; $i < count($construcciones) ; $i++) {
+            if (substr($construcciones[$i]->codigo, 0, 3) == "alm") {
+                $almacen = Almacenes::where('nivel', $construcciones[$i]->nivel)->first();
+                array_push($almacenes, $almacen);
+            }
+        }
+
+        return $almacenes;
+    }
 }

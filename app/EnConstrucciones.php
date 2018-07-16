@@ -43,4 +43,22 @@ class EnConstrucciones extends Model
             $cola->delete();
         }
     }
+
+    public static function colaConstrucciones ($planetaActual) {
+        $colaConstruccion= [];
+        $colaConstruccion2=[];
+        foreach ($planetaActual->construcciones as $construccion){
+            if(!empty($construccion->enConstrucciones[0])){
+                array_push($colaConstruccion2, $construccion->enConstrucciones);
+            }
+        }
+        for ($i=0; $i < count($colaConstruccion2); $i++) {
+            if (!empty($colaConstruccion2[$i])) {
+                foreach ($colaConstruccion2[$i] as $colita) {
+                    array_push($colaConstruccion, $colita);
+                }
+            }
+        }
+        return $colaConstruccion;
+    }
 }

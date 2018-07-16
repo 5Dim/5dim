@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
-        @if (count($colaConstruccion) > 0)
+        @if (count($colaInvestigaciones) > 0)
             <div class="row rounded cajita">
                 <div class="col-12">
                     <div id="cuadro1" class="table-responsive-sm">
@@ -16,28 +16,28 @@
                                 <td class=" text-warning">Acaba a las</td>
                                 <td>&nbsp;</td>
                             </tr>
-                            @for ($i = 0 ; $i < count($colaConstruccion) ; $i++)
+                            @for ($i = 0 ; $i < count($colaInvestigaciones) ; $i++)
                                 <tr>
                                     <td class=" text-light align-middle borderless">
-                                        {{ trans('construccion.' . $colaConstruccion[$i]->construcciones->codigo) }}
+                                        {{ trans('construccion.' . $colaInvestigaciones[$i]->construcciones->codigo) }}
                                     </td>
-                                    <td class=" {{ $colaConstruccion[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">
-                                        {{ $colaConstruccion[$i]->accion }}
-                                    </td>
-                                    <td class=" text-light align-middle borderless">
-                                        {{ $colaConstruccion[$i]->nivel }}
+                                    <td class=" {{ $colaInvestigaciones[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">
+                                        {{ $colaInvestigaciones[$i]->accion }}
                                     </td>
                                     <td class=" text-light align-middle borderless">
-                                        {{ number_format($colaConstruccion[$i]->personal, 0,",",".") }}
+                                        {{ $colaInvestigaciones[$i]->nivel }}
                                     </td>
                                     <td class=" text-light align-middle borderless">
-                                        {{ $colaConstruccion[$i]->created_at }}
+                                        {{ number_format($colaInvestigaciones[$i]->personal, 0,",",".") }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ $colaInvestigaciones[$i]->created_at }}
                                     </td>
                                     <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
-                                        {{ $colaConstruccion[$i]->finished_at }}
+                                        {{ $colaInvestigaciones[$i]->finished_at }}
                                     </td>
                                     <td class=" text-light align-middle borderless">
-                                        <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendCancelar('{{ $colaConstruccion[$i]->id }}')">
+                                        <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendCancelar('{{ $colaInvestigaciones[$i]->id }}')">
                                             <i class="fa fa-trash"></i> Cancelar
                                         </button>
                                     </td>
@@ -52,22 +52,19 @@
         <nav>
             <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
                 <a class="nav-item nav-link  active" id="mina-tab" data-toggle="tab" href="#mina" role="tab" aria-controls="mina" aria-selected="true">
-                    Minas
-                </a>
-                <a class="nav-item nav-link" id="industria-tab" data-toggle="tab" href="#industria" role="tab" aria-controls="industria" aria-selected="false">
-                    Industrias
-                </a>
-                <a class="nav-item nav-link" id="almacenes-tab" data-toggle="tab" href="#almacenes" role="tab" aria-controls="almacenes" aria-selected="false">
-                    Almacenes
-                </a>
-                <a class="nav-item nav-link" id="militares-tab" data-toggle="tab" href="#militares" role="tab" aria-controls="militares" aria-selected="false">
                     Militares
                 </a>
-                <a class="nav-item nav-link" id="desarrollo-tab" data-toggle="tab" href="#desarrollo" role="tab" aria-controls="desarrollo" aria-selected="false">
-                    Desarrollo
+                <a class="nav-item nav-link" id="industria-tab" data-toggle="tab" href="#industria" role="tab" aria-controls="industria" aria-selected="false">
+                    Misc
                 </a>
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
-                    Observacion
+                <a class="nav-item nav-link" id="almacenes-tab" data-toggle="tab" href="#almacenes" role="tab" aria-controls="almacenes" aria-selected="false">
+                    Personal
+                </a>
+                <a class="nav-item nav-link" id="militares-tab" data-toggle="tab" href="#militares" role="tab" aria-controls="militares" aria-selected="false">
+                    Motores
+                </a>
+                <a class="nav-item nav-link" id="desarrollo-tab" data-toggle="tab" href="#desarrollo" role="tab" aria-controls="desarrollo" aria-selected="false">
+                    Mejoras de industrias
                 </a>
             </div>
         </nav>
@@ -77,7 +74,6 @@
                     @include('juego.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
                         'personal' => $recursos->personal - $personal,
-                        'tab' => 'mina-tab',
                     ])
                 @endfor
             </div>
@@ -86,7 +82,6 @@
                     @include('juego.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
                         'personal' => $recursos->personal - $personal,
-                        'tab' => 'industria-tab',
                     ])
                 @endfor
             </div>
@@ -100,7 +95,6 @@
                     @include('juego.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
                         'personal' => $recursos->personal - $personal,
-                        'tab' => 'almacenes-tab',
                     ])
                 @endfor
             </div>
@@ -109,7 +103,6 @@
                     @include('juego.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
                         'personal' => $recursos->personal - $personal,
-                        'tab' => 'militares-tab',
                     ])
                 @endfor
             </div>
@@ -118,7 +111,6 @@
                     @include('juego.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
                         'personal' => $recursos->personal - $personal,
-                        'tab' => 'desarrollo-tab',
                     ])
                 @endfor
             </div>
@@ -127,9 +119,9 @@
                     @include('juego.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
                         'personal' => $recursos->personal - $personal,
-                        'tab' => 'observacion-tab',
                     ])
-            @endfor
+                @endfor
+            </div>
         </div>
     </div>
 </div>

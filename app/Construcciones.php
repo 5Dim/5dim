@@ -127,4 +127,14 @@ class Construcciones extends Model
         $industrias->save();
 
     }
+
+    public static function construcciones ($planetaActual) {
+        $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
+        if (empty($construcciones[0]->codigo)) {
+            $construccion = new Construcciones();
+            $construccion->nuevaColonia($planetaActual->id);
+            $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
+        }
+        return $construcciones;
+    }
 }

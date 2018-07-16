@@ -341,7 +341,7 @@
                                     $clase="light";
                                 }
                             @endphp
-                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construccion->id }}', '{{ $construccion->codigo }}', '{{ $tab }}')">
+                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construccion->id }}', '{{ $construccion->codigo }}','minas-tab')">
                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                             </button>
                         </td>
