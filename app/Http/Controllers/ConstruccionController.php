@@ -64,28 +64,19 @@ class ConstruccionController extends Controller
 
         //Recuperar construccion
         $construccion = Construcciones::where('id', $idConstruccion)->first();
-
-        //Comrpobamos si existe una cola
-        $colaConstruccion= [];
-        $colaConstruccion2=[];
-        foreach ($planetaActual->construcciones as $construccioncita){
-            if(!empty($construccioncita->enConstrucciones[0])){
-                array_push($colaConstruccion2, $construccioncita->enConstrucciones);
-            }
-        }
-        for ($i=0; $i < count($colaConstruccion2); $i++) {
-            if (!empty($colaConstruccion2[$i])) {
-                foreach ($colaConstruccion2[$i] as $colita) {
-                    array_push($colaConstruccion, $colita);
-                }
-            }
-        }
-
-        //Personal en uso
+        $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
+        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $almacenes = Almacenes::calcularAlmacenes($construcciones);
         $personalUsado = 0;
+        $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
+        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
             $personalUsado += $cola->personal;
         }
+        foreach ($colaInvestigacion as $cola) {
+            $personalUsado += $cola->personal;
+        }
+        $tipoPlaneta = $planetaActual->tipo;
 
         //Recuperamos su ultima cola (si existe)
         $cola = EnConstrucciones::where('construcciones_id', $idConstruccion)->orderBy('id', 'desc')->first();

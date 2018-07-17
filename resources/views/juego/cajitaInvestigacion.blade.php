@@ -302,14 +302,50 @@
                             <td class="text-{{ $clase }} borderless">
                                 <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
-                            <td class="borderless">
-                                &nbsp;
+                            @php
+                                $clase = 'light';
+                                $coste = '';
+                                if ($investigacion->coste->fuel > 0) {
+                                    if ($investigacion->coste->fuel > $recursos->fuel) {
+                                        $clase = 'danger';
+                                        $coste = $recursos->fuel - $investigacion->coste->fuel;
+                                    }else {
+                                        $coste = $recursos->fuel - $investigacion->coste->fuel;
+                                    }
+                                }
+                            @endphp
+                            <td class="text-{{ $clase }} borderless">
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
-                            <td class="borderless">
-                                &nbsp;
+                            @php
+                                $clase = 'light';
+                                $coste = '';
+                                if ($investigacion->coste->ma > 0) {
+                                    if ($investigacion->coste->ma > $recursos->ma) {
+                                        $clase = 'danger';
+                                        $coste = $recursos->ma - $investigacion->coste->ma;
+                                    }else {
+                                        $coste = $recursos->ma - $investigacion->coste->ma;
+                                    }
+                                }
+                            @endphp
+                            <td class="text-{{ $clase }} borderless">
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
-                            <td class="borderless">
-                                &nbsp;
+                            @php
+                                $clase = 'light';
+                                $coste = '';
+                                if ($investigacion->coste->municion > 0) {
+                                    if ($investigacion->coste->municion > $recursos->municion) {
+                                        $clase = 'danger';
+                                        $coste = $recursos->municion - $investigacion->coste->municion;
+                                    }else {
+                                        $coste = $recursos->municion - $investigacion->coste->municion;
+                                    }
+                                }
+                            @endphp
+                            <td class="text-{{ $clase }} borderless">
+                                <small>{{ $coste == '' ? $coste : number_format($coste, 0,",",".") }}</small>
                             </td>
                             <td class="borderless">
                                 &nbsp;
@@ -362,7 +398,7 @@
                                     $clase="light";
                                 }
                             @endphp
-                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $investigacion->id }}', '{{ $investigacion->codigo }}','minas-tab')">
+                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}')">
                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                             </button>
                         </td>

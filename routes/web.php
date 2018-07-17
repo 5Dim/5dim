@@ -35,7 +35,7 @@ Route::get('/juego/construccion/industria/{industria}', ['uses' => 'Construccion
 
 //Investigacion
 Route::get('/juego/investigacion/{tab?}', 'InvestigacionController@index');
-Route::get('/juego/investigacion/investigar/{id}/{personal}/{tab}', ['uses' => 'InvestigacionController@construir']);
+Route::get('/juego/investigacion/construir/{id}/{personal}/{tab?}', ['uses' => 'InvestigacionController@construir']);
 Route::get('/juego/investigacion/cancelar/{id}', ['uses' => 'InvestigacionController@cancelar']);
 Route::get('/juego/investigacion/datos/{codigo}', ['uses' => 'InvestigacionController@datos']);
 

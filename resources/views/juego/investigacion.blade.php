@@ -21,7 +21,7 @@
                                     <td class=" text-light align-middle borderless">
                                         {{ trans('investigacion.' . $colaInvestigacion[$i]->investigaciones->codigo) }}
                                     </td>
-                                    <td class=" {{ $colaInvestigacion[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">
+                                    <td class="text-success text-success align-middle borderless">
                                         {{ $colaInvestigacion[$i]->accion }}
                                     </td>
                                     <td class=" text-light align-middle borderless">

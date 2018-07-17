@@ -206,6 +206,11 @@ function sendIndustria(industria) {
     window.location.href = "http://localhost/juego/construccion/industria/" + industria;
 }
 
+function sendInvestigar(id, codigo) {
+    var personal = $('#personal' + codigo).val();
+    window.location.href = "http://localhost/juego/investigacion/construir/" + id + "/" + personal;
+}
+
 function mostrarDatosConstruccion(codigo) {
     $.ajax({
         method: "GET",

@@ -6,6 +6,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\CostesInvestigaciones;
 use App\Construcciones;
+use App\Constantes;
 
 class Investigaciones extends Model
 {
@@ -107,15 +108,14 @@ class Investigaciones extends Model
 
     public function calcularTiempoInvestigaciones($preciototal, $personal,$nivel){
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        $velInvest=Constantes::where('codigo','velInvest')->first();
+        $velInvest=Constantes::where('codigo','velInvest')->first()->valor;
         $factinvest=10000*$velInvest;
-        $construccion = new Construcciones();
-        $nivelLaboratorio=$construccion::where([
-            ['planetas_id',$planetaActual],
+        $nivelLaboratorio=Construcciones::where([
+            ['planetas_id',$planetaActual->id],
             ['codigo','laboratorio'],
             ])->first();
-        if ($personal > 0 && $nivelLaboratorio->nivel>0) {
-            $result = ($factinvest*($nivel+1) * (($preciototal)/($personal*$nivelLaboratorio>nivel)));
+        if ($personal > 0 && $nivelLaboratorio->nivel > 0) {
+            $result = ($factinvest*($nivel+1) * (($preciototal)/($personal*$nivelLaboratorio->nivel)));
         }else{
             $result = false;
         }
