@@ -115,7 +115,7 @@ class Investigaciones extends Model
             ['codigo','laboratorio'],
             ])->first();
         if ($personal > 0 && $nivelLaboratorio->nivel>0) {
-            $result = ($factinvest*($nivel+1) * (($preciototal)/($personal*$nivelLaboratorio>nivel)));
+            $result = ($factinvest*($nivel+1) * (($preciototal)/($personal*$nivelLaboratorio->nivel)));
         }else{
             $result = false;
         }
