@@ -12,7 +12,7 @@
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $investigacion->codigo }}">Termina:</td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $investigacion->codigo }}">Tiempo:</td>
                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $investigacion->codigo }}" type="number" class="personal1"
-                                placeholder="personal" value="{{$personal}}" onkeyup="calculaTiempo({{$investigacion->coste->mineral+$investigacion->coste->cristal+$investigacion->coste->gas+$investigacion->coste->plastico +$investigacion->coste->ceramica +$investigacion->coste->liquido + $investigacion->coste->micros +12}} ,{{$velInvest->valor}}, '{{$investigacion->codigo}}') "></td>
+                                placeholder="personal" value="{{$personal}}" onkeyup="calculaTiempo({{$investigacion->coste->mineral+$investigacion->coste->cristal+$investigacion->coste->gas+$investigacion->coste->plastico +$investigacion->coste->ceramica +$investigacion->coste->liquido + $investigacion->coste->micros + $investigacion->coste->fuel+ $investigacion->coste->ma+ $investigacion->coste->municion }} ,{{$velInvest->valor}}, '{{$investigacion->codigo}}','{{$nivelLaboratorio}}') "></td>
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/investigaciones/' . $investigacion->codigo . '.jpg') }}"
