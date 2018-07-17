@@ -120,7 +120,6 @@ function activarIntervalo(recEntrantes, almEntrante, proEntrante, intervalo) {
 }
 
 function calculaTiempo(preciototal, velocidadConst, dnd) {
-
     premiun = 0;
     personal = $('#personal' + dnd).val();
     horaImprimible = "";
@@ -143,6 +142,9 @@ function calculaTiempo(preciototal, velocidadConst, dnd) {
         $("#tiempo" + dnd).html(horaImprimible);
     }
 }
+
+
+
 
 function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas y lo pone en hastacuando'+dndv
 
