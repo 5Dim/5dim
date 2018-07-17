@@ -340,7 +340,7 @@
                             @php
                                 $deshabilitado="";
                                 $clase="success";
-                                $texto=" Construir";
+                                $texto=" Investigar";
                                 foreach ($dependencias as $dependencia) {
                                     if ($dependencia->codigo==$investigacion->codigo){
                                             $nivelTengo=$investigaciones->where('codigo',$dependencia->codigoRequiere)->first();
