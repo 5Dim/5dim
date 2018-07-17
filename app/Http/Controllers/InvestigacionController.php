@@ -12,6 +12,9 @@ use App\Constantes;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
+use App\EnInvestigaciones;
+use App\Investigaciones;
+use App\Dependencias;
 
 class InvestigacionController extends Controller
 {
@@ -39,19 +42,22 @@ class InvestigacionController extends Controller
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
 
-            //Constantes de construccion
-            $CConstantes=Constantes::where('tipo','investigacion')->get();
+        //Investigaciones
+        $investigacion = new Investigaciones();
+        $investigaciones = $investigacion->investigaciones($planetaActual);
 
-            //Enviamos los datos para la velocidad de construccion
-             $velInvest=$CConstantes->where('codigo','velInvest')->first();
-            // vemos las dependencias
-            $dependencias=Dependencias::where('tipo','investigacion')->get();
+        //Constantes de construccion
+        $CConstantes=Constantes::where('tipo','investigacion')->get();
 
-            //Devolvemos la vista con todas las variables
-            $velInvest=$CConstantes->where('codigo','velInvest')->first();
-        // return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velInvest', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual'));
+        //Enviamos los datos para la velocidad de construccion
+        $velInvest=$CConstantes->where('codigo','velInvest')->first();
 
+        // vemos las dependencias
+        $dependencias=Dependencias::where('tipo','investigacion')->get();
 
-        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias'));
+        //Devolvemos la vista con todas las variables
+        $velInvest=$CConstantes->where('codigo','velInvest')->first();
+
+        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones'));
     }
 }

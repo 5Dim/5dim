@@ -42,6 +42,7 @@ class CostesInvestigaciones extends Model
         $costoInvestMotores=$IConstantes->where('codigo','costoInvestMotores')->first()->valor;
         $costoInvestIndustrias=$IConstantes->where('codigo','costoInvestIndustrias')->first()->valor;
         $costoInvestImperio=$IConstantes->where('codigo','costoInvestImperio')->first()->valor;
+        $costoInvestDiseño=$IConstantes->where('codigo','costoInvestDiseño')->first()->valor;
 
 
         //  $esteprecio = (int)((pow ($nivel , ($esteexp * $Ifactor))) * $esteinic) * $corrector;
@@ -229,7 +230,7 @@ class CostesInvestigaciones extends Model
         //$coste->codigo=$r1cce[0];
         $n=1;
         $nivel=$r1cce[10];
-        $coste->investigacion_id = $idInvestigaciones;
+        $coste->investigaciones_id = $idInvestigaciones;
         $coste->mineral=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
         $coste->cristal=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
         $coste->gas=    (int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;

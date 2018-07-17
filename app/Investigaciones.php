@@ -71,52 +71,38 @@ class Investigaciones extends Model
         return $listaNombres;
     }
 
-    public function nuevoJugador ($jugador) {
-        $listaConstrucciones = [];
-        $construccion = new Investigaciones();
-        $listaNombres = $construccion->listaNombres();
+    public function nuevoJugador ($idJugador) {
+        $listaInvestigaciones = [];
+        $investigaciones = new Investigaciones();
+        $listaNombres = $investigaciones->listaNombres();
 
         for ($i = 0 ; $i < count($listaNombres) ; $i++) {
-            $construccion = new Investigaciones();
-            $construccion->planetas_id = $planeta;
-            $construccion->codigo = $listaNombres[$i];
-            if ($listaNombres[$i] == 'almMineral' or $listaNombres[$i] == 'almCristal') {
-                $construccion->nivel = 99;
-            }else{
-                $construccion->nivel = 0;
-            }
-            array_push($listaConstrucciones, $construccion);
+            $investigacion = new Investigaciones();
+            $investigacion->jugadores_id = $idJugador;
+            $investigacion->codigo = $listaNombres[$i];
+            $investigacion->nivel=0;
+            array_push($listaInvestigaciones, $investigacion);
         }
 
-        foreach ($listaConstrucciones as $construccion) {
-            $construccion->save();
+        foreach ($listaInvestigaciones as $investigacion) {
+            $investigacion->save();
         }
 
         for ($i = 0 ; $i < count($listaNombres) ; $i++) {
-            $costeConstruccion = new CostesInvestigaciones();
-            $coste = $costeConstruccion->generarDatosCostesConstruccion(0, $listaNombres[$i], $listaConstrucciones[$i]->id);
+            $costeInvestigaciones = new CostesInvestigaciones();
+            $coste = $costeInvestigaciones->generarDatosCostesInvestigacion(0, $listaNombres[$i], $listaInvestigaciones[$i]->id);
             $coste->save();
         }
-
-        $industrias=new Industrias();
-        $industrias->planetas_id=$planeta;
-        $industrias->liquido=false;
-        $industrias->micros=false;
-        $industrias->fuel=false;
-        $industrias->ma=false;
-        $industrias->municion=false;
-        $industrias->save();
-
     }
 
     public static function investigaciones ($planetaActual) {
-        $construcciones = Investigaciones::where('jugadores_id', $planetaActual->id)->get();
-        if (empty($construcciones[0]->codigo)) {
-            $construccion = new Investigaciones();
-            $construccion->nuevaColonia($planetaActual->id);
-            $construcciones = Investigaciones::where('jugadores_id', $planetaActual->id)->get();
+        $investigaciones = Investigaciones::where('jugadores_id', $planetaActual->jugadores->id)->get();
+        if (empty($investigaciones[0]->codigo)) {
+            $investigacion = new Investigaciones();
+            $investigacion->nuevoJugador($planetaActual->jugadores->id);
+            $investigaciones = Investigaciones::where('jugadores_id', $planetaActual->jugadores->id)->get();
         }
-        return $construcciones;
+        return $investigaciones;
     }
 
     public function calcularTiempoInvestigaciones($preciototal, $personal,$nivel){
