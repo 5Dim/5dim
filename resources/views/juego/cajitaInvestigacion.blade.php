@@ -12,7 +12,7 @@
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construccion->codigo }}">Termina:</td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construccion->codigo }}">Tiempo:</td>
                         <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1"
-                                placeholder="personal" value="{{$personal}}" onkeyup="calculaTiempo({{$construccion->coste->mineral+$construccion->coste->cristal+$construccion->coste->gas+$construccion->coste->plastico +$construccion->coste->ceramica +$construccion->coste->liquido + $construccion->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construccion->codigo}}') "></td>
+                                placeholder="personal" value="{{$personal}}" onkeyup="calculaTiempo({{$construccion->coste->mineral+$construccion->coste->cristal+$construccion->coste->gas+$construccion->coste->plastico +$construccion->coste->ceramica +$construccion->coste->liquido + $construccion->coste->micros +12}} ,{{$velInvest->valor}}, '{{$construccion->codigo}}') "></td>
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construccion->codigo . '.jpg') }}"

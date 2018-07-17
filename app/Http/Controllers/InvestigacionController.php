@@ -39,6 +39,19 @@ class InvestigacionController extends Controller
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
 
-        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
+            //Constantes de construccion
+            $CConstantes=Constantes::where('tipo','investigacion')->get();
+
+            //Enviamos los datos para la velocidad de construccion
+             $velInvest=$CConstantes->where('codigo','velInvest')->first();
+            // vemos las dependencias
+            $dependencias=Dependencias::where('tipo','investigacion')->get();
+
+            //Devolvemos la vista con todas las variables
+            $velInvest=$CConstantes->where('codigo','velInvest')->first();
+        // return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velInvest', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual'));
+
+
+        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias'));
     }
 }

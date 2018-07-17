@@ -5,6 +5,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\CostesInvestigaciones;
+use App\Construcciones;
 
 class Investigaciones extends Model
 {
@@ -116,5 +117,22 @@ class Investigaciones extends Model
             $construcciones = Investigaciones::where('jugadores_id', $planetaActual->id)->get();
         }
         return $construcciones;
+    }
+
+    public function calcularTiempoInvestigaciones($preciototal, $personal,$nivel){
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+        $velInvest=Constantes::where('codigo','velInvest')->first();
+        $factinvest=10000*$velInvest;
+        $construccion = new Construcciones();
+        $nivelLaboratorio=$construccion::where([
+            ['planetas_id',$planetaActual],
+            ['codigo','laboratorio'],
+            ])->first();
+        if ($personal > 0 && $nivelLaboratorio->nivel>0) {
+            $result = ($factinvest*($nivel+1) * (($preciototal)/($personal*$nivelLaboratorio>nivel)));
+        }else{
+            $result = false;
+        }
+        return $result;
     }
 }
