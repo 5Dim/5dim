@@ -111,7 +111,7 @@ class Investigaciones extends Model
         $velInvest=Constantes::where('codigo','velInvest')->first()->valor;
         $factinvest=10000*$velInvest;
         $nivelLaboratorio=Construcciones::where([
-            ['planetas_id',$planetaActual->id],
+            ['planetas_id', $planetaActual->id],
             ['codigo','laboratorio'],
             ])->first();
         if ($personal > 0 && $nivelLaboratorio->nivel > 0) {

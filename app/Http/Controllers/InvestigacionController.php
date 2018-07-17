@@ -162,17 +162,85 @@ class InvestigacionController extends Controller
             $construyendo->nivel = $nivel;
             $construyendo->accion = "Investigando";
             $construyendo->created_at = $inicio;
-            $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
+            $construyendo->finished_at = date('Y-m-d H:i:s', $fechaFin);
             $construyendo->save();
 
             //Generamos el coste del edificio
             $costeInvestigaciones = new CostesInvestigaciones();
-            $costeAntiguo = CostesInvestigaciones::where('construcciones_id', $construccion->id)->first();
-            $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
+            $costeAntiguo = CostesInvestigaciones::where('investigaciones_id', $investigacion->id)->first();
+            $coste = $costeInvestigaciones->generarDatosCostesInvestigacion($nivel, $codigo, $idInvestigacion);
             $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
             $costeAntiguo->save();
         }
 
         return redirect('/juego/investigacion');
+    }
+
+    //Acceso a subir nivel de construccion
+    public function cancelar ($idColaConstruccion = 1)
+    {
+        //Recuperar construccion
+        $cola = EnInvestigaciones::where('id', $idColaConstruccion)->first();
+
+        //Comprobamos si hay algun edificio por encima del nivel que se ha cancelado
+        $listaCola = EnInvestigaciones::where([['Investigaciones_id', '=', $cola->investigaciones->id], ['nivel', '>', $cola->nivel]])->get();
+
+        if ($cola->accion == 'Investigando') {
+            $nivel = $cola->nivel - 1;
+        }
+        $reciclaje = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
+
+        //Generamos el coste del edificio
+        $costeConstrucciones = new CostesInvestigaciones();
+        $costeAntiguo = CostesInvestigaciones::where('Investigaciones_id', $cola->investigaciones->id)->first();
+        $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $cola->investigaciones->codigo, $cola->investigaciones->id);
+        $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
+        $costeAntiguo->save();
+
+        //Ahora cancelamos toda la cola con nivel superiore a la cancelada
+        foreach ($listaCola as $colita) {
+            //En caso de ser una construccion debe devolver parte de los recursos
+            if ($colita->accion == "Investigando") {
+                $costeconstruccion = new CostesInvestigaciones();
+                $coste = $costeconstruccion->generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
+
+                //Restaurar beneficio por reciclaje
+                $colita->investigaciones->enInvestigaciones->planetas->recursos->mineral += ($coste->mineral * $reciclaje);
+                $colita->investigaciones->enInvestigaciones->planetas->recursos->cristal += ($coste->cristal * $reciclaje);
+                $colita->investigaciones->enInvestigaciones->planetas->recursos->gas += ($coste->gas * $reciclaje);
+                $colita->investigaciones->enInvestigaciones->planetas->recursos->plastico += ($coste->plastico * $reciclaje);
+                $colita->investigaciones->enInvestigaciones->planetas->recursos->ceramica += ($coste->ceramica * $reciclaje);
+                $colita->investigaciones->enInvestigaciones->planetas->recursos->liquido += ($coste->liquido * $reciclaje);
+                $colita->investigaciones->enInvestigaciones->planetas->recursos->micros += ($coste->micros * $reciclaje);
+                $colita->investigaciones->enInvestigaciones->planetas->recursos->save();
+            }
+            $colita->delete();
+        }
+        //En caso de ser una construccion debe devolver parte de los recursos
+        if ($cola->accion == "Investigando") {
+            $coste = $cola->construcciones->coste;
+            $recursos = $cola->construcciones->planetas->recursos;
+
+            //Restaurar beneficio por reciclaje
+            $recursos->mineral += ($coste->mineral * $reciclaje);
+            $recursos->cristal += ($coste->cristal * $reciclaje);
+            $recursos->gas += ($coste->gas * $reciclaje);
+            $recursos->plastico += ($coste->plastico * $reciclaje);
+            $recursos->ceramica += ($coste->ceramica * $reciclaje);
+            $recursos->liquido += ($coste->liquido * $reciclaje);
+            $recursos->micros += ($coste->micros * $reciclaje);
+            $recursos->save();
+        }
+        $cola->delete();
+
+        return redirect('/juego/investigacion');
+    }
+
+    //Acceso a subir nivel de construccion
+    public function datos ($codigo)
+    {
+        $nombreInvestigacion = trans('investigacion.' . $codigo);
+        $descripcionInvestigacion = trans('investigacion.' . $codigo . 'Descripcion');
+        return compact('descripcionInvestigacion', 'nombreInvestigacion');
     }
 }
