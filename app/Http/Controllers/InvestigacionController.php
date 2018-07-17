@@ -59,7 +59,13 @@ class InvestigacionController extends Controller
         //Devolvemos la vista con todas las variables
         $velInvest=$CConstantes->where('codigo','velInvest')->first();
 
-        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones'));
+        //nivel del laboratorio
+        $nivelLaboratorio=Construcciones::where([
+            ['planetas_id',$planetaActual->id],
+            ['codigo','laboratorio'],
+            ])->first();
+
+        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones','nivelLaboratorio'));
     }
 
     //Acceso a subir nivel de construccion

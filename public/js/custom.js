@@ -144,6 +144,31 @@ function calculaTiempo(preciototal, velocidadConst, dnd) {
 }
 
 
+function calculaTiempoInvestigacion(preciototal, velocidadConst, dnd, nivel, nivelLaboratorio) {
+    premiun = 0;
+    personal = $('#personal' + dnd).val();
+    horaImprimible = "";
+    if (personal > 1) {
+        $result = (velocidadConst * 1000 * ($nivel + 1) * ((preciototal) / (personal * nivelLaboratorio)));
+        result = result - premiun * 5 * 60;
+        if (result < 1) {
+            result = 0;
+        };
+        lhora = Math.floor((result / 3600));
+        lminuto = Math.floor((result - (lhora * 3600)) / 60);
+        lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
+
+        horaImprimible = "Tiempo: " + lhora + "h " + lminuto + "m " + lsegundo + "s";
+
+        $("#tiempo" + dnd).html(horaImprimible);
+        timeg(result, "termina" + dnd);
+
+    } else {
+        $("#tiempo" + dnd).html(horaImprimible);
+    }
+}
+
+
 
 
 function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas y lo pone en hastacuando'+dndv
