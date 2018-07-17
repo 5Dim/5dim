@@ -57,7 +57,7 @@ class CostesInvestigaciones extends Model
 
             case "invPlasma":
             $costoIT=$costoInvestArmas;
-            $r1cce = [$codigo,2,0,0,2,0,0,0,0,.0,2,$nivel];
+            $r1cce = [$codigo,2,0,0,2,0,0,0,0,0,.0,2,$nivel];
             $costosIniciales = [$codigo,1000,0,6000,0,10000,0,0,0,0,3000];
             $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
             break;
@@ -229,7 +229,7 @@ class CostesInvestigaciones extends Model
         $coste =new CostesInvestigaciones();
         //$coste->codigo=$r1cce[0];
         $n=1;
-        $nivel=$r1cce[10];
+        $nivel=$r1cce[11];
         $coste->investigaciones_id = $idInvestigaciones;
         $coste->mineral=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
         $coste->cristal=(int)((pow ($nivel , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
