@@ -382,11 +382,11 @@
         $( document ).ready(function() {
         var recursos = {!! json_encode($recursos) !!};
         recursos.personal -= {{$personal}}
-        console.log(recursos);
+        //console.log(recursos);
         var produccion = {!! json_encode($producciones) !!};
-        console.log(produccion);
+        //console.log(produccion);
         var almacenes = {!! json_encode($almacenes) !!};
-        console.log(almacenes);
+        //console.log(almacenes);
         activarIntervalo(recursos, almacenes, produccion, 250);
     });
     </script>
