@@ -109,11 +109,11 @@ class Investigaciones extends Model
     }
 
     public static function investigaciones ($planetaActual) {
-        $construcciones = Investigaciones::where('planetas_id', $planetaActual->id)->get();
+        $construcciones = Investigaciones::where('jugadores_id', $planetaActual->id)->get();
         if (empty($construcciones[0]->codigo)) {
             $construccion = new Investigaciones();
             $construccion->nuevaColonia($planetaActual->id);
-            $construcciones = Investigaciones::where('planetas_id', $planetaActual->id)->get();
+            $construcciones = Investigaciones::where('jugadores_id', $planetaActual->id)->get();
         }
         return $construcciones;
     }
