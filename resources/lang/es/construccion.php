@@ -33,6 +33,7 @@ return [
     'comercio' => "Estación de comercio",
     'observacion' => "Centro de observación",
     'potenciador' => "Potenciador",
+    'inhibidorHMA' =>"Inhibidor HMA",
     'nodEstructura' => "Módulo estructural",
     'nodMotorMA' => "Motor HMA",
 
@@ -68,6 +69,7 @@ return [
     'comercioDescripcion' => "Esta es la culminación de las construcciones comerciales, como si de un enorme mercado se tratara aquí se intercambian todo tipo de mercancias. podemos establecer unos precios de venta y compra para que los intercambios se produzcan de forma automática.<br>A mayor nivel mayores son las facilidades de comercio reduciendo las tasas y los tiempos de transacción por nivel para una misma distancia.",
     'observacionDescripcion' => "Mediante una amplia red de telescopios que barren toda el espectro desde esta construcción podemos observar lo que ocurre a grandes distancias. Así nos adviertir la proximidad de flotas u observar planetas enemigos.<br>A mayor nivel de este edificio, mayor es la distancia de observación, pero su agudeza viene determinada por los niveles de investigación en Observación.",
     'potenciadorDescripcion' => "Esta construción modifica las condiciones sobre una colonia para reducir el consumo de combustible de las flotas en curso.<br>El ahorro es proporcional al nivel del edificio y sólo funciona para naves que salen de esta colonia, no para las que se encuentran ya en órbita.",
+    'inhibidorHMADescripcion' => "Esta enorme estrucutura defensiva crea interferencias en el hiperespacio evitando que cualquier motor HMA o sus efectos dentro de su rango, que escala por el nivel del edificio.",
     'nodEstructuraDescripcion' => "Para que una nave nodriza crezca es necesario construir nuevas estructuras que albergen los nuevos módulos. Cada nivel aporta 6 huecos para subir otros tantos niveles otras construcciones, el límite son 588 huecos<br>Subiendo su nivel se aumenta el espacio para nuevas construcciones, pero aumenta también su peso para ser movido por los motores. Esta construcción es exclusiva de las naves nodriza.",
     'nodMotorMADescripcion' => "Para que una nave nodriza se mueva necesita de unos motores especiales alimentados por MA que crean un pliege espacio temporal<br>Cada nave, defensa, edificio, recurso y todo lo que contiene la nodriza es pesado para tener en cuenta el gasto de combustible del desplazamiento.",
 
