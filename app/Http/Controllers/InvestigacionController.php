@@ -38,7 +38,9 @@ class InvestigacionController extends Controller
             $personal += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
-            $personal += $cola->personal;
+            if ($cola->planetas->id == session()->get('planetas_id')) {
+                $personal += $cola->personal;
+            }
         }
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos

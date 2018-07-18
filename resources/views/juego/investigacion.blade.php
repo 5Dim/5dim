@@ -55,10 +55,10 @@
                     Militares
                 </a>
                 <a class="nav-item nav-link" id="misc-tab" data-toggle="tab" href="#misc" role="tab" aria-controls="misc" aria-selected="false">
-                    Misc
+                    Varios
                 </a>
                 <a class="nav-item nav-link" id="personales-tab" data-toggle="tab" href="#personales" role="tab" aria-controls="personales" aria-selected="false">
-                    Personal
+                    Imperio
                 </a>
                 <a class="nav-item nav-link" id="motores-tab" data-toggle="tab" href="#motores" role="tab" aria-controls="motores" aria-selected="false">
                     Motores
