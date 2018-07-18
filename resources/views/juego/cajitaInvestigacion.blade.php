@@ -377,16 +377,23 @@
                                 $deshabilitado="";
                                 $clase="success";
                                 $texto=" Investigar";
-                                foreach ($dependencias as $dependencia) {
-                                    if ($dependencia->codigo==$investigacion->codigo){
-                                            $nivelTengo=$investigaciones->where('codigo',$dependencia->codigoRequiere)->first();
-                                        if ( $nivelTengo->nivel < $dependencia->nivelRequiere){
-                                            $texto.=" requiere ".trans('investigacion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
-                                            $deshabilitado=" disabled='disabled' ";
-                                            $clase="light";
+                                if ($nivelLaboratorio->nivel>0){
+                                    foreach ($dependencias as $dependencia) {
+                                        if ($dependencia->codigo==$investigacion->codigo){
+                                                $nivelTengo=$investigaciones->where('codigo',$dependencia->codigoRequiere)->first();
+                                            if ( $nivelTengo->nivel < $dependencia->nivelRequiere){
+                                                $texto.=" requiere ".trans('investigacion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
+                                                $deshabilitado=" disabled='disabled' ";
+                                                $clase="light";
+                                            }
                                         }
                                     }
+                                } else {
+                                    $texto.=" requiere laboratorio en este planeta";
+                                    $deshabilitado=" disabled='disabled' ";
+                                    $clase="light";
                                 }
+
                                 if (!empty($investigacion->eninvestigaciones[0])) {
                                     if ($investigacion->eninvestigaciones[0]->accion == "Reciclando") {
                                         $deshabilitado=" disabled='disabled' ";

@@ -68,6 +68,7 @@ class Construcciones extends Model
             "comercio",
             "observacion",
             "potenciador",
+            "inhibidorHMA",
             "nodEstructura",
             "nodMotorMA",
         ];

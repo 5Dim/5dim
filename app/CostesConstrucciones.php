@@ -193,6 +193,11 @@ class CostesConstrucciones extends Model
             $coste= $costesc->calculos($r1cce, $idConstruccion,$avelprodminas);
             break;
 
+            case "inhibidorHMA":
+            $r1cce=[$codigo,70,20,15,1,32,2.3,1.3,$nivel];
+            $coste= $costesc->calculos($r1cce, $idConstruccion,$avelprodminas);
+            break;
+
             case "nodEstructura":
             $r1cce=[$codigo,3.5,3.5,0,2,0,0,2.8,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion,$avelprodminas);

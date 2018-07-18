@@ -136,25 +136,28 @@
 
 <script>
     $( document ).ready(function() {
-        {{--
-        @for ($i = 0 ; $i < 31 ; $i++)
-            calculaTiempo(
-                {{ $construcciones[$i]->coste->mineral +
-                $construcciones[$i]->coste->cristal +
-                $construcciones[$i]->coste->gas +
-                $construcciones[$i]->coste->plastico +
-                $construcciones[$i]->coste->ceramica +
-                $construcciones[$i]->coste->liquido +
-                $construcciones[$i]->coste->micros +
-                12 }},
-                {{$velInvest->valor}},
-                '{{$construcciones[$i]->codigo}}'
-            )
-        @endfor
-
-        $("#{{$tab}}").tab('show');
-        --}}
+    @for ($i = 0 ; $i < 22 ; $i++)
+        calculaTiempoInvestigacion(
+            {{ $investigaciones[$i]->coste->mineral +
+            $investigaciones[$i]->coste->cristal +
+            $investigaciones[$i]->coste->gas +
+            $investigaciones[$i]->coste->plastico +
+            $investigaciones[$i]->coste->ceramica +
+            $investigaciones[$i]->coste->liquido +
+            $investigaciones[$i]->coste->micros +
+            $investigaciones[$i]->coste->fuel +
+            $investigaciones[$i]->coste->municion +
+            $investigaciones[$i]->coste->ma
+        }},
+            {{$velInvest->valor}},
+            '{{$investigaciones[$i]->codigo}}',
+            '{{$investigaciones[$i]->nivel}}',
+            '{{$nivelLaboratorio->nivel}}'
+        );
+    @endfor
     });
+
+    $("#{{$tab}}").tab('show');
 
 </script>
 @endsection

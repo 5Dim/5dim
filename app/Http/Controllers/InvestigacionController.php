@@ -20,7 +20,7 @@ use App\CostesInvestigaciones;
 class InvestigacionController extends Controller
 {
 
-    public function index ()
+    public function index ($tab="")
     {
         //Inicio recursos
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
@@ -65,7 +65,7 @@ class InvestigacionController extends Controller
             ['codigo','laboratorio'],
             ])->first();
 
-        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones','nivelLaboratorio'));
+        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones','nivelLaboratorio','tab'));
     }
 
     //Acceso a subir nivel de construccion

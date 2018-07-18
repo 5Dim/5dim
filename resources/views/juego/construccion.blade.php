@@ -123,7 +123,7 @@
                 @endfor
             </div>
             <div class="tab-pane fade" id="observacion" role="tabpanel" aria-labelledby="observacion-tab">
-                @for ($i = 29 ; $i < 31 ; $i++)
+                @for ($i = 29 ; $i < 32 ; $i++)
                     @include('juego.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
                         'personal' => $recursos->personal - $personal,
@@ -156,7 +156,7 @@
 
 <script>
     $( document ).ready(function() {
-        @for ($i = 0 ; $i < 31 ; $i++)
+        @for ($i = 0 ; $i < 32 ; $i++)
             calculaTiempo(
                 {{ $construcciones[$i]->coste->mineral +
                 $construcciones[$i]->coste->cristal +

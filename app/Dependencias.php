@@ -192,7 +192,14 @@ class Dependencias extends Model
         $dependencia->tipo='construccion';
         array_push($dependencias, $dependencia);
 
-        /////  dependencias investigaciones
+        $dependencia =new Dependencias();
+        $dependencia->codigo='inhibidorHMA';
+        $dependencia->codigoRequiere='escudo';
+        $dependencia->nivelRequiere=15;
+        $dependencia->tipo='construccion';
+        array_push($dependencias, $dependencia);
+
+        /////  dependencias investigaciones  //////////////////////////////////////////////
 
         $dependencia =new Dependencias();
         $dependencia->codigo='invMa';
