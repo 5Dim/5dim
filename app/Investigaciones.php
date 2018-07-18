@@ -72,6 +72,22 @@ class Investigaciones extends Model
         return $listaNombres;
     }
 
+    public function sumarCostes($coste) {
+        $nuevoCoste =
+        $coste->mineral +
+        $coste->cristal +
+        $coste->gas +
+        $coste->plastico +
+        $coste->ceramica +
+        $coste->liquido +
+        $coste->micros +
+        $coste->fuel +
+        $coste->ma +
+        $coste->municion;
+
+        return $nuevoCoste;
+    }
+
     public function nuevoJugador ($idJugador) {
         $listaInvestigaciones = [];
         $investigaciones = new Investigaciones();
