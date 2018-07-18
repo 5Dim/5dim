@@ -5,7 +5,7 @@ use App\Constantes;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CualidadesFuselajes extends Model
+class CostesFuselajes extends Model
 {
     public $timestamps = false;
 
@@ -15,9 +15,9 @@ class CualidadesFuselajes extends Model
     }
 
 
-    public function  generarDatosCualidadesFuselajes($codigo,$fuselajes_id)
+    public function  generarDatosCostesFuselajes($codigo,$fuselajes_id)
     {
-        $costesc = new CualidadesFuselajes();
+        $costesc = new CostesFuselajes();
 
         $constantes=Constantes::where('tipo','fuselajes')->get();;
 
@@ -26,11 +26,8 @@ class CualidadesFuselajes extends Model
 
         switch($codigo){
             case "XG":
-            $Tnave=0;
-            $maxvel=$Tnave*(20/(2*$Tnave+.000001));
-            $cualidades = [$codigo,1,2,1,1,1,.7,1.2,0,0,$maxvel];
-            $armas = [$codigo,2,0,0,0,0,0,0,0,0,0,9,10,1];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave','caza');
+            $r1cce = [$codigo,5000,150,0,100,2,3,5,1,0,0,2];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave','caza');
             break;
         }
 
@@ -43,7 +40,7 @@ class CualidadesFuselajes extends Model
 
     }
 
-    function calculos($cualidades,$armas,$constantes,$fuselajes_id,$tipo,$tamano){
+    function calculos($r1cce,$constantes,$fuselajes_id,$tipo,$tamano){
 
         $coste =new CostesFuselajes();
 
@@ -51,7 +48,7 @@ class CualidadesFuselajes extends Model
             $factorCostoT=$constantes::where('codigo','fuselaje'+$tipo+'Recursos'+$tamano)->first()->valor;
 
         $n=1;
-/*
+
         $coste->fuselajes_id = $fuselajes_id;
         $coste->mineral=(int)($r1cce[$n] * $factorCosto * $factorCostoT); $n++;
         $coste->cristal=(int)($r1cce[$n] * $factorCosto * $factorCostoT); $n++;
@@ -63,7 +60,7 @@ class CualidadesFuselajes extends Model
         $coste->fuel=(int)($r1cce[$n] * $factorCosto * $factorCostoT); $n++;
         $coste->ma=(int)($r1cce[$n] * $factorCosto * $factorCostoT); $n++;
         $coste->municion=(int)($r1cce[$n] * $factorCosto * $factorCostoT); $n++;
-*/
+
         return($coste);
 
     }

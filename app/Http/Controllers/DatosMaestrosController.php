@@ -9,6 +9,7 @@ use \App\Producciones;
 use \App\Variables;
 use \App\CostesConstrucciones;
 use \App\Dependencias;
+use \App\Fuselajes;
 
 class DatosMaestrosController extends Controller
 {
@@ -37,8 +38,8 @@ class DatosMaestrosController extends Controller
         $dependencia=new Dependencias();
         $dependencias=$dependencia->generarDatosDependencias();
 
-       // $produccion=new costes_construcciones();
-       // $costesConstruccion=$produccion->generarDatosCostesConstruccion();
+        $fuselaje=new Fuselajes();
+        $fuselajes=$fuselaje->generarDatosFuselajes();
 
     }
 }
