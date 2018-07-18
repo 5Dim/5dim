@@ -24,7 +24,7 @@ class InvestigacionController extends Controller
     {
         //Inicio recursos
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        EnConstrucciones::terminarColaConstrucciones();
+        EnInvestigaciones::terminarColaInvestigaciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
@@ -117,7 +117,7 @@ class InvestigacionController extends Controller
         $costeTotal = $construcciones[0]->sumarCostes($investigacion->coste);
 
         //Calcular el tiempo de construccion
-        $tiempo = $investigacion->calcularTiempoInvestigaciones($costeTotal, $personal, $nivel);
+        $tiempo = $investigacion->calcularTiempoInvestigaciones($costeTotal, $personal, $nivel, $planetaActual);
 
         //Comprobamos que el tiempo no sea false, seria un error de personal
         if (!$tiempo) {
@@ -128,21 +128,21 @@ class InvestigacionController extends Controller
         $fechaFin = strtotime($inicio) + $tiempo;
 
         //Comprobamos que el edificio se puede construir
-        if ($investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->mineral < $investigacion->coste->mineral) {
+        if ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->mineral < $investigacion->coste->mineral) {
             $error = true;
-        }elseif ($investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->cristal < $investigacion->coste->cristal) {
+        }elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->cristal < $investigacion->coste->cristal) {
             $error = true;
-        }elseif ($investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->gas < $investigacion->coste->gas) {
+        }elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->gas < $investigacion->coste->gas) {
             $error = true;
-        }elseif ($investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->plastico < $investigacion->coste->plastico) {
+        }elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->plastico < $investigacion->coste->plastico) {
             $error = true;
-        }elseif ($investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->ceramica < $investigacion->coste->ceramica) {
+        }elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->ceramica < $investigacion->coste->ceramica) {
             $error = true;
-        }elseif ($investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->liquido < $investigacion->coste->liquido) {
+        }elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->liquido < $investigacion->coste->liquido) {
             $error = true;
-        }elseif ($investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->micros < $investigacion->coste->micros) {
+        }elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->micros < $investigacion->coste->micros) {
             $error = true;
-        }elseif (($investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->personal - $personalUsado) < $personal) {
+        }elseif (($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->personal - $personalUsado) < $personal) {
             $error = true;
         }elseif ($accion != "Investigando") {
             $error = true;
@@ -151,20 +151,20 @@ class InvestigacionController extends Controller
         //Si no tenemos ningun error continuamos
         if (!$error) {
             //Restamos el coste a los recursos
-            $investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->mineral -= $investigacion->coste->mineral;
-            $investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->cristal -= $investigacion->coste->cristal;
-            $investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->gas -= $investigacion->coste->gas;
-            $investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->plastico -= $investigacion->coste->plastico;
-            $investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->ceramica -= $investigacion->coste->ceramica;
-            $investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->liquido -= $investigacion->coste->liquido;
-            $investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->micros -= $investigacion->coste->micros;
-            $investigacion->jugadores->planetas->where('id', session()->get('planetas_id'))->first()->recursos->save();
+            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->mineral -= $investigacion->coste->mineral;
+            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->cristal -= $investigacion->coste->cristal;
+            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->gas -= $investigacion->coste->gas;
+            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->plastico -= $investigacion->coste->plastico;
+            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->ceramica -= $investigacion->coste->ceramica;
+            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->liquido -= $investigacion->coste->liquido;
+            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->micros -= $investigacion->coste->micros;
+            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->save();
 
             //Generamos la cola
             $construyendo = new EnInvestigaciones();
             $construyendo->personal = $personal;
             $construyendo->investigaciones_id = $idInvestigacion;
-            $construyendo->planetas_id = session()->get('planetas_id');
+            $construyendo->planetas_id = $planetaActual->id;
             $construyendo->nivel = $nivel;
             $construyendo->accion = "Investigando";
             $construyendo->created_at = $inicio;
@@ -183,10 +183,10 @@ class InvestigacionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function cancelar ($idColaConstruccion = 1)
+    public function cancelar ($idColaInvestigacion = 1)
     {
         //Recuperar construccion
-        $cola = EnInvestigaciones::where('id', $idColaConstruccion)->first();
+        $cola = EnInvestigaciones::where('id', $idColaInvestigacion)->first();
 
         //Comprobamos si hay algun edificio por encima del nivel que se ha cancelado
         $listaCola = EnInvestigaciones::where([['Investigaciones_id', '=', $cola->investigaciones->id], ['nivel', '>', $cola->nivel]])->get();
@@ -199,7 +199,7 @@ class InvestigacionController extends Controller
         //Generamos el coste del edificio
         $costeConstrucciones = new CostesInvestigaciones();
         $costeAntiguo = CostesInvestigaciones::where('Investigaciones_id', $cola->investigaciones->id)->first();
-        $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $cola->investigaciones->codigo, $cola->investigaciones->id);
+        $coste = $costeConstrucciones->generarDatosCostesInvestigacion($nivel, $cola->investigaciones->codigo, $cola->investigaciones->id);
         $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
         $costeAntiguo->save();
 
@@ -208,24 +208,24 @@ class InvestigacionController extends Controller
             //En caso de ser una construccion debe devolver parte de los recursos
             if ($colita->accion == "Investigando") {
                 $costeconstruccion = new CostesInvestigaciones();
-                $coste = $costeconstruccion->generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
+                $coste = $costeconstruccion->generarDatosCostesInvestigacion($colita->nivel, $colita->investigaciones->codigo, $colita->investigaciones->id);
 
                 //Restaurar beneficio por reciclaje
-                $colita->investigaciones->enInvestigaciones->planetas->recursos->mineral += ($coste->mineral * $reciclaje);
-                $colita->investigaciones->enInvestigaciones->planetas->recursos->cristal += ($coste->cristal * $reciclaje);
-                $colita->investigaciones->enInvestigaciones->planetas->recursos->gas += ($coste->gas * $reciclaje);
-                $colita->investigaciones->enInvestigaciones->planetas->recursos->plastico += ($coste->plastico * $reciclaje);
-                $colita->investigaciones->enInvestigaciones->planetas->recursos->ceramica += ($coste->ceramica * $reciclaje);
-                $colita->investigaciones->enInvestigaciones->planetas->recursos->liquido += ($coste->liquido * $reciclaje);
-                $colita->investigaciones->enInvestigaciones->planetas->recursos->micros += ($coste->micros * $reciclaje);
-                $colita->investigaciones->enInvestigaciones->planetas->recursos->save();
+                $colita->planetas->recursos->mineral += ($coste->mineral * $reciclaje);
+                $colita->planetas->recursos->cristal += ($coste->cristal * $reciclaje);
+                $colita->planetas->recursos->gas += ($coste->gas * $reciclaje);
+                $colita->planetas->recursos->plastico += ($coste->plastico * $reciclaje);
+                $colita->planetas->recursos->ceramica += ($coste->ceramica * $reciclaje);
+                $colita->planetas->recursos->liquido += ($coste->liquido * $reciclaje);
+                $colita->planetas->recursos->micros += ($coste->micros * $reciclaje);
+                $colita->planetas->recursos->save();
             }
             $colita->delete();
         }
         //En caso de ser una construccion debe devolver parte de los recursos
         if ($cola->accion == "Investigando") {
-            $coste = $cola->construcciones->coste;
-            $recursos = $cola->construcciones->planetas->recursos;
+            $coste = $cola->investigaciones->coste;
+            $recursos = $cola->planetas->recursos;
 
             //Restaurar beneficio por reciclaje
             $recursos->mineral += ($coste->mineral * $reciclaje);

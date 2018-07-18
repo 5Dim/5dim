@@ -24,26 +24,6 @@ class EnInvestigaciones extends Model
         foreach ($colas as $cola) {
             $nivelNuevo = $cola->nivel;
             $cola->investigaciones->nivel = $nivelNuevo;
-
-            //En caso de reciclaje debe devolver los recursos
-            if ($cola->accion == "Reciclando") {
-                $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
-                $coste = $cola->investigaciones->coste;
-                $recursos = $cola->planetas->recursos;
-
-                //Restaurar beneficio por reciclaje
-                $recursos->mineral += ($coste->mineral * $reciclaje);
-                $recursos->cristal += ($coste->cristal * $reciclaje);
-                $recursos->gas += ($coste->gas * $reciclaje);
-                $recursos->plastico += ($coste->plastico * $reciclaje);
-                $recursos->ceramica += ($coste->ceramica * $reciclaje);
-                $recursos->liquido += ($coste->liquido * $reciclaje);
-                $recursos->micros += ($coste->micros * $reciclaje);
-                $recursos->fuel += ($coste->fuel * $reciclaje);
-                $recursos->ma += ($coste->ma * $reciclaje);
-                $recursos->municion += ($coste->municion * $reciclaje);
-                $recursos->save();
-            }
             $cola->investigaciones->save();
             $cola->delete();
         }

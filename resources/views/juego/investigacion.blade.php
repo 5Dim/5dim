@@ -37,7 +37,7 @@
                                         {{ $colaInvestigacion[$i]->finished_at }}
                                     </td>
                                     <td class=" text-light align-middle borderless">
-                                        <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendCancelar('{{ $colaInvestigacion[$i]->id }}')">
+                                        <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendCancelarInvestigacion('{{ $colaInvestigacion[$i]->id }}')">
                                             <i class="fa fa-trash"></i> Cancelar
                                         </button>
                                     </td>

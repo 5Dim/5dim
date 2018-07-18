@@ -238,6 +238,10 @@ function sendInvestigar(id, codigo) {
     window.location.href = "http://localhost/juego/investigacion/construir/" + id + "/" + personal;
 }
 
+function sendCancelarInvestigacion(id) {
+    window.location.href = "http://localhost/juego/investigacion/cancelar/" + id;
+}
+
 function mostrarDatosConstruccion(codigo) {
     $.ajax({
         method: "GET",

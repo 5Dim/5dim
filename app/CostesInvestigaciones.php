@@ -43,6 +43,7 @@ class CostesInvestigaciones extends Model
         $costoInvestIndustrias=$IConstantes->where('codigo','costoInvestIndustrias')->first()->valor;
         $costoInvestImperio=$IConstantes->where('codigo','costoInvestImperio')->first()->valor;
         $costoInvestDiseño=$IConstantes->where('codigo','costoInvestDiseño')->first()->valor;
+        $nivel += 1;
 
 
         //  $esteprecio = (int)((pow ($nivel , ($esteexp * $Ifactor))) * $esteinic) * $corrector;
