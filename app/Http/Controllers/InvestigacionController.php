@@ -118,7 +118,7 @@ class InvestigacionController extends Controller
         }
 
         //Calculamos el coste para calcular el tiempo
-        $costeTotal = $construcciones[0]->sumarCostes($investigacion->coste);
+        $costeTotal = $investigacion->sumarCostes($investigacion->coste);
 
         //Calcular el tiempo de construccion
         $tiempo = $investigacion->calcularTiempoInvestigaciones($costeTotal, $personal, $nivel, $planetaActual);
