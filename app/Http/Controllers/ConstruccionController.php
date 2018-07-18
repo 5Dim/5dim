@@ -79,7 +79,9 @@ class ConstruccionController extends Controller
             $personalUsado += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
-            $personalUsado += $cola->personal;
+            if ($cola->planetas->id == session()->get('planetas_id')) {
+                $personal += $cola->personal;
+            }
         }
         $tipoPlaneta = $planetaActual->tipo;
 
