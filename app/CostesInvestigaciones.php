@@ -232,16 +232,16 @@ class CostesInvestigaciones extends Model
         $n=1;
         $nivel=$r1cce[11];
         $coste->investigaciones_id = $idInvestigaciones;
-        $coste->mineral=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->cristal=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->gas=    (int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->plastico=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->ceramica=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->liquido=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->micros=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->fuel=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->ma=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
-        $coste->municion=(int)((pow ($nivel +1 , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->mineral=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->cristal=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->gas=    (int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->plastico=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->ceramica=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->liquido=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->micros=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->fuel=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->ma=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
+        $coste->municion=(int)((pow ($nivel  , ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector; $n++;
 
 
         return($coste);

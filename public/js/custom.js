@@ -149,7 +149,7 @@ function calculaTiempoInvestigacion(preciototal, velocidadConst, dnd, nivel, niv
     personal = $('#personal' + dnd).val();
     horaImprimible = "";
     if (personal > 1 && nivelLaboratorio > 0) {
-        result = (velocidadConst * 1000 * (nivel + 1) * ((preciototal) / (personal * nivelLaboratorio)));
+        result = (velocidadConst * 100 * (nivel) * ((preciototal) / (personal * nivelLaboratorio)));
         result = result - premiun * 5 * 60;
         if (result < 1) {
             result = 0;

@@ -109,7 +109,7 @@ class Investigaciones extends Model
     public function calcularTiempoInvestigaciones($preciototal, $personal, $nivel, $planetaActual){
         //$planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $velInvest=Constantes::where('codigo','velInvest')->first()->valor;
-        $factinvest=1000*$velInvest;
+        $factinvest=100*$velInvest;
         $nivelLaboratorio=Construcciones::where([
             ['planetas_id', $planetaActual->id],
             ['codigo','laboratorio'],
