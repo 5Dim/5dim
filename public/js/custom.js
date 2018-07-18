@@ -250,8 +250,18 @@ function mostrarDatosConstruccion(codigo) {
         success: function (data) {
             $("#datosContenido").html(data.descripcionConstruccion)
             $("#ModalTitulo").html(data.nombreConstruccion)
-
         }
     })
+}
 
+function mostrarDatosInvestigacion(codigo) {
+    $.ajax({
+        method: "GET",
+        url: "http://localhost/juego/investigacion/datos/" + codigo,
+        // data: { name: "John", location: "Boston" }
+        success: function (data) {
+            $("#datosContenido").html(data.descripcionInvestigacion)
+            $("#ModalTitulo").html(data.nombreInvestigacion)
+        }
+    })
 }

@@ -363,12 +363,12 @@
                             @php
                                 //Posible boton de proto
                             @endphp
-                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosinvestigacion('{{$investigacion->codigo}}')">
+                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosInvestigacion('{{$investigacion->codigo}}')">
                                     <i class="fa fa-question"></i> nombre prototipo desbloqueado
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosinvestigacion('{{$investigacion->codigo}}')">
+                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosInvestigacion('{{$investigacion->codigo}}')">
                                 <i class="fa fa-info-circle"></i> Datos
                             </button>
                         </td>
