@@ -41,6 +41,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
+                @include('juego.cajitaFuselajes')
                 {{--
                 @for ($i = 0 ; $i < 6 ; $i++)
                     @include('juego.cajitaConstruccion', [
