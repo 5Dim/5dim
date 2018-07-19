@@ -25,20 +25,21 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/home') }}">
+                <a class="navbar-brand text-white" href="{{ url('/') }}">
                     Quinta Dimension
                 </a>
-                <div class="dropdown show">
-                    <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
+                @auth
+                    <div class="dropdown show">
+                        <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{ url('/configuracion') }}">Configuracion</a>
-                        <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/configuracion') }}">Configuracion</a>
+                            <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
+                        </div>
                     </div>
-                </div>
+                @endauth
             </div>
         </nav>
     </div>

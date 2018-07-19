@@ -90,3 +90,6 @@ Route::middleware('auth')->group(function () {
     //Alianza
     Route::get('/juego/alianza', 'AlianzaController@index');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
