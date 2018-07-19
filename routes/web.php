@@ -32,13 +32,14 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+//Rutas para administrador
+Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
+
 //Rutas generales sin auth
 Route::get('/', 'PrincipalController@index');
 
 //Middleware de auth
 Route::middleware('auth')->group(function () {
-    //Rutas para administrador
-    Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
 
     //Rutas generales
     Route::get('/juego', 'JuegoController@index');
