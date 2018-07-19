@@ -26,4 +26,9 @@ class Jugadores extends Model
     {
         return $this->hasMany(Investigaciones::class);
     }
+
+    public function fuselajes ()
+    {
+        return $this->belongsToMany(Fuselajes::class);
+    }
 }

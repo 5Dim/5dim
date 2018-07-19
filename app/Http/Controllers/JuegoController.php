@@ -45,13 +45,18 @@ class JuegoController extends Controller
     }
 
     //Cambiar de planeta
-    public function planeta($planeta = false)
+    public function planeta($planeta = false, $universo = 0)
     {
+        $planetaBusqueda = Planetas::find($planeta);
         //En que planeta estamos
         if (!$planeta) {
-            session()->put('planetas_id', Auth::user()->jugadores[0]->planetas[0]->id);
+            session()->put('planetas_id', Auth::user()->jugadores[$universo]->planetas[0]->id);
         }else{
-            session()->put('planetas_id', $planeta);
+            if ($planetaBusqueda->jugadores_id == Auth::user()->jugadores[$universo]->id) {
+                session()->put('planetas_id', $planeta);
+            }else{
+                return redirect('/planeta');
+            }
         }
         return redirect('/juego/construccion');
     }
