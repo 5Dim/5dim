@@ -20,15 +20,14 @@ class CreateCualidadesFuselajesTable extends Migration
             $table->integer('tiempo');
             $table->integer('mantenimiento');
             $table->integer('defensa');
-            $table->integer('ataque');
             $table->integer('velocidad');
             $table->integer('velocidadMax');
+            $table->integer('gastoFuel');
 
             $table->integer('armasLigera');
             $table->integer('armasMedia');
             $table->integer('armasPesadas');
             $table->integer('armasInsertada');
-            $table->integer('armasDefensas');
             $table->integer('armasBombas');
             $table->integer('armasMisiles');
 
