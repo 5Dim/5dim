@@ -22,9 +22,8 @@ class CreateCostesFuselajesTable extends Migration
             $table->integer('ceramica');
             $table->integer('liquido');
             $table->integer('micros');
-            $table->integer('fuel');
-            $table->integer('ma');
-            $table->integer('municion');
+            $table->integer('puntos');
+
         });
     }
 
