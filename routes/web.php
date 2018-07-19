@@ -37,6 +37,7 @@ Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
 
 //Rutas generales sin auth
 Route::get('/', 'PrincipalController@index');
+Route::get('/pruebas', 'JuegoController@pruebas');
 
 //Middleware de auth
 Route::middleware('auth')->group(function () {

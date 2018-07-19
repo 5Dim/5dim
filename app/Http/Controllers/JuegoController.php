@@ -60,4 +60,14 @@ class JuegoController extends Controller
         }
         return redirect('/juego/construccion');
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pruebas()
+    {
+        return view('pruebas');
+    }
 }
