@@ -14,10 +14,10 @@ class Fuselajes extends Model
 
                 $fuselaje =new Fuselajes();
                 $fuselaje->codigo="xg";
-                $fuselaje->nombre="XG";
                 $fuselaje->tamaño="caza";
                 $fuselaje->tipo="nave";
                 $fuselaje->tnave="0";
+                $fuselaje->alianza="no";
 
                 array_push($fuselajes, $fuselaje);
 

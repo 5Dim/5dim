@@ -44,8 +44,8 @@ class CostesFuselajes extends Model
 
         $coste =new CostesFuselajes();
 
-            $factorCosto=$constantes::where('codigo','fuselaje'+$tipo+'RecursosTodas')->first()->valor;
-            $factorCostoT=$constantes::where('codigo','fuselaje'+$tipo+'Recursos'+$tamano)->first()->valor;
+            $factorCostoT=$constantes->where('codigo','fuselaje'+$tipo+'RecursosTodas')->first()->valor;
+            $factorCosto=$constantes->where('codigo','fuselaje'+$tipo+'Recursos'+$tamano)->first()->valor;
 
         $n=1;
 
