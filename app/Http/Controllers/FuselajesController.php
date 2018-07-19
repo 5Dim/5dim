@@ -12,6 +12,10 @@ use App\Constantes;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
+use App\EnInvestigaciones;
+use App\Investigaciones;
+use App\Dependencias;
+use App\CostesInvestigaciones;
 
 class FuselajesController extends Controller
 {
@@ -39,6 +43,6 @@ class FuselajesController extends Controller
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
+        return view('juego.fuselajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
     }
 }
