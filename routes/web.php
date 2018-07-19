@@ -30,7 +30,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Rutas para administrador
 Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
