@@ -213,6 +213,16 @@ class Constantes extends Model
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
+                $constante->valor=0;
+                $constante->minimo=-20;
+                $constante->maximo=20;
+                $constante->codigo='fuselajenaveCostoPuntosTodas';
+                $constante->descripcion='variación de puntos para todos los fuselajes de naves, es suma ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
                 $constante->valor=1;
                 $constante->minimo=.3;
                 $constante->maximo=3;

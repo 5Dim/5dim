@@ -38,7 +38,7 @@
                     Mechs
                 </a>
                 <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
-                    Experimental
+                    MegaBot
                 </a>
                 <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
                     Novas

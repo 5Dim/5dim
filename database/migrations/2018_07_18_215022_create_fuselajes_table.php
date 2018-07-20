@@ -19,7 +19,7 @@ class CreateFuselajesTable extends Migration
             $table->string('tamaño');
             $table->string('tipo');
             $table->integer('tnave');
-            $table->string('alianza');
+            $table->string('categoria');
         });
     }
 
