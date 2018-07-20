@@ -2,7 +2,10 @@
 
 namespace App;
 
+
 use Illuminate\Database\Eloquent\Model;
+use App\CostesFuselajes;
+use App\CualidadesFuselajes;
 
 class Fuselajes extends Model
 {
@@ -106,11 +109,15 @@ class Fuselajes extends Model
             "ENLIL" ,
             "ESUS" ,
             "BAAL" ,
+
         ];
         return $listaNombres;
     }
 
     public function  generarDatosFuselajes(){
+
+        $costesFuselaje=new CostesFuselajes();
+        $cualidadesFuselaje=new CualidadesFuselajes();
 
         $fuselajes=[];
 
@@ -119,13 +126,16 @@ class Fuselajes extends Model
                 $fuselaje->tamaño="caza";
                 $fuselaje->tipo="nave";
                 $fuselaje->tnave="0";
-                $fuselaje->categoria="no";
+                $fuselaje->categoria="jugador";
 
                 array_push($fuselajes, $fuselaje);
 
-
             foreach($fuselajes as $estefuselaje){
                 $estefuselaje->save();
+                $costesFuselajes=$costesFuselaje->generarDatosCostesFuselajes($estefuselaje->codigo,$estefuselaje->id);
+                $costesFuselajes->save();
+                $cualidadesFuselajes=$cualidadesFuselaje->generarDatosCualidadesFuselajes($estefuselaje->codigo,$estefuselaje->id);
+                $cualidadesFuselajes->save();
             }
 
         //return $result;

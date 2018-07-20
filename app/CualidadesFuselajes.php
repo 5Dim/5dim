@@ -579,7 +579,7 @@ class CualidadesFuselajes extends Model
 
     function calculos($cualidades,$armas,$constantes,$fuselajes_id,$tipo,$tamano){
 
-        $coste =new CostesFuselajes();
+        $coste =new CualidadesFuselajes();
 
         $factorEnergiaT=$constantes->where('codigo','fuselaje'.$tipo.'EnergiaTodas')->first()->valor;
         $factorEnergia=$constantes->where('codigo','fuselaje'.$tipo.'Energia'.$tamano)->first()->valor;
