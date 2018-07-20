@@ -340,7 +340,7 @@ class Constantes extends Model
                 $constante->valor=1;
                 $constante->minimo=.3;
                 $constante->maximo=3;
-                $constante->codigo='recursosfuselajenaveestacion';
+                $constante->codigo='fuselajenaveRecursosestacion';
                 $constante->descripcion='variación de los costes de  fuselaje naves estacion';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);

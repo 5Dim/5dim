@@ -97,14 +97,14 @@ class CualidadesFuselajes extends Model
 
             case "DEDALO":
             $Tnave = "media";
-            $cualidades = [$codigo,2.6,.7,1.2,.7,.9,15,$Tnave*(20/((2*$Tnave)+.000001)),1];
+            $cualidades = [$codigo,2.6,.7,1.2,.7,.9,15,10,1];
             $armas = [6,2,0,0,0,0,6,90,4,0,39,13,3];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
             break;
 
             case "YG":
             $Tnave = "caza";
-            $cualidades = [$codigo,1,1.5,1,.8,1.2,0,$Tnave*(20/((2*$Tnave)+.000001)),1];
+            $cualidades = [$codigo,1,1.5,1,.8,1.2,0,0,1];
             $armas = [2,0,0,0,0,0,1,0,0,0,18,10,2];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
             break;
@@ -118,7 +118,7 @@ class CualidadesFuselajes extends Model
 
             case "OPHIR":
             $Tnave = "ligera";
-            $cualidades = [$codigo,3.6,1,.4,.5,.5,14,$Tnave*(20/((2*$Tnave)+.000001)),1];
+            $cualidades = [$codigo,3.6,1,.4,.5,.5,14,15,1];
             $armas = [0,0,0,0,0,0,0,20,0,0,21,10,5];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
             break;
