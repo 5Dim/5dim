@@ -4,7 +4,7 @@
                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                     <tr>
                         <td colspan="10" class="text-success text-center borderless align-middle">
-                            <big>Modelo: Mizar<big>
+                            <big>Modelo: {{ $fuselaje->codigo }}<big>
                         </td>
                     </tr>
                     <tr>
@@ -19,20 +19,20 @@
                         <td class="anchofijo text-warning borderless">Defensa</td>
                         <td class="anchofijo text-warning borderless">Energia</td>
                         <td class="anchofijo text-warning borderless">Costo</td>
-                        <td class="anchofijo text-warning borderless">Moneda</td>
+                        <td class="anchofijo text-warning borderless">Mantenimiento</td>
                         <td class="anchofijo text-warning borderless">Tiempo</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-light borderless">2</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->cargaPequeña }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->cargaMedia }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->mejoras }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->blindajes }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->defensa }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->energia }}</td>
                         <td class="anchofijo text-light borderless">0</td>
-                        <td class="anchofijo text-light borderless">0</td>
-                        <td class="anchofijo text-light borderless">12</td>
-                        <td class="anchofijo text-light borderless">24</td>
-                        <td class="anchofijo text-light borderless">12.000</td>
-                        <td class="anchofijo text-light borderless">1</td>
-                        <td class="anchofijo text-light borderless">21</td>
-                        <td class="anchofijo text-light borderless">16m</td>
-                        <td class="anchofijo text-light borderless">1.000</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->mantenimiento }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->tiempo }}</td>
                     </tr>
                     <tr>
                         <td class="anchofijo text-warning borderless">Velocidad</td>
@@ -47,16 +47,16 @@
                         <td class="anchofijo text-warning borderless">Misiles</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-light borderless">9</td>
-                        <td class="anchofijo text-light borderless">10</td>
-                        <td class="anchofijo text-light borderless">1</td>
-                        <td class="anchofijo text-light borderless">8</td>
-                        <td class="anchofijo text-light borderless">2</td>
-                        <td class="anchofijo text-light borderless">0</td>
-                        <td class="anchofijo text-light borderless">0</td>
-                        <td class="anchofijo text-light borderless">0</td>
-                        <td class="anchofijo text-light borderless">0</td>
-                        <td class="anchofijo text-light borderless">0</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->velocidad }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->velocidadMax }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->motores }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->gastoFuel }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasLigera }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasMedia }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasPesadas }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasInsertada }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasBombas }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasMisiles }}</td>
                     </tr>
                 </table>
             </div>

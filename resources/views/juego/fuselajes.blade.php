@@ -4,58 +4,70 @@
     <div class="container-fluid">
         <nav>
             <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
+                <a class="nav-item nav-link active" id="prediseñadas-tab" data-toggle="tab" href="#prediseñadas" role="tab" aria-controls="prediseñadas" aria-selected="true">
                     Prediseñadas
                 </a>
-                <a class="nav-item nav-link  active" id="mina-tab" data-toggle="tab" href="#mina" role="tab" aria-controls="mina" aria-selected="true">
+                <a class="nav-item nav-link" id="cazas-tab" data-toggle="tab" href="#cazas" role="tab" aria-controls="cazas" aria-selected="false">
                     Cazas
                 </a>
-                <a class="nav-item nav-link" id="industria-tab" data-toggle="tab" href="#industria" role="tab" aria-controls="industria" aria-selected="false">
+                <a class="nav-item nav-link" id="ligeras-tab" data-toggle="tab" href="#ligeras" role="tab" aria-controls="ligeras" aria-selected="false">
                     Ligeras
                 </a>
-                <a class="nav-item nav-link" id="almacenes-tab" data-toggle="tab" href="#almacenes" role="tab" aria-controls="almacenes" aria-selected="false">
+                <a class="nav-item nav-link" id="medias-tab" data-toggle="tab" href="#medias" role="tab" aria-controls="medias" aria-selected="false">
                     Medias
                 </a>
-                <a class="nav-item nav-link" id="militares-tab" data-toggle="tab" href="#militares" role="tab" aria-controls="militares" aria-selected="false">
+                <a class="nav-item nav-link" id="pesadas-tab" data-toggle="tab" href="#pesadas" role="tab" aria-controls="pesadas" aria-selected="false">
                     Pesadas
                 </a>
-                <a class="nav-item nav-link" id="desarrollo-tab" data-toggle="tab" href="#desarrollo" role="tab" aria-controls="desarrollo" aria-selected="false">
+                <a class="nav-item nav-link" id="estaciones-tab" data-toggle="tab" href="#estaciones" role="tab" aria-controls="estaciones" aria-selected="false">
                     Estaciones
                 </a>
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
+                <a class="nav-item nav-link" id="defensas-tab" data-toggle="tab" href="#defensas" role="tab" aria-controls="defensas" aria-selected="false">
                     Defensas
                 </a>
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
+                <a class="nav-item nav-link" id="aviones-tab" data-toggle="tab" href="#aviones" role="tab" aria-controls="aviones" aria-selected="false">
                     Aviones
                 </a>
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
+                <a class="nav-item nav-link" id="infanteria-tab" data-toggle="tab" href="#infanteria" role="tab" aria-controls="infanteria" aria-selected="false">
                     Infanteria
                 </a>
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
+                <a class="nav-item nav-link" id="vehiculos-tab" data-toggle="tab" href="#vehiculos" role="tab" aria-controls="vehiculos" aria-selected="false">
                     Vehiculos
                 </a>
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
+                <a class="nav-item nav-link" id="mechs-tab" data-toggle="tab" href="#mechs" role="tab" aria-controls="mechs" aria-selected="false">
                     Mechs
                 </a>
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
-                    Experimental
+                <a class="nav-item nav-link" id="megabot-tab" data-toggle="tab" href="#megabot" role="tab" aria-controls="megabot" aria-selected="false">
+                    MegaBot
                 </a>
-                <a class="nav-item nav-link" id="observacion-tab" data-toggle="tab" href="#observacion" role="tab" aria-controls="observacion" aria-selected="false">
+                <a class="nav-item nav-link" id="novas-tab" data-toggle="tab" href="#novas" role="tab" aria-controls="novas" aria-selected="false">
                     Novas
                 </a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
-                @include('juego.cajitaFuselajes')
+            <div class="tab-pane fade show active" id="prediseñadas" role="tabpanel" aria-labelledby="prediseñadas-tab">
+                @include('juego.cajitaFuselajes', ['fuselaje' => $fuselajes[0]])
                 {{--
-                @for ($i = 0 ; $i < 6 ; $i++)
-                    @include('juego.cajitaConstruccion', [
-                        'construccion' => $construcciones[$i],
-                        'personal' => $recursos->personal - $personal,
-                        'tab' => 'mina-tab',
-                    ])
-                @endfor
+                    @for ($i = 0 ; $i < 6 ; $i++)
+                        @include('juego.cajitaFuselajes', [
+                            'construccion' => $construcciones[$i],
+                            'personal' => $recursos->personal - $personal,
+                            'tab' => 'mina-tab',
+                        ])
+                    @endfor
+                --}}
+            </div>
+            <div class="tab-pane fade show" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
+                {{--@include('juego.cajitaFuselajes')
+
+                    @for ($i = 0 ; $i < 6 ; $i++)
+                        @include('juego.cajitaFuselajes', [
+                            'construccion' => $construcciones[$i],
+                            'personal' => $recursos->personal - $personal,
+                            'tab' => 'mina-tab',
+                        ])
+                    @endfor
                 --}}
             </div>
         </div>

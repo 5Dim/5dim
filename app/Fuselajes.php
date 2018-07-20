@@ -8,6 +8,20 @@ class Fuselajes extends Model
 {
     public $timestamps = false;
 
+    public function cualidades ()
+    {
+        return $this->hasOne(CualidadesFuselajes::class);
+    }
+
+    public function costes ()
+    {
+        return $this->hasOne(CostesFuselajes::class);
+    }
+
+    public function jugadores ()
+    {
+        return $this->belongsToMany(Jugadores::class);
+    }
 
     public function listaNombres () {
         $listaNombres = [
