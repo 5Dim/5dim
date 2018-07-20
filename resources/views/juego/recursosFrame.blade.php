@@ -84,7 +84,7 @@
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
-                            <a href="logout.php" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}"  title="Salir"/>
+                            <a href="{{ url('/logout') }}" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}"  title="Salir"/>
                         </a>
                         </th>
                         <th class="text-warning borderless centradoCeldas">
