@@ -42,28 +42,28 @@ class CostesFuselajes extends Model
             case "HIDRA":
             $Tnave = "ligera";
             $factn=.65;
-            $r1cce = [$codigo,35000,10000,5000,25000,30000,15000,30000, 0];
+            $r1cce = [$codigo,35000,10000,5000,25000,30000,15000,30000, 2];
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave',$Tnave,$factn);
             break;
 
             case "MEDUSA":
             $Tnave = "ligera";
             $factn=.85;
-            $r1cce = [$codigo,20000,8000,10000,10000,30000,8000,25000, 0];
+            $r1cce = [$codigo,20000,8000,10000,10000,30000,8000,25000, 3];
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave',$Tnave,$factn);
             break;
 
             case "DEFENSOR":
             $Tnave = "media";
             $factn=.9;
-            $r1cce = [$codigo,100000,40000,20000,10000,60000,10000,35000, 0];
+            $r1cce = [$codigo,100000,40000,20000,10000,60000,10000,35000, 6];
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave',$Tnave,$factn);
             break;
 
             case "VG":
             $Tnave = "caza";
             $factn=.85;
-            $r1cce = [$codigo,6000,200,0,300,20,5,15, 0];
+            $r1cce = [$codigo,6000,200,0,300,20,5,15, 5];
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave',$Tnave,$factn);
             break;
 

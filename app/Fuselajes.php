@@ -115,11 +115,11 @@ class Fuselajes extends Model
         $fuselajes=[];
 
                 $fuselaje =new Fuselajes();
-                $fuselaje->codigo="xg";
+                $fuselaje->codigo="XG";
                 $fuselaje->tamaño="caza";
                 $fuselaje->tipo="nave";
                 $fuselaje->tnave="0";
-                $fuselaje->alianza="no";
+                $fuselaje->categoria="no";
 
                 array_push($fuselajes, $fuselaje);
 
