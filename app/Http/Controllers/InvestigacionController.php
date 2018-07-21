@@ -33,7 +33,7 @@ class InvestigacionController extends Controller
             return redirect('/planeta');
         }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        EnConstrucciones::terminarColaConstrucciones();
+        EnInvestigaciones::terminarColaInvestigaciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
@@ -53,7 +53,6 @@ class InvestigacionController extends Controller
         }
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
-        EnInvestigaciones::terminarColaInvestigaciones();
 
         //Investigaciones
         $investigacion = new Investigaciones();
