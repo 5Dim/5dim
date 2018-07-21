@@ -63,11 +63,14 @@ Route::middleware('auth')->group(function () {
     //Planeta
     Route::get('/juego/planeta', 'PlanetaController@index');
 
-    //Fabricas
-    Route::get('/juego/fabricas', 'FabricasController@index');
-
     //Fuselajes
     Route::get('/juego/fuselajes', 'FuselajesController@index');
+    Route::get('/juego/fuselajes/desbloquear/{id}/{personal}/{tab?}', ['uses' => 'FuselajesController@desbloquear']);
+    Route::get('/juego/fuselajes/diseñar/{id}', ['uses' => 'FuselajesController@diseñar']);
+    Route::get('/juego/fuselajes/datos/{codigo}', ['uses' => 'FuselajesController@datos']);
+
+    //Fabricas
+    Route::get('/juego/fabricas', 'FabricasController@index');
 
     //Diseño
     Route::get('/juego/diseño', 'DiseñoController@index');

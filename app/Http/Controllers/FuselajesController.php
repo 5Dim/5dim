@@ -17,6 +17,7 @@ use App\Investigaciones;
 use App\Dependencias;
 use App\CostesInvestigaciones;
 use App\Fuselajes;
+use Auth;
 
 class FuselajesController extends Controller
 {
@@ -24,6 +25,9 @@ class FuselajesController extends Controller
     public function index ()
     {
         //Inicio recursos
+        if (empty(session()->get('planetas_id'))) {
+            return redirect('/juego/planeta');
+        }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         EnConstrucciones::terminarColaConstrucciones();
         $construcciones = Construcciones::construcciones($planetaActual);
@@ -39,13 +43,23 @@ class FuselajesController extends Controller
             $personal += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
-            $personal += $cola->personal;
+            if ($cola->planetas->id == session()->get('planetas_id')) {
+                $personal += $cola->personal;
+            }
         }
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
 
         $fuselajes = Fuselajes::all();
+        $fuselajesJugador = Auth::user()->jugadores[0]->fuselajes;
 
-        return view('juego.fuselajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'fuselajes'));
+        return view('juego.fuselajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'fuselajes', 'fuselajesJugador'));
+    }
+
+    //Acceso a subir nivel de construccion
+    public function desbloquear ($idFuselaje)
+    {
+        Auth::user()->jugadores[0]->fuselajes()->attach($idFuselaje);
+        return redirect('/juego/fuselajes');
     }
 }

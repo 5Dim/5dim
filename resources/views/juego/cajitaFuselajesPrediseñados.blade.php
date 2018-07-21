@@ -31,8 +31,8 @@
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-success btn-block btn-sm" >
-                                <i class="fa fa-arrow-alt-circle-up "></i> Desbloquear
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="sendDesbloquear('{{$fuselaje->id}}')">
+                                <i class="fa fa-unlock-alt"></i> Desbloquear
                             </button>
                         </td>
                     </tr>

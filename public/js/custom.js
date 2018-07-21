@@ -242,6 +242,14 @@ function sendCancelarInvestigacion(id) {
     window.location.href = "http://localhost/juego/investigacion/cancelar/" + id;
 }
 
+function sendDesbloquear(id) {
+    window.location.href = "http://localhost/juego/fuselajes/desbloquear/" + id;
+}
+
+function sendDiseñar(id) {
+    window.location.href = "http://localhost/juego/fuselajes/diseñar/" + id;
+}
+
 function mostrarDatosConstruccion(codigo) {
     $.ajax({
         method: "GET",

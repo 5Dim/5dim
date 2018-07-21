@@ -4,10 +4,10 @@
     <div class="container-fluid">
         <nav>
             <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
-                <a class="nav-item nav-link active" id="prediseñadas-tab" data-toggle="tab" href="#prediseñadas" role="tab" aria-controls="prediseñadas" aria-selected="true">
+                <a class="nav-item nav-link" id="prediseñadas-tab" data-toggle="tab" href="#prediseñadas" role="tab" aria-controls="prediseñadas" aria-selected="false">
                     Prediseñadas
                 </a>
-                <a class="nav-item nav-link" id="cazas-tab" data-toggle="tab" href="#cazas" role="tab" aria-controls="cazas" aria-selected="false">
+                <a class="nav-item nav-link active" id="cazas-tab" data-toggle="tab" href="#cazas" role="tab" aria-controls="cazas" aria-selected="true">
                     Cazas
                 </a>
                 <a class="nav-item nav-link" id="ligeras-tab" data-toggle="tab" href="#ligeras" role="tab" aria-controls="ligeras" aria-selected="false">
@@ -46,20 +46,22 @@
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="prediseñadas" role="tabpanel" aria-labelledby="prediseñadas-tab">
+            <div class="tab-pane fade show" id="prediseñadas" role="tabpanel" aria-labelledby="prediseñadas-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "prediseñada")
                         @include('juego.cajitaFuselajesPrediseñados', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
             </div>
-            <div class="tab-pane fade show" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
+            <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "caza")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -67,6 +69,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "caza")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -76,6 +79,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "ligera")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -83,6 +87,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "ligera")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -92,6 +97,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "media")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -99,6 +105,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "media")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -108,6 +115,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "pesada")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -115,6 +123,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "pesada")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -124,6 +133,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "estacion")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -131,6 +141,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "estacion")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -140,6 +151,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "defensa")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -147,6 +159,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "defensa")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -156,6 +169,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "avion")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -163,6 +177,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "avion")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -172,6 +187,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "infanteria")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -179,6 +195,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "infanteria")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -188,6 +205,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "vehiculo")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -195,6 +213,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "vehiculo")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -204,6 +223,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "mech")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -211,6 +231,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "mech")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -220,6 +241,7 @@
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "megabot")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -227,6 +249,7 @@
                     @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "megabot")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
@@ -236,6 +259,7 @@
                     @if ($fuselajes[$i]->categoria == "compra")
                         @include('juego.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
+                            'fuselajesJugador' => $fuselajesJugador,
                         ])
                     @endif
                 @endfor
