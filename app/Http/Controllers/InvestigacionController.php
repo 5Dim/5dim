@@ -53,6 +53,7 @@ class InvestigacionController extends Controller
         }
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
+        EnInvestigaciones::terminarColaInvestigaciones();
 
         //Investigaciones
         $investigacion = new Investigaciones();
