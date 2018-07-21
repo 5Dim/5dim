@@ -203,7 +203,7 @@ class InvestigacionController extends Controller
         $cola = EnInvestigaciones::where('id', $idColaInvestigacion)->first();
 
         //Comprobamos si hay algun edificio por encima del nivel que se ha cancelado
-        $listaCola = EnInvestigaciones::where([['Investigaciones_id', '=', $cola->investigaciones->id], ['nivel', '>', $cola->nivel]])->get();
+        $listaCola = EnInvestigaciones::where([['investigaciones_id', '=', $cola->investigaciones->id], ['nivel', '>', $cola->nivel]])->get();
 
         if ($cola->accion == 'Investigando') {
             $nivel = $cola->nivel - 1;
