@@ -54,7 +54,7 @@ table.anchofijo {
     /*opacity: 0.6;*/
 }
 
-input[type="number"],
+input,
 textarea {
     background-color: #000000;
     color: white;
@@ -82,4 +82,12 @@ textarea {
     border: 1px solid cyan;
     margin-top: 5px;
     border-radius: 5px;
+}
+
+.input,
+.textarea,
+.select {
+    background-color: #000000;
+    color: white;
+    border: 1px solid darkgray;
 }

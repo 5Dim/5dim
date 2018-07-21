@@ -3,71 +3,48 @@
         <div id="cuadro1" class="table-responsive-sm">
             <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                 <tr>
-                    <th colspan="9" class="text-success text-center borderless align-middle">
-                        Daños por distancia
+                    <th colspan="10" class="text-success text-center borderless align-middle">
+                        Resumen del diseño
                     </th>
                 </tr>
                 <tr>
                     <td class="anchofijo text-warning borderless">
-                        Tipo de nave
+                        Mineral
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        0
+                        Cristal
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        1
+                        Gas
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        2
+                        Plastico
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        3
+                        Ceramica
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        4
+                        Liquido
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        5
+                        Micros
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        6
+                        Fuel
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        7
+                        Municion
+                    </td>
+                    <td class="anchofijo text-warning borderless">
+                        Personal
                     </td>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-warning borderless">
-                        Ligera
-                    </td>
                     <td class="anchofijo text-light borderless">
                         0
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                </tr>
-                <tr>
-                    <td class="anchofijo text-warning borderless">
-                        Media
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -96,36 +73,42 @@
                 </tr>
                 <tr>
                     <td class="anchofijo text-warning borderless">
-                        Pesada/estacion
+                        Energia
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                    <td class="anchofijo text-warning borderless">
+                        Tiempo
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                    <td class="anchofijo text-warning borderless">
+                        Mantenimiento
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                    <td class="anchofijo text-warning borderless">
+                        Ataque total
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                    <td class="anchofijo text-warning borderless">
+                        Defensa
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                    <td class="anchofijo text-warning borderless">
+                        Velocidad
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                    <td class="anchofijo text-warning borderless">
+                        Carga
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                    <td class="anchofijo text-warning borderless">
+                        Hangar cazas
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                    <td class="anchofijo text-warning borderless">
+                        Hangar ligeras
+                    </td>
+                    <td class="anchofijo text-warning borderless">
+                        Hangar medias
                     </td>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-warning borderless">
-                        Defensas
+                    <td class="anchofijo text-light borderless">
+                        0
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        0
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -160,19 +143,47 @@
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td class="anchofijo text-secondary borderless">
-                        Daño total a cazas: 0
+                            <div class="input-group mb-3 borderless" style="padding-left: 10px !important; padding-right: 5px !important">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-dark text-light">Nombre</span>
+                                </div>
+                                <input type="text" class="form-control input" placeholder="Nombre del diseño" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            </div>
                     </td>
                     <td class="anchofijo text-secondary borderless">
-                        Daño total a ligeras: 0
+                        <div class="input-group mb-3 borderless" style="padding-left: 5px !important; padding-right: 5px !important">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-dark text-light">Descripcion</span>
+                            </div>
+                            <input type="text" class="form-control input" placeholder="Descripcion del diseño" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        </div>
                     </td>
                     <td class="anchofijo text-secondary borderless">
-                        Daño total a medias: 0
+                        <div class="input-group mb-3 borderless"  style="padding-left: 5px !important; padding-right: 5px !important">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text bg-dark text-light" for="inputGroupSelect01">Posicion</label>
+                            </div>
+                            <select class="custom-select select" id="inputGroupSelect01">
+                                    <option value="" selected>Elige una posicion</option>
+
+                                    <option value="">Vanguardia 1</option>
+                                    <option value="">Vanguardia 2</option>
+                                    <option value="">Vanguardia 3</option>
+
+                                    <option value="">Centro 1</option>
+                                    <option value="">Centro 2</option>
+                                    <option value="">Centro 3</option>
+
+                                    <option value="">Retaguardia 1</option>
+                                    <option value="">Retaguardia 2</option>
+                                    <option value="">Retaguardia 3</option>
+                            </select>
+                        </div>
                     </td>
-                    <td class="anchofijo text-secondary borderless">
-                        Daño total a pesadas/estaciones: 0
-                    </td>
-                    <td class="anchofijo text-secondary borderless">
-                        Daño total a defensas: 0
+                    <td>
+                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
+                            <i class="fa fa-cogs"></i> Diseñar
+                        </button>
                     </td>
                 </tr>
             </table>
