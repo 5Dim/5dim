@@ -76,3 +76,10 @@ textarea {
     border: 1px solid orange;
     margin-top: 5px;
 }
+
+textarea {
+    background-image: url('/img/juego/skin0/cons-fondo3.png');
+    border: 1px solid cyan;
+    margin-top: 5px;
+    border-radius: 5px;
+}

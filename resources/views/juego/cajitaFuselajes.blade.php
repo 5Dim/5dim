@@ -3,8 +3,11 @@
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                     <tr>
-                        <td colspan="10" class="text-success text-center borderless align-middle">
+                        <td colspan="5" class="text-success text-center borderless align-middle">
                             <big>Modelo: {{ $fuselaje->codigo }}<big>
+                        </td>
+                        <td colspan="5" class="text-success text-center borderless align-middle">
+                            <big>Propiedad de {{ $fuselaje->categoria }}<big>
                         </td>
                     </tr>
                     <tr>
