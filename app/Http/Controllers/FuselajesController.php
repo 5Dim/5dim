@@ -17,6 +17,7 @@ use App\Investigaciones;
 use App\Dependencias;
 use App\CostesInvestigaciones;
 use App\Fuselajes;
+use Auth;
 
 class FuselajesController extends Controller
 {
@@ -50,7 +51,8 @@ class FuselajesController extends Controller
         //Fin recursos
 
         $fuselajes = Fuselajes::all();
+        $fuselajesJugador = Auth::user()->jugadores[0]->fuselajes;
 
-        return view('juego.fuselajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'fuselajes'));
+        return view('juego.fuselajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'fuselajes', 'fuselajesJugador'));
     }
 }

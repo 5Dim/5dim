@@ -32,7 +32,7 @@
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-success btn-block btn-sm" >
-                                <i class="fa fa-arrow-alt-circle-up "></i> Desbloquear
+                                <i class="fa fa-unlock-alt"></i> Desbloquear
                             </button>
                         </td>
                     </tr>

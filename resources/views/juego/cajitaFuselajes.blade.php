@@ -2,11 +2,22 @@
         <div class="col-12">
             <div id="cuadro1" class="table-responsive-sm">
                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
+                    @php
+                        $clase = 'success';
+                        if (!empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
+                            if ($fuselaje->id == $fuselajesJugador->where('id', $fuselaje->id)->first()->id) {
+                                $clase = 'warning';
+                            }
+                        }
+                        if ($fuselaje->categoria == "alianza") {
+                            $clase = 'danger';
+                        }
+                    @endphp
                     <tr>
-                        <td colspan="5" class="text-success text-center borderless align-middle">
+                        <td colspan="5" class="text-{{$clase}} text-center borderless align-middle">
                             <big>Modelo: {{ $fuselaje->codigo }}<big>
                         </td>
-                        <td colspan="5" class="text-success text-center borderless align-middle">
+                        <td colspan="5" class="text-{{$clase}} text-center borderless align-middle">
                             <big>Propiedad de {{ $fuselaje->categoria }}<big>
                         </td>
                     </tr>
@@ -69,9 +80,38 @@
                                 <i class="fa fa-info-circle"></i> Datos
                             </button>
                         </td>
+                        @php
+                            $desabilitado = '';
+                            $clase = 'success';
+                            if (empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
+                                $desabilitado = 'disabled';
+                                $clase = 'light';
+                            }
+                        @endphp
                         <td>
-                            <button type="button" class="btn btn-outline-success btn-block btn-sm" >
-                                <i class="fa fa-arrow-alt-circle-up "></i> Desbloquear
+                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$desabilitado}}>
+                                <i class="fa fa-cogs"></i> Diseñar
+                            </button>
+                        </td>
+                        @php
+                            $texto = ' Desbloquear';
+                            $desabilitado = '';
+                            $clase = 'success';
+                            if (!empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
+                                if ($fuselaje->id == $fuselajesJugador->where('id', $fuselaje->id)->first()->id) {
+                                    $clase = 'light';
+                                    $desabilitado = 'disabled';
+                                    $texto = ' Ya en propiedad';
+                                }
+                            }
+                            if ($fuselaje->categoria == "alianza") {
+                                $clase = 'light';
+                                $desabilitado = 'disabled';
+                            }
+                        @endphp
+                        <td>
+                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$desabilitado}}>
+                                <i class="fa fa-unlock-alt"></i> {{$texto}}
                             </button>
                         </td>
                     </tr>
