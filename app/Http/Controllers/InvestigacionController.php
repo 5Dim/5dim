@@ -23,8 +23,11 @@ class InvestigacionController extends Controller
     public function index ($tab="")
     {
         //Inicio recursos
+        if (empty(session()->get('planetas_id'))) {
+            return redirect('/juego/planeta');
+        }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        EnInvestigaciones::terminarColaInvestigaciones();
+        EnConstrucciones::terminarColaConstrucciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);

@@ -24,6 +24,9 @@ class FuselajesController extends Controller
     public function index ()
     {
         //Inicio recursos
+        if (empty(session()->get('planetas_id'))) {
+            return redirect('/juego/planeta');
+        }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         EnConstrucciones::terminarColaConstrucciones();
         $construcciones = Construcciones::construcciones($planetaActual);
@@ -39,7 +42,9 @@ class FuselajesController extends Controller
             $personal += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
-            $personal += $cola->personal;
+            if ($cola->planetas->id == session()->get('planetas_id')) {
+                $personal += $cola->personal;
+            }
         }
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
