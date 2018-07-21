@@ -4,11 +4,6 @@
                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                     @php
                         $clase = 'success';
-                        if (!empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
-                            if ($fuselaje->id == $fuselajesJugador->where('id', $fuselaje->id)->first()->id) {
-                                $clase = 'warning';
-                            }
-                        }
                         if ($fuselaje->categoria == "alianza") {
                             $clase = 'danger';
                         }

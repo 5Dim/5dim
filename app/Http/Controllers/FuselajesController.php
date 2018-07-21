@@ -62,4 +62,11 @@ class FuselajesController extends Controller
         Auth::user()->jugadores[0]->fuselajes()->attach($idFuselaje);
         return redirect('/juego/fuselajes');
     }
+
+    //Acceso a subir nivel de construccion
+    public function diseñar ($idFuselaje)
+    {
+        //Auth::user()->jugadores[0]->fuselajes()->attach($idFuselaje);
+        return redirect('/juego/fuselajes');
+    }
 }
