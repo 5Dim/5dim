@@ -89,7 +89,7 @@
                             }
                         @endphp
                         <td>
-                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$desabilitado}}>
+                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" onclick="sendDiseñar('{{$fuselaje->id}}')" {{$desabilitado}}>
                                 <i class="fa fa-cogs"></i> Diseñar
                             </button>
                         </td>
@@ -110,7 +110,7 @@
                             }
                         @endphp
                         <td>
-                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$desabilitado}}>
+                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm"  onclick="sendDesbloquear('{{$fuselaje->id}}')" {{$desabilitado}}>
                                 <i class="fa fa-unlock-alt"></i> {{$texto}}
                             </button>
                         </td>

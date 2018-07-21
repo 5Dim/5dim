@@ -55,4 +55,11 @@ class FuselajesController extends Controller
 
         return view('juego.fuselajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'fuselajes', 'fuselajesJugador'));
     }
+
+    //Acceso a subir nivel de construccion
+    public function desbloquear ($idFuselaje)
+    {
+        Auth::user()->jugadores[0]->fuselajes()->attach($idFuselaje);
+        return redirect('/juego/fuselajes');
+    }
 }
