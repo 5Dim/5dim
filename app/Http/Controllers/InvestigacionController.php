@@ -17,6 +17,7 @@ use App\EnInvestigaciones;
 use App\CostesConstrucciones;
 use Auth;
 use App\Investigaciones;
+use App\CostesInvestigaciones;
 
 class InvestigacionController extends Controller
 {
