@@ -9,15 +9,14 @@ use App\Almacenes;
 use App\Planetas;
 use App\Industrias;
 use App\Constantes;
+use App\Dependencias;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
 use App\EnInvestigaciones;
-use App\Investigaciones;
-use App\Dependencias;
-use App\CostesInvestigaciones;
-use App\Fuselajes;
+use App\CostesConstrucciones;
 use Auth;
+use App\Fuselajes;
 
 class FuselajesController extends Controller
 {
@@ -26,7 +25,11 @@ class FuselajesController extends Controller
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
-            return redirect('/juego/planeta');
+            return redirect('/planeta');
+        }
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+        if ($planetaActual->jugadores->user != Auth::user()) {
+            return redirect('/planeta');
         }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         EnConstrucciones::terminarColaConstrucciones();
