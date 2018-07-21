@@ -212,7 +212,7 @@ class InvestigacionController extends Controller
 
         //Generamos el coste del edificio
         $costeConstrucciones = new CostesInvestigaciones();
-        $costeAntiguo = CostesInvestigaciones::where('Investigaciones_id', $cola->investigaciones->id)->first();
+        $costeAntiguo = CostesInvestigaciones::where('investigaciones_id', $cola->investigaciones->id)->first();
         $coste = $costeConstrucciones->generarDatosCostesInvestigacion($nivel, $cola->investigaciones->codigo, $cola->investigaciones->id);
         $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
         $costeAntiguo->save();
