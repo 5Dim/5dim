@@ -72,4 +72,13 @@ class FuselajesController extends Controller
         //Auth::user()->jugadores[0]->fuselajes()->attach($idFuselaje);
         return redirect('/juego/fuselajes');
     }
+
+    public function datos ($id)
+    {
+       // $nombreInvestigacion = trans('fuselaje.' . $id);
+
+       $nombreInvestigacion=Fuselajes::find($id)->codigo;
+        $descripcionInvestigacion = trans('fuselaje.' .'Dnave'.$id);
+        return compact('descripcionInvestigacion', 'nombreInvestigacion');
+    }
 }

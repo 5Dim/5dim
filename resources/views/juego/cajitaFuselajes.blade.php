@@ -71,7 +71,7 @@
                 <table class="table table-sm table-borderless text-center anchofijo">
                     <tr>
                         <td>
-                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal">
+                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosFuselaje('{{$fuselaje->id}}')">
                                 <i class="fa fa-info-circle"></i> Datos
                             </button>
                         </td>
