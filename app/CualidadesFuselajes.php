@@ -25,544 +25,2813 @@ class CualidadesFuselajes extends Model
 
 
         switch($codigo){
-            case "XG":
-            $cualidades = [$codigo,1,2,1,1,1,.7,1.2,0,0,0,1];
-            $armas = [2,0,0,0,0,0,0,0,0,9,10,1];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave','caza');
-            break;
-
-
-            case "MIZAR":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1,1,1,1,1.5,5,12,1];
-            $armas = [2,0,0,0,0,2,0,2,0,0,9,10,1];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "HIDRA":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1,1,1,.5,.8,6,2,1];
-            $armas = [2,1,0,0,0,2,1,0,0,0,12,8,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "MEDUSA":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,.8,1,1,.7,1.3,4.5,2,1];
-            $armas = [4,2,0,0,0,1,0,8,0,0,12,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "DEFENSOR":
-            $Tnave = "media";
-            $cualidades = [$codigo,1,1,1,.8,1.2,6,10,1];
-            $armas = [12,4,0,0,0,0,4,0,0,0,21,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "VG":
-            $Tnave = "caza";
-            $cualidades = [$codigo,1,1,1,1,1,0,0,1];
-            $armas = [4,0,0,0,0,0,0,0,0,0,9,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "NEBULA":
-            $Tnave = "media";
-            $cualidades = [$codigo,1.5,1,1,.7,.8,8.5,10,1];
-            $armas = [8,2,0,0,0,0,1,40,2,0,21,13,5];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "VENGANZA":
-            $Tnave = "media";
-            $cualidades = [$codigo,1,1.1,1,1,1.1,10,14,1];
-            $armas = [4,1,0,0,0,1,1,2,1,0,24,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "MITRA":
-            $Tnave = "media";
-            $cualidades = [$codigo,1,.9,1.1,1.2,.6,12,10,1];
-            $armas = [3,0,0,0,0,0,6,0,0,0,24,13,3];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "CERBERO":
-            $Tnave = "estacion";
-            $cualidades = [$codigo,1,1.8,1.1,1.1,.8,0,4,1];
-            $armas = [20,10,0,0,0,1,1,20,0,0,37,20,8];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "DEDALO":
-            $Tnave = "media";
-            $cualidades = [$codigo,2.6,.7,1.2,.7,.9,15,10,1];
-            $armas = [6,2,0,0,0,0,6,90,4,0,39,13,3];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "YG":
-            $Tnave = "caza";
-            $cualidades = [$codigo,1,1.5,1,.8,1.2,0,0,1];
-            $armas = [2,0,0,0,0,0,1,0,0,0,18,10,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "COBRA":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1.1,1.1,1.0,.8,1.1,15,15,1];
-            $armas = [3,3,0,0,0,0,2,0,0,0,27,13,3];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "OPHIR":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,3.6,1,.4,.5,.5,14,15,1];
-            $armas = [0,0,0,0,0,0,0,20,0,0,21,10,5];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "NEMESIS":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,1,1.3,1,1,1,14,12,1];
-            $armas = [10,15,1,0,0,0,2,0,3,0,31,10,6];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "TARTESO":
-            $Tnave = "media";
-            $cualidades = [$codigo,2.6,1.4,1.2,1.2,1.9,19,14,1];
-            $armas = [3,3,1,0,0,3,2,30,2,0,40,13,6];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "ECLIPSE":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,3,1.3,.7,1.6,.9,12,12,1];
-            $armas = [0,0,0,0,0,0,0,30,0,0,21,10,1];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "LEVIATAN":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,3,18,1.0,.7,.7,20,18,1];
-            $armas = [60,10,3,0,0,0,5,0,0,0,60,13,8];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "RAPTOR":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1,1.1,1.1,.7,1,16,14,1];
-            $armas = [2,0,1,0,0,2,0,0,0,0,24,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "FENIX":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,1.8,.8,.7,1.7,1,18,18,1];
-            $armas = [4,0,2,1,0,2,0,0,6,1,41,13,8];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "NABUCO":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,.8,1.5,1,1.1,1.5,14,18,1];
-            $armas = [4,4,0,0,0,2,3,0,0,0,31,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "HERA":
-            $Tnave = "media";
-            $cualidades = [$codigo,.8,1.5,1,1.0,.7,14,18,1];
-            $armas = [12,6,0,2,0,2,3,0,0,0,35,16,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "LUNA":
-            $Tnave = "media";
-            $cualidades = [$codigo,.7,1.9,1.5,1.5,1.7,10,16,1];
-            $armas = [6,2,0,0,0,20,0,0,0,0,21,20,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "SG":
-            $Tnave = "caza";
-            $cualidades = [$codigo,.5,1.6,.6,1.0,1.2,0,0,1];
-            $armas = [6,0,0,0,0,0,0,0,0,0,12,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "VALKIRIA":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1.0,1.1,.8,1.0,0.9,14,18,1];
-            $armas = [4,1,0,0,0,0,1,0,0,0,27,12,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "EUFORIA":
-            $Tnave = "media";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,9,16,1];
-            $armas = [4,4,3,2,0,0,4,0,0,0,31,15,6];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "TRAUMA":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,2.4,8.2,1.1,1.3,.9,13,16,1];
-            $armas = [10,10,9,0,0,5,10,20,0,0,45,24,8];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "FRAGMA":
-            $Tnave = "estacion";
-            $cualidades = [$codigo,3.7,4.9,1.0,.8,0.7,7,3,1];
-            $armas = [10,15,6,0,0,0,5,50,2,0,52,26,12];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "BASALTO":
-            $Tnave = "estacion";
-            $cualidades = [$codigo,5.7,10.9,1.2,1.1,1.7,12,2,1];
-            $armas = [5,20,12,4,0,0,10,75,6,1,45,26,12];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "HELIOS":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,2.7,.6,.5,.6,.5,12,18,1];
-            $armas = [0,2,0,0,0,4,0,20,16,4,27,10,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "EBOLA":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,4.7,15.9,1.8,1.7,2.0,16,19,1];
-            $armas = [8,16,4,1,0,0,40,4,0,0,54,26,6];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "AQUILES":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,3.7,10.9,2.5,2.0,1.0,18,19,1];
-            $armas = [0,5,0,0,0,0,30,0,0,0,64,13,8];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "ESCORPION":
-            $Tnave = "media";
-            $cualidades = [$codigo,1,1.3,0.5,1.0,1.2,12,16,1];
-            $armas = [6,6,1,0,0,0,4,0,0,0,21,13,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "PULSAR":
-            $Tnave = "media";
-            $cualidades = [$codigo,3.7,1.5,1.0,.8,1.0,18,19,1];
-            $armas = [12,6,2,1,0,0,3,0,0,0,39,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "SONDA":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1.7,1.0,.2,.5,.5,16,19,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,6,6,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "FALCATA":
-            $Tnave = "caza";
-            $cualidades = [$codigo,.7,1.8,.8,.6,1.1,10,0,1];
-            $armas = [6,0,0,0,0,0,1,0,0,0,21,9,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "NIOBE":
-            $Tnave = "media";
-            $cualidades = [$codigo,1,2.0,1.0,1.3,1.6,16,20,1];
-            $armas = [2,10,4,0,0,1,2,10,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
 
-            case "NOMADA":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,4.5,1.0,.8,.6,1.1,16,18,1];
-            $armas = [6,4,0,0,0,0,0,35,0,0,27,6,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
+            case  "XG":// sin espacios ni signos
+            $Tnavet = "caza";
+            $Tnave = 0;
+            $inirec8=1;
+            $inirec11=2;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=1.2;  //defensa
+            $inirec18=0;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/(2*$Tnave+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 			//cantidad tipos cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 			//cantidad tipos cañones media, cantidad por tipo
+            $CRnave3 = 0; 			//cantidad tipos cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 			//cantidad tipos cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 			//cantidad tipos DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 			//cantidad tipos bombas, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 			//cantidad tipos cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 			//cantidad tipos CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 			//cantidad tipos CARGA MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 		//cantidad tipos CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 9;	 		//mejoras
+            $CRnave12 = 10;	 		// blindajes
+            $CRnave13 = 1;	 		// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "MIZAR":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1;
+            $inirec11=2;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=1; //moneda
+            $inirec16=1.5;  //defensa
+            $inirec18=5;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=12; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 2; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 9;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 1;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "HIDRA":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1;
+            $inirec11=2;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=.5; //moneda
+            $inirec16=.8;  //defensa
+            $inirec18=6;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 1; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 12;	 	//mejoras
+            $CRnave12 = 8;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+            case  "MEDUSA":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec7=25000;
+            $inirec8=1;
+            $inirec11=2;
+            $inirec12= .8;
+            $inirec13=1;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=7; //moneda
+            $inirec16=1.3;  //defensa
+            $inirec18=4.5;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 1; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 8; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 12;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "DEFENSOR":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec7=35000;
+            $inirec8=$ec9=0;$inirec10=0;
+            $inirec11=20;
+            $inirec12=1;  ///de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=	// energía
+            $inirec14=1; //tiempo
+            $inirec15=8; //moneda
+            $inirec16=1.2;  //defensa
+            $inirec18=6;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 4; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 21;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "VG":
+            $Tnavet = "caza";
+            $Tnave = 0;
+            $inirec8=1;
+            $inirec11=20;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=1; //moneda
+            $inirec16=1;  //defensa
+            $inirec18=0;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 9;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "NEBULA":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=20;
+            $inirec12=1.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=.8;  //defensa
+            $inirec18=8.5;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 8; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 40; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 21;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 5;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "VENGANZA":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=20;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.1;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=1; //moneda
+            $inirec16=1.1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=10;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=14; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 1; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 1; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 2; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 24;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "MITRA":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=30;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=.9;	// energía
+            $inirec14=1.1; //tiempo
+            $inirec15=1.2; //moneda
+            $inirec16=.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=12;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 3; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 6; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 24;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 3;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "CERBERO":
+            $Tnavet = "estacion";
+            $Tnave = 4;
+            $inirec8=1;
+            $inirec11=2000;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.8;	// energía
+            $inirec14=1.1; //tiempo
+            $inirec15=1.1; //moneda
+            $inirec16=.8;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=0;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=4; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 20; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 1; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 37;	 	//mejoras
+            $CRnave12 = 20;	 	// blindajes
+            $CRnave13 = 8;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "DEDALO":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=60;
+            $inirec12=2.6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=.7;	// energía
+            $inirec14=1.2; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=15;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 6; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 90; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 39;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 3;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "YG":
+            $Tnavet = "caza";
+            $Tnave = 0;
+            $inirec8=1;
+            $inirec11=1;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.5;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=.8; //moneda
+            $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=0;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 18;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+
+            case  "COBRA":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1.1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.1;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=.8; //moneda
+            $inirec16=1.1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=15;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=15; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 3; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 3; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 3;	 	// motores
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "OPHIR":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1;
+            $inirec11=60;
+            $inirec12=3.6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;	// energía
+            $inirec14=.4; //tiempo
+            $inirec15=.5; //moneda
+            $inirec16=.5;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=14;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=$Tnave*(20/((2*$Tnave)+.000001)); // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 21;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 5;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "NEMESIS":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=600;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.3;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=1; //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=14;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=12; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 15; 	// cañones media, cantidad por tipo
+            $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 3; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 31;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 6;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "TARTESO":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=150;
+            $inirec12=2.6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.4;	// energía
+            $inirec14=1.2; //tiempo
+            $inirec15=1.2; //moneda
+            $inirec16=1.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=19;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=14; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 3; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 3; 	// cañones media, cantidad por tipo
+            $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 3; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 40;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 6;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "ECLIPSE":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1;
+            $inirec11=190;
+            $inirec12=3; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.3;	// energía
+            $inirec14=.7; //tiempo
+            $inirec15=1.6; //moneda
+            $inirec16=.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=12;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=12; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 21;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 1;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "LEVIATAN":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=1500;
+            $inirec12=3; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=18;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=.7;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=20;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 60; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 3; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 60;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 8;	 	// motores
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "RAPTOR":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.1;	// energía
+            $inirec14=1.1; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=14; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 24;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "FENIX":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1.5;
+            $inirec11=750;
+            $inirec12=1.8; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=.8;	// energía
+            $inirec14=.7; //tiempo
+            $inirec15=1.7; //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=18;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 41;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 8;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "NABUCO":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=70;
+            $inirec12=.8; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.5;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=1.1; //moneda
+            $inirec16=1.5;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=14;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 4; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 31;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+
+            case  "HERA":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1.0;
+            $inirec11=80;
+            $inirec12=.8; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.5;	// energía
+            $inirec14=1; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=.7;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=14;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 6; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 2; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 35;	 	//mejoras
+            $CRnave12 = 16;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "LUNA":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=.8;
+            $inirec11=40;
+            $inirec12=.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.9;	// energía
+            $inirec14=1.5; //tiempo
+            $inirec15=1.5; //moneda
+            $inirec16=1.7;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=10;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 20; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 21;	 	//mejoras
+            $CRnave12 = 20;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "SG":
+            $Tnavet = "caza";
+            $Tnave = 0;
+            $inirec8=0;
+            $inirec11=1;
+            $inirec12=.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.6;	// energía
+            $inirec14=.6; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=0;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 12;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "VALKIRIA":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1.8;
+            $inirec11=4;
+            $inirec12=1.0; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.1;	// energía
+            $inirec14=.8; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=0.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=14;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 1; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 12;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "EUFORIA":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=40;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=9;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 4; 	// cañones media, cantidad por tipo
+            $CRnave3 = 3; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 2; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 31;	 	//mejoras
+            $CRnave12 = 15;	 	// blindajes
+            $CRnave13 = 6;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "TRAUMA":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1.1;
+            $inirec11=110;
+            $inirec12=2.4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=8.2;	// energía
+            $inirec14=1.1; //tiempo
+            $inirec15=1.3; //moneda
+            $inirec16=.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=13;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 9; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 5; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 10; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 24;	 	// blindajes
+            $CRnave13 = 8;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+
+            case  "FRAGMA":
+            $Tnavet = "estacion";
+            $Tnave = 4;
+            $inirec8=1;
+            $inirec11=700;
+            $inirec12=3.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=4.9;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=.8; //moneda
+            $inirec16=0.7;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=7;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=3; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 15; 	// cañones media, cantidad por tipo
+            $CRnave3 = 6; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 50; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 52;	 	//mejoras
+            $CRnave12 = 26;	 	// blindajes
+            $CRnave13 = 12;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "BASALTO":
+            $Tnavet = "estacion";
+            $Tnave = 4;
+            $inirec8=.8;
+            $inirec11=650;
+            $inirec12=5.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=10.9;	// energía
+            $inirec14=1.2; //tiempo
+            $inirec15=1.1; //moneda
+            $inirec16=1.7;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=12;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=2; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 5; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 20; 	// cañones media, cantidad por tipo
+            $CRnave3 = 12; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 4; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 10; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 75; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 26;	 	// blindajes
+            $CRnave13 = 12;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "HELIOS":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=.8;
+            $inirec11=110;
+            $inirec12=2.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=.6;	// energía
+            $inirec14=.5; //tiempo
+            $inirec15=.6; //moneda
+            $inirec16=.5;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=12;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 4; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 16; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 4;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+
+            case  "EBOLA":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1.3;
+            $inirec11=450;
+            $inirec12=4.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=15.9;	// energía
+            $inirec14=1.8; //tiempo
+            $inirec15=1.7; //moneda
+            $inirec16=2.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 8; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 16; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 40; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 4; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 54;	 	//mejoras
+            $CRnave12 = 26;	 	// blindajes
+            $CRnave13 = 6;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "AQUILES":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1.1;
+            $inirec11=850;
+            $inirec12=3.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=10.9;	// energía
+            $inirec14=2.5; //tiempo
+            $inirec15=2.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=18;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 5; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 30; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 64;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 8;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "ESCORPION":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=.6;
+            $inirec11=3;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.3;	// energía
+            $inirec14=0.5; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=12;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 6; 	// cañones media, cantidad por tipo
+            $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 21;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "PULSAR":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=.5;
+            $inirec11=20;
+            $inirec12=3.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.5;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=.8; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=18;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 6; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 39;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "SONDA":// sin espacios ni signos
+
+
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=.4;
+            $inirec11=1;
+            $inirec12=1.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=.2; //tiempo
+            $inirec15=.5; //moneda
+            $inirec16=.5;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 6;	 	//mejoras
+            $CRnave12 = 6;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "FALCATA":
+            $Tnavet = "caza";
+            $Tnave = 0;
+            $inirec8=1.2;
+            $inirec11=2;
+            $inirec12=.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.8;	// energía
+            $inirec14=.8; //tiempo
+            $inirec15=.6; //moneda
+            $inirec16=1.1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=10;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 21;	 	//mejoras
+            $CRnave12 = 9;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "NIOBE":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=140;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.3; //moneda
+            $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 1; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "NOMADA":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=.5;
+            $inirec11=30;
+            $inirec12=4.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=.8; //tiempo
+            $inirec15=.6; //moneda
+            $inirec16=1.1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 4; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 35; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 6;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "CETUS":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=190;
+            $inirec12=10.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.1;	// energía
+            $inirec14=2.0; //tiempo
+            $inirec15=1.2; //moneda
+            $inirec16=0.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 200; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+
+            case  "FOBOS":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1.8; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.9;	// energía
+            $inirec14=.8; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=12;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=14; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 8; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 20;	 	// blindajes
+            $CRnave13 = 8;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "AGAMENON":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=190;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.2;	// energía
+            $inirec14=1.3; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=.8;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 6; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 15; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "VARUNA":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=190;
+            $inirec12=1.2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.1;	// energía
+            $inirec14=.7; //tiempo
+            $inirec15=1.5; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 10; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "BERSERKER":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=240;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.9;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 5; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 3; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 3;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "AGRESOR":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1.2;
+            $inirec11=100;
+            $inirec12=1.4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.3;	// energía
+            $inirec14=1.1; //tiempo
+            $inirec15=1.6; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=15;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 3; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 2; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 14; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 3;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "VULCANO":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=240;
+            $inirec12=3.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=17;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 15; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 15; 	// cañones media, cantidad por tipo
+            $CRnave3 = 10; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 40; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 18;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "DENIX":
+            $Tnavet = "estacion";
+            $Tnave = 4;
+            $inirec8=1;
+            $inirec11=1400;
+            $inirec12=4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=4.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.8; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=2.5;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=2; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 24; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 24; 	// cañones media, cantidad por tipo
+            $CRnave3 = 10; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 1; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 8; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 80; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 10;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "OBITUS":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=140;
+            $inirec12=2.2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.0;	// energía
+            $inirec14=2.0; //tiempo
+            $inirec15=1.3; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=19;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 6; 	// cañones media, cantidad por tipo
+            $CRnave3 = 3; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 13; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 35;	 	//mejoras
+            $CRnave12 = 16;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "CARONTE":
+            $Tnavet = "estacion";
+            $Tnave = 4;
+            $inirec8=1;
+            $inirec11=1000;
+            $inirec12=12; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.5;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=8;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=3.5; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 9; 	// cañones media, cantidad por tipo
+            $CRnave3 = 6; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 4; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 6; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 60; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 8;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "VERMIS":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=340;
+            $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=.6; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "HATHOR":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=140;
+            $inirec12=2.8; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.5;	// energía
+            $inirec14=1.3; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=20;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 5; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 15; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "TEOTL":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=1540;
+            $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.0;	// energía
+            $inirec14=1.3; //tiempo
+            $inirec15=.6; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=20;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 8; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 3; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 10; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "YGR":
+            $Tnavet = "caza";
+            $Tnave = 0;
+            $inirec8=1;
+            $inirec11=1;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=.5; //tiempo
+            $inirec15=1; //moneda
+            $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 1; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 15;	 	//mejoras
+            $CRnave12 = 9;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "ISHTAR":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=.1; //tiempo
+            $inirec15=1.8; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 8; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "CROM":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1.5;
+            $inirec11=2800;
+            $inirec12=10; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.4;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.9; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 15; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 6; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 15; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 100; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 18;	 	// blindajes
+            $CRnave13 = 5;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "FREYJA":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=2;
+            $inirec11=3440;
+            $inirec12=3; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.5;	// energía
+            $inirec14=1.9; //tiempo
+            $inirec15=1.5; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=25;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 20; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 6; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 8; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 50; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "INTI":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=.5;
+            $inirec11=100;
+            $inirec12=4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=.8;	// energía
+            $inirec14=.4; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=0.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 21;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "BARRACUDA":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=.3;
+            $inirec11=100;
+            $inirec12=3; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=.6; //moneda
+            $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 25; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 20;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "KALI":
+            $Tnavet = "estacion";
+            $Tnave = 4;
+            $inirec8=1;
+            $inirec11=5140;
+            $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.5;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=.3; //moneda
+            $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=3; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 30; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 15; 	// cañones media, cantidad por tipo
+            $CRnave3 = 6; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 400; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 3;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 20;	 	// blindajes
+            $CRnave13 = 16;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "MARDUK":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=1400;
+            $inirec12=3; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=3.0;	// energía
+            $inirec14=.5; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=18;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 12; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 60; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 40;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 6;	 	// motores
+
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "NIMROD":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=.7;
+            $inirec11=3240;
+            $inirec12=1.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.8;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=0.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=14;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 15; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 12; 	// cañones media, cantidad por tipo
+            $CRnave3 = 6; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 40; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 41;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "LORICA":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=1340;
+            $inirec12=2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.1;	// energía
+            $inirec14=.5; //tiempo
+            $inirec15=0.3; //moneda
+            $inirec16=2.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 8; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 75; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 26;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "NOVA":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=140;
+            $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.8;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=19;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 20; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 6; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 15; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "ASUR":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=.7;
+            $inirec11=340;
+            $inirec12=4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.5;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=.8; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=20;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 8; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 8; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 4; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 6; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 150; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 5;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 18;	 	// blindajes
+            $CRnave13 = 6;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+
+            case  "CASANDRA":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1.2;
+            $inirec11=940;
+            $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=2.5;	// energía
+            $inirec14=1.5; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=.8;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=20;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 12; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 10; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 200; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 20; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 10;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 8;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+            case  "PLACA TERMICA":
+            $Tnavet = "caza";
+            $Tnave = 0;
+
+            $factn=1;
+            $inirec1= 5000;		$inirec2= 150;	$inirec3= 0;
+            $inirec4= 100;		$inirec5= 2;	$inirec6= 3;
+            $inirec7= 5;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec17=0;  //ataque
+            $inirec18=1;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "MAMPARO":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+
+            $factn=1;
+            $inirec1= 5000;		$inirec2= 150;	$inirec3= 0;
+            $inirec4= 100;		$inirec5= 2;	$inirec6= 3;
+            $inirec7= 5;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec17=0;  //ataque
+            $inirec18=1;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "CUADERNA":
+            $Tnavet = "media";
+            $Tnave = 2;
+
+            $factn=1;
+            $inirec1= 5000;		$inirec2= 150;	$inirec3= 0;
+            $inirec4= 100;		$inirec5= 2;	$inirec6= 3;
+            $inirec7= 5;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec17=0;  //ataque
+            $inirec18=1;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "ESTRUCTURA":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+
+            $factn=1;
+            $inirec1= 5000;		$inirec2= 150;	$inirec3= 0;
+            $inirec4= 100;		$inirec5= 2;	$inirec6= 3;
+            $inirec7= 5;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec17=0;  //ataque
+            $inirec18=1;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "RECOLECTOR":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+
+            $factn=1;
+            $inirec1= 5000;		$inirec2= 150;	$inirec3= 0;
+            $inirec4= 100;		$inirec5= 2;	$inirec6= 3;
+            $inirec7= 5;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec17=0;  //ataque
+            $inirec18=1;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "REMOLCADOR":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+
+            $factn=1;
+            $inirec1= 5000;		$inirec2= 150;	$inirec3= 0;
+            $inirec4= 100;		$inirec5= 2;	$inirec6= 3;
+            $inirec7= 5;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec17=0;  //ataque
+            $inirec18=1;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "ANUBIS":
+            $Tnavet = "estacion";
+            $Tnave = 4;
+
+            $factn=1;
+            $inirec1= 5000;		$inirec2= 150;	$inirec3= 0;
+            $inirec4= 100;		$inirec5= 2;	$inirec6= 3;
+            $inirec7= 5;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec17=0;  //ataque
+            $inirec18=1;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "BENGALA":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+
+            $factn=1;
+            $inirec1= 5000;		$inirec2= 150;	$inirec3= 0;
+            $inirec4= 100;		$inirec5= 2;	$inirec6= 3;
+            $inirec7= 5;
+            $inirec8=1;
+            $inirec11=10;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.0;	// energía
+            $inirec14=1.0; //tiempo
+            $inirec15=1.0; //moneda
+            $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec17=0;  //ataque
+            $inirec18=1;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+            case  "ISIS":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=40;
+            $inirec12=2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.9;	// energía
+            $inirec14=.7; //tiempo
+            $inirec15=1.2; //moneda
+            $inirec16=1.4;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=19;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 18; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 1; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 18;	 	// blindajes
+            $CRnave13 = 4;	 	// motores
+
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+            case  "WUKONG":
+            $Tnavet = "caza";
+            $Tnave = 0;
+            $inirec8=1;
+            $inirec11=40;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.8;	// energía
+            $inirec14=.5; //tiempo
+            $inirec15=.6; //moneda
+            $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=19;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 1; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 27;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+            case  "ENLIL":
+            $Tnavet = "media";
+            $Tnave = 2;
+            $inirec8=1;
+            $inirec11=40;
+            $inirec12=2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.9;	// energía
+            $inirec14=.7; //tiempo
+            $inirec15=1.2; //moneda
+            $inirec16=1.4;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=19;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 10; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 2; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+
+            case  "ESUS":
+            $Tnavet = "ligera";
+            $Tnave = 1;
+            $inirec8=1;
+            $inirec11=80;
+            $inirec12=4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.9;	// energía
+            $inirec14=.7; //tiempo
+            $inirec15=1.2; //moneda
+            $inirec16=1.4;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=17;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 2; 	// cañones media, cantidad por tipo
+            $CRnave3 = 10; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 10; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 10; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 10;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 6;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
+            break;
+
+
+
+
+
+
+
+            case  "BAAL":
+            $Tnavet = "pesada";
+            $Tnave = 3;
+            $inirec8=1;
+            $inirec11=400;
+            $inirec12=2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=3.5;	// energía
+            $inirec14=.8; //tiempo
+            $inirec15=1.1; //moneda
+            $inirec16=1.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=15;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 5; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 5; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 5; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave11 = 45;	 	//mejoras
+            $CRnave12 = 13;	 	// blindajes
+            $CRnave13 = 2;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
-            case "CETUS":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,10.5,1.1,2.0,1.2,0.6,16,16,1];
-            $armas = [4,0,0,0,0,0,1,200,0,0,45,13,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "FOBOS":
-            $Tnave = "media";
-            $cualidades = [$codigo,1.8,1.9,.8,.7,1.6,12,14,1];
-            $armas = [10,8,0,0,0,0,2,20,0,0,27,20,8];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "AGAMENON":
-            $Tnave = "media";
-            $cualidades = [$codigo,1,2.2,1.3,1.0,.8,16,16,1];
-            $armas = [12,6,2,0,0,0,2,15,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "VARUNA":
-            $Tnave = "media";
-            $cualidades = [$codigo,1.2,1.1,.7,1.5,1.0,16,16,1];
-            $armas = [2,2,1,1,0,0,10,10,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "BERSERKER":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,1,2.9,1.0,1.0,1.2,16,20,1];
-            $armas = [10,10,5,1,0,3,2,0,0,0,45,10,3];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "AGRESOR":
-            $Tnave = "media";
-            $cualidades = [$codigo,1.4,2.3,1.1,1.6,1.0,15,18,1];
-            $armas = [0,3,2,2,0,0,14,0,0,0,27,10,3];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "VULCANO":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,3.5,2.0,1.0,1.0,1.6,17,20,1];
-            $armas = [15,15,10,0,0,0,5,40,10,0,45,18,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "DENIX":
-            $Tnave = "estacion";
-            $cualidades = [$codigo,4,4.0,1.0,1.8,1.0,2.5,2,1];
-            $armas = [24,24,10,0,0,1,8,80,1,0,45,13,10];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "OBITUS":
-            $Tnave = "media";
-            $cualidades = [$codigo,2.2,2.0,2.0,1.3,1.0,19,20,1];
-            $armas = [0,6,3,0,0,0,13,0,0,0,35,16,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "CARONTE":
-            $Tnave = "estacion";
-            $cualidades = [$codigo,12,1.5,1.0,1.0,1.2,8,3.5,1];
-            $armas = [12,9,6,4,0,0,6,60,6,0,45,13,8];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "VERMIS":
-            $Tnave = "media";
-            $cualidades = [$codigo,6,1.0,.6,.7,1.6,16,18,1];
-            $armas = [0,2,0,0,0,0,4,20,1,0,27,10,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "HATHOR":
-            $Tnave = "media";
-            $cualidades = [$codigo,2.8,1.5,1.3,1.0,1.0,20,16,1];
-            $armas = [0,0,2,1,0,5,4,15,1,0,27,13,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "TEOTL":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,6,2.0,1.3,.6,1.0,20,20,1];
-            $armas = [6,8,4,3,0,10,0,20,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "YGR":
-            $Tnave = "caza";
-            $cualidades = [$codigo,1,1.0,.5,1,1.2,16,0,1];
-            $armas = [4,1,0,0,0,0,0,0,0,0,15,9,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "ISHTAR":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,6,1.0,.1,1.8,1.0,16,20,1];
-            $armas = [2,0,2,0,0,0,3,8,0,0,27,10,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "CROM":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,10,2.4,1.0,1.9,1.0,16,20,1];
-            $armas = [15,10,6,0,0,0,15,100,4,0,45,18,5];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "FREYJA":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,3,2.5,1.9,1.5,1.0,25,20,1];
-            $armas = [20,10,6,1,0,0,8,50,2,0,45,13,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "INTI":
-            $Tnave = "media";
-            $cualidades = [$codigo,4,.8,.4,.7,0.6,16,16,1];
-            $armas = [10,2,0,0,0,0,0,30,4,0,21,10,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "BARRACUDA":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,3,1.0,1.0,.6,1.6,16,18,1];
-            $armas = [2,0,0,0,0,0,2,25,0,0,27,20,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
 
-            case "KALI":
-            $Tnave = "estacion";
-            $cualidades = [$codigo,6,1.5,1.0,.3,1.6,16,3,1];
-            $armas = [30,15,6,0,0,0,4,400,10,3,45,20,16];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "MARDUK":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,3,3.0,.5,1.0,1.0,18,20,1];
-            $armas = [0,0,12,0,0,2,4,60,6,0,40,13,6];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "NIMROD":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,1.5,2.8,1.0,1.0,0.6,14,18,1];
-            $armas = [15,12,6,0,0,0,3,40,6,0,41,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "LORICA":
-            $Tnave = "media";
-            $cualidades = [$codigo,2,2.1,.5,0.3,2.6,16,18,1];
-            $armas = [12,8,4,0,0,0,5,75,2,0,45,26,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "NOVA":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,6,1.8,1.0,1.0,1.0,19,20,1];
-            $armas = [20,0,4,0,0,0,6,0,15,1,45,13,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "ASUR":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,4,1.5,1.0,.8,1.0,20,20,1];
-            $armas = [8,8,4,0,0,4,6,150,10,5,45,18,6];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "CASANDRA":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,6,2.5,1.5,1.0,.8,20,20,1];
-            $armas = [10,12,0,0,0,0,10,200,20,10,45,13,8];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "PLACA TERMICA":
-            $Tnave = "caza";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,1,0,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "MAMPARO":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,1,0,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "CUADERNA":
-            $Tnave = "media";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,1,0,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "ESTRUCTURA":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,1,0,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "RECOLECTOR":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,1,0,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "REMOLCADOR":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,1,0,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "ANUBIS":
-            $Tnave = "estacion";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,1,0,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
 
-            case "BENGALA":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,1,1.0,1.0,1.0,1.0,1,0,1];
-            $armas = [0,0,0,0,0,0,0,0,0,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "ISIS":
-            $Tnave = "media";
-            $cualidades = [$codigo,2,1.9,.7,1.2,1.4,19,19,1];
-            $armas = [18,1,0,1,0,0,4,30,6,0,45,18,4];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "WUKONG":
-            $Tnave = "caza";
-            $cualidades = [$codigo,1,1.8,.5,.6,1.6,19,0,1];
-            $armas = [2,1,0,0,0,0,2,0,0,0,27,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
 
-            case "ENLIL":
-            $Tnave = "media";
-            $cualidades = [$codigo,2,1.9,.7,1.2,1.4,19,19,1];
-            $armas = [4,2,1,10,0,2,1,2,2,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "ESUS":
-            $Tnave = "ligera";
-            $cualidades = [$codigo,4,1.9,.7,1.2,1.4,17,18,1];
-            $armas = [2,2,10,10,0,10,1,10,10,10,45,13,6];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
-
-            case "BAAL":
-            $Tnave = "pesada";
-            $cualidades = [$codigo,2,3.5,.8,1.1,1.9,15,19,1];
-            $armas = [2,10,5,1,0,5,5,20,5,0,45,13,2];
-            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnave);
-            break;
 
 
 
@@ -604,6 +2873,7 @@ class CualidadesFuselajes extends Model
         $coste->fuselajes_id = $fuselajes_id;
 
         $n=1;
+        $coste->gastoFuel=$cualidades[$n] * $factorCombustibleT * $factorCombustible;$n++;
         $coste->masa=$cualidades[$n] ;$n++;
         $coste->energia=$cualidades[$n] * $factorEnergiaT * $factorEnergia;$n++;
         $coste->tiempo=$cualidades[$n] * $factorTiempo *$factorTiempo;$n++;
@@ -611,7 +2881,7 @@ class CualidadesFuselajes extends Model
         $coste->defensa=$cualidades[$n] * $factorDefensaT * $factorDefensa;$n++;
         $coste->velocidad=$cualidades[$n] * $factorVelocidadT * $factorVelocidad;$n++;
         $coste->velocidadMax=$cualidades[$n] ;$n++;
-        $coste->gastoFuel=$cualidades[$n] * $factorCombustibleT * $factorCombustible;$n++;
+
 
         $n=0;
         $coste->armasLigera=$armas[$n] ;$n++;
