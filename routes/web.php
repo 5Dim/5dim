@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function () {
 
     //Fuselajes
     Route::get('/juego/fuselajes', 'FuselajesController@index');
-    Route::get('/juego/fuselajes/desbloquear/{id}/{personal}/{tab?}', ['uses' => 'FuselajesController@desbloquear']);
+    Route::get('/juego/fuselajes/desbloquear/{id}', ['uses' => 'FuselajesController@desbloquear']);
     Route::get('/juego/fuselajes/diseñar/{id}', ['uses' => 'FuselajesController@diseñar']);
     Route::get('/juego/fuselajes/datos/{codigo}', ['uses' => 'FuselajesController@datos']);
 

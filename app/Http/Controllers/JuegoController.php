@@ -52,7 +52,7 @@ class JuegoController extends Controller
         if (!$planeta) {
             session()->put('planetas_id', Auth::user()->jugadores[$universo]->planetas[0]->id);
         }else{
-            if ($planetaBusqueda->jugadores_id == Auth::user()->jugadores[$universo]->id) {
+            if ($planetaBusqueda->jugadores->user == Auth::user()) {
                 session()->put('planetas_id', $planeta);
             }else{
                 return redirect('/planeta');

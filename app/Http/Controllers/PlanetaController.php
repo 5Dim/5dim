@@ -9,9 +9,13 @@ use App\Almacenes;
 use App\Planetas;
 use App\Industrias;
 use App\Constantes;
+use App\Dependencias;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
+use App\EnInvestigaciones;
+use App\CostesConstrucciones;
+use Auth;
 
 class PlanetaController extends Controller
 {
@@ -20,9 +24,12 @@ class PlanetaController extends Controller
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
-            return redirect('/juego/planeta');
+            return redirect('/planeta');
         }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+        if ($planetaActual->jugadores->user != Auth::user()) {
+            return redirect('/planeta');
+        }
         EnConstrucciones::terminarColaConstrucciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
