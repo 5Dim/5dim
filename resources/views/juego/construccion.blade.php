@@ -2,6 +2,8 @@
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
+        @include ('juego.tablaDaños')
+        @include ('juego.tablaResumenDiseños')
         @if (count($colaConstruccion) > 0)
             <div class="row rounded cajita">
                 <div class="col-12">
