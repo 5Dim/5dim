@@ -10,6 +10,7 @@ use \App\Variables;
 use \App\CostesConstrucciones;
 use \App\Dependencias;
 use \App\Fuselajes;
+use \App\Armas;
 
 class DatosMaestrosController extends Controller
 {
@@ -40,6 +41,9 @@ class DatosMaestrosController extends Controller
 
         $fuselaje=new Fuselajes();
         $fuselajes=$fuselaje->generarDatosFuselajes();
+
+        $arma=new Armas();
+        $armas=$arma->generarDatosArmas();
 
     }
 }

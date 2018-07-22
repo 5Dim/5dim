@@ -119,10 +119,6 @@ class Fuselajes extends Model
         $costesFuselaje=new CostesFuselajes();
         $cualidadesFuselaje=new CualidadesFuselajes();
 
-
-
-
-
         $fuselajes=new Fuselajes();
         $listaNombres=$fuselajes->listaNombres();
 

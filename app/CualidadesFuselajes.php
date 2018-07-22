@@ -2884,10 +2884,10 @@ class CualidadesFuselajes extends Model
 
 
         $n=0;
-        $coste->armasLigera=$armas[$n] ;$n++;
-        $coste->armasMedia=$armas[$n] ;$n++;
+        $coste->armasLigeras=$armas[$n] ;$n++;
+        $coste->armasMedias=$armas[$n] ;$n++;
         $coste->armasPesadas=$armas[$n] ;$n++;
-        $coste->armasInsertada=$armas[$n] ;$n++;
+        $coste->armasInsertadas=$armas[$n] ;$n++;
         $coste->armasBombas=$armas[$n] ;$n++;
         $coste->armasMisiles=$armas[$n] ;$n++;
 
