@@ -51,6 +51,12 @@ class PlanetaController extends Controller
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
 
-        return view('juego.planeta', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
+        //Producciones sin calcular
+        $produccionesSinCalcular = Producciones::calcularProducciones($construcciones, $planetaActual, false);
+
+        //Constantes
+        $constantes=Constantes::where('tipo','construccion')->get();
+
+        return view('juego.planeta', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'constantes', 'produccionesSinCalcular'));
     }
 }
