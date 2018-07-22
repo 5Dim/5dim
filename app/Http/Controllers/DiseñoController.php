@@ -16,6 +16,7 @@ use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
 use Auth;
+use App\Fuselajes;
 
 class DiseñoController extends Controller
 {
@@ -52,7 +53,7 @@ class DiseñoController extends Controller
 
         return view('juego.diseño', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
     }
-    public function diseñar ()
+    public function diseñar ($idFuselaje)
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
@@ -83,6 +84,8 @@ class DiseñoController extends Controller
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
 
-        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
+        $diseño = Fuselajes::find($idFuselaje);
+
+        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño'));
     }
 }

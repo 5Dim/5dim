@@ -51,6 +51,6 @@ class PlanetaController extends Controller
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
+        return view('juego.planeta', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
     }
 }

@@ -41,34 +41,34 @@
                 </tr>
                 <tr>
                     <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->costes->mineral, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->cristal, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->gas, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->plastico, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->ceramica, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->liquido, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->micros, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->cualidades->gastoFuel, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
                     </td>
                     <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->costes->personal, 0,",",".") }}
                     </td>
                 </tr>
                 <tr>
@@ -105,7 +105,13 @@
                 </tr>
                 <tr>
                     <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->cualidades->energia, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->cualidades->tiempo, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->cualidades->mantenimiento, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -114,16 +120,10 @@
                         0
                     </td>
                     <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->cualidades->velocidad, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->cualidades->cargaPequeña, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0

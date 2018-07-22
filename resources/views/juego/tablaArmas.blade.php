@@ -4,7 +4,7 @@
             <a class="nav-item nav-link" id="mejoras-tab" data-toggle="tab" href="#mejoras" role="tab" aria-controls="mejoras" aria-selected="false">
                 Mejoras
             </a>
-            <a class="nav-item nav-link  active" id="motores-tab" data-toggle="tab" href="#motores" role="tab" aria-controls="motores" aria-selected="true">
+            <a class="nav-item nav-link active" id="motores-tab" data-toggle="tab" href="#motores" role="tab" aria-controls="motores" aria-selected="true">
                 Motores
             </a>
             <a class="nav-item nav-link" id="carga-tab" data-toggle="tab" href="#carga" role="tab" aria-controls="carga" aria-selected="false">

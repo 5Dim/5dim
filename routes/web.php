@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
 
     //Diseño
     Route::get('/juego/diseño', 'DiseñoController@index');
-    Route::get('/juego/diseñar', 'DiseñoController@diseñar');
+    Route::get('/juego/diseño/diseñar/{id}', 'DiseñoController@diseñar');
 
     //Fabricas
     Route::get('/juego/fabricas', 'FabricasController@index');

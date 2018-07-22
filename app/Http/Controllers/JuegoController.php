@@ -21,6 +21,13 @@ class JuegoController extends Controller
     public function index()
     {
         //Inicio recursos
+        if (empty(session()->get('planetas_id'))) {
+            return redirect('/planeta');
+        }
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+        if ($planetaActual->jugadores->user != Auth::user()) {
+            return redirect('/planeta');
+        }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         EnConstrucciones::terminarColaConstrucciones();
         $construcciones = Construcciones::construcciones($planetaActual);
@@ -36,7 +43,9 @@ class JuegoController extends Controller
             $personal += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
-            $personal += $cola->personal;
+            if ($cola->planetas->id == session()->get('planetas_id')) {
+                $personal += $cola->personal;
+            }
         }
         $tipoPlaneta = $planetaActual->tipo;
         //Fin recursos
