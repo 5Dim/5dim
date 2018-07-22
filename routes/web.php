@@ -69,11 +69,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/juego/fuselajes/diseñar/{id}', ['uses' => 'FuselajesController@diseñar']);
     Route::get('/juego/fuselajes/datos/{codigo}', ['uses' => 'FuselajesController@datos']);
 
-    //Fabricas
-    Route::get('/juego/fabricas', 'FabricasController@index');
-
     //Diseño
     Route::get('/juego/diseño', 'DiseñoController@index');
+    Route::get('/juego/diseñar', 'DiseñoController@diseñar');
+
+    //Fabricas
+    Route::get('/juego/fabricas', 'FabricasController@index');
 
     //Astrometria
     Route::get('/juego/astrometria', 'AstrometriaController@index');
