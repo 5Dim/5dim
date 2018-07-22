@@ -39,6 +39,10 @@ Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
 Route::get('/', 'PrincipalController@index');
 Route::get('/pruebas', 'JuegoController@pruebas');
 
+Route::get('/juego/astrometria/ajax/universo', 'AstrometriaController@generarUniverso');
+Route::get('/juego/astrometria/ajax/radares', 'AstrometriaController@generarRadares');
+Route::get('/juego/astrometria/ajax/flotas', 'AstrometriaController@generarFlotas');
+
 //Middleware de auth
 Route::middleware('auth')->group(function () {
 
@@ -78,7 +82,7 @@ Route::middleware('auth')->group(function () {
 
     //Astrometria
     Route::get('/juego/astrometria', 'AstrometriaController@index');
-    Route::get('/juego/astrometria/ajax/universo', 'AstrometriaController@generarUniverso');
+
 
     //Flota
     Route::get('/juego/flotas', 'FlotaController@index');

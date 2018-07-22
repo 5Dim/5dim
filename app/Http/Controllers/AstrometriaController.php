@@ -16,6 +16,8 @@ use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
 use Auth;
+use App\Radares;
+use App\Flotas;
 
 class AstrometriaController extends Controller
 {
@@ -78,4 +80,56 @@ class AstrometriaController extends Controller
         $planetoide->sistemas = $universo;
         return $planetoide;
     }
+
+    public function generarRadares(){
+
+        $radares=[];
+
+        for($n=0;$n<30;$n++){
+            $radar=new Radares();
+            $radar->estrella=random_int ( 1 , 10000 );
+            $radar->circulo=random_int ( 1 , 10 );
+            $radar->color=random_int ( 1 , 4 );
+            array_push($radares,$radar);
+        }
+
+        return $radares;
+    }
+
+
+    public function generarFlotas(){
+
+        $flotas=[];
+
+        for($n=0;$n<30;$n++){
+            $flota=new Flotas();
+            $flota->numeroflota=random_int ( 1 , 10000 );
+            $flota->nick=random_int ( 1 , 10 );
+            $flota->ataque=random_int ( 1 , 1000000);
+            $flota->defensa=random_int ( 1 , 1000000);
+            $flota->origen=random_int ( 1 , 10000)."x".random_int ( 1 , 9);
+            $flota->destino=random_int ( 1 , 10000)."x".random_int ( 1 , 9);
+            $flota->angulo=random_int ( 1 , 400 );
+            $flota->color=random_int ( 1 , 5 );
+            $flota->fecha=random_int ( 0 , 23 )."h ".random_int ( 0 , 59 )."m ".random_int ( 0 , 59 )."s" ;
+
+            $flota->coordix=random_int ( 1 , 10000 );
+            $flota->coordiy=random_int ( 1 , 10000 );
+
+            $flota->coordfx=random_int ( 1 , 10000 );
+            $flota->coordfy=random_int ( 1 , 10000 );
+
+            $flota->coordx= round( ((($flota->coordix-$flota->coordfx)/random_int ( 1 , 100)) + $flota->coordix),2);
+            $flota->coordy=round( (($flota->coordiy-$flota->coordfy)/random_int ( 1 , 100)) + $flota->coordiy,2);
+
+            $flota->abreen="ppal";
+
+
+            array_push($flotas,$flota);
+        }
+
+        return $flotas;
+    }
+
+
 }
