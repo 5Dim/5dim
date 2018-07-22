@@ -98,37 +98,37 @@
                         Produccion por hora
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[0]->personal, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[0]->personal, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[1]->mineral, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[1]->mineral, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[2]->cristal, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[2]->cristal, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[3]->gas, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[3]->gas, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[4]->plastico, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[4]->plastico, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[5]->cermica, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[5]->ceramica, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[6]->liquido, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[6]->liquido, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[7]->micros, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[7]->micros, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[8]->fuel, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[8]->fuel, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[9]->ma, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[9]->ma, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-success borderless">
-                        {{ number_format($producciones[10]->municion, 0,",",".") }}
+                        {{ number_format($produccionesSinCalcular[10]->municion, 0,",",".") }}
                     </td>
                 </tr>
                 <tr>
@@ -139,7 +139,7 @@
                         0
                     </td>
                     <td class="anchofijo text-danger borderless">
-                        {{ number_format($producciones[1]->liquidos*10, 0,",",".") }}
+                        -{{ number_format($producciones[6]->liquido * $constantes->where('codigo', 'costoLiquido')->first()->valor, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -180,7 +180,7 @@
                         0
                     </td>
                     <td class="anchofijo text-danger borderless">
-                        {{ number_format($producciones[1]->micros*10, 0,",",".") }}
+                        -{{ number_format($produccionesSinCalcular[7]->micros*$constantes->where('codigo', 'costoMicros')->first()->valor, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -221,7 +221,7 @@
                         0
                     </td>
                     <td class="anchofijo text-danger borderless">
-                        {{ number_format($producciones[1]->fuel*10, 0,",",".") }}
+                        -{{ number_format($produccionesSinCalcular[8]->fuel*$constantes->where('codigo', 'costoFuel')->first()->valor, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -262,7 +262,7 @@
                         0
                     </td>
                     <td class="anchofijo text-danger borderless">
-                        {{ number_format($producciones[1]->ma*10, 0,",",".") }}
+                        -{{ number_format($produccionesSinCalcular[9]->ma * $constantes->where('codigo', 'costoMa')->first()->valor, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -303,7 +303,7 @@
                         0
                     </td>
                     <td class="anchofijo text-danger borderless">
-                        {{ number_format($producciones[1]->municion*10, 0,",",".") }}
+                        -{{ number_format($produccionesSinCalcular[10]->municion * $constantes->where('codigo', 'costoMunicion')->first()->valor, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0

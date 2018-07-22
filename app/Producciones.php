@@ -64,7 +64,7 @@ class Producciones extends Model
             }
         }
 
-        public static function calcularProducciones ($construcciones, $planetaActual) {
+        public static function calcularProducciones ($construcciones, $planetaActual, $calcular = true) {
             $producciones = [];
 
             for ($i = 0 ; $i < count($construcciones) ; $i++) {
@@ -116,14 +116,16 @@ class Producciones extends Model
                 }
             }
 
-            //Calcular gastos de producciones
-            $CConstantes=Constantes::where('tipo','construccion')->get();
+            if ($calcular) {
+                //Calcular gastos de producciones
+                $CConstantes=Constantes::where('tipo','construccion')->get();
 
-            $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
-            $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
-            $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
-            $producciones[4]->plastico -= ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
-            $producciones[5]->ceramica -= ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
+                $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
+                $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
+                $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
+                $producciones[4]->plastico -= ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
+                $producciones[5]->ceramica -= ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
+            }
 
             return $producciones;
         }
