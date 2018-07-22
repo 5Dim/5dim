@@ -75,9 +75,7 @@ class FuselajesController extends Controller
 
     public function datos ($id)
     {
-       // $nombreInvestigacion = trans('fuselaje.' . $id);
-
-       $nombreInvestigacion=Fuselajes::find($id)->codigo;
+        $nombreInvestigacion=Fuselajes::find($id)->codigo;
         $descripcionInvestigacion = trans('fuselaje.' .'Dnave'.$id);
         return compact('descripcionInvestigacion', 'nombreInvestigacion');
     }

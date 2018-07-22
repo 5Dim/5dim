@@ -931,13 +931,13 @@ class CualidadesFuselajes extends Model
             $inirec18=9;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
             $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
 
-            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
-            $CRnave2 = 4; 	// cañones media, cantidad por tipo
-            $CRnave3 = 3; 	//cañones pesados, cantidad por tipo
-            $CRnave4 = 2; 	//cañones insertado, cantidad por tipo
+            $CRnave1 = 15; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
-            $CRnave7 = 4; 	// cañones Misiles, cantidad por tipo
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
@@ -1330,8 +1330,8 @@ class CualidadesFuselajes extends Model
             $inirec18=16;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
             $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
 
-            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
-            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 8; 	// cañones media, cantidad por tipo
             $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
             $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
@@ -1340,7 +1340,7 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave11 = 45;	 	//mejoras
+            $CRnave11 = 30;	 	//mejoras
             $CRnave12 = 13;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
@@ -1480,7 +1480,7 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 15; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave8 = 60; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave11 = 45;	 	//mejoras
