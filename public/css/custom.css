@@ -90,4 +90,5 @@ textarea {
     background-color: #000000;
     color: white;
     border: 1px solid darkgray;
+    border-radius: 5px;
 }

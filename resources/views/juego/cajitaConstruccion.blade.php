@@ -1,6 +1,6 @@
 <div class="row rounded cajita">
         <div class="col-12">
-            <div id="cuadro1" class="table-responsive-sm">
+            <div id="cuadro1" class="table-responsive">
                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                     <tr>
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('construccion.' . $construccion->codigo) }} nivel {{ $construccion->nivel
@@ -15,8 +15,9 @@
                                 placeholder="personal" value="{{$personal}}" onkeyup="calculaTiempo({{$construccion->coste->mineral+$construccion->coste->cristal+$construccion->coste->gas+$construccion->coste->plastico +$construccion->coste->ceramica +$construccion->coste->liquido + $construccion->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construccion->codigo}}') "></td>
                     </tr>
                     <tr>
-                        <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construccion->codigo . '.jpg') }}"
-                                width="90" height="90"></td>
+                        <td rowspan="4" class="anchofijo text-warning borderless">
+                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/' . $construccion->codigo . '.jpg') }}" width="90" height="90">
+                        </td>
                         <td colspan="11" class="borderless">&nbsp;</td>
                     </tr>
                     <tr>
@@ -275,7 +276,7 @@
             </div>
         </div>
         <div class="col-12 borderless">
-            <div id="cuadro1" class="table-responsive-sm ">
+            <div id="cuadro1" class="table-responsive ">
                 <table class="table table-sm table-borderless text-center anchofijo">
                     <tr>
                         <td>

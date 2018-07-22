@@ -1,7 +1,7 @@
 <div class="row rounded cajita">
     <div class="col-12">
-        <div id="cuadro1" class="table-responsive-sm">
-            <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
+        <div id="cuadro1" class="table-responsive">
+            <table class="table table-borderless borderless table-sm text-center" style="margin-top: 5px !important">
                 <tr>
                     <th colspan="10" class="text-success text-center borderless align-middle">
                         Resumen del diseño
@@ -41,34 +41,34 @@
                 </tr>
                 <tr>
                     <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->costes->mineral, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->cristal, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->gas, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->plastico, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->ceramica, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->liquido, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->costes->micros, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->cualidades->gastoFuel, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
                     </td>
                     <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->costes->personal, 0,",",".") }}
                     </td>
                 </tr>
                 <tr>
@@ -105,7 +105,13 @@
                 </tr>
                 <tr>
                     <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->cualidades->energia, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->cualidades->tiempo, 0,",",".") }}
+                    </td>
+                    <td class="anchofijo text-light borderless">
+                        {{ number_format($diseño->cualidades->mantenimiento, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -114,16 +120,10 @@
                         0
                     </td>
                     <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->cualidades->velocidad, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
+                        {{ number_format($diseño->cualidades->cargaPequeña, 0,",",".") }}
                     </td>
                     <td class="anchofijo text-light borderless">
                         0
@@ -139,7 +139,7 @@
         </div>
     </div>
     <div class="col-12 borderless">
-        <div id="cuadro1" class="table-responsive-sm ">
+        <div id="cuadro1" class="table-responsive ">
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td class="anchofijo text-secondary borderless">

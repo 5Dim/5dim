@@ -1,6 +1,6 @@
 <div class="row rounded cajita">
         <div class="col-12">
-            <div id="cuadro1" class="table-responsive-sm">
+            <div id="cuadro1" class="table-responsive">
                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                     <tr>
                         <td colspan="4" class="text-success text-center borderless align-middle">{{ trans('investigacion.' . $investigacion->codigo) }} nivel {{ $investigacion->nivel
@@ -356,7 +356,7 @@
             </div>
         </div>
         <div class="col-12 borderless">
-            <div id="cuadro1" class="table-responsive-sm ">
+            <div id="cuadro1" class="table-responsive ">
                 <table class="table table-sm table-borderless text-center anchofijo">
                     <tr>
                         <td>
