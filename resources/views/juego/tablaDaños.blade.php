@@ -1,6 +1,6 @@
 <div class="row rounded cajita">
     <div class="col-12">
-        <div id="cuadro1" class="table-responsive-sm">
+        <div id="cuadro1" class="table-responsive">
             <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                 <tr>
                     <th colspan="9" class="text-success text-center borderless align-middle">
@@ -156,7 +156,7 @@
         </div>
     </div>
     <div class="col-12 borderless">
-        <div id="cuadro1" class="table-responsive-sm ">
+        <div id="cuadro1" class="table-responsive ">
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td class="anchofijo text-secondary borderless">

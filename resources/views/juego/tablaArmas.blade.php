@@ -33,10 +33,115 @@
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade active" id="motores" role="tabpanel" aria-labelledby="motores-tab">
             <div class="row rounded cajita">
-                <div class="col-12">
-                    <div id="cuadro1" class="table-responsive-sm">
-                        <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
+                <div class="col-12 ">
+                    <div id="cuadro1" class="table-responsive">
+                        <table class="table table-borderless borderless table-sm" style="margin-top: 5px !important; width: auto !important;">
                             <tr>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
+                                <td>
+                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
+                                </td>
                                 <td>
                                     <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
                                 </td>

@@ -5,7 +5,7 @@
         @if (count($colaInvestigacion) > 0)
             <div class="row rounded cajita">
                 <div class="col-12">
-                    <div id="cuadro1" class="table-responsive-sm">
+                    <div id="cuadro1" class="table-responsive">
                         <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-bottom: 15px !important;">
                             <tr>
                                 <td class=" text-warning">Edificio</td>
