@@ -16,7 +16,7 @@
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <table class="table table-sm table-borderless text-center anchofijo">
+            <table class="table table-sm table-borderless text-center anchofijo cajita rounded">
                 <tr>
                     <th colspan="4" class="anchofijo text-success borderless">
                         <big>Resumen de la colonia</big>
@@ -49,7 +49,7 @@
                     </button>
                 </td>
             </table>
-            <table class="table table-sm table-borderless text-center anchofijo">
+            <table class="table table-sm table-borderless text-center anchofijo cajita rounded">
                 <tr>
                     <th colspan="12" class="anchofijo text-success borderless">
                         <big>Resumen de produccion e industrias</big>

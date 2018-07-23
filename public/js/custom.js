@@ -247,7 +247,7 @@ function sendDesbloquear(id) {
 }
 
 function sendDiseñar(id) {
-    window.location.href = "http://localhost/juego/fuselajes/diseñar/" + id;
+    window.location.href = "http://localhost/juego/diseño/diseñar/" + id;
 }
 
 function mostrarDatosConstruccion(codigo) {

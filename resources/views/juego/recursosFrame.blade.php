@@ -24,36 +24,48 @@
 <body class="bg" id="recursosFrame">
     <div id="menuC" class="container-fluid borderless">
         <div id="menuCuenta" class="row d-flex justify-content-center borderless">
-            <table class="table table-hover table-borderless table-sm text-center centradoDiv60" style="margin: 5px">
+            <table class="table table-sm table-borderless text-center anchofijo" style="margin: 5px; width: 90%">
                 <thead>
                     <tr>
-                        <th class="text-warning borderless centradoCeldas">
-                            ataque
-                        </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             <a href="mensajes.php" target="_self">
-                            <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men.png') }}" title="Mensajes"/>
-                        </a>
+                                <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men.png') }}" title="Mensajes"/>
+                            </a>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             <a href="misiones.php?tipo=1" target="_self">
-                            <img  src="{{ asset('img/juego/skin0/icons/ico-barra-mis.png') }}" title="Misiones"/>
-                        </a>
+                                <img  src="{{ asset('img/juego/skin0/icons/ico-barra-mis.png') }}" title="Misiones"/>
+                            </a>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             <a href="estadisticas.php" target="_self">
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-est.png') }}"  title="Estadisticas"/>
-                        </a>
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-est.png') }}"  title="Estadisticas"/>
+                            </a>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             <a href="http://es.5dim.wikia.com/wiki/Wiki_5dim" target="_blank">
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-wik.png') }}"  title="Wikia"/>
-                        </a>
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-wik.png') }}"  title="Wikia"/>
+                            </a>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             <a href="http://quintadim.foroactivo.com/f21-ayudas-y-preguntas" target="_blank">
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}"  title="Soporte"/>
-                        </a>
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}"  title="Soporte"/>
+                            </a>
+                        </th>
+                        <th class="text-warning borderless">
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Tienes 1 ataque(s) en curso" data-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
+                                Ataques <span class="badge badge-danger">1</span>
+                            </button>
+                        </th>
+                        <th class="text-warning borderless">
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de imperio" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
+                                PI <span class="badge badge-warning">150</span>
+                            </button>
+                        </th>
+                        <th class="text-warning borderless">
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Novas" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
+                                Novas <span class="badge badge-warning">1.500</span>
+                            </button>
                         </th>
                         <th class="text-warning borderless" align="center">
                             <div class="dropdown show borderless">
@@ -67,28 +79,45 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
-                            <a href="cuenta.php" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}"  title="Opciones"/>
-                        </a>
+                        <th class="text-warning borderless ">
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de naves" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
+                                PEN <span class="badge badge-warning">150</span>
+                            </button>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
-                            <a href="http://quintadim.foroactivo.com" target="_blank"><img src="{{ asset('img/juego/skin0/icons/ico-barra-foro.png') }}"  title="Foro"/>
-                        </a>
+                        <th class="text-warning borderless ">
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de tropas" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
+                                PET <span class="badge badge-warning">150</span>
+                            </button>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
-                            <a href="compra1.php" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-shop.png') }}"  title="Tienda"/>
-                        </a>
+                        <th class="text-warning borderless ">
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de defensas" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
+                                PED <span class="badge badge-warning">150</span>
+                            </button>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
-                            <a href="mensajeC.php?adm=1" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-rep.png') }}"  title="Reportar Admin"/>
-                        </a>
+                        <th class="text-warning borderless ">
+                            <a href="cuenta.php" target="_self">
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}"  title="Opciones"/>
+                            </a>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
-                            <a href="{{ url('/logout') }}" target="_self"><img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}"  title="Salir"/>
-                        </a>
+                        <th class="text-warning borderless ">
+                            <a href="http://quintadim.foroactivo.com" target="_blank">
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-foro.png') }}"  title="Foro"/>
+                            </a>
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
-                            &nbsp;
+                        <th class="text-warning borderless ">
+                            <a href="compra1.php" target="_self">
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-shop.png') }}"  title="Tienda"/>
+                            </a>
+                        </th>
+                        <th class="text-warning borderless ">
+                            <a href="mensajeC.php?adm=1" target="_self">
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-rep.png') }}"  title="Reportar Admin"/>
+                            </a>
+                        </th>
+                        <th class="text-warning borderless ">
+                            <a href="{{ url('/logout') }}" target="_self">
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}"  title="Salir"/>
+                            </a>
                         </th>
                     </tr>
                 </thead>
@@ -98,43 +127,43 @@
             <table class="table table-hover table-borderless table-sm text-center borderless">
                 <thead>
                     <tr>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Personal
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Mineral
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Cristal
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Gas
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Plástico
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Cerámica
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Recargar
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Liquido
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Micros
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Fuel
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             M-A
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Munición
                         </th>
-                        <th class="text-warning borderless centradoCeldas">
+                        <th class="text-warning borderless ">
                             Moneda
                         </th>
                     </tr>
@@ -303,14 +332,14 @@
                         <th class="text-warning borderless">
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ $planetaActual->estrella }}x{{ $planetaActual->orbita }} {{ $planetaActual->nombre }}
+                                    <span class="badge badge-danger">1</span> {{ $planetaActual->estrella }}x{{ $planetaActual->orbita }} {{ $planetaActual->nombre }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     @php
                                         $planetas = Auth::user()->jugadores[0]->planetas;
                                     @endphp
                                     @foreach ($planetas as $planeta)
-                                        <a class="dropdown-item" href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }} {{ $planeta->nombre }}</a>
+                                        <a class="dropdown-item" href="{{ url('/planeta/' . $planeta->id) }}"><span class="badge badge-danger">1</span> {{ $planeta->estrella }}x{{ $planeta->orbita }} {{ $planeta->nombre }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -389,6 +418,11 @@
         //console.log(almacenes);
         activarIntervalo(recursos, almacenes, produccion, 250);
     });
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
     </script>
     @yield('content')
 </body>
