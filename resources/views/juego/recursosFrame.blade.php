@@ -24,7 +24,7 @@
 <body class="bg" id="recursosFrame">
     <div id="menuC" class="container-fluid borderless">
         <div id="menuCuenta" class="row d-flex justify-content-center borderless">
-            <table class="table table-sm table-borderless text-center anchofijo" style="margin: 5px; width: 90%">
+            <table class="table table-sm table-borderless text-center anchofijo" style="margin: 5px; width: 80%">
                 <thead>
                     <tr>
                         <th class="text-warning borderless ">
@@ -66,18 +66,6 @@
                             <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Novas" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
                                 Novas <span class="badge badge-warning">1.500</span>
                             </button>
-                        </th>
-                        <th class="text-warning borderless" align="center">
-                            <div class="dropdown show borderless">
-                                <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Planetas
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ url('/configuracion') }}">Configuracion</a>
-                                    <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
-                                </div>
-                            </div>
                         </th>
                         <th class="text-warning borderless ">
                             <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de naves" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
@@ -124,7 +112,7 @@
             </table>
         </div>
         <div id="menuRecursos" class="borderless">
-            <table class="table table-hover table-borderless table-sm text-center borderless">
+            <table class="table table-hover table-borderless table-sm text-center anchofijo borderless">
                 <thead>
                     <tr>
                         <th class="text-warning borderless ">
