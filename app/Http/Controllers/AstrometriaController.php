@@ -104,7 +104,7 @@ class AstrometriaController extends Controller
         for($n=0;$n<30;$n++){
             $flota=new Flotas();
             $flota->numeroflota=random_int ( 1 , 10000 );
-            $flota->nick=random_int ( 1 , 10 );
+            $flota->nick=random_int ( 1 , 100 )."-".random_int ( 1 , 10000 );
             $flota->ataque=random_int ( 1 , 1000000);
             $flota->defensa=random_int ( 1 , 1000000);
             $flota->origen=random_int ( 1 , 10000)."x".random_int ( 1 , 9);
