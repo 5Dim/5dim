@@ -18,7 +18,10 @@
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless">
-                            <img class="rounded" src="{{ asset('img/fotos naves/skin1/naveMT' . $fuselaje->id . '.jpg') }}" width="180" height="119">
+                            <img class="rounded" data-skin="1" id ="imagen{{$fuselaje->id}}" src="{{ asset('img/fotos naves/skin1/naveMT' . $fuselaje->id . '.jpg') }}" width="180" height="119">
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="changeSkin('{{$fuselaje->id}}')">
+                                <i class="fa fa-arrows-alt-h"></i>
+                            </button>
                         </td>
                         <td class="anchofijo text-warning borderless">Carga pequeña</td>
                         <td class="anchofijo text-warning borderless">Carga media</td>

@@ -282,3 +282,17 @@ function mostrarDatosFuselaje(codigo) {
         }
     })
 }
+
+
+function changeSkin(id) {/// cambia la skin de las naves en fuselajes
+
+    eval("imagen=imagen" + id + ";");
+    sumask = 1 + 1 * imagen.dataset.skin;
+
+    if (sumask > 4) {
+        sumask = 1;
+    }
+    imagen.dataset.skin = sumask;
+    img = 'http://localhost/img/fotos naves/skin' + sumask + '/naveMT' + id + '.jpg';
+    $('#imagen' + id).attr("src", img);
+}

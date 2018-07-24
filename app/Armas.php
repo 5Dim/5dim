@@ -2184,4 +2184,9 @@ class Armas extends Model
         //return $result;
     }
 
+
+
+
+
+
 }
