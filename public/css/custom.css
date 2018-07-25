@@ -92,3 +92,35 @@ textarea {
     border: 1px solid darkgray;
     border-radius: 5px;
 }
+
+.c-1-color {
+    background: red !important;
+}
+
+.c-2-color {
+    background: blue !important;
+    ;
+}
+
+.c-3-color {
+    background: yellow !important;
+    ;
+}
+
+.c-4-color {
+    background: orange !important;
+    ;
+}
+
+.c-5-color {
+    background: white !important;
+    ;
+}
+
+.noUi-tooltip {
+    display: none !important;
+}
+
+.noUi-active .noUi-tooltip {
+    display: block !important;
+}

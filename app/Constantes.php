@@ -208,6 +208,16 @@ class Constantes extends Model
                 $constante->tipo='investigacion';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1.5;
+                $constante->minimo=.5;
+                $constante->maximo=4;
+                $constante->codigo='adminImperioPuntos';
+                $constante->descripcion='puntos de imperio por nivel';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
 
                 /////// FUSELAJES  ///////////////////////////////////////////////////
 

@@ -19,6 +19,9 @@
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('css/nouislider/nouislider.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+
+
 </head>
 
 <body class="bg" id="recursosFrame">
@@ -392,6 +395,10 @@
     <!-- Bootstrap -->
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+
+    <!-- sliders -->
+    <script src="{{ asset('js/nouislider/nouislider.min.js') }}"></script>
+
 
     <!-- Personalizado -->
     <script src="{{ asset('js/custom.js') }}"></script>

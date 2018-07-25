@@ -177,6 +177,29 @@
                             </tr>
                         </table>
                     </div>
+
+                    <div class="slider" id="slider-color"></div>
+
+                    <script>
+                    var slider = document.getElementById('slider-color');
+
+                    noUiSlider.create(slider, {
+                    start: [ 10, 40, 80, 90 ],
+                    connect: [true, true, true, true, true],
+                    range: {
+                        'min': [  0 ],
+                        'max': [ 100 ]
+                    }
+                    });
+
+                    var connect = slider.querySelectorAll('.noUi-connect');
+                    var classes = ['c-1-color noUi-tooltip', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
+
+                    for ( var i = 0; i < connect.length; i++ ) {
+                    connect[i].classList.add(classes[i]);
+                    }
+                    </script>
+
                 </div>
             </div>
         </div>
