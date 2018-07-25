@@ -104,7 +104,7 @@ class AstrometriaController extends Controller
             array_push($radares,$radar);
         }
 
-        return $radares;
+        return compact('radares');
     }
 
 
@@ -139,7 +139,7 @@ class AstrometriaController extends Controller
             array_push($flotas,$flota);
         }
 
-        return $flotas;
+        return compact('flotas');
     }
 
 
