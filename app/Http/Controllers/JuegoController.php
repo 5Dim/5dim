@@ -6,15 +6,19 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Auth;
 use App\Recursos;
 use App\Almacenes;
 use App\Planetas;
 use App\Industrias;
 use App\Constantes;
+use App\Dependencias;
 use App\Producciones;
 use App\Construcciones;
 use App\EnConstrucciones;
+use App\EnInvestigaciones;
+use App\CostesConstrucciones;
+use App\Investigaciones;
+use Auth;
 
 class JuegoController extends Controller
 {
@@ -28,7 +32,6 @@ class JuegoController extends Controller
         if ($planetaActual->jugadores->user != Auth::user()) {
             return redirect('/planeta');
         }
-        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         EnConstrucciones::terminarColaConstrucciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
@@ -48,9 +51,19 @@ class JuegoController extends Controller
             }
         }
         $tipoPlaneta = $planetaActual->tipo;
+
+        //Investigaciones
+        $investigacion = new Investigaciones();
+        $investigaciones = $investigacion->investigaciones($planetaActual);
+
+        //Tecnologias para mostrar y calcular los puntos
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
+        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
+        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
+        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         //Fin recursos
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
     }
 
     //Cambiar de planeta

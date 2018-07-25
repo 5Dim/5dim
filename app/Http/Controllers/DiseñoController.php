@@ -15,6 +15,7 @@ use App\Construcciones;
 use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
+use App\Investigaciones;
 use Auth;
 use App\Fuselajes;
 
@@ -82,10 +83,20 @@ class DiseñoController extends Controller
             }
         }
         $tipoPlaneta = $planetaActual->tipo;
+
+        //Investigaciones
+        $investigacion = new Investigaciones();
+        $investigaciones = $investigacion->investigaciones($planetaActual);
+
+        //Tecnologias para mostrar y calcular los puntos
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
+        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
+        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
+        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         //Fin recursos
 
         $diseño = Fuselajes::find($idFuselaje);
 
-        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño'));
+        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
     }
 }

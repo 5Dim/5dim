@@ -32,8 +32,7 @@ class InvestigacionController extends Controller
         if ($planetaActual->jugadores->user != Auth::user()) {
             return redirect('/planeta');
         }
-        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        EnInvestigaciones::terminarColaInvestigaciones();
+        EnConstrucciones::terminarColaConstrucciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
@@ -52,11 +51,17 @@ class InvestigacionController extends Controller
             }
         }
         $tipoPlaneta = $planetaActual->tipo;
-        //Fin recursos
 
         //Investigaciones
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones($planetaActual);
+
+        //Tecnologias para mostrar y calcular los puntos
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
+        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
+        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
+        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+        //Fin recursos
 
         //Constantes de construccion
         $CConstantes=Constantes::where('tipo','investigacion')->get();
@@ -76,7 +81,7 @@ class InvestigacionController extends Controller
             ['codigo','laboratorio'],
             ])->first();
 
-        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones','nivelLaboratorio','tab'));
+        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones','nivelLaboratorio', 'tab', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
     }
 
     //Acceso a subir nivel de construccion

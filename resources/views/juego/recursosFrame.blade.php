@@ -58,28 +58,28 @@
                             </button>
                         </th>
                         <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de imperio" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
-                                PI <span class="badge badge-warning">150</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de imperio" data-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
+                                PI <span class="badge badge-warning">{{ ($nivelImperio * 15) + 10 }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Novas" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
-                                Novas <span class="badge badge-warning">1.500</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Novas" data-content="Las novas se usan para adquirir fuselajes especiales, modo premium y algunos packs de defensa, están disponibles en la tienda">
+                                Novas <span class="badge badge-warning">{{ Auth::user()->novas }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de naves" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
-                                PEN <span class="badge badge-warning">150</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de naves" data-content="Estos son los puntos de ensamblaje de naves disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
+                                PEN <span class="badge badge-warning">{{ $nivelEnsamblajeNaves }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de tropas" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
-                                PET <span class="badge badge-warning">150</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de defensas" data-content="Estos son los puntos de ensamblaje de defensas disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
+                                PED <span class="badge badge-warning">{{ $nivelEnsamblajeDefensas }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de defensas" data-content="Estos son los puntos de imperio, consume 100 por cada planeta colonizado">
-                                PED <span class="badge badge-warning">150</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de ensamblaje de tropas" data-content="Estos son los puntos de ensamblaje de tropas disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
+                                PET <span class="badge badge-warning">{{ $nivelEnsamblajeNaves }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">

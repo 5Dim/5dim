@@ -15,6 +15,7 @@ use App\Construcciones;
 use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
+use App\Investigaciones;
 use Auth;
 
 class BancoController extends Controller
@@ -49,8 +50,18 @@ class BancoController extends Controller
             }
         }
         $tipoPlaneta = $planetaActual->tipo;
+
+        //Investigaciones
+        $investigacion = new Investigaciones();
+        $investigaciones = $investigacion->investigaciones($planetaActual);
+
+        //Tecnologias para mostrar y calcular los puntos
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
+        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
+        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
+        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         //Fin recursos
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual'));
+        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
     }
 }

@@ -12,6 +12,7 @@ use App\Constantes;
 use App\Dependencias;
 use App\Producciones;
 use App\Construcciones;
+use App\Investigaciones;
 use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
@@ -49,8 +50,19 @@ class ConstruccionController extends Controller
             }
         }
         $tipoPlaneta = $planetaActual->tipo;
+
+        //Investigaciones
+        $investigacion = new Investigaciones();
+        $investigaciones = $investigacion->investigaciones($planetaActual);
+
+        //Tecnologias para mostrar y calcular los puntos
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
+        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
+        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
+        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         //Fin recursos
 
+        $sumImperio =
         //Constantes de construccion
         $CConstantes=Constantes::where('tipo','construccion')->get();
 
@@ -64,7 +76,7 @@ class ConstruccionController extends Controller
         //session()->put('tabConstruccion', $tab);
 
         //Devolvemos la vista con todas las variables
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual'));
+        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
     }
 
     //Acceso a subir nivel de construccion
