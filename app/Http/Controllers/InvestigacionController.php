@@ -33,6 +33,7 @@ class InvestigacionController extends Controller
             return redirect('/planeta');
         }
         EnConstrucciones::terminarColaConstrucciones();
+        EnInvestigaciones::terminarColaInvestigaciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);

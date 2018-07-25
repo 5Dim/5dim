@@ -320,14 +320,14 @@
                         <th class="text-warning borderless">
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="badge badge-danger">1</span> {{ $planetaActual->estrella }}x{{ $planetaActual->orbita }} {{ $planetaActual->nombre }}
+                                    {{ $planetaActual->estrella }}x{{ $planetaActual->orbita }} {{ $planetaActual->nombre }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     @php
                                         $planetas = Auth::user()->jugadores[0]->planetas;
                                     @endphp
                                     @foreach ($planetas as $planeta)
-                                        <a class="dropdown-item" href="{{ url('/planeta/' . $planeta->id) }}"><span class="badge badge-danger">1</span> {{ $planeta->estrella }}x{{ $planeta->orbita }} {{ $planeta->nombre }}</a>
+                                        <a class="dropdown-item" href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }} {{ $planeta->nombre }}</a>
                                     @endforeach
                                 </div>
                             </div>
