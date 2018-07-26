@@ -35,68 +35,8 @@
             <div class="row rounded cajita">
                 <div class="col-12 ">
                     <div id="cuadro1" class="table-responsive">
-                        <table class="table table-borderless borderless table-sm" style="margin-top: 5px !important; width: auto !important;">
+                        <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; ">
                             <tr>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
                                 <td>
                                     <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
                                 </td>
@@ -173,31 +113,79 @@
                                 </td>
                                 <td>
                                     Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                                <td>
+                                    Motor químico
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="20">
+                                    <div class="slider" id="slider-color"></div>
                                 </td>
                             </tr>
                         </table>
                     </div>
 
-                    <div class="slider" id="slider-color"></div>
-
                     <script>
-                    var slider = document.getElementById('slider-color');
+                        var slider = document.getElementById('slider-color');
 
-                    noUiSlider.create(slider, {
-                    start: [ 10, 40, 80, 90 ],
-                    connect: [true, true, true, true, true],
-                    range: {
-                        'min': [  0 ],
-                        'max': [ 100 ]
-                    }
-                    });
+                            noUiSlider.create(slider, {
+                            start: [ 10, 40, 80, 90 ],
+                            connect: [true, true, true, true, true],
+                            range: {
+                                'min': [  0 ],
+                                'max': [ 100 ]
+                            }
+                        });
 
-                    var connect = slider.querySelectorAll('.noUi-connect');
-                    var classes = ['c-1-color noUi-tooltip', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
+                        var connect = slider.querySelectorAll('.noUi-connect');
+                        var classes = ['c-1-color noUi-tooltip', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
 
-                    for ( var i = 0; i < connect.length; i++ ) {
-                    connect[i].classList.add(classes[i]);
-                    }
+                        for ( var i = 0; i < connect.length; i++ ) {
+                            connect[i].classList.add(classes[i]);
+                        }
                     </script>
 
                 </div>
