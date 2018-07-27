@@ -1,194 +1,544 @@
 
-    <nav>
-        <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
-            <a class="nav-item nav-link" id="mejoras-tab" data-toggle="tab" href="#mejoras" role="tab" aria-controls="mejoras" aria-selected="false">
-                Mejoras
-            </a>
-            <a class="nav-item nav-link active" id="motores-tab" data-toggle="tab" href="#motores" role="tab" aria-controls="motores" aria-selected="true">
-                Motores
-            </a>
-            <a class="nav-item nav-link" id="carga-tab" data-toggle="tab" href="#carga" role="tab" aria-controls="carga" aria-selected="false">
-                Contenedores de carga
-            </a>
-            <a class="nav-item nav-link" id="ligeros-tab" data-toggle="tab" href="#ligeros" role="tab" aria-controls="ligeros" aria-selected="false">
-                Cañones ligeros
-            </a>
-            <a class="nav-item nav-link" id="medios-tab" data-toggle="tab" href="#medios" role="tab" aria-controls="medios" aria-selected="false">
-                Cañones medios
-            </a>
-            <a class="nav-item nav-link" id="pesados-tab" data-toggle="tab" href="#pesados" role="tab" aria-controls="pesados" aria-selected="false">
-                Cañones pesados
-            </a>
-            <a class="nav-item nav-link" id="insertados-tab" data-toggle="tab" href="#insertados" role="tab" aria-controls="insertados" aria-selected="false">
-                Cañones insertados
-            </a>
-            <a class="nav-item nav-link" id="bombas-tab" data-toggle="tab" href="#bombas" role="tab" aria-controls="bombas" aria-selected="false">
-                Bombas
-            </a>
-            <a class="nav-item nav-link" id="misiles-tab" data-toggle="tab" href="#misiles" role="tab" aria-controls="misiles" aria-selected="false">
-                Misiles
-            </a>
-        </div>
-    </nav>
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade active" id="motores" role="tabpanel" aria-labelledby="motores-tab">
-            <div class="row rounded cajita">
-                <div class="col-12 ">
-                    <div id="cuadro1" class="table-responsive">
-                        <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; ">
-                            <tr>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                                <td>
-                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="90" height="90">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                                <td>
-                                    Motor químico
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="20">
-                                    <div class="slider" id="slider-color"></div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+    <div class="col-12 ">
+            <div id="cuadro1" class="table-responsive">
+                <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; ">
+                    <tr>
+                        <td>
+                            <div class="row rounded">
+                                <div class="col-12 ">
+                                    <div id="cuadro1" class="table-responsive cajita">
+                                        <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class=" text-light" id="motorestxt">Motores: +151.225 e</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                </td>
+                                                <td>
+                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                </td>
+                                                <td>
+                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                </td>
+                                                <td>
+                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                </td>
+                                                <td>
+                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class=" text-light" id="">&nbsp;</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                    </td>
+                                    <td>
+                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                    </td>
+                                    <td>
+                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                    </td>
+                                    <td>
+                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td rowspan="4">
 
-                    <script>
-                        var slider = document.getElementById('slider-color');
+                        </td>
+                        <td id="">
 
-                        noUiSlider.create(slider, {
-                            start: [ 10, 40, 80, 90 ],
-                            connect: [true, true, true, true, true],
-                            range: {
-                                'min': [  0 ],
-                                'max': [ 100 ]
-                            }
-                        });
+                        </td>
+                        <td rowspan="2">
+                            <div class=" text-light" id="motorestxt">Armas: -151.225 e</div>
+                            <div class="slider" id="slider-color"></div>
 
-                        var connect = slider.querySelectorAll('.noUi-connect');
-                        var classes = ['c-1-color noUi-tooltip', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
+                            <nav>
+                                    <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
+                                        <a class="nav-item nav-link" id="mejoras-tab" data-toggle="tab" href="#mejoras" role="tab" aria-controls="mejoras" aria-selected="false">
+                                            Energía
+                                        </a>
+                                        <a class="nav-item nav-link active" id="motores-tab" data-toggle="tab" href="#motores" role="tab" aria-controls="motores" aria-selected="true">
+                                            Plasma
+                                        </a>
+                                        <a class="nav-item nav-link" id="carga-tab" data-toggle="tab" href="#carga" role="tab" aria-controls="carga" aria-selected="false">
+                                            Balística
+                                        </a>
+                                        <a class="nav-item nav-link" id="ligeros-tab" data-toggle="tab" href="#ligeros" role="tab" aria-controls="ligeros" aria-selected="false">
+                                            M-A
+                                        </a>
 
-                        for ( var i = 0; i < connect.length; i++ ) {
-                            connect[i].classList.add(classes[i]);
-                        }
-                    </script>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade active" id="motores" role="tabpanel" aria-labelledby="motores-tab">
+                                        <div class="row rounded ">
+                                            <div class="col-12 ">
+                                                <div id="cuadro1" class="table-responsive cajita">
+                                                    <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                                        <tr>
+                                                            <td>
+                                                                <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                                <td>
+                                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45">
+                                                                    </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                </div>
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                    <td>
+                                <div class="row rounded">
+                                    <div class="col-12 ">
+                                        <div id="cuadro1" class="table-responsive cajita">
+                                            <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <div class=" text-light" id="motorestxt">Blindajes: -51.225 e</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                    </td>
+                                                    <td>
+                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                    </td>
+                                                    <td>
+                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                    </td>
+                                                    <td>
+                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                    </td>
+                                                    <td>
+                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <table>
+
+                                    <tr>
+                                        <td>
+                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                        </td>
+                                        <td>
+                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                        </td>
+                                        <td>
+                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                        </td>
+                                        <td>
+                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                        </td>
+                                        <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                        </td>
+                                        <td>
+                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                        </td>
+                                        <td>
+                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                        </td>
+                                        <td>
+                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                        </td>
+                                        <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                        <td>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                            <td colspan="2">
+                                    <div class="row rounded">
+                                        <div class="col-12 ">
+                                            <div id="cuadro1" class="table-responsive cajita">
+                                                <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <div class=" text-light" id="motorestxt">Mejoras: +11.205 e</div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                        </td>
+                                                        <td>
+                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                        </td>
+                                                        <td>
+                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                        </td>
+                                                        <td>
+                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                        </td>
+                                                        <td>
+                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                        <td>
+                            barras armas
+                        </td>
+                        <td rowspan="2">
+                            <table>
+                                    <tr>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div id="cañones" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                    </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                                <table>
+                                        <tr>
+                                            <td colspan="4">
+                                                <div class=" text-light" id="">&nbsp;</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                            <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                    <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                                <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                    <td>
+                                                            <div id="motores1" style="border: 1px solid white;"><img src="skin0/colores/nada.png" width="40" height="40"></div>
+                                                    </td>
+                                                </tr>
+                                    </table>
+                        </td>
+
+                            <td>
+                                barras armas
+                            </td>
+
+                    </tr>
+
+
+                </table>
             </div>
         </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+            var slider = document.getElementById('slider-color');
+
+                noUiSlider.create(slider, {
+                start: [ 10, 40, 80, 90 ],
+                connect: [true, true, true, true, true],
+                range: {
+                    'min': [  0 ],
+                    'max': [ 100 ]
+                }
+            });
+
+            var connect = slider.querySelectorAll('.noUi-connect');
+            var classes = ['c-1-color noUi-tooltip', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
+
+            for ( var i = 0; i < connect.length; i++ ) {
+                connect[i].classList.add(classes[i]);
+            }
+        </script>
