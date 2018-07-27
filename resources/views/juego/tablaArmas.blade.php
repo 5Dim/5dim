@@ -228,7 +228,18 @@
                                 </td>
                         <td rowspan="2" colspan="2">
                             <table>
-                                    <tr >
+                                <tr >
+
+                                    @if ($diseño->cualidades->armasLigeras>0)
+                                        @for ($i = 0 ; $i < $diseño->cualidades->armasLigeras; $i++)
+                                            <td>
+                                                <div id="armasLigeras"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                            </td>
+                                        @endfor
+                                    @endif
+
+
+
 
                                             <td>
                                                     <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
