@@ -1,7 +1,7 @@
-
-    <div class="col-12 ">
+<div class="row rounded">
+    <div class="col-12 borderless">
             <div id="cuadro1" class="table-responsive">
-                <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; ">
+                <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg') }}') no-repeat center fixed !important">
                     <tr>
                         <td>
                             <div class="row rounded">
@@ -59,12 +59,8 @@
                             </table>
                         </td>
                         <td rowspan="4">
-
                         </td>
-                        <td id="">
-
-                        </td>
-                        <td rowspan="2">
+                        <td rowspan="2" colspan="2">
                             <div class=" text-light" id="motorestxt">Armas: -151.225 e</div>
                             <div class="slider" id="slider-color"></div>
 
@@ -93,7 +89,7 @@
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
                                                             <td>
-                                                                <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45">
+                                                                <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45" style="border: 2px solid red">
                                                             </td>
                                                             <td>
                                                                 <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="45" height="45">
@@ -117,13 +113,10 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
                         </td>
                     </tr>
                     <tr>
-                    <td>
+                        <td>
                                 <div class="row rounded">
                                     <div class="col-12 ">
                                         <div id="cuadro1" class="table-responsive cajita">
@@ -196,9 +189,6 @@
                                             </td>
                                     </tr>
                                 </table>
-                            </td>
-
-                        <td>
 
                         </td>
 
@@ -236,12 +226,7 @@
                                         </div>
                                     </div>
                                 </td>
-
-
-                        <td>
-                            barras armas
-                        </td>
-                        <td rowspan="2">
+                        <td rowspan="2" colspan="2">
                             <table>
                                     <tr>
                                             <td>
@@ -501,16 +486,13 @@
                                     </table>
                         </td>
 
-                            <td>
-                                barras armas
-                            </td>
-
                     </tr>
 
 
                 </table>
             </div>
         </div>
+    </div>
 
 
 
