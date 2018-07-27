@@ -2735,7 +2735,7 @@ class CualidadesFuselajes extends Model
             $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 2; 	// cañones media, cantidad por tipo
             $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
-            $CRnave4 = 10; 	//cañones insertado, cantidad por tipo
+            $CRnave4 = 4; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
@@ -2773,7 +2773,7 @@ class CualidadesFuselajes extends Model
             $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 2; 	// cañones media, cantidad por tipo
             $CRnave3 = 10; 	//cañones pesados, cantidad por tipo
-            $CRnave4 = 10; 	//cañones insertado, cantidad por tipo
+            $CRnave4 = 4; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 10; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
