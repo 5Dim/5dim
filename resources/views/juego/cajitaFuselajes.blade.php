@@ -40,8 +40,8 @@
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->mejoras }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->blindajes }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->energia }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasLigera }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasMedia }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasLigeras }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasMedias }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasPesadas }}</td>
                     </tr>
                     <tr>
@@ -62,7 +62,9 @@
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->gastoFuel }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->mantenimiento }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->tiempo }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasInsertada }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasInsertadas    border: 1px solid orange;
+    border: 1px solid orange;
+                            }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasBombas }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasMisiles }}</td>
                     </tr>

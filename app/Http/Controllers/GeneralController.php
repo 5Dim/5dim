@@ -32,6 +32,7 @@ class GeneralController extends Controller
             return redirect('/planeta');
         }
         EnConstrucciones::terminarColaConstrucciones();
+        EnInvestigaciones::terminarColaInvestigaciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
@@ -62,6 +63,6 @@ class GeneralController extends Controller
         $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         //Fin recursos
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
+        return view('juego.general', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'colaConstruccion', 'colaInvestigacion'));
     }
 }
