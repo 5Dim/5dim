@@ -171,7 +171,7 @@
                     <script>
                         var slider = document.getElementById('slider-color');
 
-                            noUiSlider.create(slider, {
+                        noUiSlider.create(slider, {
                             start: [ 10, 40, 80, 90 ],
                             connect: [true, true, true, true, true],
                             range: {
