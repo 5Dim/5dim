@@ -323,7 +323,7 @@
                 </tr>
                 <tr>
                     <td class="anchofijo text-primary borderless">
-                        Totales
+                        Totales por hora
                     </td>
                     <td class="text-primary borderless">
                         {{ number_format($producciones[0]->personal, 0,",",".") }}
@@ -357,6 +357,82 @@
                     </td>
                     <td class="text-primary borderless">
                         {{ number_format($producciones[10]->municion, 0,",",".") }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="anchofijo text-primary borderless">
+                        Totales por dia
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[0]->personal*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[1]->mineral*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[2]->cristal*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[3]->gas*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[4]->plastico*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[5]->ceramica*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[6]->liquido*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[7]->micros*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[8]->fuel*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[9]->ma*24, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[10]->municion*24, 0,",",".") }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="anchofijo text-primary borderless">
+                        Totales por semana
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[0]->personal*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[1]->mineral*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[2]->cristal*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[3]->gas*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[4]->plastico*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[5]->ceramica*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[6]->liquido*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[7]->micros*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[8]->fuel*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[9]->ma*24*7, 0,",",".") }}
+                    </td>
+                    <td class="text-primary borderless">
+                        {{ number_format($producciones[10]->municion*24*7, 0,",",".") }}
                     </td>
                 </tr>
             </table>
