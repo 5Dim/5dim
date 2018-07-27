@@ -238,7 +238,7 @@ return $a;
                         <td rowspan="2" colspan="2">
                             <table>
                                 <tr >
-                                    @if ($diseño->cualidades->armasMedias>0)
+                                    @if ($diseño->cualidades->armasLigeras>0)
                                         @php
                                             $cantidad=$diseño->cualidades->armasLigeras;
                                             $multiplicador=1;
@@ -340,7 +340,56 @@ return $a;
                                     @endif
                                 </tr>
 
+                                <tr >
+                                    @if ($diseño->cualidades->armasPesadas>0)
+                                        @php
+                                            $cantidad=$diseño->cualidades->armasPesadas;
+                                            $multiplicador=1;
+                                            if ($cantidad>6){
+                                                $cantidad=celdasMaximas(6,$cantidad);
+                                                $multiplicador=($diseño->cualidades->armasPesadas/$cantidad);
+                                            }
+                                            @endphp
+                                        @for ($i = 6 ; $i >0; $i--)
+                                            <td>
+                                                @if ($i<=$cantidad)
+                                                <div id="armasPesadas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @endif
+                                            </td>
+                                        @endfor
 
+                                            <td colspan="2" class="text-light align-middle ">
+                                                    &nbsp;&nbsp;alcance&nbsp;&nbsp;
+                                            <div class="slider" id="alcanceArmasPesadas"></div>
+                                            </td>
+                                            <td colspan="2" class="text-light align-middle">
+                                                dispersión
+                                            <div class="slider" id="dispersionArmasPesadas"></div>
+                                            </td>
+                                            <td class="text-warning align-middle">
+                                                    x{{$multiplicador}}   Cañones Pesados
+                                            </td>
+
+                                        <script>
+                                            noUiSlider.create(document.getElementById('alcanceArmasPesadas'), {
+                                                start: 0,
+                                                step: 1,
+                                                range: {
+                                                    'min': -7,
+                                                    'max': 7
+                                                }
+                                            });
+                                            noUiSlider.create(document.getElementById('dispersionArmasPesadas'), {
+                                                start: 0,
+                                                step: 1,
+                                                range: {
+                                                    'min': -7,
+                                                    'max': 7
+                                                }
+                                            });
+                                        </script>
+                                    @endif
+                                </tr>
 
                             </table>
                         </td>
