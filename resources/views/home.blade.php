@@ -28,7 +28,7 @@
         </table>
         <hr>
         <p class="mb-0 text-right">
-            <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/planeta') }}';">
+            <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/jugador/0') }}';">
                 Entrar
             </button>
         </p>
@@ -71,7 +71,7 @@
         </table>
         <hr>
         <p class="mb-0 text-right">
-            <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/juego') }}';">
+            <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/jugador/1') }}';">
                 Entrar
             </button>
         </p>

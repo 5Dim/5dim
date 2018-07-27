@@ -67,29 +67,34 @@ class JuegoController extends Controller
     }
 
     //Cambiar de planeta
-    public function planeta($planeta = false, $universo = 0)
+    public function planeta($planeta = false)
     {
-        $planetaBusqueda = Planetas::find($planeta);
-        //En que planeta estamos
-        if (!$planeta) {
-            session()->put('planetas_id', Auth::user()->jugadores[$universo]->planetas[0]->id);
-        }else{
-            if ($planetaBusqueda->jugadores->user == Auth::user()) {
-                session()->put('planetas_id', $planeta);
+        if (!empty(session()->get('jugadores_id'))) {
+            //En que planeta estamos
+            if (!$planeta) {
+                session()->put('planetas_id', Auth::user()->jugadores->where('id', session()->get('jugadores_id'))->first()->planetas[0]->id);
             }else{
-                return redirect('/planeta');
+                $planetaBusqueda = Planetas::find($planeta);
+                if ($planetaBusqueda->jugadores->id == session()->get('jugadores_id')) {
+                    session()->put('planetas_id', $planeta);
+                }else{
+                    return redirect('/planeta');
+                }
             }
+        }else{
+            return redirect('/jugador');
         }
         return redirect('/juego/construccion');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function pruebas()
+    //Cambiar de jugador
+    public function jugador($universo = false)
     {
-        return view('pruebas');
+        if (!$universo) {
+            session()->put('jugadores_id', Auth::user()->jugadores[0]->id);
+        }else {
+            session()->put('jugadores_id', Jugadores::where(['universo_id', $universo],['user_id', Auth::user()->id])->first()->id);
+        }
+        return redirect('/planeta');
     }
 }
