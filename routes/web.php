@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     //Rutas generales
     Route::get('/juego', 'JuegoController@index');
     Route::get('/planeta/{planeta?}', ['uses' => 'JuegoController@planeta']);
+    Route::get('/jugador/{universo?}', ['uses' => 'JuegoController@jugador']);
 
     //Construccion
     Route::get('/juego/construccion/{tab?}', 'ConstruccionController@index');

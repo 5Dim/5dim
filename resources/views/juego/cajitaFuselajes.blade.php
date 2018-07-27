@@ -62,9 +62,7 @@
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->gastoFuel }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->mantenimiento }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->tiempo }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasInsertadas    border: 1px solid orange;
-    border: 1px solid orange;
-                            }}</td>
+                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasInsertadas }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasBombas }}</td>
                         <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasMisiles }}</td>
                     </tr>
