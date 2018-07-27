@@ -1,3 +1,12 @@
+@php
+function celdasMaximas($a,$b) { //saco la cantidad de celdas justas
+    while ( ((int)($b/$a)-($b/$a)) !=0 ) {
+    --$a;
+    }
+return $a;
+}
+@endphp
+
 <div class="row rounded">
     <div class="col-12 borderless">
             <div id="cuadro1" class="table-responsive">
@@ -229,120 +238,107 @@
                         <td rowspan="2" colspan="2">
                             <table>
                                 <tr >
-
-                                    @if ($diseño->cualidades->armasLigeras>0)
-                                        @for ($i = 0 ; $i < $diseño->cualidades->armasLigeras; $i++)
+                                    @if ($diseño->cualidades->armasMedias>0)
+                                        @php
+                                            $cantidad=$diseño->cualidades->armasLigeras;
+                                            $multiplicador=1;
+                                            if ($cantidad>6){
+                                                $cantidad=celdasMaximas(6,$cantidad);
+                                                $multiplicador=($diseño->cualidades->armasLigeras/$cantidad);
+                                            }
+                                            @endphp
+                                        @for ($i = 6 ; $i >0; $i--)
                                             <td>
+                                                @if ($i<=$cantidad)
                                                 <div id="armasLigeras"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @endif
                                             </td>
                                         @endfor
+
+                                            <td colspan="2" class="text-light align-middle ">
+                                                    &nbsp;&nbsp;alcance&nbsp;&nbsp;
+                                            <div class="slider" id="alcanceArmasLigeras"></div>
+                                            </td>
+                                            <td colspan="2" class="text-light align-middle">
+                                                dispersión
+                                            <div class="slider" id="dispersionArmasLigeras"></div>
+                                            </td>
+                                            <td class="text-warning align-middle">
+                                                    x{{$multiplicador}}   Cañones Ligeros
+                                            </td>
+
+                                        <script>
+                                            noUiSlider.create(document.getElementById('alcanceArmasLigeras'), {
+                                                start: 0,
+                                                step: 1,
+                                                range: {
+                                                    'min': -7,
+                                                    'max': 7
+                                                }
+                                            });
+                                            noUiSlider.create(document.getElementById('dispersionArmasLigeras'), {
+                                                start: 0,
+                                                step: 1,
+                                                range: {
+                                                    'min': -7,
+                                                    'max': 7
+                                                }
+                                            });
+                                        </script>
                                     @endif
+                                </tr>
 
+                                <tr >
+                                    @if ($diseño->cualidades->armasMedias>0)
+                                        @php
+                                            $cantidad=$diseño->cualidades->armasMedias;
+                                            $multiplicador=1;
+                                            if ($cantidad>6){
+                                                $cantidad=celdasMaximas(6,$cantidad);
+                                                $multiplicador=ceil ($diseño->cualidades->armasMedias/$cantidad);
+                                            }
 
-
-
+                                        @endphp
+                                        @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                    <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<=$cantidad)
+                                                <div id="armasMedias"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @endif
                                             </td>
-                                            <td>
-                                                    <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                    <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
+                                        @endfor
 
                                             <td colspan="2" class="text-light align-middle ">
-                                                alcance
-                                            <div class="slider" id="keyboard"></div>
-
+                                                    &nbsp;&nbsp;alcance&nbsp;&nbsp;
+                                            <div class="slider" id="alcanceArmasMedias"></div>
                                             </td>
                                             <td colspan="2" class="text-light align-middle">
                                                 dispersión
-                                            <div class="slider" id="keyboard2"></div>
+                                            <div class="slider" id="dispersionArmasMedias"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    Cañones Ligeros
-                                             </td>
-                                    </tr>
-
-                                    <tr >
-
-                                            <td>
-                                                    <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                    <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                    <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                    x{{$multiplicador}}   Cañones Medios
                                             </td>
 
-                                            <td colspan="2" class="text-light align-middle ">
-                                                alcance
-                                            <div class="slider" id="keyboard"></div>
-
-                                            </td>
-                                            <td colspan="2" class="text-light align-middle">
-                                                dispersión
-                                            <div class="slider" id="keyboard2"></div>
-                                            </td>
-                                            <td class="text-warning align-middle">
-                                                    Cañones Ligeros
-                                             </td>
-                                    </tr>
-
-                                    <tr >
-
-                                            <td>
-
-                                            </td>
-                                            <td>
-                                                    <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                    <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="cañones" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-
-                                            <td colspan="2" class="text-light align-middle ">
-                                                alcance
-                                            <div class="slider" id="keyboard"></div>
-
-                                            </td>
-                                            <td colspan="2" class="text-light align-middle">
-                                                dispersión
-                                            <div class="slider" id="keyboard2"></div>
-                                            </td>
-                                            <td class="text-warning align-middle">
-                                                    Cañones Ligeros
-                                             </td>
-                                    </tr>
+                                        <script>
+                                            noUiSlider.create(document.getElementById('alcanceArmasMedias'), {
+                                                start: 0,
+                                                step: 1,
+                                                range: {
+                                                    'min': -7,
+                                                    'max': 7
+                                                }
+                                            });
+                                            noUiSlider.create(document.getElementById('dispersionArmasMedias'), {
+                                                start: 0,
+                                                step: 1,
+                                                range: {
+                                                    'min': -7,
+                                                    'max': 7
+                                                }
+                                            });
+                                        </script>
+                                    @endif
+                                </tr>
 
 
 
@@ -535,9 +531,8 @@
                 }
             });
 
-            var keyboardSlider = document.getElementById('keyboard2');
 
-            noUiSlider.create(keyboardSlider, {
+            noUiSlider.create(document.getElementById('keyboard2'), {
                 start: 0,
                 step: 1,
                 range: {
@@ -545,7 +540,6 @@
                     'max': 7
                 }
             });
-
 
 
         </script>
