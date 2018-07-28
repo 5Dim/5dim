@@ -28,8 +28,8 @@ $investNiveles=[
 
 <div class="row rounded">
     <div class="col-12 borderless">
-            <div id="cuadro1" class="table-responsive" style="background-color: black;">
-                <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg') }}') no-repeat center !important">
+            <div id="cuadro1" class="table-responsive" style="background-color: #000000 !important;">
+                <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg')}}') no-repeat center !important;">
                     <tr>
                         <td>
                             <div class="row rounded">
