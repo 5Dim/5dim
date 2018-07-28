@@ -62,7 +62,7 @@ class Armas extends Model
                 $arma->ranura="motores";
                 $arma->potencia=5;
                 $arma->clase=14;
-                $arma->niveltec=2;
+                $arma->niveltec=1;
                 $arma->malcance=10;
                 $arma->dispersion=6;
                 $arma->imagen="";
@@ -76,7 +76,7 @@ class Armas extends Model
                 $arma->ranura="motores";
                 $arma->potencia=10;
                 $arma->clase=15;
-                $arma->niveltec=10;
+                $arma->niveltec=1;
                 $arma->malcance=10;
                 $arma->dispersion=8;
                 $arma->imagen="";
