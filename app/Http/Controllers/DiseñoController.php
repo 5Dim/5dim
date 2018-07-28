@@ -18,6 +18,7 @@ use App\CostesConstrucciones;
 use App\Investigaciones;
 use Auth;
 use App\Fuselajes;
+use App\Armas;
 
 class DiseñoController extends Controller
 {
@@ -107,6 +108,9 @@ class DiseñoController extends Controller
 
         $diseño = Fuselajes::find($idFuselaje);
 
-        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
+        $armas = Armas::all();
+
+
+        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones','armas'));
     }
 }
