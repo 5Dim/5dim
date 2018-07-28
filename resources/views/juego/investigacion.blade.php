@@ -95,7 +95,7 @@
                 @endfor
             </div>
             <div class="tab-pane fade" id="motores" role="tabpanel" aria-labelledby="motores-tab">
-                @for ($i = 12 ; $i < 17 ; $i++)
+                @for ($i = 12 ; $i < 18 ; $i++)
                     @include('juego.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
                         'personal' => $recursos->personal - $personal,
@@ -103,7 +103,7 @@
                 @endfor
             </div>
             <div class="tab-pane fade" id="industrias" role="tabpanel" aria-labelledby="industrias-tab">
-                @for ($i = 17 ; $i < 22 ; $i++)
+                @for ($i = 18 ; $i < 23 ; $i++)
                     @include('juego.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
                         'personal' => $recursos->personal - $personal,
