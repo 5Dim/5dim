@@ -15,7 +15,7 @@ class Armas extends Model
                 $arma =new Armas();
                 $arma->codigo=59;
                 $arma->nombre='Motor Químico';
-                $arma->descripcion='El motor básco de cualquier cohete, proporciona un empuje constante alimentado por la combustión de propulsores';
+                $arma->descripcion='El motor básico de cualquier cohete, proporciona un empuje constante alimentado por la combustión de propulsores';
                 $arma->jugadores_id=1;
                 $arma->ranura="motores";
                 $arma->potencia=3;

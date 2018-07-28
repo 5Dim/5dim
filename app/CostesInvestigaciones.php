@@ -142,6 +142,12 @@ class CostesInvestigaciones extends Model
             break;
 
 
+            case "invPropQuimico":
+            $costoIT=$costoInvestMotores;
+            $r1cce = [$codigo,1,1,1,1,1,1,1,1.1,1,1,$nivel];
+            $costosIniciales = [$codigo,200,2000,400,500,0,500,0,1400,0,0];
+            $coste = $costesi->calculos($r1cce, $idInvestigaciones,$investCorrector,$costosIniciales,$Ifactor,$costoIT);
+            break;
 
             case "invPropNuk":
             $costoIT=$costoInvestMotores;

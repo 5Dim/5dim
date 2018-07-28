@@ -62,6 +62,7 @@ class Investigaciones extends Model
             "invImperio",
             "invObservacion",
 
+            "invPropQuimico",
             "invPropNuk",
             "invPropIon",
             "invPropPlasma",
