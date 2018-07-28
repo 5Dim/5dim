@@ -10,7 +10,7 @@ return $a;
 <div class="row rounded">
     <div class="col-12 borderless">
             <div id="cuadro1" class="table-responsive">
-                <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg') }}') no-repeat center !important">
+                <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg') }}') no-repeat center !important">
                     <tr>
                         <td>
                             <div class="row rounded">
@@ -71,6 +71,9 @@ return $a;
                             </table>
                         </td>
                         <td rowspan="5">
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="changeSkin('{{$diseño->id}}')">
+                                <i class="fa fa-arrows-alt-h" id="imagen{{$diseño->id}}" data-skin="1"> Cambiar aspecto</i>
+                            </button>
                         </td>
                         <td rowspan="2" colspan="2">
                             @if ($diseño->cualidades->armasLigeras+$diseño->cualidades->armasMedias+$diseño->cualidades->armasPesadas+$diseño->cualidades->armasInsertadas+$diseño->cualidades->armasMisiles+$diseño->cualidades->armasBombas >0)
@@ -145,7 +148,7 @@ return $a;
                                                                 $multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
                                                             }
                                                             @endphp
-                                                            <div class=" text-light" id="motorestxt">x{{$multiplicadorblindajes}} son {{$diseño->cualidades->blindajes}} Blindajes: +225</div>
+                                                            <div class=" text-light" id="motorestxt">x{{$multiplicadorblindajes}} Blindajes: +225</div>
                                                         </td>
                                                     </td>
                                                 </tr>
@@ -177,7 +180,7 @@ return $a;
                                     <tr>
                                         @for ($i = 0 ; $i <7; $i++)
                                             <td>
-                                                @if ($i<$cantidadblindajes)
+                                                @if ($i<$cantidadblindajes/2)
                                                 <div id="motores"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
@@ -186,7 +189,7 @@ return $a;
                                     <tr>
                                         @for ($i = 0 ; $i <7; $i++)
                                             <td>
-                                                @if ($i<$cantidadblindajes)
+                                                @if ($i<$cantidadblindajes/2)
                                                 <div id="motores"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
@@ -205,7 +208,12 @@ return $a;
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
                                                         <td colspan="4">
-                                                            <div class=" text-light" id="motorestxt">Mejoras: +11.205 e</div>
+                                                            @php
+                                                                $cantidadmejoras=$diseño->cualidades->mejoras;
+                                                                $multiplicadormejoras=1;
+
+                                                            @endphp
+                                                            <div class=" text-light" id="mejorastxt">x{{$multiplicadormejoras}} Mejoras: +11.205 e</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -548,171 +556,21 @@ return $a;
                     <tr>
                         <td colspan="2" rowspan="2">
                                 <table>
-
-                                        <tr>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                            <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                    <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                                <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                </td>
-                                            </tr>
+                                        @for ($n=0 ; $n<5; $n++)
                                             <tr>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                    <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                        <td>
-                                                                <div id="motores1" style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                        </td>
-                                                    </tr>
+                                                @for ($i = 0 ; $i <14; $i++)
+                                                <td>
+                                                    @if ($i<$cantidadmejoras-($n*14))
+                                                        <div id="mejoras"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                    @endif
+                                                </td>
+                                                @endfor
+                                            </tr>
+                                        @endfor
+
+
+
+
                                     </table>
                         </td>
 
@@ -721,7 +579,7 @@ return $a;
                     </tr>
                     <tr>
                             <td  colspan="2">
-                                    @if ($diseño->cualidades->cargaPequeña>0)
+                                    @if ($diseño->cualidades->cargaPequeña+$diseño->cualidades->cargaMedia+$diseño->cualidades->cargaGrande>0)
 
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
@@ -759,7 +617,7 @@ return $a;
 
                                         <table>
                                                 <tr >
-
+                                                    @if ($diseño->cualidades->cargaPequeña>0)
                                                         @php
                                                             $cantidad=$diseño->cualidades->cargaPequeña;
                                                             $multiplicador=1;
@@ -783,30 +641,28 @@ return $a;
                                                 </tr>
 
                                                 <tr >
-                                                    @if ($diseño->cualidades->cargaMediana>0)
+                                                    @if ($diseño->cualidades->cargaMedia>0)
                                                         @php
-                                                            $cantidad=$diseño->cualidades->cargaMediana;
+                                                            $cantidad=$diseño->cualidades->cargaMedia;
                                                             $multiplicador=1;
                                                             if ($cantidad>6){
                                                                 $cantidad=celdasMaximas(6,$cantidad);
-                                                                $multiplicador=ceil ($diseño->cualidades->cargaMediana/$cantidad);
+                                                                $multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidad);
                                                             }
 
                                                         @endphp
                                                         @for ($i = 6 ; $i >0; $i--)
                                                             <td>
                                                                 @if ($i<=$cantidad)
-                                                                <div id="cargaMediana"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                <div id="cargaMedia"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
                                                         @endfor
                                                             <td class="text-warning align-middle">
-                                                                    x{{$multiplicador}}   Cañones Medios
+                                                                    x{{$multiplicador}}   Carga mediana
                                                             </td>
-
                                                     @endif
                                                 </tr>
-
                                                 <tr >
                                                     @if ($diseño->cualidades->cargaGrande>0)
                                                         @php
@@ -827,13 +683,11 @@ return $a;
                                                             <td class="text-warning align-middle">
                                                                     x{{$multiplicador}}   Carga grande
                                                             </td>
-
                                                     @endif
                                                 </tr>
-
-
                                             </table>
-                                </td>
+                                    @endif
+                            </td>
 
                     </tr>
 
@@ -876,26 +730,6 @@ return $a;
         ///
 
 
-            var keyboardSlider = document.getElementById('keyboard');
-
-            noUiSlider.create(keyboardSlider, {
-                start: 0,
-                step: 1,
-                range: {
-                    'min': -7,
-                    'max': 7
-                }
-            });
-
-
-            noUiSlider.create(document.getElementById('keyboard2'), {
-                start: 0,
-                step: 1,
-                range: {
-                    'min': -7,
-                    'max': 7
-                }
-            });
 
 
         </script>
