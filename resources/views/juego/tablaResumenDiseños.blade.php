@@ -4,7 +4,7 @@
             <table class="table table-borderless borderless table-sm text-center" style="margin-top: 5px !important">
                 <tr>
                     <th colspan="10" class="text-success text-center borderless align-middle">
-                        Resumen del diseño
+                        Resumen del diseño {{strtoupper($diseño->tamaño." ".$diseño->codigo)}}
                     </th>
                 </tr>
                 <tr>

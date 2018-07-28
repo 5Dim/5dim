@@ -5,11 +5,12 @@ function celdasMaximas($a,$b) { //saco la cantidad de celdas justas
     }
 return $a;
 }
+$filasCarga=10;
 @endphp
 
 <div class="row rounded">
     <div class="col-12 borderless">
-            <div id="cuadro1" class="table-responsive">
+            <div id="cuadro1" class="table-responsive" style="background-color: black;">
                 <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg') }}') no-repeat center !important">
                     <tr>
                         <td>
@@ -204,7 +205,7 @@ return $a;
                             <td colspan="2">
                                     <div class="row rounded">
                                         <div class="col-12 ">
-                                            <div id="cuadro1" class="table-responsive cajita">
+                                            <div id="cuadro1" class="table-responsive cajita" style="max-width: 725px">
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
                                                         <td colspan="4">
@@ -621,12 +622,12 @@ return $a;
                                                         @php
                                                             $cantidad=$diseño->cualidades->cargaPequeña;
                                                             $multiplicador=1;
-                                                            if ($cantidad>6){
-                                                                $cantidad=celdasMaximas(6,$cantidad);
+                                                            if ($cantidad>$filasCarga){
+                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
                                                                 $multiplicador=($diseño->cualidades->cargaPequeña/$cantidad);
                                                             }
                                                             @endphp
-                                                        @for ($i = 6 ; $i >0; $i--)
+                                                        @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
                                                                 @if ($i<=$cantidad)
                                                                 <div id="cargaPequeña"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
@@ -645,13 +646,13 @@ return $a;
                                                         @php
                                                             $cantidad=$diseño->cualidades->cargaMedia;
                                                             $multiplicador=1;
-                                                            if ($cantidad>6){
-                                                                $cantidad=celdasMaximas(6,$cantidad);
+                                                            if ($cantidad>$filasCarga){
+                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
                                                                 $multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidad);
                                                             }
 
                                                         @endphp
-                                                        @for ($i = 6 ; $i >0; $i--)
+                                                        @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
                                                                 @if ($i<=$cantidad)
                                                                 <div id="cargaMedia"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
@@ -668,12 +669,12 @@ return $a;
                                                         @php
                                                             $cantidad=$diseño->cualidades->cargaGrande;
                                                             $multiplicador=1;
-                                                            if ($cantidad>6){
-                                                                $cantidad=celdasMaximas(6,$cantidad);
+                                                            if ($cantidad>$filasCarga){
+                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
                                                                 $multiplicador=($diseño->cualidades->cargaGrande/$cantidad);
                                                             }
                                                             @endphp
-                                                        @for ($i = 6 ; $i >0; $i--)
+                                                        @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
                                                                 @if ($i<=$cantidad)
                                                                 <div id="cargaGrande"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
