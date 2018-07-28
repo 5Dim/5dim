@@ -6,12 +6,30 @@ function celdasMaximas($a,$b) { //saco la cantidad de celdas justas
 return $a;
 }
 $filasCarga=10;
+
+$investNiveles=[
+    "invEnergia"=>$investigaciones->where("codigo","invEnergia")->first()->nivel,
+    "invPlasma"=>$investigaciones->where("codigo","invPlasma")->first()->nivel,
+    "invBalistica"=>$investigaciones->where("codigo","invBalistica")->first()->nivel,
+    "invMa"=>$investigaciones->where("codigo","invMa")->first()->nivel,
+
+    "invPropNuk"=>$investigaciones->where("codigo","invPropNuk")->first()->nivel,
+    "invPropIon"=>$investigaciones->where("codigo","invPropIon")->first()->nivel,
+    "invPropPlasma"=>$investigaciones->where("codigo","invPropPlasma")->first()->nivel,
+    "invPropMa"=>$investigaciones->where("codigo","invPropMa")->first()->nivel,
+
+    "invBlindaje"=>$investigaciones->where("codigo","invBlindaje")->first()->nivel,
+    "invCarga"=>$investigaciones->where("codigo","invCarga")->first()->nivel,
+    "invIa"=>$investigaciones->where("codigo","invIa")->first()->nivel
+]
+
+
 @endphp
 
 <div class="row rounded">
     <div class="col-12 borderless">
-            <div id="cuadro1" class="table-responsive" style="background-color: black;">
-                <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg') }}') no-repeat center !important">
+            <div id="cuadro1" class="table-responsive" style="background-color: #000000 !important;">
+                <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg')}}') no-repeat center !important;">
                     <tr>
                         <td>
                             <div class="row rounded">
@@ -33,20 +51,28 @@ $filasCarga=10;
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
                                                 </td>
+                                                @if ($investNiveles["invPropNuk"]>0)
+                                                    <td>
+                                                        <img class="rounded" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
+                                                    </td>
+                                                @endif
+                                                @if ($investNiveles["invPropIon"]>0)
+                                                    <td>
+                                                        <img class="rounded" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
+                                                    </td>
+                                                @endif
+                                                @if ($investNiveles["invPropPlasma"]>0)
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma62.jpg') }}" width="40" height="40">
                                                 </td>
+                                                @endif
+                                                @if ($investNiveles["invPropMa"]>0)
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
+                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma63.jpg') }}" width="40" height="40">
                                                 </td>
-                                                <td>
-                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                </td>
-                                                <td>
-                                                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                </td>
+                                                @endif
                                             </tr>
                                         </table>
                                     </div>
@@ -83,16 +109,16 @@ $filasCarga=10;
 
                                 <nav style="margin-top: 17px;">
                                     <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
-                                        <a class="nav-item nav-link active" id="energia-tab" data-toggle="tab" href="#energia" role="tab" aria-controls="energia" aria-selected="true">
+                                        <a class="nav-item nav-link active" id="energia-tab" data-toggle="tab" href="#energia" role="tab" aria-controls="energia" aria-selected="true" onclick="cambiaInvest('invesEnergia')">
                                             Energía
                                         </a>
-                                        <a class="nav-item nav-link " id="plasma-tab" data-toggle="tab" href="#plasma" role="tab" aria-controls="plasma" aria-selected="false" onclick="cambiaInvest('plasma')">
+                                        <a class="nav-item nav-link " id="plasma-tab" data-toggle="tab" href="#plasma" role="tab" aria-controls="plasma" aria-selected="false" onclick="cambiaInvest('invesPlasma')">
                                             Plasma
                                         </a>
-                                        <a class="nav-item nav-link" id="balistica-tab" data-toggle="tab" href="#balistica" role="tab" aria-controls="balistica" aria-selected="false">
+                                        <a class="nav-item nav-link" id="balistica-tab" data-toggle="tab" href="#balistica" role="tab" aria-controls="balistica" aria-selected="false" onclick="cambiaInvest('invesBalistica')" >
                                             Balística
                                         </a>
-                                        <a class="nav-item nav-link" id="ma-tab" data-toggle="tab" href="#ma" role="tab" aria-controls="ma" aria-selected="false">
+                                        <a class="nav-item nav-link" id="ma-tab" data-toggle="tab" href="#ma" role="tab" aria-controls="ma" aria-selected="false" onclick="cambiaInvest('invesMa')">
                                             M-A
                                         </a>
 
@@ -106,22 +132,22 @@ $filasCarga=10;
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
                                                             <td>
-                                                                <img class="rounded invesEnergia" src="{{ asset('img/fotos armas/ligera.jpg') }}" width="45" height="45" >
+                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/ligera.jpg') }}" width="45" height="45" >
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia" src="{{ asset('img/fotos armas/media.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/media.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia" src="{{ asset('img/fotos armas/pesada.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/pesada.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia" src="{{ asset('img/fotos armas/insertada.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/insertada.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                    <img class="rounded invesEnergia" src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
+                                                                    <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
                                                                 </td>
                                                                 <td>
-                                                                        <img class="rounded invesEnergia" src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
+                                                                        <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -137,6 +163,7 @@ $filasCarga=10;
                         <td>
                                 <div class="row rounded">
                                     <div class="col-12 ">
+                                    @if ($investNiveles["invBlindaje"]>0)
                                         <div id="cuadro1" class="table-responsive cajita">
                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
@@ -149,26 +176,18 @@ $filasCarga=10;
                                                                 $multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
                                                             }
                                                             @endphp
-                                                            <div class=" text-light" id="motorestxt">x{{$multiplicadorblindajes}} Blindajes: +225</div>
+                                                            <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes: +225</div>
                                                         </td>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    <td>
-                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    <td>
-                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    <td>
-                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    <td>
-                                                        <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                    </td>
+                                                @for($codigo=65;$codigo<70;$codigo++)
+                                                    @if ($investNiveles["invBlindaje"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                        <td>
+                                                            <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                        </td>
+                                                    @endif
+                                                @endfor
                                                 </tr>
                                             </table>
                                         </div>
@@ -197,7 +216,7 @@ $filasCarga=10;
                                         @endfor
                                     </tr>
                                 </table>
-
+                            @endif
                         </td>
 
                     </tr>
@@ -208,7 +227,7 @@ $filasCarga=10;
                                             <div id="cuadro1" class="table-responsive cajita" style="max-width: 725px">
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
-                                                        <td colspan="4">
+                                                        <td colspan="8">
                                                             @php
                                                                 $cantidadmejoras=$diseño->cualidades->mejoras;
                                                                 $multiplicadormejoras=1;
@@ -218,21 +237,13 @@ $filasCarga=10;
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                        </td>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                        </td>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                        </td>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                        </td>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="40" height="40">
-                                                        </td>
+                                                    @for($codigo=70;$codigo<88;$codigo++)
+                                                        @if ($investNiveles["invIa"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                        @endif
+                                                    @endfor
                                                     </tr>
                                                 </table>
                                             </div>
@@ -730,7 +741,11 @@ $filasCarga=10;
 
         ///
 
+    function cambiaInvest(invest){
+        $(".armasI").prop('class','rounded armasI '+invest);
 
+
+    }
 
 
         </script>

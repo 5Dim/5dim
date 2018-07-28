@@ -17,6 +17,7 @@ return [
     'invImperio' => "Administración de imperio",
     'invObservacion' => "Observación",
 
+    'invPropQuimico' => "Propulsión Química",
     'invPropNuk' => "Propulsión nuclear",
     'invPropIon' => "Propulsión iónica",
     'invPropPlasma' => "Propulsión de plasma",
@@ -45,6 +46,8 @@ return [
     'invImperioDescripcion' => "Conforme nuestro imperio coloniza o conquista nuevos planetas necesita ampliar su estructura administrativa. Cada nivel de esta investigación nos permite tener mas planetas, si sobrepasamos esta cantidad aumentarán también los gastos diarios en moneda.",
     'invObservacionDescripcion' => "Esta tecnología nos permite ampliar nuestra distancia de observación para cada nivel de edificio de observatorio en cada planeta. Igualmente hace mas dificil que puedan ver lo que contiene nuestro planeta en la misma proporción. Igualmente para las naves que pasen en vuelo por nuestra área de observación veremos mas detalles según el nivel de esta tecnología, el nivel de edificio y la distancia a la que se encuentre. Los miembros de una alianza comparten el edificio pero se aplica la tecnología de cada uno.",
 
+
+    'invPropQuimicoDescripcion' => "Basados en los mas antiguos principios estos motores se usan para dar energía y no para impulsarse.",
     'invPropNukDescripcion' => "Estos motores son grandes y no dan mucha velocidad, aunque dan una muy buena cantidad de energía pese a un precio muy bajo.",
     'invPropIonDescripcion' => "Los nuevos avances tecnoloógicos nos premiten crear un tipo de motor que de mas velocidad y menos gasto como alternativa al motor nuclear. Sin embargo este motor aporta menos energía y resta mas defensa.",
     'invPropPlasmaDescripcion' => "Estos motores aportan una cantidad enorme de energía y velocidad, el problema es que resta mucha defensa y es caro de producir.",
