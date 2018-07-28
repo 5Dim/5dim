@@ -25,12 +25,28 @@ function calcularRecursos() {
 
     //Insertar
     $("#personal").text(Math.trunc(recursos.personal).toLocaleString('es'));
-    $("#mineral").text(Math.trunc(recursos.mineral).toLocaleString('es'));
-    $("#cristal").text(Math.trunc(recursos.cristal).toLocaleString('es'));
-    counter++;
-    counter++;
 
     //Comprobar almacenes
+    if (recursos.mineral >= almacenes[counter].capacidad) {
+        $("#mineral").addClass('text-danger');
+        $("#mineral").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.mineral <= 0) {
+        $("#mineral").addClass('text-info');
+        $("#mineral").text(0);
+    } else {
+        $("#mineral").text(Math.trunc(recursos.mineral).toLocaleString('es'));
+    }
+    counter++;
+    if (recursos.cristal >= almacenes[counter].capacidad) {
+        $("#cristal").addClass('text-danger');
+        $("#cristal").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));
+    } else if (recursos.cristal <= 0) {
+        $("#cristal").addClass('text-info');
+        $("#cristal").text(0);
+    } else {
+        $("#cristal").text(Math.trunc(recursos.cristal).toLocaleString('es'));
+    }
+    counter++;
     if (recursos.gas >= almacenes[counter].capacidad) {
         $("#gas").addClass('text-danger');
         $("#gas").text(Math.trunc(almacenes[counter].capacidad).toLocaleString('es'));

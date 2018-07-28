@@ -68,6 +68,10 @@ class PlanetaController extends Controller
         //Constantes
         $constantes=Constantes::where('tipo','construccion')->get();
 
-        return view('juego.planeta', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'constantes', 'produccionesSinCalcular', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
+        //Variables del refugio
+        $nivelRefugio = Construcciones::where([['codigo', 'refugio'], ['planetas_id', session()->get('planetas_id')]])->first()->nivel;
+        $capacidadRefugio = Almacenes::where('nivel', $nivelRefugio)->first()->capacidad;
+
+        return view('juego.planeta', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'constantes', 'produccionesSinCalcular', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'capacidadRefugio'));
     }
 }

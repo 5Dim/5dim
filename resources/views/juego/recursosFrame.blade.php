@@ -162,23 +162,22 @@
                 <tbody>
                     <tr>
                         <td class="text-danger borderless">
-                            {{ number_format($personal, 0,",",".") }}
+                            ({{ number_format($personal, 0,",",".") }})
                         </td>
                         @foreach ($almacenes as $almacen)
-                            @if ($tipoPlaneta == 'planeta' and $loop->index < 2)
-                                <td class="text-danger borderless">
-                                    Ilimitado
-                                </td>
-                            @else @if ($loop->index == 5)
+                            @if ($loop->index == 5)
                                 <td class="text-danger borderless">
                                     Almacenes
                                 </td>
                             @endif
                             <td class="text-danger borderless">
-                                @if ($almacen->capacidad != 'Almacen') {{ number_format($almacen->capacidad, 0,",",".") }} @else {{ $almacen->capacidad }}
+                                @if ($almacen->capacidad != 'Almacen')
+                                    {{ number_format($almacen->capacidad, 0,",",".") }}
+                                @else
+                                    {{ $almacen->capacidad }}
                                 @endif
                             </td>
-                        @endif @endforeach
+                        @endforeach
                         <td class="text-danger borderless">
                             3200 ud/d
                         </td>
