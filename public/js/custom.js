@@ -309,6 +309,7 @@ function changeSkin(id) { /// cambia la skin de las naves en fuselajes
         sumask = 1;
     }
     imagen.dataset.skin = sumask;
-    img = 'http://localhost/img/fotos naves/skin' + sumask + '/naveMT' + id + '.jpg';
-    $('#imagen' + id).attr("src", img);
+    img = "background: url('http://localhost/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;"
+    // $('#imagen' + id).attr("src", img);
+    $("#tablaArmas").prop("style", img)
 }
