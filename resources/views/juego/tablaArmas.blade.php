@@ -53,9 +53,11 @@ $investNiveles=[
                                                 <td>
                                                     <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
                                                 </td>
-                                                <td>
-                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
-                                                </td>
+                                                @if ($investNiveles["invPropNuk"]>0)
+                                                    <td>
+                                                        <img class="rounded" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
+                                                    </td>
+                                                @endif
                                                 @if ($investNiveles["invPropIon"]>0)
                                                     <td>
                                                         <img class="rounded" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
@@ -225,7 +227,7 @@ $investNiveles=[
                                             <div id="cuadro1" class="table-responsive cajita" style="max-width: 725px">
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
-                                                        <td colspan="4">
+                                                        <td colspan="8">
                                                             @php
                                                                 $cantidadmejoras=$diseño->cualidades->mejoras;
                                                                 $multiplicadormejoras=1;
@@ -235,21 +237,13 @@ $investNiveles=[
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
-                                                        </td>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
-                                                        </td>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
-                                                        </td>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
-                                                        </td>
-                                                        <td>
-                                                            <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
-                                                        </td>
+                                                    @for($codigo=70;$codigo<88;$codigo++)
+                                                        @if ($investNiveles["invIa"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                        @endif
+                                                    @endfor
                                                     </tr>
                                                 </table>
                                             </div>
