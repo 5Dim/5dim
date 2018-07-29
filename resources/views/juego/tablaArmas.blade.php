@@ -591,34 +591,23 @@ $investNiveles=[
                     </tr>
                     <tr>
                             <td  colspan="2">
-                                    @if ($diseño->cualidades->cargaPequeña+$diseño->cualidades->cargaMedia+$diseño->cualidades->cargaGrande>0)
+                                    @if ($diseño->cualidades->cargaPequeña+$diseño->cualidades->cargaMedia+$diseño->cualidades->cargaGrande>0 && $investNiveles["invCarga"]>0)
 
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
                                                 <div class="row rounded ">
                                                     <div class="col-12 ">
                                                         <div id="cuadro1" class="table-responsive cajita">
-                                                            <div class=" text-light" id="motorestxt">Carga: -5.454</div>
+                                                            <div class=" text-light" id="cargatxt">Carga: -5.454</div>
                                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                                 <tr>
-                                                                    <td>
-                                                                        <img class="rounded " src="{{ asset('img/fotos armas/ligera.jpg') }}" width="45" height="45" >
-                                                                    </td>
-                                                                    <td>
-                                                                        <img class="rounded " src="{{ asset('img/fotos armas/media.jpg') }}" width="45" height="45">
-                                                                    </td>
-                                                                    <td>
-                                                                        <img class="rounded " src="{{ asset('img/fotos armas/pesada.jpg') }}" width="45" height="45">
-                                                                    </td>
-                                                                    <td>
-                                                                        <img class="rounded " src="{{ asset('img/fotos armas/insertada.jpg') }}" width="45" height="45">
-                                                                    </td>
-                                                                    <td>
-                                                                            <img class="rounded " src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
-                                                                        </td>
-                                                                        <td>
-                                                                                <img class="rounded " src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
+                                                                    @for($codigo=90;$codigo<98;$codigo++)
+                                                                        @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                                            <td>
+                                                                                <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                                             </td>
+                                                                        @endif
+                                                                    @endfor
                                                                 </tr>
                                                             </table>
                                                         </div>

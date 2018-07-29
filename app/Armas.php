@@ -490,7 +490,7 @@ class Armas extends Model
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=97;
+                $arma->codigo=95;
                 $arma->nombre='Hangar';
                 $arma->descripcion='Cada unidad de hangar da cabida para un caza';
                 $arma->jugadores_id=1;
@@ -504,7 +504,7 @@ class Armas extends Model
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=98;
+                $arma->codigo=96;
                 $arma->nombre='Muelle naves ligeras';
                 $arma->descripcion='Hangar de atraque para naves ligeras, cada uno da cabida para una nave ligera';
                 $arma->jugadores_id=1;
@@ -518,7 +518,7 @@ class Armas extends Model
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=99;
+                $arma->codigo=97;
                 $arma->nombre='Puerto naves medias';
                 $arma->descripcion='Puerto para atracar naves medias, con todos los sistemas de reparacion y mantenimiento necesarios para 1 nave media';
                 $arma->jugadores_id=1;
