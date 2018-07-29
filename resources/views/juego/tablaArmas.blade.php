@@ -28,35 +28,36 @@ $investNiveles=[
 $arrayCss=[];
 $arrayStart=[];
 $arrayConnect=[];
+$arrayTooltip=[];
 
-/*
-    array_push($arrayStart,"80");
-    array_push($arrayConnect,"true");
-*/
 
 if ($investNiveles["invEnergia"]>0){
     array_push($arrayStart,10);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-1-color');
+    array_push($arrayTooltip,'% de energía a armas de energía');
 }
 if ($investNiveles["invPlasma"]>0){
     array_push($arrayStart,40);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-2-color');
+    array_push($arrayTooltip,'% de energía a armas de plasma');
 }
 if ($investNiveles["invBalistica"]>0){
     array_push($arrayStart,60);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-3-color');
+    array_push($arrayTooltip,'% de energía a armas de Balística');
 }
-
 if ($investNiveles["invMa"]>0){
     array_push($arrayStart,90);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-4-color');
+    array_push($arrayTooltip,'% de energía a armas de MA');
 }
 array_push($arrayConnect,true);
 array_push($arrayCss,'c-5-color');
+
 
 
 
@@ -87,26 +88,26 @@ array_push($arrayCss,'c-5-color');
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
+                                                    <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",59)->first()->nombre}}" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @if ($investNiveles["invPropNuk"]>0)
                                                     <td>
-                                                        <img class="rounded" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
+                                                        <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",60)->first()->nombre}}" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
                                                     </td>
                                                 @endif
                                                 @if ($investNiveles["invPropIon"]>0)
                                                     <td>
-                                                        <img class="rounded" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
+                                                        <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",61)->first()->nombre}}" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
                                                     </td>
                                                 @endif
                                                 @if ($investNiveles["invPropPlasma"]>0)
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma62.jpg') }}" width="40" height="40">
+                                                    <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",62)->first()->nombre}}" src="{{ asset('img/fotos armas/arma62.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @endif
                                                 @if ($investNiveles["invPropMa"]>0)
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma63.jpg') }}" width="40" height="40">
+                                                    <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",63)->first()->nombre}}" src="{{ asset('img/fotos armas/arma63.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @endif
                                             </tr>
@@ -177,22 +178,22 @@ array_push($arrayCss,'c-5-color');
                                                         <tr>
 
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/ligera.jpg') }}" width="45" height="45" >
+                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/ligera.jpg') }}" width="45" height="45" >
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/media.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/media.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/pesada.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/pesada.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/insertada.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/insertada.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
                                                             </td>
 
                                                         </tr>
@@ -231,7 +232,7 @@ array_push($arrayCss,'c-5-color');
                                                 @for($codigo=65;$codigo<70;$codigo++)
                                                     @if ($investNiveles["invBlindaje"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                         <td>
-                                                            <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                         </td>
                                                     @endif
                                                 @endfor
@@ -288,7 +289,7 @@ array_push($arrayCss,'c-5-color');
                                                     @for($codigo=70;$codigo<88;$codigo++)
                                                         @if ($investNiveles["invIa"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                             <td>
-                                                                <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                             </td>
                                                         @endif
                                                     @endfor
@@ -647,7 +648,7 @@ array_push($arrayCss,'c-5-color');
                                                                     @for($codigo=90;$codigo<98;$codigo++)
                                                                         @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                                             <td>
-                                                                                <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                                <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                                             </td>
                                                                         @endif
                                                                     @endfor
@@ -753,18 +754,14 @@ array_push($arrayCss,'c-5-color');
 
 
     <script>
-        /// barra de investigaciones
-
-           /*
-    if ($investNiveles["invMa"]>0){
-        $arrayBarras="
-                    start: [ 10, 40, 80, 90 ],
-                    connect: [true, true, true, true, true],
-                    ";
-        $arrayCss=['c-1-color', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
-        */
 
 
+        /// barra de investigaciones-armas
+
+        // data-toggle="tooltip" data-placement="auto" title=""
+
+
+            // creando el slider
             var slider = document.getElementById('slider-color');
 
                 noUiSlider.create(slider, {
@@ -782,6 +779,27 @@ array_push($arrayCss,'c-5-color');
             for ( var i = 1; i < classes.length+1; i++ ) {
                 $("div.noUi-connect:nth-child("+i+")").addClass(classes[i-1]);
             }
+
+            //tooltip de slider
+
+            var arrayTooltip={!!json_encode($arrayTooltip)!!};
+            var a=1;
+            arrayTooltip.forEach(function(n){
+                a++;
+                if(a==2){
+                    $("#slider-color > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").prop("data-toggle","tooltip");
+                    $("#slider-color > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").prop("data-placement","auto");
+                    $("#slider-color > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").prop("title",n);
+                } else {
+                    $("div.noUi-origin:nth-child("+a+") > div:nth-child(1)").prop("data-toggle","tooltip");
+                    $("div.noUi-origin:nth-child("+a+") > div:nth-child(1)").prop("data-placement","auto");
+                    $("div.noUi-origin:nth-child("+a+") > div:nth-child(1)").prop("title",n);
+                }
+
+            })
+
+
+
 
         ///
 

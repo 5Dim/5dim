@@ -491,7 +491,7 @@ class Armas extends Model
 
                 $arma =new Armas();
                 $arma->codigo=95;
-                $arma->nombre='Hangar';
+                $arma->nombre='Hangar de cazas';
                 $arma->descripcion='Cada unidad de hangar da cabida para un caza';
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaPequeña";
