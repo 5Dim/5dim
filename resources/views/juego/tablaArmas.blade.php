@@ -21,7 +21,43 @@ $investNiveles=[
     "invBlindaje"=>$investigaciones->where("codigo","invBlindaje")->first()->nivel,
     "invCarga"=>$investigaciones->where("codigo","invCarga")->first()->nivel,
     "invIa"=>$investigaciones->where("codigo","invIa")->first()->nivel
-]
+];
+
+
+
+$arrayCss=[];
+$arrayStart=[];
+$arrayConnect=[];
+
+/*
+    array_push($arrayStart,"80");
+    array_push($arrayConnect,"true");
+*/
+
+if ($investNiveles["invEnergia"]>0){
+    array_push($arrayStart,10);
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-1-color');
+}
+if ($investNiveles["invPlasma"]>0){
+    array_push($arrayStart,40);
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-2-color');
+}
+if ($investNiveles["invBalistica"]>0){
+    array_push($arrayStart,60);
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-3-color');
+}
+
+if ($investNiveles["invMa"]>0){
+    array_push($arrayStart,90);
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-4-color');
+}
+array_push($arrayConnect,true);
+array_push($arrayCss,'c-5-color');
+
 
 
 @endphp
@@ -109,28 +145,37 @@ $investNiveles=[
 
                                 <nav style="margin-top: 17px;">
                                     <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
+                                    @if ($investNiveles["invEnergia"]>0)
                                         <a class="nav-item nav-link active" id="energia-tab" data-toggle="tab" href="#energia" role="tab" aria-controls="energia" aria-selected="true" onclick="cambiaInvest('invesEnergia')">
                                             Energía
                                         </a>
+                                    @endif
+                                    @if ($investNiveles["invPlasma"]>0)
                                         <a class="nav-item nav-link " id="plasma-tab" data-toggle="tab" href="#plasma" role="tab" aria-controls="plasma" aria-selected="false" onclick="cambiaInvest('invesPlasma')">
                                             Plasma
                                         </a>
+                                    @endif
+                                    @if ($investNiveles["invBalistica"]>0)
                                         <a class="nav-item nav-link" id="balistica-tab" data-toggle="tab" href="#balistica" role="tab" aria-controls="balistica" aria-selected="false" onclick="cambiaInvest('invesBalistica')" >
                                             Balística
                                         </a>
+                                    @endif
+                                    @if ($investNiveles["invMa"]>0)
                                         <a class="nav-item nav-link" id="ma-tab" data-toggle="tab" href="#ma" role="tab" aria-controls="ma" aria-selected="false" onclick="cambiaInvest('invesMa')">
                                             M-A
                                         </a>
-
+                                    @endif
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
                                         <div class="row rounded ">
                                             <div class="col-12 ">
+                                                @if ($investNiveles["invEnergia"]+$investNiveles["invPlasma"]+$investNiveles["invBalistica"]+$investNiveles["invMa"]>0)
                                                 <div id="cuadro1" class="table-responsive cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
+
                                                             <td>
                                                                 <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/ligera.jpg') }}" width="45" height="45" >
                                                             </td>
@@ -144,14 +189,16 @@ $investNiveles=[
                                                                 <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/insertada.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                    <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
-                                                                </td>
-                                                                <td>
-                                                                        <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
+                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
                                                             </td>
+                                                            <td>
+                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
+                                                            </td>
+
                                                         </tr>
                                                     </table>
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -224,6 +271,7 @@ $investNiveles=[
                             <td colspan="2">
                                     <div class="row rounded">
                                         <div class="col-12 ">
+                                            @if ($investNiveles["invIa"]>0)
                                             <div id="cuadro1" class="table-responsive cajita" style="max-width: 725px">
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
@@ -247,10 +295,12 @@ $investNiveles=[
                                                     </tr>
                                                 </table>
                                             </div>
+                                        @endif
                                         </div>
                                     </div>
                                 </td>
                         <td rowspan="2" colspan="2">
+                            @if ($investNiveles["invEnergia"]+$investNiveles["invPlasma"]+$investNiveles["invBalistica"]+$investNiveles["invMa"]>0)
                             <table>
                                 <tr >
                                     @if ($diseño->cualidades->armasLigeras>0)
@@ -558,15 +608,13 @@ $investNiveles=[
                                         </script>
                                     @endif
                                 </tr>
-
-
-
-
                             </table>
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" rowspan="2">
+                            @if ($investNiveles["invIa"]>0)
                                 <table>
                                         @for ($n=0 ; $n<5; $n++)
                                             <tr>
@@ -581,18 +629,13 @@ $investNiveles=[
                                         @endfor
 
 
-
-
                                     </table>
+                                    @endif
                         </td>
-
-
-
                     </tr>
                     <tr>
                             <td  colspan="2">
                                     @if ($diseño->cualidades->cargaPequeña+$diseño->cualidades->cargaMedia+$diseño->cualidades->cargaGrande>0 && $investNiveles["invCarga"]>0)
-
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
                                                 <div class="row rounded ">
@@ -711,18 +754,30 @@ $investNiveles=[
 
     <script>
         /// barra de investigaciones
+
+           /*
+    if ($investNiveles["invMa"]>0){
+        $arrayBarras="
+                    start: [ 10, 40, 80, 90 ],
+                    connect: [true, true, true, true, true],
+                    ";
+        $arrayCss=['c-1-color', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
+        */
+
+
             var slider = document.getElementById('slider-color');
 
                 noUiSlider.create(slider, {
-                start: [ 10, 40, 80, 90 ],
-                connect: [true, true, true, true, true],
+                    start: {!!json_encode($arrayStart)!!},
+                    connect: {!!json_encode($arrayConnect)!!},
+
                 range: {
                     'min': [  0 ],
                     'max': [ 100 ]
                 }
             });
 
-            var classes = ['c-1-color', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
+            var classes = {!!json_encode($arrayCss)!!};
 
             for ( var i = 1; i < classes.length+1; i++ ) {
                 $("div.noUi-connect:nth-child("+i+")").addClass(classes[i-1]);
