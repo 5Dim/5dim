@@ -20,8 +20,7 @@
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('css/nouislider/nouislider.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-
-
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 </head>
 
 <body class="bg" id="recursosFrame">
@@ -31,7 +30,7 @@
                 <thead>
                     <tr>
                         <th class="text-warning borderless ">
-                            <a href="mensajes.php" target="_self">
+                            <a href="{{url('/juego/mensajes')}}" target="_self">
                                 <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men.png') }}" title="Mensajes"/>
                             </a>
                         </th>
