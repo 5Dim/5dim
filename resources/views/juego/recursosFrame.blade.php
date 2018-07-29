@@ -95,7 +95,7 @@
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="compra1.php" target="_self">
+                            <a href="{{ url('/juego/tienda') }}" target="_self">
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-shop.png') }}"  title="Tienda"/>
                             </a>
                         </th>
