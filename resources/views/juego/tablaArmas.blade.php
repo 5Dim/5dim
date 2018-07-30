@@ -159,6 +159,24 @@ for($n=0;$n<$cantidadCargaMedia;$n++){ array_push($cargaMedianas,0);}
 $cargaGrandes=[];
 for($n=0;$n<$cantidadCargaGrande;$n++){ array_push($cargaGrandes,0);}
 
+$armasLigeras=[];
+for($n=0;$n<$cantidadCLigeras;$n++){ array_push($armasLigeras,0);}
+
+$armasMedias=[];
+for($n=0;$n<$cantidadCMedias;$n++){ array_push($armasMedias,0);}
+
+$armasPesadas=[];
+for($n=0;$n<$cantidadCPesadas;$n++){ array_push($armasPesadas,0);}
+
+$armasInsertadas=[];
+for($n=0;$n<$cantidadCInsertadas;$n++){ array_push($armasInsertadas,0);}
+
+$armasMisiles=[];
+for($n=0;$n<$cantidadCMisiles;$n++){ array_push($armasMisiles,0);}
+
+$armasBombas=[];
+for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
+
 
 
 
@@ -378,7 +396,7 @@ for($n=0;$n<$cantidadCargaGrande;$n++){ array_push($cargaGrandes,0);}
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
                                                 @if ($i<=$cantidadCLigeras)
-                                                <div id="armasLigeras"+i style="border: 1px solid white;"><img onClick="encajar('armasLigera',{{$i-1}},'quita')" id="armasLigera{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                <div id="armasLigeras{{$i-1}}" style="border: 1px solid white;"><img onClick="encajar('armasLigera',{{$i-1}},'quita')" id="armasLigera{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -758,15 +776,31 @@ var cargaPequeñas={!!json_encode($cargaPequeñas)!!};
 var cargaMedianas={!!json_encode($cargaMedianas)!!};
 var cargaGrandes={!!json_encode($cargaGrandes)!!};
 
+var armasLigeras={!!json_encode($armasLigeras)!!};
+var armasMedias={!!json_encode($armasMedias)!!};
+var armasPesadas={!!json_encode($armasPesadas)!!};
+var armasInsertadas={!!json_encode($armasInsertadas)!!};
+var armasMisiles={!!json_encode($armasMisiles)!!};
+var armasBombas={!!json_encode($armasBombas)!!};
+
 var armas={
     motor:motores,
     blindaje:blindajes,
     mejora:mejoras,
     cargaPequeña:cargaPequeñas,
     cargaMediana:cargaMedianas,
-    cargaGrande:cargaGrandes
+    cargaGrande:cargaGrandes,
+
+    armasLigera:armasLigeras,
+    armasMedia:armasMedias,
+    armasPesada:armasPesadas,
+    armasInsertada:armasInsertadas,
+    armasMisil:armasMisiles,
+    armasBomba:armasBombas,
+
 }
 
+///    $("#armasLigeras3").prop('class','invesPlasma');
 
     function encajar(elemento,id,qhago){
         if (qhago=='añade'){
