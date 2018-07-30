@@ -74,7 +74,7 @@ $cantidadblindajes=celdasMaximas(12,$cantidadblindajes);
 $multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
 }
 
-$cantidadmejoras=$diseño->cualidades->mejoras;
+$cantidadMejoras=$diseño->cualidades->mejoras;
 $multiplicadormejoras=1;
 
 $cantidadCLigeras=$diseño->cualidades->armasLigeras;
@@ -126,19 +126,38 @@ if ($cantidadCargaPequeña>$filasCarga){
     $multiplicador=($diseño->cualidades->cargaPequeña/$cantidadCargaPequeña);
 }
 
-$cantidadMedia=$diseño->cualidades->cargaMedia;
+$cantidadCargaMedia=$diseño->cualidades->cargaMedia;
 $multiplicador=1;
-if ($cantidadMedia>$filasCarga){
-$cantidadMedia=celdasMaximas($filasCarga,$cantidadMedia);
-$multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidadMedia);
+if ($cantidadCargaMedia>$filasCarga){
+$cantidadCargaMedia=celdasMaximas($filasCarga,$cantidadCargaMedia);
+$multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidadCargaMedia);
 }
 
-$cantidadGrande=$diseño->cualidades->cargaGrande;
+$cantidadCargaGrande=$diseño->cualidades->cargaGrande;
 $multiplicador=1;
-if ($cantidadGrande>$filasCarga){
-$cantidadGrande=celdasMaximas($filasCarga,$cantidadGrande);
-$multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
+if ($cantidadCargaGrande>$filasCarga){
+$cantidadCargaGrande=celdasMaximas($filasCarga,$cantidadCargaGrande);
+$multiplicador=($diseño->cualidades->cargaGrande/$cantidadCargaGrande);
 }
+
+//arrays que vienen
+$motores=[];
+for($n=0;$n<$cantidadMotores;$n++){ array_push($motores,0);}
+
+$blindajes=[];
+for($n=0;$n<$cantidadblindajes;$n++){ array_push($blindajes,0);}
+
+$mejoras=[];
+for($n=0;$n<$cantidadMejoras;$n++){ array_push($mejoras,0);}
+
+$cargaPequeñas=[];
+for($n=0;$n<$cantidadCargaPequeña;$n++){ array_push($cargaPequeñas,0);}
+
+$cargaMedianas=[];
+for($n=0;$n<$cantidadCargaMedia;$n++){ array_push($cargaMedianas,0);}
+
+$cargaGrandes=[];
+for($n=0;$n<$cantidadCargaGrande;$n++){ array_push($cargaGrandes,0);}
 
 
 
@@ -162,26 +181,26 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",59)->first()->nombre}}" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
+                                                    <img onClick="encajar('motor',59,'añade')" class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",59)->first()->nombre}}" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @if ($investNiveles["invPropNuk"]>0)
                                                     <td>
-                                                        <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",60)->first()->nombre}}" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
+                                                        <img onClick="encajar('motor',60,'añade')"  class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",60)->first()->nombre}}" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
                                                     </td>
                                                 @endif
                                                 @if ($investNiveles["invPropIon"]>0)
                                                     <td>
-                                                        <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",61)->first()->nombre}}" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
+                                                        <img onClick="encajar('motor',61,'añade')"  class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",61)->first()->nombre}}" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
                                                     </td>
                                                 @endif
                                                 @if ($investNiveles["invPropPlasma"]>0)
                                                 <td>
-                                                    <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",62)->first()->nombre}}" src="{{ asset('img/fotos armas/arma62.jpg') }}" width="40" height="40">
+                                                    <img onClick="encajar('motor',62,'añade')"  class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",62)->first()->nombre}}" src="{{ asset('img/fotos armas/arma62.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @endif
                                                 @if ($investNiveles["invPropMa"]>0)
                                                 <td>
-                                                    <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",63)->first()->nombre}}" src="{{ asset('img/fotos armas/arma63.jpg') }}" width="40" height="40">
+                                                    <img onClick="encajar('motor',63,'añade')"  class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",63)->first()->nombre}}" src="{{ asset('img/fotos armas/arma63.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @endif
                                             </tr>
@@ -201,7 +220,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                     @for ($i = 0 ; $i <7; $i++)
                                         <td>
                                             @if ($i<$cantidadMotores)
-                                            <div id="motores"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                        <div  style="border: 1px solid white;"><img onClick="encajar('motor',{{$i}},'quita')" id="motor{{$i}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                             @endif
                                         </td>
                                     @endfor
@@ -217,7 +236,6 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                             @if ($diseño->cualidades->armasLigeras+$diseño->cualidades->armasMedias+$diseño->cualidades->armasPesadas+$diseño->cualidades->armasInsertadas+$diseño->cualidades->armasMisiles+$diseño->cualidades->armasBombas >0)
                             <div class=" text-light" id="motorestxt" style="margin-bottom: 10px;">Armas: -151.225 e</div>
                             <div class="slider" id="slider-color"></div>
-
                                 <nav style="margin-top: 17px;">
                                     <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
                                     @if ($investNiveles["invEnergia"]>0)
@@ -250,24 +268,23 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                                 <div id="cuadro1" class="table-responsive cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
-
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/ligera.jpg') }}" width="45" height="45" >
+                                                                <img onClick="encajar('armasLigera',1,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma1.jpg') }}" width="45" height="45" >
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/media.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasMedia',2,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma2.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/pesada.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasPesada',3,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma3.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/insertada.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasInsertada',4,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma4.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasMisil',5,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma5.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasBomba',6,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma6.jpg') }}" width="45" height="45">
                                                             </td>
 
                                                         </tr>
@@ -283,8 +300,8 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                     </tr>
                     <tr>
                         <td>
-                                <div class="row rounded">
-                                    <div class="col-12 ">
+                            <div class="row rounded">
+                                <div class="col-12 ">
                                     @if ($investNiveles["invBlindaje"]>0)
                                         <div id="cuadro1" class="table-responsive cajita">
                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
@@ -298,7 +315,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                                 @for($codigo=65;$codigo<70;$codigo++)
                                                     @if ($investNiveles["invBlindaje"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                         <td>
-                                                            <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            <img onClick="encajar('blindaje',{{$codigo}},'añade')" class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                         </td>
                                                     @endif
                                                 @endfor
@@ -310,25 +327,17 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                             </td>
                             <td>
                                 <table>
-
-                                    <tr>
-                                        @for ($i = 0 ; $i <7; $i++)
+                                    @for ($n=0 ; $n<3; $n++)
+                                        <tr>
+                                            @for ($i = 0 ; $i <7; $i++)
                                             <td>
-                                                @if ($i<$cantidadblindajes/2)
-                                                <div id="motores"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<$cantidadblindajes-($n*7))
+                                                    <div  style="border: 1px solid white;"><img  onClick="encajar('blindaje',{{$i+(7*$n)}},'quita')" id="blindaje{{$i+(7*$n)}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
-                                        @endfor
-                                    </tr>
-                                    <tr>
-                                        @for ($i = 0 ; $i <7; $i++)
-                                            <td>
-                                                @if ($i<$cantidadblindajes/2)
-                                                <div id="motores"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                @endif
-                                            </td>
-                                        @endfor
-                                    </tr>
+                                            @endfor
+                                        </tr>
+                                    @endfor
                                 </table>
                             @endif
                         </td>
@@ -350,7 +359,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                                     @for($codigo=70;$codigo<88;$codigo++)
                                                         @if ($investNiveles["invIa"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                             <td>
-                                                                <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                <img onClick="encajar('mejora',{{$codigo}},'añade')" class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                             </td>
                                                         @endif
                                                     @endfor
@@ -369,7 +378,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
                                                 @if ($i<=$cantidadCLigeras)
-                                                <div id="armasLigeras"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                <div id="armasLigeras"+i style="border: 1px solid white;"><img onClick="encajar('armasLigera',{{$i-1}},'quita')" id="armasLigera{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -412,7 +421,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
                                                 @if ($i<=$cantidadCMedias)
-                                                <div id="armasMedias"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                <div id="armasMedias"+i style="border: 1px solid white;"><img onClick="encajar('armasMedia',{{$i-1}},'quita')" id="armasMedia{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -455,7 +464,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
                                                 @if ($i<=$cantidadCPesadas)
-                                                <div id="armasPesadas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                <div id="armasPesadas"+i style="border: 1px solid white;"><img onClick="encajar('armasPesada',{{$i-1}},'quita')" id="armasPesada{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -498,7 +507,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
                                                 @if ($i<=$cantidadCInsertadas)
-                                                <div id="armasInsertadas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                <div id="armasInsertadas"+i style="border: 1px solid white;"><img onClick="encajar('armasInsertada',{{$i-1}},'quita')" id="armasInsertada{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -541,7 +550,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
                                                 @if ($i<=$cantidadCMisiles)
-                                                <div id="armasMisiles"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                <div id="armasMisiles"+i style="border: 1px solid white;"><img onClick="encajar('armasMisil',{{$i-1}},'quita')" id="armasMisil{{$i-1}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -584,7 +593,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
                                                 @if ($i<=$cantidadCBombas)
-                                                <div id="armasBombas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                <div id="armasBombas"+i style="border: 1px solid white;"><img onClick="encajar('armasBomba',{{$i-1}},'quita')" id="armasBomba{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -633,17 +642,15 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                             <tr>
                                                 @for ($i = 0 ; $i <14; $i++)
                                                 <td>
-                                                    @if ($i<$cantidadmejoras-($n*14))
-                                                        <div id="mejoras"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                    @if ($i<$cantidadMejoras-($n*14))
+                                                        <div  style="border: 1px solid white;"><img  onClick="encajar('mejora',{{$i+(14*$n)}},'quita')" id="mejora{{$i+(14*$n)}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                     @endif
                                                 </td>
                                                 @endfor
                                             </tr>
                                         @endfor
-
-
-                                    </table>
-                                    @endif
+                                </table>
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -660,7 +667,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                                                     @for($codigo=90;$codigo<98;$codigo++)
                                                                         @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                                             <td>
-                                                                                <img class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                                             </td>
                                                                         @endif
                                                                     @endfor
@@ -678,7 +685,7 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
                                                                 @if ($i<=$cantidadCargaPequeña)
-                                                                <div id="cargaPequeña"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                <div  style="border: 1px solid white;"><img onClick="encajar('cargaPequeña',{{$i-1}},'quita')" id="cargaPequeña{{$i-1}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
                                                         @endfor
@@ -693,8 +700,8 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                                     @if ($diseño->cualidades->cargaMedia>0)
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
-                                                                @if ($i<=$cantidadMedia)
-                                                                <div id="cargaMedia"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                @if ($i<=$cantidadCargaMedia)
+                                                                <div  style="border: 1px solid white;"><img onClick="encajar('cargaMediana',{{$i-1}},'quita')" id="cargaMediana{{$i-1}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
                                                         @endfor
@@ -707,8 +714,8 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
                                                     @if ($diseño->cualidades->cargaGrande>0)
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
-                                                                @if ($i<=$cantidadGrande)
-                                                                <div id="cargaGrande"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                @if ($i<=$cantidadCargaGrande)
+                                                                <div style="border: 1px solid white;"><img onClick="encajar('cargaGrande',{{$i-1}},'quita')" id="cargaGrande{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
                                                         @endfor
@@ -741,6 +748,53 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
 
 
     <script>
+
+// pasar armas a huecos
+
+var motores={!!json_encode($motores)!!};
+var blindajes={!!json_encode($blindajes)!!};
+var mejoras={!!json_encode($mejoras)!!};
+var cargaPequeñas={!!json_encode($cargaPequeñas)!!};
+var cargaMedianas={!!json_encode($cargaMedianas)!!};
+var cargaGrandes={!!json_encode($cargaGrandes)!!};
+
+var armas={
+    motor:motores,
+    blindaje:blindajes,
+    mejora:mejoras,
+    cargaPequeña:cargaPequeñas,
+    cargaMediana:cargaMedianas,
+    cargaGrande:cargaGrandes
+}
+
+
+    function encajar(elemento,id,qhago){
+        if (qhago=='añade'){
+            for (n=0;n<armas[elemento].length;n++) {
+                if (armas[elemento][n]==0){ armas[elemento][n]=id; break;  }
+            };
+        } else if (qhago=='quita'){
+            armas[elemento][id]=0;
+
+        }
+
+        n=0;
+        armas[elemento].forEach(function(e) {
+            if (e==0){
+                img = "../../../img/fotos armas/vacio.png";
+            } else {
+                img = "../../../img/fotos armas/arma" + e + ".jpg" ;
+            }
+            $('#'+ elemento + n).attr("src", img);
+            n++;
+        });
+
+
+
+
+
+
+    }
 
 
         /// barra de investigaciones-armas
@@ -792,8 +846,6 @@ $multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
 
     function cambiaInvest(invest){
         $(".armasI").prop('class','rounded armasI '+invest);
-
-
     }
 
 

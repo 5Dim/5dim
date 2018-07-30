@@ -17,7 +17,7 @@ class Armas extends Model
                 $arma->nombre='Motor Químico';
                 $arma->descripcion='El motor básico de cualquier cohete, proporciona un empuje constante alimentado por la combustión de propulsores';
                 $arma->jugadores_id=1;
-                $arma->ranura="motores";
+                $arma->ranura="motor";
                 $arma->potencia=3;
                 $arma->clase=3;
                 $arma->niveltec=0;
@@ -31,7 +31,7 @@ class Armas extends Model
                 $arma->nombre='Motor nuclear';
                 $arma->descripcion='Los motores nucleares nos dan la primera oportunidad de viajar a otras estrellas en un tiempo razonable.';
                 $arma->jugadores_id=1;
-                $arma->ranura="motores";
+                $arma->ranura="motor";
                 $arma->potencia=4;
                 $arma->clase=12;
                 $arma->niveltec=0;
@@ -45,7 +45,7 @@ class Armas extends Model
                 $arma->nombre='Motor iones';
                 $arma->descripcion='Los nuevos avances tecnoloógicos nos premiten crar un codigo de motor muy ligero y rápido como alternativa al motor nuclear.';
                 $arma->jugadores_id=1;
-                $arma->ranura="motores";
+                $arma->ranura="motor";
                 $arma->potencia=5;
                 $arma->clase=13;
                 $arma->niveltec=1;
@@ -59,7 +59,7 @@ class Armas extends Model
                 $arma->nombre='Motor de plasma';
                 $arma->descripcion='Los motores de plasma son mucho mas caros de construir y mantener, peligrosos si son dañados en un combate y además complicados de hacer. Sin embargo podemos obtener unas velocidades muy altas y una cantidad de energía enorme muy util para montar tod';
                 $arma->jugadores_id=1;
-                $arma->ranura="motores";
+                $arma->ranura="motor";
                 $arma->potencia=5;
                 $arma->clase=14;
                 $arma->niveltec=1;
@@ -73,7 +73,7 @@ class Armas extends Model
                 $arma->nombre='Motor MA';
                 $arma->descripcion=' No se conoce fuente de energía mas compacta que la antimateria, podemos crear sistemas de propulsión basados en ella como combustible en combinación con nuestros conocimientos en otros propulsores.';
                 $arma->jugadores_id=1;
-                $arma->ranura="motores";
+                $arma->ranura="motor";
                 $arma->potencia=10;
                 $arma->clase=15;
                 $arma->niveltec=1;
@@ -87,7 +87,7 @@ class Armas extends Model
                 $arma->nombre='Motor HMA';
                 $arma->descripcion=' La energía que podemos extraer de la antimateria es tan enorme que es posible crear un pliegue en el espacio-tiempo de tal forma que se puede viajar entre dos puntos distantes en un instante.';
                 $arma->jugadores_id=1;
-                $arma->ranura="motores";
+                $arma->ranura="motor";
                 $arma->potencia=10;
                 $arma->clase=16;
                 $arma->niveltec=5;
@@ -101,7 +101,7 @@ class Armas extends Model
                 $arma->nombre='Titanio N';
                 $arma->descripcion='El Titanio N es un blindaje especial para naves espaciales, pese a su elevado peso da una protección excelente frente a impactos y armas energéticas';
                 $arma->jugadores_id=1;
-                $arma->ranura="blindajes";
+                $arma->ranura="blindaje";
                 $arma->potencia=13;
                 $arma->clase=10;
                 $arma->niveltec=2;
@@ -115,7 +115,7 @@ class Armas extends Model
                 $arma->nombre='Reactivo N';
                 $arma->descripcion='El blindaje reactivo combina la resistencia de un blindaje de Titanio N con una gran durabilidad frente a detonaciones';
                 $arma->jugadores_id=1;
-                $arma->ranura="blindajes";
+                $arma->ranura="blindaje";
                 $arma->potencia=15;
                 $arma->clase=10;
                 $arma->niveltec=4;
@@ -129,7 +129,7 @@ class Armas extends Model
                 $arma->nombre='Resinas A';
                 $arma->descripcion='Mediante resinas metálicas autoendurecibles y expansivas logramos que tras un impacto cualquier brecha quede sellada al instante';
                 $arma->jugadores_id=1;
-                $arma->ranura="blindajes";
+                $arma->ranura="blindaje";
                 $arma->potencia=9;
                 $arma->clase=10;
                 $arma->niveltec=8;
@@ -143,7 +143,7 @@ class Armas extends Model
                 $arma->nombre='Placas TAC';
                 $arma->descripcion='Con una aleacion titanio-aluminio-carbono y tratamientos nanotecnologicos de templado obtenemos una material tremendamente duro, flexible y rápido de producir, aunque muy pesado y caro';
                 $arma->jugadores_id=1;
-                $arma->ranura="blindajes";
+                $arma->ranura="blindaje";
                 $arma->potencia=15;
                 $arma->clase=10;
                 $arma->niveltec=11;
@@ -157,7 +157,7 @@ class Armas extends Model
                 $arma->nombre='Carbonadio';
                 $arma->descripcion='Este material creado a partir de resinas, es la version moldeable de otro compuesto mucho ma caro y dificil de trabajar usado para piezas muy concretas de los motores M-A';
                 $arma->jugadores_id=1;
-                $arma->ranura="blindajes";
+                $arma->ranura="blindaje";
                 $arma->potencia=30;
                 $arma->clase=10;
                 $arma->niveltec=15;
@@ -171,7 +171,7 @@ class Armas extends Model
                 $arma->nombre='Optimizador';
                 $arma->descripcion='Podemos optimizar nuestros diseños empleando parte de la energía sobrante en ciertos sistema para reducir los costos';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=13;
                 $arma->clase=7;
                 $arma->niveltec=4;
@@ -185,7 +185,7 @@ class Armas extends Model
                 $arma->nombre='Escudos';
                 $arma->descripcion='Combinando u campo elertromagnético y nanotecnología podemos bloquear parte del fuego enemigo';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=16;
                 $arma->clase=7;
                 $arma->niveltec=6;
@@ -199,7 +199,7 @@ class Armas extends Model
                 $arma->nombre='Salvas';
                 $arma->descripcion='Mediante el antiguo sistema de disparar munición falsa para corregir errores en los disparos verdaderos, podemos ahorrar munición';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=10;
                 $arma->clase=7;
                 $arma->niveltec=10;
@@ -213,7 +213,7 @@ class Armas extends Model
                 $arma->nombre='Standartd';
                 $arma->descripcion='Mediante el uso de piezas iguales en todas las naves podemos reducir considerablemente los gastos diarios de las naves';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=15;
                 $arma->clase=7;
                 $arma->niveltec=11;
@@ -227,7 +227,7 @@ class Armas extends Model
                 $arma->nombre='Ctrl de puntería';
                 $arma->descripcion='Estadisticamente podemos predecir las maniobras de cada codigo de nave y así poder mejorar la puntería de nuestras armas';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=0;
                 $arma->clase=7;
                 $arma->niveltec=7;
@@ -241,7 +241,7 @@ class Armas extends Model
                 $arma->nombre='Aleaciones';
                 $arma->descripcion='Incorporando aleaciones mas ligeras en las partes no vitales de las naves podemos reducir sensiblemente su peso, aunque para obtener las mismas prestaciones los costos son elevados';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=12;
                 $arma->clase=7;
                 $arma->niveltec=8;
@@ -255,7 +255,7 @@ class Armas extends Model
                 $arma->nombre='Baterias';
                 $arma->descripcion='Almacenando parte de la energía obtenida durante los desplazamientos podemos usarla mas adelante durante los sistemas de armas';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=13;
                 $arma->clase=7;
                 $arma->niveltec=9;
@@ -267,9 +267,9 @@ class Armas extends Model
                 $arma =new Armas();
                 $arma->codigo=77;
                 $arma->nombre='Distribuidor';
-                $arma->descripcion='Colocando esta mejora al final de todas reduce el costo de  todas las mejoras anteriores ya que las redistribuye dentro de la nave de la forma optima';
+                $arma->descripcion='Colocando esta mejora al final de todas reduce el costo de  todas las mejor anteriores ya que las redistribuye dentro de la nave de la forma optima';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=13;
                 $arma->clase=7;
                 $arma->niveltec=3;
@@ -283,7 +283,7 @@ class Armas extends Model
                 $arma->nombre='Compactador';
                 $arma->descripcion='La óptima distribución de la carga en una bodega puede mejorar de forma considerable la capacidad, esta mejora aumenta la carga por unidad';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=0;
                 $arma->clase=7;
                 $arma->niveltec=2;
@@ -297,7 +297,7 @@ class Armas extends Model
                 $arma->nombre='Prop. maniobra';
                 $arma->descripcion='Gran cantidad de combustible se va en las maniobras de atraque y reajuste de rumbo. Con pequeños motores químicos podemos reducir el gasto de los motores principales';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=1;
@@ -311,7 +311,7 @@ class Armas extends Model
                 $arma->nombre='C. Nanos';
                 $arma->descripcion='Podemos catalizar los procesos naníticos de producción de naves mejorando enormemente la velocidad de construcción';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=14;
                 $arma->clase=7;
                 $arma->niveltec=5;
@@ -325,7 +325,7 @@ class Armas extends Model
                 $arma->nombre='Plegado';
                 $arma->descripcion='Partes de las naves que queremos meter en los hangares pueden ser desmontadas o plegadas aumentando la capacidad disponible hasta un límite';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=13;
                 $arma->clase=7;
                 $arma->niveltec=12;
@@ -339,7 +339,7 @@ class Armas extends Model
                 $arma->nombre='Ariete';
                 $arma->descripcion='Con esta mejora podemos aumentar mucho el daño de las armas a corta distancia';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=3;
@@ -353,7 +353,7 @@ class Armas extends Model
                 $arma->nombre='Foco';
                 $arma->descripcion='Podemos mejorar el daño a las naves que mas daño queremos hacer ';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=4;
@@ -367,7 +367,7 @@ class Armas extends Model
                 $arma->nombre='F-caza';
                 $arma->descripcion='Con esta mejora nuestras armas a cazas realizan una predicción de posición de mas efectiva aumentando el daño a los cazas';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=13;
@@ -381,7 +381,7 @@ class Armas extends Model
                 $arma->nombre='F-ligera';
                 $arma->descripcion='Podemos aumentar el daño sólo a naves ligeras sin seguimos sus patrones de movimiento';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=14;
@@ -395,7 +395,7 @@ class Armas extends Model
                 $arma->nombre='F-media';
                 $arma->descripcion='Conociendo la estruictura de las naves medias es facil causar más daños, esto lo consigue esta mejora a bajo costo.';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=15;
@@ -409,7 +409,7 @@ class Armas extends Model
                 $arma->nombre='F-pesada';
                 $arma->descripcion='Causar más daño a pesadas no es sólo cuestión de potencia, esta mejora analiza sus puntos débiles.';
                 $arma->jugadores_id=1;
-                $arma->ranura="mejoras";
+                $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=16;
@@ -452,7 +452,7 @@ class Armas extends Model
                 $arma->nombre='Bahia de carga';
                 $arma->descripcion='Enorme sistema de carga con sistema de compresión incluido';
                 $arma->jugadores_id=1;
-                $arma->ranura="cargaMedia";
+                $arma->ranura="cargaMediana";
                 $arma->potencia=200000;
                 $arma->clase=9;
                 $arma->niveltec=8;
@@ -508,7 +508,7 @@ class Armas extends Model
                 $arma->nombre='Muelle naves ligeras';
                 $arma->descripcion='Hangar de atraque para naves ligeras, cada uno da cabida para una nave ligera';
                 $arma->jugadores_id=1;
-                $arma->ranura="cargaMedia";
+                $arma->ranura="cargaMediana";
                 $arma->potencia=1;
                 $arma->clase=9;
                 $arma->niveltec=12;
