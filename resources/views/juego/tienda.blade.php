@@ -29,14 +29,14 @@
                     <div id="cuadro1" class="table-responsive">
                         <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                             <tr>
-                                <th colspan="4" class="text-success">
+                                <th colspan="5" class="text-success">
                                     <big>
                                         Modo premium
                                     </big>
                                 </th>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="align-middle">
                                     <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="120" height="120">
                                 </td>
                                 <td colspan="4" class="text-light align-middle">
