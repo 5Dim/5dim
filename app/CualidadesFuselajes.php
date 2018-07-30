@@ -1014,7 +1014,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave11 = 52;	 	//mejoras
-            $CRnave12 = 26;	 	// blindajes
+            $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 12;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
@@ -1049,7 +1049,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
             $CRnave11 = 45;	 	//mejoras
-            $CRnave12 = 26;	 	// blindajes
+            $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 12;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
@@ -1121,7 +1121,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave11 = 54;	 	//mejoras
-            $CRnave12 = 26;	 	// blindajes
+            $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 6;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
@@ -2199,7 +2199,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave11 = 45;	 	//mejoras
-            $CRnave12 = 26;	 	// blindajes
+            $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];

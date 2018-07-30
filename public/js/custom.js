@@ -1,3 +1,9 @@
+// tooltip text bootstrap
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+
 var recursos, produccion, almacenes;
 
 function calcularRecursos() {

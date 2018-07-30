@@ -21,7 +21,145 @@ $investNiveles=[
     "invBlindaje"=>$investigaciones->where("codigo","invBlindaje")->first()->nivel,
     "invCarga"=>$investigaciones->where("codigo","invCarga")->first()->nivel,
     "invIa"=>$investigaciones->where("codigo","invIa")->first()->nivel
-]
+];
+
+
+
+$arrayCss=[];
+$arrayStart=[];
+$arrayConnect=[];
+$arrayTooltip=[];
+
+
+if ($investNiveles["invEnergia"]>0){
+    array_push($arrayStart,10);
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-1-color');
+    array_push($arrayTooltip,'% de energía a armas de energía');
+}
+if ($investNiveles["invPlasma"]>0){
+    array_push($arrayStart,40);
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-2-color');
+    array_push($arrayTooltip,'% de energía a armas de plasma');
+}
+if ($investNiveles["invBalistica"]>0){
+    array_push($arrayStart,60);
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-3-color');
+    array_push($arrayTooltip,'% de energía a armas de Balística');
+}
+if ($investNiveles["invMa"]>0){
+    array_push($arrayStart,90);
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-4-color');
+    array_push($arrayTooltip,'% de energía a armas de MA');
+}
+array_push($arrayConnect,true);
+array_push($arrayCss,'c-5-color');
+
+/// cantidades de cada elemento
+
+$cantidadMotores=$diseño->cualidades->motores;
+$multiplicadorMotores=1;
+if ($cantidadMotores>6){
+    $cantidadMotores=celdasMaximas(6,$cantidadMotores);
+    $multiplicadorMotores=($diseño->cualidades->motores/$cantidadMotores);
+}
+
+$cantidadblindajes=$diseño->cualidades->blindajes;
+$multiplicadorblindajes=1;
+if ($cantidadblindajes>12){
+$cantidadblindajes=celdasMaximas(12,$cantidadblindajes);
+$multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
+}
+
+$cantidadMejoras=$diseño->cualidades->mejoras;
+$multiplicadormejoras=1;
+
+$cantidadCLigeras=$diseño->cualidades->armasLigeras;
+$multiplicador=1;
+if ($cantidadCLigeras>6){
+    $cantidadCLigeras=celdasMaximas(6,$cantidadCLigeras);
+    $multiplicador=($diseño->cualidades->armasLigeras/$cantidadCLigeras);
+}
+
+$cantidadCMedias=$diseño->cualidades->armasMedias;
+$multiplicador=1;
+if ($cantidadCMedias>6){
+    $cantidadCMedias=celdasMaximas(6,$cantidadCMedias);
+    $multiplicador=ceil ($diseño->cualidades->armasMedias/$cantidadCMedias);
+}
+
+$cantidadCPesadas=$diseño->cualidades->armasPesadas;
+$multiplicador=1;
+if ($cantidadCPesadas>6){
+    $cantidadCPesadas=celdasMaximas(6,$cantidadCPesadas);
+    $multiplicador=($diseño->cualidades->armasPesadas/$cantidadCPesadas);
+}
+
+$cantidadCInsertadas=$diseño->cualidades->armasInsertadas;
+$multiplicador=1;
+if ($cantidadCInsertadas>6){
+    $cantidadCInsertadas=celdasMaximas(6,$cantidadCInsertadas);
+    $multiplicador=($diseño->cualidades->armasInsertadas/$cantidadCInsertadas);
+}
+
+$cantidadCMisiles=$diseño->cualidades->armasMisiles;
+$multiplicador=1;
+if ($cantidadCMisiles>6){
+    $cantidadCMisiles=celdasMaximas(6,$cantidadCMisiles);
+    $multiplicador=($diseño->cualidades->armasMisiles/$cantidadCMisiles);
+}
+
+$cantidadCBombas=$diseño->cualidades->armasBombas;
+$multiplicador=1;
+if ($cantidadCBombas>6){
+    $cantidadCBombas=celdasMaximas(6,$cantidadCBombas);
+    $multiplicador=($diseño->cualidades->armasBombas/$cantidadCBombas);
+}
+
+$cantidadCargaPequeña=$diseño->cualidades->cargaPequeña;
+$multiplicador=1;
+if ($cantidadCargaPequeña>$filasCarga){
+    $cantidadCargaPequeña=celdasMaximas($filasCarga,$cantidadCargaPequeña);
+    $multiplicador=($diseño->cualidades->cargaPequeña/$cantidadCargaPequeña);
+}
+
+$cantidadCargaMedia=$diseño->cualidades->cargaMedia;
+$multiplicador=1;
+if ($cantidadCargaMedia>$filasCarga){
+$cantidadCargaMedia=celdasMaximas($filasCarga,$cantidadCargaMedia);
+$multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidadCargaMedia);
+}
+
+$cantidadCargaGrande=$diseño->cualidades->cargaGrande;
+$multiplicador=1;
+if ($cantidadCargaGrande>$filasCarga){
+$cantidadCargaGrande=celdasMaximas($filasCarga,$cantidadCargaGrande);
+$multiplicador=($diseño->cualidades->cargaGrande/$cantidadCargaGrande);
+}
+
+//arrays que vienen
+$motores=[];
+for($n=0;$n<$cantidadMotores;$n++){ array_push($motores,0);}
+
+$blindajes=[];
+for($n=0;$n<$cantidadblindajes;$n++){ array_push($blindajes,0);}
+
+$mejoras=[];
+for($n=0;$n<$cantidadMejoras;$n++){ array_push($mejoras,0);}
+
+$cargaPequeñas=[];
+for($n=0;$n<$cantidadCargaPequeña;$n++){ array_push($cargaPequeñas,0);}
+
+$cargaMedianas=[];
+for($n=0;$n<$cantidadCargaMedia;$n++){ array_push($cargaMedianas,0);}
+
+$cargaGrandes=[];
+for($n=0;$n<$cantidadCargaGrande;$n++){ array_push($cargaGrandes,0);}
+
+
 
 
 @endphp
@@ -38,39 +176,31 @@ $investNiveles=[
                                         <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                             <tr>
                                                 <td colspan="4">
-                                                    @php
-                                                    $cantidadMotores=$diseño->cualidades->motores;
-                                                    $multiplicadorMotores=1;
-                                                    if ($cantidadMotores>6){
-                                                        $cantidadMotores=celdasMaximas(6,$cantidadMotores);
-                                                        $multiplicadorMotores=($diseño->cualidades->motores/$cantidadMotores);
-                                                    }
-                                                    @endphp
                                                     <div class=" text-light" id="motorestxt">x{{$multiplicadorMotores}} Motores: +151.225</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
+                                                    <img onClick="encajar('motor',59,'añade')" class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",59)->first()->nombre}}" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @if ($investNiveles["invPropNuk"]>0)
                                                     <td>
-                                                        <img class="rounded" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
+                                                        <img onClick="encajar('motor',60,'añade')"  class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",60)->first()->nombre}}" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
                                                     </td>
                                                 @endif
                                                 @if ($investNiveles["invPropIon"]>0)
                                                     <td>
-                                                        <img class="rounded" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
+                                                        <img onClick="encajar('motor',61,'añade')"  class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",61)->first()->nombre}}" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
                                                     </td>
                                                 @endif
                                                 @if ($investNiveles["invPropPlasma"]>0)
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma62.jpg') }}" width="40" height="40">
+                                                    <img onClick="encajar('motor',62,'añade')"  class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",62)->first()->nombre}}" src="{{ asset('img/fotos armas/arma62.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @endif
                                                 @if ($investNiveles["invPropMa"]>0)
                                                 <td>
-                                                    <img class="rounded" src="{{ asset('img/fotos armas/arma63.jpg') }}" width="40" height="40">
+                                                    <img onClick="encajar('motor',63,'añade')"  class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",63)->first()->nombre}}" src="{{ asset('img/fotos armas/arma63.jpg') }}" width="40" height="40">
                                                 </td>
                                                 @endif
                                             </tr>
@@ -90,7 +220,7 @@ $investNiveles=[
                                     @for ($i = 0 ; $i <7; $i++)
                                         <td>
                                             @if ($i<$cantidadMotores)
-                                            <div id="motores"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                        <div  style="border: 1px solid white;"><img onClick="encajar('motor',{{$i}},'quita')" id="motor{{$i}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                             @endif
                                         </td>
                                     @endfor
@@ -106,52 +236,61 @@ $investNiveles=[
                             @if ($diseño->cualidades->armasLigeras+$diseño->cualidades->armasMedias+$diseño->cualidades->armasPesadas+$diseño->cualidades->armasInsertadas+$diseño->cualidades->armasMisiles+$diseño->cualidades->armasBombas >0)
                             <div class=" text-light" id="motorestxt" style="margin-bottom: 10px;">Armas: -151.225 e</div>
                             <div class="slider" id="slider-color"></div>
-
                                 <nav style="margin-top: 17px;">
                                     <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
+                                    @if ($investNiveles["invEnergia"]>0)
                                         <a class="nav-item nav-link active" id="energia-tab" data-toggle="tab" href="#energia" role="tab" aria-controls="energia" aria-selected="true" onclick="cambiaInvest('invesEnergia')">
                                             Energía
                                         </a>
+                                    @endif
+                                    @if ($investNiveles["invPlasma"]>0)
                                         <a class="nav-item nav-link " id="plasma-tab" data-toggle="tab" href="#plasma" role="tab" aria-controls="plasma" aria-selected="false" onclick="cambiaInvest('invesPlasma')">
                                             Plasma
                                         </a>
+                                    @endif
+                                    @if ($investNiveles["invBalistica"]>0)
                                         <a class="nav-item nav-link" id="balistica-tab" data-toggle="tab" href="#balistica" role="tab" aria-controls="balistica" aria-selected="false" onclick="cambiaInvest('invesBalistica')" >
                                             Balística
                                         </a>
+                                    @endif
+                                    @if ($investNiveles["invMa"]>0)
                                         <a class="nav-item nav-link" id="ma-tab" data-toggle="tab" href="#ma" role="tab" aria-controls="ma" aria-selected="false" onclick="cambiaInvest('invesMa')">
                                             M-A
                                         </a>
-
+                                    @endif
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
                                         <div class="row rounded ">
                                             <div class="col-12 ">
+                                                @if ($investNiveles["invEnergia"]+$investNiveles["invPlasma"]+$investNiveles["invBalistica"]+$investNiveles["invMa"]>0)
                                                 <div id="cuadro1" class="table-responsive cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/ligera.jpg') }}" width="45" height="45" >
+                                                                <img onClick="encajar('armasLigera',1,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma1.jpg') }}" width="45" height="45" >
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/media.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasMedia',2,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma2.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/pesada.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasPesada',3,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma3.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/insertada.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasInsertada',4,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma4.jpg') }}" width="45" height="45">
                                                             </td>
                                                             <td>
-                                                                    <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/misil.jpg') }}" width="45" height="45">
-                                                                </td>
-                                                                <td>
-                                                                        <img class="rounded invesEnergia armasI" src="{{ asset('img/fotos armas/bomba.jpg') }}" width="45" height="45">
+                                                                <img onClick="encajar('armasMisil',5,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma5.jpg') }}" width="45" height="45">
                                                             </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasBomba',6,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma6.jpg') }}" width="45" height="45">
+                                                            </td>
+
                                                         </tr>
                                                     </table>
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -161,21 +300,13 @@ $investNiveles=[
                     </tr>
                     <tr>
                         <td>
-                                <div class="row rounded">
-                                    <div class="col-12 ">
+                            <div class="row rounded">
+                                <div class="col-12 ">
                                     @if ($investNiveles["invBlindaje"]>0)
                                         <div id="cuadro1" class="table-responsive cajita">
                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
                                                     <td colspan="4">
-                                                            @php
-                                                            $cantidadblindajes=$diseño->cualidades->blindajes;
-                                                            $multiplicadorblindajes=1;
-                                                            if ($cantidadblindajes>12){
-                                                                $cantidadblindajes=celdasMaximas(12,$cantidadblindajes);
-                                                                $multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
-                                                            }
-                                                            @endphp
                                                             <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes: +225</div>
                                                         </td>
                                                     </td>
@@ -184,7 +315,7 @@ $investNiveles=[
                                                 @for($codigo=65;$codigo<70;$codigo++)
                                                     @if ($investNiveles["invBlindaje"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                         <td>
-                                                            <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            <img onClick="encajar('blindaje',{{$codigo}},'añade')" class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                         </td>
                                                     @endif
                                                 @endfor
@@ -196,25 +327,17 @@ $investNiveles=[
                             </td>
                             <td>
                                 <table>
-
-                                    <tr>
-                                        @for ($i = 0 ; $i <7; $i++)
+                                    @for ($n=0 ; $n<3; $n++)
+                                        <tr>
+                                            @for ($i = 0 ; $i <7; $i++)
                                             <td>
-                                                @if ($i<$cantidadblindajes/2)
-                                                <div id="motores"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<$cantidadblindajes-($n*7))
+                                                    <div  style="border: 1px solid white;"><img  onClick="encajar('blindaje',{{$i+(7*$n)}},'quita')" id="blindaje{{$i+(7*$n)}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
-                                        @endfor
-                                    </tr>
-                                    <tr>
-                                        @for ($i = 0 ; $i <7; $i++)
-                                            <td>
-                                                @if ($i<$cantidadblindajes/2)
-                                                <div id="motores"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
-                                                @endif
-                                            </td>
-                                        @endfor
-                                    </tr>
+                                            @endfor
+                                        </tr>
+                                    @endfor
                                 </table>
                             @endif
                         </td>
@@ -224,15 +347,11 @@ $investNiveles=[
                             <td colspan="2">
                                     <div class="row rounded">
                                         <div class="col-12 ">
+                                            @if ($investNiveles["invIa"]>0)
                                             <div id="cuadro1" class="table-responsive cajita" style="max-width: 725px">
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
                                                         <td colspan="8">
-                                                            @php
-                                                                $cantidadmejoras=$diseño->cualidades->mejoras;
-                                                                $multiplicadormejoras=1;
-
-                                                            @endphp
                                                             <div class=" text-light" id="mejorastxt">x{{$multiplicadormejoras}} Mejoras: +11.205 e</div>
                                                         </td>
                                                     </tr>
@@ -240,32 +359,26 @@ $investNiveles=[
                                                     @for($codigo=70;$codigo<88;$codigo++)
                                                         @if ($investNiveles["invIa"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                             <td>
-                                                                <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                <img onClick="encajar('mejora',{{$codigo}},'añade')" class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                             </td>
                                                         @endif
                                                     @endfor
                                                     </tr>
                                                 </table>
                                             </div>
+                                        @endif
                                         </div>
                                     </div>
                                 </td>
                         <td rowspan="2" colspan="2">
+                            @if ($investNiveles["invEnergia"]+$investNiveles["invPlasma"]+$investNiveles["invBalistica"]+$investNiveles["invMa"]>0)
                             <table>
                                 <tr >
                                     @if ($diseño->cualidades->armasLigeras>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasLigeras;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasLigeras/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
-                                                <div id="armasLigeras"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<=$cantidadCLigeras)
+                                                <div id="armasLigeras"+i style="border: 1px solid white;"><img onClick="encajar('armasLigera',{{$i-1}},'quita')" id="armasLigera{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -305,19 +418,10 @@ $investNiveles=[
 
                                 <tr >
                                     @if ($diseño->cualidades->armasMedias>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasMedias;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=ceil ($diseño->cualidades->armasMedias/$cantidad);
-                                            }
-
-                                        @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
-                                                <div id="armasMedias"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<=$cantidadCMedias)
+                                                <div id="armasMedias"+i style="border: 1px solid white;"><img onClick="encajar('armasMedia',{{$i-1}},'quita')" id="armasMedia{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -357,18 +461,10 @@ $investNiveles=[
 
                                 <tr >
                                     @if ($diseño->cualidades->armasPesadas>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasPesadas;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasPesadas/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
-                                                <div id="armasPesadas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<=$cantidadCPesadas)
+                                                <div id="armasPesadas"+i style="border: 1px solid white;"><img onClick="encajar('armasPesada',{{$i-1}},'quita')" id="armasPesada{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -408,18 +504,10 @@ $investNiveles=[
 
                                 <tr >
                                     @if ($diseño->cualidades->armasInsertadas>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasInsertadas;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasInsertadas/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
-                                                <div id="armasInsertadas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<=$cantidadCInsertadas)
+                                                <div id="armasInsertadas"+i style="border: 1px solid white;"><img onClick="encajar('armasInsertada',{{$i-1}},'quita')" id="armasInsertada{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -459,18 +547,10 @@ $investNiveles=[
 
                                 <tr >
                                     @if ($diseño->cualidades->armasMisiles>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasMisiles;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasMisiles/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
-                                                <div id="armasMisiles"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<=$cantidadCMisiles)
+                                                <div id="armasMisiles"+i style="border: 1px solid white;"><img onClick="encajar('armasMisil',{{$i-1}},'quita')" id="armasMisil{{$i-1}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -510,18 +590,10 @@ $investNiveles=[
 
                                 <tr >
                                     @if ($diseño->cualidades->armasBombas>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasBombas;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasBombas/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
-                                                <div id="armasBombas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                @if ($i<=$cantidadCBombas)
+                                                <div id="armasBombas"+i style="border: 1px solid white;"><img onClick="encajar('armasBomba',{{$i-1}},'quita')" id="armasBomba{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                         @endfor
@@ -558,41 +630,32 @@ $investNiveles=[
                                         </script>
                                     @endif
                                 </tr>
-
-
-
-
                             </table>
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" rowspan="2">
+                            @if ($investNiveles["invIa"]>0)
                                 <table>
                                         @for ($n=0 ; $n<5; $n++)
                                             <tr>
                                                 @for ($i = 0 ; $i <14; $i++)
                                                 <td>
-                                                    @if ($i<$cantidadmejoras-($n*14))
-                                                        <div id="mejoras"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                    @if ($i<$cantidadMejoras-($n*14))
+                                                        <div  style="border: 1px solid white;"><img  onClick="encajar('mejora',{{$i+(14*$n)}},'quita')" id="mejora{{$i+(14*$n)}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                     @endif
                                                 </td>
                                                 @endfor
                                             </tr>
                                         @endfor
-
-
-
-
-                                    </table>
+                                </table>
+                            @endif
                         </td>
-
-
-
                     </tr>
                     <tr>
                             <td  colspan="2">
                                     @if ($diseño->cualidades->cargaPequeña+$diseño->cualidades->cargaMedia+$diseño->cualidades->cargaGrande>0 && $investNiveles["invCarga"]>0)
-
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
                                                 <div class="row rounded ">
@@ -604,7 +667,7 @@ $investNiveles=[
                                                                     @for($codigo=90;$codigo<98;$codigo++)
                                                                         @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                                             <td>
-                                                                                <img class="rounded" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                                             </td>
                                                                         @endif
                                                                     @endfor
@@ -619,18 +682,10 @@ $investNiveles=[
                                         <table>
                                                 <tr >
                                                     @if ($diseño->cualidades->cargaPequeña>0)
-                                                        @php
-                                                            $cantidad=$diseño->cualidades->cargaPequeña;
-                                                            $multiplicador=1;
-                                                            if ($cantidad>$filasCarga){
-                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
-                                                                $multiplicador=($diseño->cualidades->cargaPequeña/$cantidad);
-                                                            }
-                                                            @endphp
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
-                                                                @if ($i<=$cantidad)
-                                                                <div id="cargaPequeña"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                @if ($i<=$cantidadCargaPequeña)
+                                                                <div  style="border: 1px solid white;"><img onClick="encajar('cargaPequeña',{{$i-1}},'quita')" id="cargaPequeña{{$i-1}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
                                                         @endfor
@@ -643,19 +698,10 @@ $investNiveles=[
 
                                                 <tr >
                                                     @if ($diseño->cualidades->cargaMedia>0)
-                                                        @php
-                                                            $cantidad=$diseño->cualidades->cargaMedia;
-                                                            $multiplicador=1;
-                                                            if ($cantidad>$filasCarga){
-                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
-                                                                $multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidad);
-                                                            }
-
-                                                        @endphp
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
-                                                                @if ($i<=$cantidad)
-                                                                <div id="cargaMedia"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                @if ($i<=$cantidadCargaMedia)
+                                                                <div  style="border: 1px solid white;"><img onClick="encajar('cargaMediana',{{$i-1}},'quita')" id="cargaMediana{{$i-1}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
                                                         @endfor
@@ -666,18 +712,10 @@ $investNiveles=[
                                                 </tr>
                                                 <tr >
                                                     @if ($diseño->cualidades->cargaGrande>0)
-                                                        @php
-                                                            $cantidad=$diseño->cualidades->cargaGrande;
-                                                            $multiplicador=1;
-                                                            if ($cantidad>$filasCarga){
-                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
-                                                                $multiplicador=($diseño->cualidades->cargaGrande/$cantidad);
-                                                            }
-                                                            @endphp
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
-                                                                @if ($i<=$cantidad)
-                                                                <div id="cargaGrande"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                @if ($i<=$cantidadCargaGrande)
+                                                                <div style="border: 1px solid white;"><img onClick="encajar('cargaGrande',{{$i-1}},'quita')" id="cargaGrande{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
                                                         @endfor
@@ -710,30 +748,104 @@ $investNiveles=[
 
 
     <script>
-        /// barra de investigaciones
+
+// pasar armas a huecos
+
+var motores={!!json_encode($motores)!!};
+var blindajes={!!json_encode($blindajes)!!};
+var mejoras={!!json_encode($mejoras)!!};
+var cargaPequeñas={!!json_encode($cargaPequeñas)!!};
+var cargaMedianas={!!json_encode($cargaMedianas)!!};
+var cargaGrandes={!!json_encode($cargaGrandes)!!};
+
+var armas={
+    motor:motores,
+    blindaje:blindajes,
+    mejora:mejoras,
+    cargaPequeña:cargaPequeñas,
+    cargaMediana:cargaMedianas,
+    cargaGrande:cargaGrandes
+}
+
+
+    function encajar(elemento,id,qhago){
+        if (qhago=='añade'){
+            for (n=0;n<armas[elemento].length;n++) {
+                if (armas[elemento][n]==0){ armas[elemento][n]=id; break;  }
+            };
+        } else if (qhago=='quita'){
+            armas[elemento][id]=0;
+
+        }
+
+        n=0;
+        armas[elemento].forEach(function(e) {
+            if (e==0){
+                img = "../../../img/fotos armas/vacio.png";
+            } else {
+                img = "../../../img/fotos armas/arma" + e + ".jpg" ;
+            }
+            $('#'+ elemento + n).attr("src", img);
+            n++;
+        });
+
+
+
+
+
+
+    }
+
+
+        /// barra de investigaciones-armas
+
+        // data-toggle="tooltip" data-placement="auto" title=""
+
+
+            // creando el slider
             var slider = document.getElementById('slider-color');
 
                 noUiSlider.create(slider, {
-                start: [ 10, 40, 80, 90 ],
-                connect: [true, true, true, true, true],
+                    start: {!!json_encode($arrayStart)!!},
+                    connect: {!!json_encode($arrayConnect)!!},
+
                 range: {
                     'min': [  0 ],
                     'max': [ 100 ]
                 }
             });
 
-            var classes = ['c-1-color', 'c-2-color', 'c-3-color', 'c-4-color', 'c-5-color'];
+            var classes = {!!json_encode($arrayCss)!!};
 
             for ( var i = 1; i < classes.length+1; i++ ) {
                 $("div.noUi-connect:nth-child("+i+")").addClass(classes[i-1]);
             }
 
+            //tooltip de slider
+
+            var arrayTooltip={!!json_encode($arrayTooltip)!!};
+            var a=1;
+            arrayTooltip.forEach(function(n){
+                a++;
+                if(a==2){
+                    $("#slider-color > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").prop("data-toggle","tooltip");
+                    $("#slider-color > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").prop("data-placement","auto");
+                    $("#slider-color > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").prop("title",n);
+                } else {
+                    $("div.noUi-origin:nth-child("+a+") > div:nth-child(1)").prop("data-toggle","tooltip");
+                    $("div.noUi-origin:nth-child("+a+") > div:nth-child(1)").prop("data-placement","auto");
+                    $("div.noUi-origin:nth-child("+a+") > div:nth-child(1)").prop("title",n);
+                }
+
+            })
+
+
+
+
         ///
 
     function cambiaInvest(invest){
         $(".armasI").prop('class','rounded armasI '+invest);
-
-
     }
 
 
