@@ -58,6 +58,88 @@ if ($investNiveles["invMa"]>0){
 array_push($arrayConnect,true);
 array_push($arrayCss,'c-5-color');
 
+/// cantidades de cada elemento
+
+$cantidadMotores=$diseño->cualidades->motores;
+$multiplicadorMotores=1;
+if ($cantidadMotores>6){
+    $cantidadMotores=celdasMaximas(6,$cantidadMotores);
+    $multiplicadorMotores=($diseño->cualidades->motores/$cantidadMotores);
+}
+
+$cantidadblindajes=$diseño->cualidades->blindajes;
+$multiplicadorblindajes=1;
+if ($cantidadblindajes>12){
+$cantidadblindajes=celdasMaximas(12,$cantidadblindajes);
+$multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
+}
+
+$cantidadmejoras=$diseño->cualidades->mejoras;
+$multiplicadormejoras=1;
+
+$cantidadCLigeras=$diseño->cualidades->armasLigeras;
+$multiplicador=1;
+if ($cantidadCLigeras>6){
+    $cantidadCLigeras=celdasMaximas(6,$cantidadCLigeras);
+    $multiplicador=($diseño->cualidades->armasLigeras/$cantidadCLigeras);
+}
+
+$cantidadCMedias=$diseño->cualidades->armasMedias;
+$multiplicador=1;
+if ($cantidadCMedias>6){
+    $cantidadCMedias=celdasMaximas(6,$cantidadCMedias);
+    $multiplicador=ceil ($diseño->cualidades->armasMedias/$cantidadCMedias);
+}
+
+$cantidadCPesadas=$diseño->cualidades->armasPesadas;
+$multiplicador=1;
+if ($cantidadCPesadas>6){
+    $cantidadCPesadas=celdasMaximas(6,$cantidadCPesadas);
+    $multiplicador=($diseño->cualidades->armasPesadas/$cantidadCPesadas);
+}
+
+$cantidadCInsertadas=$diseño->cualidades->armasInsertadas;
+$multiplicador=1;
+if ($cantidadCInsertadas>6){
+    $cantidadCInsertadas=celdasMaximas(6,$cantidadCInsertadas);
+    $multiplicador=($diseño->cualidades->armasInsertadas/$cantidadCInsertadas);
+}
+
+$cantidadCMisiles=$diseño->cualidades->armasMisiles;
+$multiplicador=1;
+if ($cantidadCMisiles>6){
+    $cantidadCMisiles=celdasMaximas(6,$cantidadCMisiles);
+    $multiplicador=($diseño->cualidades->armasMisiles/$cantidadCMisiles);
+}
+
+$cantidadCBombas=$diseño->cualidades->armasBombas;
+$multiplicador=1;
+if ($cantidadCBombas>6){
+    $cantidadCBombas=celdasMaximas(6,$cantidadCBombas);
+    $multiplicador=($diseño->cualidades->armasBombas/$cantidadCBombas);
+}
+
+$cantidadCargaPequeña=$diseño->cualidades->cargaPequeña;
+$multiplicador=1;
+if ($cantidadCargaPequeña>$filasCarga){
+    $cantidadCargaPequeña=celdasMaximas($filasCarga,$cantidadCargaPequeña);
+    $multiplicador=($diseño->cualidades->cargaPequeña/$cantidadCargaPequeña);
+}
+
+$cantidadMedia=$diseño->cualidades->cargaMedia;
+$multiplicador=1;
+if ($cantidadMedia>$filasCarga){
+$cantidadMedia=celdasMaximas($filasCarga,$cantidadMedia);
+$multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidadMedia);
+}
+
+$cantidadGrande=$diseño->cualidades->cargaGrande;
+$multiplicador=1;
+if ($cantidadGrande>$filasCarga){
+$cantidadGrande=celdasMaximas($filasCarga,$cantidadGrande);
+$multiplicador=($diseño->cualidades->cargaGrande/$cantidadGrande);
+}
+
 
 
 
@@ -75,14 +157,6 @@ array_push($arrayCss,'c-5-color');
                                         <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                             <tr>
                                                 <td colspan="4">
-                                                    @php
-                                                    $cantidadMotores=$diseño->cualidades->motores;
-                                                    $multiplicadorMotores=1;
-                                                    if ($cantidadMotores>6){
-                                                        $cantidadMotores=celdasMaximas(6,$cantidadMotores);
-                                                        $multiplicadorMotores=($diseño->cualidades->motores/$cantidadMotores);
-                                                    }
-                                                    @endphp
                                                     <div class=" text-light" id="motorestxt">x{{$multiplicadorMotores}} Motores: +151.225</div>
                                                 </td>
                                             </tr>
@@ -216,14 +290,6 @@ array_push($arrayCss,'c-5-color');
                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
                                                     <td colspan="4">
-                                                            @php
-                                                            $cantidadblindajes=$diseño->cualidades->blindajes;
-                                                            $multiplicadorblindajes=1;
-                                                            if ($cantidadblindajes>12){
-                                                                $cantidadblindajes=celdasMaximas(12,$cantidadblindajes);
-                                                                $multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
-                                                            }
-                                                            @endphp
                                                             <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes: +225</div>
                                                         </td>
                                                     </td>
@@ -277,11 +343,6 @@ array_push($arrayCss,'c-5-color');
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
                                                         <td colspan="8">
-                                                            @php
-                                                                $cantidadmejoras=$diseño->cualidades->mejoras;
-                                                                $multiplicadormejoras=1;
-
-                                                            @endphp
                                                             <div class=" text-light" id="mejorastxt">x{{$multiplicadormejoras}} Mejoras: +11.205 e</div>
                                                         </td>
                                                     </tr>
@@ -305,17 +366,9 @@ array_push($arrayCss,'c-5-color');
                             <table>
                                 <tr >
                                     @if ($diseño->cualidades->armasLigeras>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasLigeras;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasLigeras/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
+                                                @if ($i<=$cantidadCLigeras)
                                                 <div id="armasLigeras"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
@@ -356,18 +409,9 @@ array_push($arrayCss,'c-5-color');
 
                                 <tr >
                                     @if ($diseño->cualidades->armasMedias>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasMedias;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=ceil ($diseño->cualidades->armasMedias/$cantidad);
-                                            }
-
-                                        @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
+                                                @if ($i<=$cantidadCMedias)
                                                 <div id="armasMedias"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
@@ -408,17 +452,9 @@ array_push($arrayCss,'c-5-color');
 
                                 <tr >
                                     @if ($diseño->cualidades->armasPesadas>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasPesadas;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasPesadas/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
+                                                @if ($i<=$cantidadCPesadas)
                                                 <div id="armasPesadas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
@@ -459,17 +495,9 @@ array_push($arrayCss,'c-5-color');
 
                                 <tr >
                                     @if ($diseño->cualidades->armasInsertadas>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasInsertadas;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasInsertadas/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
+                                                @if ($i<=$cantidadCInsertadas)
                                                 <div id="armasInsertadas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
@@ -510,17 +538,9 @@ array_push($arrayCss,'c-5-color');
 
                                 <tr >
                                     @if ($diseño->cualidades->armasMisiles>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasMisiles;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasMisiles/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
+                                                @if ($i<=$cantidadCMisiles)
                                                 <div id="armasMisiles"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
@@ -561,17 +581,9 @@ array_push($arrayCss,'c-5-color');
 
                                 <tr >
                                     @if ($diseño->cualidades->armasBombas>0)
-                                        @php
-                                            $cantidad=$diseño->cualidades->armasBombas;
-                                            $multiplicador=1;
-                                            if ($cantidad>6){
-                                                $cantidad=celdasMaximas(6,$cantidad);
-                                                $multiplicador=($diseño->cualidades->armasBombas/$cantidad);
-                                            }
-                                            @endphp
                                         @for ($i = 6 ; $i >0; $i--)
                                             <td>
-                                                @if ($i<=$cantidad)
+                                                @if ($i<=$cantidadCBombas)
                                                 <div id="armasBombas"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
@@ -663,17 +675,9 @@ array_push($arrayCss,'c-5-color');
                                         <table>
                                                 <tr >
                                                     @if ($diseño->cualidades->cargaPequeña>0)
-                                                        @php
-                                                            $cantidad=$diseño->cualidades->cargaPequeña;
-                                                            $multiplicador=1;
-                                                            if ($cantidad>$filasCarga){
-                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
-                                                                $multiplicador=($diseño->cualidades->cargaPequeña/$cantidad);
-                                                            }
-                                                            @endphp
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
-                                                                @if ($i<=$cantidad)
+                                                                @if ($i<=$cantidadCargaPequeña)
                                                                 <div id="cargaPequeña"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
@@ -687,18 +691,9 @@ array_push($arrayCss,'c-5-color');
 
                                                 <tr >
                                                     @if ($diseño->cualidades->cargaMedia>0)
-                                                        @php
-                                                            $cantidad=$diseño->cualidades->cargaMedia;
-                                                            $multiplicador=1;
-                                                            if ($cantidad>$filasCarga){
-                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
-                                                                $multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidad);
-                                                            }
-
-                                                        @endphp
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
-                                                                @if ($i<=$cantidad)
+                                                                @if ($i<=$cantidadMedia)
                                                                 <div id="cargaMedia"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
@@ -710,17 +705,9 @@ array_push($arrayCss,'c-5-color');
                                                 </tr>
                                                 <tr >
                                                     @if ($diseño->cualidades->cargaGrande>0)
-                                                        @php
-                                                            $cantidad=$diseño->cualidades->cargaGrande;
-                                                            $multiplicador=1;
-                                                            if ($cantidad>$filasCarga){
-                                                                $cantidad=celdasMaximas($filasCarga,$cantidad);
-                                                                $multiplicador=($diseño->cualidades->cargaGrande/$cantidad);
-                                                            }
-                                                            @endphp
                                                         @for ($i = $filasCarga ; $i >0; $i--)
                                                             <td>
-                                                                @if ($i<=$cantidad)
+                                                                @if ($i<=$cantidadGrande)
                                                                 <div id="cargaGrande"+i style="border: 1px solid white;"><img src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                                 @endif
                                                             </td>
