@@ -21,9 +21,7 @@ class Armas extends Model
                 $arma->potencia=3;
                 $arma->clase=3;
                 $arma->niveltec=0;
-                $arma->malcance=5;
-                $arma->dispersion=0;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -35,9 +33,7 @@ class Armas extends Model
                 $arma->potencia=4;
                 $arma->clase=12;
                 $arma->niveltec=0;
-                $arma->malcance=5;
-                $arma->dispersion=2;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -49,9 +45,7 @@ class Armas extends Model
                 $arma->potencia=5;
                 $arma->clase=13;
                 $arma->niveltec=1;
-                $arma->malcance=5;
-                $arma->dispersion=4;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -63,9 +57,7 @@ class Armas extends Model
                 $arma->potencia=5;
                 $arma->clase=14;
                 $arma->niveltec=1;
-                $arma->malcance=10;
-                $arma->dispersion=6;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -77,9 +69,7 @@ class Armas extends Model
                 $arma->potencia=10;
                 $arma->clase=15;
                 $arma->niveltec=1;
-                $arma->malcance=10;
-                $arma->dispersion=8;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -91,9 +81,7 @@ class Armas extends Model
                 $arma->potencia=10;
                 $arma->clase=16;
                 $arma->niveltec=5;
-                $arma->malcance=5;
-                $arma->dispersion=5;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -105,9 +93,7 @@ class Armas extends Model
                 $arma->potencia=13;
                 $arma->clase=10;
                 $arma->niveltec=2;
-                $arma->malcance=4;
-                $arma->dispersion=0;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -119,9 +105,7 @@ class Armas extends Model
                 $arma->potencia=15;
                 $arma->clase=10;
                 $arma->niveltec=4;
-                $arma->malcance=3;
-                $arma->dispersion=0;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -133,9 +117,7 @@ class Armas extends Model
                 $arma->potencia=9;
                 $arma->clase=10;
                 $arma->niveltec=8;
-                $arma->malcance=5;
-                $arma->dispersion=0;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -147,9 +129,7 @@ class Armas extends Model
                 $arma->potencia=15;
                 $arma->clase=10;
                 $arma->niveltec=11;
-                $arma->malcance=6;
-                $arma->dispersion=0;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -161,9 +141,7 @@ class Armas extends Model
                 $arma->potencia=30;
                 $arma->clase=10;
                 $arma->niveltec=15;
-                $arma->malcance=8;
-                $arma->dispersion=-60;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -175,9 +153,7 @@ class Armas extends Model
                 $arma->potencia=13;
                 $arma->clase=7;
                 $arma->niveltec=4;
-                $arma->malcance=5;
-                $arma->dispersion=-5;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -189,9 +165,7 @@ class Armas extends Model
                 $arma->potencia=16;
                 $arma->clase=7;
                 $arma->niveltec=6;
-                $arma->malcance=5;
-                $arma->dispersion=5;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -203,9 +177,7 @@ class Armas extends Model
                 $arma->potencia=10;
                 $arma->clase=7;
                 $arma->niveltec=10;
-                $arma->malcance=5;
-                $arma->dispersion=10;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -217,9 +189,7 @@ class Armas extends Model
                 $arma->potencia=15;
                 $arma->clase=7;
                 $arma->niveltec=11;
-                $arma->malcance=5;
-                $arma->dispersion=7;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -231,9 +201,7 @@ class Armas extends Model
                 $arma->potencia=0;
                 $arma->clase=7;
                 $arma->niveltec=7;
-                $arma->malcance=2;
-                $arma->dispersion=10;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -245,9 +213,7 @@ class Armas extends Model
                 $arma->potencia=12;
                 $arma->clase=7;
                 $arma->niveltec=8;
-                $arma->malcance=5;
-                $arma->dispersion=2;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -259,9 +225,7 @@ class Armas extends Model
                 $arma->potencia=13;
                 $arma->clase=7;
                 $arma->niveltec=9;
-                $arma->malcance=5;
-                $arma->dispersion=10;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -273,9 +237,7 @@ class Armas extends Model
                 $arma->potencia=13;
                 $arma->clase=7;
                 $arma->niveltec=3;
-                $arma->malcance=10;
-                $arma->dispersion=1;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -287,9 +249,7 @@ class Armas extends Model
                 $arma->potencia=0;
                 $arma->clase=7;
                 $arma->niveltec=2;
-                $arma->malcance=10;
-                $arma->dispersion=30;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -301,9 +261,7 @@ class Armas extends Model
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=1;
-                $arma->malcance=2;
-                $arma->dispersion=10;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -315,9 +273,7 @@ class Armas extends Model
                 $arma->potencia=14;
                 $arma->clase=7;
                 $arma->niveltec=5;
-                $arma->malcance=4;
-                $arma->dispersion=10;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -329,9 +285,7 @@ class Armas extends Model
                 $arma->potencia=13;
                 $arma->clase=7;
                 $arma->niveltec=12;
-                $arma->malcance=2;
-                $arma->dispersion=70;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -343,9 +297,7 @@ class Armas extends Model
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=3;
-                $arma->malcance=2;
-                $arma->dispersion=70;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -357,9 +309,7 @@ class Armas extends Model
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=4;
-                $arma->malcance=2;
-                $arma->dispersion=127;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -371,9 +321,7 @@ class Armas extends Model
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=13;
-                $arma->malcance=2;
-                $arma->dispersion=127;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -385,9 +333,7 @@ class Armas extends Model
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=14;
-                $arma->malcance=2;
-                $arma->dispersion=127;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -399,9 +345,7 @@ class Armas extends Model
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=15;
-                $arma->malcance=2;
-                $arma->dispersion=127;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -413,9 +357,7 @@ class Armas extends Model
                 $arma->potencia=8;
                 $arma->clase=7;
                 $arma->niveltec=16;
-                $arma->malcance=2;
-                $arma->dispersion=127;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
 
@@ -428,9 +370,7 @@ class Armas extends Model
                 $arma->potencia=20000;
                 $arma->clase=9;
                 $arma->niveltec=1;
-                $arma->malcance=10;
-                $arma->dispersion=1;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -442,9 +382,7 @@ class Armas extends Model
                 $arma->potencia=40000;
                 $arma->clase=9;
                 $arma->niveltec=5;
-                $arma->malcance=10;
-                $arma->dispersion=2;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -456,9 +394,7 @@ class Armas extends Model
                 $arma->potencia=200000;
                 $arma->clase=9;
                 $arma->niveltec=8;
-                $arma->malcance=10;
-                $arma->dispersion=2;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -470,9 +406,7 @@ class Armas extends Model
                 $arma->potencia=500000;
                 $arma->clase=9;
                 $arma->niveltec=14;
-                $arma->malcance=10;
-                $arma->dispersion=3;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -484,9 +418,7 @@ class Armas extends Model
                 $arma->potencia=1000000;
                 $arma->clase=9;
                 $arma->niveltec=23;
-                $arma->malcance=10;
-                $arma->dispersion=3;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -498,9 +430,7 @@ class Armas extends Model
                 $arma->potencia=1;
                 $arma->clase=9;
                 $arma->niveltec=3;
-                $arma->malcance=0;
-                $arma->dispersion=1;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -512,9 +442,7 @@ class Armas extends Model
                 $arma->potencia=1;
                 $arma->clase=9;
                 $arma->niveltec=12;
-                $arma->malcance=0;
-                $arma->dispersion=2;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
 
                 $arma =new Armas();
@@ -526,10 +454,287 @@ class Armas extends Model
                 $arma->potencia=1;
                 $arma->clase=9;
                 $arma->niveltec=16;
-                $arma->malcance=0;
-                $arma->dispersion=3;
-                $arma->imagen="";
+
                 array_push($armas, $arma);
+
+            /////////////////////////////  ARMAS   //////////////////////////////////////////////////////
+
+
+            $arma =new Armas();
+            $arma->codigo=11;
+            $arma->nombre='Cañón ligero de energía';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasLigera";
+            $arma->potencia=300;
+            $arma->clase=1;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=12;
+            $arma->nombre='Cañón medio de energía';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasMedia";
+            $arma->potencia=600;
+            $arma->clase=1;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=13;
+            $arma->nombre='Cañón pesado de energía';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasPesada";
+            $arma->potencia=1200;
+            $arma->clase=1;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=14;
+            $arma->nombre='Cañón insertado de energía';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasInsertada";
+            $arma->potencia=2400;
+            $arma->clase=1;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=15;
+            $arma->nombre='Cañón pesado de energía';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasMisil";
+            $arma->potencia=900;
+            $arma->clase=1;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=16;
+            $arma->nombre='Bomba de energía';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasBomba";
+            $arma->potencia=3600;
+            $arma->clase=1;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+
+
+
+            $arma =new Armas();
+            $arma->codigo=21;
+            $arma->nombre='Cañón ligero de plasma';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasLigera";
+            $arma->potencia=300;
+            $arma->clase=2;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=22;
+            $arma->nombre='Cañón medio de plasma';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasMedia";
+            $arma->potencia=600;
+            $arma->clase=2;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=23;
+            $arma->nombre='Cañón pesado de plasma';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasPesada";
+            $arma->potencia=1200;
+            $arma->clase=2;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=24;
+            $arma->nombre='Cañón insertado de plasma';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasInsertada";
+            $arma->potencia=2400;
+            $arma->clase=2;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=25;
+            $arma->nombre='Cañón pesado de plasma';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasMisil";
+            $arma->potencia=900;
+            $arma->clase=2;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=26;
+            $arma->nombre='Bomba de plasma';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasBomba";
+            $arma->potencia=3600;
+            $arma->clase=2;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+
+
+
+            $arma =new Armas();
+            $arma->codigo=31;
+            $arma->nombre='Cañón ligero de balística';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasLigera";
+            $arma->potencia=300;
+            $arma->clase=3;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=32;
+            $arma->nombre='Cañón medio de balística';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasMedia";
+            $arma->potencia=600;
+            $arma->clase=3;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=33;
+            $arma->nombre='Cañón pesado de balística';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasPesada";
+            $arma->potencia=1200;
+            $arma->clase=3;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=34;
+            $arma->nombre='Cañón insertado de balística';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasInsertada";
+            $arma->potencia=2400;
+            $arma->clase=3;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=35;
+            $arma->nombre='Cañón pesado de balística';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasMisil";
+            $arma->potencia=900;
+            $arma->clase=3;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=36;
+            $arma->nombre='Bomba de balística';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasBomba";
+            $arma->potencia=3600;
+            $arma->clase=3;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+
+
+
+
+            $arma =new Armas();
+            $arma->codigo=41;
+            $arma->nombre='Cañón ligero de MA';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasLigera";
+            $arma->potencia=300;
+            $arma->clase=4;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=42;
+            $arma->nombre='Cañón medio de MA';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasMedia";
+            $arma->potencia=600;
+            $arma->clase=4;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=43;
+            $arma->nombre='Cañón pesado de MA';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasPesada";
+            $arma->potencia=1200;
+            $arma->clase=4;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=44;
+            $arma->nombre='Cañón insertado de MA';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasInsertada";
+            $arma->potencia=2400;
+            $arma->clase=4;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=45;
+            $arma->nombre='Cañón pesado de MA';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasMisil";
+            $arma->potencia=900;
+            $arma->clase=4;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+            $arma =new Armas();
+            $arma->codigo=46;
+            $arma->nombre='Bomba de MA';
+            $arma->descripcion='';
+            $arma->jugadores_id=1;
+            $arma->ranura="armasBomba";
+            $arma->potencia=3600;
+            $arma->clase=4;
+            $arma->niveltec=1;
+            array_push($armas, $arma);
+
+
 
 
 

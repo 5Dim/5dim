@@ -257,22 +257,22 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                 <nav style="margin-top: 17px;">
                                     <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
                                     @if ($investNiveles["invEnergia"]>0)
-                                        <a class="nav-item nav-link active" id="energia-tab" data-toggle="tab" href="#energia" role="tab" aria-controls="energia" aria-selected="true" onclick="cambiaInvest('invesEnergia')">
+                                        <a class="nav-item nav-link active" id="energia-tab" data-toggle="tab" href="#energia" role="tab" aria-controls="energia" aria-selected="true" >
                                             Energía
                                         </a>
                                     @endif
                                     @if ($investNiveles["invPlasma"]>0)
-                                        <a class="nav-item nav-link " id="plasma-tab" data-toggle="tab" href="#plasma" role="tab" aria-controls="plasma" aria-selected="false" onclick="cambiaInvest('invesPlasma')">
+                                        <a class="nav-item nav-link " id="plasma-tab" data-toggle="tab" href="#plasma" role="tab" aria-controls="plasma" aria-selected="false">
                                             Plasma
                                         </a>
                                     @endif
                                     @if ($investNiveles["invBalistica"]>0)
-                                        <a class="nav-item nav-link" id="balistica-tab" data-toggle="tab" href="#balistica" role="tab" aria-controls="balistica" aria-selected="false" onclick="cambiaInvest('invesBalistica')" >
+                                        <a class="nav-item nav-link" id="balistica-tab" data-toggle="tab" href="#balistica" role="tab" aria-controls="balistica" aria-selected="false" >
                                             Balística
                                         </a>
                                     @endif
                                     @if ($investNiveles["invMa"]>0)
-                                        <a class="nav-item nav-link" id="ma-tab" data-toggle="tab" href="#ma" role="tab" aria-controls="ma" aria-selected="false" onclick="cambiaInvest('invesMa')">
+                                        <a class="nav-item nav-link" id="ma-tab" data-toggle="tab" href="#ma" role="tab" aria-controls="ma" aria-selected="false" >
                                             M-A
                                         </a>
                                     @endif
@@ -282,7 +282,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                     <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
                                         <div class="row rounded ">
                                             <div class="col-12 ">
-                                                @if ($investNiveles["invEnergia"]+$investNiveles["invPlasma"]+$investNiveles["invBalistica"]+$investNiveles["invMa"]>0)
+                                                @if ($investNiveles["invEnergia"]>0)
                                                 <div id="cuadro1" class="table-responsive cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
@@ -304,7 +304,6 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                             <td>
                                                                 <img onClick="encajar('armasBomba',6,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma6.jpg') }}" width="45" height="45">
                                                             </td>
-
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -312,7 +311,109 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="tab-pane fade " id="plasma" role="tabpanel" aria-labelledby="plasma-tab">
+                                        <div class="row rounded ">
+                                            <div class="col-12 ">
+                                                @if ($investNiveles["invPlasma"]>0)
+                                                <div id="cuadro1" class="table-responsive cajita">
+                                                    <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                                        <tr>
+                                                            <td>
+                                                                <img onClick="encajar('armasLigera',11,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma11.jpg') }}" width="45" height="45" >
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasMedia',12,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma12.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasPesada',13,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma13.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasInsertada',14,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma14.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasMisil',15,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma15.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasBomba',16,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma16.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane fade " id="balistica" role="tabpanel" aria-labelledby="balistica-tab">
+                                        <div class="row rounded ">
+                                            <div class="col-12 ">
+                                                @if ($investNiveles["invBalistica"]>0)
+                                                <div id="cuadro1" class="table-responsive cajita">
+                                                    <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                                        <tr>
+                                                            <td>
+                                                                <img onClick="encajar('armasLigera',21,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma21.jpg') }}" width="45" height="45" >
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasMedia',22,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma22.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasPesada',23,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma23.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasInsertada',24,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma24.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasMisil',25,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma25.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasBomba',26,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma26.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="ma" role="tabpanel" aria-labelledby="ma-tab">
+                                        <div class="row rounded ">
+                                            <div class="col-12 ">
+                                                @if ($investNiveles["invMa"]>0)
+                                                <div id="cuadro1" class="table-responsive cajita">
+                                                    <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                                        <tr>
+                                                            <td>
+                                                                <img onClick="encajar('armasLigera',31,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma31.jpg') }}" width="45" height="45" >
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasMedia',32,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma32.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasPesada',33,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma33.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasInsertada',34,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma34.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasMisil',35,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma35.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                            <td>
+                                                                <img onClick="encajar('armasBomba',36,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma36.jpg') }}" width="45" height="45">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             @endif
                         </td>
                     </tr>
@@ -877,10 +978,11 @@ var armas={
 
 
         ///
-
+    /*
     function cambiaInvest(invest){
         $(".armasI").prop('class','rounded armasI '+invest);
     }
+    */
 
 
         </script>

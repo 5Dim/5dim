@@ -93,24 +93,6 @@ textarea {
     border-radius: 5px;
 }
 
-/* fuselajes */
-
-.invesEnergia {
-    border: 2px solid red
-}
-
-.invesPlasma {
-    border: 2px solid blue
-}
-
-.invesBalistica {
-    border: 2px solid yellow
-}
-
-.invesMa {
-    border: 2px solid orange
-}
-
 /*  sliders  */
 
 .c-1-color {
@@ -128,7 +110,7 @@ textarea {
 }
 
 .c-4-color {
-    background: orange !important;
+    background: green !important;
     ;
 }
 
