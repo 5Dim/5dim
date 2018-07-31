@@ -251,7 +251,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                             </button>
                         </td>
                         <td rowspan="2" colspan="2">
-                            @if ($diseño->cualidades->armasLigeras+$diseño->cualidades->armasMedias+$diseño->cualidades->armasPesadas+$diseño->cualidades->armasInsertadas+$diseño->cualidades->armasMisiles+$diseño->cualidades->armasBombas >0)
+                            @if ($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
                             <div class=" text-light" id="motorestxt" style="margin-bottom: 10px;">Armas: -151.225 e</div>
                             <div class="slider" id="slider-color"></div>
                                 <nav style="margin-top: 17px;">
@@ -272,7 +272,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                         </a>
                                     @endif
                                     @if ($investNiveles["invMa"]>0)
-                                        <a class="nav-item nav-link" id="ma-tab" data-toggle="tab" href="#ma" role="tab" aria-controls="ma" aria-selected="false" >
+                                        <a class="nav-item nav-link" id="max-tab" data-toggle="tab" href="#max" role="tab" aria-controls="max" aria-selected="false" >
                                             M-A
                                         </a>
                                     @endif
@@ -286,24 +286,36 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                 <div id="cuadro1" class="table-responsive cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
-                                                            <td>
-                                                                <img onClick="encajar('armasLigera',1,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma1.jpg') }}" width="45" height="45" >
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasMedia',2,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma2.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasPesada',3,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma3.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasInsertada',4,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma4.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasMisil',5,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma5.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasBomba',6,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma6.jpg') }}" width="45" height="45">
-                                                            </td>
+                                                            @if ($cantidadCLigeras>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasLigera',1,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma1.jpg') }}" width="45" height="45" >
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCMedias>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasMedia',2,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma2.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCPesadas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasPesada',3,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma3.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCInsertadas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasInsertada',4,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma4.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCMisiles>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasMisil',5,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma5.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCBombas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasBomba',6,'añade')" class="rounded invesEnergia armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma6.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -319,24 +331,36 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                 <div id="cuadro1" class="table-responsive cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
-                                                            <td>
-                                                                <img onClick="encajar('armasLigera',11,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma11.jpg') }}" width="45" height="45" >
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasMedia',12,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma12.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasPesada',13,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma13.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasInsertada',14,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma14.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasMisil',15,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma15.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasBomba',16,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma16.jpg') }}" width="45" height="45">
-                                                            </td>
+                                                            @if ($cantidadCLigeras>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasLigera',11,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma11.jpg') }}" width="45" height="45" >
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCMedias>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasMedia',12,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma12.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCPesadas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasPesada',13,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma13.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCInsertadas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasInsertada',14,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma14.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCMisiles>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasMisil',15,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma15.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCBombas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasBomba',16,'añade')" class="rounded invesPlasma armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma16.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -353,24 +377,36 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                 <div id="cuadro1" class="table-responsive cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
-                                                            <td>
-                                                                <img onClick="encajar('armasLigera',21,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma21.jpg') }}" width="45" height="45" >
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasMedia',22,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma22.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasPesada',23,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma23.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasInsertada',24,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma24.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasMisil',25,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma25.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasBomba',26,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma26.jpg') }}" width="45" height="45">
-                                                            </td>
+                                                            @if ($cantidadCLigeras>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasLigera',21,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma21.jpg') }}" width="45" height="45" >
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCMedias>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasMedia',22,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma22.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCPesadas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasPesada',23,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma23.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCInsertadas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasInsertada',24,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma24.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCMisiles>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasMisil',25,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma25.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCBombas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasBomba',26,'añade')" class="rounded invesBalistica armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma26.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -379,31 +415,43 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade " id="ma" role="tabpanel" aria-labelledby="ma-tab">
+                                    <div class="tab-pane fade " id="max" role="tabpanel" aria-labelledby="max-tab">
                                         <div class="row rounded ">
                                             <div class="col-12 ">
                                                 @if ($investNiveles["invMa"]>0)
                                                 <div id="cuadro1" class="table-responsive cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
-                                                            <td>
-                                                                <img onClick="encajar('armasLigera',31,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma31.jpg') }}" width="45" height="45" >
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasMedia',32,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma32.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasPesada',33,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma33.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasInsertada',34,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma34.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasMisil',35,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma35.jpg') }}" width="45" height="45">
-                                                            </td>
-                                                            <td>
-                                                                <img onClick="encajar('armasBomba',36,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma36.jpg') }}" width="45" height="45">
-                                                            </td>
+                                                            @if ($cantidadCLigeras>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasLigera',31,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón ligero" src="{{ asset('img/fotos armas/arma31.jpg') }}" width="45" height="45" >
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCMedias>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasMedia',32,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón medio" src="{{ asset('img/fotos armas/arma32.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCPesadas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasPesada',33,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón pesado" src="{{ asset('img/fotos armas/arma33.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCInsertadas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasInsertada',34,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Cañón insertado" src="{{ asset('img/fotos armas/arma34.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCMisiles>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasMisil',35,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Misiles" src="{{ asset('img/fotos armas/arma35.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
+                                                            @if ($cantidadCBombas>0)
+                                                                <td>
+                                                                    <img onClick="encajar('armasBomba',36,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="auto" title="Bombas" src="{{ asset('img/fotos armas/arma36.jpg') }}" width="45" height="45">
+                                                                </td>
+                                                            @endif
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -774,7 +822,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                     </tr>
                     <tr>
                             <td  colspan="2">
-                                    @if ($diseño->cualidades->cargaPequeña+$diseño->cualidades->cargaMedia+$diseño->cualidades->cargaGrande>0 && $investNiveles["invCarga"]>0)
+                                    @if ($cantidadCargaPequeña+$cantidadCargaMedia+$cantidadCargaGrande>0 && $investNiveles["invCarga"]>0)
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
                                                 <div class="row rounded ">
@@ -785,9 +833,21 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                                 <tr>
                                                                     @for($codigo=90;$codigo<98;$codigo++)
                                                                         @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
-                                                                            <td>
-                                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
-                                                                            </td>
+                                                                            @if ($cantidadCargaPequeña>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaPequeña")
+                                                                                <td>
+                                                                                    <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                                </td>
+                                                                            @endif
+                                                                            @if ($cantidadCargaMedia>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaMediana")
+                                                                                <td>
+                                                                                    <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                                </td>
+                                                                            @endif
+                                                                            @if ($cantidadCargaGrande>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaGrande")
+                                                                                <td>
+                                                                                    <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                                </td>
+                                                                            @endif
                                                                         @endif
                                                                     @endfor
                                                                 </tr>
