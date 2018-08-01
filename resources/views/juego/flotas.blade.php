@@ -45,12 +45,12 @@
                                 Hangares de estaciones
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                <button type="button" class="btn btn-dark btn-block text-warning">
+                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
                                     Tienes
                                 </button>
                             </th>
                             <th class="anchofijo text-warning">
-                                <button type="button" class="btn btn-dark btn-block text-warning">
+                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
                                     Tienes
                                 </button>
                             </th>
@@ -87,7 +87,7 @@
                                 0
                             </td>
                             <td class="anchofijo text-light">
-                                <div class="input-group mb-3 borderless">
+                                <div class="input-group mb-3 input-group-sm borderless">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">
                                             <button type="button" class="btn btn-dark btn-sm text-warning">
@@ -106,7 +106,7 @@
                                 </div>
                             </td>
                             <td class="anchofijo text-light">
-                                <div class="input-group mb-3 borderless">
+                                <div class="input-group mb-3 input-group-sm borderless">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">
                                             <button type="button" class="btn btn-dark btn-sm text-warning">
@@ -123,158 +123,6 @@
                                         </span>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="anchofijo text-light align-middle">
-                                Destructor 9.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Pesada
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Trauma
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                14.935.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                7.210.300
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                785.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                2
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                1
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0">
-                            </td>
-                            <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="anchofijo text-light align-middle">
-                                Destructor 9.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Pesada
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Trauma
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                14.935.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                7.210.300
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                785.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                2
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                1
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0">
-                            </td>
-                            <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="anchofijo text-light align-middle">
-                                Destructor 9.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Pesada
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Trauma
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                14.935.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                7.210.300
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                785.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                2
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                1
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0">
-                            </td>
-                            <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="anchofijo text-light align-middle">
-                                Destructor 9.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Pesada
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Trauma
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                14.935.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                7.210.300
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                785.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                2
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                1
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0">
-                            </td>
-                            <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0">
                             </td>
                         </tr>
                     </table>
@@ -532,104 +380,104 @@
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block text-warning">
+                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
                                     Tienes
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block">
+                                <button type="button" class="btn btn-dark btn-block btn-sm">
                                     125.248
                                 </button>
                             </td>
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block text-warning">
+                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
                                     Envias
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input" value="0" min="0" max="125248">
+                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                         </tr>
                     </table>
