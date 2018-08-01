@@ -20,7 +20,7 @@ class CreateArmasTable extends Migration
             $table->string('descripcion')->nullable();
             $table->string('ranura');
             $table->integer('potencia');
-            $table->integer('clase');
+            $table->string('clase');
             $table->integer('niveltec');
            // $table->integer('malcance');
            // $table->integer('dispersion');

@@ -10,6 +10,7 @@
                 'diseño' => $diseño,
                 'investigaciones'=>$investigaciones,
                 'armas'=>$armas,
+                'constantesI'=>$constantesI,
             ])
             @include ('juego.tablaDaños', [
                 'diseño' => $diseño,

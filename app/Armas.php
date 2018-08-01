@@ -19,7 +19,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="motor";
                 $arma->potencia=3;
-                $arma->clase=3;
+                $arma->clase='invPropQuimico';
                 $arma->niveltec=0;
 
                 array_push($armas, $arma);
@@ -31,7 +31,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="motor";
                 $arma->potencia=4;
-                $arma->clase=12;
+                $arma->clase='invPropNuk';
                 $arma->niveltec=0;
 
                 array_push($armas, $arma);
@@ -43,7 +43,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="motor";
                 $arma->potencia=5;
-                $arma->clase=13;
+                $arma->clase='invPropIon';
                 $arma->niveltec=1;
 
                 array_push($armas, $arma);
@@ -55,7 +55,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="motor";
                 $arma->potencia=5;
-                $arma->clase=14;
+                $arma->clase='invPropPlasma';
                 $arma->niveltec=1;
 
                 array_push($armas, $arma);
@@ -67,7 +67,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="motor";
                 $arma->potencia=10;
-                $arma->clase=15;
+                $arma->clase='invPropMa';
                 $arma->niveltec=1;
 
                 array_push($armas, $arma);
@@ -79,7 +79,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="motor";
                 $arma->potencia=10;
-                $arma->clase=16;
+                $arma->clase='invPropHMA';
                 $arma->niveltec=5;
 
                 array_push($armas, $arma);
@@ -91,7 +91,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="blindaje";
                 $arma->potencia=13;
-                $arma->clase=10;
+                $arma->clase='invBlindaje';
                 $arma->niveltec=2;
 
                 array_push($armas, $arma);
@@ -103,7 +103,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="blindaje";
                 $arma->potencia=15;
-                $arma->clase=10;
+                $arma->clase='invBlindaje';
                 $arma->niveltec=4;
 
                 array_push($armas, $arma);
@@ -115,7 +115,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="blindaje";
                 $arma->potencia=9;
-                $arma->clase=10;
+                $arma->clase='invBlindaje';
                 $arma->niveltec=8;
 
                 array_push($armas, $arma);
@@ -127,7 +127,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="blindaje";
                 $arma->potencia=15;
-                $arma->clase=10;
+                $arma->clase='invBlindaje';
                 $arma->niveltec=11;
 
                 array_push($armas, $arma);
@@ -139,7 +139,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="blindaje";
                 $arma->potencia=30;
-                $arma->clase=10;
+                $arma->clase='invBlindaje';
                 $arma->niveltec=15;
 
                 array_push($armas, $arma);
@@ -151,7 +151,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=13;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=4;
 
                 array_push($armas, $arma);
@@ -163,7 +163,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=16;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=6;
 
                 array_push($armas, $arma);
@@ -175,7 +175,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=10;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=10;
 
                 array_push($armas, $arma);
@@ -187,7 +187,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=15;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=11;
 
                 array_push($armas, $arma);
@@ -199,7 +199,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=0;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=7;
 
                 array_push($armas, $arma);
@@ -211,7 +211,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=12;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=8;
 
                 array_push($armas, $arma);
@@ -223,7 +223,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=13;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=9;
 
                 array_push($armas, $arma);
@@ -235,7 +235,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=13;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=3;
 
                 array_push($armas, $arma);
@@ -247,7 +247,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=0;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=2;
 
                 array_push($armas, $arma);
@@ -259,7 +259,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=1;
 
                 array_push($armas, $arma);
@@ -271,7 +271,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=14;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=5;
 
                 array_push($armas, $arma);
@@ -283,7 +283,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=13;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=12;
 
                 array_push($armas, $arma);
@@ -295,7 +295,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=3;
 
                 array_push($armas, $arma);
@@ -307,7 +307,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=4;
 
                 array_push($armas, $arma);
@@ -319,7 +319,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=13;
 
                 array_push($armas, $arma);
@@ -331,7 +331,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=14;
 
                 array_push($armas, $arma);
@@ -343,7 +343,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=15;
 
                 array_push($armas, $arma);
@@ -355,7 +355,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
-                $arma->clase=7;
+                $arma->clase='invIa';
                 $arma->niveltec=16;
 
                 array_push($armas, $arma);
@@ -368,7 +368,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaPequeña";
                 $arma->potencia=20000;
-                $arma->clase=9;
+                $arma->clase='invCarga';
                 $arma->niveltec=1;
 
                 array_push($armas, $arma);
@@ -380,7 +380,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaPequeña";
                 $arma->potencia=40000;
-                $arma->clase=9;
+                $arma->clase='invCarga';
                 $arma->niveltec=5;
 
                 array_push($armas, $arma);
@@ -392,7 +392,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaMediana";
                 $arma->potencia=200000;
-                $arma->clase=9;
+                $arma->clase='invCarga';
                 $arma->niveltec=8;
 
                 array_push($armas, $arma);
@@ -404,7 +404,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaGrande";
                 $arma->potencia=500000;
-                $arma->clase=9;
+                $arma->clase='invCarga';
                 $arma->niveltec=14;
 
                 array_push($armas, $arma);
@@ -416,7 +416,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaGrande";
                 $arma->potencia=1000000;
-                $arma->clase=9;
+                $arma->clase='invCarga';
                 $arma->niveltec=23;
 
                 array_push($armas, $arma);
@@ -428,7 +428,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaPequeña";
                 $arma->potencia=1;
-                $arma->clase=9;
+                $arma->clase='invCarga';
                 $arma->niveltec=3;
 
                 array_push($armas, $arma);
@@ -440,7 +440,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaMediana";
                 $arma->potencia=1;
-                $arma->clase=9;
+                $arma->clase='invCarga';
                 $arma->niveltec=12;
 
                 array_push($armas, $arma);
@@ -452,7 +452,7 @@ class Armas extends Model
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaGrande";
                 $arma->potencia=1;
-                $arma->clase=9;
+                $arma->clase='invCarga';
                 $arma->niveltec=16;
 
                 array_push($armas, $arma);
@@ -467,7 +467,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasLigera";
             $arma->potencia=300;
-            $arma->clase=1;
+            $arma->clase='invEnergia';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -478,7 +478,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasMedia";
             $arma->potencia=600;
-            $arma->clase=1;
+            $arma->clase='invEnergia';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -489,7 +489,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasPesada";
             $arma->potencia=1200;
-            $arma->clase=1;
+            $arma->clase='invEnergia';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -500,7 +500,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasInsertada";
             $arma->potencia=2400;
-            $arma->clase=1;
+            $arma->clase='invEnergia';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -511,7 +511,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasMisil";
             $arma->potencia=900;
-            $arma->clase=1;
+            $arma->clase='invEnergia';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -522,7 +522,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasBomba";
             $arma->potencia=3600;
-            $arma->clase=1;
+            $arma->clase='invEnergia';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -536,7 +536,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasLigera";
             $arma->potencia=300;
-            $arma->clase=2;
+            $arma->clase='invPlasma';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -547,7 +547,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasMedia";
             $arma->potencia=600;
-            $arma->clase=2;
+            $arma->clase='invPlasma';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -558,7 +558,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasPesada";
             $arma->potencia=1200;
-            $arma->clase=2;
+            $arma->clase='invPlasma';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -569,7 +569,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasInsertada";
             $arma->potencia=2400;
-            $arma->clase=2;
+            $arma->clase='invPlasma';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -580,7 +580,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasMisil";
             $arma->potencia=900;
-            $arma->clase=2;
+            $arma->clase='invPlasma';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -591,7 +591,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasBomba";
             $arma->potencia=3600;
-            $arma->clase=2;
+            $arma->clase='invPlasma';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -605,7 +605,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasLigera";
             $arma->potencia=300;
-            $arma->clase=3;
+            $arma->clase='invBalistica';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -616,7 +616,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasMedia";
             $arma->potencia=600;
-            $arma->clase=3;
+            $arma->clase='invBalistica';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -627,7 +627,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasPesada";
             $arma->potencia=1200;
-            $arma->clase=3;
+            $arma->clase='invBalistica';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -638,7 +638,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasInsertada";
             $arma->potencia=2400;
-            $arma->clase=3;
+            $arma->clase='invBalistica';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -649,7 +649,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasMisil";
             $arma->potencia=900;
-            $arma->clase=3;
+            $arma->clase='invBalistica';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -660,7 +660,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasBomba";
             $arma->potencia=3600;
-            $arma->clase=3;
+            $arma->clase='invBalistica';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -675,7 +675,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasLigera";
             $arma->potencia=300;
-            $arma->clase=4;
+            $arma->clase='invMa';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -686,7 +686,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasMedia";
             $arma->potencia=600;
-            $arma->clase=4;
+            $arma->clase='invMa';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -697,7 +697,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasPesada";
             $arma->potencia=1200;
-            $arma->clase=4;
+            $arma->clase='invMa';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -708,7 +708,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasInsertada";
             $arma->potencia=2400;
-            $arma->clase=4;
+            $arma->clase='invMa';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -719,7 +719,7 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasMisil";
             $arma->potencia=900;
-            $arma->clase=4;
+            $arma->clase='invMa';
             $arma->niveltec=1;
             array_push($armas, $arma);
 
@@ -730,12 +730,9 @@ class Armas extends Model
             $arma->jugadores_id=1;
             $arma->ranura="armasBomba";
             $arma->potencia=3600;
-            $arma->clase=4;
+            $arma->clase='invMa';
             $arma->niveltec=1;
             array_push($armas, $arma);
-
-
-
 
 
             foreach($armas as $estearma){

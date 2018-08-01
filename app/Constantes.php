@@ -218,6 +218,126 @@ class Constantes extends Model
                 $constante->tipo='investigacion';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvEnergia';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion Energia';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvPlasma';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion Plasma';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvBalistica';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion Balistica';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvMa';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion MA';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvPropQuimico';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion motor quimico';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvPropNuk';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion motor nuclear';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvPropIon';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion motor Iones';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvPropPlasma';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion motor Plasma';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvPropMa';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion motor MA';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvBlindaje';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion blindajes';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvCarga';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion carga y transporte';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvIa';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion IA';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
 
                 /////// FUSELAJES  ///////////////////////////////////////////////////
 

@@ -13,6 +13,7 @@ $investNiveles=[
     "invBalistica"=>$investigaciones->where("codigo","invBalistica")->first()->nivel,
     "invMa"=>$investigaciones->where("codigo","invMa")->first()->nivel,
 
+    "invPropQuimico"=>$investigaciones->where("codigo","invPropQuimico")->first()->nivel,
     "invPropNuk"=>$investigaciones->where("codigo","invPropNuk")->first()->nivel,
     "invPropIon"=>$investigaciones->where("codigo","invPropIon")->first()->nivel,
     "invPropPlasma"=>$investigaciones->where("codigo","invPropPlasma")->first()->nivel,
@@ -958,7 +959,6 @@ var armas={
     armasInsertada:armasInsertadas,
     armasMisil:armasMisiles,
     armasBomba:armasBombas,
-
 }
 
 ///    $("#armasLigeras3").prop('class','invesPlasma');
@@ -983,12 +983,6 @@ var armas={
             $('#'+ elemento + n).attr("src", img);
             n++;
         });
-
-
-
-
-
-
     }
 
 
@@ -1034,15 +1028,63 @@ var armas={
 
             })
 
-
-
-
         ///
     /*
     function cambiaInvest(invest){
         $(".armasI").prop('class','rounded armasI '+invest);
     }
     */
+
+    //////////// superformula de calculo total /// $diseño->cualidades->armasInsertadas
+
+var armas={!!json_encode($armas)!!};
+var cualidadesFuselaje={!!json_encode($diseño->cualidades)!!};
+var costesFuselaje={!!json_encode($diseño->costos)!!};
+var constantesI={!!json_encode($constantesI)!!};
+var investigaciones={!!json_encode($investigaciones)!!};
+
+function calculoTotal(){
+
+
+var costesFuselajes={
+    mineral:0,
+    cristal:0,
+    gas:0,
+    plastico:0,
+    ceramica:0,
+    liquido:0,
+    micros:0,
+    personal:0,
+};
+
+var cualidades={
+    masa:0,
+    energia:0,
+    tiempo:0,
+    mantenimiento:0,
+    defensa:0,
+    velocidad:0,
+    gastoFuel:0,
+}
+
+
+
+// añado energia
+elemento='motor';
+armas[elemento].forEach(function(e) {
+    if (e>0){
+        var obj=$.grep(armas, function(obj){return obj.codigo == e;})[0];
+        var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor'];
+        var nivelInv=$investigaciones[obj['clase']];
+        cualidades['energia']+=  (1+miConstanteI)*nivelInv;
+    }
+
+        });
+
+
+    }
+
+
 
 
         </script>
