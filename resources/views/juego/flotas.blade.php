@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="col-12 cajita">
                 <div id="cuadro1" class="table-responsive">
-                    <table class="table table-borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
+                    <table class="table table-borderless table-sm text-center" style="margin-top: 5px !important">
                         <tr>
                             <th colspan="12" class="anchofijo text-success">
                                 <big>
