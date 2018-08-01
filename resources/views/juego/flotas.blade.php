@@ -49,7 +49,7 @@
                                     Tienes
                                 </button>
                             </th>
-                            <th class="anchofijo text-warning">
+                            <th class="anchofijo text-warning align-middle">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
                                     Tienes
                                 </button>
@@ -95,7 +95,7 @@
                                             </button>
                                         </span>
                                     </div>
-                                    <input type="number" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">
                                             <button type="button" class="btn btn-dark btn-sm text-warning">
@@ -114,7 +114,7 @@
                                             </button>
                                         </span>
                                     </div>
-                                    <input type="number" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">
                                             <button type="button" class="btn btn-dark btn-sm text-warning">
@@ -314,17 +314,17 @@
                                 </select>
                             </td>
                             <td class="text-light">
-                                <input type="number" class="form-control input" placeholder="Numero de sistema">
+                                <input type="text" class="form-control input" placeholder="Numero de sistema">
                             </td>
                             <td class="text-light">
-                                <input type="number" class="form-control input" placeholder="Numero de orbita">
+                                <input type="text" class="form-control input" placeholder="Numero de orbita">
                             </td>
                             <td class="text-light">
                                 6.24
                             </td>
                             <td class="text-light">
                                 <div class="input-group mb-3 borderless" style="padding-left: 10px !important; padding-right: 5px !important">
-                                    <input type="number" class="form-control input" value="100" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control input" value="100" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">%</span>
                                     </div>
@@ -447,37 +447,37 @@
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                             <td class="anchofijo text-light">
-                                <input type="number" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                                <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                             </td>
                         </tr>
                     </table>
