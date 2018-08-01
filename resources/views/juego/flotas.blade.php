@@ -99,7 +99,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">
                                             <button type="button" class="btn btn-dark btn-sm text-warning">
-                                                Max
+                                                M
                                             </button>
                                         </span>
                                     </div>
