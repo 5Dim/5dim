@@ -30,22 +30,22 @@
                                 Defensa
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Capacidad de carga
+                                Carga
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangar de cazas
+                                H. de cazas
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangar de ligeras
+                                H. de ligeras
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangar de medias
+                                H. de medias
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangar de pesadas
+                                H. de pesadas
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangar de estaciones
+                                H. de estaciones
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
