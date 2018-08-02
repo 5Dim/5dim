@@ -50,13 +50,14 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 			//cantidad tipos CARGA MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 		//cantidad tipos CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 9;	 		//mejoras
             $CRnave12 = 10;	 		// blindajes
             $CRnave13 = 1;	 		// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -87,12 +88,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 9;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 1;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -123,12 +125,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 12;	 	//mejoras
             $CRnave12 = 8;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -159,6 +162,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 12;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -167,7 +171,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -199,12 +203,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -235,12 +240,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 9;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -271,12 +277,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 5;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -307,12 +314,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 24;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -343,12 +351,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 24;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 3;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -379,12 +388,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 37;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
             $CRnave13 = 8;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -415,13 +425,14 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 39;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 3;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -452,12 +463,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 18;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -490,6 +502,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 3;	 	// motores
@@ -497,7 +510,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -528,12 +541,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 5;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -564,12 +578,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 3; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 31;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 6;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -600,12 +615,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 40;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 6;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -636,12 +652,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 1;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -672,6 +689,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 60;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 8;	 	// motores
@@ -679,7 +697,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -710,12 +728,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 24;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -746,6 +765,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 41;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 8;	 	// motores
@@ -754,7 +774,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -785,12 +805,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 31;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -823,12 +844,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 35;	 	//mejoras
             $CRnave12 = 16;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -859,12 +881,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -895,12 +918,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 12;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -931,12 +955,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -967,12 +992,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 31;	 	//mejoras
             $CRnave12 = 15;	 	// blindajes
             $CRnave13 = 6;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1003,12 +1029,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 24;	 	// blindajes
             $CRnave13 = 8;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1041,12 +1068,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 52;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 12;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1076,13 +1104,14 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 75; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;
+            $CRnave14=2;
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 12;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1113,12 +1142,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 16; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 4;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1151,12 +1181,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 54;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 6;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1187,12 +1218,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 64;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 8;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1223,12 +1255,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1259,6 +1292,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 39;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -1266,7 +1300,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1299,6 +1333,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 6;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -1307,7 +1342,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1338,6 +1373,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 9;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -1346,7 +1382,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1377,12 +1413,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 30;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1413,12 +1450,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 6;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1449,12 +1487,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1487,13 +1526,14 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
             $CRnave13 = 8;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1524,12 +1564,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1560,12 +1601,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1596,12 +1638,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 3;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1632,12 +1675,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 3;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1668,12 +1712,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1704,12 +1749,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 10;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1740,12 +1786,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 35;	 	//mejoras
             $CRnave12 = 16;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1776,12 +1823,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 8;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1812,12 +1860,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1848,12 +1897,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1884,12 +1934,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1920,12 +1971,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 15;	 	//mejoras
             $CRnave12 = 9;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1956,6 +2008,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -1964,7 +2017,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -1995,6 +2048,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
             $CRnave13 = 5;	 	// motores
@@ -2003,7 +2057,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2034,6 +2088,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 4;	 	// motores
@@ -2042,7 +2097,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2073,6 +2128,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2081,7 +2137,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2112,12 +2168,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2148,12 +2205,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 3;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
             $CRnave13 = 16;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2184,6 +2242,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 40;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 6;	 	// motores
@@ -2192,7 +2251,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2223,12 +2282,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 41;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2259,12 +2319,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2295,12 +2356,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 15; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 4;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2331,12 +2393,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 5;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
             $CRnave13 = 6;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2369,12 +2432,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 20; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 10;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 8;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2412,12 +2476,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2454,12 +2519,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2496,12 +2562,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2538,13 +2605,14 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2581,12 +2649,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=1;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2622,14 +2691,15 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=1;    //Carga ENorme
+            $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2666,12 +2736,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2708,12 +2779,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2742,6 +2814,7 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
             $CRnave13 = 4;	 	// motores
@@ -2749,7 +2822,7 @@ class CualidadesFuselajes extends Model
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2781,12 +2854,13 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2817,13 +2891,14 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2856,13 +2931,14 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 10;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 6;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2896,13 +2972,14 @@ class CualidadesFuselajes extends Model
             $CRnave9 = 5; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
-            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave11,$CRnave12,$CRnave13];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
@@ -2972,6 +3049,7 @@ class CualidadesFuselajes extends Model
         $coste->cargaMedia=$armas[$n] ;$n++;
         $coste->cargaGrande=$armas[$n] ;$n++;
         $coste->cargaEnorme=$armas[$n] ;$n++;
+        $coste->cargaMega=$armas[$n] ;$n++;
 
         $coste->mejoras=$armas[$n];$n++;
         $coste->blindajes=$armas[$n];$n++;

@@ -35,6 +35,7 @@ class CreateCualidadesFuselajesTable extends Migration
             $table->integer('cargaMedia');
             $table->integer('cargaGrande');
             $table->integer('cargaEnorme');
+            $table->integer('cargaMega');
 
             $table->integer('mejoras');
             $table->integer('blindajes');
