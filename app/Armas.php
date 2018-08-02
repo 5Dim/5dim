@@ -399,7 +399,7 @@ class Armas extends Model
 
                 $arma =new Armas();
                 $arma->codigo=93;
-                $arma->nombre='Gran hangar de carga';
+                $arma->nombre='Gran almacén de carga';
                 $arma->descripcion='Sistema mejorado de almacenamiento y distribucion robotizado';
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaGrande";
@@ -412,7 +412,7 @@ class Armas extends Model
                 $arma =new Armas();
                 $arma->codigo=94;
                 $arma->nombre='Contenedor Adimensional';
-                $arma->descripcion='Almacena la carga en un estado de indeterminación entre varios universos paralelos';
+                $arma->descripcion='Almacena la carga en un estado de cuántico';
                 $arma->jugadores_id=1;
                 $arma->ranura="cargaGrande";
                 $arma->potencia=1000000;
@@ -423,6 +423,30 @@ class Armas extends Model
 
                 $arma =new Armas();
                 $arma->codigo=95;
+                $arma->nombre='Almacén N-dimensional';
+                $arma->descripcion='Almacena la carga en un estado de indeterminación entre varios universos paralelos';
+                $arma->jugadores_id=1;
+                $arma->ranura="cargaEnorme";
+                $arma->potencia=3000000;
+                $arma->clase='invCarga';
+                $arma->niveltec=18;
+
+                array_push($armas, $arma);
+
+                $arma =new Armas();
+                $arma->codigo=96;
+                $arma->nombre='Almacén de Materia oscura';
+                $arma->descripcion='Almacena la carga como materia oscura condensada';
+                $arma->jugadores_id=1;
+                $arma->ranura="cargaMega";
+                $arma->potencia=7000000;
+                $arma->clase='invCarga';
+                $arma->niveltec=25;
+
+                array_push($armas, $arma);
+
+                $arma =new Armas();
+                $arma->codigo=97;
                 $arma->nombre='Hangar de cazas';
                 $arma->descripcion='Cada unidad de hangar da cabida para un caza';
                 $arma->jugadores_id=1;
@@ -434,7 +458,7 @@ class Armas extends Model
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=96;
+                $arma->codigo=98;
                 $arma->nombre='Muelle naves ligeras';
                 $arma->descripcion='Hangar de atraque para naves ligeras, cada uno da cabida para una nave ligera';
                 $arma->jugadores_id=1;
@@ -446,7 +470,7 @@ class Armas extends Model
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=97;
+                $arma->codigo=99;
                 $arma->nombre='Puerto naves medias';
                 $arma->descripcion='Puerto para atracar naves medias, con todos los sistemas de reparacion y mantenimiento necesarios para 1 nave media';
                 $arma->jugadores_id=1;
@@ -454,6 +478,31 @@ class Armas extends Model
                 $arma->potencia=1;
                 $arma->clase='invCarga';
                 $arma->niveltec=16;
+
+                array_push($armas, $arma);
+
+                $arma =new Armas();
+                $arma->codigo=100;
+                $arma->nombre='Puerto naves pesadas';
+                $arma->descripcion='Puerto para atracar naves pesadas, con todos los sistemas de reparacion y mantenimiento necesarios para 1 nave pesada';
+                $arma->jugadores_id=1;
+                $arma->ranura="cargaEnorme";
+                $arma->potencia=1;
+                $arma->clase='invCarga';
+                $arma->niveltec=18;
+
+                array_push($armas, $arma);
+
+
+                $arma =new Armas();
+                $arma->codigo=101;
+                $arma->nombre='Puerto estaciones';
+                $arma->descripcion='Puerto para atracar estaciones, con todos los sistemas de reparacion y mantenimiento necesarios para 1 estación';
+                $arma->jugadores_id=1;
+                $arma->ranura="cargaMega";
+                $arma->potencia=1;
+                $arma->clase='invCarga';
+                $arma->niveltec=25;
 
                 array_push($armas, $arma);
 
