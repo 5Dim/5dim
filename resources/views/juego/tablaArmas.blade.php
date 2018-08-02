@@ -141,6 +141,20 @@ $cantidadCargaGrande=celdasMaximas($filasCarga,$cantidadCargaGrande);
 $multiplicador=($diseño->cualidades->cargaGrande/$cantidadCargaGrande);
 }
 
+$cantidadCargaEnorme=$diseño->cualidades->cargaEnorme;
+$multiplicador=1;
+if ($cantidadCargaEnorme>$filasCarga){
+$cantidadCargaEnorme=celdasMaximas($filasCarga,$cantidadCargaEnorme);
+$multiplicador=($diseño->cualidades->cargaEnorme/$cantidadCargaEnorme);
+}
+
+$cantidadCargaMega=$diseño->cualidades->cargaMega;
+$multiplicador=1;
+if ($cantidadCargaMega>$filasCarga){
+$cantidadCargaMega=celdasMaximas($filasCarga,$cantidadCargaMega);
+$multiplicador=($diseño->cualidades->cargaMega/$cantidadCargaMega);
+}
+
 //arrays que vienen
 $motores=[];
 for($n=0;$n<$cantidadMotores;$n++){ array_push($motores,0);}
@@ -849,6 +863,16 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                                                     <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                                                                 </td>
                                                                             @endif
+                                                                            @if ($cantidadCargaEnorme>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaEnorme")
+                                                                            <td>
+                                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                            </td>
+                                                                            @endif
+                                                                            @if ($cantidadCargaMega>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaMega")
+                                                                            <td>
+                                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'añade')"class="rounded" data-toggle="tooltip" data-placement="auto" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                            </td>
+                                                                            @endif
                                                                         @endif
                                                                     @endfor
                                                                 </tr>
@@ -901,6 +925,36 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                         @endfor
                                                             <td class="text-warning align-middle">
                                                                     x{{$multiplicador}}   Carga grande
+                                                            </td>
+                                                    @endif
+                                                </tr>
+
+                                                <tr >
+                                                    @if ($diseño->cualidades->cargaEnorme>0)
+                                                        @for ($i = $filasCarga ; $i >0; $i--)
+                                                            <td>
+                                                                @if ($i<=$cantidadCargaEnorme)
+                                                                <div style="border: 1px solid white;"><img onClick="encajar('cargaEnorme',{{$i-1}},'quita')" id="cargaEnorme{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                @endif
+                                                            </td>
+                                                        @endfor
+                                                            <td class="text-warning align-middle">
+                                                                    x{{$multiplicador}}   Carga Enorme
+                                                            </td>
+                                                    @endif
+                                                </tr>
+
+                                                <tr >
+                                                    @if ($diseño->cualidades->cargaMega>0)
+                                                        @for ($i = $filasCarga ; $i >0; $i--)
+                                                            <td>
+                                                                @if ($i<=$cantidadCargaMega)
+                                                                <div style="border: 1px solid white;"><img onClick="encajar('cargaMega',{{$i-1}},'quita')" id="cargaMega{{$i-1}}"  src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                                @endif
+                                                            </td>
+                                                        @endfor
+                                                            <td class="text-warning align-middle">
+                                                                    x{{$multiplicador}}   Carga Mega
                                                             </td>
                                                     @endif
                                                 </tr>
