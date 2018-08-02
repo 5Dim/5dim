@@ -44,12 +44,12 @@
                             <th class="anchofijo text-warning align-middle">
                                 Hangares de estaciones
                             </th>
-                            <th class="anchofijo text-warning align-middle">
+                            <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
                                     Tienes
                                 </button>
                             </th>
-                            <th class="anchofijo text-warning align-middle">
+                            <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
                                     Tienes
                                 </button>
@@ -86,7 +86,7 @@
                             <td class="anchofijo text-light align-middle">
                                 0
                             </td>
-                            <td class="anchofijo text-light">
+                            <td class="anchofijo text-light" style="max-width: 180px">
                                 <div class="input-group mb-3 input-group-sm borderless">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="anchofijo text-light">
+                            <td class="anchofijo text-light" style="max-width: 180px">
                                 <div class="input-group mb-3 input-group-sm borderless">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">
