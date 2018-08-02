@@ -174,6 +174,12 @@ for($n=0;$n<$cantidadCargaMedia;$n++){ array_push($cargaMedianas,0);}
 $cargaGrandes=[];
 for($n=0;$n<$cantidadCargaGrande;$n++){ array_push($cargaGrandes,0);}
 
+$cargaEnorme=[];
+for($n=0;$n<$cantidadCargaEnorme;$n++){ array_push($cargaEnorme,0);}
+
+$cargaMega=[];
+for($n=0;$n<$cantidadCargaMega;$n++){ array_push($cargaMega,0);}
+
 $armasLigeras=[];
 for($n=0;$n<$cantidadCLigeras;$n++){ array_push($armasLigeras,0);}
 
@@ -846,7 +852,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                             <div class=" text-light" id="cargatxt">Carga: -5.454</div>
                                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                                 <tr>
-                                                                    @for($codigo=90;$codigo<98;$codigo++)
+                                                                    @for($codigo=90;$codigo<102;$codigo++)
                                                                         @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                                             @if ($cantidadCargaPequeña>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaPequeña")
                                                                                 <td>
@@ -991,6 +997,8 @@ var mejoras={!!json_encode($mejoras)!!};
 var cargaPequeñas={!!json_encode($cargaPequeñas)!!};
 var cargaMedianas={!!json_encode($cargaMedianas)!!};
 var cargaGrandes={!!json_encode($cargaGrandes)!!};
+var cargaEnormes={!!json_encode($cargaEnorme)!!};
+var cargaMegas={!!json_encode($cargaMega)!!};
 
 var armasLigeras={!!json_encode($armasLigeras)!!};
 var armasMedias={!!json_encode($armasMedias)!!};
@@ -1006,6 +1014,8 @@ var armas={
     cargaPequeña:cargaPequeñas,
     cargaMediana:cargaMedianas,
     cargaGrande:cargaGrandes,
+    cargaEnorme:cargaEnormes,
+    cargaDMega:cargaMegas,
 
     armasLigera:armasLigeras,
     armasMedia:armasMedias,
@@ -1091,11 +1101,12 @@ var armas={
 
     //////////// superformula de calculo total /// $diseño->cualidades->armasInsertadas
 
-var armas={!!json_encode($armas)!!};
+var armasL={!!json_encode($armas)!!};
 var cualidadesFuselaje={!!json_encode($diseño->cualidades)!!};
 var costesFuselaje={!!json_encode($diseño->costos)!!};
 var constantesI={!!json_encode($constantesI)!!};
 var investigaciones={!!json_encode($investigaciones)!!};
+var tnave= {!!json_encode($diseño->tnave)!!};
 
 function calculoTotal(){
 
@@ -1123,14 +1134,15 @@ var cualidades={
 
 
 
+
 // añado energia
 elemento='motor';
 armas[elemento].forEach(function(e) {
     if (e>0){
-        var obj=$.grep(armas, function(obj){return obj.codigo == e;})[0];
-        var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor'];
-        var nivelInv=$investigaciones[obj['clase']];
-        cualidades['energia']+=  (1+miConstanteI)*nivelInv;
+        var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
+        var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
+        var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
+        cualidades['energia']+=  (1+miConstanteI)*nivelInv*tnave*cualidadesFuselaje['energia'];
     }
 
         });
