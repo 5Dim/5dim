@@ -862,9 +862,9 @@ class Fuselajes extends Model
             case "REMOLCADOR":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
-            $fuselaje->tamaño="pesada";
+            $fuselaje->tamaño="masiva";
             $fuselaje->tipo="nave";
-            $fuselaje->tnave="3";
+            $fuselaje->tnave="5";
             $fuselaje->categoria="prediseñada";
             array_push($fuselajes, $fuselaje);
             break;
