@@ -33,19 +33,19 @@
                                 Carga
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. de cazas
+                                H. cazas
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. de ligeras
+                                H. ligeras
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. de medias
+                                H. medias
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. de pesadas
+                                H. pesadas
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. de estaciones
+                                H. estaciones
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
