@@ -21,48 +21,52 @@
                             <img class="rounded" data-skin="1" id ="imagen{{$fuselaje->id}}" src="{{ asset('img/fotos naves/skin1/naveMT' . $fuselaje->id . '.jpg') }}" width="180" height="119">
 
                         </td>
-                        <td class="anchofijo text-warning borderless">Carga pequeña</td>
-                        <td class="anchofijo text-warning borderless">Carga media</td>
-                        <td class="anchofijo text-warning borderless">Carga grande</td>
-                        <td class="anchofijo text-warning borderless">Mejoras</td>
-                        <td class="anchofijo text-warning borderless">Blindaje</td>
-                        <td class="anchofijo text-warning borderless">Energía</td>
-                        <td class="anchofijo text-warning borderless">Cañón ligero</td>
-                        <td class="anchofijo text-warning borderless">Cañón medio</td>
-                        <td class="anchofijo text-warning borderless">Cañón pesado</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaPequeña > 0 ? 'warning' : 'muted' }} borderless">Carga pequeña</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'warning' : 'muted' }} borderless">Carga media</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga grande</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga Enorme</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga Mega</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'warning' : 'muted' }} borderless">Mejoras</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'warning' : 'muted' }} borderless">Blindaje</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'warning' : 'muted' }} borderless">Cañón ligero</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasMedias > 0 ? 'warning' : 'muted' }} borderless">Cañón medio</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'warning' : 'muted' }} borderless">Cañón pesado</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->cargaPequeña }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->cargaMedia }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->mejoras }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->blindajes }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->energia }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasLigeras }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasMedias }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasPesadas }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaPequeña > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaPequeña }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaMedia }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->mejoras }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->blindajes }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasLigeras }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasMedias > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasMedias }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasPesadas }}</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-warning borderless">Velocidad</td>
-                        <td class="anchofijo text-warning borderless">Velocidad max</td>
-                        <td class="anchofijo text-warning borderless">Motores</td>
-                        <td class="anchofijo text-warning borderless">Fuel</td>
-                        <td class="anchofijo text-warning borderless">Mantenimiento</td>
-                        <td class="anchofijo text-warning borderless">Tiempo</td>
-                        <td class="anchofijo text-warning borderless">Cañón insertado</td>
-                        <td class="anchofijo text-warning borderless">Bombas</td>
-                        <td class="anchofijo text-warning borderless">Misiles</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->velocidad > 0 ? 'warning' : 'muted' }} borderless">Velocidad</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'warning' : 'muted' }} borderless">Velocidad max</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'warning' : 'muted' }} borderless">Motores</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->energia > 0 ? 'warning' : 'muted' }} borderless">Energía</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->gastoFuel > 0 ? 'warning' : 'muted' }} borderless">Fuel</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->mantenimiento > 0 ? 'warning' : 'muted' }} borderless">Mantenimiento</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->tiempo > 0 ? 'warning' : 'muted' }} borderless">Tiempo</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'warning' : 'muted' }} borderless">Cañón insertado</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasBombas > 0 ? 'warning' : 'muted' }} borderless">Bombas</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'warning' : 'muted' }} borderless">Misiles</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->velocidad }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->velocidadMax }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->motores }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->gastoFuel }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->mantenimiento }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->tiempo }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasInsertadas }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasBombas }}</td>
-                        <td class="anchofijo text-light borderless">{{ $fuselaje->cualidades->armasMisiles }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->velocidad > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->velocidad }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->velocidadMax }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->motores }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->energia > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->energia }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->gastoFuel > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->gastoFuel }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->mantenimiento > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->mantenimiento }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->tiempo > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->tiempo }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasInsertadas }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasBombas > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasBombas }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasMisiles }}</td>
                     </tr>
                 </table>
             </div>

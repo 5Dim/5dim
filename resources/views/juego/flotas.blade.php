@@ -33,16 +33,19 @@
                                 Capacidad de carga
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangares de cazas
+                                Hangar de cazas
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangares de ligeras
+                                Hangar de ligeras
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangares de medias
+                                Hangar de medias
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Hangares de estaciones
+                                Hangar de pesadas
+                            </th>
+                            <th class="anchofijo text-warning align-middle">
+                                Hangar de estaciones
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
@@ -79,6 +82,9 @@
                             </td>
                             <td class="anchofijo text-light align-middle">
                                 1
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                0
                             </td>
                             <td class="anchofijo text-light align-middle">
                                 0
