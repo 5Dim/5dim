@@ -14,8 +14,8 @@ class AddArmasIdToCostesArmas extends Migration
     public function up()
     {
         Schema::table('costes_armas', function (Blueprint $table) {
-            $table->integer('armas_id')->unsigned();
-            $table->foreign('armas_id')->references('id')->on('armas');
+            $table->integer('armas_codigo')->unsigned();
+            $table->foreign('armas_codigo')->references('codigo')->on('armas');
         });
     }
 
@@ -27,8 +27,8 @@ class AddArmasIdToCostesArmas extends Migration
     public function down()
     {
         Schema::table('costes_armas', function (Blueprint $table) {
-            $table->dropforeign(['armas_id']);
-            $table->dropColumn('armas_id');
+            $table->dropforeign(['armas_codigo']);
+            $table->dropColumn('armas_codigo');
         });
     }
 }
