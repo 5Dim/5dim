@@ -38,37 +38,43 @@
                     <td class="anchofijo text-warning borderless">
                         Personal
                     </td>
+                    <td class="anchofijo text-warning borderless">
+                        Carga
+                    </td>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-light borderless">
+                    <td id="mineralD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->mineral, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="cristalD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->cristal, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="gasD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->gas, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="ceramicaD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->plastico, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="plasticoD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->ceramica, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="liquidoD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->liquido, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="microsD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->micros, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="fuelD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->cualidades->gastoFuel, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="municionD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="personalD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->personal, 0,",",".") }}
+                    </td>
+                    <td id="cargaD" class="anchofijo text-light borderless">
+                        0
                     </td>
                 </tr>
                 <tr>
@@ -91,9 +97,6 @@
                         Velocidad
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        Carga
-                    </td>
-                    <td class="anchofijo text-warning borderless">
                         Hangar cazas
                     </td>
                     <td class="anchofijo text-warning borderless">
@@ -102,36 +105,45 @@
                     <td class="anchofijo text-warning borderless">
                         Hangar medias
                     </td>
+                    <td class="anchofijo text-warning borderless">
+                        Hangar pesadas
+                    </td>
+                    <td class="anchofijo text-warning borderless">
+                        Hangar estación
+                    </td>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-light borderless">
+                    <td id="energiaD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->cualidades->energia, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="tiempoD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->cualidades->tiempo, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="mantenimientoD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->cualidades->mantenimiento, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="ataqueD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="defensaD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="velocidadD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->cualidades->velocidad, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="cargaPequeñaD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->cualidades->cargaPequeña, 0,",",".") }}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="cargaMedianaD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="CargaGrandeD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    <td id="cargaEnormeD" class="anchofijo text-light borderless">
+                        0
+                    </td>
+                    <td id="CargaMegaD" class="anchofijo text-light borderless">
                         0
                     </td>
                 </tr>

@@ -1055,18 +1055,18 @@ var armas={
         // data-toggle="tooltip" data-placement="auto" title=""
 
 
-            // creando el slider
-            var slider = document.getElementById('slider-color');
+        // creando el slider
+        var slider = document.getElementById('slider-color');
 
-                noUiSlider.create(slider, {
-                    start: {!!json_encode($arrayStart)!!},
-                    connect: {!!json_encode($arrayConnect)!!},
+        noUiSlider.create(slider, {
+                start: {!!json_encode($arrayStart)!!},
+                connect: {!!json_encode($arrayConnect)!!},
 
-                range: {
-                    'min': [  0 ],
-                    'max': [ 100 ]
-                }
-            });
+            range: {
+                'min': [  0 ],
+                'max': [ 100 ]
+            }
+        });
 
             var classes = {!!json_encode($arrayCss)!!};
 
@@ -1076,9 +1076,9 @@ var armas={
 
             //tooltip de slider
 
-            var arrayTooltip={!!json_encode($arrayTooltip)!!};
-            var a=1;
-            arrayTooltip.forEach(function(n){
+        var arrayTooltip={!!json_encode($arrayTooltip)!!};
+        var a=1;
+        arrayTooltip.forEach(function(n){
                 a++;
                 if(a==2){
                     $("#slider-color > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").prop("data-toggle","tooltip");
@@ -1094,9 +1094,7 @@ var armas={
 
         ///
     /*
-    function cambiaInvest(invest){
-        $(".armasI").prop('class','rounded armasI '+invest);
-    }
+    function cambiaInvest(invest){ $(".armasI").prop('class','rounded armasI '+invest);  }
     */
 
     //////////// superformula de calculo total /// $diseño->cualidades->armasInsertadas
@@ -1107,8 +1105,6 @@ var costesFuselaje={!!json_encode($diseño->costos)!!};
 var constantesI={!!json_encode($constantesI)!!};
 var investigaciones={!!json_encode($investigaciones)!!};
 var tnave= {!!json_encode($diseño->tnave)!!};
-
-function calculoTotal(){
 
 
 var costesFuselajes={
@@ -1127,30 +1123,73 @@ var cualidades={
     energia:0,
     tiempo:0,
     mantenimiento:0,
+    ataque:0,
     defensa:0,
     velocidad:0,
-    gastoFuel:0,
-}
+    cargaPequeña:0,
+    cargaMediana:0,
+    cargaGrande:0,
+    cargaEnorme:0,
+    cargaMega:0,
+};
 
+function calculoTotal(){
 
+costesFuselajes={
+    mineral:0,
+    cristal:0,
+    gas:0,
+    plastico:0,
+    ceramica:0,
+    liquido:0,
+    micros:0,
+    personal:0,
+};
+
+cualidades={
+    masa:0,
+    energia:0,
+    tiempo:0,
+    mantenimiento:0,
+    ataque:0,
+    defensa:0,
+    velocidad:0,
+    cargaPequeña:0,
+    cargaMediana:0,
+    cargaGrande:0,
+    cargaEnorme:0,
+    cargaMega:0,
+};
 
 
 // añado energia
 elemento='motor';
-armas[elemento].forEach(function(e) {
+$.each( armas[elemento], function( key, e ) {
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
         var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
         var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-        cualidades['energia']+=  (1+miConstanteI)*nivelInv*tnave*cualidadesFuselaje['energia'];
+        cualidades['energia']= 100000* (1+miConstanteI)*nivelInv*tnave*cualidadesFuselaje['energia'];
     }
 
         });
 
-
+mostrarResultado();
     }
 
+function mostrarResultado(){
 
+    $.each( costesFuselajes, function( key, value ) {
+        $("#"+key+"D").text(value);
+    })
+    $.each( cualidades, function( key, value ) {
+        $("#"+key+"D").text(value);
+    })
+
+
+
+
+}
 
 
         </script>
