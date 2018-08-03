@@ -14,7 +14,7 @@ class AddArmasIdToCostesArmas extends Migration
     public function up()
     {
         Schema::table('costes_armas', function (Blueprint $table) {
-            $table->integer('armas_codigo')->unsigned();
+            $table->integer('armas_codigo');
             $table->foreign('armas_codigo')->references('codigo')->on('armas');
         });
     }
