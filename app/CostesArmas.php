@@ -15,8 +15,8 @@ class CostesArmas extends Model
         /// construcciones y produccion
         $fcmot=10;  //factor corrector costos motor
 
-                $coste =new costesArmas();
-                $coste->codigo_armas="59";  //motor quimico
+                $coste =new CostesArmas();
+                $coste->armas_codigo="59";  //motor quimico
                 $coste->mineral=2000*$fcmot;
                 $coste->cristal=1500*$fcmot;
                 $coste->gas=1000*$fcmot;
@@ -43,8 +43,8 @@ class CostesArmas extends Model
                 $coste->cargaMega=0;
                 array_push($costes, $coste);
 
-                $coste =new costesArmas();
-                $coste->codigo_armas="60"; //motor nuk
+                $coste =new CostesArmas();
+                $coste->armas_codigo="60"; //motor nuk
                 $coste->mineral=3000*$fcmot;
                 $coste->cristal=2500*$fcmot;
                 $coste->gas=2000*$fcmot;
@@ -71,8 +71,8 @@ class CostesArmas extends Model
                 $coste->cargaMega=0;
                 array_push($costes, $coste);
 
-                $coste =new costesArmas();
-                $coste->codigo_armas="61"; //motor ion
+                $coste =new CostesArmas();
+                $coste->armas_codigo="61"; //motor ion
                 $coste->mineral=8000*$fcmot;
                 $coste->cristal=7000*$fcmot;
                 $coste->gas=6000*$fcmot;
@@ -99,8 +99,8 @@ class CostesArmas extends Model
                 $coste->cargaMega=0;
                 array_push($costes, $coste);
 
-                $coste =new costesArmas();
-                $coste->codigo_armas="62"; //motor plasma
+                $coste =new CostesArmas();
+                $coste->armas_codigo="62"; //motor plasma
                 $coste->mineral=500*$fcmot;
                 $coste->cristal=1000*$fcmot;
                 $coste->gas=2000*$fcmot;
@@ -127,8 +127,8 @@ class CostesArmas extends Model
                 $coste->cargaMega=0;
                 array_push($costes, $coste);
 
-                $coste =new costesArmas();
-                $coste->codigo_armas="63"; //motor MA
+                $coste =new CostesArmas();
+                $coste->armas_codigo="63"; //motor MA
                 $coste->mineral=4500*$fcmot;
                 $coste->cristal=3500*$fcmot;
                 $coste->gas=2500*$fcmot;
@@ -155,8 +155,8 @@ class CostesArmas extends Model
                 $coste->cargaMega=0;
                 array_push($costes, $coste);
 
-                $coste =new costesArmas();
-                $coste->codigo_armas="64"; //motor HMA
+                $coste =new CostesArmas();
+                $coste->armas_codigo="64"; //motor HMA
                 $coste->mineral=1000*$fcmot;
                 $coste->cristal=2000*$fcmot;
                 $coste->gas=3000*$fcmot;
