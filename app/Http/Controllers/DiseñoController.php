@@ -19,6 +19,8 @@ use App\Investigaciones;
 use Auth;
 use App\Fuselajes;
 use App\Armas;
+use App\CostesArmas;
+use App\CostesFuselajes;
 
 class DiseñoController extends Controller
 {
@@ -111,8 +113,9 @@ class DiseñoController extends Controller
         $armas = Armas::all();
 
         $constantesI=Constantes::where('tipo','investigacion')->get();
+        $costesArmas = CostesArmas::all();
 
 
-        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones','armas','constantesI'));
+        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones','armas','constantesI','costesArmas'));
     }
 }

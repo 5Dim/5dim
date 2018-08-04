@@ -989,7 +989,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
 
     <script>
 
-// pasar armas a huecos
+
 
 var motores={!!json_encode($motores)!!};
 var blindajes={!!json_encode($blindajes)!!};
@@ -1006,6 +1006,8 @@ var armasPesadas={!!json_encode($armasPesadas)!!};
 var armasInsertadas={!!json_encode($armasInsertadas)!!};
 var armasMisiles={!!json_encode($armasMisiles)!!};
 var armasBombas={!!json_encode($armasBombas)!!};
+
+var costesArmas={!!json_encode($costesArmas)!!};
 
 var armas={
     motor:motores,
@@ -1025,7 +1027,8 @@ var armas={
     armasBomba:armasBombas,
 }
 
-///    $("#armasLigeras3").prop('class','invesPlasma');
+
+// pasar armas a huecos
 
     function encajar(elemento,id,qhago){
         if (qhago=='añade'){
@@ -1047,6 +1050,8 @@ var armas={
             $('#'+ elemento + n).attr("src", img);
             n++;
         });
+
+        calculoTotalR();
     }
 
 
@@ -1101,13 +1106,14 @@ var armas={
 
 var armasL={!!json_encode($armas)!!};
 var cualidadesFuselaje={!!json_encode($diseño->cualidades)!!};
-var costesFuselaje={!!json_encode($diseño->costos)!!};
+var costesFuselaje={!!json_encode($diseño->costes)!!};
 var constantesI={!!json_encode($constantesI)!!};
 var investigaciones={!!json_encode($investigaciones)!!};
 var tnave= {!!json_encode($diseño->tnave)!!};
+var costesArmas= {!!json_encode($costesArmas)!!};
 
 
-var costesFuselajes={
+var costesDiseño={
     mineral:0,
     cristal:0,
     gas:0,
@@ -1133,17 +1139,17 @@ var cualidades={
     cargaMega:0,
 };
 
-function calculoTotal(){
+function calculoTotalR(){
 
-costesFuselajes={
-    mineral:0,
-    cristal:0,
-    gas:0,
-    plastico:0,
-    ceramica:0,
-    liquido:0,
-    micros:0,
-    personal:0,
+costesDiseño={
+    mineral:costesFuselaje['mineral'],
+    cristal:costesFuselaje['cristal'],
+    gas:costesFuselaje['gas'],
+    plastico:costesFuselaje['plastico'],
+    ceramica:costesFuselaje['ceramica'],
+    liquido:costesFuselaje['liquido'],
+    micros:costesFuselaje['micros'],
+    personal:costesFuselaje['personal'],
 };
 
 cualidades={
@@ -1167,9 +1173,12 @@ elemento='motor';
 $.each( armas[elemento], function( key, e ) {
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
+        var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.id == obj['id'];})[0]; // busca costes este objeto entre las armas
         var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
         var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-        cualidades['energia']= 100000* (1+miConstanteI)*nivelInv*tnave*cualidadesFuselaje['energia'];
+        //cualidades['energia']= 1* (1+miConstanteI)*nivelInv*tnave*cualidadesFuselaje['energia'];
+        cte=(1+miConstanteI)*nivelInv*tnave;
+        sumaCostos(cte,costeobj);
     }
 
         });
@@ -1177,9 +1186,22 @@ $.each( armas[elemento], function( key, e ) {
 mostrarResultado();
     }
 
+function sumaCostos(cte,esteCosto){
+    costesDiseño['mineral']+=esteCosto['mineral']*cte;
+    costesDiseño['cristal']+=esteCosto['cristal']*cte;
+    costesDiseño['gas']+=esteCosto['gas']*cte;
+    costesDiseño['plastico']+=esteCosto['plastico']*cte;
+    costesDiseño['ceramica']+=esteCosto['ceramica']*cte;
+    costesDiseño['liquido']+=esteCosto['liquido']*cte;
+    costesDiseño['micros']+=esteCosto['micros']*cte;
+    costesDiseño['personal']+=esteCosto['personal']*cte;
+
+
+}
+
 function mostrarResultado(){
 
-    $.each( costesFuselajes, function( key, value ) {
+    $.each( costesDiseño, function( key, value ) {
         $("#"+key+"D").text(value);
     })
     $.each( cualidades, function( key, value ) {

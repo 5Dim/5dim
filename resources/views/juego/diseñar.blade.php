@@ -11,6 +11,7 @@
                 'investigaciones'=>$investigaciones,
                 'armas'=>$armas,
                 'constantesI'=>$constantesI,
+                'costesArmas'=>$costesArmas,
             ])
             @include ('juego.tablaDaños', [
                 'diseño' => $diseño,
