@@ -79,80 +79,80 @@ $cantidadMejoras=$diseño->cualidades->mejoras;
 $multiplicadormejoras=1;
 
 $cantidadCLigeras=$diseño->cualidades->armasLigeras;
-$multiplicador=1;
+$multiplicadorCLigeras=1;
 if ($cantidadCLigeras>6){
     $cantidadCLigeras=celdasMaximas(6,$cantidadCLigeras);
-    $multiplicador=($diseño->cualidades->armasLigeras/$cantidadCLigeras);
+    $multiplicadorCLigeras=($diseño->cualidades->armasLigeras/$cantidadCLigeras);
 }
 
 $cantidadCMedias=$diseño->cualidades->armasMedias;
-$multiplicador=1;
+$multiplicadorCMedias=1;
 if ($cantidadCMedias>6){
     $cantidadCMedias=celdasMaximas(6,$cantidadCMedias);
-    $multiplicador=ceil ($diseño->cualidades->armasMedias/$cantidadCMedias);
+    $multiplicadorCMedias=ceil ($diseño->cualidades->armasMedias/$cantidadCMedias);
 }
 
 $cantidadCPesadas=$diseño->cualidades->armasPesadas;
-$multiplicador=1;
+$multiplicadorCPesadas=1;
 if ($cantidadCPesadas>6){
     $cantidadCPesadas=celdasMaximas(6,$cantidadCPesadas);
-    $multiplicador=($diseño->cualidades->armasPesadas/$cantidadCPesadas);
+    $multiplicadorCPesadas=($diseño->cualidades->armasPesadas/$cantidadCPesadas);
 }
 
 $cantidadCInsertadas=$diseño->cualidades->armasInsertadas;
-$multiplicador=1;
+$multiplicadorCInsertadas=1;
 if ($cantidadCInsertadas>6){
     $cantidadCInsertadas=celdasMaximas(6,$cantidadCInsertadas);
-    $multiplicador=($diseño->cualidades->armasInsertadas/$cantidadCInsertadas);
+    $multiplicadorCInsertadas=($diseño->cualidades->armasInsertadas/$cantidadCInsertadas);
 }
 
 $cantidadCMisiles=$diseño->cualidades->armasMisiles;
-$multiplicador=1;
+$multiplicadorCMisiles=1;
 if ($cantidadCMisiles>6){
     $cantidadCMisiles=celdasMaximas(6,$cantidadCMisiles);
-    $multiplicador=($diseño->cualidades->armasMisiles/$cantidadCMisiles);
+    $multiplicadorCMisiles=($diseño->cualidades->armasMisiles/$cantidadCMisiles);
 }
 
 $cantidadCBombas=$diseño->cualidades->armasBombas;
-$multiplicador=1;
+$multiplicadorCBombas=1;
 if ($cantidadCBombas>6){
     $cantidadCBombas=celdasMaximas(6,$cantidadCBombas);
-    $multiplicador=($diseño->cualidades->armasBombas/$cantidadCBombas);
+    $multiplicadorCBombas=($diseño->cualidades->armasBombas/$cantidadCBombas);
 }
 
 $cantidadCargaPequeña=$diseño->cualidades->cargaPequeña;
-$multiplicador=1;
+$multiplicadorCargaPequeña=1;
 if ($cantidadCargaPequeña>$filasCarga){
     $cantidadCargaPequeña=celdasMaximas($filasCarga,$cantidadCargaPequeña);
-    $multiplicador=($diseño->cualidades->cargaPequeña/$cantidadCargaPequeña);
+    $multiplicadorCargaPequeña=($diseño->cualidades->cargaPequeña/$cantidadCargaPequeña);
 }
 
 $cantidadCargaMedia=$diseño->cualidades->cargaMedia;
-$multiplicador=1;
+$multiplicadorCargaMedia=1;
 if ($cantidadCargaMedia>$filasCarga){
 $cantidadCargaMedia=celdasMaximas($filasCarga,$cantidadCargaMedia);
-$multiplicador=ceil ($diseño->cualidades->cargaMedia/$cantidadCargaMedia);
+$multiplicadorCargaMedia=ceil ($diseño->cualidades->cargaMedia/$cantidadCargaMedia);
 }
 
 $cantidadCargaGrande=$diseño->cualidades->cargaGrande;
-$multiplicador=1;
+$multiplicadorCargaGrande=1;
 if ($cantidadCargaGrande>$filasCarga){
 $cantidadCargaGrande=celdasMaximas($filasCarga,$cantidadCargaGrande);
-$multiplicador=($diseño->cualidades->cargaGrande/$cantidadCargaGrande);
+$multiplicadorCargaGrande=($diseño->cualidades->cargaGrande/$cantidadCargaGrande);
 }
 
 $cantidadCargaEnorme=$diseño->cualidades->cargaEnorme;
-$multiplicador=1;
+$multiplicadorCargaEnorme=1;
 if ($cantidadCargaEnorme>$filasCarga){
 $cantidadCargaEnorme=celdasMaximas($filasCarga,$cantidadCargaEnorme);
-$multiplicador=($diseño->cualidades->cargaEnorme/$cantidadCargaEnorme);
+$multiplicadorCargaEnorme=($diseño->cualidades->cargaEnorme/$cantidadCargaEnorme);
 }
 
 $cantidadCargaMega=$diseño->cualidades->cargaMega;
-$multiplicador=1;
+$multiplicadorCargaMega=1;
 if ($cantidadCargaMega>$filasCarga){
 $cantidadCargaMega=celdasMaximas($filasCarga,$cantidadCargaMega);
-$multiplicador=($diseño->cualidades->cargaMega/$cantidadCargaMega);
+$multiplicadorCargaMega=($diseño->cualidades->cargaMega/$cantidadCargaMega);
 }
 
 //arrays que vienen
@@ -580,7 +580,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasLigeras"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicador}}   Cañones Ligeros
+                                                    x{{$multiplicadorCLigeras}}   Cañones Ligeros
                                             </td>
 
                                         <script>
@@ -623,7 +623,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasMedias"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicador}}   Cañones Medios
+                                                    x{{$multiplicadorCMedias}}   Cañones Medios
                                             </td>
 
                                         <script>
@@ -666,7 +666,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasPesadas"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicador}}   Cañones Pesados
+                                                    x{{$multiplicadorCPesadas}}   Cañones Pesados
                                             </td>
 
                                         <script>
@@ -709,7 +709,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasInsertadas"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicador}}   Cañones insertados
+                                                    x{{$multiplicadorCInsertadas}}   Cañones insertados
                                             </td>
 
                                         <script>
@@ -752,7 +752,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionarmasMisiles"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicador}}   Misiles
+                                                    x{{$multiplicadorCMisiles}}   Misiles
                                             </td>
 
                                         <script>
@@ -795,7 +795,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasBombas"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicador}}   Bombas
+                                                    x{{$multiplicadorCBombas}}   Bombas
                                             </td>
 
                                         <script>
@@ -900,7 +900,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                             </td>
                                                         @endfor
                                                             <td class="text-warning align-middle">
-                                                                    x{{$multiplicador}}   Carga pequeña
+                                                                    x{{$multiplicadorCargaPequeña}}   Carga pequeña
                                                             </td>
 
                                                     @endif
@@ -916,7 +916,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                             </td>
                                                         @endfor
                                                             <td class="text-warning align-middle">
-                                                                    x{{$multiplicador}}   Carga mediana
+                                                                    x{{$multiplicadorCargaMedia}}   Carga mediana
                                                             </td>
                                                     @endif
                                                 </tr>
@@ -930,7 +930,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                             </td>
                                                         @endfor
                                                             <td class="text-warning align-middle">
-                                                                    x{{$multiplicador}}   Carga grande
+                                                                    x{{$multiplicadorCargaGrande}}   Carga grande
                                                             </td>
                                                     @endif
                                                 </tr>
@@ -945,7 +945,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                             </td>
                                                         @endfor
                                                             <td class="text-warning align-middle">
-                                                                    x{{$multiplicador}}   Carga Enorme
+                                                                    x{{$multiplicadorCargaEnorme}}   Carga Enorme
                                                             </td>
                                                     @endif
                                                 </tr>
@@ -960,7 +960,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                             </td>
                                                         @endfor
                                                             <td class="text-warning align-middle">
-                                                                    x{{$multiplicador}}   Carga Mega
+                                                                    x{{$multiplicadorCargaMega}}   Carga Mega
                                                             </td>
                                                     @endif
                                                 </tr>
@@ -1007,7 +1007,6 @@ var armasInsertadas={!!json_encode($armasInsertadas)!!};
 var armasMisiles={!!json_encode($armasMisiles)!!};
 var armasBombas={!!json_encode($armasBombas)!!};
 
-var costesArmas={!!json_encode($costesArmas)!!};
 
 var armas={
     motor:motores,
@@ -1110,7 +1109,7 @@ var costesFuselaje={!!json_encode($diseño->costes)!!};
 var constantesI={!!json_encode($constantesI)!!};
 var investigaciones={!!json_encode($investigaciones)!!};
 var tnave= {!!json_encode($diseño->tnave)!!};
-var costesArmas= {!!json_encode($costesArmas)!!};
+
 
 
 var costesDiseño={
@@ -1139,7 +1138,19 @@ var cualidades={
     cargaMega:0,
 };
 
+var multiplicadorMotores={{$multiplicadorMotores}};
+var multiplicadorblindajes={{$multiplicadorblindajes}};
+var multiplicadormejoras={{$multiplicadormejoras}};
+var multiplicadorCLigeras={{$multiplicadorCLigeras}};
+var multiplicadorCMedias={{$multiplicadorCMedias}};
+var multiplicadorCPesadas={{$multiplicadorCPesadas}};
+var multiplicadorCInsertadas={{$multiplicadorCInsertadas}};
+var multiplicadorCMisiles={{$multiplicadorCMisiles}};
+var multiplicadorCBombas={{$multiplicadorCBombas}};
+
 function calculoTotalR(){
+
+costesArmas= {!!json_encode($costesArmas)!!};
 
 costesDiseño={
     mineral:costesFuselaje['mineral'],
@@ -1153,6 +1164,8 @@ costesDiseño={
 };
 
 cualidades={
+    fuel:0,
+    municion:0,
     masa:0,
     energia:0,
     tiempo:0,
@@ -1160,6 +1173,143 @@ cualidades={
     ataque:0,
     defensa:0,
     velocidad:0,
+    cargaPequeña:0,
+    cargaMediana:0,
+    cargaGrande:0,
+    cargaEnorme:0,
+    cargaMega:0,
+};
+
+
+costesMisMotores={
+    mineral:0,
+    cristal:0,
+    gas:0,
+    plastico:0,
+    ceramica:0,
+    liquido:0,
+    micros:0,
+    personal:0,
+    fuel:0,
+    ma:0,
+    municion:0,
+    masa:0,
+    energia:0,
+    tiempo:0,
+    mantenimiento:0,
+    defensa:0,
+    ataque:0,
+    velocidad:0,
+    carga:0,
+    cargaPequeña:0,
+    cargaMediana:0,
+    cargaGrande:0,
+    cargaEnorme:0,
+    cargaMega:0,
+};
+
+
+costesMisMejoras={
+    mineral:0,
+    cristal:0,
+    gas:0,
+    plastico:0,
+    ceramica:0,
+    liquido:0,
+    micros:0,
+    personal:0,
+    fuel:0,
+    ma:0,
+    municion:0,
+    masa:0,
+    energia:0,
+    tiempo:0,
+    mantenimiento:0,
+    defensa:0,
+    ataque:0,
+    velocidad:0,
+    carga:0,
+    cargaPequeña:0,
+    cargaMediana:0,
+    cargaGrande:0,
+    cargaEnorme:0,
+    cargaMega:0,
+};
+
+costesMisCargas={
+    mineral:0,
+    cristal:0,
+    gas:0,
+    plastico:0,
+    ceramica:0,
+    liquido:0,
+    micros:0,
+    personal:0,
+    fuel:0,
+    ma:0,
+    municion:0,
+    masa:0,
+    energia:0,
+    tiempo:0,
+    mantenimiento:0,
+    defensa:0,
+    ataque:0,
+    velocidad:0,
+    carga:0,
+    cargaPequeña:0,
+    cargaMediana:0,
+    cargaGrande:0,
+    cargaEnorme:0,
+    cargaMega:0,
+};
+
+
+costesMisArmas={
+    mineral:0,
+    cristal:0,
+    gas:0,
+    plastico:0,
+    ceramica:0,
+    liquido:0,
+    micros:0,
+    personal:0,
+    fuel:0,
+    ma:0,
+    municion:0,
+    masa:0,
+    energia:0,
+    tiempo:0,
+    mantenimiento:0,
+    defensa:0,
+    ataque:0,
+    velocidad:0,
+    carga:0,
+    cargaPequeña:0,
+    cargaMediana:0,
+    cargaGrande:0,
+    cargaEnorme:0,
+    cargaMega:0,
+};
+costesMisBlindajes={
+    mineral:0,
+    cristal:0,
+    gas:0,
+    plastico:0,
+    ceramica:0,
+    liquido:0,
+    micros:0,
+    personal:0,
+    fuel:0,
+    ma:0,
+    municion:0,
+    masa:0,
+    energia:0,
+    tiempo:0,
+    mantenimiento:0,
+    defensa:0,
+    ataque:0,
+    velocidad:0,
+    carga:0,
     cargaPequeña:0,
     cargaMediana:0,
     cargaGrande:0,
@@ -1176,40 +1326,73 @@ $.each( armas[elemento], function( key, e ) {
         var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.id == obj['id'];})[0]; // busca costes este objeto entre las armas
         var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
         var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-        //cualidades['energia']= 1* (1+miConstanteI)*nivelInv*tnave*cualidadesFuselaje['energia'];
-        cte=(1+miConstanteI)*nivelInv*tnave;
-        sumaCostos(cte,costeobj);
+        sumaCostos(costesMisMotores,multiplicadorMotores,costeobj);// sumo recursos basicos
+        var cte=(1+miConstanteI)*nivelInv*tnave; //lo que varia por nivel de tecno
+        costeobj['energia']=costeobj['energia']*cte; //lo q mejora por esos niveles
+        sumaCualidades(costesMisMotores,multiplicadorMotores,costeobj);
     }
 
-        });
+});
+
+
+
+//suma de todos los costes:
+cte=1;
+sumaCostos(costesDiseño,cte,costesMisMotores);
+sumaCostos(costesDiseño,cte,costesMisBlindajes);
+sumaCostos(costesDiseño,cte,costesMisArmas);
+sumaCostos(costesDiseño,cte,costesMisCargas);
+sumaCostos(costesDiseño,cte,costesMisMejoras);
+
+sumaCualidades(cualidades,cte,costesMisMotores);
+sumaCualidades(cualidades,cte,costesMisBlindajes);
+sumaCualidades(cualidades,cte,costesMisArmas);
+sumaCualidades(cualidades,cte,costesMisCargas);
+sumaCualidades(cualidades,cte,costesMisMejoras);
+
 
 mostrarResultado();
     }
 
-function sumaCostos(cte,esteCosto){
-    costesDiseño['mineral']+=esteCosto['mineral']*cte;
-    costesDiseño['cristal']+=esteCosto['cristal']*cte;
-    costesDiseño['gas']+=esteCosto['gas']*cte;
-    costesDiseño['plastico']+=esteCosto['plastico']*cte;
-    costesDiseño['ceramica']+=esteCosto['ceramica']*cte;
-    costesDiseño['liquido']+=esteCosto['liquido']*cte;
-    costesDiseño['micros']+=esteCosto['micros']*cte;
-    costesDiseño['personal']+=esteCosto['personal']*cte;
+function sumaCostos(destinoCosto,cte,esteCosto){
+    destinoCosto['mineral']+=esteCosto['mineral']*cte;
+    destinoCosto['cristal']+=esteCosto['cristal']*cte;
+    destinoCosto['gas']+=esteCosto['gas']*cte;
+    destinoCosto['plastico']+=esteCosto['plastico']*cte;
+    destinoCosto['ceramica']+=esteCosto['ceramica']*cte;
+    destinoCosto['liquido']+=esteCosto['liquido']*cte;
+    destinoCosto['micros']+=esteCosto['micros']*cte;
+    destinoCosto['personal']+=esteCosto['personal']*cte;
+}
 
-
+function sumaCualidades(destinoCualidad,cte,esteCualidad){
+    destinoCualidad['fuel']+=esteCualidad['fuel']*cte;
+    destinoCualidad['municion']+=esteCualidad['municion']*cte;
+    destinoCualidad['masa']+=esteCualidad['masa']*cte;
+    destinoCualidad['energia']+=esteCualidad['energia']*cte;
+    destinoCualidad['tiempo']+=esteCualidad['tiempo']*cte;
+    destinoCualidad['mantenimiento']+=esteCualidad['mantenimiento']*cte;
+    destinoCualidad['defensa']+=esteCualidad['defensa']*cte;
+    destinoCualidad['ataque']+=esteCualidad['ataque']*cte;
+    destinoCualidad['velocidad']+=esteCualidad['velocidad']*cte;
+    destinoCualidad['carga']+=esteCualidad['carga']*cte;
+    destinoCualidad['cargaPequeña']+=esteCualidad['cargaPequeña']*cte;
+    destinoCualidad['cargaMediana']+=esteCualidad['cargaMediana']*cte;
+    destinoCualidad['cargaGrande']+=esteCualidad['cargaGrande']*cte;
+    destinoCualidad['cargaEnorme']+=esteCualidad['cargaEnorme']*cte;
+    destinoCualidad['cargaMega']+=esteCualidad['cargaMega']*cte;
 }
 
 function mostrarResultado(){
 
     $.each( costesDiseño, function( key, value ) {
-        $("#"+key+"D").text(value);
+        valueF=formatNumber (Math.round (value));
+        $("#"+key+"D").text(valueF);
     })
     $.each( cualidades, function( key, value ) {
-        $("#"+key+"D").text(value);
+    valueF=formatNumber (Math.round (value));
+        $("#"+key+"D").text(valueF);
     })
-
-
-
 
 }
 

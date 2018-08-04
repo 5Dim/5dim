@@ -802,7 +802,7 @@ class CostesArmas extends Model
             $coste->municion=0; //10
             $coste->personal=0; //11
             $coste->masa=0;    //12
-            $coste->energia=1;
+            $coste->energia=0;
             $coste->tiempo=1;       //14
             $coste->mantenimiento=0;
             $coste->defensa=0;
@@ -1001,7 +1001,7 @@ class CostesArmas extends Model
             $coste->municion=0; //10
             $coste->personal=0; //11
             $coste->masa=0;    //12
-            $coste->energia=1;
+            $coste->energia=0;
             $coste->tiempo=10;       //14
             $coste->mantenimiento=5;
             $coste->defensa=0;
