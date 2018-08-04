@@ -119,7 +119,7 @@
             </table>
         </div>
         <div id="menuRecursos" class="borderless">
-            <table class="table table-hover table-borderless table-sm text-center anchofijo borderless">
+            <table class="table table-borderless table-sm text-center anchofijo borderless">
                 <thead>
                     <tr>
                         <th class="text-warning borderless ">
@@ -224,7 +224,7 @@
                             {{ number_format($recursos->municion, 0,",",".") }}
                         </td>
                         <td class="text-warning borderless">
-                            15
+                            30.000
                         </td>
                     </tr>
                     <tr>

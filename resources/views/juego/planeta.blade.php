@@ -138,37 +138,37 @@
                         <td class="anchofijo text-warning borderless">
                             Liquidos
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
                             -{{ number_format($producciones[6]->liquido * $constantes->where('codigo', 'costoLiquido')->first()->valor, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                     </tr>
@@ -176,37 +176,37 @@
                         <td class="anchofijo text-warning borderless">
                             Micros
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
                             -{{ number_format($produccionesSinCalcular[7]->micros*$constantes->where('codigo', 'costoMicros')->first()->valor, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                     </tr>
@@ -214,37 +214,37 @@
                         <td class="anchofijo text-warning borderless">
                             Fuel
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
                             -{{ number_format($produccionesSinCalcular[8]->fuel*$constantes->where('codigo', 'costoFuel')->first()->valor, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                     </tr>
@@ -252,37 +252,37 @@
                         <td class="anchofijo text-warning borderless">
                             MA
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
                             -{{ number_format($produccionesSinCalcular[9]->ma * $constantes->where('codigo', 'costoMa')->first()->valor, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                     </tr>
@@ -290,37 +290,37 @@
                         <td class="anchofijo text-warning borderless">
                             Municion
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
                             -{{ number_format($produccionesSinCalcular[10]->municion * $constantes->where('codigo', 'costoMunicion')->first()->valor, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-light borderless">
+                        <td class="anchofijo text-muted borderless">
                             0
                         </td>
                     </tr>

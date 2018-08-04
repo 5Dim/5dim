@@ -24,8 +24,8 @@
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaPequeña > 0 ? 'warning' : 'muted' }} borderless">Carga pequeña</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'warning' : 'muted' }} borderless">Carga media</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga grande</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga Enorme</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga Mega</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'warning' : 'muted' }} borderless">Carga Enorme</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMega > 0 ? 'warning' : 'muted' }} borderless">Carga Mega</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'warning' : 'muted' }} borderless">Mejoras</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'warning' : 'muted' }} borderless">Blindaje</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'warning' : 'muted' }} borderless">Cañón ligero</td>
@@ -36,8 +36,8 @@
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaPequeña > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaPequeña }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaMedia }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaEnorme }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMega > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaMega }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->mejoras }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->blindajes }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasLigeras }}</td>

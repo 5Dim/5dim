@@ -173,6 +173,48 @@
                                 27.000
                             </td>
                         </tr>
+                        <tr>
+                            <td class="anchofijo text-warning align-middle">
+
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+
+                            </td>
+                            <td class="anchofijo text-warning align-middle">
+                                Actualmente tienes
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                30.000
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="anchofijo text-warning align-middle">
+
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+
+                            </td>
+                            <td class="anchofijo text-warning align-middle">
+                                Previsto para mañana
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                3.000
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="anchofijo text-warning align-middle">
+
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+
+                            </td>
+                            <td class="anchofijo text-warning align-middle">
+                                Tienes autonomia para
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                <span class="text-danger">1</span> dia/s
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
