@@ -19,6 +19,11 @@
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 
+    <!-- Select2 -->
+    <link href="{{ asset('css/select2/select2.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/select2/select2-bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+
+    <!-- CKEditor -->
     <link href="{{ asset('css/nouislider/nouislider.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 </head>
@@ -154,7 +159,7 @@
                             Munición
                         </th>
                         <th class="text-warning borderless ">
-                            Moneda
+                            Creditos
                         </th>
                     </tr>
                 </thead>
@@ -396,6 +401,9 @@
 
     <!-- sliders -->
     <script src="{{ asset('js/nouislider/nouislider.min.js') }}"></script>
+
+    <!-- Select2 -->
+    <script src="{{ asset('js/select2/select2.min.js') }}"></script>
 
 
     <!-- Personalizado -->

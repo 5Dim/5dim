@@ -313,10 +313,15 @@
                         </tr>
                         <tr>
                             <td class="text-light">
-                                <select name="listaPlanetas" id="orden" class="select form-control">
-                                    <option value="" selected></option>
-                                    <option value="transportar">8452x2 Tralará</option>
-                                    <option value="transportar">3541x6 Tralará</option>
+                                <select name="listaPlanetas" id="listaPlanetas" class="form-control">
+                                    @php
+                                        $planetas = Auth::user()->jugadores[0]->planetas;
+                                    @endphp
+                                    <optgroup label="Propios">
+                                        @foreach ($planetas as $planeta)
+                                            <option value="{{$planeta->id}}">{{ $planeta->estrella }}x{{ $planeta->orbita }} {{ $planeta->nombre }}</option>
+                                        @endforeach
+                                    </optgroup>
                                 </select>
                             </td>
                             <td class="text-light">
@@ -491,4 +496,15 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#listaPlanetas').select2({
+                placeholder: "Nombre del jugador",
+                theme: "bootstrap",
+                width: '100%',
+                language: "es"
+            });
+        });
+    </script>
+
 @endsection
