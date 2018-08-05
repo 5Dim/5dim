@@ -13,7 +13,7 @@ class CostesArmas extends Model
         $costes=[];
 
         /// construcciones y produccion
-        $fcmot=5;  //factor corrector costos motor
+        $fcmot=1;  //factor corrector costos motor
         $fcenermot=1; // energia que te el motor
         $fcblind=.7;  //factor corrector blindaje
         $fccc=1.5; //Factor corrector comp. de carga
@@ -49,14 +49,14 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="60"; //motor nuk
-                $coste->mineral=3000*$fcmot;
-                $coste->cristal=2500*$fcmot;
-                $coste->gas=2000*$fcmot;
-                $coste->plastico=$fcmot*1500; //4
-                $coste->ceramica=$fcmot*1200; //5
-                $coste->liquido=$fcmot*800; //6
-                $coste->micros=$fcmot*500;   //7
-                $coste->fuel=$fcmot*800;     //8
+                $coste->mineral=15000*$fcmot;
+                $coste->cristal=400*$fcmot;
+                $coste->gas=0*$fcmot;
+                $coste->plastico=$fcmot*150; //4
+                $coste->ceramica=$fcmot*2; //5
+                $coste->liquido=$fcmot*2; //6
+                $coste->micros=$fcmot*3;   //7
+                $coste->fuel=$fcmot*60;     //8
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcmot*200; //11

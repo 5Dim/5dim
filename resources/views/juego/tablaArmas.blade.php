@@ -1058,7 +1058,7 @@ var armas={
 
         // data-toggle="tooltip" data-placement="auto" title=""
 
-
+@if ($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
         // creando el slider
         var slider = document.getElementById('slider-color');
 
@@ -1095,7 +1095,7 @@ var armas={
                 }
 
             })
-
+@endif
         ///
     /*
     function cambiaInvest(invest){ $(".armasI").prop('class','rounded armasI '+invest);  }
