@@ -224,7 +224,7 @@
                             {{ number_format($recursos->municion, 0,",",".") }}
                         </td>
                         <td class="text-warning borderless">
-                            30.000
+                            {{ number_format($recursos->creditos, 0,",",".") }}
                         </td>
                     </tr>
                     <tr>
@@ -265,7 +265,7 @@
                             <span>{{ number_format($producciones[10]->municion, 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            3200 ud/d
+                            <span>{{ number_format($producciones[11]->creditos, 0,",",".") }}</span> ud/d
                         </td>
                     </tr>
                 </tbody>
@@ -414,7 +414,7 @@
         recursos.personal -= {{$personal}}
         //console.log(recursos);
         var produccion = {!! json_encode($producciones) !!};
-        //console.log(produccion);
+        console.log(produccion);
         var almacenes = {!! json_encode($almacenes) !!};
         //console.log(almacenes);
         activarIntervalo(recursos, almacenes, produccion, 250);

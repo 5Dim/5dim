@@ -151,7 +151,7 @@ class Recursos extends Model
 
         //Personal y creditos
         $recursos->personal = ($producciones[0]->personal / 3600 * $fechaCalculo) + $recursos->personal;
-        $recursos->creditos = (($numeroNiveles * $constanteCreditos) / (24 * 3600) * $fechaCalculo) + $recursos->creditos;
+        $recursos->creditos = (($numeroNiveles * 1000 * $constanteCreditos) / (24 * 3600) * $fechaCalculo) + $recursos->creditos;
 
         //Comprobamos almacenes
         $contAlmacenes = 0;

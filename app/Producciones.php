@@ -64,71 +64,79 @@ class Producciones extends Model
             }
         }
 
-        public static function calcularProducciones ($construcciones, $planetaActual, $calcular = true) {
-            $producciones = [];
+    public static function calcularProducciones ($construcciones, $planetaActual, $calcular = true) {
+        $producciones = [];
 
-            for ($i = 0 ; $i < count($construcciones) ; $i++) {
-                if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
-                    $industrias = Industrias::where('planetas_id', $planetaActual->id)->first();
-                    $industria = strtolower(substr($construcciones[$i]->codigo, 3));
-                    if ($industria == 'liquido') {
-                        if ($industrias->liquido == 1) {
-                            $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                        }else{
-                            $produccion = new Producciones;
-                            $produccion->liquido = 0;
-                        }
-                    }elseif ($industria == 'micros') {
-                        if ($industrias->micros == 1) {
-                            $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                        }else{
-                            $produccion = new Producciones;
-                            $produccion->micros = 0;
-                        }
-                    }elseif ($industria == 'fuel') {
-                        if ($industrias->fuel == 1) {
-                            $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                        }else{
-                            $produccion = new Producciones;
-                            $produccion->fuel = 0;
-                        }
-                    }elseif ($industria == 'ma') {
-                        if ($industrias->ma == 1) {
-                            $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                        }else{
-                            $produccion = new Producciones;
-                            $produccion->ma = 0;
-                        }
-                    }elseif ($industria == 'municion') {
-                        if ($industrias->municion == 1) {
-                            $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                        }else{
-                            $produccion = new Producciones;
-                            $produccion->municion = 0;
-                        }
-                    }elseif ($industria == 'personal') {
+        for ($i = 0 ; $i < count($construcciones) ; $i++) {
+            if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
+                $industrias = Industrias::where('planetas_id', $planetaActual->id)->first();
+                $industria = strtolower(substr($construcciones[$i]->codigo, 3));
+                if ($industria == 'liquido') {
+                    if ($industrias->liquido == 1) {
                         $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->liquido = 0;
                     }
-                    array_push($producciones, $produccion);
-                }elseif (substr($construcciones[$i]->codigo, 0, 4) == "mina") {
-                    $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 4)))->where('nivel', $construcciones[$i]->nivel)->first();
-                    array_push($producciones, $produccion);
+                }elseif ($industria == 'micros') {
+                    if ($industrias->micros == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->micros = 0;
+                    }
+                }elseif ($industria == 'fuel') {
+                    if ($industrias->fuel == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->fuel = 0;
+                    }
+                }elseif ($industria == 'ma') {
+                    if ($industrias->ma == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->ma = 0;
+                    }
+                }elseif ($industria == 'municion') {
+                    if ($industrias->municion == 1) {
+                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
+                    }else{
+                        $produccion = new Producciones;
+                        $produccion->municion = 0;
+                    }
+                }elseif ($industria == 'personal') {
+                    $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
                 }
+                array_push($producciones, $produccion);
+            }elseif (substr($construcciones[$i]->codigo, 0, 4) == "mina") {
+                $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 4)))->where('nivel', $construcciones[$i]->nivel)->first();
+                array_push($producciones, $produccion);
             }
+        }
 
-            if ($calcular) {
-                //Calcular gastos de producciones
-                $CConstantes=Constantes::where('tipo','construccion')->get();
+        if ($calcular) {
+            //Calcular gastos de producciones
+            $CConstantes=Constantes::where('tipo','construccion')->get();
 
-                $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
-                $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
-                $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
-                $producciones[4]->plastico -= ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
-                $producciones[5]->ceramica -= ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
-            }
-
-            return $producciones;
+            $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
+            $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
+            $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
+            $producciones[4]->plastico -= ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
+            $producciones[5]->ceramica -= ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
         }
 
 
+        //calculo de niveles totales
+        $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
+        $numeroNiveles = 0;
+        foreach ($construcciones as $construccion) {
+            $numeroNiveles += $construccion->nivel;
+        }
+        $produccion = new Producciones();
+        $produccion->creditos = $numeroNiveles * 1000 *$constanteCreditos;
+        array_push($producciones, $produccion);
+        return $producciones;
     }
+}

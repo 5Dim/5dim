@@ -25,7 +25,6 @@
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'warning' : 'muted' }} borderless">Carga media</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga grande</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'warning' : 'muted' }} borderless">Carga Enorme</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMega > 0 ? 'warning' : 'muted' }} borderless">Carga Mega</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'warning' : 'muted' }} borderless">Mejoras</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'warning' : 'muted' }} borderless">Blindaje</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'warning' : 'muted' }} borderless">Cañón ligero</td>
@@ -37,7 +36,6 @@
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaMedia }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaEnorme }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMega > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaMega }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->mejoras }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->blindajes }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasLigeras }}</td>
@@ -48,7 +46,6 @@
                         <td class="anchofijo text-{{ $fuselaje->cualidades->velocidad > 0 ? 'warning' : 'muted' }} borderless">Velocidad</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'warning' : 'muted' }} borderless">Velocidad max</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'warning' : 'muted' }} borderless">Motores</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->energia > 0 ? 'warning' : 'muted' }} borderless">Energía</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->gastoFuel > 0 ? 'warning' : 'muted' }} borderless">Fuel</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->mantenimiento > 0 ? 'warning' : 'muted' }} borderless">Mantenimiento</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->tiempo > 0 ? 'warning' : 'muted' }} borderless">Tiempo</td>
@@ -60,7 +57,6 @@
                         <td class="anchofijo text-{{ $fuselaje->cualidades->velocidad > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->velocidad }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->velocidadMax }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->motores }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->energia > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->energia }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->gastoFuel > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->gastoFuel }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->mantenimiento > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->mantenimiento }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->tiempo > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->tiempo }}</td>
