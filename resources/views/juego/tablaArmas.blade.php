@@ -1131,6 +1131,7 @@ var cualidades={
     ataque:0,
     defensa:0,
     velocidad:0,
+    carga:0,
     cargaPequeña:0,
     cargaMediana:0,
     cargaGrande:0,
@@ -1173,6 +1174,7 @@ cualidades={
     ataque:0,
     defensa:0,
     velocidad:0,
+    carga:0,
     cargaPequeña:0,
     cargaMediana:0,
     cargaGrande:0,
@@ -1321,6 +1323,9 @@ costesMisBlindajes={
 // añado energia
 elemento='motor';
 $.each( armas[elemento], function( key, e ) {
+    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+
+
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
         var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.id == obj['id'];})[0]; // busca costes este objeto entre las armas
@@ -1328,8 +1333,8 @@ $.each( armas[elemento], function( key, e ) {
         var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
         sumaCostos(costesMisMotores,multiplicadorMotores,costeobj);// sumo recursos basicos
         var cte=(1+miConstanteI)*nivelInv*tnave; //lo que varia por nivel de tecno
-        costeobj['energia']=costeobj['energia']*cte; //lo q mejora por esos niveles
-        sumaCualidades(costesMisMotores,multiplicadorMotores,costeobj);
+        costesVacio['energia']=costeobj['energia']*cte; //lo q mejora por esos niveles
+        sumaCualidades(costesMisMotores,multiplicadorMotores,costesVacio);
     }
 
 });
