@@ -45,6 +45,9 @@ Route::get('/juego/astrometria/ajax/flotas', 'AstrometriaController@generarFlota
 
 //Middleware de auth
 Route::middleware('auth')->group(function () {
+    //Cambiar opciones del usuario
+    Route::get('/configuracion', 'PrincipalController@configuracion');
+    Route::post('/update', 'PrincipalController@update');
 
     //Rutas generales
     Route::get('/juego', 'JuegoController@index');

@@ -35,6 +35,7 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/home') }}">Acceder a los universos</a>
                             <a class="dropdown-item" href="{{ url('/configuracion') }}">Configuracion</a>
                             <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
                         </div>
