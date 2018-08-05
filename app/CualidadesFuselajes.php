@@ -937,7 +937,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1.8;
             $inirec11=4;
             $inirec12=1.0; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.1;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=.8; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=0.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1011,7 +1011,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1.1;
             $inirec11=110;
             $inirec12=2.4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=8.2;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.1; //tiempo
             $inirec15=1.3; //moneda
             $inirec16=.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1050,7 +1050,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=700;
             $inirec12=3.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=4.9;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=.8; //moneda
             $inirec16=0.7;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1087,7 +1087,7 @@ class CualidadesFuselajes extends Model
             $inirec8=.8;
             $inirec11=650;
             $inirec12=5.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=10.9;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.2; //tiempo
             $inirec15=1.1; //moneda
             $inirec16=1.7;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1124,7 +1124,7 @@ class CualidadesFuselajes extends Model
             $inirec8=.8;
             $inirec11=110;
             $inirec12=2.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=.6;	// energía
+            $inirec13=1;	// energía
             $inirec14=.5; //tiempo
             $inirec15=.6; //moneda
             $inirec16=.5;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1163,7 +1163,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1.3;
             $inirec11=450;
             $inirec12=4.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=15.9;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.8; //tiempo
             $inirec15=1.7; //moneda
             $inirec16=2.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1200,7 +1200,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1.1;
             $inirec11=850;
             $inirec12=3.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=10.9;	// energía
+            $inirec13=1;	// energía
             $inirec14=2.5; //tiempo
             $inirec15=2.0; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1237,7 +1237,7 @@ class CualidadesFuselajes extends Model
             $inirec8=.6;
             $inirec11=3;
             $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.3;	// energía
+            $inirec13=1;	// energía
             $inirec14=0.5; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1274,7 +1274,7 @@ class CualidadesFuselajes extends Model
             $inirec8=.5;
             $inirec11=20;
             $inirec12=3.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.5;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=.8; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1355,7 +1355,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1.2;
             $inirec11=2;
             $inirec12=.7; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.8;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=.8; //tiempo
             $inirec15=.6; //moneda
             $inirec16=1.1;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1395,7 +1395,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=140;
             $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.0;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=1.3; //moneda
             $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1469,7 +1469,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=190;
             $inirec12=10.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.1;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=2.0; //tiempo
             $inirec15=1.2; //moneda
             $inirec16=0.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1508,7 +1508,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=10;
             $inirec12=1.8; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.9;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=.8; //tiempo
             $inirec15=.7; //moneda
             $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1546,7 +1546,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=190;
             $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.2;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.3; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=.8;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1583,7 +1583,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=190;
             $inirec12=1.2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.1;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=.7; //tiempo
             $inirec15=1.5; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1620,7 +1620,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=240;
             $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.9;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1657,7 +1657,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1.2;
             $inirec11=100;
             $inirec12=1.4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.3;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.1; //tiempo
             $inirec15=1.6; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1694,7 +1694,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=240;
             $inirec12=3.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.0;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1731,7 +1731,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=1400;
             $inirec12=4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=4.0;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=1.8; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1768,7 +1768,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=140;
             $inirec12=2.2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.0;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=2.0; //tiempo
             $inirec15=1.3; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1805,7 +1805,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=1000;
             $inirec12=12; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.5;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=1.2;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1879,7 +1879,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=140;
             $inirec12=2.8; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.5;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=1.3; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -1916,7 +1916,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=1540;
             $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.0;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=1.3; //tiempo
             $inirec15=.6; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2030,7 +2030,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1.5;
             $inirec11=2800;
             $inirec12=10; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.4;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=1.9; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2070,7 +2070,7 @@ class CualidadesFuselajes extends Model
             $inirec8=2;
             $inirec11=3440;
             $inirec12=3; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.5;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.9; //tiempo
             $inirec15=1.5; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2110,7 +2110,7 @@ class CualidadesFuselajes extends Model
             $inirec8=.5;
             $inirec11=100;
             $inirec12=4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=.8;	// energía
+            $inirec13=1;	// energía
             $inirec14=.4; //tiempo
             $inirec15=.7; //moneda
             $inirec16=0.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2187,7 +2187,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=5140;
             $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.5;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=.3; //moneda
             $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2224,7 +2224,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=1400;
             $inirec12=3; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=3.0;	// energía
+            $inirec13=1.0;	// energía
             $inirec14=.5; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2264,7 +2264,7 @@ class CualidadesFuselajes extends Model
             $inirec8=.7;
             $inirec11=3240;
             $inirec12=1.5; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.8;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=0.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2301,7 +2301,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=1340;
             $inirec12=2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.1;	// energía
+            $inirec13=1;	// energía
             $inirec14=.5; //tiempo
             $inirec15=0.3; //moneda
             $inirec16=2.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2338,7 +2338,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=140;
             $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.8;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2375,7 +2375,7 @@ class CualidadesFuselajes extends Model
             $inirec8=.7;
             $inirec11=340;
             $inirec12=4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.5;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.0; //tiempo
             $inirec15=.8; //moneda
             $inirec16=1.0;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2414,7 +2414,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1.2;
             $inirec11=940;
             $inirec12=6; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=2.5;	// energía
+            $inirec13=1;	// energía
             $inirec14=1.5; //tiempo
             $inirec15=1.0; //moneda
             $inirec16=.8;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2796,7 +2796,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=40;
             $inirec12=2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.9;	// energía
+            $inirec13=1;	// energía
             $inirec14=.7; //tiempo
             $inirec15=1.2; //moneda
             $inirec16=1.4;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2836,7 +2836,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=40;
             $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.8;	// energía
+            $inirec13=1;	// energía
             $inirec14=.5; //tiempo
             $inirec15=.6; //moneda
             $inirec16=1.6;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2873,7 +2873,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=40;
             $inirec12=2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.9;	// energía
+            $inirec13=1;	// energía
             $inirec14=.7; //tiempo
             $inirec15=1.2; //moneda
             $inirec16=1.4;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2913,7 +2913,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=80;
             $inirec12=4; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=1.9;	// energía
+            $inirec13=1;	// energía
             $inirec14=.7; //tiempo
             $inirec15=1.2; //moneda
             $inirec16=1.4;  //defensa ya tiene en cuenta el tamaño y cuando sale
@@ -2954,7 +2954,7 @@ class CualidadesFuselajes extends Model
             $inirec8=1;
             $inirec11=400;
             $inirec12=2; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
-            $inirec13=3.5;	// energía
+            $inirec13=1;	// energía
             $inirec14=.8; //tiempo
             $inirec15=1.1; //moneda
             $inirec16=1.9;  //defensa ya tiene en cuenta el tamaño y cuando sale

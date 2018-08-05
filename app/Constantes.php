@@ -349,6 +349,16 @@ class Constantes extends Model
                 $constante->tipo='investigacion';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvIndustrias';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion mejoras industrias';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
 
                 /////// FUSELAJES  ///////////////////////////////////////////////////
 
