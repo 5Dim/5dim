@@ -36,6 +36,7 @@ class Recursos extends Model
             $recursos->ma = 0;
             $recursos->municion = 0;
             $recursos->personal = 1000000000;
+            $recursos->creditos = 1000000000;
             $recursos->planetas_id = session()->get('planetas_id');
         }
 
@@ -141,10 +142,16 @@ class Recursos extends Model
             }
         }
 
+        //calculo de niveles totales
+        $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
+        $numeroNiveles = 0;
+        foreach ($construcciones as $construccion) {
+            $numeroNiveles += $construccion->nivel;
+        }
 
-
-        //Personal
+        //Personal y creditos
         $recursos->personal = ($producciones[0]->personal / 3600 * $fechaCalculo) + $recursos->personal;
+        $recursos->creditos = (($numeroNiveles * $constanteCreditos) / (24 * 3600) * $fechaCalculo) + $recursos->creditos;
 
         //Comprobamos almacenes
         $contAlmacenes = 0;

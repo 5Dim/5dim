@@ -26,6 +26,7 @@ class CreateRecursosTable extends Migration
             $table->decimal('fuel', 12, 2);
             $table->decimal('ma', 12, 2);
             $table->decimal('municion', 12, 2);
+            $table->decimal('creditos', 12, 2);
             $table->timestamps();
         });
     }

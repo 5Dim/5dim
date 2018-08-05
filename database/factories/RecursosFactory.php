@@ -16,6 +16,7 @@ $factory->define(Recursos::class, function (Faker $faker) {
         'fuel' => $faker->numberBetween($min = 0, $max = 1000000000),
         'ma' => $faker->numberBetween($min = 0, $max = 1000000000),
         'municion' => $faker->numberBetween($min = 0, $max = 1000000000),
+        'creditos' => $faker->numberBetween($min = 0, $max = 1000000000),
         'planetas_id' => 1,
     ];
 });
