@@ -52,10 +52,10 @@
                     <td id="gasD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->gas, 0,",",".") }}
                     </td>
-                    <td id="ceramicaD" class="anchofijo text-light borderless">
+                    <td id="plasticoD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->plastico, 0,",",".") }}
                     </td>
-                    <td id="plasticoD" class="anchofijo text-light borderless">
+                    <td id="ceramicaD" class="anchofijo text-light borderless">
                         {{ number_format($diseño->costes->ceramica, 0,",",".") }}
                     </td>
                     <td id="liquidoD" class="anchofijo text-light borderless">
