@@ -49,17 +49,17 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="60"; //motor nuk
-                $coste->mineral=15000*$fcmot;
-                $coste->cristal=400*$fcmot;
-                $coste->gas=0*$fcmot;
-                $coste->plastico=$fcmot*150; //4
-                $coste->ceramica=$fcmot*2; //5
-                $coste->liquido=$fcmot*2; //6
-                $coste->micros=$fcmot*3;   //7
-                $coste->fuel=$fcmot*60;     //8
+                $coste->mineral=13000*$fcmot;
+                $coste->cristal=4000*$fcmot;
+                $coste->gas=250*$fcmot;
+                $coste->plastico=$fcmot*430; //4
+                $coste->ceramica=$fcmot*200; //5
+                $coste->liquido=$fcmot*60; //6
+                $coste->micros=$fcmot*30;   //7
+                $coste->fuel=$fcmot*600;     //8
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
-                $coste->personal=$fcmot*200; //11
+                $coste->personal=$fcmot*1; //11
                 $coste->masa=2000;
                 $coste->energia=645*$fcenermot;
                 $coste->tiempo=$fcmot*600;
