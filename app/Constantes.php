@@ -116,6 +116,17 @@ class Constantes extends Model
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.5;
+                $constante->maximo=2;
+                $constante->codigo='monedaPorNivel';
+                $constante->descripcion='multiplicador de moneda por nivel de edificio';
+                $constante->tipo='construccion';
+                array_push($producciones, $constante);
+
             ////////  investigaciones  ////////////////////////////////////////////////////////////////
 
                 $constante =new Constantes();

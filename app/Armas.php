@@ -152,7 +152,7 @@ class Armas extends Model
                 $arma->ranura="mejora";
                 $arma->potencia=13;
                 $arma->clase='invIa';
-                $arma->niveltec=4;
+                $arma->niveltec=5;
 
                 array_push($armas, $arma);
 
@@ -320,7 +320,7 @@ class Armas extends Model
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=13;
+                $arma->niveltec=1;
 
                 array_push($armas, $arma);
 
@@ -332,7 +332,7 @@ class Armas extends Model
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=14;
+                $arma->niveltec=2;
 
                 array_push($armas, $arma);
 
@@ -344,7 +344,7 @@ class Armas extends Model
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=15;
+                $arma->niveltec=3;
 
                 array_push($armas, $arma);
 
@@ -356,7 +356,7 @@ class Armas extends Model
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=16;
+                $arma->niveltec=4;
 
                 array_push($armas, $arma);
 
