@@ -1,7 +1,7 @@
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
-            <table class="table table-borderless borderless table-sm text-center" style="margin-top: 5px !important">
+            <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                 <tr>
                     <th colspan="10" class="text-success text-center borderless align-middle">
                         Resumen del diseño {{strtoupper($diseño->tamaño." ".$diseño->codigo)}}

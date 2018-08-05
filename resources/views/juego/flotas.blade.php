@@ -7,7 +7,7 @@
                 <div id="cuadro1" class="table-responsive">
                     <table class="table table-borderless table-sm text-center" style="margin-top: 5px !important">
                         <tr>
-                            <th colspan="12" class="anchofijo text-success">
+                            <th colspan="13" class="anchofijo text-success">
                                 <big>
                                     Naves
                                 </big>
@@ -49,12 +49,12 @@
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
-                                    Tienes
+                                    En la flota
                                 </button>
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
-                                    Tienes
+                                    En hangar
                                 </button>
                             </th>
                         </tr>
@@ -132,15 +132,85 @@
                             </td>
                         </tr>
                     </table>
+                    <table class="table table-borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
+                        <tr>
+                            <th colspan="6" class="anchofijo text-success">
+                                <big>
+                                    Tropas
+                                </big>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="anchofijo text-warning align-middle">
+                                Nombre del diseño
+                            </th>
+                            <th class="anchofijo text-warning align-middle">
+                                Clase
+                            </th>
+                            <th class="anchofijo text-warning align-middle">
+                                Modelo
+                            </th>
+                            <th class="anchofijo text-warning align-middle">
+                                Ataque
+                            </th>
+                            <th class="anchofijo text-warning align-middle">
+                                Defensa
+                            </th>
+                            <th class="anchofijo text-warning align-middle" style="max-width: 180px">
+                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                    En hangar
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="anchofijo text-light align-middle">
+                                Destructor 9.000
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                Pesada
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                Trauma
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                14.935.000
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                7.210.300
+                            </td>
+                            <td class="anchofijo text-light" style="max-width: 180px">
+                                <div class="input-group mb-3 input-group-sm borderless">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-dark text-light">
+                                            <button type="button" class="btn btn-dark btn-sm text-warning">
+                                                0
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-dark text-light">
+                                            <button type="button" class="btn btn-dark btn-sm text-warning">
+                                                Max
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                     <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                         <tr>
-                            <th colspan="7" class="text-success">
+                            <th colspan="8" class="text-success">
                                 <big>
                                     Resumen de naves
                                 </big>
                             </th>
                         </tr>
                         <tr>
+                            <th class="text-warning align-middle">
+                                Tipo
+                            </th>
                             <th class="text-warning align-middle">
                                 Capacidad de carga total
                             </th>
@@ -164,6 +234,9 @@
                             </th>
                         </tr>
                         <tr>
+                            <td class="text-warning align-middle">
+                                Naves
+                            </td>
                             <td class="text-light align-middle">
                                 1.570.000
                             </td>
@@ -186,6 +259,32 @@
                                 14.420.600
                             </td>
                         </tr>
+                        <tr>
+                            <td class="text-warning align-middle">
+                                Tropas
+                            </td>
+                            <td class="text-light align-middle">
+                                1.570.000
+                            </td>
+                            <td class="text-light align-middle">
+                                58.247
+                            </td>
+                            <td class="text-muted align-middle">
+                                0
+                            </td>
+                            <td class="text-light align-middle">
+                                29.870.000
+                            </td>
+                            <td class="text-light align-middle">
+                                14.420.600
+                            </td>
+                            <td class="text-muted align-middle">
+                                0
+                            </td>
+                            <td class="text-muted align-middle">
+                                0
+                            </td>
+                        </tr>
                     </table>
                     <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                         <tr>
@@ -200,16 +299,16 @@
                                 Tipos
                             </th>
                             <th class="text-warning align-middle">
-                                Cazas
+                                Cazas/aviones
                             </th>
                             <th class="text-warning align-middle">
-                                Ligeras
+                                Ligeras/infanteria
                             </th>
                             <th class="text-warning align-middle">
-                                Medias
+                                Medias/mechs
                             </th>
                             <th class="text-warning align-middle">
-                                Pesadas
+                                Pesadas/Megabots
                             </th>
                             <th class="text-warning align-middle">
                                 Estaciones

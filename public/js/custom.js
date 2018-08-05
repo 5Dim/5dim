@@ -16,6 +16,18 @@ function calcularRecursos() {
     //produccion.ceramica = 65487400;
     var counter = 0;
 
+    //Parse float
+    recursos.personal = parseFloat(recursos.personal)
+    recursos.mineral = parseFloat(recursos.mineral)
+    recursos.cristal = parseFloat(recursos.cristal)
+    recursos.gas = parseFloat(recursos.gas)
+    recursos.plastico = parseFloat(recursos.plastico)
+    recursos.ceramica = parseFloat(recursos.ceramica)
+    recursos.liquido = parseFloat(recursos.liquido)
+    recursos.micros = parseFloat(recursos.micros)
+    recursos.fuel = parseFloat(recursos.fuel)
+    recursos.ma = parseFloat(recursos.ma)
+    recursos.municion = parseFloat(recursos.municion)
     //Calculos
     recursos.personal += produccion[0].personal / 3600 / 4;
     recursos.mineral += produccion[1].mineral / 3600 / 4;
