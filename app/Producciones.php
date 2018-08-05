@@ -132,10 +132,12 @@ class Producciones extends Model
         $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
         $numeroNiveles = 0;
         foreach ($construcciones as $construccion) {
-            $numeroNiveles += $construccion->nivel;
+            if ($construccion->codigo != "almMineral" and $construccion->codigo != "almCristal") {
+                $numeroNiveles += $construccion->nivel;
+            }
         }
         $produccion = new Producciones();
-        $produccion->creditos = $numeroNiveles * 1000 *$constanteCreditos;
+        $produccion->creditos = $numeroNiveles * 1000 * $constanteCreditos;
         array_push($producciones, $produccion);
         return $producciones;
     }

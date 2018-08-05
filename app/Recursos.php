@@ -12,6 +12,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recursos extends Model
 {
+    /**
+     * Relacion de los construcciones con el planeta
+     */
+    public function planetas ()
+    {
+        return $this->belongsTo(Planetas::class);
+    }
+
     public static function calcularRecursos ($id)
     {
         //Definimos los objetos que vamos a necesitar
@@ -38,7 +46,10 @@ class Recursos extends Model
             $recursos->personal = 1000000000;
             $recursos->creditos = 1000000000;
             $recursos->planetas_id = session()->get('planetas_id');
+            $recursos->save();
         }
+
+        $investigaciones = $recursos->planetas->jugadores->investigaciones;
 
         //Calculamos producciones
         for ($i = 0 ; $i < count($construcciones) ; $i++) {
@@ -80,7 +91,7 @@ class Recursos extends Model
 
         //Calculamos industrias
         if (!empty($industrias)) {
-
+            $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
             $gastoFliquido=0;
             if ($industrias->liquido == 1) {
                 $costo=Constantes::where('codigo', 'costoLiquido')->first()->valor;
@@ -90,7 +101,7 @@ class Recursos extends Model
                     $liquido = $gastoFliquido / $costo;
                 }
                 $recursos->mineral -= $gastoFliquido;
-                $recursos->liquido += $liquido;
+                $recursos->liquido += $liquido * (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
             }
 
             $gastoFmicros=0;
@@ -102,7 +113,7 @@ class Recursos extends Model
                     $micros=$gastoFmicros /$costo;
                 }
                 $recursos->cristal -= $gastoFmicros;
-                $recursos->micros += $micros;
+                $recursos->micros += $micros * (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
             }
 
             $gastoFfuel=0;
@@ -114,7 +125,7 @@ class Recursos extends Model
                     $fuel = $gastoFfuel /$costo;
                 }
                 $recursos->gas -= $gastoFfuel;
-                $recursos->fuel += $fuel;
+                $recursos->fuel += $fuel * (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
             }
 
             $gastoFma=0;
@@ -126,7 +137,7 @@ class Recursos extends Model
                     $ma=$gastoFma /$costo;
                 }
                 $recursos->plastico -= $gastoFma;
-                $recursos->ma += $ma;
+                $recursos->ma += $ma * (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
             }
 
             $gastoFmunicion=0;
@@ -138,7 +149,7 @@ class Recursos extends Model
                     $municion=$gastoFmunicion /$costo;
                 }
                 $recursos->ceramica -= $gastoFmunicion;
-                $recursos->municion += $municion;
+                $recursos->municion += $municion * (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
             }
         }
 
@@ -146,12 +157,14 @@ class Recursos extends Model
         $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
         $numeroNiveles = 0;
         foreach ($construcciones as $construccion) {
-            $numeroNiveles += $construccion->nivel;
+            if ($construccion->codigo != "almMineral" and $construccion->codigo != "almCristal") {
+                $numeroNiveles += $construccion->nivel;
+            }
         }
 
         //Personal y creditos
         $recursos->personal = ($producciones[0]->personal / 3600 * $fechaCalculo) + $recursos->personal;
-        $recursos->creditos = (($numeroNiveles * 1000 * $constanteCreditos) / (24 * 3600) * $fechaCalculo) + $recursos->creditos;
+        $recursos->creditos = ((($numeroNiveles * 1000 * $constanteCreditos) / (24 * 3600)) * $fechaCalculo) + $recursos->creditos;
 
         //Comprobamos almacenes
         $contAlmacenes = 0;
