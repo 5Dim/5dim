@@ -678,12 +678,15 @@
                         <td class="anchofijo text-warning borderless">
                             Municion
                         </td>
+                        <td class="anchofijo text-warning borderless">
+                            Créditos
+                        </td>
                     </tr>
                     <tr>
                         <td class="anchofijo text-warning borderless">
                             Capacidad del refugio
                         </td>
-                        @for ($i = 0 ; $i < 10 ; $i++)
+                        @for ($i = 0 ; $i < 11 ; $i++)
                             <td class="anchofijo text-light borderless">
                                 {{ number_format($capacidadRefugio, 0,",",".") }}
                             </td>
@@ -722,6 +725,9 @@
                         </td>
                         <td class="anchofijo text-danger borderless">
                             {{ number_format(($capacidadRefugio - $recursos->municion) * -1, 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-danger borderless">
+                            {{ number_format(($capacidadRefugio - $recursos->creditos) * -1, 0,",",".") }}
                         </td>
                     </tr>
                 </table>

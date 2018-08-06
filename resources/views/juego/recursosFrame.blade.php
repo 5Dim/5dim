@@ -65,7 +65,7 @@
                         </th>
                         <th class="text-warning borderless">
                             <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de imperio" data-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
-                                PI <span class="badge badge-warning">{{ ($nivelImperio * 15) + 10 }}</span>
+                                PI <span class="badge badge-warning">{{ (($nivelImperio * 15) + 10) - (count(Auth::user()->jugadores[0]->planetas) * 10) }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless">
