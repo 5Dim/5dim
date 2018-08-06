@@ -206,7 +206,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 23;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -243,7 +243,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 9;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 7;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -280,7 +280,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 5;	 	// motores
+            $CRnave13 = 29;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -317,7 +317,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 24;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 33;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -354,7 +354,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 24;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 3;	 	// motores
+            $CRnave13 = 39;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -391,7 +391,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 37;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
-            $CRnave13 = 8;	 	// motores
+            $CRnave13 = 50;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -428,7 +428,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 39;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 3;	 	// motores
+            $CRnave13 = 57;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
@@ -466,7 +466,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 18;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 26;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -544,7 +544,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 15;	 	// motores
+            $CRnave13 = 17;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -581,7 +581,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 31;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 6;	 	// motores
+            $CRnave13 = 102;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -618,7 +618,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 40;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 6;	 	// motores
+            $CRnave13 = 120;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -655,7 +655,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 1;	 	// motores
+            $CRnave13 = 27;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -692,7 +692,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 60;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 8;	 	// motores
+            $CRnave13 = 1522;	 	// motores
 
 
 
@@ -768,7 +768,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 41;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 8;	 	// motores
+            $CRnave13 = 106;	 	// motores
 
 
 
@@ -808,7 +808,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 31;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 86;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -847,7 +847,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 35;	 	//mejoras
             $CRnave12 = 16;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 143;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -884,7 +884,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 166;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -921,7 +921,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 12;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 42;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -958,7 +958,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 37;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -995,7 +995,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 31;	 	//mejoras
             $CRnave12 = 15;	 	// blindajes
-            $CRnave13 = 6;	 	// motores
+            $CRnave13 = 268;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1071,7 +1071,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 52;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
-            $CRnave13 = 12;	 	// motores
+            $CRnave13 = 486;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1108,7 +1108,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
-            $CRnave13 = 12;	 	// motores
+            $CRnave13 = 2820;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1145,7 +1145,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 48;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1184,7 +1184,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 54;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
-            $CRnave13 = 6;	 	// motores
+            $CRnave13 = 3916;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1221,7 +1221,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 64;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 8;	 	// motores
+            $CRnave13 = 1250;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1258,7 +1258,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 72;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1295,7 +1295,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 39;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 2046;	 	// motores
 
 
 
@@ -1376,7 +1376,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 9;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 74;	 	// motores
 
 
 
@@ -1416,7 +1416,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 30;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 2484;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1453,7 +1453,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 6;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 44;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1490,7 +1490,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 106;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1529,7 +1529,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
-            $CRnave13 = 8;	 	// motores
+            $CRnave13 = 88;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
@@ -1567,7 +1567,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 152;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1604,7 +1604,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 94;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1641,7 +1641,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 3;	 	// motores
+            $CRnave13 = 462;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1678,7 +1678,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 3;	 	// motores
+            $CRnave13 = 188;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1715,7 +1715,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 482;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1752,7 +1752,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 10;	 	// motores
+            $CRnave13 = 274;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1789,7 +1789,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 35;	 	//mejoras
             $CRnave12 = 16;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 206;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1826,7 +1826,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 8;	 	// motores
+            $CRnave13 = 130;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1863,7 +1863,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 36;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1900,7 +1900,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 98;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1937,7 +1937,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 252;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1974,7 +1974,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 15;	 	//mejoras
             $CRnave12 = 9;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 24;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2011,7 +2011,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 44;	 	// motores
 
 
 
@@ -2051,7 +2051,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
-            $CRnave13 = 5;	 	// motores
+            $CRnave13 = 578;	 	// motores
 
 
 
@@ -2091,7 +2091,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 520;	 	// motores
 
 
 
@@ -2131,7 +2131,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 21;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 15;	 	// motores
 
 
 
@@ -2171,7 +2171,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 44;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2208,7 +2208,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 20;	 	// blindajes
-            $CRnave13 = 16;	 	// motores
+            $CRnave13 = 128;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2245,7 +2245,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 40;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 6;	 	// motores
+            $CRnave13 = 356;	 	// motores
 
 
 
@@ -2285,7 +2285,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 41;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 307;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2322,7 +2322,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 402;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2359,7 +2359,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 232;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2396,7 +2396,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
-            $CRnave13 = 6;	 	// motores
+            $CRnave13 = 420;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2435,7 +2435,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 8;	 	// motores
+            $CRnave13 = 400;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2817,7 +2817,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
-            $CRnave13 = 4;	 	// motores
+            $CRnave13 = 18;	 	// motores
 
 
 
@@ -2857,7 +2857,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 6;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -2894,7 +2894,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 12;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
@@ -2934,7 +2934,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 6;	 	// motores
+            $CRnave13 = 20;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
@@ -2975,7 +2975,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 2;	 	// motores
+            $CRnave13 = 360;	 	// motores
 
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
