@@ -15,8 +15,8 @@ class CostesArmas extends Model
         /// construcciones y produccion
         $fcmot=1;  //factor corrector costos motor
         $fcenermot=1; // energia que te el motor
-        $fcblind=.7;  //factor corrector blindaje
-        $fccc=1.5; //Factor corrector comp. de carga
+        $fcblind=1;  //factor corrector blindaje
+        $fccc=1; //Factor corrector comp. de carga
 
 
                 $coste =new CostesArmas();
@@ -49,7 +49,7 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="60"; //motor nuk
-                $coste->mineral=13000*$fcmot;
+                $coste->mineral=10000*$fcmot;
                 $coste->cristal=4000*$fcmot;
                 $coste->gas=250*$fcmot;
                 $coste->plastico=$fcmot*430; //4
@@ -105,13 +105,13 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="62"; //motor plasma
-                $coste->mineral=10000*$fcmot;
-                $coste->cristal=500*$fcmot;
-                $coste->gas=200*$fcmot;
-                $coste->plastico=$fcmot*500; //4
-                $coste->ceramica=$fcmot*300; //5
-                $coste->liquido=$fcmot*100; //6
-                $coste->micros=$fcmot*1100;   //7
+                $coste->mineral=1880*$fcmot;
+                $coste->cristal=2030*$fcmot;
+                $coste->gas=230*$fcmot;
+                $coste->plastico=$fcmot*1130; //4
+                $coste->ceramica=$fcmot*485; //5
+                $coste->liquido=$fcmot*220; //6
+                $coste->micros=$fcmot*91;   //7
                 $coste->fuel=$fcmot*2000;     //8
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
@@ -133,13 +133,13 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="63"; //motor MA
-                $coste->mineral=15500*$fcmot;
-                $coste->cristal=3000*$fcmot;
-                $coste->gas=240*$fcmot;
-                $coste->plastico=$fcmot*800; //4
-                $coste->ceramica=$fcmot*500; //5
-                $coste->liquido=$fcmot*200; //6
-                $coste->micros=$fcmot*500;   //7
+                $coste->mineral=17500*$fcmot;
+                $coste->cristal=7095*$fcmot;
+                $coste->gas=290*$fcmot;
+                $coste->plastico=$fcmot*190; //4
+                $coste->ceramica=$fcmot*430; //5
+                $coste->liquido=$fcmot*385; //6
+                $coste->micros=$fcmot*273;   //7
                 $coste->fuel=$fcmot*400;     //8
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
@@ -191,11 +191,11 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="65"; //blindaje titanio
-                $coste->mineral=$fcblind*3000;
-                $coste->cristal=$fcblind*2500;
-                $coste->gas=$fcblind*2000;
-                $coste->plastico=$fcblind*1000; //4
-                $coste->ceramica=$fcblind*500; //5
+                $coste->mineral=$fcblind*5000;
+                $coste->cristal=$fcblind*2000;
+                $coste->gas=$fcblind*1700;
+                $coste->plastico=$fcblind*2760; //4
+                $coste->ceramica=$fcblind*630; //5
                 $coste->liquido=$fcblind*0; //6
                 $coste->micros=$fcblind*0;   //7
                 $coste->fuel=$fcblind*0;     //8
@@ -205,8 +205,8 @@ class CostesArmas extends Model
                 $coste->masa=$fcblind*500;
                 $coste->energia=0;
                 $coste->tiempo=$fcblind*100;
-                $coste->mantenimiento=$fcblind*100;
-                $coste->defensa=3000;
+                $coste->mantenimiento=$fcblind*.1;
+                $coste->defensa=78;
                 $coste->ataque=0;
                 $coste->velocidad=0;
                 $coste->carga=0;

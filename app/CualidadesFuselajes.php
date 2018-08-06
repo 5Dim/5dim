@@ -921,7 +921,7 @@ class CualidadesFuselajes extends Model
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 12;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 42;	 	// motores
+            $CRnave13 = 20;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -1014,7 +1014,7 @@ class CualidadesFuselajes extends Model
             $inirec13=1;	// energía
             $inirec14=1.1; //tiempo
             $inirec15=1.3; //moneda
-            $inirec16=.9;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=13;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
             $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
 
@@ -1031,7 +1031,7 @@ class CualidadesFuselajes extends Model
             $CRnave14=0;    //Carga ENorme
             $CRnave15=0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
-            $CRnave12 = 24;	 	// blindajes
+            $CRnave12 = 1600;	 	// blindajes
             $CRnave13 = 1554;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];

@@ -270,6 +270,9 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                             <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="changeSkin('{{$diseño->id}}')">
                                 <i class="fa fa-arrows-alt-h" id="imagen{{$diseño->id}}" data-skin="1"> Cambiar aspecto</i>
                             </button>
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="limpiar()">
+                                <i class="fa fa-recycle" data-skin="1"> Limpiar diseño</i>
+                            </button>
                         </td>
                         <td rowspan="2" colspan="2">
                             @if ($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
@@ -1008,24 +1011,41 @@ var armasMisiles={!!json_encode($armasMisiles)!!};
 var armasBombas={!!json_encode($armasBombas)!!};
 
 
-var armas={
-    motor:motores,
-    blindaje:blindajes,
-    mejora:mejoras,
-    cargaPequeña:cargaPequeñas,
-    cargaMediana:cargaMedianas,
-    cargaGrande:cargaGrandes,
-    cargaEnorme:cargaEnormes,
-    cargaDMega:cargaMegas,
 
-    armasLigera:armasLigeras,
-    armasMedia:armasMedias,
-    armasPesada:armasPesadas,
-    armasInsertada:armasInsertadas,
-    armasMisil:armasMisiles,
-    armasBomba:armasBombas,
+
+    var armas={
+        motor:motores,
+        blindaje:blindajes,
+        mejora:mejoras,
+        cargaPequeña:cargaPequeñas,
+        cargaMediana:cargaMedianas,
+        cargaGrande:cargaGrandes,
+        cargaEnorme:cargaEnormes,
+        cargaDMega:cargaMegas,
+
+        armasLigera:armasLigeras,
+        armasMedia:armasMedias,
+        armasPesada:armasPesadas,
+        armasInsertada:armasInsertadas,
+        armasMisil:armasMisiles,
+        armasBomba:armasBombas,
+    }
+
+function limpiar(){
+
+    $.each( armas, function( key, elemento ) {
+        n=0;
+        $.each(elemento, function(key2,e) {
+            img = "../../../img/fotos armas/vacio.png" ;
+            $('#'+ key + n).attr("src", img);
+            armas[key][key2]=0;
+            n++;
+        });
+    });
+
+
+    calculoTotalR();
 }
-
 
 // pasar armas a huecos
 
@@ -1140,8 +1160,8 @@ var cualidades={
 };
 
 var multiplicadorMotores={{$multiplicadorMotores}};
-var multiplicadorblindajes={{$multiplicadorblindajes}};
-var multiplicadormejoras={{$multiplicadormejoras}};
+var multiplicadorBlindajes={{$multiplicadorblindajes}};
+var multiplicadorMejoras={{$multiplicadormejoras}};
 var multiplicadorCLigeras={{$multiplicadorCLigeras}};
 var multiplicadorCMedias={{$multiplicadorCMedias}};
 var multiplicadorCPesadas={{$multiplicadorCPesadas}};
@@ -1340,6 +1360,22 @@ $.each( armas[elemento], function( key, e ) {
 });
 
 elemento='blindaje';
+genera='defensa';
+$.each( armas[elemento], function( key, e ) {
+    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+
+    if (e>0){
+        var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
+        var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.id == obj['id'];})[0]; // busca costes este objeto entre las armas
+        var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
+        var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
+        sumaCostos(costesMisBlindajes,multiplicadorBlindajes,costeobj);// sumo recursos basicos
+        var cte=(1+miConstanteI)*nivelInv; //lo que varia por nivel de tecno
+        var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
+        costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+        sumaCualidades(costesMisBlindajes,multiplicadorBlindajes,costesVacio);
+    }
+});
 
 
 
