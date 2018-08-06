@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Icons Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
@@ -66,7 +65,7 @@
                         </th>
                         <th class="text-warning borderless">
                             <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus" title="Puntos de imperio" data-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
-                                PI <span class="badge badge-warning">{{ ($nivelImperio * 15) + 10 }}</span>
+                                PI <span class="badge badge-warning">{{ (($nivelImperio * 15) + 10) - (count(Auth::user()->jugadores[0]->planetas) * 10) }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless">
@@ -250,19 +249,19 @@
                             Producción
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[6]->liquido, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[6]->liquido * $factoresIndustrias[0], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[7]->micros, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[7]->micros * $factoresIndustrias[1], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[8]->fuel, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[8]->fuel * $factoresIndustrias[2], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[9]->ma, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[9]->ma * $factoresIndustrias[3], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[10]->municion, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[10]->municion * $factoresIndustrias[4], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             <span>{{ number_format($producciones[11]->creditos, 0,",",".") }}</span> ud/d

@@ -47,6 +47,12 @@
                             <th class="anchofijo text-warning align-middle">
                                 H. estaciones
                             </th>
+                            <th class="anchofijo text-warning align-middle">
+                                Velocidad
+                            </th>
+                            <th class="anchofijo text-warning align-middle">
+                                Cantidad
+                            </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
                                     En la flota
@@ -91,6 +97,12 @@
                             </td>
                             <td class="anchofijo text-light align-middle">
                                 0
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                13.89
+                            </td>
+                            <td class="anchofijo text-light align-middle">
+                                32
                             </td>
                             <td class="anchofijo text-light" style="max-width: 180px">
                                 <div class="input-group mb-3 input-group-sm borderless">
@@ -221,6 +233,9 @@
                                 Fuel
                             </th>
                             <th class="text-warning align-middle">
+                                Velocidad
+                            </th>
+                            <th class="text-warning align-middle">
                                 Ataque real
                             </th>
                             <th class="text-warning align-middle">
@@ -247,6 +262,9 @@
                                 35.248
                             </td>
                             <td class="text-light align-middle">
+                                13.89
+                            </td>
+                            <td class="text-light align-middle">
                                 29.870.000
                             </td>
                             <td class="text-light align-middle">
@@ -268,6 +286,9 @@
                             </td>
                             <td class="text-light align-middle">
                                 58.247
+                            </td>
+                            <td class="text-muted align-middle">
+                                0
                             </td>
                             <td class="text-muted align-middle">
                                 0

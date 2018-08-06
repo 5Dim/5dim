@@ -63,9 +63,23 @@ class DiseñoController extends Controller
         $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
         $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
         $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+
+        //Calculo de mejora de las industrias
+        $factoresIndustrias = [];
+        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
+        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorLiquido);
+        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMicros);
+        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorFuel);
+        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMa);
+        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        return view('juego.diseño', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
+        return view('juego.diseño', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias'));
     }
     public function diseñar ($idFuselaje)
     {
@@ -106,6 +120,20 @@ class DiseñoController extends Controller
         $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
         $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
         $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+
+        //Calculo de mejora de las industrias
+        $factoresIndustrias = [];
+        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
+        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorLiquido);
+        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMicros);
+        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorFuel);
+        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMa);
+        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
         $diseño = Fuselajes::find($idFuselaje);
@@ -116,6 +144,6 @@ class DiseñoController extends Controller
         $costesArmas = CostesArmas::all();
 
 
-        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones','armas','constantesI','costesArmas'));
+        return view('juego.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones', 'armas', 'constantesI', 'costesArmas', 'factoresIndustrias'));
     }
 }
