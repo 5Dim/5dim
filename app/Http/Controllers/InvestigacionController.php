@@ -62,6 +62,20 @@ class InvestigacionController extends Controller
         $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
         $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
         $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+
+        //Calculo de mejora de las industrias
+        $factoresIndustrias = [];
+        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
+        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorLiquido);
+        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMicros);
+        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorFuel);
+        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMa);
+        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
         //Constantes de construccion
@@ -80,9 +94,9 @@ class InvestigacionController extends Controller
         $nivelLaboratorio=Construcciones::where([
             ['planetas_id',$planetaActual->id],
             ['codigo','laboratorio'],
-            ])->first();
+        ])->first();
 
-        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones','nivelLaboratorio', 'tab', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
+        return view('juego.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones','nivelLaboratorio', 'tab', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'factoresIndustrias'));
     }
 
     //Acceso a subir nivel de construccion

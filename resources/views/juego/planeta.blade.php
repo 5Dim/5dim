@@ -98,7 +98,7 @@
                     </tr>
                     <tr>
                         <td class="anchofijo text-warning borderless">
-                            Produccion por hora
+                            Produccion de las minas
                         </td>
                         <td class="anchofijo text-success borderless">
                             {{ number_format($produccionesSinCalcular[0]->personal, 0,",",".") }}
@@ -118,25 +118,25 @@
                         <td class="anchofijo text-success borderless">
                             {{ number_format($produccionesSinCalcular[5]->ceramica, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[6]->liquido, 0,",",".") }}
+                        <td class="anchofijo text-muted borderless">
+                            0
                         </td>
-                        <td class="anchofijo text-success borderless">
+                        <td class="anchofijo text-muted borderless">
                             {{ number_format($produccionesSinCalcular[7]->micros, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-success borderless">
+                        <td class="anchofijo text-muted borderless">
                             {{ number_format($produccionesSinCalcular[8]->fuel, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-success borderless">
+                        <td class="anchofijo text-muted borderless">
                             {{ number_format($produccionesSinCalcular[9]->ma, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-success borderless">
+                        <td class="anchofijo text-muted borderless">
                             {{ number_format($produccionesSinCalcular[10]->municion, 0,",",".") }}
                         </td>
                     </tr>
                     <tr>
                         <td class="anchofijo text-warning borderless">
-                            Liquidos
+                            Industria liquido
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -156,8 +156,8 @@
                         <td class="anchofijo text-muted borderless">
                             0
                         </td>
-                        <td class="anchofijo text-muted borderless">
-                            0
+                        <td class="anchofijo text-success borderless">
+                            {{ number_format($produccionesSinCalcular[6]->liquido, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
