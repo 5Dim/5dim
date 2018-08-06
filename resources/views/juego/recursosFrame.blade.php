@@ -250,19 +250,19 @@
                             Producción
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[6]->liquido, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[6]->liquido * $factoresIndustrias[0], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[7]->micros, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[7]->micros * $factoresIndustrias[1], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[8]->fuel, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[8]->fuel * $factoresIndustrias[2], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[9]->ma, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[9]->ma * $factoresIndustrias[3], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[10]->municion, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[10]->municion * $factoresIndustrias[4], 0,",",".") }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             <span>{{ number_format($producciones[11]->creditos, 0,",",".") }}</span> ud/d
