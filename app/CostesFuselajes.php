@@ -564,12 +564,16 @@ class CostesFuselajes extends Model
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave',$Tnave,$factn);
             break;
 
-
-
-
+            /// defensas  ///////////////////////////////////////////
+            case "Defensa 1":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,45000,8000,4000,20000,20000,10000,15000,1.5, 0,75];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
         }
 
-        /// defensas  ///////////////////////////////////////////
+
 
 
         // tropas   ///////////////////////////////////////////

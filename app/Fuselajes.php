@@ -94,21 +94,34 @@ class Fuselajes extends Model
             "ASUR" ,
             "CASANDRA",
 
+            //Nodriza
             "PLACA TERMICA",
             "MAMPARO" ,
             "CUADERNA" ,
             "ESTRUCTURA",
 
+            //Prediseñadas
             "RECOLECTOR",
             "REMOLCADOR",
             "ANUBIS" ,
             "BENGALA" ,
 
+            //Novas
             "ISIS" ,
             "WUKONG",
             "ENLIL" ,
             "ESUS" ,
             "BAAL" ,
+
+            //Defensas
+            "Defensa 1",
+            // "Defensa 2",
+            // "Defensa 3",
+            // "Defensa 4",
+            // "Defensa 5",
+            // "Defensa 6",
+            // "Defensa 7",
+            // "Defensa 8",
 
         ];
         return $listaNombres;
@@ -941,6 +954,16 @@ class Fuselajes extends Model
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
             $fuselaje->categoria="compra";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 1": //basada en la raptor
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 

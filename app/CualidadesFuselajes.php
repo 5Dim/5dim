@@ -15,7 +15,7 @@ class CualidadesFuselajes extends Model
     }
 
 
-    public function  generarDatosCualidadesFuselajes($codigo,$fuselajes_id)
+    public function  generarDatosCualidadesFuselajes($codigo, $fuselajes_id)
     {
         $costesc = new CualidadesFuselajes();
 
@@ -2983,6 +2983,40 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
+            /// defensas  ///////////////////////////////////////////
+            case  "Defensa 1": //Basada en la raptor
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1.1;	// energía
+            $inirec14=1.1; //tiempo
+            $inirec15=.7; //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=14;  //velocidad	base, se ajusta para no pasar del maximo en el diseño
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 1; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14=0;    //Carga ENorme
+            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave11 = 24;	 	//mejoras
+            $CRnave12 = 12;	 	// blindajes
+            $CRnave13 = 19;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
 
 
 
@@ -2991,7 +3025,7 @@ class CualidadesFuselajes extends Model
 
         }
 
-        /// defensas  ///////////////////////////////////////////
+
 
 
         // tropas   ///////////////////////////////////////////
