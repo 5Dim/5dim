@@ -1141,6 +1141,7 @@ var costesDiseño={
     liquido:0,
     micros:0,
     personal:0,
+    masa:0,
 };
 
 var cualidades={
@@ -1187,6 +1188,7 @@ costesDiseño={
     liquido:costesFuselaje['liquido'],
     micros:costesFuselaje['micros'],
     personal:costesFuselaje['personal'],
+    masa:{{$diseño->cualidades->masa}},
 };
 
 cualidades={
@@ -1353,7 +1355,7 @@ $.each( armas[elemento], function( key, e ) {
 
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
-        var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.id == obj['id'];})[0]; // busca costes este objeto entre las armas
+        var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0];  // busca costes este objeto entre las armas
         var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
         var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
         sumaCostos(costesMisMotores,multiplicadorMotores,costeobj);// sumo recursos basicos
@@ -1366,44 +1368,115 @@ $.each( armas[elemento], function( key, e ) {
 
 elemento='blindaje';
 genera='defensa';
+multiplicador=multiplicadorBlindajes;
+misCostes=costesMisBlindajes;
 $.each( armas[elemento], function( key, e ) {
     costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
 
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
-        var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.id == obj['id'];})[0]; // busca costes este objeto entre las armas
+        var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
         var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
         var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-        sumaCostos(costesMisBlindajes,multiplicadorBlindajes,costeobj);// sumo recursos basicos
-        var cte=(1+miConstanteI)*nivelInv; //lo que varia por nivel de tecno
+        sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
+        var cte=1+(miConstanteI*nivelInv);//lo que varia por nivel de tecno
         var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
         costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
-        sumaCualidades(costesMisBlindajes,multiplicadorBlindajes,costesVacio);
+        sumaCualidades(misCostes,multiplicador,costesVacio);
     }
 });
 
+//// bucle de cargas
+for (x=1;x<6;x++){
+    genera='carga';
+    misCostes=costesMisCargas;
 
-elemento='cargaPequeña';
-genera='carga';
-$.each( armas[elemento], function( key, e ) {
-    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+    switch(x){
+        case 1:
+            elemento='cargaPequeña';
+            multiplicador=multiplicadorCargaPequeña;
+            factorFuselaje=1;
+        break;
+        case 2:
+            elemento='cargaMediana';
+            multiplicador=multiplicadorCargaMedia;
+            factorFuselaje=1;
+        break;
+        case 3:
+            elemento='cargaGrande';
+            multiplicador=multiplicadorCargaGrande;
+            factorFuselaje=1;
+        break;
+        case 4:
+            elemento='cargaEnorme';
+            multiplicador=multiplicadorCargaEnorme;
+            factorFuselaje=1;
+        break;
+        case 5:
+            elemento='cargaMega';
+            multiplicador=multiplicadorCargaMega;
+            factorFuselaje=1;
+        break;
+        default:
+            multiplicador=0;
+    };
+    genera2=elemento;
 
-    if (e>0){
-        var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
-        var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.id == obj['id'];})[0]; // busca costes este objeto entre las armas
-        var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
-        var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-        sumaCostos(costesMisCargas,multiplicadorCargaPequeña,costeobj);// sumo recursos basicos
-        var cte=(1+miConstanteI)*nivelInv; //lo que varia por nivel de tecno
-        var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
-        costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
-        sumaCualidades(costesMisCargas,multiplicadorCargaPequeña,costesVacio);
+    if (multiplicador>0){  //realmente hay de esto
+        $.each( armas[elemento], function( key, e ) {
+            costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+
+            if (e>0){
+                var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
+                var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
+                var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
+                var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
+                sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
+                var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
+                costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+                if (genera2!=""){costesVacio[genera2]=costeobj[genera2];} //hangares
+                sumaCualidades(misCostes,multiplicador,costesVacio);
+            }
+        });
     }
-});
+};
 
 
+//// armas ///////
 
+for (x=1;x<2;x++){
+    genera='ataque';
+    misCostes=costesMisArmas;
 
+    switch(x){
+        case 1:
+            elemento='armasLigera';
+            multiplicador=multiplicadorCLigeras;
+            factorFuselaje=1;
+        break;
+        default:
+            multiplicador=0;
+    };
+    genera2="";
+
+    if (multiplicador>0){  //realmente hay de esto
+        $.each( armas[elemento], function( key, e ) {
+            costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+
+            if (e>0){
+                var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
+                var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
+                var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
+                var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
+                sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
+                var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
+                costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+                if (genera2!=""){costesVacio[genera2]=costeobj[genera2];} //hangares
+                sumaCualidades(misCostes,multiplicador,costesVacio);
+            }
+        });
+    }
+};
 
 
 
@@ -1422,8 +1495,25 @@ sumaCualidades(cualidades,cte,costesMisCargas);
 sumaCualidades(cualidades,cte,costesMisMejoras);
 
 
+////// velocidad  //
+
+
+pesoInicial=.001*{{$diseño->cualidades->masa}} * (costesFuselaje['mineral']*50+costesFuselaje['cristal']*260+costesFuselaje['gas']*1000+costesFuselaje['plastico']*4000+costesFuselaje['ceramica']*600+costesFuselaje['liquido']*500+costesFuselaje['micros']*2000+costesFuselaje['personal']*500);
+variacionPeso=(pesoInicial/(cualidades['masa']+pesoInicial));
+cualidades['velocidad']=Math.min(variacionPeso*cualidadesFuselaje['velocidad'],cualidadesFuselaje['velocidadMax'],19.99);
+cualidades['velocidad']=( Math.round(cualidades['velocidad']*100))/100;
+
+$("#nombre").val("Masa de base="+pesoInicial)
+
 mostrarResultado();
-    }
+}
+
+
+
+
+
+
+
 
 function sumaCostos(destinoCosto,cte,esteCosto){
     destinoCosto['mineral']+=esteCosto['mineral']*cte;
@@ -1434,6 +1524,7 @@ function sumaCostos(destinoCosto,cte,esteCosto){
     destinoCosto['liquido']+=esteCosto['liquido']*cte;
     destinoCosto['micros']+=esteCosto['micros']*cte;
     destinoCosto['personal']+=esteCosto['personal']*cte;
+    destinoCosto['masa']+=esteCosto['masa']*cte;
 }
 
 function sumaCualidades(destinoCualidad,cte,esteCualidad){
@@ -1464,6 +1555,9 @@ function mostrarResultado(){
     valueF=formatNumber (Math.round (value));
         $("#"+key+"D").text(valueF);
     })
+
+    $("#descripcion").val("Masa añadida="+costesDiseño['masa'])
+
 
 }
 

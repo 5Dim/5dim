@@ -137,7 +137,7 @@
                     <td id="cargaMedianaD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td id="CargaGrandeD" class="anchofijo text-light borderless">
+                    <td id="cargaGrandeD" class="anchofijo text-light borderless">
                         0
                     </td>
                     <td id="cargaEnormeD" class="anchofijo text-light borderless">
@@ -159,7 +159,7 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-dark text-light">Nombre</span>
                                 </div>
-                                <input type="text" class="form-control input" placeholder="Nombre del diseño" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <input type="text" id="nombre" class="form-control input" placeholder="Nombre del diseño" aria-label="Recipient's username" aria-describedby="basic-addon2">
                             </div>
                     </td>
                     <td class="anchofijo text-secondary borderless">
@@ -167,7 +167,7 @@
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">Descripcion</span>
                             </div>
-                            <input type="text" class="form-control input" placeholder="Descripcion del diseño" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <input type="text" id="descripcion" class="form-control input" placeholder="Descripcion del diseño" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         </div>
                     </td>
                     <td class="anchofijo text-secondary borderless">
