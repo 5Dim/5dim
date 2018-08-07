@@ -374,6 +374,26 @@ class Constantes extends Model
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
+                $constante->valor=0;
+                $constante->minimo=-20;
+                $constante->maximo=20;
+                $constante->codigo='fuselajedefensaCostoPuntosTodas';
+                $constante->descripcion='variación de puntos para todos los fuselajes de naves, es suma ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.3;
+                $constante->maximo=3;
+                $constante->codigo='fuselajedefensaConstruccionTiempoTodas';
+                $constante->descripcion='variación de la velocidad de construccion fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
                 $constante->valor=1;
                 $constante->minimo=.3;
                 $constante->maximo=3;
@@ -433,7 +453,27 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.3;
+                $constante->maximo=3;
+                $constante->codigo='fuselajedefensaConstruccionTiempodefensa';
+                $constante->descripcion='variación de la velocidad de construccion fuselaje naves defensa';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.3;
+                $constante->maximo=3;
+                $constante->codigo='fuselajedefensaRecursosTodas';
+                $constante->descripcion='variación de los costes de  fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -496,7 +536,27 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.3;
+                $constante->maximo=3;
+                $constante->codigo='fuselajedefensaRecursosdefensa';
+                $constante->descripcion='variación de los costes de  fuselaje naves defensa';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=3;
+                $constante->codigo='fuselajedefensaDefensaTodas';
+                $constante->descripcion='variación de los defensa de  fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -559,6 +619,27 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=3;
+                $constante->codigo='fuselajedefensaDefensadefensa';
+                $constante->descripcion='variación de los defensa de  fuselaje naves defensa';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaEnergiaTodas';
+                $constante->descripcion='variación de los Energia de fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -620,6 +701,16 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaEnergiadefensa';
+                $constante->descripcion='variación de los Energia de fuselaje naves defensa';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
 
 
                 $constante =new Constantes();
@@ -632,6 +723,15 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaCombustibleTodas';
+                $constante->descripcion='variación de los Combustible de fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -683,7 +783,27 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaCombustibledefensa';
+                $constante->descripcion='variación de los Combustible de fuselaje naves defensa';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaMantenimientoTodas';
+                $constante->descripcion='variación de los Mantenimiento de fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -694,7 +814,6 @@ class Constantes extends Model
                 $constante->descripcion='variación de los Mantenimiento de fuselaje naves ';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
-
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -746,7 +865,27 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaMantenimientodefensa';
+                $constante->descripcion='variación de los Mantenimiento de fuselaje naves defensa';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaVelocidadTodas';
+                $constante->descripcion='variación de los Velocidad de fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -757,7 +896,6 @@ class Constantes extends Model
                 $constante->descripcion='variación de los Velocidad de fuselaje naves ';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
-
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -809,7 +947,27 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaVelocidaddefensa';
+                $constante->descripcion='variación de los Velocidad de fuselaje naves defensa';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaTiempoTodas';
+                $constante->descripcion='variación de los Tiempo de fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -869,6 +1027,16 @@ class Constantes extends Model
                 $constante->maximo=5;
                 $constante->codigo='fuselajenaveTiempoestacion';
                 $constante->descripcion='variación de los Tiempo de fuselaje naves estacion';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.2;
+                $constante->maximo=5;
+                $constante->codigo='fuselajedefensaTiempodefensa';
+                $constante->descripcion='variación de los Tiempo de fuselaje naves defensa';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 

@@ -205,13 +205,13 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
 
 <div class="row rounded">
     <div class="col-12 borderless">
-            <div id="cuadro1" class="table-responsive" style="background-color: #000000 !important;">
+            <div id="cuadro1" class="" style="background-color: #000000 !important;">
                 <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $diseño->id . '.jpg')}}') no-repeat center !important;">
                     <tr>
                         <td>
                             <div class="row rounded">
                                 <div class="col-12 ">
-                                    <div id="cuadro1" class="table-responsive cajita">
+                                    <div id="cuadro1" class=" cajita">
                                         <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                             <tr>
                                                 <td colspan="4">
@@ -307,7 +307,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                         <div class="row rounded ">
                                             <div class="col-12 ">
                                                 @if ($investNiveles["invEnergia"]>0)
-                                                <div id="cuadro1" class="table-responsive cajita">
+                                                <div id="cuadro1" class=" cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
                                                             @if ($cantidadCLigeras>0)
@@ -352,7 +352,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                         <div class="row rounded ">
                                             <div class="col-12 ">
                                                 @if ($investNiveles["invPlasma"]>0)
-                                                <div id="cuadro1" class="table-responsive cajita">
+                                                <div id="cuadro1" class=" cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
                                                             @if ($cantidadCLigeras>0)
@@ -398,7 +398,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                         <div class="row rounded ">
                                             <div class="col-12 ">
                                                 @if ($investNiveles["invBalistica"]>0)
-                                                <div id="cuadro1" class="table-responsive cajita">
+                                                <div id="cuadro1" class=" cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
                                                             @if ($cantidadCLigeras>0)
@@ -443,37 +443,37 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                         <div class="row rounded ">
                                             <div class="col-12 ">
                                                 @if ($investNiveles["invMa"]>0)
-                                                <div id="cuadro1" class="table-responsive cajita">
+                                                <div id="cuadro1" class=" cajita">
                                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                         <tr>
                                                             @if ($cantidadCLigeras>0)
                                                                 <td>
-                                                                    <img onClick="encajar('armasLigera',31,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="top" title="Cañón ligero" src="{{ asset('img/fotos armas/arma31.jpg') }}" width="45" height="45" >
+                                                                    <img onClick="encajar('armasLigera',31,'añade')" class="rounded invesMa armasI" data-container="body" data-toggle="tooltip" data-placement="top" title="Cañón ligero" src="{{ asset('img/fotos armas/arma31.jpg') }}" width="45" height="45" >
                                                                 </td>
                                                             @endif
                                                             @if ($cantidadCMedias>0)
                                                                 <td>
-                                                                    <img onClick="encajar('armasMedia',32,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="top" title="Cañón medio" src="{{ asset('img/fotos armas/arma32.jpg') }}" width="45" height="45">
+                                                                    <img onClick="encajar('armasMedia',32,'añade')" class="rounded invesMa armasI" data-container="body" data-toggle="tooltip" data-placement="top" title="Cañón medio" src="{{ asset('img/fotos armas/arma32.jpg') }}" width="45" height="45">
                                                                 </td>
                                                             @endif
                                                             @if ($cantidadCPesadas>0)
                                                                 <td>
-                                                                    <img onClick="encajar('armasPesada',33,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="top" title="Cañón pesado" src="{{ asset('img/fotos armas/arma33.jpg') }}" width="45" height="45">
+                                                                    <img onClick="encajar('armasPesada',33,'añade')" class="rounded invesMa armasI" data-container="body" data-toggle="tooltip" data-placement="top" title="Cañón pesado" src="{{ asset('img/fotos armas/arma33.jpg') }}" width="45" height="45">
                                                                 </td>
                                                             @endif
                                                             @if ($cantidadCInsertadas>0)
                                                                 <td>
-                                                                    <img onClick="encajar('armasInsertada',34,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="top" title="Cañón insertado" src="{{ asset('img/fotos armas/arma34.jpg') }}" width="45" height="45">
+                                                                    <img onClick="encajar('armasInsertada',34,'añade')" class="rounded invesMa armasI" data-container="body" data-toggle="tooltip" data-placement="top" title="Cañón insertado" src="{{ asset('img/fotos armas/arma34.jpg') }}" width="45" height="45">
                                                                 </td>
                                                             @endif
                                                             @if ($cantidadCMisiles>0)
                                                                 <td>
-                                                                    <img onClick="encajar('armasMisil',35,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="top" title="Misiles" src="{{ asset('img/fotos armas/arma35.jpg') }}" width="45" height="45">
+                                                                    <img onClick="encajar('armasMisil',35,'añade')" class="rounded invesMa armasI" data-container="body" data-toggle="tooltip" data-placement="top" title="Misiles" src="{{ asset('img/fotos armas/arma35.jpg') }}" width="45" height="45">
                                                                 </td>
                                                             @endif
                                                             @if ($cantidadCBombas>0)
                                                                 <td>
-                                                                    <img onClick="encajar('armasBomba',36,'añade')" class="rounded invesMa armasI" data-toggle="tooltip" data-placement="top" title="Bombas" src="{{ asset('img/fotos armas/arma36.jpg') }}" width="45" height="45">
+                                                                    <img onClick="encajar('armasBomba',36,'añade')" class="rounded invesMa armasI" data-container="body" data-toggle="tooltip" data-placement="top" title="Bombas" src="{{ asset('img/fotos armas/arma36.jpg') }}" width="45" height="45">
                                                                 </td>
                                                             @endif
                                                         </tr>
@@ -494,7 +494,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                             <div class="row rounded">
                                 <div class="col-12 ">
                                     @if ($investNiveles["invBlindaje"]>0)
-                                        <div id="cuadro1" class="table-responsive cajita">
+                                        <div id="cuadro1" class=" cajita">
                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
                                                     <td colspan="4">
@@ -539,7 +539,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                     <div class="row rounded">
                                         <div class="col-12 ">
                                             @if ($investNiveles["invIa"]>0)
-                                            <div id="cuadro1" class="table-responsive cajita" style="max-width: 725px">
+                                            <div id="cuadro1" class=" cajita" style="max-width: 800px">
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
                                                         <td colspan="8">
@@ -851,7 +851,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="tab-pane fade active" id="energia" role="tabpanel" aria-labelledby="energia-tab">
                                                 <div class="row rounded ">
                                                     <div class="col-12 ">
-                                                        <div id="cuadro1" class="table-responsive cajita">
+                                                        <div id="cuadro1" class=" cajita">
                                                             <div class=" text-light" id="cargatxt">Carga: -5.454</div>
                                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                                 <tr>
