@@ -1021,7 +1021,7 @@ var armasBombas={!!json_encode($armasBombas)!!};
         cargaMediana:cargaMedianas,
         cargaGrande:cargaGrandes,
         cargaEnorme:cargaEnormes,
-        cargaDMega:cargaMegas,
+        cargaMega:cargaMegas,
 
         armasLigera:armasLigeras,
         armasMedia:armasMedias,
@@ -1167,7 +1167,12 @@ var multiplicadorCMedias={{$multiplicadorCMedias}};
 var multiplicadorCPesadas={{$multiplicadorCPesadas}};
 var multiplicadorCInsertadas={{$multiplicadorCInsertadas}};
 var multiplicadorCMisiles={{$multiplicadorCMisiles}};
-var multiplicadorCBombas={{$multiplicadorCBombas}};
+var multiplicadorCargaPequeña={{$multiplicadorCargaPequeña}};
+var multiplicadorCargaMedia={{$multiplicadorCargaMedia}};
+var multiplicadorCargaGrande={{$multiplicadorCargaGrande}};
+var multiplicadorCargaEnorme={{$multiplicadorCargaEnorme}};
+var multiplicadorCargaMega={{$multiplicadorCargaMega}};
+
 
 function calculoTotalR(){
 
@@ -1378,7 +1383,7 @@ $.each( armas[elemento], function( key, e ) {
 });
 
 
-elemento='carga';
+elemento='cargaPequeña';
 genera='carga';
 $.each( armas[elemento], function( key, e ) {
     costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
@@ -1388,11 +1393,11 @@ $.each( armas[elemento], function( key, e ) {
         var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.id == obj['id'];})[0]; // busca costes este objeto entre las armas
         var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
         var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-        sumaCostos(costesMisCargas,multiplicadorCargas,costeobj);// sumo recursos basicos
+        sumaCostos(costesMisCargas,multiplicadorCargaPequeña,costeobj);// sumo recursos basicos
         var cte=(1+miConstanteI)*nivelInv; //lo que varia por nivel de tecno
         var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
         costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
-        sumaCualidades(costesMisCargas,multiplicadorCargas,costesVacio);
+        sumaCualidades(costesMisCargas,multiplicadorCargaPequeña,costesVacio);
     }
 });
 
@@ -1462,5 +1467,8 @@ function mostrarResultado(){
 
 }
 
+$( document ).ready(function() {
+    calculoTotalR();
+    });
 
         </script>

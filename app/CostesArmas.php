@@ -331,351 +331,6 @@ class CostesArmas extends Model
                 array_push($costes, $coste);
 
 
-            //// carga      //////////////////////////////////////////
-
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="90"; //carga peq1
-            $coste->mineral=$fccc*3000;
-            $coste->cristal=$fccc*0;
-            $coste->gas=$fccc*0;
-            $coste->plastico=$fccc*0; //4
-            $coste->ceramica=$fccc*0; //5
-            $coste->liquido=$fccc*0; //6
-            $coste->micros=$fccc*0;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*0; //11
-            $coste->masa=$fccc*3000;    //12
-            $coste->energia=0*$fccc;
-            $coste->tiempo=$fccc*1000;       //14
-            $coste->mantenimiento=$fccc*0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=20000;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="91"; //carga peq2
-            $coste->mineral=$fccc*1500;
-            $coste->cristal=$fccc*2000;
-            $coste->gas=$fccc*0;
-            $coste->plastico=$fccc*0; //4
-            $coste->ceramica=$fccc*0; //5
-            $coste->liquido=$fccc*0; //6
-            $coste->micros=$fccc*0;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*0; //11
-            $coste->masa=$fccc*35000;    //12
-            $coste->energia=0*$fccc;
-            $coste->tiempo=$fccc*5000;       //14
-            $coste->mantenimiento=$fccc*0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=40000;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="92"; //carga mediana1
-            $coste->mineral=$fccc*70000;
-            $coste->cristal=$fccc*15000;
-            $coste->gas=$fccc*0;
-            $coste->plastico=$fccc*0; //4
-            $coste->ceramica=$fccc*10000; //5
-            $coste->liquido=$fccc*0; //6
-            $coste->micros=$fccc*0;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*0; //11
-            $coste->masa=$fccc*50000;    //12
-            $coste->energia=0*$fccc;
-            $coste->tiempo=$fccc*10000;       //14
-            $coste->mantenimiento=$fccc*0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=200000;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="93"; //carga cargaGrande
-            $coste->mineral=$fccc*100000;
-            $coste->cristal=$fccc*20000;
-            $coste->gas=$fccc*0;
-            $coste->plastico=$fccc*0; //4
-            $coste->ceramica=$fccc*20000; //5
-            $coste->liquido=$fccc*0; //6
-            $coste->micros=$fccc*0;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*0; //11
-            $coste->masa=$fccc*80000;    //12
-            $coste->energia=0*$fccc;
-            $coste->tiempo=$fccc*12000;       //14
-            $coste->mantenimiento=$fccc*0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=500000;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="94"; //carga cargaGrande2
-            $coste->mineral=$fccc*50000;
-            $coste->cristal=$fccc*20000;
-            $coste->gas=$fccc*0;
-            $coste->plastico=$fccc*20000; //4
-            $coste->ceramica=$fccc*0; //5
-            $coste->liquido=$fccc*0; //6
-            $coste->micros=$fccc*50000;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*0; //11
-            $coste->masa=$fccc*90000;    //12
-            $coste->energia=0*$fccc;
-            $coste->tiempo=$fccc*20000;       //14
-            $coste->mantenimiento=$fccc*0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=1000000;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="95"; //carga enorme
-            $coste->mineral=$fccc*100000;
-            $coste->cristal=$fccc*40000;
-            $coste->gas=$fccc*40000;
-            $coste->plastico=$fccc*40000; //4
-            $coste->ceramica=$fccc*40000; //5
-            $coste->liquido=$fccc*0; //6
-            $coste->micros=$fccc*50000;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*0; //11
-            $coste->masa=$fccc*250000;    //12
-            $coste->energia=2000*$fccc;
-            $coste->tiempo=$fccc*25000;       //14
-            $coste->mantenimiento=$fccc*0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=3000000;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="96"; //carga mega
-            $coste->mineral=$fccc*200000;
-            $coste->cristal=$fccc*40000;
-            $coste->gas=$fccc*80000;
-            $coste->plastico=$fccc*80000; //4
-            $coste->ceramica=$fccc*40000; //5
-            $coste->liquido=$fccc*40000; //6
-            $coste->micros=$fccc*100000;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*0; //11
-            $coste->masa=$fccc*300000;    //12
-            $coste->energia=5000*$fccc;
-            $coste->tiempo=$fccc*35000;       //14
-            $coste->mantenimiento=$fccc*0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=7000000;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="97"; //carga hangar  cazas
-            $coste->mineral=$fccc*7000;
-            $coste->cristal=$fccc*500;
-            $coste->gas=$fccc*0;
-            $coste->plastico=$fccc*500; //4
-            $coste->ceramica=$fccc*500; //5
-            $coste->liquido=$fccc*500; //6
-            $coste->micros=$fccc*1000;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*10; //11
-            $coste->masa=$fccc*10000;    //12
-            $coste->energia=-500*$fccc;
-            $coste->tiempo=$fccc*3600;       //14
-            $coste->mantenimiento=$fccc*10;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=1;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="98"; //carga hangar  ligeras
-            $coste->mineral=$fccc*50000;
-            $coste->cristal=$fccc*2000;
-            $coste->gas=$fccc*0;
-            $coste->plastico=$fccc*2000; //4
-            $coste->ceramica=$fccc*2000; //5
-            $coste->liquido=$fccc*2000; //6
-            $coste->micros=$fccc*4000;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*35; //11
-            $coste->masa=$fccc*50000;    //12
-            $coste->energia=-1000*$fccc;
-            $coste->tiempo=$fccc*6000;       //14
-            $coste->mantenimiento=$fccc*15;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=1;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="99"; //carga hangar  medias
-            $coste->mineral=$fccc*200000;
-            $coste->cristal=$fccc*100000;
-            $coste->gas=$fccc*10000;
-            $coste->plastico=$fccc*20000; //4
-            $coste->ceramica=$fccc*10000; //5
-            $coste->liquido=$fccc*50000; //6
-            $coste->micros=$fccc*500;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*200; //11
-            $coste->masa=$fccc*100000;    //12
-            $coste->energia=-3000*$fccc;
-            $coste->tiempo=$fccc*8000;       //14
-            $coste->mantenimiento=$fccc*15;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=1;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="70"; // optimizador
-            $coste->mineral=$fccc*400000;
-            $coste->cristal=$fccc*150000;
-            $coste->gas=$fccc*20000;
-            $coste->plastico=$fccc*40000; //4
-            $coste->ceramica=$fccc*20000; //5
-            $coste->liquido=$fccc*50000; //6
-            $coste->micros=$fccc*2000;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*200; //11
-            $coste->masa=$fccc*150000;    //12
-            $coste->energia=-5000*$fccc;
-            $coste->tiempo=$fccc*12000;       //14
-            $coste->mantenimiento=$fccc*35;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=1;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="101"; //carga hangar  estaciones
-            $coste->mineral=$fccc*600000;
-            $coste->cristal=$fccc*200000;
-            $coste->gas=$fccc*30000;
-            $coste->plastico=$fccc*40000; //4
-            $coste->ceramica=$fccc*50000; //5
-            $coste->liquido=$fccc*50000; //6
-            $coste->micros=$fccc*10000;   //7
-            $coste->fuel=$fccc*0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=$fccc*300; //11
-            $coste->masa=$fccc*250000;    //12
-            $coste->energia=-9000*$fccc;
-            $coste->tiempo=$fccc*19000;       //14
-            $coste->mantenimiento=$fccc*50;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=1;
-            array_push($costes, $coste);
-
-
-
             ////// mejoras vas por % de los recursos //////////////////////////////////////////////
 
             $coste =new CostesArmas();
@@ -1071,6 +726,351 @@ class CostesArmas extends Model
             $coste->cargaGrande=0;
             $coste->cargaEnorme=0;
             $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+
+            //// carga      //////////////////////////////////////////
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="90"; //carga peq1
+            $coste->mineral=$fccc*3000;
+            $coste->cristal=$fccc*0;
+            $coste->gas=$fccc*0;
+            $coste->plastico=$fccc*0; //4
+            $coste->ceramica=$fccc*0; //5
+            $coste->liquido=$fccc*0; //6
+            $coste->micros=$fccc*0;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*0; //11
+            $coste->masa=$fccc*3000;    //12
+            $coste->energia=0*$fccc;
+            $coste->tiempo=$fccc*1000;       //14
+            $coste->mantenimiento=$fccc*0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=20000;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="91"; //carga peq2
+            $coste->mineral=$fccc*1500;
+            $coste->cristal=$fccc*2000;
+            $coste->gas=$fccc*0;
+            $coste->plastico=$fccc*0; //4
+            $coste->ceramica=$fccc*0; //5
+            $coste->liquido=$fccc*0; //6
+            $coste->micros=$fccc*0;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*0; //11
+            $coste->masa=$fccc*35000;    //12
+            $coste->energia=0*$fccc;
+            $coste->tiempo=$fccc*5000;       //14
+            $coste->mantenimiento=$fccc*0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=40000;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="92"; //carga mediana1
+            $coste->mineral=$fccc*70000;
+            $coste->cristal=$fccc*15000;
+            $coste->gas=$fccc*0;
+            $coste->plastico=$fccc*0; //4
+            $coste->ceramica=$fccc*10000; //5
+            $coste->liquido=$fccc*0; //6
+            $coste->micros=$fccc*0;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*0; //11
+            $coste->masa=$fccc*50000;    //12
+            $coste->energia=0*$fccc;
+            $coste->tiempo=$fccc*10000;       //14
+            $coste->mantenimiento=$fccc*0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=200000;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="93"; //carga cargaGrande
+            $coste->mineral=$fccc*100000;
+            $coste->cristal=$fccc*20000;
+            $coste->gas=$fccc*0;
+            $coste->plastico=$fccc*0; //4
+            $coste->ceramica=$fccc*20000; //5
+            $coste->liquido=$fccc*0; //6
+            $coste->micros=$fccc*0;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*0; //11
+            $coste->masa=$fccc*80000;    //12
+            $coste->energia=0*$fccc;
+            $coste->tiempo=$fccc*12000;       //14
+            $coste->mantenimiento=$fccc*0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=500000;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="94"; //carga cargaGrande2
+            $coste->mineral=$fccc*50000;
+            $coste->cristal=$fccc*20000;
+            $coste->gas=$fccc*0;
+            $coste->plastico=$fccc*20000; //4
+            $coste->ceramica=$fccc*0; //5
+            $coste->liquido=$fccc*0; //6
+            $coste->micros=$fccc*50000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*0; //11
+            $coste->masa=$fccc*90000;    //12
+            $coste->energia=0*$fccc;
+            $coste->tiempo=$fccc*20000;       //14
+            $coste->mantenimiento=$fccc*0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=1000000;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="95"; //carga enorme
+            $coste->mineral=$fccc*100000;
+            $coste->cristal=$fccc*40000;
+            $coste->gas=$fccc*40000;
+            $coste->plastico=$fccc*40000; //4
+            $coste->ceramica=$fccc*40000; //5
+            $coste->liquido=$fccc*0; //6
+            $coste->micros=$fccc*50000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*0; //11
+            $coste->masa=$fccc*250000;    //12
+            $coste->energia=2000*$fccc;
+            $coste->tiempo=$fccc*25000;       //14
+            $coste->mantenimiento=$fccc*0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=3000000;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="96"; //carga mega
+            $coste->mineral=$fccc*200000;
+            $coste->cristal=$fccc*40000;
+            $coste->gas=$fccc*80000;
+            $coste->plastico=$fccc*80000; //4
+            $coste->ceramica=$fccc*40000; //5
+            $coste->liquido=$fccc*40000; //6
+            $coste->micros=$fccc*100000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*0; //11
+            $coste->masa=$fccc*300000;    //12
+            $coste->energia=5000*$fccc;
+            $coste->tiempo=$fccc*35000;       //14
+            $coste->mantenimiento=$fccc*0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=7000000;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="97"; //carga hangar  cazas
+            $coste->mineral=$fccc*7000;
+            $coste->cristal=$fccc*500;
+            $coste->gas=$fccc*0;
+            $coste->plastico=$fccc*500; //4
+            $coste->ceramica=$fccc*500; //5
+            $coste->liquido=$fccc*500; //6
+            $coste->micros=$fccc*1000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*10; //11
+            $coste->masa=$fccc*10000;    //12
+            $coste->energia=-500*$fccc;
+            $coste->tiempo=$fccc*3600;       //14
+            $coste->mantenimiento=$fccc*10;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=1;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="98"; //carga hangar  ligeras
+            $coste->mineral=$fccc*50000;
+            $coste->cristal=$fccc*2000;
+            $coste->gas=$fccc*0;
+            $coste->plastico=$fccc*2000; //4
+            $coste->ceramica=$fccc*2000; //5
+            $coste->liquido=$fccc*2000; //6
+            $coste->micros=$fccc*4000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*35; //11
+            $coste->masa=$fccc*50000;    //12
+            $coste->energia=-1000*$fccc;
+            $coste->tiempo=$fccc*6000;       //14
+            $coste->mantenimiento=$fccc*15;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=1;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="99"; //carga hangar  medias
+            $coste->mineral=$fccc*200000;
+            $coste->cristal=$fccc*100000;
+            $coste->gas=$fccc*10000;
+            $coste->plastico=$fccc*20000; //4
+            $coste->ceramica=$fccc*10000; //5
+            $coste->liquido=$fccc*50000; //6
+            $coste->micros=$fccc*500;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*200; //11
+            $coste->masa=$fccc*100000;    //12
+            $coste->energia=-3000*$fccc;
+            $coste->tiempo=$fccc*8000;       //14
+            $coste->mantenimiento=$fccc*15;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=1;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="70"; // optimizador
+            $coste->mineral=$fccc*400000;
+            $coste->cristal=$fccc*150000;
+            $coste->gas=$fccc*20000;
+            $coste->plastico=$fccc*40000; //4
+            $coste->ceramica=$fccc*20000; //5
+            $coste->liquido=$fccc*50000; //6
+            $coste->micros=$fccc*2000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*200; //11
+            $coste->masa=$fccc*150000;    //12
+            $coste->energia=-5000*$fccc;
+            $coste->tiempo=$fccc*12000;       //14
+            $coste->mantenimiento=$fccc*35;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=1;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="101"; //carga hangar  estaciones
+            $coste->mineral=$fccc*600000;
+            $coste->cristal=$fccc*200000;
+            $coste->gas=$fccc*30000;
+            $coste->plastico=$fccc*40000; //4
+            $coste->ceramica=$fccc*50000; //5
+            $coste->liquido=$fccc*50000; //6
+            $coste->micros=$fccc*10000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*300; //11
+            $coste->masa=$fccc*250000;    //12
+            $coste->energia=-9000*$fccc;
+            $coste->tiempo=$fccc*19000;       //14
+            $coste->mantenimiento=$fccc*50;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=1;
             array_push($costes, $coste);
 
 

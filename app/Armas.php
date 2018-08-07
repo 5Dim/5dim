@@ -144,6 +144,10 @@ class Armas extends Model
 
                 array_push($armas, $arma);
 
+
+
+
+
                 $arma =new Armas();
                 $arma->codigo=70;
                 $arma->nombre='Optimizador';
