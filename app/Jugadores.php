@@ -31,4 +31,14 @@ class Jugadores extends Model
     {
         return $this->belongsToMany(Fuselajes::class);
     }
+
+    public function mensajes ()
+    {
+        return $this->hasMany(Mensajes::class, 'emisor');
+    }
+
+    public function intervinientes ()
+    {
+        return $this->hasMany(MensajesIntervinientes::class, 'receptor');
+    }
 }
