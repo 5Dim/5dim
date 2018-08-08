@@ -53,7 +53,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/juego', 'JuegoController@index');
     Route::get('/planeta/{planeta?}', ['uses' => 'JuegoController@planeta']);
     Route::get('/jugador/{universo?}', ['uses' => 'JuegoController@jugador']);
-    Route::get('/juego/mensajes', 'JuegoController@mensajes');
     Route::get('/juego/tienda', 'JuegoController@tienda');
     Route::get('/juego/estadisticas', 'JuegoController@estadisticas');
 
@@ -90,7 +89,6 @@ Route::middleware('auth')->group(function () {
     //Astrometria
     Route::get('/juego/astrometria', 'AstrometriaController@index');
 
-
     //Flota
     Route::get('/juego/flotas', 'FlotaController@index');
 
@@ -105,6 +103,9 @@ Route::middleware('auth')->group(function () {
 
     //Alianza
     Route::get('/juego/alianza', 'AlianzaController@index');
+
+    //Mensajes
+    Route::get('/juego/mensajes', 'MensajesController@index');
 });
 Auth::routes();
 

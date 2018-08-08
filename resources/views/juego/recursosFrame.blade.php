@@ -413,10 +413,12 @@
             recursos.personal -= {{$personal}}
             //console.log(recursos);
             var produccion = {!! json_encode($producciones) !!};
-            console.log(produccion);
+            //console.log(produccion);
             var almacenes = {!! json_encode($almacenes) !!};
             //console.log(almacenes);
-            activarIntervalo(recursos, almacenes, produccion, 250);
+            var techs = {!! json_encode($factoresIndustrias) !!};
+            //console.log(techs);
+            activarIntervalo(recursos, almacenes, produccion, 250, techs);
         });
     </script>
     <script>
