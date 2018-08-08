@@ -289,6 +289,8 @@
             $('#listaJugadores').select2({
                 theme: "bootstrap",
                 width: '100%',
+                closeOnSelect: false,
+                allowClear: true,
                 placeholder: "Nombre del jugador",
                 data: [
                     { id: 1, text: "Ford"     },

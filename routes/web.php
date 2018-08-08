@@ -106,6 +106,8 @@ Route::middleware('auth')->group(function () {
 
     //Mensajes
     Route::get('/juego/mensajes', 'MensajesController@index');
+    Route::get('/juego/nuevoMensaje', 'MensajesController@nuevoMensaje');
+    Route::post('/juego/enviarMensaje', 'MensajesController@enviarMensaje');
 });
 Auth::routes();
 
