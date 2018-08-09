@@ -13,7 +13,7 @@
                             </textarea>
                         </div>
                         <div class="col-3">
-                            <input id="listaJugadores" type="text" class="form-control input" multiple>
+                            <input id="listaJugadores" name="listaJugadores" type="text" class="form-control input" multiple>
                             <br>
                             <button class="btn btn-success btn-block align-bottom" type="submit">
                                 <i class="fa fa-share-square"></i> Enviar

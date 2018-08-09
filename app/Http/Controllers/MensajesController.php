@@ -17,6 +17,7 @@ use App\CostesConstrucciones;
 use App\Investigaciones;
 use Auth;
 use App\Mensajes;
+use App\MensajesIntervinientes;
 
 class MensajesController extends Controller
 {
@@ -142,6 +143,17 @@ class MensajesController extends Controller
         $mensaje->mensaje = request()->input('descripcion');
         $mensaje->emisor = session()->get('jugadores_id');
         $mensaje->save();
+        $intervinientes = request()->input('listaJugadores');
+        $listIntervinientes = explode( ',', $intervinientes );
+        foreach ($listIntervinientes as $receptor) {
+            if (!empty($receptor) or $receptor != 0) {
+                $interviniente = new MensajesIntervinientes();
+                $interviniente->receptor = $receptor;
+                $interviniente->leido = false;
+                $interviniente->mensajes_id = $mensaje->id;
+                $interviniente->save();
+            }
+        }
         return redirect('/juego/mensajes');
     }
 }
