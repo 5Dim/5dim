@@ -36,7 +36,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcmot*100; //11
-                $coste->masa=-10000;
+                $coste->masa=3000;
                 $coste->energia=750*$fcenermot;
                 $coste->tiempo=$fcmot*200;
                 $coste->mantenimiento=$fcmot*200;
@@ -64,7 +64,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcmot*1; //11
-                $coste->masa=-20000;
+                $coste->masa=10000;
                 $coste->energia=645*$fcenermot;
                 $coste->tiempo=$fcmot*600;
                 $coste->mantenimiento=$fcmot*300;
@@ -92,7 +92,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcmot*1; //11
-                $coste->masa=-80000;
+                $coste->masa=40000;
                 $coste->energia=310*$fcenermot;
                 $coste->tiempo=$fcmot*300;
                 $coste->mantenimiento=$fcmot*600;
@@ -120,7 +120,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcmot*4; //11
-                $coste->masa=-150000;
+                $coste->masa=70000;
                 $coste->energia=845*$fcenermot;
                 $coste->tiempo=$fcmot*700;
                 $coste->mantenimiento=$fcmot*700;
@@ -148,7 +148,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcmot*5; //11
-                $coste->masa=-200000;
+                $coste->masa=100000;
                 $coste->energia=1060*$fcenermot;
                 $coste->tiempo=$fcmot*2000;
                 $coste->mantenimiento=$fcmot*2200;
@@ -176,11 +176,11 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcmot*2000; //11
-                $coste->masa=4000;
+                $coste->masa=14000;
                 $coste->energia=400*$fcenermot;
                 $coste->tiempo=$fcmot*3000;
                 $coste->mantenimiento=$fcmot*0200;
-                $coste->defensa=-20000;
+                $coste->defensa=20000;
                 $coste->ataque=0;
                 $coste->velocidad=15000;
                 $coste->carga=0;

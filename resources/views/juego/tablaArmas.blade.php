@@ -1131,7 +1131,6 @@ var investigaciones={!!json_encode($investigaciones)!!};
 var tnave= {!!json_encode($diseño->tnave)!!};
 
 
-
 var costesDiseño={
     mineral:0,
     cristal:0,
@@ -1174,8 +1173,20 @@ var multiplicadorCargaGrande={{$multiplicadorCargaGrande}};
 var multiplicadorCargaEnorme={{$multiplicadorCargaEnorme}};
 var multiplicadorCargaMega={{$multiplicadorCargaMega}};
 
+var empuje={
+    '59':10000,
+    '60':300000,
+    '61':1000000,
+    '62':700000,
+    '63':1400000,
+    '64':2000000,
+};
+
+
 
 function calculoTotalR(){
+
+empujeT=0;
 
 costesArmas= {!!json_encode($costesArmas)!!};
 
@@ -1363,6 +1374,7 @@ $.each( armas[elemento], function( key, e ) {
         var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
         costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
         sumaCualidades(costesMisMotores,multiplicadorMotores,costesVacio);
+        empujeT+=empuje[obj['codigo']]*multiplicadorMotores*cualidadesFuselaje['velocidad']; //el empuje del motor por la cantidad por el factor de fuselaje
     }
 });
 
@@ -1480,6 +1492,47 @@ for (x=1;x<2;x++){
 
 
 
+///// post mejoras
+elemento='mejora';
+genera='ia';
+multiplicador=1;
+misCostes=costesMisMejoras;
+$.each( armas[elemento], function( key, e ) {
+    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+    sobreCostes={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+    hazlo=0;
+    if (e>0){
+        var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
+        switch (obj['codigo']){
+        case 70: //optimizador
+            hazlo++;
+            cte=1;
+            sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCostos(sobreCostes,cte,costesMisBlindajes);
+            sumaCostos(sobreCostes,cte,costesMisArmas);
+            sumaCostos(sobreCostes,cte,costesMisCargas);
+            sumaCostos(sobreCostes,cte,costesMisMejoras);
+        break;
+
+        }
+
+        if (hazlo>0){
+
+            var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
+            var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
+            var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
+        // sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
+            var cte=1+(miConstanteI*nivelInv);//lo que varia por nivel de tecno
+            var factorFuselaje=1;     // el factor que varia para cada fuselaje
+            costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+            //sumaCualidades(misCostes,multiplicador,costesVacio);
+            sumaCostosMejoras(costesDiseño,multiplicador,costeobj,sobreCostes);
+        }
+    }
+});
+
+
+
 //suma de todos los costes:
 cte=1;
 sumaCostos(costesDiseño,cte,costesMisMotores);
@@ -1499,11 +1552,13 @@ sumaCualidades(cualidades,cte,costesMisMejoras);
 
 
 pesoInicial=.001*{{$diseño->cualidades->masa}} * (costesFuselaje['mineral']*50+costesFuselaje['cristal']*260+costesFuselaje['gas']*1000+costesFuselaje['plastico']*4000+costesFuselaje['ceramica']*600+costesFuselaje['liquido']*500+costesFuselaje['micros']*2000+costesFuselaje['personal']*500);
-variacionPeso=(pesoInicial/(cualidades['masa']+pesoInicial));
-cualidades['velocidad']=Math.min(variacionPeso*cualidadesFuselaje['velocidad'],cualidadesFuselaje['velocidadMax'],19.99);
+
+pesoTotal=(cualidades['masa']+pesoInicial);
+cualidades['velocidad']=Math.min(empujeT/pesoTotal,cualidadesFuselaje['velocidadMax'],19.99);
 cualidades['velocidad']=( Math.round(cualidades['velocidad']*100))/100;
 
-$("#nombre").val("Masa de base="+pesoInicial)
+$("#nombre").val("Empuje="+empujeT);
+$("#descripcion").val("Masa Total="+pesoTotal);
 
 mostrarResultado();
 }
@@ -1511,7 +1566,17 @@ mostrarResultado();
 
 
 
-
+function sumaCostosMejoras(destinoCosto,cte,esteCosto,sobrecosto){
+    destinoCosto['mineral']+=(esteCosto['mineral']/100)*cte *sobrecosto['mineral'];
+    destinoCosto['cristal']+=(esteCosto['cristal']/100)*cte *sobrecosto['cristal'];
+    destinoCosto['gas']+=(esteCosto['gas']/100)*cte *destinoCosto['gas'];
+    destinoCosto['plastico']+=(esteCosto['plastico']/100)*cte *sobrecosto['plastico'];
+    destinoCosto['ceramica']+=(esteCosto['ceramica']/100)*cte *sobrecosto['ceramica'];
+    destinoCosto['liquido']+=(esteCosto['liquido']/100)*cte *sobrecosto['liquido'];
+    destinoCosto['micros']+=(esteCosto['micros']/100)*cte *sobrecosto['micros'];
+    destinoCosto['personal']+=(esteCosto['personal']/100)*cte *sobrecosto['personal'];
+    destinoCosto['masa']+=(esteCosto['masa']/100)*cte *sobrecosto['masa'];
+}
 
 
 
@@ -1525,6 +1590,17 @@ function sumaCostos(destinoCosto,cte,esteCosto){
     destinoCosto['micros']+=esteCosto['micros']*cte;
     destinoCosto['personal']+=esteCosto['personal']*cte;
     destinoCosto['masa']+=esteCosto['masa']*cte;
+
+    if (destinoCosto['mineral']<0){destinoCosto['mineral']=costesFuselaje['mineral'];};
+    if (destinoCosto['cristal']<0){destinoCosto['cristal']=costesFuselaje['cristal'];};
+    if (destinoCosto['gas']<0){destinoCosto['gas']=costesFuselaje['gas'];};
+    if (destinoCosto['plastico']<0){destinoCosto['plastico']=costesFuselaje['plastico'];};
+    if (destinoCosto['ceramica']<0){destinoCosto['ceramica']=costesFuselaje['ceramica'];};
+    if (destinoCosto['liquido']<0){destinoCosto['liquido']=costesFuselaje['liquido'];};
+    if (destinoCosto['micros']<0){destinoCosto['micros']=costesFuselaje['micros'];};
+    if (destinoCosto['personal']<0){destinoCosto['personal']=costesFuselaje['personal'];};
+
+
 }
 
 function sumaCualidades(destinoCualidad,cte,esteCualidad){
@@ -1556,8 +1632,8 @@ function mostrarResultado(){
         $("#"+key+"D").text(valueF);
     })
 
-    $("#descripcion").val("Masa añadida="+costesDiseño['masa'])
-
+// velocidad que lleva decimales
+$("#velocidadD").text(cualidades['velocidad']);
 
 }
 
