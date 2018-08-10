@@ -1177,7 +1177,7 @@ var empuje={
     '59':10000,
     '60':300000,
     '61':1000000,
-    '62':700000,
+    '62':1000000,
     '63':1400000,
     '64':2000000,
 };
@@ -1373,6 +1373,8 @@ $.each( armas[elemento], function( key, e ) {
         var cte=(1+miConstanteI)*nivelInv; //lo que varia por nivel de tecno
         var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
         costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+        costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
+        costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
         sumaCualidades(costesMisMotores,multiplicadorMotores,costesVacio);
         empujeT+=empuje[obj['codigo']]*multiplicadorMotores*cualidadesFuselaje['velocidad']; //el empuje del motor por la cantidad por el factor de fuselaje
     }
@@ -1394,6 +1396,8 @@ $.each( armas[elemento], function( key, e ) {
         var cte=1+(miConstanteI*nivelInv);//lo que varia por nivel de tecno
         var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
         costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+        costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
+        costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
         sumaCualidades(misCostes,multiplicador,costesVacio);
     }
 });
@@ -1446,6 +1450,8 @@ for (x=1;x<6;x++){
                 sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
                 var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
                 costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+                costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
+                costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
                 if (genera2!=""){costesVacio[genera2]=costeobj[genera2];} //hangares
                 sumaCualidades(misCostes,multiplicador,costesVacio);
             }
@@ -1483,6 +1489,8 @@ for (x=1;x<2;x++){
                 sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
                 var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
                 costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+                costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
+                costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
                 if (genera2!=""){costesVacio[genera2]=costeobj[genera2];} //hangares
                 sumaCualidades(misCostes,multiplicador,costesVacio);
             }
@@ -1500,19 +1508,133 @@ misCostes=costesMisMejoras;
 $.each( armas[elemento], function( key, e ) {
     costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
     sobreCostes={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+
     hazlo=0;
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
+
+
+
         switch (obj['codigo']){
         case 70: //optimizador
-            hazlo++;
-            cte=1;
+        hazlo++;
+        cte=1;
             sumaCostos(sobreCostes,cte,costesMisMotores);
             sumaCostos(sobreCostes,cte,costesMisBlindajes);
             sumaCostos(sobreCostes,cte,costesMisArmas);
             sumaCostos(sobreCostes,cte,costesMisCargas);
             sumaCostos(sobreCostes,cte,costesMisMejoras);
+
+            sumaCualidades(sobreCostes,cte,costesMisMotores);
+            sumaCualidades(sobreCostes,cte,costesMisBlindajes);
+            sumaCualidades(sobreCostes,cte,costesMisArmas);
+            sumaCualidades(sobreCostes,cte,costesMisCargas);
+            sumaCualidades(sobreCostes,cte,costesMisMejoras);
         break;
+        case 71: //escudos
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisBlindajes);
+            sumaCualidades(sobreCostes,cte,costesMisBlindajes);
+        break;
+        case 72: //salvas
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisArmas);
+            sumaCualidades(sobreCostes,cte,costesMisArmas);
+        break;
+        case 73: //standart
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCostos(sobreCostes,cte,costesMisBlindajes);
+            sumaCostos(sobreCostes,cte,costesMisArmas);
+            sumaCostos(sobreCostes,cte,costesMisCargas);
+            sumaCostos(sobreCostes,cte,costesMisMejoras);
+
+            sumaCualidades(sobreCostes,cte,costesMisMotores);
+            sumaCualidades(sobreCostes,cte,costesMisBlindajes);
+            sumaCualidades(sobreCostes,cte,costesMisArmas);
+            sumaCualidades(sobreCostes,cte,costesMisCargas);
+            sumaCualidades(sobreCostes,cte,costesMisMejoras);
+        break;
+        case 74: //ctrol punteria
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisArmas);
+            sumaCualidades(sobreCostes,cte,costesMisArmas);
+        break;
+        case 75: //aleaciones
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCostos(sobreCostes,cte,costesMisBlindajes);
+            sumaCostos(sobreCostes,cte,costesMisArmas);
+            sumaCostos(sobreCostes,cte,costesMisCargas);
+            sumaCostos(sobreCostes,cte,costesMisMejoras);
+
+            sumaCualidades(sobreCostes,cte,costesMisMotores);
+            sumaCualidades(sobreCostes,cte,costesMisBlindajes);
+            sumaCualidades(sobreCostes,cte,costesMisArmas);
+            sumaCualidades(sobreCostes,cte,costesMisCargas);
+            sumaCualidades(sobreCostes,cte,costesMisMejoras);
+        break;
+        case 76: //bateria
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCualidades(sobreCostes,cte,costesMisMotores);
+        break;
+        case 77: //distribuidor
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisMejoras);
+            sumaCualidades(sobreCostes,cte,costesMisMejoras);
+        break;
+        case 78: //compactador
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisCargas);
+            sumaCualidades(sobreCostes,cte,costesMisCargas);
+        break;
+        case 79: //prop maniobra
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCualidades(sobreCostes,cte,costesMisMotores);
+        break;
+        case 80: //nanos
+        hazlo++;
+        cte=1;
+        sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCostos(sobreCostes,cte,costesMisBlindajes);
+            sumaCostos(sobreCostes,cte,costesMisArmas);
+            sumaCostos(sobreCostes,cte,costesMisCargas);
+            sumaCostos(sobreCostes,cte,costesMisMejoras);
+
+            sumaCualidades(sobreCostes,cte,costesMisMotores);
+            sumaCualidades(sobreCostes,cte,costesMisBlindajes);
+            sumaCualidades(sobreCostes,cte,costesMisArmas);
+            sumaCualidades(sobreCostes,cte,costesMisCargas);
+            sumaCualidades(sobreCostes,cte,costesMisMejoras);
+        break;
+        case 81: //prop maniobra
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisCargas);
+            sumaCualidades(sobreCostes,cte,costesMisCargas);
+        break;
+        case 82: //daño
+        case 83:
+        case 84:
+        case 85:
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisArmas);
+            sumaCualidades(sobreCostes,cte,costesMisArmas);
+        break;
+
+
 
         }
 
@@ -1525,8 +1647,11 @@ $.each( armas[elemento], function( key, e ) {
             var cte=1+(miConstanteI*nivelInv);//lo que varia por nivel de tecno
             var factorFuselaje=1;     // el factor que varia para cada fuselaje
             costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
+           // costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
+           // costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
             //sumaCualidades(misCostes,multiplicador,costesVacio);
             sumaCostosMejoras(costesDiseño,multiplicador,costeobj,sobreCostes);
+            sumaCualidadesMejoras(cualidades,multiplicador,costeobj,sobreCostes);
         }
     }
 });
@@ -1551,7 +1676,7 @@ sumaCualidades(cualidades,cte,costesMisMejoras);
 ////// velocidad  //
 
 
-pesoInicial=.001*{{$diseño->cualidades->masa}} * (costesFuselaje['mineral']*50+costesFuselaje['cristal']*260+costesFuselaje['gas']*1000+costesFuselaje['plastico']*4000+costesFuselaje['ceramica']*600+costesFuselaje['liquido']*500+costesFuselaje['micros']*2000+costesFuselaje['personal']*500);
+pesoInicial=.0005*{{$diseño->cualidades->masa}} * (costesFuselaje['mineral']*50+costesFuselaje['cristal']*260+costesFuselaje['gas']*1000+costesFuselaje['plastico']*4000+costesFuselaje['ceramica']*600+costesFuselaje['liquido']*500+costesFuselaje['micros']*2000+costesFuselaje['personal']*500);
 
 pesoTotal=(cualidades['masa']+pesoInicial);
 cualidades['velocidad']=Math.min(empujeT/pesoTotal,cualidadesFuselaje['velocidadMax'],19.99);
@@ -1569,13 +1694,32 @@ mostrarResultado();
 function sumaCostosMejoras(destinoCosto,cte,esteCosto,sobrecosto){
     destinoCosto['mineral']+=(esteCosto['mineral']/100)*cte *sobrecosto['mineral'];
     destinoCosto['cristal']+=(esteCosto['cristal']/100)*cte *sobrecosto['cristal'];
-    destinoCosto['gas']+=(esteCosto['gas']/100)*cte *destinoCosto['gas'];
+    destinoCosto['gas']+=(esteCosto['gas']/100)*cte *sobrecosto['gas'];
     destinoCosto['plastico']+=(esteCosto['plastico']/100)*cte *sobrecosto['plastico'];
     destinoCosto['ceramica']+=(esteCosto['ceramica']/100)*cte *sobrecosto['ceramica'];
     destinoCosto['liquido']+=(esteCosto['liquido']/100)*cte *sobrecosto['liquido'];
     destinoCosto['micros']+=(esteCosto['micros']/100)*cte *sobrecosto['micros'];
     destinoCosto['personal']+=(esteCosto['personal']/100)*cte *sobrecosto['personal'];
     destinoCosto['masa']+=(esteCosto['masa']/100)*cte *sobrecosto['masa'];
+}
+
+function sumaCualidadesMejoras(destinoCosto,cte,esteCosto,sobrecosto){
+    destinoCosto['fuel']+=(esteCosto['fuel']/100)*cte *sobrecosto['fuel'];
+    destinoCosto['municion']+=(esteCosto['municion']/100)*cte *sobrecosto['municion'];
+    destinoCosto['masa']+=(esteCosto['masa']/100)*cte *sobrecosto['masa'];
+    destinoCosto['energia']+=(esteCosto['energia']/100)*cte *sobrecosto['energia'];
+    destinoCosto['tiempo']+=(esteCosto['tiempo']/100)*cte *sobrecosto['tiempo'];
+    destinoCosto['mantenimiento']+=(esteCosto['mantenimiento']/100)*cte *sobrecosto['mantenimiento'];
+    destinoCosto['defensa']+=(esteCosto['defensa']/100)*cte *sobrecosto['defensa'];
+    destinoCosto['ataque']+=(esteCosto['ataque']/100)*cte *sobrecosto['ataque'];
+    destinoCosto['velocidad']+=(esteCosto['velocidad']/100)*cte *sobrecosto['velocidad'];
+    destinoCosto['carga']+=(esteCosto['carga']/100)*cte *sobrecosto['carga'];
+    destinoCosto['cargaPequeña']+=(esteCosto['cargaPequeña']/100)*cte *sobrecosto['cargaPequeña'];
+    destinoCosto['cargaMediana']+=(esteCosto['cargaMediana']/100)*cte *sobrecosto['cargaMediana'];
+    destinoCosto['cargaGrande']+=(esteCosto['cargaGrande']/100)*cte *sobrecosto['cargaGrande'];
+    destinoCosto['cargaEnorme']+=(esteCosto['cargaEnorme']/100)*cte *sobrecosto['cargaEnorme'];
+    destinoCosto['cargaMega']+=(esteCosto['cargaMega']/100)*cte *sobrecosto['cargaMega'];
+
 }
 
 
