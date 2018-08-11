@@ -16,8 +16,14 @@ class JugadoresSeeder extends Seeder
         DB::table('jugadores')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
-        factory(Jugadores::class, 100)->create([
+        factory(Jugadores::class, 1)->create([
             'user_id' => 1,
+            'nombre' => 'McGuten'
         ]);
+        factory(Jugadores::class, 1)->create([
+            'user_id' => 2,
+            'nombre' => 'Odinspn'
+        ]);
+        factory(Jugadores::class, 98)->create();
     }
 }
