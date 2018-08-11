@@ -108,6 +108,16 @@ textarea {
 }
 
 .c-5-color {
+    background: lightpink !important;
+    ;
+}
+
+.c-6-color {
+    background: grey !important;
+    ;
+}
+
+.c-7-color {
     background: white !important;
     ;
 }

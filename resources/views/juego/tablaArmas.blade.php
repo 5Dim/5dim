@@ -31,7 +31,7 @@ $arrayStart=[];
 $arrayConnect=[];
 $arrayTooltip=[];
 
-
+/*
 if ($investNiveles["invEnergia"]>0){
     array_push($arrayStart,10);
     array_push($arrayConnect,true);
@@ -59,6 +59,9 @@ if ($investNiveles["invMa"]>0){
 array_push($arrayConnect,true);
 array_push($arrayCss,'c-5-color');
 
+*/
+
+
 /// cantidades de cada elemento
 
 $cantidadMotores=$diseño->cualidades->motores;
@@ -78,8 +81,15 @@ $multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
 $cantidadMejoras=$diseño->cualidades->mejoras;
 $multiplicadormejoras=1;
 
+$porcent=1;
 $cantidadCLigeras=$diseño->cualidades->armasLigeras;
 $multiplicadorCLigeras=1;
+if ($cantidadCLigeras>0){
+    array_push($arrayStart,$porcent*20);$porcent++;
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-1-color');
+    array_push($arrayTooltip,'% de energía a cañones ligeros');
+}
 if ($cantidadCLigeras>6){
     $cantidadCLigeras=celdasMaximas(6,$cantidadCLigeras);
     $multiplicadorCLigeras=($diseño->cualidades->armasLigeras/$cantidadCLigeras);
@@ -87,6 +97,12 @@ if ($cantidadCLigeras>6){
 
 $cantidadCMedias=$diseño->cualidades->armasMedias;
 $multiplicadorCMedias=1;
+if ($cantidadCMedias>0){
+    array_push($arrayStart,$porcent*20);$porcent++;
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-2-color');
+    array_push($arrayTooltip,'% de energía a cañones medios');
+}
 if ($cantidadCMedias>6){
     $cantidadCMedias=celdasMaximas(6,$cantidadCMedias);
     $multiplicadorCMedias=ceil ($diseño->cualidades->armasMedias/$cantidadCMedias);
@@ -94,6 +110,12 @@ if ($cantidadCMedias>6){
 
 $cantidadCPesadas=$diseño->cualidades->armasPesadas;
 $multiplicadorCPesadas=1;
+if ($cantidadCPesadas>0){
+    array_push($arrayStart,$porcent*20);$porcent++;
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-3-color');
+    array_push($arrayTooltip,'% de energía a cañones pesados');
+}
 if ($cantidadCPesadas>6){
     $cantidadCPesadas=celdasMaximas(6,$cantidadCPesadas);
     $multiplicadorCPesadas=($diseño->cualidades->armasPesadas/$cantidadCPesadas);
@@ -101,6 +123,12 @@ if ($cantidadCPesadas>6){
 
 $cantidadCInsertadas=$diseño->cualidades->armasInsertadas;
 $multiplicadorCInsertadas=1;
+if ($cantidadCInsertadas>0){
+    array_push($arrayStart,$porcent*20);$porcent++;
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-4-color');
+    array_push($arrayTooltip,'% de energía a cañones insertados');
+}
 if ($cantidadCInsertadas>6){
     $cantidadCInsertadas=celdasMaximas(6,$cantidadCInsertadas);
     $multiplicadorCInsertadas=($diseño->cualidades->armasInsertadas/$cantidadCInsertadas);
@@ -108,6 +136,12 @@ if ($cantidadCInsertadas>6){
 
 $cantidadCMisiles=$diseño->cualidades->armasMisiles;
 $multiplicadorCMisiles=1;
+if ($cantidadCMisiles>0){
+    array_push($arrayStart,$porcent*20);$porcent++;
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-5-color');
+    array_push($arrayTooltip,'% de energía a misiles');
+}
 if ($cantidadCMisiles>6){
     $cantidadCMisiles=celdasMaximas(6,$cantidadCMisiles);
     $multiplicadorCMisiles=($diseño->cualidades->armasMisiles/$cantidadCMisiles);
@@ -115,10 +149,19 @@ if ($cantidadCMisiles>6){
 
 $cantidadCBombas=$diseño->cualidades->armasBombas;
 $multiplicadorCBombas=1;
+if ($cantidadCBombas>0){
+    array_push($arrayStart,$porcent*20);$porcent++;
+    array_push($arrayConnect,true);
+    array_push($arrayCss,'c-6-color');
+    array_push($arrayTooltip,'% de energía a bombas');
+}
 if ($cantidadCBombas>6){
     $cantidadCBombas=celdasMaximas(6,$cantidadCBombas);
     $multiplicadorCBombas=($diseño->cualidades->armasBombas/$cantidadCBombas);
 }
+
+array_push($arrayConnect,true);
+array_push($arrayCss,'c-7-color');
 
 $cantidadCargaPequeña=$diseño->cualidades->cargaPequeña;
 $multiplicadorCargaPequeña=1;
@@ -277,7 +320,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                         <td rowspan="2" colspan="2">
                             @if ($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
                             <div class=" text-light" id="motorestxt" style="margin-bottom: 10px;">Armas: <span id ="energiaarma"></span></div>
-                            <div class="slider" id="slider-color"></div>
+
                                 <nav style="margin-top: 17px;">
                                     <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
                                     @if ($investNiveles["invEnergia"]>0)
@@ -485,7 +528,8 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                     </div>
 
                                 </div>
-
+                                <br>
+                                <div class="slider" id="slider-color"></div>
                             @endif
                         </td>
                     </tr>
