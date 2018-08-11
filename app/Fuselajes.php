@@ -346,7 +346,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="ligera";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="1";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -379,7 +379,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="caza";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="0";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -476,7 +476,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -509,7 +509,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="caza";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="0";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -531,7 +531,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="ligera";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="1";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -553,7 +553,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -564,7 +564,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -575,7 +575,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -586,7 +586,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -597,7 +597,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -608,7 +608,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -619,7 +619,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="estacion";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="4";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -630,7 +630,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -641,7 +641,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="estacion";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="4";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -652,7 +652,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -663,7 +663,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -674,7 +674,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -685,7 +685,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="caza";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="0";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -696,7 +696,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="ligera";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="1";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -707,7 +707,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -718,7 +718,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -729,7 +729,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -740,7 +740,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="ligera";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="1";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -751,7 +751,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="estacion";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="4";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -762,7 +762,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -773,7 +773,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -784,7 +784,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="media";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="2";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -795,7 +795,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -806,7 +806,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
@@ -817,7 +817,7 @@ class Fuselajes extends Model
             $fuselaje->tamaño="pesada";
             $fuselaje->tipo="nave";
             $fuselaje->tnave="3";
-            $fuselaje->categoria="alianza";
+            $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;
 
