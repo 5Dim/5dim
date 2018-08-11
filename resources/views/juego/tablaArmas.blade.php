@@ -215,7 +215,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                         <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                             <tr>
                                                 <td colspan="4">
-                                                    <div class=" text-light" id="motorestxt">x{{$multiplicadorMotores}} Motores: +151.225</div>
+                                                    <div class=" text-light" id="motorestxt">x{{$multiplicadorMotores}} Motores: <span id ="energiamotor"></span></div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -276,7 +276,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                         </td>
                         <td rowspan="2" colspan="2">
                             @if ($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
-                            <div class=" text-light" id="motorestxt" style="margin-bottom: 10px;">Armas: -151.225 e</div>
+                            <div class=" text-light" id="motorestxt" style="margin-bottom: 10px;">Armas: <span id ="energiaarma"></span></div>
                             <div class="slider" id="slider-color"></div>
                                 <nav style="margin-top: 17px;">
                                     <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
@@ -498,7 +498,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
                                                     <td colspan="4">
-                                                            <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes: +225</div>
+                                                            <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes: <span id ="energiablindaje"></span></div>
                                                         </td>
                                                     </td>
                                                 </tr>
@@ -543,7 +543,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
                                                         <td colspan="8">
-                                                            <div class=" text-light" id="mejorastxt">x{{$multiplicadormejoras}} Mejoras: +11.205 e</div>
+                                                            <div class=" text-light" id="mejorastxt">x{{$multiplicadormejoras}} Mejoras: <span id ="energiamejora"></span></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -852,7 +852,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                 <div class="row rounded ">
                                                     <div class="col-12 ">
                                                         <div id="cuadro1" class=" cajita">
-                                                            <div class=" text-light" id="cargatxt">Carga: -5.454</div>
+                                                            <div class=" text-light" id="cargatxt">Carga: <span id ="energiacarga"></span></div>
                                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                                 <tr>
                                                                     @for($codigo=90;$codigo<102;$codigo++)
@@ -1373,12 +1373,17 @@ $.each( armas[elemento], function( key, e ) {
         var cte=(1+miConstanteI)*nivelInv; //lo que varia por nivel de tecno
         var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
         costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
-        costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
-        costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
+        costesVacio['tiempo']=costeobj['tiempo']*factorFuselaje;
+        costesVacio['mantenimiento']=costeobj['mantenimiento']*factorFuselaje;
+        costesVacio['fuel']=costeobj['fuel']*factorFuselaje;
         sumaCualidades(costesMisMotores,multiplicadorMotores,costesVacio);
         empujeT+=empuje[obj['codigo']]*multiplicadorMotores*cualidadesFuselaje['velocidad']; //el empuje del motor por la cantidad por el factor de fuselaje
     }
 });
+valueF=formatNumber (Math.round (costesMisMotores['energia']));
+$("#energia"+elemento).text(valueF);
+
+
 
 elemento='blindaje';
 genera='defensa';
@@ -1396,11 +1401,15 @@ $.each( armas[elemento], function( key, e ) {
         var cte=1+(miConstanteI*nivelInv);//lo que varia por nivel de tecno
         var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
         costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
-        costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
-        costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
+        costesVacio['tiempo']=costeobj['tiempo']*factorFuselaje;
+        costesVacio['mantenimiento']=costeobj['mantenimiento']*factorFuselaje;
+        costesVacio['energia']=costeobj['energia']*factorFuselaje;
         sumaCualidades(misCostes,multiplicador,costesVacio);
     }
 });
+
+valueF=formatNumber (Math.round (costesMisBlindajes['energia']));
+$("#energia"+elemento).text(valueF);
 
 //// bucle de cargas
 for (x=1;x<6;x++){
@@ -1450,8 +1459,9 @@ for (x=1;x<6;x++){
                 sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
                 var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
                 costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
-                costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
-                costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
+                costesVacio['tiempo']=costeobj['tiempo']*factorFuselaje;
+                costesVacio['mantenimiento']=costeobj['mantenimiento']*factorFuselaje;
+                costesVacio['energia']=costeobj['energia']*factorFuselaje;
                 if (genera2!=""){costesVacio[genera2]=costeobj[genera2];} //hangares
                 sumaCualidades(misCostes,multiplicador,costesVacio);
             }
@@ -1459,6 +1469,8 @@ for (x=1;x<6;x++){
     }
 };
 
+valueF=formatNumber (Math.round (costesMisCargas['energia']));
+$("#energiacarga").text(valueF);
 
 //// armas ///////
 
@@ -1489,9 +1501,9 @@ for (x=1;x<2;x++){
                 sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
                 var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
                 costesVacio[genera]=costeobj[genera]*cte*factorFuselaje; //lo q mejora por esos niveles
-                costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
-                costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
-                if (genera2!=""){costesVacio[genera2]=costeobj[genera2];} //hangares
+                costesVacio['tiempo']=costeobj['tiempo']*factorFuselaje;
+                costesVacio['mantenimiento']=costeobj['mantenimiento']*factorFuselaje;
+                if (genera2!=""){costesVacio[genera2]=costeobj[genera2];}
                 sumaCualidades(misCostes,multiplicador,costesVacio);
             }
         });
@@ -1512,8 +1524,6 @@ $.each( armas[elemento], function( key, e ) {
     hazlo=0;
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
-
-
 
         switch (obj['codigo']){
         case 70: //optimizador
@@ -1657,6 +1667,8 @@ $.each( armas[elemento], function( key, e ) {
 });
 
 
+valueF=formatNumber (Math.round (cualidades['energia']));
+$("#energiamejora").text(valueF);
 
 //suma de todos los costes:
 cte=1;
@@ -1743,6 +1755,7 @@ function sumaCostos(destinoCosto,cte,esteCosto){
     if (destinoCosto['liquido']<0){destinoCosto['liquido']=costesFuselaje['liquido'];};
     if (destinoCosto['micros']<0){destinoCosto['micros']=costesFuselaje['micros'];};
     if (destinoCosto['personal']<0){destinoCosto['personal']=costesFuselaje['personal'];};
+    if (destinoCosto['masa']<0){destinoCosto['masa']=costesFuselaje['masa'];};
 
 
 }
@@ -1778,6 +1791,8 @@ function mostrarResultado(){
 
 // velocidad que lleva decimales
 $("#velocidadD").text(cualidades['velocidad']);
+// el tiempo en horas
+timeDura(cualidades['tiempo'],'tiempoD');
 
 }
 
