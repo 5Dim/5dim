@@ -142,6 +142,7 @@ class MensajesController extends Controller
         $mensaje = new Mensajes();
         $mensaje->mensaje = request()->input('descripcion');
         $mensaje->emisor = session()->get('jugadores_id');
+        $mensaje->asunto = request()->input('asunto');
         $mensaje->save();
         $intervinientes = request()->input('listaJugadores');
         $listIntervinientes = explode( ',', $intervinientes );
