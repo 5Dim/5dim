@@ -146,223 +146,190 @@ class Armas extends Model
 
 
 
-
-
-                $arma =new Armas();
-                $arma->codigo=70;
-                $arma->nombre='Optimizador';
-                $arma->descripcion='Podemos optimizar nuestros diseños empleando parte de la energía sobrante en ciertos sistema para reducir los costos';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=13;
-                $arma->clase='invIa';
-                $arma->niveltec=5;
-
-                array_push($armas, $arma);
+                $niveltec=1;
 
                 $arma =new Armas();
-                $arma->codigo=71;
-                $arma->nombre='Escudos';
-                $arma->descripcion='Combinando u campo elertromagnético y nanotecnología podemos bloquear parte del fuego enemigo';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=16;
-                $arma->clase='invIa';
-                $arma->niveltec=6;
-
-                array_push($armas, $arma);
-
-                $arma =new Armas();
-                $arma->codigo=72;
-                $arma->nombre='Salvas';
-                $arma->descripcion='Mediante el antiguo sistema de disparar munición falsa para corregir errores en los disparos verdaderos, podemos ahorrar munición';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=10;
-                $arma->clase='invIa';
-                $arma->niveltec=10;
-
-                array_push($armas, $arma);
-
-                $arma =new Armas();
-                $arma->codigo=73;
-                $arma->nombre='Standartd';
-                $arma->descripcion='Mediante el uso de piezas iguales en todas las naves podemos reducir considerablemente los gastos diarios de las naves';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=15;
-                $arma->clase='invIa';
-                $arma->niveltec=11;
-
-                array_push($armas, $arma);
-
-                $arma =new Armas();
-                $arma->codigo=74;
-                $arma->nombre='Ctrl de puntería';
-                $arma->descripcion='Estadisticamente podemos predecir las maniobras de cada codigo de nave y así poder mejorar la puntería de nuestras armas';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=0;
-                $arma->clase='invIa';
-                $arma->niveltec=7;
-
-                array_push($armas, $arma);
-
-                $arma =new Armas();
-                $arma->codigo=75;
-                $arma->nombre='Aleaciones';
-                $arma->descripcion='Incorporando aleaciones mas ligeras en las partes no vitales de las naves podemos reducir sensiblemente su peso, aunque para obtener las mismas prestaciones los costos son elevados';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=12;
-                $arma->clase='invIa';
-                $arma->niveltec=8;
-
-                array_push($armas, $arma);
-
-                $arma =new Armas();
-                $arma->codigo=76;
-                $arma->nombre='Baterias';
-                $arma->descripcion='Almacenando parte de la energía obtenida durante los desplazamientos podemos usarla mas adelante durante los sistemas de armas';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=13;
-                $arma->clase='invIa';
-                $arma->niveltec=9;
-
-                array_push($armas, $arma);
-
-                $arma =new Armas();
-                $arma->codigo=77;
-                $arma->nombre='Distribuidor';
-                $arma->descripcion='Colocando esta mejora al final de todas reduce el costo de  todas las mejor anteriores ya que las redistribuye dentro de la nave de la forma optima';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=13;
-                $arma->clase='invIa';
-                $arma->niveltec=3;
-
-                array_push($armas, $arma);
-
-                $arma =new Armas();
-                $arma->codigo=78;
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='Compactador';
                 $arma->descripcion='La óptima distribución de la carga en una bodega puede mejorar de forma considerable la capacidad, esta mejora aumenta la carga por unidad';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=0;
                 $arma->clase='invIa';
-                $arma->niveltec=2;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=79;
+                $arma->codigo=$niveltec+69;
+                $arma->nombre='Ctrl de puntería';
+                $arma->descripcion='Estadisticamente podemos predecir las maniobras de cada codigo de nave y así poder mejorar la puntería de nuestras armas';
+                $arma->jugadores_id=1;
+                $arma->ranura="mejora";
+                $arma->potencia=0;
+                $arma->clase='invIa';
+                $arma->niveltec=$niveltec;$niveltec++;
+
+                array_push($armas, $arma);
+
+                $arma =new Armas();
+                $arma->codigo=$niveltec+69;
+                $arma->nombre='Escudos';
+                $arma->descripcion='Combinando u campo elertromagnético y nanotecnología podemos bloquear parte del fuego enemigo';
+                $arma->jugadores_id=1;
+                $arma->ranura="mejora";
+                $arma->potencia=16;
+                $arma->clase='invIa';
+                $arma->niveltec=$niveltec;$niveltec++;
+                array_push($armas, $arma);
+
+                $arma =new Armas();
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='Prop. maniobra';
                 $arma->descripcion='Gran cantidad de combustible se va en las maniobras de atraque y reajuste de rumbo. Con pequeños motores químicos podemos reducir el gasto de los motores principales';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=1;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=80;
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='C. Nanos';
                 $arma->descripcion='Podemos catalizar los procesos naníticos de producción de naves mejorando enormemente la velocidad de construcción';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=14;
                 $arma->clase='invIa';
-                $arma->niveltec=5;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=81;
+                $arma->codigo=$niveltec+69;
+                $arma->nombre='Salvas';
+                $arma->descripcion='Mediante el antiguo sistema de disparar munición falsa para corregir errores en los disparos verdaderos, podemos ahorrar munición';
+                $arma->jugadores_id=1;
+                $arma->ranura="mejora";
+                $arma->potencia=10;
+                $arma->clase='invIa';
+                $arma->niveltec=$niveltec;$niveltec++;
+
+                array_push($armas, $arma);
+
+
+                $arma =new Armas();
+                $arma->codigo=$niveltec+69;
+                $arma->nombre='Aleaciones';
+                $arma->descripcion='Incorporando aleaciones mas ligeras en las partes no vitales de las naves podemos reducir sensiblemente su peso, aunque para obtener las mismas prestaciones los costos son elevados';
+                $arma->jugadores_id=1;
+                $arma->ranura="mejora";
+                $arma->potencia=12;
+                $arma->clase='invIa';
+                $arma->niveltec=$niveltec;$niveltec++;
+
+                array_push($armas, $arma);
+
+                $arma =new Armas();
+                $arma->codigo=$niveltec+69;
+                $arma->nombre='Standartd';
+                $arma->descripcion='Mediante el uso de piezas iguales en todas las naves podemos reducir considerablemente los gastos diarios de las naves';
+                $arma->jugadores_id=1;
+                $arma->ranura="mejora";
+                $arma->potencia=15;
+                $arma->clase='invIa';
+                $arma->niveltec=$niveltec;$niveltec++;
+
+                array_push($armas, $arma);
+
+
+                $arma =new Armas();
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='Plegado';
                 $arma->descripcion='Partes de las naves que queremos meter en los hangares pueden ser desmontadas o plegadas aumentando la capacidad disponible hasta un límite';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=13;
                 $arma->clase='invIa';
-                $arma->niveltec=12;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=82;
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='Ariete';
                 $arma->descripcion='Con esta mejora podemos aumentar mucho el daño de las armas a corta distancia';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=3;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=83;
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='Foco';
                 $arma->descripcion='Podemos mejorar el daño a las naves que mas daño queremos hacer ';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=4;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=84;
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='F-caza';
                 $arma->descripcion='Con esta mejora nuestras armas a cazas realizan una predicción de posición de mas efectiva aumentando el daño a los cazas';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=1;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=85;
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='F-ligera';
                 $arma->descripcion='Podemos aumentar el daño sólo a naves ligeras sin seguimos sus patrones de movimiento';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=2;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=86;
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='F-media';
                 $arma->descripcion='Conociendo la estruictura de las naves medias es facil causar más daños, esto lo consigue esta mejora a bajo costo.';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=3;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
 
                 $arma =new Armas();
-                $arma->codigo=87;
+                $arma->codigo=$niveltec+69;
                 $arma->nombre='F-pesada';
                 $arma->descripcion='Causar más daño a pesadas no es sólo cuestión de potencia, esta mejora analiza sus puntos débiles.';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=8;
                 $arma->clase='invIa';
-                $arma->niveltec=4;
+                $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
+
+
 
 
                 $arma =new Armas();

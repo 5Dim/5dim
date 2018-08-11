@@ -547,7 +547,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                    @for($codigo=70;$codigo<88;$codigo++)
+                                                    @for($codigo=70;$codigo<85;$codigo++)
                                                         @if ($investNiveles["invIa"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                             <td>
                                                                 <img onClick="encajar('mejora',{{$codigo}},'añade')" class="rounded" data-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
@@ -1662,7 +1662,7 @@ elemento='armasLigera';
         if (e>0){
             var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
             var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
-            var cosa=0;
+            costeobj['ataque'];
         }
     })
 

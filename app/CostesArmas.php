@@ -337,64 +337,10 @@ class CostesArmas extends Model
 
             ////// mejoras vas por % de los recursos //////////////////////////////////////////////
 
-            $coste =new CostesArmas();
-            $coste->armas_codigo="70"; // optimizador
-            $coste->mineral=-5;
-            $coste->cristal=-5;
-            $coste->gas=-5;
-            $coste->plastico=-5; //4
-            $coste->ceramica=-5; //5
-            $coste->liquido=-5; //6
-            $coste->micros=-5;   //7
-            $coste->fuel=0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=0; //11
-            $coste->masa=0;    //12
-            $coste->energia=-5;
-            $coste->tiempo=5;       //14
-            $coste->mantenimiento=1;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
+            $niveltec=1;
 
             $coste =new CostesArmas();
-            $coste->armas_codigo="71"; // escudos
-            $coste->mineral=2;
-            $coste->cristal=2;
-            $coste->gas=2;
-            $coste->plastico=2; //4
-            $coste->ceramica=2; //5
-            $coste->liquido=2; //6
-            $coste->micros=2;   //7
-            $coste->fuel=0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=0; //11
-            $coste->masa=0;    //12
-            $coste->energia=-5;
-            $coste->tiempo=1;       //14
-            $coste->mantenimiento=2;
-            $coste->defensa=5;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="72"; // salvas
+            $coste->armas_codigo=$niveltec+69; // compactador
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -404,44 +350,16 @@ class CostesArmas extends Model
             $coste->micros=10;   //7
             $coste->fuel=0;     //8
             $coste->ma=0;       //9
-            $coste->municion=-5; //10
-            $coste->personal=0; //11
-            $coste->masa=5;    //12
-            $coste->energia=0;
-            $coste->tiempo=0;       //14
-            $coste->mantenimiento=0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="73"; // standart
-            $coste->mineral=7;
-            $coste->cristal=7;
-            $coste->gas=7;
-            $coste->plastico=7; //4
-            $coste->ceramica=7; //5
-            $coste->liquido=7; //6
-            $coste->micros=7;   //7
-            $coste->fuel=0;     //8
-            $coste->ma=0;       //9
             $coste->municion=0; //10
             $coste->personal=0; //11
             $coste->masa=0;    //12
-            $coste->energia=0;
-            $coste->tiempo=0;       //14
-            $coste->mantenimiento=-5;
+            $coste->energia=-2;
+            $coste->tiempo=5;       //14
+            $coste->mantenimiento=1;
             $coste->defensa=0;
             $coste->ataque=0;
             $coste->velocidad=0;
-            $coste->carga=0;
+            $coste->carga=30;
             $coste->cargaPequeña=0;
             $coste->cargaMediana=0;
             $coste->cargaGrande=0;
@@ -450,7 +368,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo="74"; // control de punteria
+            $coste->armas_codigo=$niveltec+69; // control de punteria
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -478,7 +396,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo="75"; // aleaciones
+            $coste->armas_codigo=$niveltec+69; // escudos
             $coste->mineral=2;
             $coste->cristal=2;
             $coste->gas=2;
@@ -490,67 +408,11 @@ class CostesArmas extends Model
             $coste->ma=0;       //9
             $coste->municion=0; //10
             $coste->personal=0; //11
-            $coste->masa=-5;    //12
-            $coste->energia=0;
-            $coste->tiempo=2;       //14
-            $coste->mantenimiento=0;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="76"; // Baterías
-            $coste->mineral=10;
-            $coste->cristal=10;
-            $coste->gas=10;
-            $coste->plastico=10; //4
-            $coste->ceramica=10; //5
-            $coste->liquido=10; //6
-            $coste->micros=10;   //7
-            $coste->fuel=0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=0; //11
             $coste->masa=0;    //12
-            $coste->energia=5;
-            $coste->tiempo=1;       //14
-            $coste->mantenimiento=1;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=0;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="77"; // distribuidor
-            $coste->mineral=1;
-            $coste->cristal=1;
-            $coste->gas=1;
-            $coste->plastico=1; //4
-            $coste->ceramica=1; //5
-            $coste->liquido=1; //6
-            $coste->micros=1;   //7
-            $coste->fuel=0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=0; //11
-            $coste->masa=0;    //12
-            $coste->energia=5;
+            $coste->energia=-5;
             $coste->tiempo=1;       //14
             $coste->mantenimiento=2;
-            $coste->defensa=0;
+            $coste->defensa=5;
             $coste->ataque=0;
             $coste->velocidad=0;
             $coste->carga=0;
@@ -563,36 +425,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo="78"; // compactador
-            $coste->mineral=10;
-            $coste->cristal=10;
-            $coste->gas=10;
-            $coste->plastico=10; //4
-            $coste->ceramica=10; //5
-            $coste->liquido=10; //6
-            $coste->micros=10;   //7
-            $coste->fuel=0;     //8
-            $coste->ma=0;       //9
-            $coste->municion=0; //10
-            $coste->personal=0; //11
-            $coste->masa=0;    //12
-            $coste->energia=-2;
-            $coste->tiempo=5;       //14
-            $coste->mantenimiento=1;
-            $coste->defensa=0;
-            $coste->ataque=0;
-            $coste->velocidad=0;
-            $coste->carga=30;
-            $coste->cargaPequeña=0;
-            $coste->cargaMediana=0;
-            $coste->cargaGrande=0;
-            $coste->cargaEnorme=0;
-            $coste->cargaMega=0;
-            array_push($costes, $coste);
-
-
-            $coste =new CostesArmas();
-            $coste->armas_codigo="79"; // prop maniobra
+            $coste->armas_codigo=$niveltec+69; // prop maniobra
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -620,7 +453,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo="80"; // c nanos
+            $coste->armas_codigo=$niveltec+69; // c nanos
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -648,8 +481,95 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
 
+
             $coste =new CostesArmas();
-            $coste->armas_codigo="81"; // plegado
+            $coste->armas_codigo=$niveltec+69; // salvas
+            $coste->mineral=10;
+            $coste->cristal=10;
+            $coste->gas=10;
+            $coste->plastico=10; //4
+            $coste->ceramica=10; //5
+            $coste->liquido=10; //6
+            $coste->micros=10;   //7
+            $coste->fuel=0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=-5; //10
+            $coste->personal=0; //11
+            $coste->masa=5;    //12
+            $coste->energia=0;
+            $coste->tiempo=0;       //14
+            $coste->mantenimiento=0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo=$niveltec+69; // aleaciones
+            $coste->mineral=2;
+            $coste->cristal=2;
+            $coste->gas=2;
+            $coste->plastico=2; //4
+            $coste->ceramica=2; //5
+            $coste->liquido=2; //6
+            $coste->micros=2;   //7
+            $coste->fuel=0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=0; //11
+            $coste->masa=-5;    //12
+            $coste->energia=0;
+            $coste->tiempo=2;       //14
+            $coste->mantenimiento=0;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo=$niveltec+69; // standart
+            $coste->mineral=7;
+            $coste->cristal=7;
+            $coste->gas=7;
+            $coste->plastico=7; //4
+            $coste->ceramica=7; //5
+            $coste->liquido=7; //6
+            $coste->micros=7;   //7
+            $coste->fuel=0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=0; //11
+            $coste->masa=0;    //12
+            $coste->energia=0;
+            $coste->tiempo=0;       //14
+            $coste->mantenimiento=-5;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo=$niveltec+69; // plegado
             $coste->mineral=75;
             $coste->cristal=75;
             $coste->gas=75;
@@ -677,7 +597,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo="82"; // ariete
+            $coste->armas_codigo=$niveltec+69; // ariete
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -705,7 +625,94 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo="83"; // foco
+            $coste->armas_codigo=$niveltec+69; // foco
+            $coste->mineral=10;
+            $coste->cristal=10;
+            $coste->gas=10;
+            $coste->plastico=10; //4
+            $coste->ceramica=10; //5
+            $coste->liquido=10; //6
+            $coste->micros=10;   //7
+            $coste->fuel=0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=0; //11
+            $coste->masa=0;    //12
+            $coste->energia=-5;
+            $coste->tiempo=1;       //14
+            $coste->mantenimiento=1;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo=$niveltec+69; // foco cazas
+            $coste->mineral=10;
+            $coste->cristal=10;
+            $coste->gas=10;
+            $coste->plastico=10; //4
+            $coste->ceramica=10; //5
+            $coste->liquido=10; //6
+            $coste->micros=10;   //7
+            $coste->fuel=0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=0; //11
+            $coste->masa=0;    //12
+            $coste->energia=-5;
+            $coste->tiempo=1;       //14
+            $coste->mantenimiento=1;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo=$niveltec+69; // foco ligeras
+            $coste->mineral=10;
+            $coste->cristal=10;
+            $coste->gas=10;
+            $coste->plastico=10; //4
+            $coste->ceramica=10; //5
+            $coste->liquido=10; //6
+            $coste->micros=10;   //7
+            $coste->fuel=0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=0; //11
+            $coste->masa=0;    //12
+            $coste->energia=-5;
+            $coste->tiempo=1;       //14
+            $coste->mantenimiento=1;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo=$niveltec+69; // foco pesadas
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -1080,6 +1087,7 @@ class CostesArmas extends Model
 
 /////////////////////////////  ARMAS   //////////////////////////////////////////////////////
 
+        // costos de armas son por cada 1000 de energia
 
         $coste =new CostesArmas();
         $coste->armas_codigo="11"; //arma ligera energia
