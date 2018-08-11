@@ -251,6 +251,21 @@ function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas
     $('#' + dndv).html(resultg);
 }
 
+
+function timeDura(result, dndv) { /// da tiempo en formato y lo imprime en dnv
+
+    if (result < 1) {
+        result = 0;
+    };
+    lhora = Math.floor((result / 3600));
+    lminuto = Math.floor((result - (lhora * 3600)) / 60);
+    lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
+
+    horaImprimible = lhora + "h " + lminuto + "m " + lsegundo + "s";
+
+    $('#' + dndv).html(horaImprimible);
+}
+
 function sendConstruir(id, codigo, modal) {
     var personal = $('#personal' + codigo).val();
     window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
