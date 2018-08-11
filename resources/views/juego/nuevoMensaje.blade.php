@@ -8,6 +8,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-9">
+                            <input id="asunto" name="asunto" type="text" class="form-control input" placeholder="Asunto">
                             <textarea class="ckeditor" name="descripcion" id="descripcion">
                                 Este es el textarea que es modificado por la clase ckeditor
                             </textarea>
@@ -23,7 +24,7 @@
                 </form>
             </div>
         </div>
-    </div>a
+    </div>
     <script>
         $(document).ready(function() {
             $('#listaJugadores').select2({
