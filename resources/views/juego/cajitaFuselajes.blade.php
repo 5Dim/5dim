@@ -19,7 +19,6 @@
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless">
                             <img class="rounded" data-skin="1" id ="imagen{{$fuselaje->id}}" src="{{ asset('img/fotos naves/skin1/naveMT' . $fuselaje->id . '.jpg') }}" width="180" height="119">
-
                         </td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaPequeña > 0 ? 'warning' : 'muted' }} borderless">Carga pequeña</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'warning' : 'muted' }} borderless">Carga media</td>
@@ -39,8 +38,8 @@
                         <td class="anchofijo text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasPesadas }}</td>
                     </tr>
                     <tr>
-                            <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga grande</td>
-                            <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'warning' : 'muted' }} borderless">Carga Enorme</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga grande</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'warning' : 'muted' }} borderless">Carga Enorme</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'warning' : 'muted' }} borderless">Velocidad max</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'warning' : 'muted' }} borderless">Motores</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'warning' : 'muted' }} borderless">Cañón insertado</td>
@@ -48,8 +47,8 @@
                         <td class="anchofijo text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'warning' : 'muted' }} borderless">Misiles</td>
                     </tr>
                     <tr>
-                            <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
-                            <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaEnorme }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
+                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaEnorme }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->velocidadMax }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->motores }}</td>
                         <td class="anchofijo text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasInsertadas }}</td>
