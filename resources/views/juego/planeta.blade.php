@@ -697,62 +697,42 @@
                             Recursos sin proteccion
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->mineral) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->mineral), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->cristal) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->cristal), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->gas) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->gas), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->plastico) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->plastico), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->ceramica) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->ceramica), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->liquido) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->liquido), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->micros) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->micros), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->fuel) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->fuel), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->ma) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->ma), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->municion) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->municion), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->creditos) * -1, 0,",",".") }}
+                            {{ number_format(($capacidadRefugio - $recursos->creditos), 0,",",".") }}
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
-    </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="datosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="ModalTitulo"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body" id="datosContenido">
-        ...
-        </div>
-        <div class="modal-footer">
-        </div>
-    </div>
     </div>
 </div>
 
