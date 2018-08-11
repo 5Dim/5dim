@@ -3,54 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
-            <div class="col-12 rounded cajita">
-                <div id="cuadro1" class="table-responsive">
-                    <table class="table table-borderless table-sm text-center anchofijo text-light" style="margin-top: 5px !important">
-                        <tr>
-                            <th colspan="3">
-                                Ingresas <span class="text-success">17.000</span> creditos, tienes unos gastos de <span class="text-danger">16.000</span>, tu balance es <span class="text-success">1.000</span> creditos diarios
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="text-warning align-middle">
-                                Cantidad
-                            </th>
-                            <th class="text-warning align-middle">
-                                Enviar a
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="text-light align-middle">
-                                <div class="input-group mb-3 input-group-sm borderless">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light">
-                                            <button type="button" class="btn btn-dark btn-sm text-warning">
-                                                0
-                                            </button>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light">
-                                            <button type="button" class="btn btn-dark btn-sm text-warning">
-                                                M
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-light align-middle">
-                                <input id="listaJugadores" type="text" class="form-control input">
-                            </td>
-                            <td class="text-light align-middle">
-                                <button type="button" class="btn btn-outline-success btn-block btn-sm">
-                                    <i class="fa fa-coins"></i> Transferir
-                                </button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+            <h3 class="text-light text-center">Ingresas <span class="text-success">17.000</span> creditos, tienes unos gastos de <span class="text-danger">16.000</span>, tu balance es <span class="text-success">1.000</span> creditos diarios</h3>
             <div class="col-12 rounded cajita">
                 <div id="cuadro1" class="table-responsive">
                     <table class="table table-borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
@@ -284,22 +237,4 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#listaJugadores').select2({
-                theme: "bootstrap",
-                width: '100%',
-                closeOnSelect: false,
-                allowClear: true,
-                placeholder: "Nombre del jugador",
-                data: [
-                    { id: 1, text: "Ford"     },
-                    { id: 2, text: "Dodge"    },
-                    { id: 3, text: "Mercedes" },
-                    { id: 4, text: "Jaguar"   }
-                ],
-                language: "es"
-            });
-        });
-    </script>
 @endsection

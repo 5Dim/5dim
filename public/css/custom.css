@@ -54,13 +54,6 @@ table.anchofijo {
     /*opacity: 0.6;*/
 }
 
-input,
-textarea {
-    background-color: #000000;
-    color: white;
-    border: 1px solid darkgray;
-}
-
 .active {
     background-color: #495057 !important;
     color: white !important;
