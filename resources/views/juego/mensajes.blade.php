@@ -33,7 +33,14 @@
                     @include ('juego.nuevoMensaje')
                 </div>
                 <div class="tab-pane fade show active" id="recibidos" role="tabpanel" aria-labelledby="recibidos-tab">
-                    @include ('juego.cajitaMensajes')
+                    @php
+                        $i = 0;
+                    @endphp
+                    @for ($i = 0 ; $i < count($recibidos) ; $i++)
+                        @include('juego.cajitaMensajes', [
+                            'mensaje' => $recibidos[$i],
+                        ])
+                    @endfor
                 </div>
                 <div class="tab-pane fade" id="enviados" role="tabpanel" aria-labelledby="enviados-tab">
 

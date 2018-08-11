@@ -78,9 +78,16 @@ class MensajesController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
+        //Todos los jugadores para la lista de envio
         $jugadores = Jugadores::all();
 
-        return view('juego.mensajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores'));
+        //Lista de mensajes recibidos
+        $recibidos = Mensajes::where('emisor', session()->get('jugadores_id'))->get();
+
+        //Lista de mensajes enviados
+        $enviados = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
+
+        return view('juego.mensajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores', 'recibidos', 'enviados'));
     }
 
     public function enviarMensaje() {
@@ -88,6 +95,8 @@ class MensajesController extends Controller
         $mensaje->mensaje = request()->input('descripcion');
         $mensaje->emisor = session()->get('jugadores_id');
         $mensaje->asunto = request()->input('asunto');
+        $mensaje->eliminado = false;
+        $mensaje->categoria = "recibidos";
         $mensaje->save();
         $intervinientes = request()->input('listaJugadores');
         $listIntervinientes = explode( ',', $intervinientes );
