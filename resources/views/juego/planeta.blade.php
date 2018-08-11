@@ -697,37 +697,75 @@
                             Recursos sin proteccion
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->mineral), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->mineral ? '0' : number_format(($capacidadRefugio - $recursos->mineral), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->cristal), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->cristal ? '0' : number_format(($capacidadRefugio - $recursos->cristal), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->gas), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->gas ? '0' : number_format(($capacidadRefugio - $recursos->gas), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->plastico), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->plastico ? '0' : number_format(($capacidadRefugio - $recursos->plastico), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->ceramica), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->ceramica ? '0' : number_format(($capacidadRefugio - $recursos->ceramica), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->liquido), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->liquido ? '0' : number_format(($capacidadRefugio - $recursos->liquido), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->micros), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->micros ? '0' : number_format(($capacidadRefugio - $recursos->micros), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->fuel), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->fuel ? '0' : number_format(($capacidadRefugio - $recursos->fuel), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->ma), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->ma ? '0' : number_format(($capacidadRefugio - $recursos->ma), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->municion), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->municion ? '0' : number_format(($capacidadRefugio - $recursos->municion), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            {{ number_format(($capacidadRefugio - $recursos->creditos), 0,",",".") }}
+                            {{ $capacidadRefugio >= $recursos->creditos ? '0' : number_format(($capacidadRefugio - $recursos->creditos), 0,",",".") }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="anchofijo text-warning borderless">
+                            Restante
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->mineral ? '0' : number_format(($capacidadRefugio - $recursos->mineral), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->cristal ? '0' : number_format(($capacidadRefugio - $recursos->cristal), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->gas ? '0' : number_format(($capacidadRefugio - $recursos->gas), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->plastico ? '0' : number_format(($capacidadRefugio - $recursos->plastico), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->ceramica ? '0' : number_format(($capacidadRefugio - $recursos->ceramica), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->liquido ? '0' : number_format(($capacidadRefugio - $recursos->liquido), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->micros ? '0' : number_format(($capacidadRefugio - $recursos->micros), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->fuel ? '0' : number_format(($capacidadRefugio - $recursos->fuel), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->ma ? '0' : number_format(($capacidadRefugio - $recursos->ma), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->municion ? '0' : number_format(($capacidadRefugio - $recursos->municion), 0,",",".") }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $capacidadRefugio < $recursos->creditos ? '0' : number_format(($capacidadRefugio - $recursos->creditos), 0,",",".") }}
                         </td>
                     </tr>
                 </table>
