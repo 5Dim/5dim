@@ -626,7 +626,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasLigeras"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicadorCLigeras}}   Cañones Ligeros
+                                                    x{{$multiplicadorCLigeras}}   Cañones Ligeros <br>(energía=<span id="energiaarmasLigera"></span>)
                                             </td>
 
                                         <script>
@@ -669,7 +669,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasMedias"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicadorCMedias}}   Cañones Medios
+                                                    x{{$multiplicadorCMedias}}   Cañones Medios <br>(energía=<span id="energiaarmasMedia"></span>)
                                             </td>
 
                                         <script>
@@ -712,7 +712,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasPesadas"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicadorCPesadas}}   Cañones Pesados
+                                                    x{{$multiplicadorCPesadas}}   Cañones Pesados<br>(energía=<span id="energiaarmasPesada"></span>)
                                             </td>
 
                                         <script>
@@ -755,7 +755,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasInsertadas"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicadorCInsertadas}}   Cañones insertados
+                                                    x{{$multiplicadorCInsertadas}}   Cañones insertados<br>(energía=<span id="energiaarmasInsertada"></span>)
                                             </td>
 
                                         <script>
@@ -798,7 +798,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionarmasMisiles"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicadorCMisiles}}   Misiles
+                                                    x{{$multiplicadorCMisiles}}   Misiles<br>(energía=<span id="energiaarmasMisil"></span>)
                                             </td>
 
                                         <script>
@@ -841,7 +841,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <div class="slider" id="dispersionArmasBombas"></div>
                                             </td>
                                             <td class="text-warning align-middle">
-                                                    x{{$multiplicadorCBombas}}   Bombas
+                                                    x{{$multiplicadorCBombas}}   Bombas<br>(energía=<span id="energiaarmasBomba"></span>)
                                             </td>
 
                                         <script>
@@ -1688,7 +1688,7 @@ elemento='armasLigera';
             energiaarmasLigera+=costeobj['energia'];
         }
     })
-    energiaXarma=energialigera/energiaarmasLigera;
+    energiaXarma=1/energiaarmasLigera;
 /// daño del arma por unidad de energia y costo
     $.each( armas[elemento], function( key, e ) {
         if (e>0){
@@ -1699,17 +1699,21 @@ elemento='armasLigera';
 
             var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
             estedano=energialigera*cte*energiaT*energiaXarma/costeobj['energia'];
-            dañoarmasLigera+=Math.round(estedano*100000,0);
-            multiplicador=estedano*1000;
+            creceExpo=1+((estedano/5000)*2000 );
+            dañoarmasLigera+=Math.round(estedano*10000/creceExpo,0);
+            multiplicador=estedano*10*creceExpo;
             sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
+            sumaCualidades(misCostes,multiplicador,costeobj);
         }
     })
+    valueF=formatNumber (Math.round (energialigera*energiaT));
+    $("#energiaarmasLigera").text(valueF);
 
 valueF=formatNumber (Math.round (1*dañoarmasLigera));
 $("#03").text(valueF);
 
 
-$("#nombre").val("energia A.Ligeras="+energialigera*energiaT);
+//$("#nombre").val("energia A.Ligeras="+energialigera*energiaT);
 //$("#descripcion").val("Masa Total="+pesoTotal);
 
 @endif

@@ -94,26 +94,26 @@ textarea {
 /*  sliders  */
 
 .c-1-color {
-    background: red !important;
+    background: salmon !important;
 }
 
 .c-2-color {
-    background: blue !important;
+    background: brown !important;
     ;
 }
 
 .c-3-color {
-    background: yellow !important;
+    background: purple !important;
     ;
 }
 
 .c-4-color {
-    background: green !important;
+    background: cyan !important;
     ;
 }
 
 .c-5-color {
-    background: lightpink !important;
+    background: orange !important;
     ;
 }
 
@@ -123,7 +123,7 @@ textarea {
 }
 
 .c-7-color {
-    background: white !important;
+    background: black !important;
     ;
 }
 
