@@ -1664,6 +1664,9 @@ $("#energiamejora").text(valueF);
 //// armas ///////
 
 energiaT=costesMisMotores['energia']+costesMisBlindajes['energia']+costesMisCargas['energia']+cualidades['energia']; // energia para armas total
+valueF=formatNumber (Math.round (energiaT));
+$("#energiaarma").text(valueF);
+misCostes=costesMisArmas;
 
 if (slider.noUiSlider.get()[0]==undefined){energialigera=0;} else {energialigera=slider.noUiSlider.get()[0]/100;}
 if (slider.noUiSlider.get()[1]==undefined){energiamedia=0;} else {energiamedia=slider.noUiSlider.get()[1]/100;}
@@ -1695,12 +1698,19 @@ elemento='armasLigera';
             var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
 
             var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
-            dañoarmasLigera+=Math.round(energiaXarma*costeobj['energia']*cte,0);
+            estedano=energialigera*cte*energiaT*energiaXarma/costeobj['energia'];
+            dañoarmasLigera+=Math.round(estedano*100000,0);
+            multiplicador=estedano*1000;
+            sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
         }
     })
 
-$("#03").text(dañoarmasLigera);
+valueF=formatNumber (Math.round (1*dañoarmasLigera));
+$("#03").text(valueF);
 
+
+$("#nombre").val("energia A.Ligeras="+energialigera*energiaT);
+//$("#descripcion").val("Masa Total="+pesoTotal);
 
 @endif
 
@@ -1729,9 +1739,6 @@ pesoInicial=.0005*{{$diseño->cualidades->masa}} * (costesFuselaje['mineral']*50
 pesoTotal=(cualidades['masa']+pesoInicial);
 cualidades['velocidad']=Math.min(empujeT/pesoTotal,cualidadesFuselaje['velocidadMax'],19.99);
 cualidades['velocidad']=( Math.round(cualidades['velocidad']*100))/100;
-
-$("#nombre").val("Empuje="+empujeT);
-$("#descripcion").val("Masa Total="+pesoTotal);
 
 mostrarResultado();
 }
@@ -1834,7 +1841,8 @@ timeDura(cualidades['tiempo'],'tiempoD');
 
 $( document ).ready(function() {
     calculoTotalR();
-   // slider.noUiSlider.addEventListener('change', function(){  'change',alert(88);    });
+
+    slider.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
 
     });
 
