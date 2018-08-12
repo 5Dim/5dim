@@ -340,7 +340,7 @@ class CostesArmas extends Model
             $niveltec=1;
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // compactador
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // compactador
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -368,7 +368,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // control de punteria
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // control de punteria
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -396,7 +396,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // escudos
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // escudos
             $coste->mineral=2;
             $coste->cristal=2;
             $coste->gas=2;
@@ -425,7 +425,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // prop maniobra
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // prop maniobra
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -453,7 +453,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // c nanos
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // c nanos
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -483,7 +483,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // salvas
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // salvas
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -512,7 +512,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // aleaciones
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // aleaciones
             $coste->mineral=2;
             $coste->cristal=2;
             $coste->gas=2;
@@ -541,7 +541,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // standart
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // standart
             $coste->mineral=7;
             $coste->cristal=7;
             $coste->gas=7;
@@ -569,7 +569,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // plegado
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // plegado
             $coste->mineral=75;
             $coste->cristal=75;
             $coste->gas=75;
@@ -597,7 +597,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // ariete
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // ariete
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -625,7 +625,7 @@ class CostesArmas extends Model
             array_push($costes, $coste);
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // foco
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // foco
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -654,7 +654,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // foco cazas
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // foco cazas
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -683,7 +683,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // foco ligeras
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // foco ligeras
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -712,7 +712,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69; // foco pesadas
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // foco pesadas
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
