@@ -51,7 +51,7 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 0;	 		//cantidad tipos CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
             $CRnave15=0;    //Carga Mega(estaciones)
-            $CRnave11 = 9;	 		//mejoras
+            $CRnave11 = 2;	 		//mejoras
             $CRnave12 = 10;	 		// blindajes
             $CRnave13 = 1;	 		// motores
 
@@ -75,7 +75,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; //moneda
             $inirec16=1; ////defensa
             $inirec18=1;  //factor de velocidad base
-            $maxvel=12; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=8; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 0; 	// cañones media, cantidad por tipo
@@ -89,7 +89,7 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
             $CRnave15=0;    //Carga Mega(estaciones)
-            $CRnave11 = 9;	 	//mejoras
+            $CRnave11 = 2;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 1;	 	// motores
 
@@ -149,7 +149,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; //moneda
             $inirec16=1; ////defensa
             $inirec18=1;    //factor de velocidad base
-            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=6; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 2; 	// cañones media, cantidad por tipo
@@ -163,9 +163,9 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14=0;    //Carga ENorme
             $CRnave15=0;    //Carga Mega(estaciones)
-            $CRnave11 = 12;	 	//mejoras
+            $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 7;	 	// motores
+            $CRnave13 = 6;	 	// motores
 
 
 
