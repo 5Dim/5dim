@@ -163,7 +163,7 @@ class Armas extends Model
                 $arma =new Armas();
                 $arma->codigo=$niveltec+69;
                 $arma->nombre='Ctrl de puntería';
-                $arma->descripcion='Estadisticamente podemos predecir las maniobras de cada codigo de nave y así poder mejorar la puntería de nuestras armas';
+                $arma->descripcion='Estadísticamente podemos predecir las maniobras de cada codigo de nave y así poder mejorar la puntería de nuestras armas';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=0;
@@ -175,7 +175,7 @@ class Armas extends Model
                 $arma =new Armas();
                 $arma->codigo=$niveltec+69;
                 $arma->nombre='Escudos';
-                $arma->descripcion='Combinando u campo elertromagnético y nanotecnología podemos bloquear parte del fuego enemigo';
+                $arma->descripcion='Combinando un campo electromagnético y nanotecnología podemos bloquear parte del fuego enemigo';
                 $arma->jugadores_id=1;
                 $arma->ranura="mejora";
                 $arma->potencia=16;

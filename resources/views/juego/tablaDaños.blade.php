@@ -1,3 +1,8 @@
+@php
+$arrayNaves=['Cazas','Ligeras','Medias','Pesadas/Estaciones','Defensas'];
+
+@endphp
+
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
@@ -36,122 +41,18 @@
                         7
                     </td>
                 </tr>
+                @for($n=0;$n<5;$n++)
                 <tr>
                     <td class="anchofijo text-warning borderless">
-                        Ligera
+                        {{$arrayNaves[$n]}}
                     </td>
-                    <td class="anchofijo text-light borderless">
+                    @for($m=0;$m<8;$m++)
+                    <td id="{{$n}}{{$m}}" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
+                    @endfor
                 </tr>
-                <tr>
-                    <td class="anchofijo text-warning borderless">
-                        Media
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                </tr>
-                <tr>
-                    <td class="anchofijo text-warning borderless">
-                        Pesada/estacion
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                </tr>
-                <tr>
-                    <td class="anchofijo text-warning borderless">
-                        Defensas
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                    <td class="anchofijo text-light borderless">
-                        0
-                    </td>
-                </tr>
+                @endfor
             </table>
         </div>
     </div>
