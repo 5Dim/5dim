@@ -4,8 +4,6 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
-
-
 function sendConstruir(id, codigo, modal) {
     var personal = $('#personal' + codigo).val();
     window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
