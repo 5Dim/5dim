@@ -1,4 +1,4 @@
-<div class="row rounded cajita">
+    <div class="row rounded cajita">
         <div class="col-12">
             <div id="cuadro1" class="table-responsive">
                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
@@ -11,8 +11,11 @@
                         </td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'termina' . $construccion->codigo }}">Termina:</td>
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construccion->codigo }}">Tiempo:</td>
-                        <td colspan="2" class="text-success text-right borderless align-middle"><input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input"
-                                placeholder="personal" value="{{number_format($personal, 0,",",".")}}" onkeyup="calculaTiempo({{$construccion->coste->mineral+$construccion->coste->cristal+$construccion->coste->gas+$construccion->coste->plastico +$construccion->coste->ceramica +$construccion->coste->liquido + $construccion->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construccion->codigo}}') "></td>
+                        <td colspan="2" class="text-success text-right borderless align-middle">
+                            <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input" placeholder="personal" value="{{number_format($personal, 0,"","")}}"
+                            onkeyup="calculaTiempo({{$construccion->coste->mineral+$construccion->coste->cristal+$construccion->coste->gas+$construccion->coste->plastico +$construccion->coste->ceramica+
+                            $construccion->coste->liquido + $construccion->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construccion->codigo}}') ">
+                        </td>
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless">

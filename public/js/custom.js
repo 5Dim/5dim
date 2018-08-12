@@ -1,10 +1,45 @@
+var recursos, produccion, almacenes, invProduccion;
 // tooltip text bootstrap
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
 
-var recursos, produccion, almacenes, invProduccion;
+
+function sendConstruir(id, codigo, modal) {
+    var personal = $('#personal' + codigo).val();
+    window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
+}
+
+function sendReciclar(id, codigo) {
+    var personal = $('#personal' + codigo).val();
+    window.location.href = "http://localhost/juego/construccion/reciclar/" + id + "/" + personal;
+}
+
+function sendCancelar(id) {
+    window.location.href = "http://localhost/juego/construccion/cancelar/" + id;
+}
+
+function sendIndustria(industria) {
+    window.location.href = "http://localhost/juego/construccion/industria/" + industria;
+}
+
+function sendInvestigar(id, codigo) {
+    var personal = $('#personal' + codigo).val();
+    window.location.href = "http://localhost/juego/investigacion/construir/" + id + "/" + personal;
+}
+
+function sendCancelarInvestigacion(id) {
+    window.location.href = "http://localhost/juego/investigacion/cancelar/" + id;
+}
+
+function sendDesbloquear(id) {
+    window.location.href = "http://localhost/juego/fuselajes/desbloquear/" + id;
+}
+
+function sendDiseñar(id) {
+    window.location.href = "http://localhost/juego/diseño/diseñar/" + id;
+}
 
 function calcularRecursos() {
     //Pruebas
@@ -264,41 +299,6 @@ function timeDura(result, dndv) { /// da tiempo en formato y lo imprime en dnv
     horaImprimible = lhora + "h " + lminuto + "m " + lsegundo + "s";
 
     $('#' + dndv).html(horaImprimible);
-}
-
-function sendConstruir(id, codigo, modal) {
-    var personal = $('#personal' + codigo).val();
-    window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
-}
-
-function sendReciclar(id, codigo) {
-    var personal = $('#personal' + codigo).val();
-    window.location.href = "http://localhost/juego/construccion/reciclar/" + id + "/" + personal;
-}
-
-function sendCancelar(id) {
-    window.location.href = "http://localhost/juego/construccion/cancelar/" + id;
-}
-
-function sendIndustria(industria) {
-    window.location.href = "http://localhost/juego/construccion/industria/" + industria;
-}
-
-function sendInvestigar(id, codigo) {
-    var personal = $('#personal' + codigo).val();
-    window.location.href = "http://localhost/juego/investigacion/construir/" + id + "/" + personal;
-}
-
-function sendCancelarInvestigacion(id) {
-    window.location.href = "http://localhost/juego/investigacion/cancelar/" + id;
-}
-
-function sendDesbloquear(id) {
-    window.location.href = "http://localhost/juego/fuselajes/desbloquear/" + id;
-}
-
-function sendDiseñar(id) {
-    window.location.href = "http://localhost/juego/diseño/diseñar/" + id;
 }
 
 function mostrarDatosConstruccion(codigo) {
