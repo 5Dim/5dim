@@ -3,8 +3,8 @@
         @csrf
         <div class="row">
             <div class="col-9">
-                <input id="asunto" name="asunto" type="text" class="form-control input" placeholder="Asunto">
-                <textarea class="ckeditor" name="descripcion" id="descripcion"></textarea>
+                <input id="asunto" name="asunto" type="text" class="form-control input" placeholder="Asunto" maxlength="150">
+                <textarea class="ckeditor" name="descripcion" id="descripcion" maxlength="1500"></textarea>
             </div>
             <div class="col-3">
                 <button class="btn btn-success btn-block align-bottom" type="submit">
@@ -18,9 +18,9 @@
 <script>
     $(document).ready(function() {
         $('#listaJugadores').select2({
-            //theme: "bootstrap",
+            theme: "bootstrap",
             width: '100%',
-            //closeOnSelect: false,
+            closeOnSelect: false,
             placeholder: "Nombre del jugador",
             data: [
                 @foreach ($jugadores as $jugador)
