@@ -37,9 +37,11 @@
                 </div>
                 <div class="tab-pane fade show active" id="recibidos" role="tabpanel" aria-labelledby="recibidos-tab">
                     @foreach ($recibidos as $intervinientes)
-                        @include('juego.cajitaMensajesRecibidos', [
-                            'mensaje' => $intervinientes->mensajes,
-                        ])
+                        @if ($intervinientes->mensajes->categoria == "recibidos")
+                            @include('juego.cajitaMensajesRecibidos', [
+                                'mensaje' => $intervinientes->mensajes,
+                            ])
+                        @endif
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="enviados" role="tabpanel" aria-labelledby="enviados-tab">
