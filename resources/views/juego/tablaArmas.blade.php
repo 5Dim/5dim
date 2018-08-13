@@ -1419,7 +1419,7 @@ $.each( armas[elemento], function( key, e ) {
         var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
         var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
         sumaCostos(costesMisMotores,multiplicadorMotores,costeobj);// sumo recursos basicos
-        var cte=(1+miConstanteI)*nivelInv; //lo que varia por nivel de tecno  //la aenergia no sube con nivel de motores
+        var cte=(1+miConstanteI)*nivelInv*.5; //lo que varia por nivel de tecno  //la aenergia no sube con nivel de motores
         var factorFuselaje=cualidadesFuselaje[genera];     // el factor que varia para cada fuselaje
         costesVacio[genera]=costeobj[genera]*1*factorFuselaje; //lo q mejora por esos niveles
         costesVacio['tiempo']=costeobj['tiempo']*factorFuselaje;
@@ -1700,7 +1700,7 @@ elemento='armasLigera';
             var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
             estedano=energialigera*cte*energiaT*energiaXarma/costeobj['energia'];
             creceExpo=1+((estedano/5000)*2000 );
-            dañoarmasLigera+=Math.round(estedano*1000000/creceExpo,0);
+            dañoarmasLigera+=Math.round(estedano*100000/creceExpo,0);
             multiplicador=estedano*10*creceExpo;
             sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
             sumaCualidades(misCostes,multiplicador,costeobj);
