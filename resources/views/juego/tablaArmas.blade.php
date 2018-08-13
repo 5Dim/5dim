@@ -30,37 +30,14 @@ $arrayCss=[];
 $arrayStart=[];
 $arrayConnect=[];
 $arrayTooltip=[];
-
-/*
-if ($investNiveles["invEnergia"]>0){
-    array_push($arrayStart,10);
-    array_push($arrayConnect,true);
-    array_push($arrayCss,'c-1-color');
-    array_push($arrayTooltip,'% de energía a armas de energía');
-}
-if ($investNiveles["invPlasma"]>0){
-    array_push($arrayStart,40);
-    array_push($arrayConnect,true);
-    array_push($arrayCss,'c-2-color');
-    array_push($arrayTooltip,'% de energía a armas de plasma');
-}
-if ($investNiveles["invBalistica"]>0){
-    array_push($arrayStart,60);
-    array_push($arrayConnect,true);
-    array_push($arrayCss,'c-3-color');
-    array_push($arrayTooltip,'% de energía a armas de Balística');
-}
-if ($investNiveles["invMa"]>0){
-    array_push($arrayStart,90);
-    array_push($arrayConnect,true);
-    array_push($arrayCss,'c-4-color');
-    array_push($arrayTooltip,'% de energía a armas de MA');
-}
-array_push($arrayConnect,true);
-array_push($arrayCss,'c-5-color');
-
-*/
-
+$arrayArmasTengo=[
+    'cantidadCLigeras'=>0,
+    'cantidadCMedias'=>0,
+    'cantidadCPesadas'=>0,
+    'cantidadCInsertadas'=>0,
+    'cantidadCMisiles'=>0,
+    'cantidadCBombas'=>0
+];
 
 /// cantidades de cada elemento
 
@@ -89,6 +66,7 @@ if ($cantidadCLigeras>0){
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-1-color');
     array_push($arrayTooltip,'% de energía a cañones ligeros');
+    $arrayArmasTengo['cantidadCLigeras']=1;
 }
 if ($cantidadCLigeras>6){
     $cantidadCLigeras=celdasMaximas(6,$cantidadCLigeras);
@@ -102,6 +80,7 @@ if ($cantidadCMedias>0){
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-2-color');
     array_push($arrayTooltip,'% de energía a cañones medios');
+    $arrayArmasTengo['cantidadCMedias']=1;
 }
 if ($cantidadCMedias>6){
     $cantidadCMedias=celdasMaximas(6,$cantidadCMedias);
@@ -115,6 +94,7 @@ if ($cantidadCPesadas>0){
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-3-color');
     array_push($arrayTooltip,'% de energía a cañones pesados');
+    $arrayArmasTengo['cantidadCPesadas']=1;
 }
 if ($cantidadCPesadas>6){
     $cantidadCPesadas=celdasMaximas(6,$cantidadCPesadas);
@@ -128,6 +108,7 @@ if ($cantidadCInsertadas>0){
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-4-color');
     array_push($arrayTooltip,'% de energía a cañones insertados');
+    $arrayArmasTengo['cantidadCInsertadas']=1;
 }
 if ($cantidadCInsertadas>6){
     $cantidadCInsertadas=celdasMaximas(6,$cantidadCInsertadas);
@@ -141,6 +122,7 @@ if ($cantidadCMisiles>0){
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-5-color');
     array_push($arrayTooltip,'% de energía a misiles');
+    $arrayArmasTengo['cantidadCMisiles']=1;
 }
 if ($cantidadCMisiles>6){
     $cantidadCMisiles=celdasMaximas(6,$cantidadCMisiles);
@@ -154,14 +136,17 @@ if ($cantidadCBombas>0){
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-6-color');
     array_push($arrayTooltip,'% de energía a bombas');
+    $arrayArmasTengo['cantidadCBombas']=1;
 }
 if ($cantidadCBombas>6){
     $cantidadCBombas=celdasMaximas(6,$cantidadCBombas);
     $multiplicadorCBombas=($diseño->cualidades->armasBombas/$cantidadCBombas);
 }
 
+
 array_push($arrayConnect,true);
 array_push($arrayCss,'c-7-color');
+
 
 $cantidadCargaPequeña=$diseño->cualidades->cargaPequeña;
 $multiplicadorCargaPequeña=1;
@@ -1052,7 +1037,7 @@ var armasPesadas={!!json_encode($armasPesadas)!!};
 var armasInsertadas={!!json_encode($armasInsertadas)!!};
 var armasMisiles={!!json_encode($armasMisiles)!!};
 var armasBombas={!!json_encode($armasBombas)!!};
-
+var armasTengo={!!json_encode($arrayArmasTengo)!!};
 
 
 
@@ -1666,14 +1651,59 @@ $("#energiamejora").text(valueF);
 energiaT=costesMisMotores['energia']+costesMisBlindajes['energia']+costesMisCargas['energia']+cualidades['energia']; // energia para armas total
 valueF=formatNumber (Math.round (energiaT));
 $("#energiaarma").text(valueF);
-misCostes=costesMisArmas;
+misCostes=costesMisArmas;  //arrayArmasTengo['cantidadCPesadas']
+armasTengoT=armasTengo['cantidadCLigeras']+armasTengo['cantidadCMedias']+armasTengo['cantidadCPesadas']+armasTengo['cantidadCInsertadas']+armasTengo['cantidadCMisiles']+armasTengo['cantidadCBombas'];
 
-if (slider.noUiSlider.get()[0]==undefined){energialigera=0;} else {energialigera=slider.noUiSlider.get()[0]/100;}
-if (slider.noUiSlider.get()[1]==undefined){energiamedia=0;} else {energiamedia=slider.noUiSlider.get()[1]/100;}
-if (slider.noUiSlider.get()[2]==undefined){energiapesada=0;} else {energiapesada=slider.noUiSlider.get()[2]/100;}
-if (slider.noUiSlider.get()[3]==undefined){energiainsertada=0;} else {energiainsertada=slider.noUiSlider.get()[3]/100;}
-if (slider.noUiSlider.get()[4]==undefined){energiamisil=0;} else {energiamisil=slider.noUiSlider.get()[4]/100;}
-if (slider.noUiSlider.get()[5]==undefined){energiabomba=0;} else {energiabomba=slider.noUiSlider.get()[5]/100;}
+n=0;
+if (armasTengo['cantidadCLigeras']==0){energialigera=0;} else {
+    if (armasTengoT==1){
+        energialigera=slider.noUiSlider.get()/100; // un solo slider no tiene array de datos
+    } else {
+        energialigera=slider.noUiSlider.get()[n]/100;
+        n++;
+    }
+}
+if (armasTengo['cantidadCMedias']==0){energiamedia=0;} else {
+    if (armasTengoT==1){
+        energiamedia=slider.noUiSlider.get()/100;
+    } else {
+        energiamedia=slider.noUiSlider.get()[n]/100;
+        n++;
+    }
+}
+if (armasTengo['cantidadCPesadas']==0){energiapesada=0;} else {
+    if (armasTengoT==1){
+        energiapesada=slider.noUiSlider.get()/100;
+    } else {
+        energiapesada=slider.noUiSlider.get()[n]/100;
+        n++;
+    }
+}
+if (armasTengo['cantidadCInsertadas']==0){energiainsertada=0;} else {
+    if (armasTengoT==1){
+        energiainsertada=slider.noUiSlider.get()/100;
+    } else {
+        energiainsertada=slider.noUiSlider.get()[n]/100;
+        n++;
+    }
+}
+if (armasTengo['cantidadCMisiles']==0){energiamisil=0;} else {
+    if (armasTengoT==1){
+        energiamisil=slider.noUiSlider.get()/100;
+    } else {
+        energiamisil=slider.noUiSlider.get()[n]/100;
+        n++;
+    }
+}
+if (armasTengo['cantidadCBombas']==0){energiabomba=0;} else {
+    if (armasTengoT==1){
+        energiabomba=slider.noUiSlider.get()/100;
+    } else {
+        energiabomba=slider.noUiSlider.get()[n]/100;
+        n++;
+    }
+}
+
 
 
 // sumamos la energia que gasta cada arma de su tipo
@@ -1688,6 +1718,8 @@ elemento='armasLigera';
             energiaarmasLigera+=costeobj['energia'];
         }
     })
+
+    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequeña:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
     energiaXarma=1/energiaarmasLigera;
 /// daño del arma por unidad de energia y costo
     $.each( armas[elemento], function( key, e ) {
@@ -1703,10 +1735,15 @@ elemento='armasLigera';
             dañoarmasLigera+=Math.round(estedano*100000/creceExpo,0);
             multiplicador=estedano*10*creceExpo;
             sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
-            sumaCualidades(misCostes,multiplicador,costeobj);
+            costesVacio['mantenimiento']=costeobj['mantenimiento'];
+            costesVacio['masa']=costeobj['masa'];
+            costesVacio['municion']=costeobj['municion'];
+            sumaCualidades(misCostes,multiplicador,costesVacio);
         }
     })
-    valueF=formatNumber (Math.round (energialigera*energiaT));
+    estaEnergia=(Math.round (energialigera*energiaT));
+    cualidades['energia']-=estaEnergia;
+    valueF=formatNumber (estaEnergia);
     $("#energiaarmasLigera").text(valueF);
 
 valueF=formatNumber (Math.round (1*dañoarmasLigera));
@@ -1845,8 +1882,9 @@ timeDura(cualidades['tiempo'],'tiempoD');
 
 $( document ).ready(function() {
     calculoTotalR();
-
+@if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
     slider.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+@endif
 
     });
 

@@ -1105,7 +1105,7 @@ class CostesArmas extends Model
         $coste->masa=$fcae*1000;
         $coste->energia=-$fcae*1000;
         $coste->tiempo=$fcae*1900;
-        $coste->mantenimiento=$fcae*50;
+        $coste->mantenimiento=$fcae*5;
         $coste->defensa=0;
         $coste->ataque=100;
         $coste->velocidad=0;
@@ -1278,7 +1278,7 @@ class CostesArmas extends Model
         $coste->masa=$fcae*1000;
         $coste->energia=-$fcae*400;
         $coste->tiempo=$fcae*1900;
-        $coste->mantenimiento=$fcae*50;
+        $coste->mantenimiento=$fcae*5;
         $coste->defensa=0;
         $coste->ataque=100;
         $coste->velocidad=0;
@@ -1452,7 +1452,7 @@ class CostesArmas extends Model
         $coste->masa=$fcae*1000;
         $coste->energia=-$fcae*100;
         $coste->tiempo=$fcae*1900;
-        $coste->mantenimiento=$fcae*50;
+        $coste->mantenimiento=$fcae*5;
         $coste->defensa=0;
         $coste->ataque=100;
         $coste->velocidad=0;
@@ -1624,7 +1624,7 @@ class CostesArmas extends Model
         $coste->masa=$fcae*700;
         $coste->energia=-$fcae*1000;
         $coste->tiempo=$fcae*1900;
-        $coste->mantenimiento=$fcae*50;
+        $coste->mantenimiento=$fcae*5;
         $coste->defensa=0;
         $coste->ataque=100;
         $coste->velocidad=0;
