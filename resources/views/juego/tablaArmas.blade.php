@@ -1700,7 +1700,7 @@ elemento='armasLigera';
             var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
             estedano=energialigera*cte*energiaT*energiaXarma/costeobj['energia'];
             creceExpo=1+((estedano/5000)*2000 );
-            dañoarmasLigera+=Math.round(estedano*10000/creceExpo,0);
+            dañoarmasLigera+=Math.round(estedano*1000000/creceExpo,0);
             multiplicador=estedano*10*creceExpo;
             sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
             sumaCualidades(misCostes,multiplicador,costeobj);
