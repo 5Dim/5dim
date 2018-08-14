@@ -19,6 +19,7 @@ use App\EnInvestigaciones;
 use App\CostesConstrucciones;
 use App\Investigaciones;
 use Auth;
+use App\Jugadores;
 
 class JuegoController extends Controller
 {
@@ -121,7 +122,10 @@ class JuegoController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias'));
+        //Lista de jugadores
+        $jugadores = Jugadores::orderByDesc('puntos')->get();
+
+        return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores'));
     }
 
     public function tienda()
@@ -179,7 +183,30 @@ class JuegoController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        return view('juego.tienda', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones'));
+        return view('juego.tienda', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias'));
+    }
+
+    //Cambiar de planeta
+    public function calcularPuntos()
+    {
+        if (!empty(session()->get('jugadores_id'))) {
+            $puntosJugador = 0;
+            $jugador = Jugadores::find(session()->get('jugadores_id'));
+            foreach ($jugador->planetas as $planeta) {
+                if (!empty($planeta)) {
+                    foreach ($planeta->construcciones as $construccion) {
+                        if ($construccion->codigo != "almMineral" and $construccion->codigo != "almCristal") {
+                            $puntosJugador += $construccion->nivel;
+                        }
+                    }
+                }
+            }
+            $jugador->puntos = $puntosJugador * 1000;
+            $jugador->save();
+        }else{
+            return redirect('/jugador');
+        }
+        return redirect('/juego/construccion');
     }
 
     //Cambiar de planeta
@@ -200,7 +227,7 @@ class JuegoController extends Controller
         }else{
             return redirect('/jugador');
         }
-        return redirect('/juego/construccion');
+        return redirect('/juego/calcularPuntos');
     }
 
     //Cambiar de jugador

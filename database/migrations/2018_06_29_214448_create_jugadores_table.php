@@ -15,8 +15,9 @@ class CreateJugadoresTable extends Migration
     {
         Schema::create('jugadores', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('universo_id');
+            $table->integer('puntos')->default(0);
             $table->string('nombre');
+            $table->integer('universo_id');
             $table->timestamp('premiun_at')->nullable();
             $table->timestamps();
         });
