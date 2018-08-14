@@ -7,7 +7,7 @@
             <div id="cuadro1" class="table-responsive">
                 <table class="table table-borderless table-sm text-center " style="margin-top: 5px !important">
                     <tr>
-                        <th colspan="3" class=" text-success">
+                        <th colspan="4" class=" text-success">
                             <big>
                                 Estadisticas
                             </big>
