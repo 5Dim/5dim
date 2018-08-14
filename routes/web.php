@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/jugador/{universo?}', ['uses' => 'JuegoController@jugador']);
     Route::get('/juego/tienda', 'JuegoController@tienda');
     Route::get('/juego/estadisticas', 'JuegoController@estadisticas');
+    Route::get('/juego/calcularPuntos', 'JuegoController@calcularPuntos');
 
     //Construccion
     Route::get('/juego/construccion/{tab?}', 'ConstruccionController@index');

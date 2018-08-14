@@ -44,7 +44,7 @@
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="estadisticas.php" target="_self">
+                            <a href="{{url('/juego/estadisticas')}}" target="_self">
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-est.png') }}"  title="Estadisticas"/>
                             </a>
                         </th>
