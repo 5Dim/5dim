@@ -793,18 +793,18 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
 
                                             <td colspan="2" class="text-light align-middle ">
                                                     &nbsp;&nbsp;alcance&nbsp;&nbsp;
-                                            <div class="slider" id="alcancearmasMisiles"></div>
+                                            <div class="slider" id="alcanceArmasMisiles"></div>
                                             </td>
                                             <td colspan="2" class="text-light align-middle">
                                                 dispersión
-                                            <div class="slider" id="dispersionarmasMisiles"></div>
+                                            <div class="slider" id="dispersionArmasMisiles"></div>
                                             </td>
                                             <td class="text-warning align-middle">
                                                     x{{$multiplicadorCMisiles}}   Misiles<br>(energía=<span id="energiaarmasMisil"></span>)
                                             </td>
 
                                         <script>
-                                            noUiSlider.create(document.getElementById('alcancearmasMisiles'), {
+                                            noUiSlider.create(document.getElementById('alcanceArmasMisiles'), {
                                                 start: 0,
                                                 step: 1,
                                                 range: {
@@ -812,7 +812,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                     'max': 7
                                                 }
                                             });
-                                            noUiSlider.create(document.getElementById('dispersionarmasMisiles'), {
+                                            noUiSlider.create(document.getElementById('dispersionArmasMisiles'), {
                                                 start: 0,
                                                 step: 1,
                                                 range: {
@@ -1227,18 +1227,7 @@ var empuje={
     '64':2000000,
 };
 
-// valores a 0 de la tabla de daño, de cada investigacion
-///var danoVacio=[0,0,0,0,0,0,0,0];
-var danoinvEnergia=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
-var danoinvPlasma=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
-var danoinvBalistica=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
-var danoinvMa=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
-var danoTotal={
-    'invEnergia':danoinvEnergia,
-    'invPlasma':danoinvPlasma,
-    'invBalistica':danoinvBalistica,
-    'invMa':danoinvMa
-    };
+
 
 // posicion del daño segun el arma
 
@@ -1252,6 +1241,18 @@ var danoPosicion={
 }
 
 function calculoTotalR(){
+
+    // valores a 0 de la tabla de daño, de cada investigacion
+ danoinvEnergia=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+ danoinvPlasma=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+ danoinvBalistica=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+ danoinvMa=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+ danoTotal={
+    'invEnergia':danoinvEnergia,
+    'invPlasma':danoinvPlasma,
+    'invBalistica':danoinvBalistica,
+    'invMa':danoinvMa
+    };
 
 empujeT=0;
 
@@ -1783,16 +1784,22 @@ elemento='armasLigera';
 
             var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
             estedano=energialigera*energiaT*energiaXarma/costeobj['energia'];
-            creceExpo=1+((estedano/5000)*2000 );
+            creceExpo=1+((estedano/costeobj['ataque'])*2000 );
             dañoarmasLigera+=Math.round(cte*estedano*100000/creceExpo,0);// la tecno influye solo en el valor final del daño
             multiplicador=estedano*10*creceExpo;
-            sumaCostos(misCostes,multiplicador,costeobj);// sumo recursos basicos
-            costesVacio['mantenimiento']=costeobj['mantenimiento'];
+            alcance=danoPosicion[elemento][1]+1*armasAlcance[elemento];
+                if (alcance>7){alcance=7;};
+                if (alcance<0){alcance=0;};
+                variacionAlcance= Math.pow(2.5,(1*armasAlcance[elemento]));
+            variacionDispersion=Math.pow(1.5,(1*armasDispersion[elemento]));
+
+            sumaCostos(misCostes,multiplicador*variacionAlcance*variacionDispersion,costeobj);// sumo recursos basicos
+            costesVacio['mantenimiento']=costeobj['mantenimiento']*variacionAlcance*variacionDispersion;
             costesVacio['masa']=costeobj['masa'];
-            costesVacio['municion']=costeobj['municion'];
+            costesVacio['municion']=costeobj['municion']*variacionAlcance*variacionDispersion;
             sumaCualidades(misCostes,multiplicador,costesVacio);
 
-            danoTotal[obj['clase']][danoPosicion[elemento][0]][danoPosicion[elemento][1]]=dañoarmasLigera;
+            danoTotal[obj['clase']][danoPosicion[elemento][0]][alcance]=dañoarmasLigera;
         }
     })
     estaEnergia=(Math.round (energialigera*energiaT));
@@ -1840,13 +1847,51 @@ dibujaDano();
 }
 
 function dibujaDano(){
-    for(F=0;F<5;F++){
-        for(C=0;C<9;C++){
-            value=danoTotal['invEnergia'][F][C]+danoTotal['invPlasma'][F][C]+danoTotal['invBalistica'][F][C]+danoTotal['invMa'][F][C];
-            valueF=formatNumber (Math.round (value));
-            $("#"+F+C).text(valueF);
-        };
-    };
+danoTotalV=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+sumaataque=0;
+arrayDispersion=[
+    (1*armasDispersion['armasLigera'])+1,
+    (1*armasDispersion['armasMedia'])+1,
+    (1*armasDispersion['armasPesada'])+1,
+    (1*armasDispersion['armasInsertada'])+1,
+    (1*armasDispersion['armasMisil'])+1,
+    (1*armasDispersion['armasBomba'])+1
+]
+
+for(F=0;F<5;F++){
+    dispersion=.2*arrayDispersion[F];
+    for(C=7;C>-1;C--){
+        valueAqui=danoTotal['invEnergia'][F][C]+danoTotal['invPlasma'][F][C]+danoTotal['invBalistica'][F][C]+danoTotal['invMa'][F][C];
+        if (valueAqui>0){
+            danoTotalV[F][C]+=valueAqui;
+                for(c=C-1;c>-1;c--){ //atras
+                    danoTotalV[F][c]+=valueAqui*(1+(dispersion*(C-c) ));
+                    danoInf=valueAqui*(1+(dispersion*(C-c) ))/1.25;
+                    for(f=F+1;f<5;f++){ //atras abajo
+                        danoTotalV[f][c]+=danoInf;
+                    }
+                    for(f=F-1;f>-1;f--){ //atras arriba
+                        danoTotalV[f][c]+=danoInf*.1;
+                    }
+                }
+                for(f=F+1;f<5;f++){ // abajo
+                        danoTotalV[f][C]+=valueAqui/1.25;
+                }
+                for(f=F-1;f>-1;f--){ // arriba
+                        danoTotalV[f][C]+=valueAqui*.1;
+                }
+
+        }
+        if (danoTotalV[F][C]<1){danoTotalV[F][C]=0;}
+        sumaataque+=Math.round (danoTotalV[F][C]);
+        valueF=formatNumber (Math.round (danoTotalV[F][C]));
+        $("#"+F+C).text(valueF);
+    }
+}
+
+
+    valueF=formatNumber (sumaataque);
+    $("#ataqueD").text(valueF);
 }
 
 
@@ -1948,6 +1993,31 @@ $( document ).ready(function() {
 @if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
     slider.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
 @endif
+
+@if($cantidadCLigeras>0){
+    alcanceArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    dispersionArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+}@endif
+@if($cantidadCMedias>0){
+    alcanceArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    dispersionArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+}@endif
+@if($cantidadCPesadas>0){
+    alcanceArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    dispersionArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+}@endif
+@if($cantidadCInsertadas>0){
+    alcanceArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    dispersionArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+}@endif
+@if($cantidadCMisiles>0){
+    alcanceArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    dispersionArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+}@endif
+@if($cantidadCBombas>0){
+    alcanceArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    dispersionArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+}@endif
 
     });
 
