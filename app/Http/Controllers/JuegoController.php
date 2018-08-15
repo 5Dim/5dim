@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 use App\Recursos;
 use App\Almacenes;
 use App\Planetas;
@@ -122,8 +123,14 @@ class JuegoController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
+        //Actualizamos estadisticas
+        Jugadores::calcularPuntos(session()->get('jugadores_id'));
+
         //Lista de jugadores
-        $jugadores = Jugadores::orderByDesc('puntos')->get();
+        $jugadores = DB::table('jugadores')
+                        ->select('*')
+                        ->orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion`"), 'desc')
+                        ->get();
 
         return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores'));
     }
@@ -190,19 +197,7 @@ class JuegoController extends Controller
     public function calcularPuntos()
     {
         if (!empty(session()->get('jugadores_id'))) {
-            $puntosJugador = 0;
-            $jugador = Jugadores::find(session()->get('jugadores_id'));
-            foreach ($jugador->planetas as $planeta) {
-                if (!empty($planeta)) {
-                    foreach ($planeta->construcciones as $construccion) {
-                        if ($construccion->codigo != "almMineral" and $construccion->codigo != "almCristal") {
-                            $puntosJugador += $construccion->nivel;
-                        }
-                    }
-                }
-            }
-            $jugador->puntos = $puntosJugador * 1000;
-            $jugador->save();
+            Jugadores::calcularPuntos(session()->get('jugadores_id'));
         }else{
             return redirect('/jugador');
         }

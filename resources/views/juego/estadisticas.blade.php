@@ -33,13 +33,13 @@
                                 {{ $loop->iteration }}
                             </td>
                             <td class=" text-light align-middle">
-                                <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="60" height="60">
+                                <img class="rounded" src="{{ $jugador->avatar }}" width="60" height="60">
                             </td>
                             <td class=" text-light align-middle">
                                 {{ $jugador->nombre }}
                             </td>
                             <td class=" text-light align-middle">
-                                {{ number_format($jugador->puntos, 0,",",".") }}
+                                {{ number_format($jugador->puntos_construccion + $jugador->puntos_investigacion, 0,",",".") }}
                             </td>
                         </tr>
                     @endforeach

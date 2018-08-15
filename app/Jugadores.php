@@ -35,4 +35,28 @@ class Jugadores extends Model
     {
         return $this->hasMany(MensajesIntervinientes::class, 'receptor');
     }
+
+    public static function calcularPuntos ($idPlaneta)
+    {
+        $puntosJugador = 0;
+        $jugador = Jugadores::find($idPlaneta);
+        foreach ($jugador->planetas as $planeta) {
+            if (!empty($planeta)) {
+                foreach ($planeta->construcciones as $construccion) {
+                    if ($construccion->codigo != "almMineral" and $construccion->codigo != "almCristal") {
+                        $puntosJugador += $construccion->nivel;
+                    }
+                }
+            }
+        }
+        $jugador->puntos_construccion = $puntosJugador * 1000;
+        $puntosJugador = 0;
+        foreach ($jugador->investigaciones as $investigacion) {
+            if (!empty($investigacion)) {
+                $puntosJugador += $investigacion->nivel;
+            }
+        }
+        $jugador->puntos_investigacion = $puntosJugador * 1000;
+        $jugador->save();
+    }
 }
