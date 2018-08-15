@@ -27,11 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * Relacion de los usuarios con los planetas
-     */
     public function jugadores ()
     {
         return $this->hasMany(Jugadores::class);
+    }
+
+    public function transacciones ()
+    {
+        return $this->hasMany(TiendasHistorial::class);
     }
 }

@@ -21,6 +21,7 @@ use App\CostesConstrucciones;
 use App\Investigaciones;
 use Auth;
 use App\Jugadores;
+use App\Tiendas;
 
 class JuegoController extends Controller
 {
@@ -65,7 +66,7 @@ class JuegoController extends Controller
         $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         //Fin recursos
 
-        return view('juego.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
+        return view('juego.layouts.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
     }
 
     public function estadisticas()
@@ -190,7 +191,9 @@ class JuegoController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        return view('juego.tienda', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias'));
+        $articulos = Tiendas::all();
+
+        return view('juego.tienda.tienda', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'articulos'));
     }
 
     //Cambiar de planeta

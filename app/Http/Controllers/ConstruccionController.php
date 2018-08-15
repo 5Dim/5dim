@@ -90,7 +90,7 @@ class ConstruccionController extends Controller
         //session()->put('tabConstruccion', $tab);
 
         //Devolvemos la vista con todas las variables
-        return view('juego.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias'));
+        return view('juego.construcciones.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias'));
     }
 
     //Acceso a subir nivel de construccion

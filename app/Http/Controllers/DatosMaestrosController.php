@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Constantes;
-use \App\Almacenes;
-use \App\Producciones;
-use \App\Variables;
-use \App\CostesConstrucciones;
-use \App\Dependencias;
-use \App\Fuselajes;
-use \App\Armas;
-use \App\CostesArmas;
+use App\Constantes;
+use App\Almacenes;
+use App\Producciones;
+use App\Variables;
+use App\CostesConstrucciones;
+use App\Dependencias;
+use App\Fuselajes;
+use App\Armas;
+use App\CostesArmas;
+use App\Tiendas;
 
 class DatosMaestrosController extends Controller
 {
@@ -48,6 +49,9 @@ class DatosMaestrosController extends Controller
 
         $costesArmas=new CostesArmas();
         $costesArmas=$costesArmas->generarDatosCostesArmas();
+
+        $tiendas=new Tiendas();
+        $tiendas=$tiendas->generarDatosTiendas();
 
     }
 }

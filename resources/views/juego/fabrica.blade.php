@@ -1,4 +1,6 @@
-@extends('juego.recursosFrame') @section('content')
+@extends('juego.layouts.recursosFrame')
+
+@section('content')
 <div class="container-fluid">
     <div class="container-fluid">
         <nav>
