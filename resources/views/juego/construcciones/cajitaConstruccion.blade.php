@@ -344,6 +344,10 @@
                                     $deshabilitado=" disabled='disabled' ";
                                     $clase="light";
                                 }
+                                if ($construccion->nivel >= 99) {
+                                    $deshabilitado=" disabled='disabled' ";
+                                    $clase="light";
+                                }
                             @endphp
                             <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}} onclick="sendConstruir('{{ $construccion->id }}', '{{ $construccion->codigo }}', '{{ $tab }}')">
                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}

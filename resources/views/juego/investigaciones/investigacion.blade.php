@@ -1,4 +1,4 @@
-@extends('juego.recursosFrame')
+@extends('juego.layouts.recursosFrame')
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
@@ -72,7 +72,7 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="militares" role="tabpanel" aria-labelledby="militares-tab">
                 @for ($i = 0 ; $i < 4 ; $i++)
-                    @include('juego.cajitaInvestigacion', [
+                    @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
@@ -80,7 +80,7 @@
             </div>
             <div class="tab-pane fade" id="misc" role="tabpanel" aria-labelledby="misc-tab">
                 @for ($i = 4 ; $i < 7 ; $i++)
-                    @include('juego.cajitaInvestigacion', [
+                    @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
@@ -88,7 +88,7 @@
             </div>
             <div class="tab-pane fade " id="personales" role="tabpanel " aria-labelledby="personales-tab">
                 @for ($i = 7 ; $i < 12 ; $i++)
-                    @include('juego.cajitaInvestigacion', [
+                    @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
@@ -96,7 +96,7 @@
             </div>
             <div class="tab-pane fade" id="motores" role="tabpanel" aria-labelledby="motores-tab">
                 @for ($i = 12 ; $i < 18 ; $i++)
-                    @include('juego.cajitaInvestigacion', [
+                    @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
@@ -104,7 +104,7 @@
             </div>
             <div class="tab-pane fade" id="industrias" role="tabpanel" aria-labelledby="industrias-tab">
                 @for ($i = 18 ; $i < 23 ; $i++)
-                    @include('juego.cajitaInvestigacion', [
+                    @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])

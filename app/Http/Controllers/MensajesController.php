@@ -87,7 +87,7 @@ class MensajesController extends Controller
         //Lista de mensajes enviados
         $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
 
-        return view('juego.mensajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores', 'recibidos', 'enviados'));
+        return view('juego.mensajes.mensajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores', 'recibidos', 'enviados'));
     }
 
     public function enviarMensaje() {

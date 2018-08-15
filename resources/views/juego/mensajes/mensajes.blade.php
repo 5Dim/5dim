@@ -1,4 +1,4 @@
-@extends('juego.recursosFrame')
+@extends('juego.layouts.recursosFrame')
 
 @section('content')
     <div class="container-fluid">
@@ -33,12 +33,12 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade" id="nuevo" role="tabpanel" aria-labelledby="nuevo-tab">
-                    @include ('juego.nuevoMensaje')
+                    @include ('juego.mensajes.cajitaNuevoMensaje')
                 </div>
                 <div class="tab-pane fade show active" id="recibidos" role="tabpanel" aria-labelledby="recibidos-tab">
                     @foreach ($recibidos as $intervinientes)
                         @if ($intervinientes->mensajes->categoria == "recibidos")
-                            @include('juego.cajitaMensajesRecibidos', [
+                            @include('juego.mensajes.cajitaMensajesRecibidos', [
                                 'mensaje' => $intervinientes->mensajes,
                             ])
                         @endif
@@ -46,7 +46,7 @@
                 </div>
                 <div class="tab-pane fade" id="enviados" role="tabpanel" aria-labelledby="enviados-tab">
                     @foreach ($enviados as $mensaje)
-                        @include('juego.cajitaMensajesEnviados', [
+                        @include('juego.mensajes.cajitaMensajesEnviados', [
                             'mensaje' => $mensaje,
                         ])
                     @endforeach

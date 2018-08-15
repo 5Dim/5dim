@@ -1,4 +1,4 @@
-@extends('juego.recursosFrame')
+@extends('juego.layouts.recursosFrame')
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
@@ -49,7 +49,7 @@
             <div class="tab-pane fade show" id="prediseñadas" role="tabpanel" aria-labelledby="prediseñadas-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "prediseñada")
-                        @include('juego.cajitaFuselajesPrediseñados', [
+                        @include('juego.fuselajes.cajitaFuselajesPrediseñados', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -59,15 +59,7 @@
             <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "caza")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "caza")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -77,15 +69,7 @@
             <div class="tab-pane fade show" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "ligera")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "ligera")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -95,15 +79,7 @@
             <div class="tab-pane fade show" id="medias" role="tabpanel" aria-labelledby="medias-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "media")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "media")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -113,15 +89,7 @@
             <div class="tab-pane fade show" id="pesadas" role="tabpanel" aria-labelledby="pesadas-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "pesada")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "pesada")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -131,15 +99,7 @@
             <div class="tab-pane fade show" id="estaciones" role="tabpanel" aria-labelledby="estaciones-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "estacion")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "estacion")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -149,15 +109,7 @@
             <div class="tab-pane fade show" id="defensas" role="tabpanel" aria-labelledby="defensas-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "defensa")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "defensa")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -167,15 +119,7 @@
             <div class="tab-pane fade show" id="aviones" role="tabpanel" aria-labelledby="aviones-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "avion")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "avion")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -185,15 +129,7 @@
             <div class="tab-pane fade show" id="infanteria" role="tabpanel" aria-labelledby="infanteria-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "infanteria")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "infanteria")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -203,15 +139,7 @@
             <div class="tab-pane fade show" id="vehiculos" role="tabpanel" aria-labelledby="vehiculos-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "vehiculo")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "vehiculo")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -221,15 +149,7 @@
             <div class="tab-pane fade show" id="mechs" role="tabpanel" aria-labelledby="mechs-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "mech")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "mech")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -239,15 +159,7 @@
             <div class="tab-pane fade show" id="megabot" role="tabpanel" aria-labelledby="megabot-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "megabot")
-                        @include('juego.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "alianza" and $fuselajes[$i]->tamaño == "megabot")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
@@ -257,7 +169,7 @@
             <div class="tab-pane fade show" id="novas" role="tabpanel" aria-labelledby="novas-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "compra")
-                        @include('juego.cajitaFuselajes', [
+                        @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,
                         ])
