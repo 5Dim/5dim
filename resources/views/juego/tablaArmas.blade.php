@@ -1734,7 +1734,7 @@ if (armasTengo['cantidadCMedias']==0){energiamedia=0;} else {
         n++;
     }
     energiaArmas['armasMedia']-=porcentAcum;
-    porcentAcum=energiaArmas['armasMedia'];
+    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia'];
     armasAlcance['armasMedia']=alcanceArmasMedias.noUiSlider.get();
     armasDispersion['armasMedia']=dispersionArmasMedias.noUiSlider.get();
 }
@@ -1746,7 +1746,7 @@ if (armasTengo['cantidadCPesadas']==0){energiapesada=0;} else {
         n++;
     }
     energiaArmas['armasPesada']-=porcentAcum;
-    porcentAcum=energiaArmas['armasPesada'];
+    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada'];
     armasAlcance['armasPesada']=alcanceArmasPesadas.noUiSlider.get();
     armasDispersion['armasPesada']=dispersionArmasPesadas.noUiSlider.get();
 }
@@ -1758,7 +1758,7 @@ if (armasTengo['cantidadCInsertadas']==0){energiainsertada=0;} else {
         n++;
     }
     energiaArmas['armasInsertada']-=porcentAcum;
-    porcentAcum=energiaArmas['armasInsertada'];
+    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada'];
     armasAlcance['armasInsertada']=alcanceArmasInsertadas.noUiSlider.get();
     armasDispersion['armasInsertada']=dispersionArmasInsertadas.noUiSlider.get();
 }
@@ -1770,7 +1770,7 @@ if (armasTengo['cantidadCMisiles']==0){energiamisil=0;} else {
         n++;
     }
     energiaArmas['armasMisil']-=porcentAcum;
-    porcentAcum=energiaArmas['armasMisil'];
+    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada']+energiaArmas['armasMisil'];
     armasAlcance['armasMisil']=alcanceArmasMisiles.noUiSlider.get();
     armasDispersion['armasMisil']=dispersionArmasMisiles.noUiSlider.get();
 }
@@ -1782,7 +1782,7 @@ if (armasTengo['cantidadCBombas']==0){energiabomba=0;} else {
         n++;
     }
     energiaArmas['armasBomba']-=porcentAcum;
-    porcentAcum=energiaArmas['armasBomba'];
+    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada']+energiaArmas['armasMisil']+energiaArmas['armasBomba'];
     armasAlcance['armasBomba']=alcanceArmasBombas.noUiSlider.get();
     armasDispersion['armasBomba']=dispersionArmasBombas.noUiSlider.get();
 }
@@ -1904,14 +1904,14 @@ for(F=0;F<5;F++){
                         danoTotalV[f][c]+=danoInf;
                     }
                     for(f=F-1;f>-1;f--){ //atras arriba
-                        danoTotalV[f][c]+=danoInf*.1*f;
+                        danoTotalV[f][c]+=danoInf*.01*f;
                     }
                 }
                 for(f=F+1;f<4;f++){ // abajo
                         danoTotalV[f][C]+=valueAqui/1.25;
                 }
                 for(f=F-1;f>-1;f--){ // arriba
-                    danoTotalV[f][C]+=valueAqui*.1*f;
+                    danoTotalV[f][C]+=valueAqui*.01*f;
                 }
 
         }
