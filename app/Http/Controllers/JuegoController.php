@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 use App\Recursos;
 use App\Almacenes;
 use App\Planetas;
@@ -123,7 +124,12 @@ class JuegoController extends Controller
         //Fin recursos
 
         //Lista de jugadores
-        $jugadores = Jugadores::orderByDesc('puntos')->get();
+        $jugadores = DB::table('jugadores')
+                        ->select('*')
+                        ->orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion`"), 'desc')
+                        ->get();
+
+        //Jugadores::withCount('puntos_construccion', '+', 'puntos_investigacion')->orderByDesc('SUM(puntos_construccion, puntos_investigacion)')->get();
 
         return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores'));
     }
@@ -201,7 +207,14 @@ class JuegoController extends Controller
                     }
                 }
             }
-            $jugador->puntos = $puntosJugador * 1000;
+            $jugador->puntos_construccion = $puntosJugador * 1000;
+            $puntosJugador = 0;
+            foreach ($jugador->investigaciones as $investigacion) {
+                if (!empty($investigacion)) {
+                    $puntosJugador += $investigacion->nivel;
+                }
+            }
+            $jugador->puntos_investigacion = $puntosJugador * 1000;
             $jugador->save();
         }else{
             return redirect('/jugador');
