@@ -12,9 +12,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recursos extends Model
 {
-    /**
-     * Relacion de los construcciones con el planeta
-     */
     public function planetas ()
     {
         return $this->belongsTo(Planetas::class);
@@ -22,6 +19,8 @@ class Recursos extends Model
 
     public static function calcularRecursos ($id)
     {
+        //Buscamos el planeta actual
+        $planetaActual = Planetas::find($id);
         //Definimos los objetos que vamos a necesitar
         $recursos = Recursos::where('planetas_id', $id)->first();
         //$planeta = Planeta::where('id', $id)->first();
@@ -74,13 +73,17 @@ class Recursos extends Model
         $fechaCalculo = $fechaFin - $fechaInicio;
 
         //Calculamos lo producido
+
+        //Calculamos los yacimientos y el terraformador
+        $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
+
         //Minas
         $contProducciones = 1;
-        $recursos->mineral += ($producciones[$contProducciones]->mineral / 3600 * $fechaCalculo); $contProducciones++;
-        $recursos->cristal += ($producciones[$contProducciones]->cristal / 3600 * $fechaCalculo); $contProducciones++;
-        $recursos->gas += ($producciones[$contProducciones]->gas / 3600 * $fechaCalculo); $contProducciones++;
-        $recursos->plastico += ($producciones[$contProducciones]->plastico / 3600 * $fechaCalculo); $contProducciones++;
-        $recursos->ceramica += ($producciones[$contProducciones]->ceramica / 3600 * $fechaCalculo); $contProducciones++;
+        $recursos->mineral += (($producciones[$contProducciones]->mineral * (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100)) / 3600 * $fechaCalculo); $contProducciones++;
+        $recursos->cristal += (($producciones[$contProducciones]->cristal * (1 + ($planetaActual->cualidades->cristal + $nivelTerraformador)/100)) / 3600 * $fechaCalculo); $contProducciones++;
+        $recursos->gas += (($producciones[$contProducciones]->gas * (1 + ($planetaActual->cualidades->gas + $nivelTerraformador)/100)) / 3600 * $fechaCalculo); $contProducciones++;
+        $recursos->plastico += (($producciones[$contProducciones]->plastico * (1 + ($planetaActual->cualidades->plastico + $nivelTerraformador)/100)) / 3600 * $fechaCalculo); $contProducciones++;
+        $recursos->ceramica += (($producciones[$contProducciones]->ceramica * (1 + ($planetaActual->cualidades->ceramica + $nivelTerraformador)/100)) / 3600 * $fechaCalculo); $contProducciones++;
 
         //Industrias
         $liquido = ($producciones[$contProducciones]->liquido / 3600 * $fechaCalculo); $contProducciones++;
