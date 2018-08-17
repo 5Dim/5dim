@@ -20,8 +20,6 @@ class CreatePlanetasTable extends Migration
             $table->string('nombre');
             $table->integer('imagen');
             $table->string('tipo');
-            $table->integer('mov1'); //asteroides
-            $table->integer('mov2'); //asteroides
             $table->timestamps();
         });
     }

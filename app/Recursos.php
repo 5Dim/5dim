@@ -12,9 +12,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recursos extends Model
 {
-    /**
-     * Relacion de los construcciones con el planeta
-     */
     public function planetas ()
     {
         return $this->belongsTo(Planetas::class);
