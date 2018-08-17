@@ -173,8 +173,8 @@ class CostesConstrucciones extends Model
             $coste= $costesc->calculos($r1cce, $idConstruccion,$avelprodminas);
             break;
 
-            case "banco":
-            $r1cce=[$codigo,.2,.5,3.5,0.3,1,2.8,1,$nivel];
+            case "terraformador":
+            $r1cce=[$codigo,80.2,60.5,40.5,0.3,1,5.8,1,$nivel];
             $coste= $costesc->calculos($r1cce, $idConstruccion,$avelprodminas);
             break;
 

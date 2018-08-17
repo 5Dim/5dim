@@ -172,7 +172,7 @@ class Dependencias extends Model
         array_push($dependencias, $dependencia);
 
         $dependencia =new Dependencias();
-        $dependencia->codigo='banco';
+        $dependencia->codigo='terraformador';
         $dependencia->codigoRequiere='laboratorio';
         $dependencia->nivelRequiere=4;
         $dependencia->tipo='construccion';
@@ -180,7 +180,7 @@ class Dependencias extends Model
 
         $dependencia =new Dependencias();
         $dependencia->codigo='comercio';
-        $dependencia->codigoRequiere='banco';
+        $dependencia->codigoRequiere='terraformador';
         $dependencia->nivelRequiere=4;
         $dependencia->tipo='construccion';
         array_push($dependencias, $dependencia);

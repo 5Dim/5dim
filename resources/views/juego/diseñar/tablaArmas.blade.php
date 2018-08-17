@@ -1655,13 +1655,19 @@ $.each( armas[elemento], function( key, e ) {
             sumaCostos(sobreCostes,cte,costesMisCargas);
             sumaCualidades(sobreCostes,cte,costesMisCargas);
         break;
-        case 79: //daño
-        case 71:
-        case 80:
-        case 81:
-        case 82:
-        case 83:
-        case 84:
+        case 71: //ctrol punteria
+        hazlo++;
+        cte=1;
+            sumaCostos(sobreCostes,cte,costesMisArmas);
+            sumaCualidades(sobreCostes,cte,costesMisArmas);
+        break;
+        case 79: //ariete
+
+        case 80:    // foco
+        case 81:    // foco-ligera
+        case 82:    //foco-media
+        case 83:    // foco ligera
+        case 84:    // foco pesada
         hazlo++;
         cte=1;
             sumaCostos(sobreCostes,cte,costesMisArmas);

@@ -64,7 +64,7 @@ class Construcciones extends Model
             "fabTropas",
             "escudo",
             "laboratorio",
-            "banco",
+            "terraformador",
             "comercio",
             "observacion",
             "potenciador",
