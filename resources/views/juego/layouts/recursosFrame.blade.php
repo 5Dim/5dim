@@ -226,6 +226,9 @@
                             {{ number_format($recursos->creditos, 0,",",".") }}
                         </td>
                     </tr>
+                    @php
+                        $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
+                    @endphp
                     <tr>
                         <td class="text-primary borderless">
                             <span>{{ number_format($producciones[0]->personal, 0,",",".") }}</span> ud/h

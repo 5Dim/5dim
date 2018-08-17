@@ -116,10 +116,20 @@ class Producciones extends Model
             }
         }
 
+
         if ($calcular) {
-            //Calcular gastos de producciones
+            //Calculamos los yacimientos y el terraformador
+            $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
+            $producciones[1]->mineral *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
+            $producciones[2]->cristal *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
+            $producciones[3]->gas *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
+            $producciones[4]->plastico *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
+            $producciones[5]->ceramica *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
+
+            //Constantes de costes
             $CConstantes=Constantes::where('tipo','construccion')->get();
 
+            //Calcular gastos de producciones
             $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
             $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
             $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);

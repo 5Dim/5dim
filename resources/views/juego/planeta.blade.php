@@ -1,5 +1,10 @@
 @extends('juego.layouts.recursosFrame')
 @section('content')
+
+@php
+$nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
+@endphp
+
 <div class="container-fluid">
     <div class="container-fluid">
         <nav>
@@ -49,6 +54,103 @@
                             <button type="button" class="btn btn-outline-danger btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
                                 <i class="fa fa-times-circle"></i> Abandonar colonia
                             </button>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-sm table-borderless text-center anchofijo cajita rounded">
+                    <tr>
+                        <th colspan="6" class="anchofijo text-success borderless">
+                            <big>Yacimientos y terraformador</big>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="anchofijo text-light borderless">
+                            Los <span class="text-success">yacimientos</span> determinan la produccion de las minas.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="anchofijo text-light borderless">
+                            El <span class="text-success">terraformador</span> es un edificio que nos ayuda a subir el nivel de nuestros yacimientos para poder produccir más en la colonia.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="anchofijo text-warning borderless">
+                            Tipo
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Mineral
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Cristal
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Gas
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Plastico
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Ceramica
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="anchofijo text-warning borderless">
+                            Yacimientos
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $planetaActual->cualidades->mineral }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $planetaActual->cualidades->cristal }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $planetaActual->cualidades->gas }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $planetaActual->cualidades->plastico }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $planetaActual->cualidades->ceramica }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="anchofijo text-warning borderless">
+                            Terraformador
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $nivelTerraformador }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $nivelTerraformador }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $nivelTerraformador }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $nivelTerraformador }}
+                        </td>
+                        <td class="anchofijo text-light borderless">
+                            {{ $nivelTerraformador }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="anchofijo text-primary borderless">
+                            Total
+                        </td>
+                        <td class="anchofijo text-primary borderless">
+                            {{ $planetaActual->cualidades->mineral + $nivelTerraformador }}
+                        </td>
+                        <td class="anchofijo text-primary borderless">
+                            {{ $planetaActual->cualidades->cristal + $nivelTerraformador }}
+                        </td>
+                        <td class="anchofijo text-primary borderless">
+                            {{ $planetaActual->cualidades->gas + $nivelTerraformador }}
+                        </td>
+                        <td class="anchofijo text-primary borderless">
+                            {{ $planetaActual->cualidades->plastico + $nivelTerraformador }}
+                        </td>
+                        <td class="anchofijo text-primary borderless">
+                            {{ $planetaActual->cualidades->ceramica + $nivelTerraformador }}
                         </td>
                     </tr>
                 </table>
@@ -131,6 +233,44 @@
                             0
                         </td>
                         <td class="anchofijo text-muted borderless">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="anchofijo text-warning borderless">
+                            Yacimientos y terraformador
+                        </td>
+                        <td class="text-muted borderless">
+                            0
+                        </td>
+                        <td class="text-success borderless">
+                            {{ number_format($produccionesSinCalcular[1]->mineral * (($planetaActual->cualidades->mineral + $nivelTerraformador)/100), 0,",",".") }}
+                        </td>
+                        <td class="text-success borderless">
+                            {{ number_format($produccionesSinCalcular[2]->cristal * (($planetaActual->cualidades->cristal + $nivelTerraformador)/100), 0,",",".") }}
+                        </td>
+                        <td class="text-success borderless">
+                            {{ number_format($produccionesSinCalcular[3]->gas * (($planetaActual->cualidades->gas + $nivelTerraformador)/100), 0,",",".") }}
+                        </td>
+                        <td class="text-success borderless">
+                            {{ number_format($produccionesSinCalcular[4]->plastico * (($planetaActual->cualidades->plastico + $nivelTerraformador)/100), 0,",",".") }}
+                        </td>
+                        <td class="text-success borderless">
+                            {{ number_format($produccionesSinCalcular[5]->ceramica * (($planetaActual->cualidades->ceramica + $nivelTerraformador)/100), 0,",",".") }}
+                        </td>
+                        <td class="text-muted borderless">
+                            0
+                        </td>
+                        <td class="text-muted borderless">
+                            0
+                        </td>
+                        <td class="text-muted borderless">
+                            0
+                        </td>
+                        <td class="text-muted borderless">
+                            0
+                        </td>
+                        <td class="text-muted borderless">
                             0
                         </td>
                     </tr>
