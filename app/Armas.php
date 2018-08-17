@@ -268,19 +268,7 @@ class Armas extends Model
                 $arma->niveltec=$niveltec;$niveltec++;
 
                 array_push($armas, $arma);
-
-                $arma =new Armas();
-                $arma->codigo=$niveltec+69;
-                $arma->nombre='Foco';
-                $arma->descripcion='Podemos mejorar el daño a las naves que mas daño queremos hacer ';
-                $arma->jugadores_id=1;
-                $arma->ranura="mejora";
-                $arma->potencia=8;
-                $arma->clase='invIa';
-                $arma->niveltec=$niveltec;$niveltec++;
-
-                array_push($armas, $arma);
-
+                /// es importante que los focos empiecen con codigo 80 para el diseño de naves
                 $arma =new Armas();
                 $arma->codigo=$niveltec+69;
                 $arma->nombre='F-caza';
@@ -329,7 +317,17 @@ class Armas extends Model
 
                 array_push($armas, $arma);
 
+                $arma =new Armas();
+                $arma->codigo=$niveltec+69;
+                $arma->nombre='F-Bombas';
+                $arma->descripcion='Podemos mejorar el daño a las defensas.';
+                $arma->jugadores_id=1;
+                $arma->ranura="mejora";
+                $arma->potencia=8;
+                $arma->clase='invIa';
+                $arma->niveltec=$niveltec;$niveltec++;
 
+                array_push($armas, $arma);
 
 
                 $arma =new Armas();
