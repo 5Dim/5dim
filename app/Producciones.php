@@ -118,13 +118,26 @@ class Producciones extends Model
 
 
         if ($calcular) {
+            //Si no tiene cualidades asociadas, las genera
+            if (empty($planetaActual->cualidades)) {
+                $planetaActual->cualidades = new CualidadesPlanetas;
+                $planetaActual->cualidades->mineral = rand($min = 0, $max = 99);
+                $planetaActual->cualidades->cristal = rand($min = 0, $max = 99);
+                $planetaActual->cualidades->gas = rand($min = 0, $max = 99);
+                $planetaActual->cualidades->plastico = rand($min = 0, $max = 99);
+                $planetaActual->cualidades->ceramica = rand($min = 0, $max = 99);
+                $planetaActual->cualidades->eje_x = 0;
+                $planetaActual->cualidades->eje_t = 0;
+                $planetaActual->cualidades->enfriamiento = 0;
+            }
+
             //Calculamos los yacimientos y el terraformador
             $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
             $producciones[1]->mineral *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
-            $producciones[2]->cristal *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
-            $producciones[3]->gas *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
-            $producciones[4]->plastico *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
-            $producciones[5]->ceramica *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador)/100);
+            $producciones[2]->cristal *= (1 + ($planetaActual->cualidades->cristal + $nivelTerraformador)/100);
+            $producciones[3]->gas *= (1 + ($planetaActual->cualidades->gas + $nivelTerraformador)/100);
+            $producciones[4]->plastico *= (1 + ($planetaActual->cualidades->plastico + $nivelTerraformador)/100);
+            $producciones[5]->ceramica *= (1 + ($planetaActual->cualidades->ceramica + $nivelTerraformador)/100);
 
             //Constantes de costes
             $CConstantes=Constantes::where('tipo','construccion')->get();
