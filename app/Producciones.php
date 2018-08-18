@@ -127,8 +127,10 @@ class Producciones extends Model
                 $planetaActual->cualidades->plastico = rand($min = 0, $max = 99);
                 $planetaActual->cualidades->ceramica = rand($min = 0, $max = 99);
                 $planetaActual->cualidades->eje_x = 0;
-                $planetaActual->cualidades->eje_t = 0;
+                $planetaActual->cualidades->eje_y = 0;
                 $planetaActual->cualidades->enfriamiento = 0;
+                $planetaActual->cualidades->planetas_id = $planetaActual->id;
+                $planetaActual->cualidades->save();
             }
 
             //Calculamos los yacimientos y el terraformador
