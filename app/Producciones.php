@@ -121,11 +121,11 @@ class Producciones extends Model
             //Si no tiene cualidades asociadas, las genera
             if (empty($planetaActual->cualidades)) {
                 $planetaActual->cualidades = new CualidadesPlanetas;
-                $planetaActual->cualidades->mineral = rand($min = 0, $max = 99);
-                $planetaActual->cualidades->cristal = rand($min = 0, $max = 99);
-                $planetaActual->cualidades->gas = rand($min = 0, $max = 99);
-                $planetaActual->cualidades->plastico = rand($min = 0, $max = 99);
-                $planetaActual->cualidades->ceramica = rand($min = 0, $max = 99);
+                $planetaActual->cualidades->mineral = rand($min = 30, $max = 99);
+                $planetaActual->cualidades->cristal = rand($min = 30, $max = 99);
+                $planetaActual->cualidades->gas = rand($min = 30, $max = 99);
+                $planetaActual->cualidades->plastico = rand($min = 30, $max = 99);
+                $planetaActual->cualidades->ceramica = rand($min = 30, $max = 99);
                 $planetaActual->cualidades->eje_x = 0;
                 $planetaActual->cualidades->eje_y = 0;
                 $planetaActual->cualidades->enfriamiento = 0;
