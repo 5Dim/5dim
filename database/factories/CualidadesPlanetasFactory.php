@@ -13,6 +13,6 @@ $factory->define(CualidadesPlanetas::class, function (Faker $faker) {
         'eje_x' => 0,
         'eje_y' => 0,
         'enfriamiento' => 0,
-        'planetas_id' => $faker->numberBetween($min = 0, $max = 1000),
+        'planetas_id' => $faker->numberBetween($min = 1, $max = 1000),
     ];
 });
