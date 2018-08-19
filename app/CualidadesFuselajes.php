@@ -26,7 +26,7 @@ class CualidadesFuselajes extends Model
 
         switch($codigo){
 
-            case  "XG":// sin espacios ni signos
+            case  "ARTEMISA":// sin espacios ni signos
             $Tnavet = "caza";
             $Tnave = 0;
             $inirec8=1;
@@ -64,7 +64,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "MIZAR":
+            case  "NIKE":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1;
@@ -101,7 +101,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "HIDRA":
+            case  "HACHIMAN":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1;
@@ -137,7 +137,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "MEDUSA":
+            case  "HESTIA":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec7=25000;
@@ -178,7 +178,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "DEFENSOR":
+            case  "SOBEK":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec7=35000;
@@ -216,7 +216,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "VG":
+            case  "CRONOS":
             $Tnavet = "caza";
             $Tnave = 0;
             $inirec8=1;
@@ -253,7 +253,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "NEBULA":
+            case  "ÉRIDE":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -290,7 +290,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "VENGANZA":
+            case  "ANUBIS":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -327,7 +327,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "MITRA":
+            case  "KHEPRI":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -364,7 +364,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "CERBERO":
+            case  "AGNI":
             $Tnavet = "estacion";
             $Tnave = 4;
             $inirec8=1;
@@ -401,7 +401,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "DEDALO":
+            case  "DIANA":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -439,7 +439,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "YG":
+            case  "HADES":
             $Tnavet = "caza";
             $Tnave = 0;
             $inirec8=1;
@@ -478,7 +478,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "COBRA":
+            case  "RAIJIN":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1;
@@ -517,7 +517,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "OPHIR":
+            case  "ATENEA":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1;
@@ -554,7 +554,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "NEMESIS":
+            case  "LOKI":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1;
@@ -591,7 +591,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "TARTESO":
+            case  "SETH":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -628,7 +628,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "ECLIPSE":
+            case  "AFRODITA":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1;
@@ -665,7 +665,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "LEVIATAN":
+            case  "THOR":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1;
@@ -704,7 +704,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "RAPTOR":
+            case  "AMATERATSU":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1.5;
@@ -741,7 +741,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "FENIX":
+            case  "MOIRAS":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1.5;
@@ -781,7 +781,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "NABUCO":
+            case  "SHINIGAMI":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1.5;
@@ -820,7 +820,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "HERA":
+            case  "HORUS":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1.0;
@@ -857,7 +857,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "LUNA":
+            case  "ANHUR":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=.8;
@@ -894,7 +894,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "SG":
+            case  "NEMESIS":
             $Tnavet = "caza";
             $Tnave = 0;
             $inirec8=0;
@@ -931,7 +931,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "VALKIRIA":
+            case  "SUSANU":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1.8;
@@ -968,7 +968,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "EUFORIA":
+            case  "BES":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -1005,7 +1005,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "TRAUMA":
+            case  "SKADI":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1.1;
@@ -1044,7 +1044,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "FRAGMA":
+            case  "VARUNA":
             $Tnavet = "estacion";
             $Tnave = 4;
             $inirec8=1;
@@ -1081,7 +1081,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "BASALTO":
+            case  "KALI":
             $Tnavet = "estacion";
             $Tnave = 4;
             $inirec8=.8;
@@ -1118,7 +1118,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "HELIOS":
+            case  "ILLITÍA":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=.8;
@@ -1157,7 +1157,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "EBOLA":
+            case  "ODIN":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1.3;
@@ -1194,7 +1194,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "AQUILES":
+            case  "HEL":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1.1;
@@ -1231,7 +1231,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "ESCORPION":
+            case  "AMMIT":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=.6;
@@ -1268,7 +1268,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "PULSAR":
+            case  "OSIRIS":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=.5;
@@ -1307,7 +1307,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "SONDA":// sin espacios ni signos
+            case  "ISHTAR":// sin espacios ni signos
 
 
             $Tnavet = "ligera";
@@ -1349,7 +1349,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "FALCATA":
+            case  "ZEUS":
             $Tnavet = "caza";
             $Tnave = 0;
             $inirec8=1.2;
@@ -1389,7 +1389,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "NIOBE":
+            case  "NUT":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -1426,7 +1426,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "NOMADA":
+            case  "BACO":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=.5;
@@ -1463,7 +1463,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "CETUS":
+            case  "HÉCATE":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1;
@@ -1502,7 +1502,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "FOBOS":
+            case  "ANAT":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -1540,7 +1540,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "AGAMENON":
+            case  "DEIMOS":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -1577,7 +1577,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "VARUNA":
+            case  "IMHOTEP":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -1651,7 +1651,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "AGRESOR":
+            case  "BASTET":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1.2;
@@ -1688,7 +1688,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "VULCANO":
+            case  "BALDER":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1;
@@ -1725,7 +1725,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "DENIX":
+            case  "SHIVA":
             $Tnavet = "estacion";
             $Tnave = 4;
             $inirec8=1;
@@ -1762,7 +1762,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "OBITUS":
+            case  "SEJMET":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -1799,7 +1799,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "CARONTE":
+            case  "KARMA":
             $Tnavet = "estacion";
             $Tnave = 4;
             $inirec8=1;
@@ -1836,7 +1836,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "VERMIS":
+            case  "IRIS":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -1910,7 +1910,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "TEOTL":
+            case  "HEIMDALL":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1;
@@ -1947,7 +1947,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "YGR":
+            case  "ARES":
             $Tnavet = "caza";
             $Tnave = 0;
             $inirec8=1;
@@ -1984,7 +1984,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "ISHTAR":
+            case  "IZANAMI":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=1;
@@ -2024,7 +2024,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "CROM":
+            case  "ULL":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1.5;
@@ -2064,7 +2064,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "FREYJA":
+            case  "FREYA":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=2;
@@ -2104,7 +2104,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "INTI":
+            case  "TEMIS":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=.5;
@@ -2144,7 +2144,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "BARRACUDA":
+            case  "HEFESTO":
             $Tnavet = "ligera";
             $Tnave = 1;
             $inirec8=.3;
@@ -2181,7 +2181,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "KALI":
+            case  "GANESHA":
             $Tnavet = "estacion";
             $Tnave = 4;
             $inirec8=1;
@@ -2218,7 +2218,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "MARDUK":
+            case  "MORFEO":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1;
@@ -2258,7 +2258,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "NIMROD":
+            case  "TYR":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=.7;
@@ -2295,7 +2295,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "LORICA":
+            case  "NUNET":
             $Tnavet = "media";
             $Tnave = 2;
             $inirec8=1;
@@ -2332,7 +2332,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "NOVA":
+            case  "ESTIGIA":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1;
@@ -2369,7 +2369,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "ASUR":
+            case  "NIX":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=.7;
@@ -2408,7 +2408,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "CASANDRA":
+            case  "AURA":
             $Tnavet = "pesada";
             $Tnave = 3;
             $inirec8=1.2;
@@ -2706,7 +2706,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "ANUBIS":
+            case  "RA":
             $Tnavet = "estacion";
             $Tnave = 4;
 
@@ -2753,7 +2753,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "BENGALA":
+            case  "OBSERVADOR":
             $Tnavet = "ligera";
             $Tnave = 1;
 
@@ -2988,7 +2988,7 @@ class CualidadesFuselajes extends Model
             break;
 
             /// defensas  ///////////////////////////////////////////
-            case  "Defensa 1": //Basada en la raptor
+            case  "Defensa 1": //Basada en la AMATERATSU
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
