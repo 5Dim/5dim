@@ -250,7 +250,7 @@ class Armas extends Model
                 /// es importante que los focos empiecen con codigo 80 para el diseño de naves
                 $arma =new Armas();
                 $arma->codigo=$niveltec+69;
-                $arma->nombre='F-caza';
+                $arma->nombre='F-cazas';
                 $arma->descripcion='Con esta mejora nuestras armas a cazas realizan una predicción de posición de mas efectiva aumentando el daño a los cazas';
                 $arma->ranura="mejora";
                 $arma->potencia=8;
@@ -261,7 +261,7 @@ class Armas extends Model
 
                 $arma =new Armas();
                 $arma->codigo=$niveltec+69;
-                $arma->nombre='F-ligera';
+                $arma->nombre='F-ligeras';
                 $arma->descripcion='Podemos aumentar el daño sólo a naves ligeras sin seguimos sus patrones de movimiento';
                 $arma->ranura="mejora";
                 $arma->potencia=8;
@@ -272,7 +272,7 @@ class Armas extends Model
 
                 $arma =new Armas();
                 $arma->codigo=$niveltec+69;
-                $arma->nombre='F-media';
+                $arma->nombre='F-medias';
                 $arma->descripcion='Conociendo la estruictura de las naves medias es facil causar más daños, esto lo consigue esta mejora a bajo costo.';
                 $arma->ranura="mejora";
                 $arma->potencia=8;
@@ -283,7 +283,7 @@ class Armas extends Model
 
                 $arma =new Armas();
                 $arma->codigo=$niveltec+69;
-                $arma->nombre='F-pesada';
+                $arma->nombre='F-pesadas/estaciones';
                 $arma->descripcion='Causar más daño a pesadas no es sólo cuestión de potencia, esta mejora analiza sus puntos débiles.';
                 $arma->ranura="mejora";
                 $arma->potencia=8;
@@ -294,7 +294,7 @@ class Armas extends Model
 
                 $arma =new Armas();
                 $arma->codigo=$niveltec+69;
-                $arma->nombre='F-Bombas';
+                $arma->nombre='F-defensas';
                 $arma->descripcion='Podemos mejorar el daño a las defensas.';
                 $arma->ranura="mejora";
                 $arma->potencia=8;

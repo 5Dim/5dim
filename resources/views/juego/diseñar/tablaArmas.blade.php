@@ -67,8 +67,8 @@ if ($cantidadMotores>6){
 
 $cantidadblindajes=$diseño->cualidades->blindajes;
 $multiplicadorblindajes=1;
-if ($cantidadblindajes>12){
-$cantidadblindajes=celdasMaximas(12,$cantidadblindajes);
+if ($cantidadblindajes>14){
+$cantidadblindajes=celdasMaximas(14,$cantidadblindajes);
 $multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
 }
 
