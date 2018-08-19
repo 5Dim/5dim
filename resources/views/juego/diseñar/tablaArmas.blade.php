@@ -1219,7 +1219,7 @@ var multiplicadorCargaEnorme={{$multiplicadorCargaEnorme}};
 var multiplicadorCargaMega={{$multiplicadorCargaMega}};
 
 var empuje={
-    '59':10000,
+    '59':100,
     '60':300000,
     '61':1000000,
     '62':1000000,

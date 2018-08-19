@@ -29,14 +29,14 @@ class Producciones extends Model
     $cntinic1 = 37 * $factorprod;     $lapotencia1 = 2.2;
     $cntinic2 = 27 * $factorprod;     $lapotencia2 = 2.1;
     $cntinic3 = 25  * $factorprod;     $lapotencia3 = 2.0;
-    $cntinic4 = 20 * $factorprod;     $lapotencia4 = 1.8;
+    $cntinic4 = 30 * $factorprod;     $lapotencia4 = 1.8;
     $cntinic5 = 30 * $factorprod;     $lapotencia5 = 1.7;
     $cntinic6 = 19 * $factorprod;     $lapotencia6 = 1.65;
     $cntinic7 = 19 * $factorprod;     $lapotencia7 = 1.55;
     $cntinic8 = 17 * $factorprod;     $lapotencia8 = 1.65;
     $cntinic9 = 12 * $factorprod;     $lapotencia9 = 2.0;
     $cntinic10 = 2 * $factorprod;     $lapotencia10 = 2.3;
-    $cntinic11 = 15 * $factorprod;     $lapotencia11 = .9;
+    $cntinic11 = 18 * $factorprod;     $lapotencia11 = .9;
 
         $producciones=[];
 

@@ -35,8 +35,8 @@ class DatosMaestrosController extends Controller
         $almacen=new Almacenes();
         $almacenes=$almacen->generarDatosAlmacenes();
 
-        $produccion=new Producciones();
-        $producciones=$produccion->generarDatosProducciones();
+    // $produccion=new Producciones();
+    // $producciones=$produccion->generarDatosProducciones(); //esta en seed
 
         $dependencia=new Dependencias();
         $dependencias=$dependencia->generarDatosDependencias();
