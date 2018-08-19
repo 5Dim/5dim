@@ -6,37 +6,37 @@ $(function () {
 
 function sendConstruir(id, codigo, modal) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://79.143.85.11/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
+    window.location.href = "http://79.143.185.11/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
 }
 
 function sendReciclar(id, codigo) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://79.143.85.11/juego/construccion/reciclar/" + id + "/" + personal;
+    window.location.href = "http://79.143.185.11/juego/construccion/reciclar/" + id + "/" + personal;
 }
 
 function sendCancelar(id) {
-    window.location.href = "http://79.143.85.11/juego/construccion/cancelar/" + id;
+    window.location.href = "http://79.143.185.11/juego/construccion/cancelar/" + id;
 }
 
 function sendIndustria(industria) {
-    window.location.href = "http://79.143.85.11/juego/construccion/industria/" + industria;
+    window.location.href = "http://79.143.185.11/juego/construccion/industria/" + industria;
 }
 
 function sendInvestigar(id, codigo) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://79.143.85.11/juego/investigacion/construir/" + id + "/" + personal;
+    window.location.href = "http://79.143.185.11/juego/investigacion/construir/" + id + "/" + personal;
 }
 
 function sendCancelarInvestigacion(id) {
-    window.location.href = "http://79.143.85.11/juego/investigacion/cancelar/" + id;
+    window.location.href = "http://79.143.185.11/juego/investigacion/cancelar/" + id;
 }
 
 function sendDesbloquear(id) {
-    window.location.href = "http://79.143.85.11/juego/fuselajes/desbloquear/" + id;
+    window.location.href = "http://79.143.185.11/juego/fuselajes/desbloquear/" + id;
 }
 
 function sendDiseñar(id) {
-    window.location.href = "http://79.143.85.11/juego/diseño/diseñar/" + id;
+    window.location.href = "http://79.143.185.11/juego/diseño/diseñar/" + id;
 }
 
 function calcularRecursos() {
@@ -302,7 +302,7 @@ function timeDura(result, dndv) { /// da tiempo en formato y lo imprime en dnv
 function mostrarDatosConstruccion(codigo) {
     $.ajax({
         method: "GET",
-        url: "http://79.143.85.11/juego/construccion/datos/" + codigo,
+        url: "http://79.143.185.11/juego/construccion/datos/" + codigo,
         success: function (data) {
             $("#datosContenido").html(data.descripcionConstruccion)
             $("#ModalTitulo").html(data.nombreConstruccion)
@@ -313,7 +313,7 @@ function mostrarDatosConstruccion(codigo) {
 function mostrarDatosInvestigacion(codigo) {
     $.ajax({
         method: "GET",
-        url: "http://79.143.85.11/juego/investigacion/datos/" + codigo,
+        url: "http://79.143.185.11/juego/investigacion/datos/" + codigo,
         success: function (data) {
             $("#datosContenido").html(data.descripcionInvestigacion)
             $("#ModalTitulo").html(data.nombreInvestigacion)
@@ -324,7 +324,7 @@ function mostrarDatosInvestigacion(codigo) {
 function mostrarDatosFuselaje(codigo) {
     $.ajax({
         method: "GET",
-        url: "http://79.143.85.11/juego/fuselajes/datos/" + codigo,
+        url: "http://79.143.185.11/juego/fuselajes/datos/" + codigo,
         success: function (data) {
             $("#datosContenido").html(data.descripcionInvestigacion)
             $("#ModalTitulo").html(data.nombreInvestigacion)
@@ -342,7 +342,7 @@ function changeSkin(id) { /// cambia la skin de las naves en fuselajes
         sumask = 1;
     }
     imagen.dataset.skin = sumask;
-    img = "background: url('http://79.143.85.11/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;"
+    img = "background: url('http://79.143.185.11/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;"
     // $('#imagen' + id).attr("src", img);
     $("#tablaArmas").prop("style", img)
 }
