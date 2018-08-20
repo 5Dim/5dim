@@ -3048,8 +3048,8 @@ class CualidadesFuselajes extends Model
             $CRnave14 = 0;    //Carga ENorme
             $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
-            $CRnave12 = 17;	 	// blindajes
-            $CRnave13 = 88;	 	// motores
+            $CRnave12 = 18;	 	// blindajes
+            $CRnave13 = 90;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
