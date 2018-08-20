@@ -127,6 +127,15 @@ class Fuselajes extends Model
 
             //Defensas terrestres
             "Defensa 11",
+            "Defensa 12",
+            "Defensa 13",
+            "Defensa 14",
+            "Defensa 15",
+            "Defensa 16",
+            "Defensa 17",
+            "Defensa 18",
+            "Defensa 19",
+            "Defensa 20",
 
         ];
         return $listaNombres;
@@ -964,7 +973,7 @@ class Fuselajes extends Model
 
             //DEFENSAS ///////////////////////////////////////////////////////////////////////////
 
-            case "Defensa 1": //basada en la AMATERATSU
+            case "Defensa 1":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -974,7 +983,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 2": //basada en la AMATERATSU
+            case "Defensa 2":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -984,7 +993,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 3": //basada en la AMATERATSU
+            case "Defensa 3":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -994,7 +1003,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 4": //basada en la AMATERATSU
+            case "Defensa 4":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1004,7 +1013,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 5": //basada en la AMATERATSU
+            case "Defensa 5":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1014,7 +1023,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 6": //basada en la AMATERATSU
+            case "Defensa 6":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1024,7 +1033,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 7": //basada en la AMATERATSU
+            case "Defensa 7":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1034,7 +1043,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 8": //basada en la AMATERATSU
+            case "Defensa 8":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1044,7 +1053,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 9": //basada en la AMATERATSU
+            case "Defensa 9":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1054,7 +1063,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 10": //basada en la AMATERATSU
+            case "Defensa 10":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1064,7 +1073,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 11": //basada en la AMATERATSU
+            case "Defensa 11":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1074,7 +1083,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 12": //basada en la AMATERATSU
+            case "Defensa 12":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1084,7 +1093,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 13": //basada en la AMATERATSU
+            case "Defensa 13":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1094,7 +1103,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 14": //basada en la AMATERATSU
+            case "Defensa 14":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1104,7 +1113,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 15": //basada en la AMATERATSU
+            case "Defensa 15":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1114,7 +1123,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 16": //basada en la AMATERATSU
+            case "Defensa 16":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1124,7 +1133,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 17": //basada en la AMATERATSU
+            case "Defensa 17":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1134,7 +1143,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 18": //basada en la AMATERATSU
+            case "Defensa 18":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1144,7 +1153,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 19": //basada en la AMATERATSU
+            case "Defensa 19":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
@@ -1154,7 +1163,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Defensa 20": //basada en la AMATERATSU
+            case "Defensa 20":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
