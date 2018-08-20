@@ -113,15 +113,20 @@ class Fuselajes extends Model
             "ESUS" ,
             "BAAL" ,
 
-            //Defensas
+            //Defensas orbitales
             "Defensa 1",
-            // "Defensa 2",
-            // "Defensa 3",
-            // "Defensa 4",
-            // "Defensa 5",
-            // "Defensa 6",
-            // "Defensa 7",
-            // "Defensa 8",
+            "Defensa 2",
+            "Defensa 3",
+            "Defensa 4",
+            "Defensa 5",
+            "Defensa 6",
+            "Defensa 7",
+            "Defensa 8",
+            "Defensa 9",
+            "Defensa 10",
+
+            //Defensas terrestres
+            "Defensa 11",
 
         ];
         return $listaNombres;
@@ -957,7 +962,199 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
+            //DEFENSAS ///////////////////////////////////////////////////////////////////////////
+
             case "Defensa 1": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 2": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 3": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 4": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 5": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 6": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 7": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 8": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 9": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 10": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 11": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 12": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 13": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 14": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 15": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 16": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 17": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 18": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 19": //basada en la AMATERATSU
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="defensa";
+            $fuselaje->tipo="defensa";
+            $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Defensa 20": //basada en la AMATERATSU
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="defensa";
