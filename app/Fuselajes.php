@@ -113,7 +113,8 @@ class Fuselajes extends Model
             "ESUS" ,
             "BAAL" ,
 
-            //Defensas orbitales
+            //DEFENSAS
+            //Orbitales
             "Defensa 1",
             "Defensa 2",
             "Defensa 3",
@@ -125,7 +126,7 @@ class Fuselajes extends Model
             "Defensa 9",
             "Defensa 10",
 
-            //Defensas terrestres
+            //Terrestres
             "Defensa 11",
             "Defensa 12",
             "Defensa 13",
@@ -136,6 +137,22 @@ class Fuselajes extends Model
             "Defensa 18",
             "Defensa 19",
             "Defensa 20",
+
+            //Tropas
+            //Infanteria
+            "Infanteria 1",
+
+            //Avion
+            "Avion 1",
+
+            //Vehiculo
+            "Vehiculo 1",
+
+            //Mech
+            "Mech 1",
+
+            //MegaBot
+            "MegaBot 1",
 
         ];
         return $listaNombres;
@@ -971,8 +988,9 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            //DEFENSAS ///////////////////////////////////////////////////////////////////////////
 
+
+            //DEFENSAS ///////////////////////////////////////////////////////////////////////////
             case "Defensa 1":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
@@ -1169,6 +1187,59 @@ class Fuselajes extends Model
             $fuselaje->tamaño="defensa";
             $fuselaje->tipo="defensa";
             $fuselaje->tnave="6";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+
+
+            //DEFENSAS ///////////////////////////////////////////////////////////////////////////
+            case "Avion 1":
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="avion";
+            $fuselaje->tipo="tropa";
+            $fuselaje->tnave="7";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Infanteria 1":
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="infanteria";
+            $fuselaje->tipo="tropa";
+            $fuselaje->tnave="8";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Vehiculo 1":
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="vehiculo";
+            $fuselaje->tipo="tropa";
+            $fuselaje->tnave="9";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "Mech 1":
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="mech";
+            $fuselaje->tipo="tropa";
+            $fuselaje->tnave="10";
+            $fuselaje->categoria="jugador";
+            array_push($fuselajes, $fuselaje);
+            break;
+
+            case "MegaBot 1":
+            $fuselaje =new Fuselajes();
+            $fuselaje->codigo=$codigo;
+            $fuselaje->tamaño="megaBot";
+            $fuselaje->tipo="tropa";
+            $fuselaje->tnave="11";
             $fuselaje->categoria="jugador";
             array_push($fuselajes, $fuselaje);
             break;

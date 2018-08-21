@@ -158,7 +158,7 @@
             </div>
             <div class="tab-pane fade show" id="megabot" role="tabpanel" aria-labelledby="megabot-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "megabot")
+                    @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "megaBot")
                         @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $fuselajes[$i],
                             'fuselajesJugador' => $fuselajesJugador,

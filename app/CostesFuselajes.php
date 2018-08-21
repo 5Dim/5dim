@@ -564,6 +564,9 @@ class CostesFuselajes extends Model
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave',$Tnave,$factn);
             break;
 
+
+
+
             //DEFENSAS ORBITALES  ///////////////////////////////////////////
             case "Defensa 1":
             $Tnave = "defensa";
@@ -635,6 +638,9 @@ class CostesFuselajes extends Model
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
             break;
 
+
+
+
             //DEFENSAS TERRESTRES  ///////////////////////////////////////////
             case "Defensa 11":
             $Tnave = "defensa";
@@ -704,6 +710,45 @@ class CostesFuselajes extends Model
             $factn=.8;
             $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+
+
+
+            //TROPAS //////////////////////////////////////////////////////////////////
+            case "Infanteria 1":
+            $Tnave = "infanteria";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
+            break;
+
+            case "Avion 1":
+            $Tnave = "avion";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
+            break;
+
+            case "Vehiculo 1":
+            $Tnave = "vehiculo";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
+            break;
+
+            case "Mech 1":
+            $Tnave = "mech";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
+            break;
+
+            case "MegaBot 1":
+            $Tnave = "megaBot";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
             break;
         }
 

@@ -127,6 +127,8 @@ class Constantes extends Model
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
+
+
             ////////  investigaciones  ////////////////////////////////////////////////////////////////
 
                 $constante =new Constantes();
@@ -505,7 +507,6 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
-
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
                 $constante->valor=1;
@@ -815,7 +816,6 @@ class Constantes extends Model
                 $constante->descripcion='variación de los Tiempo de fuselaje naves ';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
-
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
