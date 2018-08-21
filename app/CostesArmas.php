@@ -683,6 +683,35 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // foco medias
+            $coste->mineral=50; //esto para todos
+            $coste->cristal=10;
+            $coste->gas=10;
+            $coste->plastico=10; //4
+            $coste->ceramica=10; //5
+            $coste->liquido=10; //6
+            $coste->micros=10;   //7
+            $coste->fuel=0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=0; //11
+            $coste->masa=0;    //12
+            $coste->energia=-5;
+            $coste->tiempo=1;       //14
+            $coste->mantenimiento=1;
+            $coste->defensa=0;
+            $coste->ataque=5;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequeña=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
             $coste->armas_codigo=$niveltec+69;$niveltec++; // foco pesadas
             $coste->mineral=50; //esto para todos
             $coste->cristal=10;
