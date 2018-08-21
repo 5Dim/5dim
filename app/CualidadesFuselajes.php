@@ -49,8 +49,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 			//cantidad tipos CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 			//cantidad tipos CARGA MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 		//cantidad tipos CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 2;	 		//mejoras
             $CRnave12 = 1;	 		// blindajes
             $CRnave13 = 1;	 		// motores
@@ -87,8 +87,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 2; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 2;	 	//mejoras
             $CRnave12 = 4;	 	// blindajes
             $CRnave13 = 1;	 	// motores
@@ -124,8 +124,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 2;	 	//mejoras
             $CRnave12 = 4;	 	// blindajes
             $CRnave13 = 6;	 	// motores
@@ -161,8 +161,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 8; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 6;	 	// blindajes
             $CRnave13 = 6;	 	// motores
@@ -202,8 +202,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 32;	 	// blindajes
             $CRnave13 = 23;	 	// motores
@@ -239,8 +239,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 1;	 	// blindajes
             $CRnave13 = 7;	 	// motores
@@ -276,8 +276,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 40; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 2;	 	//mejoras
             $CRnave12 = 7;	 	// blindajes
             $CRnave13 = 22;	 	// motores
@@ -313,8 +313,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 2; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 34;	 	// motores
@@ -350,8 +350,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
             $CRnave13 = 40;	 	// motores
@@ -387,8 +387,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 210;	 	// blindajes
             $CRnave13 = 60;	 	// motores
@@ -424,8 +424,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 90; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 26;	 	// blindajes
             $CRnave13 = 52;	 	// motores
@@ -462,8 +462,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 1;	 	// blindajes
             $CRnave13 = 26;	 	// motores
@@ -501,8 +501,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 48;	 	// motores
@@ -540,8 +540,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 2;	 	// blindajes
             $CRnave13 = 12;	 	// motores
@@ -577,8 +577,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 3; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 100;	 	// blindajes
             $CRnave13 = 162;	 	// motores
@@ -614,8 +614,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 50;	 	// blindajes
             $CRnave13 = 120;	 	// motores
@@ -651,8 +651,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 5;	 	// blindajes
             $CRnave13 = 27;	 	// motores
@@ -688,8 +688,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 80;	 	// blindajes
             $CRnave13 = 1322;	 	// motores
@@ -727,8 +727,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 6;	 	// blindajes
             $CRnave13 = 24;	 	// motores
@@ -764,8 +764,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 110;	 	// blindajes
             $CRnave13 = 106;	 	// motores
@@ -804,10 +804,10 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
-            $CRnave11 = 31;	 	//mejoras
-            $CRnave12 = 12;	 	// blindajes
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 7;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
             $CRnave13 = 88;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
@@ -843,8 +843,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 24;	 	// blindajes
             $CRnave13 = 144;	 	// motores
@@ -880,8 +880,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 56;	 	// blindajes
             $CRnave13 = 168;	 	// motores
@@ -917,8 +917,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 2;	 	// blindajes
             $CRnave13 = 20;	 	// motores
@@ -954,8 +954,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 5;	 	// blindajes
             $CRnave13 = 37;	 	// motores
@@ -991,8 +991,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 30;	 	// blindajes
             $CRnave13 = 268;	 	// motores
@@ -1028,8 +1028,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 168;	 	// blindajes
             $CRnave13 = 1056;	 	// motores
@@ -1067,8 +1067,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 308;	 	// blindajes
             $CRnave13 = 486;	 	// motores
@@ -1104,8 +1104,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 50; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=2;
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 2;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 8;	 	//mejoras
             $CRnave12 = 490;	 	// blindajes
             $CRnave13 = 1500;	 	// motores
@@ -1141,8 +1141,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 16; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 4;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 55;	 	// blindajes
             $CRnave13 = 48;	 	// motores
@@ -1180,8 +1180,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 4; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 8;	 	//mejoras
             $CRnave12 = 328;	 	// blindajes
             $CRnave13 = 2316;	 	// motores
@@ -1217,8 +1217,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 64;	 	//mejoras
             $CRnave12 = 116;	 	// blindajes
             $CRnave13 = 1250;	 	// motores
@@ -1254,8 +1254,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 36;	 	// blindajes
             $CRnave13 = 72;	 	// motores
@@ -1291,8 +1291,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 28;	 	// blindajes
             $CRnave13 = 646;	 	// motores
@@ -1332,8 +1332,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 2;	 	//mejoras
             $CRnave12 = 1;	 	// blindajes
             $CRnave13 = 1;	 	// motores
@@ -1372,8 +1372,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 1;	 	// blindajes
             $CRnave13 = 74;	 	// motores
@@ -1412,8 +1412,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 36;	 	// blindajes
             $CRnave13 = 800;	 	// motores
@@ -1449,8 +1449,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 35; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 4;	 	// blindajes
             $CRnave13 = 44;	 	// motores
@@ -1486,8 +1486,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 200; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 60;	 	// blindajes
             $CRnave13 = 250;	 	// motores
@@ -1525,8 +1525,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 56;	 	// blindajes
             $CRnave13 = 90;	 	// motores
@@ -1563,8 +1563,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 60; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 24;	 	// blindajes
             $CRnave13 = 154;	 	// motores
@@ -1600,8 +1600,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 26;	 	// blindajes
             $CRnave13 = 96;	 	// motores
@@ -1637,8 +1637,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 112;	 	// blindajes
             $CRnave13 = 462;	 	// motores
@@ -1674,8 +1674,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 22;	 	// blindajes
             $CRnave13 = 190;	 	// motores
@@ -1711,8 +1711,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 40; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 212;	 	// blindajes
             $CRnave13 = 532;	 	// motores
@@ -1748,8 +1748,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 2;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 364;	 	// blindajes
             $CRnave13 = 344;	 	// motores
@@ -1785,8 +1785,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 32;	 	// blindajes
             $CRnave13 = 208;	 	// motores
@@ -1822,8 +1822,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 40; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 266;	 	// blindajes
             $CRnave13 = 130;	 	// motores
@@ -1859,8 +1859,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 3;	 	//mejoras
             $CRnave12 = 40;	 	// blindajes
             $CRnave13 = 36;	 	// motores
@@ -1896,8 +1896,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 15; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 1; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 24;	 	// blindajes
             $CRnave13 = 98;	 	// motores
@@ -1933,8 +1933,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 115;	 	// blindajes
             $CRnave13 = 252;	 	// motores
@@ -2007,8 +2007,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 8; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 8;	 	// blindajes
             $CRnave13 = 44;	 	// motores
@@ -2047,8 +2047,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 100; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 146;	 	// blindajes
             $CRnave13 = 578;	 	// motores
@@ -2087,8 +2087,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 50; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 8;	 	//mejoras
             $CRnave12 = 104;	 	// blindajes
             $CRnave13 = 520;	 	// motores
@@ -2127,8 +2127,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 14;	 	// blindajes
             $CRnave13 = 15;	 	// motores
@@ -2167,8 +2167,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 25; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 13;	 	// blindajes
             $CRnave13 = 44;	 	// motores
@@ -2204,8 +2204,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 500; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 50; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 20;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=8;
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 8;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 252;	 	// blindajes
             $CRnave13 = 312;	 	// motores
@@ -2241,8 +2241,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 60; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 125;	 	// blindajes
             $CRnave13 = 356;	 	// motores
@@ -2281,8 +2281,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 40; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 68;	 	// blindajes
             $CRnave13 = 308;	 	// motores
@@ -2318,8 +2318,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 75; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 8;	 	//mejoras
             $CRnave12 = 120;	 	// blindajes
             $CRnave13 = 232;	 	// motores
@@ -2355,8 +2355,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 15; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 1;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 105;	 	// blindajes
             $CRnave13 = 232;	 	// motores
@@ -2392,8 +2392,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 150; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 5;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 165;	 	// blindajes
             $CRnave13 = 420;	 	// motores
@@ -2431,8 +2431,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 200; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 20; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 10;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 8;	 	//mejoras
             $CRnave12 = 120;	 	// blindajes
             $CRnave13 = 400;	 	// motores
@@ -2475,8 +2475,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2518,8 +2518,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2561,8 +2561,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2604,8 +2604,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2648,8 +2648,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=1;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 1;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2691,8 +2691,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2739,8 +2739,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2782,8 +2782,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 2;	 	// motores
@@ -2817,8 +2817,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 6; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
             $CRnave13 = 18;	 	// motores
@@ -2857,8 +2857,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 27;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 6;	 	// motores
@@ -2894,8 +2894,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 2; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 12;	 	// motores
@@ -2934,8 +2934,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 10;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 20;	 	// motores
@@ -2975,8 +2975,8 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 5; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 45;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 360;	 	// motores
@@ -2987,7 +2987,10 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'nave',$Tnavet);
             break;
 
-            /// defensas  ///////////////////////////////////////////
+
+
+
+            //DEFENSAS ORBITALES  ///////////////////////////////////////////
             case  "Defensa 1": //Basada en la AMATERATSU
             $Tnavet = "defensa";
             $Tnave = 1;
@@ -3011,11 +3014,656 @@ class CualidadesFuselajes extends Model
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14=0;    //Carga ENorme
-            $CRnave15=0;    //Carga Mega(estaciones)
-            $CRnave11 = 24;	 	//mejoras
-            $CRnave12 = 12;	 	// blindajes
-            $CRnave13 = 19;	 	// motores
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 3;	 	//mejoras
+            $CRnave12 = 8;	 	// blindajes
+            $CRnave13 = 24;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 2": //Basada en la SHINIGAMI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1; ; //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 4; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 7;	 	//mejoras
+            $CRnave12 = 18;	 	// blindajes
+            $CRnave13 = 90;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 3": //Basada en la KHEPRI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 4; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 7;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 88;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 4": //Basada en la LOKI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 15; 	// cañones media, cantidad por tipo
+            $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 3; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 3;	 	//mejoras
+            $CRnave12 = 100;	 	// blindajes
+            $CRnave13 = 162;	 	// motores
+
+            case  "Defensa 5": //Basada en la OSIRIS
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 6; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 5;	 	//mejoras
+            $CRnave12 = 42;	 	// blindajes
+            $CRnave13 = 666;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 6": //Basada en la THOR
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 60; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 3; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 6;	 	//mejoras
+            $CRnave12 = 95;	 	// blindajes
+            $CRnave13 = 1322;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 7": //Basada en la SKADI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 9; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 6; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 10; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 7;	 	//mejoras
+            $CRnave12 = 196;	 	// blindajes
+            $CRnave13 = 1056;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 8": //Basada en la NUNET
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 8; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 140;	 	// blindajes
+            $CRnave13 = 232;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 9": //Basada en la ODIN
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 18; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 12; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 38; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 392;	 	// blindajes
+            $CRnave13 = 2316;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 10": //Basada en la KALI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 48; 	// cañones media, cantidad por tipo
+            $CRnave3 = 30; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 18; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 12; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 504;	 	// blindajes
+            $CRnave13 = 1600;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            //DEFENSAS TERRESTRES  ///////////////////////////////////////////
+            case  "Defensa 11": //Basada en la AMATERATSU
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1; ; //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 1; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 3;	 	//mejoras
+            $CRnave12 = 8;	 	// blindajes
+            $CRnave13 = 24;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 12": //Basada en la SHINIGAMI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1; ; //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 4; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 7;	 	//mejoras
+            $CRnave12 = 18;	 	// blindajes
+            $CRnave13 = 90;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 13": //Basada en la KHEPRI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 4; 	// cañones media, cantidad por tipo
+            $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 7;	 	//mejoras
+            $CRnave12 = 10;	 	// blindajes
+            $CRnave13 = 88;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 14": //Basada en la LOKI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 15; 	// cañones media, cantidad por tipo
+            $CRnave3 = 1; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 3; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 3;	 	//mejoras
+            $CRnave12 = 100;	 	// blindajes
+            $CRnave13 = 162;	 	// motores
+
+            case  "Defensa 15": //Basada en la OSIRIS
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 6; 	// cañones media, cantidad por tipo
+            $CRnave3 = 2; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 5;	 	//mejoras
+            $CRnave12 = 42;	 	// blindajes
+            $CRnave13 = 666;	 	// motores
+
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 16": //Basada en la THOR
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 60; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 3; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 6;	 	//mejoras
+            $CRnave12 = 95;	 	// blindajes
+            $CRnave13 = 1322;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 17": //Basada en la SKADI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 10; 	// cañones media, cantidad por tipo
+            $CRnave3 = 9; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 6; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 10; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 7;	 	//mejoras
+            $CRnave12 = 196;	 	// blindajes
+            $CRnave13 = 1056;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 18": //Basada en la NUNET
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 8; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 140;	 	// blindajes
+            $CRnave13 = 232;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 19": //Basada en la ODIN
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 18; 	// cañones media, cantidad por tipo
+            $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 12; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 38; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;    //Carga ENorme
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 392;	 	// blindajes
+            $CRnave13 = 2316;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
+            break;
+
+            case  "Defensa 20": //Basada en la KALI
+            $Tnavet = "defensa";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 48; 	// cañones media, cantidad por tipo
+            $CRnave3 = 30; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 18; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 12; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 504;	 	// blindajes
+            $CRnave13 = 1600;	 	// motores
 
             $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
             $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
@@ -3025,14 +3673,178 @@ class CualidadesFuselajes extends Model
 
 
 
+            //TROPAS///////////////////////////////////////////////////////////////////////
 
+            case  "Infanteria 1": //Basada en la KALI
+            $Tnavet = "infanteria";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
 
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 48; 	// cañones media, cantidad por tipo
+            $CRnave3 = 30; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 18; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 12; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 504;	 	// blindajes
+            $CRnave13 = 1600;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
+            break;
+
+            case  "Avion 1": //Basada en la KALI
+            $Tnavet = "avion";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 48; 	// cañones media, cantidad por tipo
+            $CRnave3 = 30; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 18; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 12; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 504;	 	// blindajes
+            $CRnave13 = 1600;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
+            break;
+
+            case  "Vehiculo 1": //Basada en la KALI
+            $Tnavet = "vehiculo";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 48; 	// cañones media, cantidad por tipo
+            $CRnave3 = 30; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 18; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 12; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 504;	 	// blindajes
+            $CRnave13 = 1600;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
+            break;
+
+            case  "Mech 1": //Basada en la KALI
+            $Tnavet = "mech";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 48; 	// cañones media, cantidad por tipo
+            $CRnave3 = 30; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 18; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 12; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 504;	 	// blindajes
+            $CRnave13 = 1600;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
+            break;
+
+            case  "MegaBot 1": //Basada en la KALI
+            $Tnavet = "megaBot";
+            $Tnave = 1;
+            $inirec8=1.5;
+            $inirec11=75;
+            $inirec12=1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+            $inirec13=1;    //energia
+            $inirec14=1;  //tiempo
+            $inirec15=1;  //moneda
+            $inirec16=1;  //defensa ya tiene en cuenta el tamaño y cuando sale
+            $inirec18=1;   //factor de velocidad base
+            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+
+            $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
+            $CRnave2 = 48; 	// cañones media, cantidad por tipo
+            $CRnave3 = 30; 	//cañones pesados, cantidad por tipo
+            $CRnave4 = 18; 	//cañones insertado, cantidad por tipo
+            $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
+            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave7 = 12; 	// cañones Misiles, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave14 = 0;
+            $CRnave15 = 0;    //Carga Mega(estaciones)
+            $CRnave11 = 8;	 	//mejoras
+            $CRnave12 = 504;	 	// blindajes
+            $CRnave13 = 1600;	 	// motores
+
+            $cualidades = [$codigo,$inirec8,$inirec12,$inirec13,$inirec14,$inirec15,$inirec16,$inirec18,$maxvel];
+            $armas = [$CRnave1,$CRnave2,$CRnave3,$CRnave4,$CRnave6,$CRnave7,$CRnave8,$CRnave9,$CRnave10,$CRnave14,$CRnave15,$CRnave11,$CRnave12,$CRnave13];
+            $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
+            break;
         }
-
-
-
-
-        // tropas   ///////////////////////////////////////////
 
         return $coste;
 

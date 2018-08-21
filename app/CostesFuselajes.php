@@ -564,12 +564,191 @@ class CostesFuselajes extends Model
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave',$Tnave,$factn);
             break;
 
-            /// defensas  ///////////////////////////////////////////
+
+
+
+            //DEFENSAS ORBITALES  ///////////////////////////////////////////
             case "Defensa 1":
             $Tnave = "defensa";
             $factn=.8;
             $r1cce = [$codigo,45000,8000,4000,20000,20000,10000,15000,1.5, 0,75];
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 2":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,40000,9000,5000,15000,2000,8000,13000,1.5, 0,70];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 3":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,90000,50000,25000,8000,20000,2000,15000, 0,30];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 4":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,800000,300000,130000,100000,160000,100000,65000, 0,600];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 5":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,850000,650000,230000,165000,25000,42000,35000,.5, 0,20];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 6":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,1500000,500000,130000,130000,260000,90000,65000, 0,1500];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 7":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,6500000,3500000,200000,650000,300000,190000,105000,1.1, 0,110];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 8":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,250000,120000,155000,180000,50000,25000,50000,1, 0,1340];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 9":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,6500000,2400000,800000,1250000,250000,200000,305000,1.3, 0,450];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 10":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+
+
+
+            //DEFENSAS TERRESTRES  ///////////////////////////////////////////
+            case "Defensa 11":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,45000,8000,4000,20000,20000,10000,15000,1.5, 0,75];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 12":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,40000,9000,5000,15000,2000,8000,13000,1.5, 0,70];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 13":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,90000,50000,25000,8000,20000,2000,15000, 0,30];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 14":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,800000,300000,130000,100000,160000,100000,65000, 0,600];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 15":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,850000,650000,230000,165000,25000,42000,35000,.5, 0,20];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 16":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,1500000,500000,130000,130000,260000,90000,65000, 0,1500];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 17":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,6500000,3500000,200000,650000,300000,190000,105000,1.1, 0,110];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 18":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,250000,120000,155000,180000,50000,25000,50000,1, 0,1340];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 19":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,6500000,2400000,800000,1250000,250000,200000,305000,1.3, 0,450];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+            case "Defensa 20":
+            $Tnave = "defensa";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'defensa',$Tnave,$factn);
+            break;
+
+
+
+
+            //TROPAS //////////////////////////////////////////////////////////////////
+            case "Infanteria 1":
+            $Tnave = "infanteria";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
+            break;
+
+            case "Avion 1":
+            $Tnave = "avion";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
+            break;
+
+            case "Vehiculo 1":
+            $Tnave = "vehiculo";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
+            break;
+
+            case "Mech 1":
+            $Tnave = "mech";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
+            break;
+
+            case "MegaBot 1":
+            $Tnave = "megaBot";
+            $factn=.8;
+            $r1cce = [$codigo,5000000,2000000,3000000,2300000,450000,1000000,135000,.8, 0,650];
+            $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'tropa',$Tnave,$factn);
             break;
         }
 
