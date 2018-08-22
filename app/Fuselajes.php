@@ -46,7 +46,7 @@ class Fuselajes extends Model
             "KHEPRI",
             "HADES",
             "SETH" ,
-            "SUSANU",
+            "SUSANOO",
             "LOKI" ,
             "DIANA",
             "AFRODITA" ,
@@ -432,7 +432,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "SUSANU":
+            case "SUSANOO":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="ligera";
