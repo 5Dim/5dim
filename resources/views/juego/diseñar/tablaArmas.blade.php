@@ -256,17 +256,20 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                         <td>
                             <div class="row rounded">
                                 <div class="col-12 ">
+                                    @if ($investNiveles["invPropQuimico"]+$investNiveles["invPropNuk"]+$investNiveles["invPropIon"]+$investNiveles["invPropPlasma"]+$investNiveles["invPropMa"]>0)
                                     <div id="cuadro1" class=" cajita">
                                         <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                             <tr>
                                                 <td colspan="4">
-                                                    <div class=" text-light" id="motorestxt">x{{$multiplicadorMotores}} Motores: <span id ="energiamotor"></span></div>
+                                                    <div class=" text-light" id="motorestxt"> x{{$multiplicadorMotores}} Motores, &nbsp;&nbsp;&nbsp; Energía:  <span class="text-success" id ="energiamotor"></span></div>
                                                 </td>
                                             </tr>
                                             <tr>
+                                                @if ($investNiveles["invPropQuimico"]>0)
                                                 <td>
                                                     <img onClick="encajar('motor',59,'añade')" class="rounded" data-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",59)->first()->nombre}}" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
                                                 </td>
+                                                @endif
                                                 @if ($investNiveles["invPropNuk"]>0)
                                                     <td>
                                                         <img onClick="encajar('motor',60,'añade')"  class="rounded" data-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",60)->first()->nombre}}" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
@@ -290,6 +293,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             </tr>
                                         </table>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </td>
@@ -301,6 +305,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                     </td>
                                 </tr>
                                 <tr>
+                                @if ($investNiveles["invPropQuimico"]+$investNiveles["invPropNuk"]+$investNiveles["invPropIon"]+$investNiveles["invPropPlasma"]+$investNiveles["invPropMa"]>0)
                                     @for ($i = 0 ; $i <7; $i++)
                                         <td>
                                             @if ($i<$cantidadMotores)
@@ -308,6 +313,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             @endif
                                         </td>
                                     @endfor
+                                @endif
                                 </tr>
                             </table>
                         </td>
@@ -321,7 +327,8 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                         </td>
                         <td rowspan="2" colspan="2">
                         @if ($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
-                            <div class=" text-light" id="motorestxt" style="margin-bottom: 10px;">Armas: <span id ="energiaarma"></span></div>
+                        @if ($investNiveles["invMa"]+$investNiveles["invEnergia"]+$investNiveles["invPlasma"]+$investNiveles["invBalistica"]>0)
+                            <div class=" text-light" id="motorestxt" style="margin-bottom: 10px;">Armas, &nbsp;&nbsp;&nbsp;Energía: <span class="text-danger"  id ="energiaarma"></span></div>
                                 <nav style="margin-top: 17px;">
                                     <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
                                     @if ($investNiveles["invEnergia"]>0)
@@ -532,6 +539,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                 <br>
                                 <div class="slider" id="slider-color"></div>
                             @endif
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -543,7 +551,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
                                                     <td colspan="4">
-                                                            <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes: <span id ="energiablindaje"></span></div>
+                                                            <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes, &nbsp;&nbsp;&nbsp;Energía: <span class="text-danger"  id ="energiablindaje"></span></div>
                                                         </td>
                                                     </td>
                                                 </tr>
@@ -588,7 +596,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                 <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                     <tr>
                                                         <td colspan="8">
-                                                            <div class=" text-light" id="mejorastxt">x{{$multiplicadormejoras}} Mejoras: <span id ="energiamejora"></span></div>
+                                                            <div class=" text-light" id="mejorastxt">x{{$multiplicadormejoras}} Mejoras, &nbsp;&nbsp;&nbsp;Energía: <span class="text-danger"  id ="energiamejora"></span></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -897,7 +905,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
                                                 <div class="row rounded ">
                                                     <div class="col-12 ">
                                                         <div id="cuadro1" class=" cajita">
-                                                            <div class=" text-light" id="cargatxt">Carga: <span id ="energiacarga"></span></div>
+                                                            <div class=" text-light" id="cargatxt">Carga, &nbsp;&nbsp;&nbsp;Energía: <span class="text-danger"  id ="energiacarga"></span></div>
                                                             <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                                 <tr>
                                                                     @for($codigo=90;$codigo<102;$codigo++)
@@ -1718,8 +1726,7 @@ cteAriete=1;
 //// armas ///////
 
 energiaT=costesMisMotores['energia']+costesMisBlindajes['energia']+costesMisCargas['energia']+cualidades['energia']; // energia para armas total
-valueF=formatNumber (Math.round (energiaT));
-$("#energiaarma").text(valueF);
+
 misCostes=costesMisArmas;  //arrayArmasTengo['cantidadCPesadas']
 armasTengoT=armasTengo['cantidadCLigeras']+armasTengo['cantidadCMedias']+armasTengo['cantidadCPesadas']+armasTengo['cantidadCInsertadas']+armasTengo['cantidadCMisiles']+armasTengo['cantidadCBombas'];
 
@@ -1810,7 +1817,7 @@ if (armasTengo['cantidadCBombas']==0){energiabomba=0;} else {
 
 // sumamos la energia que gasta cada arma de su tipo
 //elemento='armasLigera';
-
+energiaUsada=0;
 $.each(tiposArmas,function(key,elemento){
 
 energiaArm=0;
@@ -1827,9 +1834,11 @@ dañoarmasArm=0;
     energiaXarma=1/energiaArm;
 
 /// daño del arma por unidad de energia y costo
+    hayalgo=0;
     $.each( armas[elemento], function( key, e ) {
-        if (e>0){
 
+        if (e>0){
+        hayalgo=1;
             // focos
             cteFoco=1;
             costoFoco=1;
@@ -1856,7 +1865,7 @@ dañoarmasArm=0;
                 costoPunteria=(1+(costeobj['mineral']/100) )*cuantos;
             }
             costoAriete=1;
-           // cteAriete=1;
+            // cteAriete=1;
             if (ariete>0){
                 e2=71;
                 var obj2=$.grep(armasL, function(obj2){return obj2.codigo == e2;})[0];
@@ -1892,12 +1901,17 @@ dañoarmasArm=0;
             danoTotal[obj['clase']][danoPosicion[elemento][0]][alcance]=dañoarmasArm;
         }
     })
-    estaEnergia=(Math.round (energiaArmas[elemento]*energiaT));
+
+    estaEnergia=(Math.round (energiaArmas[elemento]*energiaT*hayalgo));
+    energiaUsada+=estaEnergia;
     cualidades['energia']-=estaEnergia;
     valueF=formatNumber (estaEnergia);
     $("#energia"+elemento).text(valueF);
 
 })
+
+valueF=formatNumber (Math.round (-1*energiaUsada));
+$("#energiaarma").text(valueF);
 
 //valueF=formatNumber (Math.round (1*dañoarmasLigera));
 //$("#03").text(valueF);

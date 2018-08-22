@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                     <td class="anchofijo text-warning borderless">
-                        Energia
+                        Energía
                     </td>
                     <td class="anchofijo text-warning borderless">
                         Tiempo
