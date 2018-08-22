@@ -3666,7 +3666,7 @@ class CualidadesFuselajes extends Model
 
 
             //TROPAS///////////////////////////////////////////////////////////////////////
-            case  "Infanteria 1": //Basada en la HACHIMAN
+            case  "CÍCLOPE": //Basada en la HACHIMAN
             $Tnavet = "infanteria";
             $Tnave = 1;
             $inirec8=1;
@@ -3677,7 +3677,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1;  //moneda
             $inirec16=1;////defensa
             $inirec18=1;  //factor de velocidad base
-            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 1; 	// cañones media, cantidad por tipo
@@ -3700,7 +3700,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Infanteria 2": //Basada en la AMATERATSU
+            case  "ORCO": //Basada en la AMATERATSU
             $Tnavet = "infanteria";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3711,7 +3711,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1;  //moneda
             $inirec16=1;///defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 0; 	// cañones media, cantidad por tipo
@@ -3734,7 +3734,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Infanteria 3": //Basada en la SUSANOO
+            case  "TROLL": //Basada en la SUSANOO
             $Tnavet = "infanteria";
             $Tnave = 1;
             $inirec8=1.8;
@@ -3745,14 +3745,14 @@ class CualidadesFuselajes extends Model
             $inirec15=1; ; //moneda
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=18; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 1; 	// cañones media, cantidad por tipo
             $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
             $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
-            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave6 = 3; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 1; 	// cañones Misiles, cantidad por tipo
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
@@ -3768,7 +3768,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Infanteria 4": //Basada en la IZANAMI
+            case  "OGRO": //Basada en la IZANAMI
             $Tnavet = "infanteria";
             $Tnave = 1;
             $inirec8=1;
@@ -3779,7 +3779,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; ; //moneda
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 2; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 0; 	// cañones media, cantidad por tipo
@@ -3788,7 +3788,7 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 8; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
@@ -3802,7 +3802,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Infanteria 5": //Basada en la RAIJIN
+            case  "ETTIN": //Basada en la RAIJIN
             $Tnavet = "infanteria";
             $Tnave = 1;
             $inirec8=1;
@@ -3813,14 +3813,14 @@ class CualidadesFuselajes extends Model
             $inirec15=1;  //moneda
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=15; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 3; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 3; 	// cañones media, cantidad por tipo
             $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
             $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
-            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave6 = 2; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
@@ -3837,7 +3837,7 @@ class CualidadesFuselajes extends Model
             break;
 
 
-            case  "Avion 1": //Basada en la ARTEMISA
+            case  "ARPÍA": //Basada en la ARTEMISA
             $Tnavet = "avion";
             $Tnave = 0;
             $inirec8=1;
@@ -3872,7 +3872,7 @@ class CualidadesFuselajes extends Model
             break;
 
 
-            case  "Avion 2": //Basada en la CRONOS
+            case  "WYVERN": //Basada en la CRONOS
             $Tnavet = "avion";
             $Tnave = 0;
             $inirec8=1;
@@ -3907,7 +3907,7 @@ class CualidadesFuselajes extends Model
             break;
 
 
-            case  "Avion 3": //Basada en la NEMESIS
+            case  "MANTÍCORA": //Basada en la NEMESIS
             $Tnavet = "avion";
             $Tnave = 0;
             $inirec8=0;
@@ -3921,7 +3921,7 @@ class CualidadesFuselajes extends Model
             $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
-            $CRnave2 = 0; 	// cañones media, cantidad por tipo
+            $CRnave2 = 3; 	// cañones media, cantidad por tipo
             $CRnave3 = 0; 	//cañones pesados, cantidad por tipo
             $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
@@ -3942,7 +3942,7 @@ class CualidadesFuselajes extends Model
             break;
 
 
-            case  "Avion 4": //Basada en la ARES
+            case  "DRAGÓN": //Basada en la ARES
             $Tnavet = "avion";
             $Tnave = 0;
             $inirec8=1;
@@ -3961,7 +3961,7 @@ class CualidadesFuselajes extends Model
             $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
-            $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
+            $CRnave7 = 3; 	// cañones Misiles, cantidad por tipo
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
@@ -3977,7 +3977,7 @@ class CualidadesFuselajes extends Model
             break;
 
 
-            case  "Avion 5": //Basada en la ZEUS
+            case  "FÉNIX": //Basada en la ZEUS
             $Tnavet = "avion";
             $Tnave = 0;
             $inirec8=1.2;
@@ -4011,7 +4011,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Vehiculo 1": //Basada en la SOBEK
+            case  "BISILISCO": //Basada en la SOBEK
             $Tnavet = "vehiculo";
             $Tnave = 2;
             $inirec7=35000;
@@ -4024,7 +4024,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; //moneda
             $inirec16=1; ////defensa
             $inirec18=1;  //factor de velocidad base
-            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 12; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 4; 	// cañones media, cantidad por tipo
@@ -4047,7 +4047,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Vehiculo 2": //Basada en la SETH
+            case  "CENTAURO": //Basada en la SETH
             $Tnavet = "vehiculo";
             $Tnave = 2;
             $inirec8=1;
@@ -4058,7 +4058,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; ; //moneda
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 3; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 3; 	// cañones media, cantidad por tipo
@@ -4067,8 +4067,8 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 3; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 30; 	// CARGA PEQUEÑA, cantidad por tipo
-            $CRnave9 = 2; 	// MEDIANA, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
             $CRnave15 = 0;    //Carga Mega(estaciones)
@@ -4081,7 +4081,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Vehiculo 3": //Basada en la KHEPRI
+            case  "CANCERBERO": //Basada en la KHEPRI
             $Tnavet = "vehiculo";
             $Tnave = 2;
             $inirec8=1;
@@ -4092,7 +4092,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; ; //moneda
             $inirec16=1;////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 3; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 0; 	// cañones media, cantidad por tipo
@@ -4115,7 +4115,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Vehiculo 4": //Basada en la ANHUR
+            case  "RAKSHASA": //Basada en la ANHUR
             $Tnavet = "vehiculo";
             $Tnave = 2;
             $inirec8=.8;
@@ -4126,7 +4126,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; ; //moneda
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 2; 	// cañones media, cantidad por tipo
@@ -4149,7 +4149,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Vehiculo 5": //Basada en la NUT
+            case  "LICÁNTROPO": //Basada en la NUT
             $Tnavet = "vehiculo";
             $Tnave = 2;
             $inirec8=1;
@@ -4160,7 +4160,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; ; //moneda
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 4; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 8; 	// cañones media, cantidad por tipo
@@ -4169,7 +4169,7 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 1; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 2; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
@@ -4183,7 +4183,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Mech 1": //Basada en la LOKI
+            case  "GORGONA": //Basada en la LOKI
             $Tnavet = "mech";
             $Tnave = 3;
             $inirec8=1;
@@ -4194,7 +4194,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; //moneda
             $inirec16=1;///defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=12; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 15; 	// cañones media, cantidad por tipo
@@ -4217,7 +4217,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Mech 2": //Basada en la THOR
+            case  "NAGA": //Basada en la THOR
             $Tnavet = "mech";
             $Tnave = 3;
             $inirec8=1;
@@ -4228,14 +4228,14 @@ class CualidadesFuselajes extends Model
             $inirec15=1;  //moneda
             $inirec16=1;////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 60; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 10; 	// cañones media, cantidad por tipo
             $CRnave3 = 3; 	//cañones pesados, cantidad por tipo
             $CRnave4 = 0; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
-            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave6 = 3; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 5; 	// cañones Misiles, cantidad por tipo
             $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
@@ -4251,7 +4251,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Mech 3": //Basada en la SKADI
+            case  "HIDRA": //Basada en la SKADI
             $Tnavet = "mech";
             $Tnave = 3;
             $inirec8=1.1;
@@ -4262,7 +4262,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1; ; //moneda
             $inirec16=1;///defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=16; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 10; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 10; 	// cañones media, cantidad por tipo
@@ -4271,7 +4271,7 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 5; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 10; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
@@ -4285,7 +4285,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Mech 4": //Basada en la HEIMDALL
+            case  "LEVIATÁN": //Basada en la HEIMDALL
             $Tnavet = "mech";
             $Tnave = 3;
             $inirec8=1;
@@ -4296,7 +4296,7 @@ class CualidadesFuselajes extends Model
             $inirec15=1;  //moneda
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=20; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 6; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 8; 	// cañones media, cantidad por tipo
@@ -4305,7 +4305,7 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 10; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
@@ -4319,7 +4319,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "Mech 5": //Basada en la ODIN
+            case  "KRAKEN": //Basada en la ODIN
             $Tnavet = "mech";
             $Tnave = 3;
             $inirec8=1.3;
@@ -4330,14 +4330,14 @@ class CualidadesFuselajes extends Model
             $inirec15=1; ; //moneda
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec18=1;   //factor de velocidad base
-            $maxvel=19; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 8; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 16; 	// cañones media, cantidad por tipo
             $CRnave3 = 4; 	//cañones pesados, cantidad por tipo
             $CRnave4 = 1; 	//cañones insertado, cantidad por tipo
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
-            $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
+            $CRnave6 = 4; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 40; 	// cañones Misiles, cantidad por tipo
             $CRnave8 = 4; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
@@ -4353,7 +4353,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "MegaBot 1": //Basada en la AGNI
+            case  "HOMÚNCULO": //Basada en la AGNI
             $Tnavet = "megaBot";
             $Tnave = 4;
             $inirec8=1;
@@ -4373,7 +4373,7 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 0; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 20; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
             $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
@@ -4387,7 +4387,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "MegaBot 2": //Basada en la SHIVA
+            case  "GARGOLA": //Basada en la SHIVA
             $Tnavet = "megaBot";
             $Tnave = 4;
             $inirec8=1;
@@ -4407,9 +4407,9 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 8; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 10; 	// CARGA PEQUEÑA, cantidad por tipo
-            $CRnave9 = 4; 	// MEDIANA, cantidad por tipo
-            $CRnave10 = 2;	 //CARGA GRANDE, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
+            $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
             $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 7;	 	//mejoras
@@ -4421,7 +4421,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'tropa',$Tnavet);
             break;
 
-            case  "MegaBot 3": //Basada en la KALI
+            case  "GOLEM": //Basada en la KALI
             $Tnavet = "megaBot";
             $Tnave = 4;
             $inirec8=.8;
@@ -4441,10 +4441,10 @@ class CualidadesFuselajes extends Model
             $CRnave5 = 0; 	// DEFENSAS, cantidad por tipo
             $CRnave6 = 0; 	// BOMBAS, cantidad por tipo  ***  selectedA1 *
             $CRnave7 = 12; 	// cañones Misiles, cantidad por tipo
-            $CRnave8 = 50; 	// CARGA PEQUEÑA, cantidad por tipo
-            $CRnave9 = 10; 	// MEDIANA, cantidad por tipo
+            $CRnave8 = 0; 	// CARGA PEQUEÑA, cantidad por tipo
+            $CRnave9 = 0; 	// MEDIANA, cantidad por tipo
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
-            $CRnave14 = 2;
+            $CRnave14 = 0;
             $CRnave15 = 0;    //Carga Mega(estaciones)
             $CRnave11 = 8;	 	//mejoras
             $CRnave12 = 490;	 	// blindajes
