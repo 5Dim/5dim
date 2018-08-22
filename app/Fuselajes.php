@@ -140,37 +140,37 @@ class Fuselajes extends Model
 
             //Tropas
             //Infanteria
-            "Infanteria 1",
-            "Infanteria 2",
-            "Infanteria 3",
-            "Infanteria 4",
-            "Infanteria 5",
+            "CÍCLOPE",
+            "ORCO",
+            "TROLL",
+            "OGRO",
+            "ETTIN",
 
             //Avion
-            "Avion 1",
-            "Avion 2",
-            "Avion 3",
-            "Avion 4",
-            "Avion 5",
+            "ARPÍA",
+            "WYVERN",
+            "MANTÍCORA",
+            "DRAGÓN",
+            "FÉNIX",
 
             //Vehiculo
-            "Vehiculo 1",
-            "Vehiculo 2",
-            "Vehiculo 3",
-            "Vehiculo 4",
-            "Vehiculo 5",
+            "BISILISCO",
+            "CENTAURO",
+            "CANCERBERO",
+            "RAKSHASA",
+            "LICÁNTROPO",
 
             //Mech
-            "Mech 1",
-            "Mech 2",
-            "Mech 3",
-            "Mech 4",
-            "Mech 5",
+            "GORGONA",
+            "NAGA",
+            "HIDRA",
+            "LEVIATÁN",
+            "KRAKEN",
 
             //MegaBot
-            "MegaBot 1",
-            "MegaBot 2",
-            "MegaBot 3",
+            "HOMÚNCULO",
+            "GARGOLA",
+            "GOLEM",
 
         ];
         return $listaNombres;
@@ -1213,7 +1213,7 @@ class Fuselajes extends Model
 
             //DEFENSAS ///////////////////////////////////////////////////////////////////////////
             //AVIONES
-            case "Avion 1":
+            case "ARPÍA":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="avion";
@@ -1223,7 +1223,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Avion 2":
+            case "WYVERN":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="avion";
@@ -1233,7 +1233,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Avion 3":
+            case "MANTÍCORA":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="avion";
@@ -1243,7 +1243,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Avion 4":
+            case "DRAGÓN":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="avion";
@@ -1253,7 +1253,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Avion 5":
+            case "FÉNIX":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="avion";
@@ -1266,7 +1266,7 @@ class Fuselajes extends Model
 
 
             //Infanteria
-            case "Infanteria 1":
+            case "CÍCLOPE":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="infanteria";
@@ -1276,7 +1276,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Infanteria 2":
+            case "ORCO":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="infanteria";
@@ -1286,7 +1286,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Infanteria 3":
+            case "TROLL":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="infanteria";
@@ -1296,7 +1296,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Infanteria 4":
+            case "OGRO":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="infanteria";
@@ -1306,7 +1306,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Infanteria 5":
+            case "ETTIN":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="infanteria";
@@ -1319,7 +1319,7 @@ class Fuselajes extends Model
 
 
             //Vehiculos
-            case "Vehiculo 1":
+            case "BISILISCO":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="vehiculo";
@@ -1329,7 +1329,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Vehiculo 2":
+            case "CENTAURO":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="vehiculo";
@@ -1339,7 +1339,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Vehiculo 3":
+            case "CANCERBERO":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="vehiculo";
@@ -1349,7 +1349,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Vehiculo 4":
+            case "RAKSHASA":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="vehiculo";
@@ -1359,7 +1359,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Vehiculo 5":
+            case "LICÁNTROPO":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="vehiculo";
@@ -1372,7 +1372,7 @@ class Fuselajes extends Model
 
 
             //Mechas
-            case "Mech 1":
+            case "GORGONA":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="mech";
@@ -1382,7 +1382,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Mech 2":
+            case "NAGA":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="mech";
@@ -1392,7 +1392,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Mech 3":
+            case "HIDRA":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="mech";
@@ -1402,7 +1402,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Mech 4":
+            case "LEVIATÁN":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="mech";
@@ -1412,7 +1412,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "Mech 5":
+            case "KRAKEN":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="mech";
@@ -1425,7 +1425,7 @@ class Fuselajes extends Model
 
 
             //MegaBots
-            case "MegaBot 1":
+            case "HOMÚNCULO":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="megaBot";
@@ -1435,7 +1435,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "MegaBot 2":
+            case "GARGOLA":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="megaBot";
@@ -1445,7 +1445,7 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "MegaBot 3":
+            case "GOLEM":
             $fuselaje =new Fuselajes();
             $fuselaje->codigo=$codigo;
             $fuselaje->tamaño="megaBot";
