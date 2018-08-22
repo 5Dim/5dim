@@ -1455,26 +1455,6 @@ class Fuselajes extends Model
             array_push($fuselajes, $fuselaje);
             break;
 
-            case "MegaBot 4":
-            $fuselaje =new Fuselajes();
-            $fuselaje->codigo=$codigo;
-            $fuselaje->tamaño="megaBot";
-            $fuselaje->tipo="tropa";
-            $fuselaje->tnave="11";
-            $fuselaje->categoria="jugador";
-            array_push($fuselajes, $fuselaje);
-            break;
-
-            case "MegaBot 5":
-            $fuselaje =new Fuselajes();
-            $fuselaje->codigo=$codigo;
-            $fuselaje->tamaño="megaBot";
-            $fuselaje->tipo="tropa";
-            $fuselaje->tnave="11";
-            $fuselaje->categoria="jugador";
-            array_push($fuselajes, $fuselaje);
-            break;
-
 
             }
         }
