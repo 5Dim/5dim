@@ -193,7 +193,7 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
+                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="crearDiseño()">
                             <i class="fa fa-cogs"></i> Diseñar
                         </button>
                     </td>

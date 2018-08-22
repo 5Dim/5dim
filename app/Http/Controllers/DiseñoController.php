@@ -146,4 +146,11 @@ class DiseñoController extends Controller
 
         return view('juego.diseñar.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones', 'armas', 'constantesI', 'costesArmas', 'factoresIndustrias'));
     }
+
+
+    public function crearDiseño($id){
+
+        return Response::json(array('success' => true, 'payload' => "coso"));
+
+    }
 }

@@ -1032,7 +1032,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
         </div>
     </div>
 
-
+    <div class="modal hide"></div>
 
 
 
@@ -2103,36 +2103,70 @@ timeDura(cualidades['tiempo'],'tiempoD');
 }
 
 $( document ).ready(function() {
-    calculoTotalR();
-@if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
-    slider.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-@endif
+        calculoTotalR();
+    @if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
+        slider.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    @endif
 
-@if($cantidadCLigeras>0){
-    alcanceArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    dispersionArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-}@endif
-@if($cantidadCMedias>0){
-    alcanceArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    dispersionArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-}@endif
-@if($cantidadCPesadas>0){
-    alcanceArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    dispersionArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-}@endif
-@if($cantidadCInsertadas>0){
-    alcanceArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    dispersionArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-}@endif
-@if($cantidadCMisiles>0){
-    alcanceArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    dispersionArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-}@endif
-@if($cantidadCBombas>0){
-    alcanceArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    dispersionArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-}@endif
+    @if($cantidadCLigeras>0){
+        alcanceArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        dispersionArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    }@endif
+    @if($cantidadCMedias>0){
+        alcanceArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        dispersionArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    }@endif
+    @if($cantidadCPesadas>0){
+        alcanceArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        dispersionArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    }@endif
+    @if($cantidadCInsertadas>0){
+        alcanceArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        dispersionArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    }@endif
+    @if($cantidadCMisiles>0){
+        alcanceArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        dispersionArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    }@endif
+    @if($cantidadCBombas>0){
+        alcanceArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        dispersionArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+    }@endif
 
+});
+
+
+
+
+function crearDiseño() {
+    // Initiate Variables With Form Content
+    requestData = "8888";
+
+
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: "http://localhost/juego/diseño/crearDiseño",
+        data: requestData,
+        success: function (data) {
+            if (data.success) {
+                // notice that we are expecting a json array with success = true and a payload
+                $('.modal').empty().append(data.payload).modal();
+            } else {
+                // for debugging
+                alert(data);
+            }
+        },
+        error: function (xhr, textStatus, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        }
     });
+
+}
+function formSuccess(){
+    $( "#msgSubmit" ).removeClass( "hidden" );
+}
+
 
         </script>
