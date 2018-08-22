@@ -294,7 +294,7 @@ class CostesFuselajes extends Model
             case "HÉCATE":
             $Tnave = "pesada";
             $factn=2.2;
-            $r1cce = [$codigo,6000000,2100000,250000,1300000,300000,180000,50000,1, 0,190];
+            $r1cce = [$codigo,3000000,1100000,130000,700000,300000,180000,50000,1, 0,190];
             $coste = $costesc->calculos($r1cce,$constantes,$fuselajes_id,'nave',$Tnave,$factn);
             break;
 
