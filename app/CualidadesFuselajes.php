@@ -2988,7 +2988,7 @@ class CualidadesFuselajes extends Model
 
 
             //DEFENSAS ORBITALES  ///////////////////////////////////////////
-            case  "Defensa 1": //Basada en la AMATERATSU
+            case  "YETI": //Basada en la AMATERATSU
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3022,7 +3022,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 2": //Basada en la SHINIGAMI
+            case  "CROM": //Basada en la SHINIGAMI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3055,7 +3055,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 3": //Basada en la KHEPRI
+            case  "DAGON": //Basada en la KHEPRI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3088,7 +3088,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 4": //Basada en la LOKI
+            case  "HASTUR": //Basada en la LOKI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3117,7 +3117,7 @@ class CualidadesFuselajes extends Model
             $CRnave12 = 100;	 	// blindajes
             $CRnave13 = 162;	 	// motores
 
-            case  "Defensa 5": //Basada en la OSIRIS
+            case  "VALKIRIA": //Basada en la OSIRIS
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3152,7 +3152,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 6": //Basada en la THOR
+            case  "KITSUNE": //Basada en la THOR
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3220,7 +3220,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 8": //Basada en la NUNET
+            case  "NAZGUL": //Basada en la NUNET
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3254,7 +3254,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 9": //Basada en la ODIN
+            case  "BALROG": //Basada en la ODIN
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3288,7 +3288,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 10": //Basada en la KALI
+            case  "CTHULHU": //Basada en la KALI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3323,7 +3323,7 @@ class CualidadesFuselajes extends Model
             break;
 
             //DEFENSAS TERRESTRES  ///////////////////////////////////////////
-            case  "Defensa 11": //Basada en la AMATERATSU
+            case  "MORLOCK": //Basada en la AMATERATSU
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3357,7 +3357,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 12": //Basada en la SHINIGAMI
+            case  "SARLACC": //Basada en la SHINIGAMI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3390,7 +3390,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 13": //Basada en la KHEPRI
+            case  "RATHTARS": //Basada en la KHEPRI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3423,7 +3423,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 14": //Basada en la LOKI
+            case  "ROC": //Basada en la LOKI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3452,7 +3452,7 @@ class CualidadesFuselajes extends Model
             $CRnave12 = 100;	 	// blindajes
             $CRnave13 = 162;	 	// motores
 
-            case  "Defensa 15": //Basada en la OSIRIS
+            case  "SHOGGOTZ": //Basada en la OSIRIS
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3487,7 +3487,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 16": //Basada en la THOR
+            case  "UNGOLIANTH": //Basada en la THOR
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3521,7 +3521,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 17": //Basada en la SKADI
+            case  "NECROCOLOSO": //Basada en la SKADI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3560,7 +3560,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 18": //Basada en la NUNET
+            case  "RANCOR": //Basada en la NUNET
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3594,7 +3594,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 19": //Basada en la ODIN
+            case  "DALEK": //Basada en la ODIN
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
@@ -3628,7 +3628,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 20": //Basada en la KALI
+            case  "BYAKKO": //Basada en la KALI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
