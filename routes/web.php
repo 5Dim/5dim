@@ -80,11 +80,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/juego/fuselajes/diseñar/{id}', ['uses' => 'FuselajesController@diseñar']);
     Route::get('/juego/fuselajes/datos/{codigo}', ['uses' => 'FuselajesController@datos']);
 
-
     //Diseño
     Route::get('/juego/diseño', 'DiseñoController@index');
     Route::get('/juego/diseño/diseñar/{id}', 'DiseñoController@diseñar');
-    Route::get('/juego/diseño/crearDiseño/{id}', 'DiseñoController@crearDiseño');
+    Route::post('/juego/diseño/crearDiseño/{id?}', 'DiseñoController@crearDiseño');
 
     //Fabricas
     Route::get('/juego/fabricas', 'FabricasController@index');

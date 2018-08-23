@@ -148,9 +148,14 @@ class DiseñoController extends Controller
     }
 
 
-    public function crearDiseño($id){
+    public function crearDiseño($id = false){
 
-        return Response::json(array('success' => true, 'payload' => "coso"));
+        if (!empty($id)) {
+            $bool = false;
+        }
+        $bool = false;
+        //dd("hola que tal soy colosal");
+        return compact('bool');
 
     }
 }

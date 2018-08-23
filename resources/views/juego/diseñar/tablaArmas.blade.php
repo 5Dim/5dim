@@ -247,7 +247,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
 
 
 @endphp
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="row rounded">
     <div class="col-12 borderless">
             <div id="cuadro1" class="" style="background-color: #000000 !important;">
@@ -2146,9 +2146,15 @@ function crearDiseño() {
     $.ajax({
         type: 'post',
         dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         url: "http://localhost/juego/diseño/crearDiseño",
-        data: requestData,
+        data: {"requestData": requestData},
         success: function (data) {
+            console.log(data);
+
+            /*
             if (data.success) {
                 // notice that we are expecting a json array with success = true and a payload
                 $('.modal').empty().append(data.payload).modal();
@@ -2156,6 +2162,7 @@ function crearDiseño() {
                 // for debugging
                 alert(data);
             }
+            */
         },
         error: function (xhr, textStatus, thrownError) {
             alert(xhr.status);
