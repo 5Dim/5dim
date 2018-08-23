@@ -1257,6 +1257,15 @@ var tiposArmas=[
     'armasBomba'
     ];
 
+var energiaArmas={
+    'armasLigera':0,
+    'armasMedia':0,
+    'armasPesada':0,
+    'armasInsertada':0,
+    'armasMisil':0,
+    'armasBomba':0
+};
+
 //var nivelIa=$.grep(investigaciones, function(nivelInv){return nivelInv.codigo == 'invIa'})[0]['nivel']; //para mejoras
 
 function calculoTotalR(){
@@ -1730,7 +1739,7 @@ energiaT=costesMisMotores['energia']+costesMisBlindajes['energia']+costesMisCarg
 misCostes=costesMisArmas;  //arrayArmasTengo['cantidadCPesadas']
 armasTengoT=armasTengo['cantidadCLigeras']+armasTengo['cantidadCMedias']+armasTengo['cantidadCPesadas']+armasTengo['cantidadCInsertadas']+armasTengo['cantidadCMisiles']+armasTengo['cantidadCBombas'];
 
-var energiaArmas={
+energiaArmas={
     'armasLigera':0,
     'armasMedia':0,
     'armasPesada':0,
@@ -2139,9 +2148,15 @@ $( document ).ready(function() {
 
 
 function crearDiseño() {
-    // Initiate Variables With Form Content
-    requestData = "8888";
+    imagen=imagen{{$diseño->id }};
 
+    datosBasicos={
+        "id":{{$diseño->id }},
+        "nombre":$("#nombre").val(),
+        "descripcion":$("#descripcion").val(),
+        "posicion":$("#posicionCombate").val(),
+        "skin":imagen.dataset.skin
+    }
 
     $.ajax({
         type: 'post',
@@ -2150,7 +2165,7 @@ function crearDiseño() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url: "http://localhost/juego/diseño/crearDiseño",
-        data: {"requestData": requestData},
+        data: {"armas": armas,"energiaArmas":energiaArmas,"armasAlcance":armasAlcance,"armasDispersion":armasDispersion,"datosBasicos":datosBasicos},
         success: function (data) {
             console.log(data);
 

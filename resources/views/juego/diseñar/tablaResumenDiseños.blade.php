@@ -173,9 +173,9 @@
                     <td class="anchofijo text-secondary borderless">
                         <div class="input-group mb-3 borderless"  style="padding-left: 5px !important; padding-right: 5px !important">
                             <div class="input-group-prepend">
-                                <label class="input-group-text bg-dark text-light" for="inputGroupSelect01">Posicion</label>
+                                <label class="input-group-text bg-dark text-light" for="posicionCombate">Posicion</label>
                             </div>
-                            <select class="custom-select select" id="inputGroupSelect01">
+                            <select class="custom-select select" id="posicionCombate">
                                     <option value="" selected>Elige una posicion</option>
 
                                     <option value="">Vanguardia 1</option>
