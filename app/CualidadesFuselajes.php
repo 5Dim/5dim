@@ -3186,7 +3186,7 @@ class CualidadesFuselajes extends Model
             $coste = $costesc->calculos($cualidades,$armas,$constantes,$fuselajes_id,'defensa',$Tnavet);
             break;
 
-            case  "Defensa 7": //Basada en la SKADI
+            case  "AZAZEL": //Basada en la SKADI
             $Tnavet = "defensa";
             $Tnave = 1;
             $inirec8=1.5;
