@@ -354,54 +354,55 @@ class DiseñoController extends Controller
 
 
         $correcto=true; // comprobando ranuras
+        $razonCorrecto=""; //que salio mal
 
         if ($cantidadMotores>0){
-            if (count($armasTengo['motor'])!=$cantidadMotores){$correcto=false;};
+            if (count($armasTengo['motor'])!=$cantidadMotores){$correcto=false;$razonCorrecto="<br>cantidad de motores ".count($armasTengo['motor'])." != ".$cantidadMotores;};
         }
         if ($cantidadblindajes>0){
-            if (count($armasTengo['blindaje'])!=$cantidadblindajes){$correcto=false;};
+            if (count($armasTengo['blindaje'])!=$cantidadblindajes){$correcto=false;$razonCorrecto="<br>cantidad de blindaje ".count($armasTengo['blindaje'])." != ".$cantidadblindajes;};
         }
         if ($cantidadMejoras>0){
-            if (count($armasTengo['mejora'])!=$cantidadMejoras){$correcto=false;};
+            if (count($armasTengo['mejora'])!=$cantidadMejoras){$correcto=false;$razonCorrecto="<br>cantidad de mejora ".count($armasTengo['mejora'])." != ".$cantidadMejoras;};
         }
 
         if ($cantidadCargaPequeña>0){
-            if (count($armasTengo['cargaPequeña'])!=$cantidadCargaPequeña){$correcto=false;};
+            if (count($armasTengo['cargaPequeña'])!=$cantidadCargaPequeña){$correcto=false;$razonCorrecto="<br>cantidad de cargaPequeña ".count($armasTengo['cargaPequeña'])." != ".$cantidadCargaPequeña;};
         }
 
         if ($cantidadCargaMedia>0){
-            if (count($armasTengo['cargaMediana'])!=$cantidadCargaMedia){$correcto=false;};
+            if (count($armasTengo['cargaMediana'])!=$cantidadCargaMedia){$correcto=false;$razonCorrecto="<br>cantidad de cargaMediana ".count($armasTengo['cargaMediana'])." != ".$cantidadCargaMedia;};
         }
 
         if ($cantidadCargaGrande>0){
-            if (count($armasTengo['cargaGrande'])!=$cantidadCargaGrande){$correcto=false;};
+            if (count($armasTengo['cargaGrande'])!=$cantidadCargaGrande){$correcto=false;$razonCorrecto="<br>cantidad de cargaGrande ".count($armasTengo['cargaGrande'])." != ".$cantidadCargaGrande;};
         }
 
         if ($cantidadCargaEnorme>0){
-            if (count($armasTengo['cargaEnorme'])!=$cantidadCargaEnorme){$correcto=false;};
+            if (count($armasTengo['cargaEnorme'])!=$cantidadCargaEnorme){$correcto=false;$razonCorrecto="<br>cantidad de cargaEnorme ".count($armasTengo['cargaEnorme'])." != ".$cantidadCargaEnorme;};
         }
 
         if ($cantidadCargaMega>0){
-            if (count($armasTengo['cargaMega'])!=$cantidadCargaMega){$correcto=false;};
+            if (count($armasTengo['cargaMega'])!=$cantidadCargaMega){$correcto=false;$razonCorrecto="<br>cantidad de cargaMega ".count($armasTengo['cargaMega'])." != ".$cantidadCargaMega;};
         }
 
         if ($cantidadCLigeras>0){
-            if (count($armasTengo['armasLigera'])!=$cantidadCLigeras){$correcto=false;};
+            if (count($armasTengo['armasLigera'])!=$cantidadCLigeras){$correcto=false;$razonCorrecto="<br>cantidad de armasLigera ".count($armasTengo['armasLigera'])." != ".$cantidadCLigeras;};
         }
         if ($cantidadCMedias>0){
-            if (count($armasTengo['armasMedia'])!=$cantidadCMedias){$correcto=false;};
+            if (count($armasTengo['armasMedia'])!=$cantidadCMedias){$correcto=false;$razonCorrecto="<br>cantidad de armasMedia ".count($armasTengo['armasMedia'])." != ".$cantidadCMedias;};
         }
         if ($cantidadCPesadas>0){
-            if (count($armasTengo['armasPesada'])!=$cantidadCPesadas){$correcto=false;};
+            if (count($armasTengo['armasPesada'])!=$cantidadCPesadas){$correcto=false;$razonCorrecto="<br>cantidad de armasPesada ".count($armasTengo['armasPesada'])." != ".$cantidadCPesadas;};
         }
         if ($cantidadCInsertadas>0){
-            if (count($armasTengo['armasInsertada'])!=$cantidadCInsertadas){$correcto=false;};
+            if (count($armasTengo['armasInsertada'])!=$cantidadCInsertadas){$correcto=false;$razonCorrecto="<br>cantidad de armasInsertada ".count($armasTengo['armasInsertada'])." != ".$cantidadCInsertadas;};
         }
         if ($cantidadCMisiles>0){
-            if (count($armasTengo['armasMisil'])!=$cantidadCMisiles){$correcto=false;};
+            if (count($armasTengo['armasMisil'])!=$cantidadCMisiles){$correcto=false;$razonCorrecto="<br>cantidad de armasMisil ".count($armasTengo['armasMisil'])." != ".$cantidadCMisiles;};
         }
         if ($cantidadCBombas>0){
-            if (count($armasTengo['armasBomba'])!=$cantidadCBombas){$correcto=false;};
+            if (count($armasTengo['armasBomba'])!=$cantidadCBombas){$correcto=false;$razonCorrecto="<br>cantidad de armasBomba ".count($armasTengo['armasBomba'])." != ".$cantidadCBombas;};
         }
 
         $cualidadesFuselaje=$diseño->cualidades;
@@ -413,7 +414,7 @@ class DiseñoController extends Controller
         $costesMisBlindajes=array("mineral"=>0,"cristal"=>0,"gas"=>0,"plastico"=>0,"ceramica"=>0,"liquido"=>0,"micros"=>0,"personal"=>0,"fuel"=>0,"ma"=>0,"municion"=>0,"masa"=>0,"energia"=>0,"tiempo"=>0,"mantenimiento"=>0,"defensa"=>0,"ataque"=>0,"velocidad"=>0,"carga"=>0,"cargaPequeña"=>0,"cargaMediana"=>0,"cargaGrande"=>0,"cargaEnorme"=>0,"cargaMega"=>0 );
 
         // comprobando que tengo el fuselaje
-        if(empty( $jugadorActual->fuselajes->where('id',$idFuselaje)->first() )) {$correcto=false;};
+        if(empty( $jugadorActual->fuselajes->where('id',$idFuselaje)->first() )) {$correcto=false; $razonCorrecto="<br>No tienes ese fuselaje";};
 
         /// comprobando sliders
         //energia
@@ -445,7 +446,6 @@ class DiseñoController extends Controller
         $prueba="nada";
 
         if ($correcto){
-            $razonCorrecto=""; //que salio mal
 
             // añado energia
             $elemento='motor';
@@ -520,39 +520,44 @@ class DiseñoController extends Controller
             for ($x=1;$x<6;$x++){
                 $genera='carga';
                 $misCostes=$costesMisCargas;
-
+                $cantidad=0;
                 switch($x){
                     case 1:
                         $elemento='cargaPequeña';
                         $multiplicador=$multiplicadorCargaPequeña;
                         $factorFuselaje=1;
+                        $cantidad=$cantidadCargaPequeña;
                     break;
                     case 2:
                         $elemento='cargaMediana';
                         $multiplicador=$multiplicadorCargaMedia;
                         $factorFuselaje=1;
+                        $cantidad=$cantidadCargaMedia;
                     break;
                     case 3:
                         $elemento='cargaGrande';
                         $multiplicador=$multiplicadorCargaGrande;
                         $factorFuselaje=1;
+                        $cantidad=$cantidadCargaGrande;
                     break;
                     case 4:
                         $elemento='cargaEnorme';
                         $multiplicador=$multiplicadorCargaEnorme;
                         $factorFuselaje=1;
+                        $cantidad=$cantidadCargaEnorme;
                     break;
                     case 5:
                         $elemento='cargaMega';
                         $multiplicador=$multiplicadorCargaMega;
                         $factorFuselaje=1;
+                        $cantidad=$cantidadCargaMega;
                     break;
                     default:
                         $multiplicador=0;
-                };
+                }
                 $genera2=$elemento;
 
-                if ($multiplicador>0){
+                if ($cantidad>0){
                     foreach( $armasTengo[$elemento] as $e) {
                         if ($e>0 and $correcto>0){
 
@@ -589,11 +594,10 @@ class DiseñoController extends Controller
 
 
 
-        }
+    }
 
         $prueba = $costesMisCargas;
-
-        return compact('prueba');
+        return compact('razonCorrecto','prueba');
 
     }
 }
