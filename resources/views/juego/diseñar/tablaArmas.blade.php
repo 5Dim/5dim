@@ -1220,6 +1220,7 @@ var multiplicadorCMedias={{$multiplicadorCMedias}};
 var multiplicadorCPesadas={{$multiplicadorCPesadas}};
 var multiplicadorCInsertadas={{$multiplicadorCInsertadas}};
 var multiplicadorCMisiles={{$multiplicadorCMisiles}};
+var multiplicadorCBombas={{$multiplicadorCBombas}};
 var multiplicadorCargaPequeña={{$multiplicadorCargaPequeña}};
 var multiplicadorCargaMedia={{$multiplicadorCargaMedia}};
 var multiplicadorCargaGrande={{$multiplicadorCargaGrande}};
@@ -1264,6 +1265,15 @@ var energiaArmas={
     'armasInsertada':0,
     'armasMisil':0,
     'armasBomba':0
+};
+
+var multiplicadorArmas={
+    'armasLigera':multiplicadorCLigeras,
+    'armasMedia':multiplicadorCMedias,
+    'armasPesada':multiplicadorCPesadas,
+    'armasInsertada':multiplicadorCInsertadas,
+    'armasMisil':multiplicadorCMisiles,
+    'armasBomba':multiplicadorCBombas
 };
 
 //var nivelIa=$.grep(investigaciones, function(nivelInv){return nivelInv.codigo == 'invIa'})[0]['nivel']; //para mejoras
@@ -1885,13 +1895,13 @@ dañoarmasArm=0;
                 cteAriete=1+(miConstanteI*nivelInv*cuantos);//lo que varia por nivel de tecno
                 costoAriete=(1+(costeobj['mineral']/100) )*cuantos;
             }
-
+            var cantidadArmas=multiplicadorArmas[elemento];
             var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
             var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
             var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
             var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
             var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
-            estedano=energiaArmas[elemento]*energiaT*energiaXarma/costeobj['energia'];
+            estedano=energiaArmas[elemento]*energiaT*energiaXarma/costeobj['energia']*cantidadArmas;
             creceExpo=1+((estedano/costeobj['ataque'])*2000 );
             dañoarmasArm+=Math.round(cteFoco*(cte*estedano*100000/creceExpo),0);// la tecno influye solo en el valor final del daño
             multiplicador=estedano*10*creceExpo;

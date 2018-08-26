@@ -590,9 +590,95 @@ class DiseñoController extends Controller
                 }
             }
 
+        if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0){
+        //// armas ///////
+
+        $energiaT=$costesMisMotores['energia']+$costesMisBlindajes['energia']+$costesMisCargas['energia']+$cualidades['energia']; // energia para armas total
+        $misCostes=$costesMisArmas;
+        $armasTengoT=$armasTengo['cantidadCLigeras']+$armasTengo['cantidadCMedias']+$armasarmasTengo['cantidadCPesadas']+$armasTengo['cantidadCInsertadas']+$armasTengo['cantidadCMisiles']+$armasTengo['cantidadCBombas'];
 
 
 
+        // posicion del daño segun el arma
+
+        $danoPosicion=[
+            'armasLigera'=>[0,1],
+            'armasMedia'=>[1,2],
+            'armasPesada'=>[2,3],
+            'armasInsertada'=>[3,4],
+            'armasMisil'=>[3,5],
+            'armasBomba'=>[4,2]
+        ];
+
+        $tiposArmas=[
+            'armasLigera',
+            'armasMedia',
+            'armasPesada',
+            'armasInsertada',
+            'armasMisil',
+            'armasBomba'
+        ];
+
+        $energiaArmas=[
+            'armasLigera'=>0,
+            'armasMedia'=>0,
+            'armasPesada'=>0,
+            'armasInsertada'=>0,
+            'armasMisil'=>0,
+            'armasBomba'=>0
+        ];
+
+        $energiaUsada=0;
+
+        foreach( $tiposArmas as $elemento) {
+
+            $costesVacio=["mineral"=>0, "cristal"=>0, "gas"=>0, "plastico"=>0, "ceramica"=>0, "liquido"=>0, "micros"=>0, "personal"=>0, "fuel"=>0, "ma"=>0, "municion"=>0, "masa"=>0, "energia"=>0, "tiempo"=>0, "mantenimiento"=>0, "defensa"=>0, "ataque"=>0, "velocidad"=>0, "carga"=>0, "cargaPequeña"=>0, "cargaMediana"=>0, "cargaGrande"=>0, "cargaEnorme"=>0, "cargaMega"=>0,];
+            //$elemento='blindaje';
+            //$genera='defensa';
+            $misCostes=$costesMisArmas;
+            $multiplicador=$multiplicadorblindajes;
+
+            foreach( $armasTengo[$elemento] as $e) {
+
+                    if ($e>0 and $correcto>0){
+                        $hayalgo=1;
+                        $cteFoco=1;
+                        $costoFoco=1;
+
+                        //$obj=array_search($e,$armas);
+                        $obj=$armas->where('codigo',$e)->first();
+                        $factorFuselaje=$diseño->cualidades->$genera;
+                        $costesVacio=["mineral"=>0, "cristal"=>0, "gas"=>0, "plastico"=>0, "ceramica"=>0, "liquido"=>0, "micros"=>0, "personal"=>0, "fuel"=>0, "ma"=>0, "municion"=>0, "masa"=>0, "energia"=>0, "tiempo"=>0, "mantenimiento"=>0, "defensa"=>0, "ataque"=>0, "velocidad"=>0, "carga"=>0, "cargaPequeña"=>0, "cargaMediana"=>0, "cargaGrande"=>0, "cargaEnorme"=>0, "cargaMega"=>0,];
+
+                        //comprobando tengo la tecno necesaria
+                        $clase=$obj['clase'];
+                        $miNivelTecno= $investigaciones->where('codigo', $clase)->first()->nivel;
+                        if ($obj['niveltec']>$miNivelTecno ){
+                            $correcto=false;
+                            $razonCorrecto+="<br>Tecnologia demasiado baja: "+$clase+" ";
+                        };
+
+                        // sumo costes
+                        $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+                        $misCostes=sumaCostos($misCostes,$multiplicador,$costeobj);// sumo recursos basicos
+                        // sumo cualidades
+                        $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
+                        $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
+                        $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
+                        $costesVacio['energia']=$costeobj['fuel']*$factorFuselaje;
+                        $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
+                        $costesMisArmas=$misCostes;
+
+
+                }
+            }
+        }
+
+
+
+
+
+        }
 
     }
 
