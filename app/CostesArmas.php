@@ -1115,6 +1115,7 @@ class CostesArmas extends Model
 /////////////////////////////  ARMAS   //////////////////////////////////////////////////////
 
         // costos de armas son por cada 1 de energia
+        $factorPesoArmas=30;
 
         $coste =new CostesArmas();
         $coste->armas_codigo="11"; //arma ligera energia
@@ -1129,7 +1130,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000;
         $coste->energia=-$fcae*800;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*5;
@@ -1158,7 +1159,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 2;
         $coste->energia=-$fcae*800 * 2;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1187,7 +1188,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 4;
         $coste->energia=-$fcae*800 * 3;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1216,7 +1217,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 8;
         $coste->energia=-$fcae*800 * 1.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1245,7 +1246,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 4;
         $coste->energia=-$fcae*800 * 2.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1273,7 +1274,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 2;
         $coste->energia=-$fcae*800 * 2.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1302,7 +1303,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 2;
         $coste->energia=-$fcae*700;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*5;
@@ -1331,7 +1332,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 4;
         $coste->energia=-$fcae*700 * 2;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1360,7 +1361,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 8;
         $coste->energia=-$fcae*700 * 3;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1389,7 +1390,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 16;
         $coste->energia=-$fcae*700 * 1.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1418,7 +1419,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 4;
         $coste->energia=-$fcae*700 * 2.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1446,7 +1447,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 2;
         $coste->energia=-$fcae*700 * 2.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1476,7 +1477,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 2;
         $coste->energia=-$fcae*630;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*5;
@@ -1505,7 +1506,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 4;
         $coste->energia=-$fcae*630 * 2;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1534,7 +1535,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 8;
         $coste->energia=-$fcae*630 * 3;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1563,7 +1564,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 16;
         $coste->energia=-$fcae*630 * 1.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1592,7 +1593,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 4;
         $coste->energia=-$fcae*630 * 2.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1620,7 +1621,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 2;
         $coste->energia=-$fcae*630 * 2.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1648,7 +1649,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*700;
+        $coste->masa=$factorPesoArmas*$fcae*700;
         $coste->energia=-$fcae*680;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*5;
@@ -1677,7 +1678,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 2;
         $coste->energia=-$fcae*700 * 2;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1706,7 +1707,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 4;
         $coste->energia=-$fcae*700 * 3;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1735,7 +1736,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 8;
         $coste->energia=-$fcae*700 * 1.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1764,7 +1765,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 4;
         $coste->energia=-$fcae*700 * 2.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
@@ -1792,7 +1793,7 @@ class CostesArmas extends Model
         $coste->ma=0;
         $coste->municion=$fcae*10;
         $coste->personal=$fcae*1;
-        $coste->masa=$fcae*1000;
+        $coste->masa=$factorPesoArmas*$fcae*1000 * 8;
         $coste->energia=-$fcae*700 * 2.5;
         $coste->tiempo=$fcae*1900;
         $coste->mantenimiento=$fcae*50;
