@@ -1219,7 +1219,7 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
             $CRnave15 = 0;    //Carga Mega(estaciones)
-            $CRnave11 = 64;	 	//mejoras
+            $CRnave11 = 7;	 	//mejoras
             $CRnave12 = 116;	 	// blindajes
             $CRnave13 = 1250;	 	// motores
 
@@ -2816,7 +2816,7 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
             $CRnave15 = 0;    //Carga Mega(estaciones)
-            $CRnave11 = 45;	 	//mejoras
+            $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 18;	 	// blindajes
             $CRnave13 = 18;	 	// motores
 
@@ -2856,7 +2856,7 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
             $CRnave15 = 0;    //Carga Mega(estaciones)
-            $CRnave11 = 27;	 	//mejoras
+            $CRnave11 = 4;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 6;	 	// motores
 
@@ -2893,7 +2893,7 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
             $CRnave15 = 0;    //Carga Mega(estaciones)
-            $CRnave11 = 45;	 	//mejoras
+            $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 12;	 	// motores
 
@@ -2933,7 +2933,7 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 10;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;
             $CRnave15 = 0;    //Carga Mega(estaciones)
-            $CRnave11 = 45;	 	//mejoras
+            $CRnave11 = 5;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 20;	 	// motores
 
@@ -2974,7 +2974,7 @@ class CualidadesFuselajes extends Model
             $CRnave10 = 0;	 //CARGA GRANDE, cantidad por tipo
             $CRnave14 = 0;    //Carga ENorme
             $CRnave15 = 0;    //Carga Mega(estaciones)
-            $CRnave11 = 45;	 	//mejoras
+            $CRnave11 = 6;	 	//mejoras
             $CRnave12 = 12;	 	// blindajes
             $CRnave13 = 360;	 	// motores
 
