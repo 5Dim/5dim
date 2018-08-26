@@ -21,6 +21,7 @@ use App\Fuselajes;
 use App\Armas;
 use App\CostesArmas;
 use App\CostesFuselajes;
+use App\Jugadores;
 
 class DiseñoController extends Controller
 {
@@ -151,20 +152,23 @@ class DiseñoController extends Controller
 
     public function crearDiseño($id = false){
 
-        $armas = ($_POST['armas']);
+        $armasTengo = ($_POST['armas']);
         $energiaArmas = ($_POST['energiaArmas']);
         $armasAlcance = ($_POST['armasAlcance']);
         $armasDispersion = ($_POST['armasDispersion']);
         $datosBasicos = ($_POST['datosBasicos']);
 
         $idFuselaje=$datosBasicos['id'];
+        //  $jugadorActual = Jugadores::where('id', 1)->first(); $planetaActual = Planetas::where('id', 143)->first(); $investigaciones=$jugadorActual->investigaciones;
 
+        $jugadorActual = Jugadores::where('id', session()->get('jugadores_id'))->first();
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $diseño = Fuselajes::find($idFuselaje);
         $constantesI=Constantes::where('tipo','investigacion')->get();
         $costesArmas = CostesArmas::all();
+        $armas = Armas::all();
 
         function celdasMaximas($a,$b) { //saco la cantidad de celdas justas
             while ( ((int)($b/$a)-($b/$a)) !=0 ) {
@@ -173,24 +177,53 @@ class DiseñoController extends Controller
         return $a;
         }
 
+
+
+        function sumaCostos($destinoCosto,$cte,$esteCosto){
+            $destinoCosto['mineral']+=$esteCosto['mineral']*$cte;
+            $destinoCosto['cristal']+=$esteCosto['cristal']*$cte;
+            $destinoCosto['gas']+=$esteCosto['gas']*$cte;
+            $destinoCosto['plastico']+=$esteCosto['plastico']*$cte;
+            $destinoCosto['ceramica']+=$esteCosto['ceramica']*$cte;
+            $destinoCosto['liquido']+=$esteCosto['liquido']*$cte;
+            $destinoCosto['micros']+=$esteCosto['micros']*$cte;
+            $destinoCosto['personal']+=$esteCosto['personal']*$cte;
+            $destinoCosto['masa']+=$esteCosto['masa']*$cte;
+
+            if ($destinoCosto['mineral']<0){$destinoCosto['mineral']=$diseño->costes->mineral;};
+            if ($destinoCosto['cristal']<0){$destinoCosto['cristal']=$diseño->costes->cristal;};
+            if ($destinoCosto['gas']<0){$destinoCosto['gas']=$diseño->costes->gas;};
+            if ($destinoCosto['plastico']<0){$destinoCosto['plastico']=$diseño->costes->plastico;};
+            if ($destinoCosto['ceramica']<0){$destinoCosto['ceramica']=$diseño->costes->ceramica;};
+            if ($destinoCosto['liquido']<0){$destinoCosto['liquido']=$diseño->costes->liquido;};
+            if ($destinoCosto['micros']<0){$destinoCosto['micros']=$diseño->costes->micros;};
+            if ($destinoCosto['personal']<0){$destinoCosto['personal']=$diseño->costes->personal;};
+            if ($destinoCosto['masa']<0){$destinoCosto['masa']=$diseño->costes->masa;};
+
+            return $destinoCosto;
+        }
+
+        function sumaCualidades($destinoCualidad,$cte,$esteCualidad){
+            $destinoCualidad['fuel']+=$esteCualidad['fuel']*$cte;
+            $destinoCualidad['municion']+=$esteCualidad['municion']*$cte;
+            $destinoCualidad['masa']+=$esteCualidad['masa']*$cte;
+            $destinoCualidad['energia']+=$esteCualidad['energia']*$cte;
+            $destinoCualidad['tiempo']+=$esteCualidad['tiempo']*$cte;
+            $destinoCualidad['mantenimiento']+=$esteCualidad['mantenimiento']*$cte;
+            $destinoCualidad['defensa']+=$esteCualidad['defensa']*$cte;
+            $destinoCualidad['ataque']+=$esteCualidad['ataque']*$cte;
+            $destinoCualidad['velocidad']+=$esteCualidad['velocidad']*$cte;
+            $destinoCualidad['carga']+=$esteCualidad['carga']*$cte;
+            $destinoCualidad['cargaPequeña']+=$esteCualidad['cargaPequeña']*$cte;
+            $destinoCualidad['cargaMediana']+=$esteCualidad['cargaMediana']*$cte;
+            $destinoCualidad['cargaGrande']+=$esteCualidad['cargaGrande']*$cte;
+            $destinoCualidad['cargaEnorme']+=$esteCualidad['cargaEnorme']*$cte;
+            $destinoCualidad['cargaMega']+=$esteCualidad['cargaMega']*$cte;
+
+            return $destinoCualidad;
+        }
+
         $filasCarga=10;
-
-        $investNiveles=[
-            "invEnergia"=>$investigaciones->where("codigo","invEnergia")->first()->nivel,
-            "invPlasma"=>$investigaciones->where("codigo","invPlasma")->first()->nivel,
-            "invBalistica"=>$investigaciones->where("codigo","invBalistica")->first()->nivel,
-            "invMa"=>$investigaciones->where("codigo","invMa")->first()->nivel,
-
-            "invPropQuimico"=>$investigaciones->where("codigo","invPropQuimico")->first()->nivel,
-            "invPropNuk"=>$investigaciones->where("codigo","invPropNuk")->first()->nivel,
-            "invPropIon"=>$investigaciones->where("codigo","invPropIon")->first()->nivel,
-            "invPropPlasma"=>$investigaciones->where("codigo","invPropPlasma")->first()->nivel,
-            "invPropMa"=>$investigaciones->where("codigo","invPropMa")->first()->nivel,
-
-            "invBlindaje"=>$investigaciones->where("codigo","invBlindaje")->first()->nivel,
-            "invCarga"=>$investigaciones->where("codigo","invCarga")->first()->nivel,
-            "invIa"=>$investigaciones->where("codigo","invIa")->first()->nivel
-        ];
 
 
         $arrayArmasTengo=[
@@ -322,53 +355,245 @@ class DiseñoController extends Controller
 
         $correcto=true; // comprobando ranuras
 
-        if (count($armas['motor'])!=$cantidadMotores){$correcto=false;};
-        if (count($armas['blindaje'])!=$cantidadblindajes){$correcto=false;};
-        if (count($armas['mejora'])!=$cantidadMejoras){$correcto=false;};
-
-        if ($cantidadCargaPequeña>0){
-            if (count($armas['cargaPequeña'])!=$cantidadCargaPequeña){$correcto=false;};
+        if ($cantidadMotores>0){
+            if (count($armasTengo['motor'])!=$cantidadMotores){$correcto=false;};
+        }
+        if ($cantidadblindajes>0){
+            if (count($armasTengo['blindaje'])!=$cantidadblindajes){$correcto=false;};
+        }
+        if ($cantidadMejoras>0){
+            if (count($armasTengo['mejora'])!=$cantidadMejoras){$correcto=false;};
         }
 
+        if ($cantidadCargaPequeña>0){
+            if (count($armasTengo['cargaPequeña'])!=$cantidadCargaPequeña){$correcto=false;};
+        }
 
-        $cargaPequeñas=[];
-        for($n=0;$n<$cantidadCargaPequeña;$n++){ array_push($cargaPequeñas,0);}
+        if ($cantidadCargaMedia>0){
+            if (count($armasTengo['cargaMediana'])!=$cantidadCargaMedia){$correcto=false;};
+        }
 
-        $cargaMedianas=[];
-        for($n=0;$n<$cantidadCargaMedia;$n++){ array_push($cargaMedianas,0);}
+        if ($cantidadCargaGrande>0){
+            if (count($armasTengo['cargaGrande'])!=$cantidadCargaGrande){$correcto=false;};
+        }
 
-        $cargaGrandes=[];
-        for($n=0;$n<$cantidadCargaGrande;$n++){ array_push($cargaGrandes,0);}
+        if ($cantidadCargaEnorme>0){
+            if (count($armasTengo['cargaEnorme'])!=$cantidadCargaEnorme){$correcto=false;};
+        }
 
-        $cargaEnorme=[];
-        for($n=0;$n<$cantidadCargaEnorme;$n++){ array_push($cargaEnorme,0);}
+        if ($cantidadCargaMega>0){
+            if (count($armasTengo['cargaMega'])!=$cantidadCargaMega){$correcto=false;};
+        }
 
-        $cargaMega=[];
-        for($n=0;$n<$cantidadCargaMega;$n++){ array_push($cargaMega,0);}
+        if ($cantidadCLigeras>0){
+            if (count($armasTengo['armasLigera'])!=$cantidadCLigeras){$correcto=false;};
+        }
+        if ($cantidadCMedias>0){
+            if (count($armasTengo['armasMedia'])!=$cantidadCMedias){$correcto=false;};
+        }
+        if ($cantidadCPesadas>0){
+            if (count($armasTengo['armasPesada'])!=$cantidadCPesadas){$correcto=false;};
+        }
+        if ($cantidadCInsertadas>0){
+            if (count($armasTengo['armasInsertada'])!=$cantidadCInsertadas){$correcto=false;};
+        }
+        if ($cantidadCMisiles>0){
+            if (count($armasTengo['armasMisil'])!=$cantidadCMisiles){$correcto=false;};
+        }
+        if ($cantidadCBombas>0){
+            if (count($armasTengo['armasBomba'])!=$cantidadCBombas){$correcto=false;};
+        }
 
-        $armasLigeras=[];
-        for($n=0;$n<$cantidadCLigeras;$n++){ array_push($armasLigeras,0);}
+        $cualidadesFuselaje=$diseño->cualidades;
 
-        $armasMedias=[];
-        for($n=0;$n<$cantidadCMedias;$n++){ array_push($armasMedias,0);}
+        $costesMisMotores=array("mineral"=>0,"cristal"=>0,"gas"=>0,"plastico"=>0,"ceramica"=>0,"liquido"=>0,"micros"=>0,"personal"=>0,"fuel"=>0,"ma"=>0,"municion"=>0,"masa"=>0,"energia"=>0,"tiempo"=>0,"mantenimiento"=>0,"defensa"=>0,"ataque"=>0,"velocidad"=>0,"carga"=>0,"cargaPequeña"=>0,"cargaMediana"=>0,"cargaGrande"=>0,"cargaEnorme"=>0,"cargaMega"=>0 );
+        $costesMisMejoras=array("mineral"=>0,"cristal"=>0,"gas"=>0,"plastico"=>0,"ceramica"=>0,"liquido"=>0,"micros"=>0,"personal"=>0,"fuel"=>0,"ma"=>0,"municion"=>0,"masa"=>0,"energia"=>0,"tiempo"=>0,"mantenimiento"=>0,"defensa"=>0,"ataque"=>0,"velocidad"=>0,"carga"=>0,"cargaPequeña"=>0,"cargaMediana"=>0,"cargaGrande"=>0,"cargaEnorme"=>0,"cargaMega"=>0 );
+        $costesMisCargas=array("mineral"=>0,"cristal"=>0,"gas"=>0,"plastico"=>0,"ceramica"=>0,"liquido"=>0,"micros"=>0,"personal"=>0,"fuel"=>0,"ma"=>0,"municion"=>0,"masa"=>0,"energia"=>0,"tiempo"=>0,"mantenimiento"=>0,"defensa"=>0,"ataque"=>0,"velocidad"=>0,"carga"=>0,"cargaPequeña"=>0,"cargaMediana"=>0,"cargaGrande"=>0,"cargaEnorme"=>0,"cargaMega"=>0 );
+        $costesMisArmas=array("mineral"=>0,"cristal"=>0,"gas"=>0,"plastico"=>0,"ceramica"=>0,"liquido"=>0,"micros"=>0,"personal"=>0,"fuel"=>0,"ma"=>0,"municion"=>0,"masa"=>0,"energia"=>0,"tiempo"=>0,"mantenimiento"=>0,"defensa"=>0,"ataque"=>0,"velocidad"=>0,"carga"=>0,"cargaPequeña"=>0,"cargaMediana"=>0,"cargaGrande"=>0,"cargaEnorme"=>0,"cargaMega"=>0 );
+        $costesMisBlindajes=array("mineral"=>0,"cristal"=>0,"gas"=>0,"plastico"=>0,"ceramica"=>0,"liquido"=>0,"micros"=>0,"personal"=>0,"fuel"=>0,"ma"=>0,"municion"=>0,"masa"=>0,"energia"=>0,"tiempo"=>0,"mantenimiento"=>0,"defensa"=>0,"ataque"=>0,"velocidad"=>0,"carga"=>0,"cargaPequeña"=>0,"cargaMediana"=>0,"cargaGrande"=>0,"cargaEnorme"=>0,"cargaMega"=>0 );
 
-        $armasPesadas=[];
-        for($n=0;$n<$cantidadCPesadas;$n++){ array_push($armasPesadas,0);}
+        // comprobando que tengo el fuselaje
+        if(empty( $jugadorActual->fuselajes->where('id',$idFuselaje)->first() )) {$correcto=false;};
 
-        $armasInsertadas=[];
-        for($n=0;$n<$cantidadCInsertadas;$n++){ array_push($armasInsertadas,0);}
+        /// comprobando sliders
+        //energia
+        $porcentT=0;
+        foreach($energiaArmas as $valor){$porcentT+=$valor; }
+        if ($porcentT>1){$correcto=false;};
 
-        $armasMisiles=[];
-        for($n=0;$n<$cantidadCMisiles;$n++){ array_push($armasMisiles,0);}
+        //alcance
+        foreach($armasAlcance as $valor){
+            if ($valor<-7){$correcto=false;};
+            if ($valor>7){$correcto=false;};
+        }
+        foreach($armasDispersion as $valor){
+            if ($valor<-7){$correcto=false;};
+            if ($valor>7){$correcto=false;};
+        }
 
-        $armasBombas=[];
-        for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
+        $empujeT=0;
+
+        $empuje=[
+            '59'=>100,
+            '60'=>300000,
+            '61'=>1000000,
+            '62'=>1000000,
+            '63'=>1400000,
+            '64'=>2000000,
+        ];
+
+        $prueba="nada";
+
+        if ($correcto){
+            $razonCorrecto=""; //que salio mal
+
+            // añado energia
+            $elemento='motor';
+            $genera='energia';
+            $misCostes=$costesMisMotores;
+            $multiplicador=$multiplicadorMotores;
+            foreach( $armasTengo[$elemento] as $e) {
+                if ($e>0 and $correcto>0){
+
+                    //$obj=array_search($e,$armas);
+                    $obj=$armas->where('codigo',$e)->first();
+                    $factorFuselaje=$diseño->cualidades->$genera;
+                    $costesVacio=["mineral"=>0, "cristal"=>0, "gas"=>0, "plastico"=>0, "ceramica"=>0, "liquido"=>0, "micros"=>0, "personal"=>0, "fuel"=>0, "ma"=>0, "municion"=>0, "masa"=>0, "energia"=>0, "tiempo"=>0, "mantenimiento"=>0, "defensa"=>0, "ataque"=>0, "velocidad"=>0, "carga"=>0, "cargaPequeña"=>0, "cargaMediana"=>0, "cargaGrande"=>0, "cargaEnorme"=>0, "cargaMega"=>0,];
+
+                    //comprobando tengo la tecno necesaria
+                    $clase=$obj['clase'];
+                    $miNivelTecno= $investigaciones->where('codigo', $clase)->first()->nivel;
+                    if ($obj['niveltec']>$miNivelTecno ){
+                        $correcto=false;
+                        $razonCorrecto+="<br>Tecnologia demasiado baja: "+$clase+" ";
+                    };
+
+                    // sumo costes
+                    $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+                    $misCostes=sumaCostos($misCostes,$multiplicador,$costeobj);// sumo recursos basicos
+                    // sumo cualidades
+                    $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
+                    $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
+                    $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
+                    $costesVacio['fuel']=$costeobj['fuel']*$factorFuselaje;
+                    $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
+                    $empujeT+=$empuje[$obj['codigo']]*$multiplicador*$cualidadesFuselaje['velocidad'];
+                    $costesMisMotores=$misCostes;
+                }
+            }
+
+            // añado blindaje
+            $elemento='blindaje';
+            $genera='defensa';
+            $misCostes=$costesMisBlindajes;
+            $multiplicador=$multiplicadorblindajes;
+            foreach( $armasTengo[$elemento] as $e) {
+                if ($e>0 and $correcto>0){
+
+                    //$obj=array_search($e,$armas);
+                    $obj=$armas->where('codigo',$e)->first();
+                    $factorFuselaje=$diseño->cualidades->$genera;
+                    $costesVacio=["mineral"=>0, "cristal"=>0, "gas"=>0, "plastico"=>0, "ceramica"=>0, "liquido"=>0, "micros"=>0, "personal"=>0, "fuel"=>0, "ma"=>0, "municion"=>0, "masa"=>0, "energia"=>0, "tiempo"=>0, "mantenimiento"=>0, "defensa"=>0, "ataque"=>0, "velocidad"=>0, "carga"=>0, "cargaPequeña"=>0, "cargaMediana"=>0, "cargaGrande"=>0, "cargaEnorme"=>0, "cargaMega"=>0,];
+
+                    //comprobando tengo la tecno necesaria
+                    $clase=$obj['clase'];
+                    $miNivelTecno= $investigaciones->where('codigo', $clase)->first()->nivel;
+                    if ($obj['niveltec']>$miNivelTecno ){
+                        $correcto=false;
+                        $razonCorrecto+="<br>Tecnologia demasiado baja: "+$clase+" ";
+                    };
+
+                    // sumo costes
+                    $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+                    $misCostes=sumaCostos($misCostes,$multiplicador,$costeobj);// sumo recursos basicos
+                    // sumo cualidades
+                    $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
+                    $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
+                    $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
+                    $costesVacio['energia']=$costeobj['fuel']*$factorFuselaje;
+                    $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
+                    $costesMisBlindajes=$misCostes;
+                }
+            }
+
+            //// bucle de cargas
+            for ($x=1;$x<6;$x++){
+                $genera='carga';
+                $misCostes=$costesMisCargas;
+
+                switch($x){
+                    case 1:
+                        $elemento='cargaPequeña';
+                        $multiplicador=$multiplicadorCargaPequeña;
+                        $factorFuselaje=1;
+                    break;
+                    case 2:
+                        $elemento='cargaMediana';
+                        $multiplicador=$multiplicadorCargaMedia;
+                        $factorFuselaje=1;
+                    break;
+                    case 3:
+                        $elemento='cargaGrande';
+                        $multiplicador=$multiplicadorCargaGrande;
+                        $factorFuselaje=1;
+                    break;
+                    case 4:
+                        $elemento='cargaEnorme';
+                        $multiplicador=$multiplicadorCargaEnorme;
+                        $factorFuselaje=1;
+                    break;
+                    case 5:
+                        $elemento='cargaMega';
+                        $multiplicador=$multiplicadorCargaMega;
+                        $factorFuselaje=1;
+                    break;
+                    default:
+                        $multiplicador=0;
+                };
+                $genera2=$elemento;
+
+                if ($multiplicador>0){
+                    foreach( $armasTengo[$elemento] as $e) {
+                        if ($e>0 and $correcto>0){
+
+                            //$obj=array_search($e,$armas);
+                            $obj=$armas->where('codigo',$e)->first();
+                            $factorFuselaje=$diseño->cualidades->$genera;
+                            $costesVacio=["mineral"=>0, "cristal"=>0, "gas"=>0, "plastico"=>0, "ceramica"=>0, "liquido"=>0, "micros"=>0, "personal"=>0, "fuel"=>0, "ma"=>0, "municion"=>0, "masa"=>0, "energia"=>0, "tiempo"=>0, "mantenimiento"=>0, "defensa"=>0, "ataque"=>0, "velocidad"=>0, "carga"=>0, "cargaPequeña"=>0, "cargaMediana"=>0, "cargaGrande"=>0, "cargaEnorme"=>0, "cargaMega"=>0,];
+
+                            //comprobando tengo la tecno necesaria
+                            $clase=$obj['clase'];
+                            $miNivelTecno= $investigaciones->where('codigo', $clase)->first()->nivel;
+                            if ($obj['niveltec']>$miNivelTecno ){
+                                $correcto=false;
+                                $razonCorrecto+="<br>Tecnologia demasiado baja: "+$clase+" ";
+                            };
+
+                            // sumo costes
+                            $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+                            $misCostes=sumaCostos($misCostes,$multiplicador,$costeobj);// sumo recursos basicos
+                            // sumo cualidades
+                            $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
+                            $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
+                            $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
+                            $costesVacio['energia']=$costeobj['fuel']*$factorFuselaje;
+                            if ($genera2!=""){$costesVacio[$genera2]=$costeobj[$genera2];} //hangares
+                            $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
+                            $costesMisCargas=$misCostes;
+                        }
+                    }
+                }
+            }
 
 
 
-        $bool = count($armas['motor']);
 
-        return compact('bool');
+
+        }
+
+        $prueba = $costesMisCargas;
+
+        return compact('prueba');
 
     }
 }
