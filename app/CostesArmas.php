@@ -1115,7 +1115,7 @@ class CostesArmas extends Model
 /////////////////////////////  ARMAS   //////////////////////////////////////////////////////
 
         // costos de armas son por cada 1 de energia
-        $factorPesoArmas=30;
+        $factorPesoArmas=80;
 
         $coste =new CostesArmas();
         $coste->armas_codigo="11"; //arma ligera energia
