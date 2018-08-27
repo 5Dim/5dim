@@ -15,6 +15,8 @@ use App\Construcciones;
 use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
+use App\Alianzas;
+use App\Jugadores;
 use Auth;
 use App\Investigaciones;
 use App\CostesInvestigaciones;
@@ -24,16 +26,31 @@ class InvestigacionController extends Controller
 
     public function index ($tab="")
     {
+        //Buscamos el jugador actual
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+        //Listado de plantas propios y de alianza
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+
+        $jugadorAlianza = new Jugadores();
+        $jugadorAlianza->id = 0;
+        $planetasAlianza = null;
+
+        //Comprobamos si el usuario tiene alianza para devolver los planetas
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
+        }
+
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
             return redirect('/planeta');
         }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->user != Auth::user()) {
+        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
             return redirect('/planeta');
         }
         EnConstrucciones::terminarColaConstrucciones();
-        EnInvestigaciones::terminarColaInvestigaciones();
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
@@ -96,7 +113,9 @@ class InvestigacionController extends Controller
             ['codigo','laboratorio'],
         ])->first();
 
-        return view('juego.investigaciones.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual','velInvest','dependencias', 'colaInvestigacion', 'investigaciones','nivelLaboratorio', 'tab', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'factoresIndustrias'));
+        return view('juego.investigaciones.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
+        'velInvest', 'dependencias', 'colaInvestigacion', 'investigaciones', 'nivelLaboratorio', 'tab', 'nivelImperio', 'nivelEnsamblajeNaves',
+        'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'factoresIndustrias', 'planetasJugador', 'planetasAlianza'));
     }
 
     //Acceso a subir nivel de construccion

@@ -19,10 +19,10 @@ use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
 use App\Investigaciones;
-use Auth;
-use App\Jugadores;
-use App\Tiendas;
 use App\Alianzas;
+use App\Jugadores;
+use Auth;
+use App\Tiendas;
 
 class JuegoController extends Controller
 {
@@ -65,9 +65,23 @@ class JuegoController extends Controller
         $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
         $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
         $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+
+        //Comprobar si el jugador tiene alianza
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+        //Listado de plantas propios y de alianza
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+        $planetasAlianza = null;
+
+        //Comprobamos si el usuario tiene alianza para devolver los planetas
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
+        }
         //Fin recursos
 
-        return view('juego.layouts.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas'));
+        return view('juego.layouts.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves',
+        'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'planetasJugador', 'planetasAlianza'));
     }
 
     public function estadisticas()
@@ -123,6 +137,19 @@ class JuegoController extends Controller
         array_push($factoresIndustrias, $factorMa);
         $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
         array_push($factoresIndustrias, $factorMunicion);
+
+        //Comprobar si el jugador tiene alianza
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+        //Listado de plantas propios y de alianza
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+        $planetasAlianza = null;
+
+        //Comprobamos si el usuario tiene alianza para devolver los planetas
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
+        }
         //Fin recursos
 
         //Actualizamos estadisticas
@@ -137,17 +164,35 @@ class JuegoController extends Controller
         //Devolvemos todas las alianzas
         $alianzas = Alianzas::all();
 
-        return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores', 'alianzas'));
+        return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
+        'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
+        'jugadores', 'alianzas', 'planetasJugador', 'planetasAlianza'));
     }
 
     public function tienda()
     {
+        //Buscamos el jugador actual
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+        //Listado de plantas propios y de alianza
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+
+        $jugadorAlianza = new Jugadores();
+        $jugadorAlianza->id = 0;
+        $planetasAlianza = null;
+
+        //Comprobamos si el usuario tiene alianza para devolver los planetas
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
+        }
+
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
             return redirect('/planeta');
         }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->user != Auth::user()) {
+        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
             return redirect('/planeta');
         }
         EnConstrucciones::terminarColaConstrucciones();
@@ -197,7 +242,9 @@ class JuegoController extends Controller
 
         $articulos = Tiendas::all();
 
-        return view('juego.tienda.tienda', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'articulos'));
+        return view('juego.tienda.tienda', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
+        'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
+        'articulos', 'planetasJugador', 'planetasAlianza'));
     }
 
     //Cambiar de planeta
@@ -214,13 +261,22 @@ class JuegoController extends Controller
     //Cambiar de planeta
     public function planeta($planeta = false)
     {
+
+        //Comprobar si el jugador tiene alianza
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+        //Comprobamos si el usuario tiene alianza para devolver los planetas
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+        }
+
         if (!empty(session()->get('jugadores_id'))) {
             //En que planeta estamos
             if (!$planeta) {
                 session()->put('planetas_id', Auth::user()->jugadores->where('id', session()->get('jugadores_id'))->first()->planetas[0]->id);
             }else{
                 $planetaBusqueda = Planetas::find($planeta);
-                if ($planetaBusqueda->jugadores->id == session()->get('jugadores_id')) {
+                if ($planetaBusqueda->jugadores->id == $jugadorActual->id or $planetaBusqueda->jugadores->id == $jugadorAlianza->id) {
                     session()->put('planetas_id', $planeta);
                 }else{
                     return redirect('/planeta');
