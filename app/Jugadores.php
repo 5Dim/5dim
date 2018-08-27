@@ -36,6 +36,11 @@ class Jugadores extends Model
         return $this->hasMany(MensajesIntervinientes::class, 'receptor');
     }
 
+    public function alianzas ()
+    {
+        return $this->belongsTo(Alianzas::class);
+    }
+
     public static function calcularPuntos ($idPlaneta)
     {
         $puntosJugador = 0;
