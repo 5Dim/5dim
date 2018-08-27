@@ -11,25 +11,16 @@ class Construcciones extends Model
     // No queremos timestamps en este modelo
     public $timestamps = false;
 
-    /**
-     * Relacion de los construcciones con el planeta
-     */
     public function planetas ()
     {
         return $this->belongsTo(Planetas::class);
     }
 
-    /**
-     * Relacion de los planetas con los usuarios
-     */
     public function enConstrucciones ()
     {
         return $this->hasMany(EnConstrucciones::class);
     }
 
-    /**
-     * Relacion de los construcciones con el coste
-     */
     public function coste ()
     {
         return $this->hasOne(CostesConstrucciones::class);
