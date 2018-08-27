@@ -15,7 +15,18 @@ class CreateDañosDiseñosTable extends Migration
     {
         Schema::create('daños_diseños', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('investigacion');
+            $table->string('fila');
+            $table->integer('distancia0');
+            $table->integer('distancia1');
+            $table->integer('distancia2');
+            $table->integer('distancia3');
+            $table->integer('distancia4');
+            $table->integer('distancia5');
+            $table->integer('distancia6');
+            $table->integer('distancia7');
+
+        // $table->timestamps();
         });
     }
 

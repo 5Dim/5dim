@@ -13,7 +13,10 @@ class AddDiseñosToMejorasDiseños extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('mejoras_diseños', function (Blueprint $table) {
+            $table->integer('diseños_id')->unsigned();
+            $table->foreign('diseños_id')->references('id')->on('diseños');
+        });
     }
 
     /**
@@ -23,6 +26,9 @@ class AddDiseñosToMejorasDiseños extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('mejoras_diseños', function (Blueprint $table) {
+            $table->dropforeign(['diseños_id']);
+            $table->dropColumn('diseños_id');
+        });
     }
 }

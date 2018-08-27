@@ -15,7 +15,18 @@ class CreateMejorasDiseñosTable extends Migration
     {
         Schema::create('mejoras_diseños', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('velocidad');
+            $table->integer('carga');
+            $table->integer('hangar');
+            $table->integer('fuel');
+            $table->integer('defensa');
+            $table->integer('mantenimiento');
+            $table->integer('tiempo');
+            $table->integer('cazas');
+            $table->integer('ligeras');
+            $table->integer('medias');
+            $table->integer('pesadas');
+            $table->integer('defensas');
         });
     }
 

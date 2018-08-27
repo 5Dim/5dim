@@ -13,7 +13,10 @@ class AddJugadoresToDiseños extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('diseños', function (Blueprint $table) {
+            $table->integer('jugadores_id')->unsigned();
+            $table->foreign('jugadores_id')->references('id')->on('jugadores');
+        });
     }
 
     /**
@@ -23,6 +26,9 @@ class AddJugadoresToDiseños extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('diseños', function (Blueprint $table) {
+            $table->dropforeign(['jugadores_id']);
+            $table->dropColumn('jugadores_id');
+        });
     }
 }

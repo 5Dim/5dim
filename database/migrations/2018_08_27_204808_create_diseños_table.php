@@ -15,6 +15,9 @@ class CreateDiseñosTable extends Migration
     {
         Schema::create('diseños', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->integer('posicion');
             $table->timestamps();
         });
     }

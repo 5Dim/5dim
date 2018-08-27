@@ -15,7 +15,15 @@ class CreateCostesDiseñosTable extends Migration
     {
         Schema::create('costes_diseños', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('mineral');
+            $table->integer('cristal');
+            $table->integer('gas');
+            $table->integer('plastico');
+            $table->integer('ceramica');
+            $table->integer('liquido');
+            $table->integer('micros');
+            $table->integer('ma');
+            $table->integer('personal');
         });
     }
 
