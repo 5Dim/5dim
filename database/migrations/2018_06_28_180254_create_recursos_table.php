@@ -15,18 +15,18 @@ class CreateRecursosTable extends Migration
     {
         Schema::create('recursos', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('personal', 12, 2);
-            $table->decimal('mineral', 12, 2);
-            $table->decimal('cristal', 12, 2);
-            $table->decimal('gas', 12, 2);
-            $table->decimal('plastico', 12, 2);
-            $table->decimal('ceramica', 12, 2);
-            $table->decimal('liquido', 12, 2);
-            $table->decimal('micros', 12, 2);
-            $table->decimal('fuel', 12, 2);
-            $table->decimal('ma', 12, 2);
-            $table->decimal('municion', 12, 2);
-            $table->decimal('creditos', 12, 2);
+            $table->decimal('personal', 14, 2);
+            $table->decimal('mineral', 14, 2);
+            $table->decimal('cristal', 14, 2);
+            $table->decimal('gas', 14, 2);
+            $table->decimal('plastico', 14, 2);
+            $table->decimal('ceramica', 14, 2);
+            $table->decimal('liquido', 14, 2);
+            $table->decimal('micros', 14, 2);
+            $table->decimal('fuel', 14, 2);
+            $table->decimal('ma', 14, 2);
+            $table->decimal('municion', 14, 2);
+            $table->decimal('creditos', 14, 2);
             $table->timestamps();
         });
     }

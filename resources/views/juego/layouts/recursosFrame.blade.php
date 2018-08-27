@@ -331,12 +331,17 @@
                                     {{ $planetaActual->estrella }}x{{ $planetaActual->orbita }} {{ $planetaActual->nombre }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    @php
-                                        $planetas = Auth::user()->jugadores[0]->planetas;
-                                    @endphp
-                                    @foreach ($planetas as $planeta)
+                                    @foreach ($planetasJugador as $planeta)
                                         <a class="dropdown-item" href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }} {{ $planeta->nombre }}</a>
                                     @endforeach
+                                    @if (!empty($planetasAlianza))
+                                        @foreach ($planetasAlianza as $planeta)
+                                            @if ($loop->iteration == 1)
+                                                <div class="dropdown-divider"></div>
+                                            @endif
+                                            <a class="dropdown-item text-primary" href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }} {{ $planeta->nombre }}</a>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </th>

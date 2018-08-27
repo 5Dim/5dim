@@ -16,6 +16,8 @@ use App\Investigaciones;
 use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
+use App\Alianzas;
+use App\Jugadores;
 use Auth;
 
 class ConstruccionController extends Controller
@@ -23,12 +25,28 @@ class ConstruccionController extends Controller
     //Acceso a construcciones
     public function index($tab="")
     {
+        //Buscamos el jugador actual
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+        //Listado de plantas propios y de alianza
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+
+        $jugadorAlianza = new Jugadores();
+        $jugadorAlianza->id = 0;
+        $planetasAlianza = null;
+
+        //Comprobamos si el usuario tiene alianza para devolver los planetas
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
+        }
+
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
             return redirect('/planeta');
         }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->user != Auth::user()) {
+        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
             return redirect('/planeta');
         }
         EnConstrucciones::terminarColaConstrucciones();
@@ -76,7 +94,6 @@ class ConstruccionController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        $sumImperio =
         //Constantes de construccion
         $CConstantes=Constantes::where('tipo','construccion')->get();
 
@@ -90,7 +107,10 @@ class ConstruccionController extends Controller
         //session()->put('tabConstruccion', $tab);
 
         //Devolvemos la vista con todas las variables
-        return view('juego.construcciones.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones', 'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias'));
+        return view('juego.construcciones.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones',
+        'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual', 'nivelImperio',
+        'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
+        'planetasJugador', 'planetasAlianza'));
     }
 
     //Acceso a subir nivel de construccion

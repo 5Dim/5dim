@@ -15,22 +15,39 @@ use App\EnConstrucciones;
 use App\EnInvestigaciones;
 use App\CostesConstrucciones;
 use App\Investigaciones;
+use App\Alianzas;
+use App\Jugadores;
 use Auth;
 use App\Mensajes;
 use App\MensajesIntervinientes;
-use App\Jugadores;
 
 class MensajesController extends Controller
 {
 
     public function index ()
     {
+        //Buscamos el jugador actual
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+        //Listado de plantas propios y de alianza
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+
+        $jugadorAlianza = new Jugadores();
+        $jugadorAlianza->id = 0;
+        $planetasAlianza = null;
+
+        //Comprobamos si el usuario tiene alianza para devolver los planetas
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
+        }
+
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
             return redirect('/planeta');
         }
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->user != Auth::user()) {
+        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
             return redirect('/planeta');
         }
         EnConstrucciones::terminarColaConstrucciones();
@@ -87,7 +104,9 @@ class MensajesController extends Controller
         //Lista de mensajes enviados
         $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
 
-        return view('juego.mensajes.mensajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores', 'recibidos', 'enviados'));
+        return view('juego.mensajes.mensajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta',
+        'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones',
+        'factoresIndustrias', 'jugadores', 'recibidos', 'enviados', 'planetasJugador', 'planetasAlianza'));
     }
 
     public function enviarMensaje() {
