@@ -510,7 +510,7 @@ class DiseñoController extends Controller
                     $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
                     $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
                     $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
-                    $costesVacio['energia']=$costeobj['fuel']*$factorFuselaje;
+                    $costesVacio['energia']=$costeobj['energia']*$factorFuselaje;
                     $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
                     $costesMisBlindajes=$misCostes;
                 }
@@ -581,7 +581,7 @@ class DiseñoController extends Controller
                             $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
                             $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
                             $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
-                            $costesVacio['energia']=$costeobj['fuel']*$factorFuselaje;
+                            $costesVacio['energia']=$costeobj['energia']*$factorFuselaje;
                             if ($genera2!=""){$costesVacio[$genera2]=$costeobj[$genera2];} //hangares
                             $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
                             $costesMisCargas=$misCostes;
@@ -619,14 +619,7 @@ class DiseñoController extends Controller
             'armasBomba'
         ];
 
-        $energiaArmas=[
-            'armasLigera'=>0,
-            'armasMedia'=>0,
-            'armasPesada'=>0,
-            'armasInsertada'=>0,
-            'armasMisil'=>0,
-            'armasBomba'=>0
-        ];
+
 
         $energiaUsada=0;
 
@@ -658,6 +651,8 @@ class DiseñoController extends Controller
                             $razonCorrecto+="<br>Tecnologia demasiado baja: "+$clase+" ";
                         };
 
+                        $cantidadArmas=$multiplicadorArmas[$elemento];
+                        $estedano=$energiaArmas[$elemento]*$energiaT*$energiaXarma/$costeobj['energia']*$cantidadArmas;
                         // sumo costes
                         $costeobj=$costesArmas->where('armas_codigo',$e)->first();
                         $misCostes=sumaCostos($misCostes,$multiplicador,$costeobj);// sumo recursos basicos
@@ -665,7 +660,7 @@ class DiseñoController extends Controller
                         $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
                         $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
                         $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
-                        $costesVacio['energia']=$costeobj['fuel']*$factorFuselaje;
+                        $costesVacio['energia']=$costeobj['energia']*$factorFuselaje;
                         $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
                         $costesMisArmas=$misCostes;
 
