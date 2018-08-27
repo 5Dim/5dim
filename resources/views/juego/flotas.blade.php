@@ -7,7 +7,7 @@
                 <div id="cuadro1" class="table-responsive">
                     <table class="table table-borderless table-sm text-center" style="margin-top: 5px !important">
                         <tr>
-                            <th colspan="13" class="anchofijo text-success">
+                            <th colspan="15" class="anchofijo text-success">
                                 <big>
                                     Naves
                                 </big>
@@ -213,7 +213,7 @@
                     </table>
                     <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
                         <tr>
-                            <th colspan="8" class="text-success">
+                            <th colspan="9" class="text-success">
                                 <big>
                                     Resumen de naves
                                 </big>
