@@ -22,6 +22,7 @@ use App\Investigaciones;
 use Auth;
 use App\Jugadores;
 use App\Tiendas;
+use App\Alianzas;
 
 class JuegoController extends Controller
 {
@@ -133,7 +134,10 @@ class JuegoController extends Controller
                         ->orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion`"), 'desc')
                         ->get();
 
-        return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores'));
+        //Devolvemos todas las alianzas
+        $alianzas = Alianzas::all();
+
+        return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'jugadores', 'alianzas'));
     }
 
     public function tienda()
