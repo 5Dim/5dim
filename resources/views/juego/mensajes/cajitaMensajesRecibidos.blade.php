@@ -3,18 +3,18 @@
             <div id="cuadro1" class="table-responsive">
                 <table class="table table-borderless borderless table-sm text-center anchofijo" >
                     <tr>
-                        <td colspan="1" class="text-success text-center borderless align-middle">
-                            <a class="btn btn-link text-success" data-toggle="collapse" href="" role="button" aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}" aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
+                        <td colspan="1" class="text-{{ $clase }} text-center borderless align-middle">
+                            <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button" aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}" aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
                                 <big>{{ $mensaje->jugadores->nombre }}<big>
                             </a>
                         </td>
-                        <td colspan="8" class="text-success text-center borderless align-middle">
-                            <a class="btn btn-link text-success" data-toggle="collapse" href="" role="button" aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}" aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
+                        <td colspan="8" class="text-{{ $clase }} text-center borderless align-middle">
+                            <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button" aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}" aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
                                 <big>Asunto: {{ $mensaje->asunto }}<big>
                             </a>
                         </td>
-                        <td colspan="1" class="text-success text-center borderless align-middle">
-                            <a class="btn btn-link text-success" data-toggle="collapse" href="" role="button" aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}" aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
+                        <td colspan="1" class="text-{{ $clase }} text-center borderless align-middle">
+                            <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button" aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}" aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
                                 <big>{{ $mensaje->created_at }}<big>
                             </a>
                         </td>

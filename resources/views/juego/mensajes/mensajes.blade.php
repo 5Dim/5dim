@@ -38,16 +38,32 @@
                 <div class="tab-pane fade show active" id="recibidos" role="tabpanel" aria-labelledby="recibidos-tab">
                     @foreach ($recibidos as $intervinientes)
                         @if ($intervinientes->mensajes->categoria == "recibidos")
+                            @php
+                                if ($intervinientes->receptor == session()->get('jugadores_id')) {
+                                    $clase = 'success';
+                                }else{
+                                    $clase = 'info';
+                                }
+                            @endphp
                             @include('juego.mensajes.cajitaMensajesRecibidos', [
                                 'mensaje' => $intervinientes->mensajes,
+                                'clase' =>$clase,
                             ])
                         @endif
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="enviados" role="tabpanel" aria-labelledby="enviados-tab">
                     @foreach ($enviados as $mensaje)
+                        @php
+                            if ($mensaje->emisor == session()->get('jugadores_id')) {
+                                $clase = 'success';
+                            }else{
+                                $clase = 'info';
+                            }
+                        @endphp
                         @include('juego.mensajes.cajitaMensajesEnviados', [
                             'mensaje' => $mensaje,
+                                'clase' =>$clase,
                         ])
                     @endforeach
                 </div>
