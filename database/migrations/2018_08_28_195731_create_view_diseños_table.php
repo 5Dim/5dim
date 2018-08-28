@@ -13,8 +13,10 @@ class CreateViewDiseñosTable extends Migration
      */
     public function up()
     {
+        DB::statement("DROP VIEW view_diseños");
+
         DB::statement("CREATE VIEW view_diseños AS
-                        SELECT *
+                        SELECT *,i.id*2 as cosa
 
                         FROM investigaciones AS i");
     }
