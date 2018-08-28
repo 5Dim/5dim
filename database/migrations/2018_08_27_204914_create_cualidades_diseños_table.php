@@ -20,6 +20,7 @@ class CreateCualidadesDiseñosTable extends Migration
             $table->string('armasAlcance');
             $table->string('armasDispersion');
 
+
         });
     }
 

@@ -13,6 +13,8 @@ use App\Fuselajes;
 use App\Armas;
 use App\CostesArmas;
 use App\Tiendas;
+use App\Diseños;
+use App\CostesDiseños;
 
 class DatosMaestrosController extends Controller
 {
@@ -52,6 +54,12 @@ class DatosMaestrosController extends Controller
 
         $tiendas=new Tiendas();
         $tiendas=$tiendas->generarDatosTiendas();
+
+        $diseños=new Diseños();
+        $diseños=$diseños->generarDatosDiseños();
+
+        $costesDiseños=new CostesDiseños();
+        $costesDiseños=$costesDiseños->generarDatosCostesDiseños();
 
     }
 }

@@ -709,7 +709,13 @@ class DiseñoController extends Controller
         }
 
 
-
+    /*
+        $interviniente = new MensajesIntervinientes();
+        $interviniente->receptor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
+        $interviniente->leido = false;
+        $interviniente->mensajes_id = $mensaje->id;
+        $interviniente->save();
+        */
 
 
     }

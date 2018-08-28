@@ -22,8 +22,23 @@ class CreateCostesDiseñosTable extends Migration
             $table->integer('ceramica');
             $table->integer('liquido');
             $table->integer('micros');
+            $table->integer('fuel');
             $table->integer('ma');
+            $table->integer('municion');
             $table->integer('personal');
+            $table->integer('mantenimiento');
+            $table->integer('masa');
+            $table->integer('energia');
+            $table->integer('defensa');
+            $table->integer('ataque');
+            $table->integer('tiempo');
+            $table->integer('velocidad');
+            $table->integer('carga');
+            $table->integer('cargaPequeña');
+            $table->integer('cargaMediana');
+            $table->integer('cargaGrande');
+            $table->integer('cargaEnorme');
+            $table->integer('cargaMega');
         });
     }
 
