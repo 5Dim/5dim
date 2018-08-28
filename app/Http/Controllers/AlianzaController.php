@@ -19,6 +19,9 @@ use App\Investigaciones;
 use App\Alianzas;
 use App\Jugadores;
 use Auth;
+use App\SolicitudesAlianzas;
+use App\Mensajes;
+use App\MensajesIntervinientes;
 
 class AlianzaController extends Controller
 {
@@ -104,6 +107,33 @@ class AlianzaController extends Controller
             return view('juego.alianza.alianza', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves',
             'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'alianzas', 'planetasJugador', 'planetasAlianza'));
         }
+    }
+
+    public function solicitudAlianza ()
+    {
+        $alianza = Alianzas::find(request()->input('listaAlianzas'));
+        $cuerpo = request()->input('solicitud');
+
+        $solicitud = new SolicitudesAlianzas();
+        $solicitud->solicitud = $cuerpo;
+        $solicitud->alianzas_id = $alianza->id;
+        $solicitud->jugadores_id = session()->get('jugadores_id');
+        $solicitud->save();
+
+        $mensaje = new Mensajes();
+        $mensaje->asunto = "Nueva solicitud de acceso a la alianza: " . Jugadores::find(session()->get('jugadores_id'))->nombre;
+        $mensaje->mensaje = "<p>El jugador " . Jugadores::find(session()->get('jugadores_id'))->nombre . " solicita unirse a nuestra alianza</p>";
+        $mensaje->categoria = "recibidos";
+        $mensaje->emisor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
+        $mensaje->save();
+
+        $interviniente = new MensajesIntervinientes();
+        $interviniente->receptor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
+        $interviniente->leido = false;
+        $interviniente->mensajes_id = $mensaje->id;
+        $interviniente->save();
+
+        return redirect('/juego/alianza');
     }
 
     public function generarAlianza ()

@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td id="mensajeRecibido{{ $mensaje->id }}1" rowspan="4" class="anchofijo text-warning borderless collapse mensajeRecibido{{ $mensaje->id }}">
-                            <img class="rounded" src="{{ asset('img/fotos naves/skin1/naveMT32.jpg') }}" width="180" height="119">
+                            <img class="rounded" src="{{ $mensaje->jugadores->avatar }}" width="180" height="119">
                         </td>
                         <td id="mensajeRecibido{{ $mensaje->id }}2" rowspan="4" colspan="9" class="anchofijo text-light borderless collapse mensajeRecibido{{ $mensaje->id }} text-left">
                             {!! $mensaje->mensaje !!}

@@ -17,29 +17,37 @@
             <div class="tab-pane fade show active" id="buscar" role="tabpanel" aria-labelledby="buscar-tab">
                 <div class="col-12 rounded cajita">
                     <div id="cuadro1" class="table-responsive">
-                        <table class="table table-borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
-                            <tr>
-                                <th colspan="2" class="anchofijo text-success borderless">
-                                    <big>
-                                        Buscar alianza
-                                    </big>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td class="anchofijo text-secondary ">
-                                    <select name="listaAlianzas" id="listaAlianzas" class="form-control">
-                                        @foreach ($alianzas as $alianza)
-                                            <option value="{{$alianza->id}}">[{{ $alianza->tag }}] {{ $alianza->nombre }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td class="anchofijo text-secondary ">
-                                    <button type="submit" class="btn btn-outline-success btn-block">
-                                        <i class="fa fa-check-double"></i> Enviar solicitud
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
+                        <form method="POST" action="{{ url('juego/solicitudAlianza') }}" style="margin: 10px;">
+                            @csrf
+                            <table class="table table-borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
+                                <tr>
+                                    <th colspan="2" class="anchofijo text-success borderless">
+                                        <big>
+                                            Buscar alianza
+                                        </big>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="anchofijo text-secondary ">
+                                        <select name="listaAlianzas" id="listaAlianzas" class="form-control">
+                                            @foreach ($alianzas as $alianza)
+                                                <option value="{{$alianza->id}}">[{{ $alianza->tag }}] {{ $alianza->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td class="anchofijo text-secondary ">
+                                        <button type="submit" class="btn btn-outline-success btn-block">
+                                            <i class="fa fa-check-double"></i> Enviar solicitud
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="anchofijo text-secondary ">
+                                        <textarea class="ckeditor" name="solicitud" id="solicitud">Mensaje de solicitud</textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
                     </div>
                 </div>
             </div>

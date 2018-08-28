@@ -8,7 +8,7 @@ class Mensajes extends Model
 {
     public function jugadores ()
     {
-        return $this->belongsTo(Jugadores::class, 'id');
+        return $this->belongsTo(Jugadores::class, 'emisor');
     }
 
     public function intervinientes ()
