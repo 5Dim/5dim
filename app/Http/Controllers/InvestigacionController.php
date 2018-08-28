@@ -26,6 +26,7 @@ class InvestigacionController extends Controller
 
     public function index ($tab="")
     {
+        //Inicio recursos
         //Buscamos el jugador actual
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
@@ -41,8 +42,6 @@ class InvestigacionController extends Controller
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
-
-        //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
             return redirect('/planeta');
         }
