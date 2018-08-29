@@ -86,7 +86,7 @@
                                     <td class="anchofijo text-secondary borderless">
                                         <div class="input-group mb-4 " style="padding-left: 5px !important; padding-right: 5px !important">
                                             <div class="input-group-append">
-                                                <span class="input-group-text bg-dark text-light">Estandarte (260x60px)</span>
+                                                <span class="input-group-text bg-dark text-light">Estandarte (60x60px)</span>
                                             </div>
                                             <input type="text" class="form-control input" name="estandarte" id="estandarte" placeholder="Imagen de url" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         </div>

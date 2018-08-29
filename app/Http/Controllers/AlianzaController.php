@@ -105,7 +105,7 @@ class AlianzaController extends Controller
             'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'alianzas', 'planetasJugador', 'planetasAlianza'));
         }else{
             return view('juego.alianza.alianza', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'alianzas', 'planetasJugador', 'planetasAlianza'));
+            'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'alianzas', 'planetasJugador', 'planetasAlianza', 'jugadorActual'));
         }
     }
 
