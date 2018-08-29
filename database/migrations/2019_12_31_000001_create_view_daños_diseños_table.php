@@ -13,7 +13,7 @@ class CreateViewDañosDiseñosTable extends Migration
      */
     public function up()
     {
-        DB::statement("DROP VIEW view_daños_diseños");
+        DB::statement("DROP VIEW IF EXISTS view_daños_diseños");
 
         DB::statement("CREATE VIEW view_daños_diseños AS
                         SELECT *,
