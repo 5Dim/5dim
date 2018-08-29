@@ -269,6 +269,22 @@ class DiseñoController extends Controller
             'cantidadCBombas'=>0
         ];
 
+        $cualidades=[
+            'masa'=>0,
+            'energia'=>0,
+            'tiempo'=>0,
+            'mantenimiento'=>0,
+            'ataque'=>0,
+            'defensa'=>0,
+            'velocidad'=>0,
+            'carga'=>0,
+            'cargaPequeña'=>0,
+            'cargaMediana'=>0,
+            'cargaGrande'=>0,
+            'cargaEnorme'=>0,
+            'cargaMega'=>0,
+        ];
+
 
         /// cantidades de cada elemento
 
@@ -386,6 +402,23 @@ class DiseñoController extends Controller
         $multiplicadorCargaMega=($diseño->cualidades->cargaMega/$cantidadCargaMega);
         }
 
+        $multiplicadorArmas=[
+            'armasLigera'=>$multiplicadorCLigeras,
+            'armasMedia'=>$multiplicadorCMedias,
+            'armasPesada'=>$multiplicadorCPesadas,
+            'armasInsertada'=>$multiplicadorCInsertadas,
+            'armasMisil'=>$multiplicadorCMisiles,
+            'armasBomba'=>$multiplicadorCBombas
+        ];
+
+        $tiposArmas=[
+            'armasLigera',
+            'armasMedia',
+            'armasPesada',
+            'armasInsertada',
+            'armasMisil',
+            'armasBomba'
+        ];
 
         $correcto=true; // comprobando ranuras
         $razonCorrecto=""; //que salio mal
@@ -421,23 +454,23 @@ class DiseñoController extends Controller
         }
 
         if ($cantidadCLigeras>0){
-            if (count($armasTengo['armasLigera'])!=$cantidadCLigeras){$correcto=false;$razonCorrecto="<br>cantidad de armasLigera ".count($armasTengo['armasLigera'])." != ".$cantidadCLigeras;};
-        }
+            if (count($armasTengo[$tiposArmas[0]])!=$cantidadCLigeras){$correcto=false;$razonCorrecto="<br>cantidad de armasLigera ".count($armasTengo['armasLigera'])." != ".$cantidadCLigeras;};
+        } else {$armasTengo[$tiposArmas[0]]=[0];}
         if ($cantidadCMedias>0){
-            if (count($armasTengo['armasMedia'])!=$cantidadCMedias){$correcto=false;$razonCorrecto="<br>cantidad de armasMedia ".count($armasTengo['armasMedia'])." != ".$cantidadCMedias;};
-        }
+            if (count($armasTengo[$tiposArmas[1]])!=$cantidadCMedias){$correcto=false;$razonCorrecto="<br>cantidad de armasMedia ".count($armasTengo['armasMedia'])." != ".$cantidadCMedias;};
+        } else {$armasTengo[$tiposArmas[1]]=[0];}
         if ($cantidadCPesadas>0){
-            if (count($armasTengo['armasPesada'])!=$cantidadCPesadas){$correcto=false;$razonCorrecto="<br>cantidad de armasPesada ".count($armasTengo['armasPesada'])." != ".$cantidadCPesadas;};
-        }
+            if (count($armasTengo[$tiposArmas[2]])!=$cantidadCPesadas){$correcto=false;$razonCorrecto="<br>cantidad de armasPesada ".count($armasTengo['armasPesada'])." != ".$cantidadCPesadas;};
+        } else {$armasTengo[$tiposArmas[2]]=[0];}
         if ($cantidadCInsertadas>0){
-            if (count($armasTengo['armasInsertada'])!=$cantidadCInsertadas){$correcto=false;$razonCorrecto="<br>cantidad de armasInsertada ".count($armasTengo['armasInsertada'])." != ".$cantidadCInsertadas;};
-        }
+            if (count($armasTengo[$tiposArmas[3]])!=$cantidadCInsertadas){$correcto=false;$razonCorrecto="<br>cantidad de armasInsertada ".count($armasTengo['armasInsertada'])." != ".$cantidadCInsertadas;};
+        } else {$armasTengo[$tiposArmas[3]]=[0];}
         if ($cantidadCMisiles>0){
-            if (count($armasTengo['armasMisil'])!=$cantidadCMisiles){$correcto=false;$razonCorrecto="<br>cantidad de armasMisil ".count($armasTengo['armasMisil'])." != ".$cantidadCMisiles;};
-        }
+            if (count($armasTengo[$tiposArmas[4]])!=$cantidadCMisiles){$correcto=false;$razonCorrecto="<br>cantidad de armasMisil ".count($armasTengo['armasMisil'])." != ".$cantidadCMisiles;};
+        } else {$armasTengo[$tiposArmas[4]]=[0];}
         if ($cantidadCBombas>0){
-            if (count($armasTengo['armasBomba'])!=$cantidadCBombas){$correcto=false;$razonCorrecto="<br>cantidad de armasBomba ".count($armasTengo['armasBomba'])." != ".$cantidadCBombas;};
-        }
+            if (count($armasTengo[$tiposArmas[5]])!=$cantidadCBombas){$correcto=false;$razonCorrecto="<br>cantidad de armasBomba ".count($armasTengo['armasBomba'])." != ".$cantidadCBombas;};
+        } else {$armasTengo[$tiposArmas[5]]=[0];}
 
         $cualidadesFuselaje=$diseño->cualidades;
 
@@ -634,7 +667,7 @@ class DiseñoController extends Controller
 
         $energiaT=$costesMisMotores['energia']+$costesMisBlindajes['energia']+$costesMisCargas['energia']+$cualidades['energia']; // energia para armas total
         $misCostes=$costesMisArmas;
-        $armasTengoT=$armasTengo['cantidadCLigeras']+$armasTengo['cantidadCMedias']+$armasarmasTengo['cantidadCPesadas']+$armasTengo['cantidadCInsertadas']+$armasTengo['cantidadCMisiles']+$armasTengo['cantidadCBombas'];
+        //$armasTengoT=count($armasTengo[$tiposArmas[0]])+count($armasTengo[$tiposArmas[1]])+$armasTengo[$tiposArmas[2]]+$armasTengo[$tiposArmas[3]]+$armasTengo[$tiposArmas[4]]+$armasTengo[$tiposArmas[5]];
 
 
 
@@ -649,14 +682,7 @@ class DiseñoController extends Controller
             'armasBomba'=>[4,2]
         ];
 
-        $tiposArmas=[
-            'armasLigera',
-            'armasMedia',
-            'armasPesada',
-            'armasInsertada',
-            'armasMisil',
-            'armasBomba'
-        ];
+
 
 
 
@@ -664,15 +690,27 @@ class DiseñoController extends Controller
 
         foreach( $tiposArmas as $elemento) {
 
+            $energiaArm=0;
+            $dañoarmasArm=0;
+            foreach( $armasTengo[$elemento] as $e) {
+                    if ($e>0){
+                        $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+                        $energiaArm+=$costeobj['energia'];
+                    }
+                }
+
+
             $costesVacio=["mineral"=>0, "cristal"=>0, "gas"=>0, "plastico"=>0, "ceramica"=>0, "liquido"=>0, "micros"=>0, "personal"=>0, "fuel"=>0, "ma"=>0, "municion"=>0, "masa"=>0, "energia"=>0, "tiempo"=>0, "mantenimiento"=>0, "defensa"=>0, "ataque"=>0, "velocidad"=>0, "carga"=>0, "cargaPequeña"=>0, "cargaMediana"=>0, "cargaGrande"=>0, "cargaEnorme"=>0, "cargaMega"=>0,];
             //$elemento='blindaje';
             //$genera='defensa';
             $misCostes=$costesMisArmas;
             $multiplicador=$multiplicadorblindajes;
 
+
             foreach( $armasTengo[$elemento] as $e) {
 
                     if ($e>0 and $correcto>0){
+                        $energiaXarma=1/$energiaArm;
                         $hayalgo=1;
                         $cteFoco=1;
                         $costoFoco=1;
