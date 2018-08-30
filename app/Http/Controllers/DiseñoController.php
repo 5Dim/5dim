@@ -184,7 +184,7 @@ class DiseñoController extends Controller
 
 
 
-    public function crearDiseño($id = false){
+    public function crearDiseño($id = false){  //////////////////////////////////////***************** */
 
         $armasTengo = ($_POST['armas']);
         $energiaArmas = ($_POST['energiaArmas']);
@@ -209,6 +209,42 @@ class DiseñoController extends Controller
             --$a;
             }
         return $a;
+        }
+
+
+
+        function sumaCostosMejoras($destinoCosto,$cte,$esteCosto,$sobrecosto){
+            $destinoCosto['mineral']+=($esteCosto['mineral']/100)*$cte *$sobrecosto['mineral'];
+            $destinoCosto['cristal']+=($esteCosto['cristal']/100)*$cte *$sobrecosto['cristal'];
+            $destinoCosto['gas']+=($esteCosto['gas']/100)*$cte *$sobrecosto['gas'];
+            $destinoCosto['plastico']+=($esteCosto['plastico']/100)*$cte *$sobrecosto['plastico'];
+            $destinoCosto['ceramica']+=($esteCosto['ceramica']/100)*$cte *$sobrecosto['ceramica'];
+            $destinoCosto['liquido']+=($esteCosto['liquido']/100)*$cte *$sobrecosto['liquido'];
+            $destinoCosto['micros']+=($esteCosto['micros']/100)*$cte *$sobrecosto['micros'];
+            $destinoCosto['personal']+=($esteCosto['personal']/100)*$cte *$sobrecosto['personal'];
+            $destinoCosto['masa']+=($esteCosto['masa']/100)*$cte *$sobrecosto['masa'];
+
+            return $destinoCosto;
+        }
+
+        function sumaCualidadesMejoras($destinoCosto,$cte,$esteCosto,$sobrecosto){
+            $destinoCosto['fuel']+=($esteCosto['fuel']/100)*$cte *$sobrecosto['fuel'];
+            $destinoCosto['municion']+=($esteCosto['municion']/100)*$cte *$sobrecosto['municion'];
+            $destinoCosto['masa']+=($esteCosto['masa']/100)*$cte *$sobrecosto['masa'];
+            $destinoCosto['energia']+=($esteCosto['energia']/100)*$cte *$sobrecosto['energia'];
+            $destinoCosto['tiempo']+=($esteCosto['tiempo']/100)*$cte *$sobrecosto['tiempo'];
+            $destinoCosto['mantenimiento']+=($esteCosto['mantenimiento']/100)*$cte *$sobrecosto['mantenimiento'];
+            $destinoCosto['defensa']+=($esteCosto['defensa']/100)*$cte *$sobrecosto['defensa'];
+            $destinoCosto['ataque']+=($esteCosto['ataque']/100)*$cte *$sobrecosto['ataque'];
+            $destinoCosto['velocidad']+=($esteCosto['velocidad']/100)*$cte *$sobrecosto['velocidad'];
+            $destinoCosto['carga']+=($esteCosto['carga']/100)*$cte *$sobrecosto['carga'];
+            $destinoCosto['cargaPequeña']+=($esteCosto['cargaPequeña']/100)*$cte *$sobrecosto['cargaPequeña'];
+            $destinoCosto['cargaMediana']+=($esteCosto['cargaMediana']/100)*$cte *$sobrecosto['cargaMediana'];
+            $destinoCosto['cargaGrande']+=($esteCosto['cargaGrande']/100)*$cte *$sobrecosto['cargaGrande'];
+            $destinoCosto['cargaEnorme']+=($esteCosto['cargaEnorme']/100)*$cte *$sobrecosto['cargaEnorme'];
+            $destinoCosto['cargaMega']+=($esteCosto['cargaMega']/100)*$cte *$sobrecosto['cargaMega'];
+
+            return $destinoCosto;
         }
 
 
@@ -270,6 +306,8 @@ class DiseñoController extends Controller
         ];
 
         $cualidades=[
+            'fuel'=>0,
+            'municion'=>0,
             'masa'=>0,
             'energia'=>0,
             'tiempo'=>0,
@@ -283,6 +321,19 @@ class DiseñoController extends Controller
             'cargaGrande'=>0,
             'cargaEnorme'=>0,
             'cargaMega'=>0,
+        ];
+
+
+        $costesDiseño=[
+            'mineral'=> $diseño->mineral,
+            'cristal'=> $diseño->cristal,
+            'gas'=> $diseño->gas,
+            'plastico'=> $diseño->plastico,
+            'ceramica'=> $diseño->ceramica,
+            'liquido'=> $diseño->liquido,
+            'micros'=> $diseño->micros,
+            'personal'=> $diseño->personal,
+            'masa'=> $diseño->cualidades->masa,
         ];
 
 
@@ -662,6 +713,157 @@ class DiseñoController extends Controller
                 }
             }
 
+
+
+
+///// mejoras
+$elemento='mejora';
+$genera='ia';
+$multiplicador=1;
+$misCostes=$costesMisMejoras;
+foreach( $armasTengo[$elemento] as $e) {
+    $costesVacio=['mineral'=>0, 'cristal'=>0, 'gas'=>0, 'plastico'=>0, 'ceramica'=>0, 'liquido'=>0, 'micros'=>0, 'personal'=>0, 'fuel'=>0, 'ma'=>0, 'municion'=>0, 'masa'=>0, 'energia'=>0, 'tiempo'=>0, 'mantenimiento'=>0, 'defensa'=>0, 'ataque'=>0, 'velocidad'=>0, 'carga'=>0, 'cargaPequeña'=>0, 'cargaMediana'=>0, 'cargaGrande'=>0, 'cargaEnorme'=>0, 'cargaMega'=>0];
+    $sobreCostes=['mineral'=>0, 'cristal'=>0, 'gas'=>0, 'plastico'=>0, 'ceramica'=>0, 'liquido'=>0, 'micros'=>0, 'personal'=>0, 'fuel'=>0, 'ma'=>0, 'municion'=>0, 'masa'=>0, 'energia'=>0, 'tiempo'=>0, 'mantenimiento'=>0, 'defensa'=>0, 'ataque'=>0, 'velocidad'=>0, 'carga'=>0, 'cargaPequeña'=>0, 'cargaMediana'=>0, 'cargaGrande'=>0, 'cargaEnorme'=>0, 'cargaMega'=>0];
+
+    $hazlo=0;
+    if ($e>0){
+        $obj=$armas->where('codigo',$e)->first();
+
+        switch ($obj['codigo']){
+
+        case 72: //escudos
+        $hazlo++;
+        $cte=1;
+            sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
+            sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
+        break;
+        case 75: //salvas
+        $hazlo++;
+        $cte=1;
+            sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+        break;
+        case 77: //standart
+        $hazlo++;
+        $cte=1;
+            sumaCostos($sobreCostes,$cte,$costesMisMotores);
+            sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
+            sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            sumaCostos($sobreCostes,$cte,$costesMisMejoras);
+
+            sumaCualidades($sobreCostes,$cte,$costesMisMotores);
+            sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
+            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+            sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
+        break;
+        case 74:
+        $hazlo++;
+        $cte=1;
+            sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+        break;
+        case 76: //aleaciones
+        $hazlo++;
+        $cte=1;
+            sumaCostos($sobreCostes,$cte,$costesMisMotores);
+            sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
+            sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            sumaCostos($sobreCostes,$cte,$costesMisMejoras);
+
+            sumaCualidades($sobreCostes,$cte,$costesMisMotores);
+            sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
+            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+            sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
+        break;
+        case 70: //compactador
+        case 78: //plegado
+        $hazlo++;
+        $cte=1;
+            sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+        break;
+        case 73: //prop maniobra
+        $hazlo++;
+        $cte=1;
+            sumaCostos($sobreCostes,$cte,$costesMisMotores);
+            sumaCualidades($sobreCostes,$cte,$costesMisMotores);
+        break;
+        case 74: //nanos
+        $hazlo++;
+        $cte=1;
+        sumaCostos($sobreCostes,$cte,$costesMisMotores);
+            sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
+            sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            sumaCostos($sobreCostes,$cte,$costesMisMejoras);
+
+            sumaCualidades($sobreCostes,$cte,$costesMisMotores);
+            sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
+            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+            sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
+        break;
+        case 73: //prop maniobra
+        $hazlo++;
+        $cte=1;
+            sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+        break;
+        case 71: //ctrol punteria
+            $ctrlPunteria++;
+        break;
+        case 79: //ariete
+            $ariete++;
+        break;
+        case 80:    // foco-caza
+            $danoFocos[0]+=1;
+        break;
+        case 81:    // foco-ligera
+            $danoFocos[1]+=1;
+        break;
+        case 82:    //foco-media
+            $danoFocos[2]+=1;
+        break;
+        case 83:    // foco pesada
+            $danoFocos[3]+=1;
+        break;
+        case 84:    // foco bombas
+            $danoFocos[4]+=1;
+        break;
+        //$hazlo++;
+        //$cte=1;
+        //  sumaCostos($sobreCostes,$cte,costesMisArmas);
+        // sumaCualidades($sobreCostes,$cte,costesMisArmas);
+        break;
+
+
+
+        }
+
+        if ($hazlo>0){
+
+            $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+
+        // sumaCostos($misCostes,$multiplicador,costeobj);// sumo recursos basicos
+            $cte=1;//lo que varia por nivel de tecno
+            $factorFuselaje=1;     // el factor que varia para cada fuselaje
+            $costesVacio[$genera]=$costeobj[$genera]*$cte*$factorFuselaje; //lo q mejora por esos niveles
+           // costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
+           // costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
+            //sumaCualidades($misCostes,$multiplicador,costesVacio);
+            $destinoCosto=sumaCostosMejoras($costesDiseño,$multiplicador,$costeobj,$sobreCostes);
+            $destinoCosto=sumaCualidadesMejoras($cualidades,$multiplicador,$costeobj,$sobreCostes);
+        }
+    }
+};
+
+$cteAriete=1;
+
+
         if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0){
         //// armas ///////
 
@@ -681,10 +883,6 @@ class DiseñoController extends Controller
             'armasMisil'=>[3,5],
             'armasBomba'=>[4,2]
         ];
-
-
-
-
 
         $energiaUsada=0;
 
