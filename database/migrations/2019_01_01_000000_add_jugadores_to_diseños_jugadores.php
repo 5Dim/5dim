@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddJugadoresToDiseños extends Migration
+class AddJugadoresToDiseñosJugadores extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddJugadoresToDiseños extends Migration
      */
     public function up()
     {
-        Schema::table('diseños', function (Blueprint $table) {
+        Schema::table('diseños_jugadores', function (Blueprint $table) {
             $table->integer('jugadores_id')->unsigned();
             $table->foreign('jugadores_id')->references('id')->on('jugadores');
         });
@@ -26,7 +26,7 @@ class AddJugadoresToDiseños extends Migration
      */
     public function down()
     {
-        Schema::table('diseños', function (Blueprint $table) {
+        Schema::table('diseños_jugadores', function (Blueprint $table) {
             $table->dropforeign(['jugadores_id']);
             $table->dropColumn('jugadores_id');
         });

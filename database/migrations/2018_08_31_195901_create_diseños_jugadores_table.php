@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFuselajesJugadoresTable extends Migration
+class CreateDiseñosJugadoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFuselajesJugadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('fuselajes_jugadores', function (Blueprint $table) {
+        Schema::create('diseños_jugadores', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateFuselajesJugadoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fuselajes_jugadores');
+        Schema::dropIfExists('diseños_jugadores');
     }
 }

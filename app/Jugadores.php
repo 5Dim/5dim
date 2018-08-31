@@ -46,6 +46,11 @@ class Jugadores extends Model
         return $this->hasMany(SolicitudesAlianzas::class);
     }
 
+    public function diseños ()
+    {
+        return $this->belongsToMany(Diseños::class);
+    }
+
     public static function calcularPuntos ($idPlaneta)
     {
         $puntosJugador = 0;
