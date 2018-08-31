@@ -51,7 +51,7 @@
                                 {{ number_format(($miembro->puntos_construccion + $miembro->puntos_investigacion + $miembro->puntos_flotas), 0,",",".") }}
                             </td>
                             <td class="text-light text-center align-middle">
-                                <a class="btn btn-outline-danger btn-block btn-sm" href="{{ url('juego/rechazarSolicitud/' . $miembro->id) }}" role="button">
+                                <a class="btn btn-outline-danger btn-block btn-sm" href="{{ url('juego/expulsarMiembro/' . $miembro->id) }}" role="button">
                                     <i class="fa fa-times"></i> Expulsar
                                 </a>
                             </td>
