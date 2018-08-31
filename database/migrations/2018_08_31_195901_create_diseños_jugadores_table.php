@@ -15,7 +15,7 @@ class CreateDiseñosJugadoresTable extends Migration
     {
         Schema::create('diseños_jugadores', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 
