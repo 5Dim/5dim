@@ -108,6 +108,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/juego/crearAlianza', 'AlianzaController@crearAlianza');
     Route::post('/juego/generarAlianza', 'AlianzaController@generarAlianza');
     Route::post('/juego/solicitudAlianza', 'AlianzaController@solicitudAlianza');
+    Route::get('/juego/expulsarMiembro/{id}', 'AlianzaController@expulsarMiembro');
+    Route::get('/juego/rechazarSolicitud/{id}', 'AlianzaController@rechazarSolicitud');
+    Route::get('/juego/aceptarSolicitud/{id}', 'AlianzaController@aceptarSolicitud');
 
     //Mensajes
     Route::get('/juego/mensajes', 'MensajesController@index');
