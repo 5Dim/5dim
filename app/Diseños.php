@@ -12,6 +12,31 @@ class Diseños extends Model
         return $this->belongsToMany(Jugadores::class);
     }
 
+    public function daños ()
+    {
+        return $this->hasOne(DañosDiseños::class);
+    }
+
+    public function cualidades ()
+    {
+        return $this->hasOne(CualidadesDiseños::class);
+    }
+
+    public function costes ()
+    {
+        return $this->hasOne(CostesDiseños::class);
+    }
+
+    public function viewDiseños ()
+    {
+        return $this->hasOne(ViewDiseños::class);
+    }
+
+    public function viewDaños ()
+    {
+        return $this->hasOne(ViewDañosDiseños::class);
+    }
+
     public function generarDatosDiseños(){
 
         $diseños=[];
