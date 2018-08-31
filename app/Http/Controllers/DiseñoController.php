@@ -325,16 +325,21 @@ class DiseñoController extends Controller
 
 
         $costesDiseño=[
-            'mineral'=> $diseño->mineral,
-            'cristal'=> $diseño->cristal,
-            'gas'=> $diseño->gas,
-            'plastico'=> $diseño->plastico,
-            'ceramica'=> $diseño->ceramica,
-            'liquido'=> $diseño->liquido,
-            'micros'=> $diseño->micros,
-            'personal'=> $diseño->personal,
+            'mineral'=> $diseño->costes->mineral,
+            'cristal'=> $diseño->costes->cristal,
+            'gas'=> $diseño->costes->gas,
+            'plastico'=> $diseño->costes->plastico,
+            'ceramica'=> $diseño->costes->ceramica,
+            'liquido'=> $diseño->costes->liquido,
+            'micros'=> $diseño->costes->micros,
+            'personal'=> $diseño->costes->personal,
             'masa'=> $diseño->cualidades->masa,
         ];
+
+        $danoFocos=[0,0,0,0,0]; //cada fila
+        $empujeT=0;
+        $ctrlPunteria=0;
+        $ariete=0;
 
 
         /// cantidades de cada elemento
@@ -686,7 +691,7 @@ class DiseñoController extends Controller
 
                             //$obj=array_search($e,$armas);
                             $obj=$armas->where('codigo',$e)->first();
-                            $factorFuselaje=$diseño->cualidades->$genera;
+                            //$factorFuselaje=$diseño->cualidades->$genera;
                             $costesVacio=["mineral"=>0, "cristal"=>0, "gas"=>0, "plastico"=>0, "ceramica"=>0, "liquido"=>0, "micros"=>0, "personal"=>0, "fuel"=>0, "ma"=>0, "municion"=>0, "masa"=>0, "energia"=>0, "tiempo"=>0, "mantenimiento"=>0, "defensa"=>0, "ataque"=>0, "velocidad"=>0, "carga"=>0, "cargaPequeña"=>0, "cargaMediana"=>0, "cargaGrande"=>0, "cargaEnorme"=>0, "cargaMega"=>0,];
 
                             //comprobando tengo la tecno necesaria
@@ -708,6 +713,7 @@ class DiseñoController extends Controller
                             if ($genera2!=""){$costesVacio[$genera2]=$costeobj[$genera2];} //hangares
                             $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
                             $costesMisCargas=$misCostes;
+                            //$prueba=$costeobj['energia']." ?".$factorFuselaje." ?";
                         }
                     }
                 }
@@ -734,84 +740,84 @@ foreach( $armasTengo[$elemento] as $e) {
         case 72: //escudos
         $hazlo++;
         $cte=1;
-            sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
-            sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
         break;
         case 75: //salvas
         $hazlo++;
         $cte=1;
-            sumaCostos($sobreCostes,$cte,$costesMisArmas);
-            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisArmas);
         break;
         case 77: //standart
         $hazlo++;
         $cte=1;
-            sumaCostos($sobreCostes,$cte,$costesMisMotores);
-            sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
-            sumaCostos($sobreCostes,$cte,$costesMisArmas);
-            sumaCostos($sobreCostes,$cte,$costesMisCargas);
-            sumaCostos($sobreCostes,$cte,$costesMisMejoras);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisMotores);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisMejoras);
 
-            sumaCualidades($sobreCostes,$cte,$costesMisMotores);
-            sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
-            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
-            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
-            sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisMotores);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
         break;
         case 74:
         $hazlo++;
         $cte=1;
-            sumaCostos($sobreCostes,$cte,$costesMisArmas);
-            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisArmas);
         break;
         case 76: //aleaciones
         $hazlo++;
         $cte=1;
-            sumaCostos($sobreCostes,$cte,$costesMisMotores);
-            sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
-            sumaCostos($sobreCostes,$cte,$costesMisArmas);
-            sumaCostos($sobreCostes,$cte,$costesMisCargas);
-            sumaCostos($sobreCostes,$cte,$costesMisMejoras);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisMotores);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisMejoras);
 
-            sumaCualidades($sobreCostes,$cte,$costesMisMotores);
-            sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
-            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
-            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
-            sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisMotores);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
         break;
         case 70: //compactador
         case 78: //plegado
         $hazlo++;
         $cte=1;
-            sumaCostos($sobreCostes,$cte,$costesMisCargas);
-            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisCargas);
         break;
         case 73: //prop maniobra
         $hazlo++;
         $cte=1;
-            sumaCostos($sobreCostes,$cte,$costesMisMotores);
-            sumaCualidades($sobreCostes,$cte,$costesMisMotores);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisMotores);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisMotores);
         break;
         case 74: //nanos
         $hazlo++;
         $cte=1;
-        sumaCostos($sobreCostes,$cte,$costesMisMotores);
-            sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
-            sumaCostos($sobreCostes,$cte,$costesMisArmas);
-            sumaCostos($sobreCostes,$cte,$costesMisCargas);
-            sumaCostos($sobreCostes,$cte,$costesMisMejoras);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisMotores);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisBlindajes);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisMejoras);
 
-            sumaCualidades($sobreCostes,$cte,$costesMisMotores);
-            sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
-            sumaCualidades($sobreCostes,$cte,$costesMisArmas);
-            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
-            sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisMotores);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisBlindajes);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisArmas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisMejoras);
         break;
         case 73: //prop maniobra
         $hazlo++;
         $cte=1;
-            sumaCostos($sobreCostes,$cte,$costesMisCargas);
-            sumaCualidades($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCostos($sobreCostes,$cte,$costesMisCargas);
+            $sobreCostes=sumaCualidades($sobreCostes,$cte,$costesMisCargas);
         break;
         case 71: //ctrol punteria
             $ctrlPunteria++;
@@ -855,8 +861,8 @@ foreach( $armasTengo[$elemento] as $e) {
            // costesVacio['tiempo']=costeobj[genera]*factorFuselaje;
            // costesVacio['mantenimiento']=costeobj[genera]*factorFuselaje;
             //sumaCualidades($misCostes,$multiplicador,costesVacio);
-            $destinoCosto=sumaCostosMejoras($costesDiseño,$multiplicador,$costeobj,$sobreCostes);
-            $destinoCosto=sumaCualidadesMejoras($cualidades,$multiplicador,$costeobj,$sobreCostes);
+            $costesDiseño=sumaCostosMejoras($costesDiseño,$multiplicador,$costeobj,$sobreCostes);
+            $cualidades=sumaCualidadesMejoras($cualidades,$multiplicador,$costeobj,$sobreCostes);
         }
     }
 };
@@ -913,6 +919,34 @@ $cteAriete=1;
                         $cteFoco=1;
                         $costoFoco=1;
 
+                        // focos
+                        if($danoFocos[$danoPosicion[$elemento][0]]>0){
+                            $e2=$danoPosicion[$elemento][0]+80;
+                            $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+                            $cuantos=$danoFocos[$danoPosicion[$elemento][0]];
+                            $cteFoco=$cuantos;//lo que varia por nivel de tecno
+                            $costoFoco=(1+($costeobj['mineral']/100) )*$cuantos;
+                        }
+                        $costoPunteria=1;
+                        $ctePunteria=1;
+                        if ($ctrlPunteria>0){
+                            $e2=71;
+                            $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+                            $cuantos=$ctrlPunteria;
+                            $ctePunteria=($cuantos);//lo que varia por nivel de tecno
+                            $costoPunteria=(1+($costeobj['mineral']/100) )*$cuantos;
+                        }
+                        $costoAriete=1;
+                        // cteAriete=1;
+                        if ($ariete>0){
+                            $e2=71;
+                            $costeobj=$costesArmas->where('armas_codigo',$e)->first();
+                            $cuantos=$ariete;
+                            $cteAriete=($cuantos);//lo que varia por nivel de tecno
+                            $costoAriete=(1+($costeobj['mineral']/100) )*$cuantos;
+                        }
+
+
                         //$obj=array_search($e,$armas);
                         $obj=$armas->where('codigo',$e)->first();
                         $factorFuselaje=$diseño->cualidades->$genera;
@@ -928,6 +962,7 @@ $cteAriete=1;
 
                         $cantidadArmas=$multiplicadorArmas[$elemento];
                         $estedano=$energiaArmas[$elemento]*$energiaT*$energiaXarma/$costeobj['energia']*$cantidadArmas;
+                        //$prueba .=$costesMisMotores['energia']." ".$costesMisBlindajes['energia']." ".$costesMisCargas['energia']." ".$cualidades['energia'];;
                         // sumo costes
                         $costeobj=$costesArmas->where('armas_codigo',$e)->first();
                         $misCostes=sumaCostos($misCostes,$multiplicador,$costeobj);// sumo recursos basicos
@@ -945,6 +980,20 @@ $cteAriete=1;
         }
 
 
+    //suma de todos los costes:
+        $cte=1;
+        $costesDiseño=sumaCostos($costesDiseño,$cte,$costesMisMotores);
+        $costesDiseño=sumaCostos($costesDiseño,$cte,$costesMisBlindajes);
+        $costesDiseño=sumaCostos($costesDiseño,$cte,$costesMisArmas);
+        $costesDiseño=sumaCostos($costesDiseño,$cte,$costesMisCargas);
+        $costesDiseño=sumaCostos($costesDiseño,$cte,$costesMisMejoras);
+
+        $cualidades=sumaCualidades($cualidades,$cte,$costesMisMotores);
+        $cualidades=sumaCualidades($cualidades,$cte,$costesMisBlindajes);
+        $cualidades=sumaCualidades($cualidades,$cte,$costesMisArmas);
+        $cualidades=sumaCualidades($cualidades,$cte,$costesMisCargas);
+        $cualidades=sumaCualidades($cualidades,$cte,$costesMisMejoras);
+
     /*
         $interviniente = new MensajesIntervinientes();
         $interviniente->receptor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
@@ -958,7 +1007,7 @@ $cteAriete=1;
 
     }
 
-        $prueba = $costesMisCargas;
+        $prueba = $costesDiseño;
         return compact('razonCorrecto','prueba');
 
     }
