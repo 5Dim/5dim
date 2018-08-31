@@ -1869,7 +1869,7 @@ dañoarmasArm=0;
                 var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj2['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
                 cuantos=danoFocos[danoPosicion[elemento][0]];
                 cteFoco=1+(miConstanteI*nivelInv*cuantos);//lo que varia por nivel de tecno
-                costoFoco=(1+(costeobj['mineral']/100) )*cuantos;
+                costoFoco=(1+(costeobj['mineral']/100) )*cuantos; //es el que se usa para todos
             }
             costoPunteria=1;
             ctePunteria=1;

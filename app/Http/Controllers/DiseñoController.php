@@ -295,6 +295,7 @@ class DiseñoController extends Controller
             return $destinoCualidad;
         }
 
+
         $filasCarga=10;
 
 
@@ -568,7 +569,7 @@ class DiseñoController extends Controller
             '64'=>2000000,
         ];
 
-        $prueba="nada";
+        $prueba="";
 
         if ($correcto){
 
@@ -905,6 +906,9 @@ $cteAriete=1;
                     }
                 }
 
+            if ($energiaArm!=0) {
+                $energiaXarma=1/$energiaArm;
+            } else {$energiaXarma=0;}
 
             $costesVacio=["mineral"=>0, "cristal"=>0, "gas"=>0, "plastico"=>0, "ceramica"=>0, "liquido"=>0, "micros"=>0, "personal"=>0, "fuel"=>0, "ma"=>0, "municion"=>0, "masa"=>0, "energia"=>0, "tiempo"=>0, "mantenimiento"=>0, "defensa"=>0, "ataque"=>0, "velocidad"=>0, "carga"=>0, "cargaPequeña"=>0, "cargaMediana"=>0, "cargaGrande"=>0, "cargaEnorme"=>0, "cargaMega"=>0,];
             //$elemento='blindaje';
@@ -916,7 +920,7 @@ $cteAriete=1;
             foreach( $armasTengo[$elemento] as $e) {
 
                     if ($e>0 and $correcto>0){
-                        $energiaXarma=1/$energiaArm;
+
                         $hayalgo=1;
                         $cteFoco=1;
                         $costoFoco=1;
@@ -924,28 +928,28 @@ $cteAriete=1;
                         // focos
                         if($danoFocos[$danoPosicion[$elemento][0]]>0){
                             $e2=$danoPosicion[$elemento][0]+80;
-                            $costeobj=$costesArmas->where('armas_codigo',$e)->first();
-                            $cuantos=$danoFocos[$danoPosicion[$elemento][0]];
-                            $cteFoco=$cuantos;//lo que varia por nivel de tecno
-                            $costoFoco=(1+($costeobj['mineral']/100) )*$cuantos;
+                            $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
+                            $cuantos2=$danoFocos[$danoPosicion[$elemento][0]];
+                            $cteFoco=$cuantos2;//lo que varia por nivel de tecno
+                            $costoFoco=(1+($costeobj2['mineral']/100) )*$cuantos2; // es el que se usa para todos
                         }
                         $costoPunteria=1;
                         $ctePunteria=1;
                         if ($ctrlPunteria>0){
                             $e2=71;
-                            $costeobj=$costesArmas->where('armas_codigo',$e)->first();
-                            $cuantos=$ctrlPunteria;
-                            $ctePunteria=($cuantos);//lo que varia por nivel de tecno
-                            $costoPunteria=(1+($costeobj['mineral']/100) )*$cuantos;
+                            $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
+                            $cuantos2=$ctrlPunteria;
+                            $ctePunteria=($cuantos2);//lo que varia por nivel de tecno
+                            $costoPunteria=(1+($costeobj2['mineral']/100) )*$cuantos2;
                         }
                         $costoAriete=1;
                         // cteAriete=1;
                         if ($ariete>0){
                             $e2=71;
-                            $costeobj=$costesArmas->where('armas_codigo',$e)->first();
-                            $cuantos=$ariete;
-                            $cteAriete=($cuantos);//lo que varia por nivel de tecno
-                            $costoAriete=(1+($costeobj['mineral']/100) )*$cuantos;
+                            $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
+                            $cuantos2=$ariete;
+                            $cteAriete=($cuantos2);//lo que varia por nivel de tecno
+                            $costoAriete=(1+($costeobj2['mineral']/100) )*$cuantos2;
                         }
 
 
@@ -961,13 +965,24 @@ $cteAriete=1;
                             $correcto=false;
                             $razonCorrecto+="<br>Tecnologia demasiado baja: "+$clase+" ";
                         };
+                        $variacionAlcance=1;$variacionDispersion=1;
 
                         $cantidadArmas=$multiplicadorArmas[$elemento];
                         $estedano=$energiaArmas[$elemento]*$energiaT*$energiaXarma/$costeobj['energia']*$cantidadArmas;
                         //$prueba .=$costesMisMotores['energia']." ".$costesMisBlindajes['energia']." ".$costesMisCargas['energia']." ".$cualidades['energia'];;
+                        //$prueba.=" <br> ".$energiaArmas[$elemento]." ".$energiaT." ".$energiaXarma." / ".$costeobj['energia'];
+                        //$prueba.=" <br> ".$estedano;
+                        $creceExpo=1+(($estedano/$costeobj['ataque'])*2000 );
+                        $multiplicador=$estedano*10*$creceExpo;
+                        $alcance=$danoPosicion[$elemento][1]+1*$armasAlcance[$elemento];
+                        if ($alcance>7){$alcance=7;};
+                        if ($alcance<0){$alcance=0;};
+                        $variacionAlcance= pow(2.5,(1*$armasAlcance[$elemento]));
+                        $variacionDispersion=pow(1.5,(1*$armasDispersion[$elemento]));
+
                         // sumo costes
                         $costeobj=$costesArmas->where('armas_codigo',$e)->first();
-                        $misCostes=sumaCostos($misCostes,$multiplicador,$costeobj);// sumo recursos basicos
+                        $misCostes=sumaCostos($misCostes,$multiplicador*$variacionAlcance*$variacionDispersion*$costoFoco*$costoPunteria*$costoAriete,$costeobj);// sumo recursos basicos
                         // sumo cualidades
                         $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
                         $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
@@ -996,6 +1011,86 @@ $cteAriete=1;
         $cualidades=sumaCualidades($cualidades,$cte,$costesMisCargas);
         $cualidades=sumaCualidades($cualidades,$cte,$costesMisMejoras);
 
+        // quitando decimales
+
+        $costesDiseño['mineral']=round($costesDiseño['mineral'],0);
+        $costesDiseño['cristal']=round($costesDiseño['cristal'],0);
+        $costesDiseño['gas']=round($costesDiseño['gas'],0);
+        $costesDiseño['plastico']=round($costesDiseño['plastico'],0);
+        $costesDiseño['ceramica']=round($costesDiseño['ceramica'],0);
+        $costesDiseño['liquido']=round($costesDiseño['liquido'],0);
+        $costesDiseño['micros']=round($costesDiseño['micros'],0);
+        $costesDiseño['personal']=round($costesDiseño['personal'],0);
+
+
+        //function dibujaDano($armasDispersion ){
+
+            $danoTotal=[
+                'invEnergia'=>$danoinvEnergia,
+                'invPlasma'=>$danoinvPlasma,
+                'invBalistica'=>$danoinvBalistica,
+                'invMa'=>$danoinvMa
+            ];
+
+            $danoTotalV=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+            $sumaataque=0;
+            $arrayDispersion=[
+                (1*$armasDispersion['armasLigera'])+1,
+                (1*$armasDispersion['armasMedia'])+1,
+                (1*$armasDispersion['armasPesada'])+1,
+                (1*$armasDispersion['armasInsertada'])+1,
+                (1*$armasDispersion['armasMisil'])+1,
+                (1*$armasDispersion['armasBomba'])+1
+            ];
+
+            for($F=0;$F<5;$F++){
+                $dispersion=.2*$arrayDispersion[$F];
+                for($C=7;$C>-1;$C--){
+                    $valueAqui=$danoTotal['invEnergia'][$F][$C]+$danoTotal['invPlasma'][$F][$C]+$danoTotal['invBalistica'][$F][$C]+$danoTotal['invMa'][$F][$C];
+                    if ($valueAqui>0){
+                        $danoTotalV[$F][$C]+=$valueAqui;
+                            for($c=$C-1;$c>-1;$c--){ //atras
+                                $aAriete=1;
+                                if ($c==0 && $ariete>0){$aAriete=$ariete*$cteAriete;}
+                                $danoTotalV[$F][$c]+=$aAriete*$valueAqui*(1+($dispersion*($C-$c) ));
+                                $danoInf=$aAriete*$valueAqui*(1+($dispersion*($C-$c) ))/1.25;
+                                for($f=$F+1;$f<4;$f++){ //atras abajo
+                                    $danoTotalV[$f][$c]+=$danoInf;
+                                }
+                                for($f=$F-1;$f>-1;$f--){ //atras arriba
+                                    $danoTotalV[$f][$c]+=$danoInf*.01*$f;
+                                }
+                            }
+                            for($f=$F+1;$f<4;$f++){ // abajo
+                                    $danoTotalV[$f][$C]+=$valueAqui/1.25;
+                            }
+                            for($f=$F-1;$f>-1;$f--){ // arriba
+                                $danoTotalV[$f][$C]+=$valueAqui*.01*$f;
+                            }
+
+                    }
+                    if ($danoTotalV[$F][$C]<1){$danoTotalV[$F][$C]=0;}
+
+                }
+            }
+
+            // pintado
+            for($F=0;$F<5;$F++){
+                for($C=7;$C>-1;$C--){
+                    $sumaataque+=round ($danoTotalV[$F][$C],0);
+                    //$valueF=formatNumber (Math.round (danoTotalV[F][C]));
+                    //$("#"+F+C).text(valueF);
+                }
+            }
+
+                //$valueF=formatNumber (sumaataque);
+                //$("#ataqueD").text(valueF);
+
+
+
+
+
+
     /*
         $interviniente = new MensajesIntervinientes();
         $interviniente->receptor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
@@ -1008,6 +1103,8 @@ $cteAriete=1;
     }
 
     }
+
+
 
         $prueba = $costesDiseño;
         return compact('razonCorrecto','prueba');
