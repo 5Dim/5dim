@@ -26,27 +26,24 @@ class ConstruccionController extends Controller
     public function index($tab="")
     {
         //Inicio recursos
-        //Buscamos el jugador actual
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-
-        //Listado de plantas propios y de alianza
-        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-
-        $jugadorAlianza = new Jugadores();
-        $jugadorAlianza->id = 0;
-        $planetasAlianza = null;
-
-        //Comprobamos si el usuario tiene alianza para devolver los planetas
-        if (!empty($jugadorActual->alianzas)) {
-            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
-        }
         if (empty(session()->get('planetas_id'))) {
             return redirect('/planeta');
         }
+        if (empty(session()->get('jugadores_id'))) {
+            return redirect('/jugador');
+        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
             return redirect('/planeta');
+        }
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+        $jugadorAlianza = new Jugadores();
+        $jugadorAlianza->id = 0;
+        $planetasAlianza = null;
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
         EnConstrucciones::terminarColaConstrucciones();
         $construcciones = Construcciones::construcciones($planetaActual);
@@ -67,18 +64,12 @@ class ConstruccionController extends Controller
             }
         }
         $tipoPlaneta = $planetaActual->tipo;
-
-        //Investigaciones
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones($planetaActual);
-
-        //Tecnologias para mostrar y calcular los puntos
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
         $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
         $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
         $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
-
-        //Calculo de mejora de las industrias
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
