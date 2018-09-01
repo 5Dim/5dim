@@ -48,6 +48,7 @@ class Diseños extends Model
         $diseño->descripcion="Podemos dejar esta nave en órbita de asteroides para recolectar y otra nave que traiga los recursos.";
         //$diseño->jugadores_id=1;
         $diseño->codigo="RECOLECTOR";
+        $diseño->skin=1;
         array_push($diseños, $diseño);
 
         $diseño =new Diseños();
@@ -56,6 +57,7 @@ class Diseños extends Model
         $diseño->descripcion="Esta nave está diseñada para remolcar estaciones o mover planetoides colonizados.";
         //$diseño->jugadores_id=1;
         $diseño->codigo="REMOLCADOR";
+        $diseño->skin=1;
         array_push($diseños, $diseño);
 
 

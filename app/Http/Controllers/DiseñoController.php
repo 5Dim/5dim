@@ -22,6 +22,10 @@ use App\Armas;
 use App\CostesArmas;
 use App\CostesFuselajes;
 use App\Jugadores;
+use App\Diseños;
+use App\DañosDiseños;
+use App\CostesDiseños;
+use App\CualidadesDiseños;
 
 class DiseñoController extends Controller
 {
@@ -94,8 +98,6 @@ class DiseñoController extends Controller
         $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
-
-        $diseños = $jugadorActual->diseños;
 
         return view('juego.diseño', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio',
         'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
@@ -339,7 +341,8 @@ class DiseñoController extends Controller
             'masa'=> $diseño->cualidades->masa,
         ];
 
-        $danoFocos=[0,0,0,0,0]; //cada fila
+        $cantiFocos=[0,0,0,0,0]; //cada fila
+        $danoFocos=[1,1,1,1,1]; //cada fila
         $empujeT=0;
         $ctrlPunteria=0;
         $ariete=0;
@@ -829,19 +832,19 @@ foreach( $armasTengo[$elemento] as $e) {
             $ariete++;
         break;
         case 80:    // foco-caza
-            $danoFocos[0]+=1;
+            $cantiFocos[0]+=1;
         break;
         case 81:    // foco-ligera
-            $danoFocos[1]+=1;
+            $cantiFocos[1]+=1;
         break;
         case 82:    //foco-media
-            $danoFocos[2]+=1;
+            $cantiFocos[2]+=1;
         break;
         case 83:    // foco pesada
-            $danoFocos[3]+=1;
+            $cantiFocos[3]+=1;
         break;
         case 84:    // foco bombas
-            $danoFocos[4]+=1;
+            $cantiFocos[4]+=1;
         break;
         //$hazlo++;
         //$cte=1;
@@ -945,12 +948,13 @@ $cteAriete=1;
                         $costoFoco=1;
 
                         // focos
-                        if($danoFocos[$danoPosicion[$elemento][0]]>0){
+                        if($cantiFocos[$danoPosicion[$elemento][0]]>0){
                             $e2=$danoPosicion[$elemento][0]+80;
                             $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
-                            $cuantos2=$danoFocos[$danoPosicion[$elemento][0]];
+                            $cuantos2=$cantiFocos[$danoPosicion[$elemento][0]];
                             $cteFoco=$cuantos2;//lo que varia por nivel de tecno
                             $costoFoco=(1+($costeobj2['mineral']/100) )*$cuantos2; // es el que se usa para todos
+                            $danoFocos[$danoPosicion[$elemento][0]]=$costoFoco;
                         }
                         $costoPunteria=1;
                         $ctePunteria=1;
@@ -1052,6 +1056,51 @@ $cteAriete=1;
         $cualidades['velocidad']=( round($cualidades['velocidad']*100,0))/100;
 
 
+
+        //guardando diseño
+
+        $diseñoS=new Diseños();
+        $diseñoS->nombre=$datosBasicos['nombre'];
+        $diseñoS->descripcion=$datosBasicos['descripcion'];
+        $diseñoS->posicion=$datosBasicos['posicion'];
+        $diseñoS->codigo=$diseño->codigo;
+        $diseñoS->skin=$datosBasicos['skin'];
+        $diseñoS->jugador_id=$jugadorActual;
+        $diseñoS->save();
+
+
+        $diseñoId=66;
+
+        /// guardando costes
+        $costesDiseñoS=new CostesDiseños();
+        $costesDiseñoS->mineral=$costesDiseño['mineral'];
+        $costesDiseñoS->cristal=$costesDiseño['cristal'];
+        $costesDiseñoS->gas=$costesDiseño['gas'];
+        $costesDiseñoS->plastico=$costesDiseño['plastico'];
+        $costesDiseñoS->ceramica=$costesDiseño['ceramica'];
+        $costesDiseñoS->liquido=$costesDiseño['liquido'];
+        $costesDiseñoS->micros=$costesDiseño['micros'];
+        $costesDiseñoS->fuel=$cualidades['fuel'];
+        $costesDiseñoS->ma=0;
+        $costesDiseñoS->municion=$cualidades['fuel'];
+        $costesDiseñoS->personal=$costesDiseño['personal'];
+        $costesDiseñoS->mantenimiento=$cualidades['fuel'];
+        $costesDiseñoS->masa=$pesoTotal;
+        $costesDiseñoS->energia=0;
+        $costesDiseñoS->defensa=$cualidades['defensa'];
+        $costesDiseñoS->ataque=0;
+        $costesDiseñoS->tiempo=$cualidades['tiempo'];
+        $costesDiseñoS->velocidad=$cualidades['velocidad'];
+        $costesDiseñoS->carga=$cualidades['carga'];
+        $costesDiseñoS->cargaPequeña=$cualidades['cargaPequeña'];
+        $costesDiseñoS->cargaMediana=$cualidades['cargaMediana'];
+        $costesDiseñoS->cargaGrande=$cualidades['cargaGrande'];
+        $costesDiseñoS->cargaEnorme=$cualidades['cargaEnorme'];
+        $costesDiseñoS->cargaMega=$cualidades['cargaMega'];
+        $costesDiseñoS->diseños_id=$diseñoId;
+        $costesDiseñoS->save();
+
+
         //function dibujaDano($armasDispersion ){
 
             $danoTotalV=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
@@ -1095,12 +1144,33 @@ $cteAriete=1;
                     if ($danoTotalV[$F][$C]<1){$danoTotalV[$F][$C]=0;}
                     //$prueba.=$valueAqui." ";
                 }
-             $prueba =$danoTotalV;
+            // $prueba =$danoTotalV;
+
+            }
+
+            // guardando el daño
+            for($F=0;$F<5;$F++){
+
+                if ($danoTotalV[$F][0]>0){
+                    $filaDaño=new DañosDiseños();
+                    $n=0;
+                    foreach($danoTotalV[$F] as $daño){
+                        $distancia="distancia".$n;
+                        $filaDaño->$distancia= $daño;
+                    }
+                    $filaDaño->investigacion=$tecno;
+                    $filaDaño->fila=$F;
+                    $filaDaño->diseños_id=$diseñoId;
+                    $filaDaño>save();
+                }
 
             }
         }
 
 
+    //use App\DañosDiseños;
+    //use App\CostesDiseños;
+    //use App\CualidadesDiseños;
 
 
 

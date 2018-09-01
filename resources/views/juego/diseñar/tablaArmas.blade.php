@@ -1292,7 +1292,8 @@ danoTotal={
 'invMa':danoinvMa
 };
 
-danoFocos=[0,0,0,0,0]; //cada fila
+cantiFocos=[0,0,0,0,0]; //cada fila
+danoFocos=[1,1,1,1,1]; //cada fila
 empujeT=0;
 ctrlPunteria=0;
 ariete=0;
@@ -1694,19 +1695,19 @@ $.each( armas[elemento], function( key, e ) {
             ariete++;
         break;
         case 80:    // foco-caza
-            danoFocos[0]+=1;
+            cantiFocos[0]+=1;
         break;
         case 81:    // foco-ligera
-            danoFocos[1]+=1;
+            cantiFocos[1]+=1;
         break;
         case 82:    //foco-media
-            danoFocos[2]+=1;
+            cantiFocos[2]+=1;
         break;
         case 83:    // foco pesada
-            danoFocos[3]+=1;
+            cantiFocos[3]+=1;
         break;
         case 84:    // foco bombas
-            danoFocos[4]+=1;
+            cantiFocos[4]+=1;
         break;
         //hazlo++;
         //cte=1;
@@ -1861,15 +1862,17 @@ dañoarmasArm=0;
             // focos
             cteFoco=1;
             costoFoco=1;
-            if(danoFocos[danoPosicion[elemento][0]]>0){
+            if(cantiFocos[danoPosicion[elemento][0]]>0){
                 e2=danoPosicion[elemento][0]+80;
                 var obj2=$.grep(armasL, function(obj2){return obj2.codigo == e2;})[0];
                 var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj2['codigo'];})[0]; // busca costes este objeto entre las armas
                 var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj2['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
                 var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj2['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-                cuantos=danoFocos[danoPosicion[elemento][0]];
+                cuantos=cantiFocos[danoPosicion[elemento][0]];
                 cteFoco=1+(miConstanteI*nivelInv*cuantos);//lo que varia por nivel de tecno
                 costoFoco=(1+(costeobj['mineral']/100) )*cuantos; //es el que se usa para todos
+                danoFocos[danoPosicion[elemento][0]]=costoFoco;
+
             }
             costoPunteria=1;
             ctePunteria=1;
@@ -1903,7 +1906,7 @@ dañoarmasArm=0;
             var cte=1+(miConstanteI*nivelInv); //lo que varia por nivel de tecno
             estedano=energiaArmas[elemento]*energiaT*energiaXarma/costeobj['energia']*cantidadArmas;
             creceExpo=1+((estedano/costeobj['ataque'])*2000 );
-            dañoarmasArm+=Math.round(cteFoco*(cte*estedano*100000/creceExpo),0);// la tecno influye solo en el valor final del daño
+            dañoarmasArm+=Math.round(1*(cte*estedano*100000/creceExpo),0);// la tecno influye solo en el valor final del daño
             multiplicador=estedano*10*creceExpo;
             alcance=danoPosicion[elemento][1]+1*armasAlcance[elemento];
                 if (alcance>7){alcance=7;};
@@ -1988,11 +1991,12 @@ for(F=0;F<5;F++){
     for(C=7;C>-1;C--){
         valueAqui=danoTotal['invEnergia'][F][C]+danoTotal['invPlasma'][F][C]+danoTotal['invBalistica'][F][C]+danoTotal['invMa'][F][C];
         if (valueAqui>0){
-            danoTotalV[F][C]+=valueAqui;
+
+            danoTotalV[F][C]+=valueAqui*danoFocos[F];
                 for(c=C-1;c>-1;c--){ //atras
                     aAriete=1;
                     if (c==0 && ariete>0){aAriete=ariete*cteAriete;}
-                    danoTotalV[F][c]+=aAriete*valueAqui*(1+(dispersion*(C-c) ))
+                    danoTotalV[F][c]+=aAriete*valueAqui*(1+(dispersion*(C-c) ))*danoFocos[F];
                     danoInf=aAriete*valueAqui*(1+(dispersion*(C-c) ))/1.25;
                     for(f=F+1;f<4;f++){ //atras abajo
                         danoTotalV[f][c]+=danoInf;

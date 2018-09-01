@@ -19,6 +19,7 @@ class CreateDiseñosTable extends Migration
             $table->string('descripcion');
             $table->integer('posicion');
             $table->string('codigo');
+            $table->integer('skin');
             $table->timestamps();
         });
     }
