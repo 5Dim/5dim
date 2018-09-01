@@ -891,6 +891,18 @@ $cteAriete=1;
             'armasBomba'=>[4,2]
         ];
 
+        $danoinvEnergia=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+        $danoinvPlasma=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+        $danoinvBalistica=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+        $danoinvMa=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+
+        $danoTotal=[
+            'invEnergia'=>$danoinvEnergia,
+            'invPlasma'=>$danoinvPlasma,
+            'invBalistica'=>$danoinvBalistica,
+            'invMa'=>$danoinvMa
+        ];
+
         $energiaUsada=0;
 
         foreach( $tiposArmas as $elemento) {
@@ -989,7 +1001,7 @@ $cteAriete=1;
                         $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
                         $costesMisArmas=$misCostes;
 
-
+                        $danoTotal[$obj['clase']][$danoPosicion[$elemento][0]][$alcance]=$dañoarmasArm;
                 }
             }
         }
@@ -1020,15 +1032,16 @@ $cteAriete=1;
         $costesDiseño['micros']=round($costesDiseño['micros'],0);
         $costesDiseño['personal']=round($costesDiseño['personal'],0);
 
+        /// velocidad
+
+        $pesoInicial=.0005*$diseño->cualidades->masa * ($diseño->costes->mineral * 50+$diseño->costes->cristal * 260+$diseño->costes->gas * 1000+$diseño->costes->plastico * 4000+$diseño->costes->ceramica * 600+$diseño->costes->liquido * 500+$diseño->costes->micros * 2000+$diseño->costes->personal * 500);
+
+        $pesoTotal=($cualidades['masa']+$pesoInicial);
+        $cualidades['velocidad']=min($empujeT/$pesoTotal,$cualidadesFuselaje['velocidadMax'],19.99);
+        $cualidades['velocidad']=( round($cualidades['velocidad']*100,0))/100;
+
 
         //function dibujaDano($armasDispersion ){
-
-            $danoTotal=[
-                'invEnergia'=>$danoinvEnergia,
-                'invPlasma'=>$danoinvPlasma,
-                'invBalistica'=>$danoinvBalistica,
-                'invMa'=>$danoinvMa
-            ];
 
             $danoTotalV=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
             $sumaataque=0;
@@ -1070,6 +1083,8 @@ $cteAriete=1;
                     if ($danoTotalV[$F][$C]<1){$danoTotalV[$F][$C]=0;}
 
                 }
+                //$prueba =$danoTotalV;
+                $prueba.=$valueAqui." ";
             }
 
             // pintado
@@ -1104,7 +1119,7 @@ $cteAriete=1;
 
 
 
-        $prueba = $costesDiseño;
+        //$prueba = $costesDiseño;
         return compact('razonCorrecto','prueba');
 
     }
