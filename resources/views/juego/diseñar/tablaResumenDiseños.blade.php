@@ -178,17 +178,17 @@
                             <select class="custom-select select" id="posicionCombate">
                                     <option value="" selected>Elige una posicion</option>
 
-                                    <option value="">Vanguardia 1</option>
-                                    <option value="">Vanguardia 2</option>
-                                    <option value="">Vanguardia 3</option>
+                                    <option value="1">Vanguardia 1</option>
+                                    <option value="2">Vanguardia 2</option>
+                                    <option value="3">Vanguardia 3</option>
 
-                                    <option value="">Centro 1</option>
-                                    <option value="">Centro 2</option>
-                                    <option value="">Centro 3</option>
+                                    <option value="4">Centro 1</option>
+                                    <option value="5">Centro 2</option>
+                                    <option value="6">Centro 3</option>
 
-                                    <option value="">Retaguardia 1</option>
-                                    <option value="">Retaguardia 2</option>
-                                    <option value="">Retaguardia 3</option>
+                                    <option value="7">Retaguardia 1</option>
+                                    <option value="8">Retaguardia 2</option>
+                                    <option value="9">Retaguardia 3</option>
                             </select>
                         </div>
                     </td>

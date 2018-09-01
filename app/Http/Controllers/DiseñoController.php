@@ -1055,11 +1055,11 @@ $cteAriete=1;
         $diseñoS->posicion=$datosBasicos['posicion'];
         $diseñoS->codigo=$diseño->codigo;
         $diseñoS->skin=$datosBasicos['skin'];
-        $diseñoS->jugador_id=$jugadorActual;
         $diseñoS->save();
+        $jugadorActual->diseños()->attach($diseñoS->id);
 
 
-        $diseñoId=66;
+        $diseñoId=$diseñoS->id;
 
         /// guardando costes
         $costesDiseñoS=new CostesDiseños();
@@ -1093,7 +1093,7 @@ $cteAriete=1;
 
         //function dibujaDano($armasDispersion ){
 
-            $danoTotalV=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+
             $sumaataque=0;
             $arrayDispersion=[
                 (1*$armasDispersion['armasLigera'])+1,
@@ -1105,6 +1105,7 @@ $cteAriete=1;
             ];
 
         foreach ($listaTecnos as $tecno ) {
+            $danoTotalV=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
             for($F=0;$F<5;$F++){
                 $dispersion=.2*$arrayDispersion[$F];
                 for($C=7;$C>-1;$C--){
@@ -1146,12 +1147,13 @@ $cteAriete=1;
                     $n=0;
                     foreach($danoTotalV[$F] as $daño){
                         $distancia="distancia".$n;
-                        $filaDaño->$distancia= $daño;
+                        $filaDaño->{$distancia}= $daño;
+                        $n++;
                     }
                     $filaDaño->investigacion=$tecno;
                     $filaDaño->fila=$F;
                     $filaDaño->diseños_id=$diseñoId;
-                    $filaDaño>save();
+                    $filaDaño->save();
                 }
 
             }
@@ -1181,7 +1183,7 @@ $cteAriete=1;
 
 
 
-        //$prueba = $costesDiseño;
+        //$prueba = $danoTotal['invMa'];
         return compact('razonCorrecto','prueba');
 
     }

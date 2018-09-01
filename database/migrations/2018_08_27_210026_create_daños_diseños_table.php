@@ -17,14 +17,14 @@ class CreateDañosDiseñosTable extends Migration
             $table->increments('id');
             $table->string('investigacion');
             $table->string('fila');
-            $table->integer('distancia0');
-            $table->integer('distancia1');
-            $table->integer('distancia2');
-            $table->integer('distancia3');
-            $table->integer('distancia4');
-            $table->integer('distancia5');
-            $table->integer('distancia6');
-            $table->integer('distancia7');
+            $table->integer('distancia0')->default(0);
+            $table->integer('distancia1')->default(0);
+            $table->integer('distancia2')->default(0);
+            $table->integer('distancia3')->default(0);
+            $table->integer('distancia4')->default(0);
+            $table->integer('distancia5')->default(0);
+            $table->integer('distancia6')->default(0);
+            $table->integer('distancia7')->default(0);
 
         // $table->timestamps();
         });
