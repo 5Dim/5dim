@@ -893,6 +893,25 @@ $cteAriete=1;
             'armasBomba'=>[4,2]
         ];
 
+        $listaTecnos = [
+            "invEnergia",
+            "invPlasma",
+            "invBalistica",
+            "invMa"
+        ];
+
+        $danoinvEnergia=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+        $danoinvPlasma=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+        $danoinvBalistica=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+        $danoinvMa=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+
+        $danoTotal=[
+            'invEnergia'=>$danoinvEnergia,
+            'invPlasma'=>$danoinvPlasma,
+            'invBalistica'=>$danoinvBalistica,
+            'invMa'=>$danoinvMa
+        ];
+
         $energiaUsada=0;
 
         foreach( $tiposArmas as $elemento) {
@@ -972,7 +991,9 @@ $cteAriete=1;
                         //$prueba .=$costesMisMotores['energia']." ".$costesMisBlindajes['energia']." ".$costesMisCargas['energia']." ".$cualidades['energia'];;
                         //$prueba.=" <br> ".$energiaArmas[$elemento]." ".$energiaT." ".$energiaXarma." / ".$costeobj['energia'];
                         //$prueba.=" <br> ".$estedano;
+                        $cte=1; //la tecno
                         $creceExpo=1+(($estedano/$costeobj['ataque'])*2000 );
+                        $dañoarmasArm+=round($cteFoco*($cte*$estedano*100000/$creceExpo),0);// la tecno influye solo en el valor final del daño
                         $multiplicador=$estedano*10*$creceExpo;
                         $alcance=$danoPosicion[$elemento][1]+1*$armasAlcance[$elemento];
                         if ($alcance>7){$alcance=7;};
@@ -991,7 +1012,7 @@ $cteAriete=1;
                         $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
                         $costesMisArmas=$misCostes;
 
-
+                        $danoTotal[$obj['clase']][$danoPosicion[$elemento][0]][$alcance]=$dañoarmasArm;
                 }
             }
         }
@@ -1022,15 +1043,16 @@ $cteAriete=1;
         $costesDiseño['micros']=round($costesDiseño['micros'],0);
         $costesDiseño['personal']=round($costesDiseño['personal'],0);
 
+        /// velocidad
+
+        $pesoInicial=.0005*$diseño->cualidades->masa * ($diseño->costes->mineral * 50+$diseño->costes->cristal * 260+$diseño->costes->gas * 1000+$diseño->costes->plastico * 4000+$diseño->costes->ceramica * 600+$diseño->costes->liquido * 500+$diseño->costes->micros * 2000+$diseño->costes->personal * 500);
+
+        $pesoTotal=($cualidades['masa']+$pesoInicial);
+        $cualidades['velocidad']=min($empujeT/$pesoTotal,$cualidadesFuselaje['velocidadMax'],19.99);
+        $cualidades['velocidad']=( round($cualidades['velocidad']*100,0))/100;
+
 
         //function dibujaDano($armasDispersion ){
-
-            $danoTotal=[
-                'invEnergia'=>$danoinvEnergia,
-                'invPlasma'=>$danoinvPlasma,
-                'invBalistica'=>$danoinvBalistica,
-                'invMa'=>$danoinvMa
-            ];
 
             $danoTotalV=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
             $sumaataque=0;
@@ -1043,48 +1065,41 @@ $cteAriete=1;
                 (1*$armasDispersion['armasBomba'])+1
             ];
 
+        foreach ($listaTecnos as $tecno ) {
             for($F=0;$F<5;$F++){
                 $dispersion=.2*$arrayDispersion[$F];
                 for($C=7;$C>-1;$C--){
-                    $valueAqui=$danoTotal['invEnergia'][$F][$C]+$danoTotal['invPlasma'][$F][$C]+$danoTotal['invBalistica'][$F][$C]+$danoTotal['invMa'][$F][$C];
+                    $valueAqui=$danoTotal[$tecno][$F][$C];
                     if ($valueAqui>0){
-                        $danoTotalV[$F][$C]+=$valueAqui;
+                        $danoTotalV[$F][$C]+=round($valueAqui,0);
                             for($c=$C-1;$c>-1;$c--){ //atras
                                 $aAriete=1;
                                 if ($c==0 && $ariete>0){$aAriete=$ariete*$cteAriete;}
-                                $danoTotalV[$F][$c]+=$aAriete*$valueAqui*(1+($dispersion*($C-$c) ));
+                                $danoTotalV[$F][$c]+=round($aAriete*$valueAqui*(1+($dispersion*($C-$c) )),0);
                                 $danoInf=$aAriete*$valueAqui*(1+($dispersion*($C-$c) ))/1.25;
                                 for($f=$F+1;$f<4;$f++){ //atras abajo
-                                    $danoTotalV[$f][$c]+=$danoInf;
+                                    $danoTotalV[$f][$c]+=round($danoInf,0);
                                 }
                                 for($f=$F-1;$f>-1;$f--){ //atras arriba
-                                    $danoTotalV[$f][$c]+=$danoInf*.01*$f;
+                                    $danoTotalV[$f][$c]+=round($danoInf*.01*$f,0);
                                 }
                             }
                             for($f=$F+1;$f<4;$f++){ // abajo
-                                    $danoTotalV[$f][$C]+=$valueAqui/1.25;
+                                    $danoTotalV[$f][$C]+=round($valueAqui/1.25,0);
                             }
                             for($f=$F-1;$f>-1;$f--){ // arriba
-                                $danoTotalV[$f][$C]+=$valueAqui*.01*$f;
+                                $danoTotalV[$f][$C]+=round($valueAqui*.01*$f,0);
                             }
 
                     }
                     if ($danoTotalV[$F][$C]<1){$danoTotalV[$F][$C]=0;}
-
+                    //$prueba.=$valueAqui." ";
                 }
-            }
+             $prueba =$danoTotalV;
 
-            // pintado
-            for($F=0;$F<5;$F++){
-                for($C=7;$C>-1;$C--){
-                    $sumaataque+=round ($danoTotalV[$F][$C],0);
-                    //$valueF=formatNumber (Math.round (danoTotalV[F][C]));
-                    //$("#"+F+C).text(valueF);
-                }
             }
+        }
 
-                //$valueF=formatNumber (sumaataque);
-                //$("#ataqueD").text(valueF);
 
 
 
@@ -1106,7 +1121,7 @@ $cteAriete=1;
 
 
 
-        $prueba = $costesDiseño;
+        //$prueba = $costesDiseño;
         return compact('razonCorrecto','prueba');
 
     }
