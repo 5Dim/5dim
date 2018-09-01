@@ -8,6 +8,11 @@ class CostesDiseños extends Model
 {
     public $timestamps = false;
 
+    public function diseños ()
+    {
+        return $this->belongsTo(Diseños::class);
+    }
+
     public function  generarDatosCostesDiseños(){
 
 

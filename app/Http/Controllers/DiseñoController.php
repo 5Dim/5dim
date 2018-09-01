@@ -95,6 +95,8 @@ class DiseñoController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
+        $diseños = $jugadorActual->diseños;
+
         return view('juego.diseño', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio',
         'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
         'planetasJugador', 'planetasAlianza'));

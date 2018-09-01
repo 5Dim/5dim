@@ -45,7 +45,7 @@ class Fuselajes extends Model
             "ÉRIDE",
             "KHEPRI",
             "HADES",
-            "SETH" ,
+            "SETH",
             "SUSANOO",
             "LOKI" ,
             "DIANA",
