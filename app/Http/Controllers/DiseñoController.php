@@ -99,7 +99,7 @@ class DiseñoController extends Controller
 
         return view('juego.diseño', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio',
         'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
-        'planetasJugador', 'planetasAlianza'));
+        'planetasJugador', 'planetasAlianza', 'diseños'));
     }
     public function diseñar ($idFuselaje)
     {
