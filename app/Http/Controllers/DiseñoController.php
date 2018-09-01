@@ -34,6 +34,10 @@ class DiseñoController extends Controller
         if (empty(session()->get('jugadores_id'))) {
             return redirect('/jugador');
         }
+        $constantesCheck = Constantes::find(1);
+        if (empty($constantesCheck)) {
+            return redirect('/admin/DatosMaestros');
+        }
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
@@ -101,6 +105,10 @@ class DiseñoController extends Controller
         }
         if (empty(session()->get('jugadores_id'))) {
             return redirect('/jugador');
+        }
+        $constantesCheck = Constantes::find(1);
+        if (empty($constantesCheck)) {
+            return redirect('/admin/DatosMaestros');
         }
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();

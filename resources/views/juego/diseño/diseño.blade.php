@@ -47,7 +47,13 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show" id="prediseñadas" role="tabpanel" aria-labelledby="prediseñadas-tab">
-
+                @foreach ($diseños as $diseño)
+                    @if ($diseño->)
+                        @include('juego.fuselajes.cajitaFuselajes', [
+                            'diseño' => $diseño,
+                        ])
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>
