@@ -19,10 +19,10 @@ use App\CostesDiseños;
 class DatosMaestrosController extends Controller
 {
     public function index(){   ///http://localhost/admin/DatosMaestros
-
         $datosM=new DatosMaestrosController();
         $datosM->DatosMaestros();
 
+        return redirect('/jugador');
     }
 
 
@@ -37,8 +37,8 @@ class DatosMaestrosController extends Controller
         $almacen=new Almacenes();
         $almacenes=$almacen->generarDatosAlmacenes();
 
-    // $produccion=new Producciones();
-    // $producciones=$produccion->generarDatosProducciones(); //esta en seed
+        //$produccion=new Producciones();
+        //$producciones=$produccion->generarDatosProducciones(); //esta en seed
 
         $dependencia=new Dependencias();
         $dependencias=$dependencia->generarDatosDependencias();
@@ -60,6 +60,5 @@ class DatosMaestrosController extends Controller
 
         $costesDiseños=new CostesDiseños();
         $costesDiseños=$costesDiseños->generarDatosCostesDiseños();
-
     }
 }

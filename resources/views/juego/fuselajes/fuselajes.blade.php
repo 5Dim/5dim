@@ -4,9 +4,6 @@
     <div class="container-fluid">
         <nav>
             <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
-                <a class="nav-item nav-link" id="prediseñadas-tab" data-toggle="tab" href="#prediseñadas" role="tab" aria-controls="prediseñadas" aria-selected="false">
-                    Prediseñadas
-                </a>
                 <a class="nav-item nav-link active" id="cazas-tab" data-toggle="tab" href="#cazas" role="tab" aria-controls="cazas" aria-selected="true">
                     Cazas
                 </a>
@@ -46,16 +43,6 @@
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show" id="prediseñadas" role="tabpanel" aria-labelledby="prediseñadas-tab">
-                @for ($i = 0 ; $i < count($fuselajes) ; $i++)
-                    @if ($fuselajes[$i]->categoria == "prediseñada")
-                        @include('juego.fuselajes.cajitaFuselajesPrediseñados', [
-                            'fuselaje' => $fuselajes[$i],
-                            'fuselajesJugador' => $fuselajesJugador,
-                        ])
-                    @endif
-                @endfor
-            </div>
             <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                 @for ($i = 0 ; $i < count($fuselajes) ; $i++)
                     @if ($fuselajes[$i]->categoria == "jugador" and $fuselajes[$i]->tamaño == "caza")
