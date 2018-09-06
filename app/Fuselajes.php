@@ -26,6 +26,11 @@ class Fuselajes extends Model
         return $this->belongsToMany(Jugadores::class);
     }
 
+    public function diseños ()
+    {
+        return $this->hasMany(Diseños::class);
+    }
+
     public function listaNombres () {
         $listaNombres = [
             "ARTEMISA",

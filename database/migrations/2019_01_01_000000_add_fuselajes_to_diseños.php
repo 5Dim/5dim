@@ -13,7 +13,10 @@ class AddFuselajesToDiseños extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('diseños', function (Blueprint $table) {
+            $table->integer('fuselajes_id')->unsigned();
+            $table->foreign('fuselajes_id')->references('id')->on('fuselajes');
+        });
     }
 
     /**
@@ -23,6 +26,9 @@ class AddFuselajesToDiseños extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('diseños', function (Blueprint $table) {
+            $table->dropforeign(['fuselajes_id']);
+            $table->dropColumn('fuselajes_id');
+        });
     }
 }
