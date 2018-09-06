@@ -2,104 +2,194 @@
         <div class="col-12">
             <div id="cuadro1" class="table-responsive">
                 <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
-                    @php
-                        $clase = 'success';
-                        if ($fuselaje->categoria == "alianza") {
-                            $clase = 'danger';
-                        }
-                    @endphp
                     <tr>
-                        <td colspan="4" class="text-{{$clase}} text-center borderless align-middle">
-                            <big>Modelo: {{ $fuselaje->codigo }}<big>
-                        </td>
-                        <td colspan="4" class="text-{{$clase}} text-center borderless align-middle">
-                            <big>Propiedad de {{ $fuselaje->categoria }}<big>
-                        </td>
+                        <th colspan="11" class="text-success text-center borderless align-middle">
+                            <big>Modelo: {{ $diseño->nombre }}<big>
+                        </th>
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless">
-                            <img class="rounded" data-skin="1" id ="imagen{{$fuselaje->id}}" src="{{ asset('img/fotos naves/skin1/naveMT' . $fuselaje->id . '.jpg') }}" width="180" height="119">
+                            <img class="rounded" data-skin="1" src="{{ asset('img/fotos naves/skin1/naveMT1.jpg') }}" width="180" height="119">
                         </td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaPequeña > 0 ? 'warning' : 'muted' }} borderless">Carga pequeña</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'warning' : 'muted' }} borderless">Carga media</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'warning' : 'muted' }} borderless">Mejoras</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'warning' : 'muted' }} borderless">Blindaje</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'warning' : 'muted' }} borderless">Cañón ligero</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasMedias > 0 ? 'warning' : 'muted' }} borderless">Cañón medio</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'warning' : 'muted' }} borderless">Cañón pesado</td>
+                        <td class="anchofijo text-warning borderless">
+                            Ataque
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Defensa
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Velocidad
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Consumo
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Municion
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Mantenimiento
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Carga
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Hangar cazas
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Hangar ligeras
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Hangar medias
+                        </td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaPequeña > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaPequeña }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaMedia }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->mejoras }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->blindajes }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasLigeras }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasMedias > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasMedias }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasPesadas }}</td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->ataque > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->ataque }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->defensa > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->defensa }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->velocidad > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->velocidad }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->fuel > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->fuel }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->municion > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->municion }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->mantenimiento > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->mantenimiento }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->carga > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->carga }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->cargaPequeña > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->cargaPequeña }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->cargaMediana > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->cargaMediana }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->cargaGrande > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->cargaGrande }}
+                        </td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }} borderless">Carga grande</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'warning' : 'muted' }} borderless">Carga Enorme</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'warning' : 'muted' }} borderless">Velocidad max</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'warning' : 'muted' }} borderless">Motores</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'warning' : 'muted' }} borderless">Cañón insertado</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasBombas > 0 ? 'warning' : 'muted' }} borderless">Bombas</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'warning' : 'muted' }} borderless">Misiles</td>
+                        <td class="anchofijo text-warning borderless">
+                            Mineral
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Cristal
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Gas
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Plastico
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Cerámica
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Liquido
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Micros
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Personal
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Hangar pesadas
+                        </td>
+                        <td class="anchofijo text-warning borderless">
+                            Hangar estaciones
+                        </td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaGrande }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->cargaEnorme }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->velocidadMax }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->motores }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasInsertadas }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasBombas > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasBombas }}</td>
-                        <td class="anchofijo text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'light' : 'muted' }} borderless">{{ $fuselaje->cualidades->armasMisiles }}</td>
+                        <td class="anchofijo text-{{ $diseño->costes->mineral > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->costes->mineral }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->costes->cristal > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->costes->cristal }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->costes->gas > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->costes->gas }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->costes->plastico > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->costes->plastico }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->costes->ceramica > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->costes->ceramica }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->costes->liquido > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->costes->liquido }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->costes->micros > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->costes->micros }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->costes->personal > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->costes->personal }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->cargaEnorme }}
+                        </td>
+                        <td class="anchofijo text-{{ $diseño->viewDiseños->cargaMega > 0 ? 'light' : 'muted' }} borderless">
+                            {{ $diseño->viewDiseños->cargaMega }}
+                        </td>
                     </tr>
                 </table>
             </div>
         </div>
-        <div class="col-12 borderless">
+        <div class="col-12">
             <div id="cuadro1" class="table-responsive ">
                 <table class="table table-sm table-borderless text-center anchofijo">
                     <tr>
                         <td>
-                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosFuselaje('{{$fuselaje->id}}')">
+                            <button type="button" class="btn btn-outline-danger btn-block btn-sm ">
+                                <i class="fa fa-info-circle"></i> Reciclar nave
+                            </button>
+                        </td>
+                        <td class="anchofijo text-secondary borderless">
+                            <div class="input-group mb-3 input-group-sm borderless">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-dark text-light">
+                                        <button type="button" class="btn btn-dark btn-sm text-warning" onclick="reciclarDiseño({{ $diseño->id }})">
+                                            0
+                                        </button>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2" id="diseño{{ $diseño->id }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-dark text-light">
+                                        <button type="button" class="btn btn-dark btn-sm text-warning">
+                                            M
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="construirDiseño({{ $diseño->id }})">
+                                <i class="fa fa-plus-circle"></i> Construir
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a type="button" class="btn btn-outline-danger btn-block btn-sm text-danger" href="{{ url('juego/diseño/borrarDiseño/' . $diseño->id) }}">
+                                <i class="fa fa-times "></i> Borrar diseño
+                            </a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal">
                                 <i class="fa fa-info-circle"></i> Datos
                             </button>
                         </td>
-                        @php
-                            $desabilitado = '';
-                            $clase = 'success';
-                            if (empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
-                                $desabilitado = 'disabled';
-                                $clase = 'light';
-                            }
-                        @endphp
                         <td>
-                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" onclick="sendDiseñar('{{$fuselaje->id}}')" {{$desabilitado}}>
-                                <i class="fa fa-cogs"></i> Diseñar
-                            </button>
-                        </td>
-                        @php
-                            $texto = ' Desbloquear';
-                            $desabilitado = '';
-                            $clase = 'success';
-                            if (!empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
-                                if ($fuselaje->id == $fuselajesJugador->where('id', $fuselaje->id)->first()->id) {
-                                    $clase = 'light';
-                                    $desabilitado = 'disabled';
-                                    $texto = ' Ya en propiedad';
-                                }
-                            }
-                            if ($fuselaje->categoria == "alianza") {
-                                $clase = 'light';
-                                $desabilitado = 'disabled';
-                            }
-                        @endphp
-                        <td>
-                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm"  onclick="sendDesbloquear('{{$fuselaje->id}}')" {{$desabilitado}}>
-                                <i class="fa fa-unlock-alt"></i> {{$texto}}
-                            </button>
+                            <a type="button" class="btn btn-outline-success btn-block btn-sm text-success" href="{{ url('juego/diseño/editarDiseño/' . $diseño->id) }}">
+                                <i class="fa fa-edit"></i> Editar diseño
+                            </a>
                         </td>
                     </tr>
                 </table>

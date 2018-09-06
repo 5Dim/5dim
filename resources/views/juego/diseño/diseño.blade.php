@@ -46,36 +46,16 @@
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show" id="prediseñadas" role="tabpanel" aria-labelledby="prediseñadas-tab">
+            <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                 @foreach ($diseños as $diseño)
-                    @if ($diseño->)
-                        @include('juego.fuselajes.cajitaFuselajes', [
+                    {{-- @if ($diseño) --}}
+                        @include('juego.diseño.cajitaDiseños', [
                             'diseño' => $diseño,
                         ])
-                    @endif
+                    {{-- @endif --}}
                 @endforeach
             </div>
         </div>
-    </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="datosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="ModalTitulo"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body" id="datosContenido">
-        ...
-        </div>
-        <div class="modal-footer">
-        </div>
-    </div>
     </div>
 </div>
 
