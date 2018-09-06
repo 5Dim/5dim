@@ -9,7 +9,7 @@
                     </tr>
                     <tr>
                         <td rowspan="4" class="anchofijo text-warning borderless">
-                            <img class="rounded" data-skin="1" src="{{ asset('img/fotos naves/skin1/naveMT1.jpg') }}" width="180" height="119">
+                            <img class="rounded" data-skin="1" src="{{ asset('img/fotos naves/skin1/naveMT' . $diseño->fuselajes_id . '.jpg') }}" width="180" height="119">
                         </td>
                         <td class="anchofijo text-warning borderless">
                             Ataque
