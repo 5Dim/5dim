@@ -39,6 +39,16 @@ function sendDiseñar(id) {
     window.location.href = "http://localhost/juego/diseño/diseñar/" + id;
 }
 
+function construirDiseño(id) {
+    var cantidad = $('#diseño' + id).val();
+    window.location.href = "http://localhost/juego/fabricar/construir/" + id + "/" + cantidad;
+}
+
+function reciclarDiseños(id) {
+    var cantidad = $('#diseño' + id).val();
+    window.location.href = "http://localhost/juego/fabricar/reciclar/" + id + "/" + cantidad;
+}
+
 function calcularRecursos() {
     //Pruebas
     //console.log(recursos);
