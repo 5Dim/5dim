@@ -867,7 +867,7 @@ foreach( $armasTengo[$elemento] as $e) {
 };
 
 $cteAriete=1;
-
+$costoFocoA=1; //coste acumulado foco
 
         if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0){
         //// armas ///////
@@ -908,7 +908,34 @@ $cteAriete=1;
             'invMa'=>$danoinvMa
         ];
 
+        $cteFoco=1;
+        $costoFoco=1;
         $energiaUsada=0;
+        $costoFocoA=1;
+        foreach( $tiposArmas as $elemento) {
+
+
+
+                    $hayalgo=1;
+                    $cteFoco=1;
+                    $costoFoco=1;
+
+                    // focos
+                    if($cantiFocos[$danoPosicion[$elemento][0]]>0){
+                        $e2=$danoPosicion[$elemento][0]+80;
+                        $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
+                        $cuantos2=$cantiFocos[$danoPosicion[$elemento][0]];
+                        $cteFoco=$cuantos2;//lo que varia por nivel de tecno
+                        $costoFoco=(1+($costeobj2['mineral']/100) )*$cuantos2; // es el que se usa para todos
+                        $danoFocos[$danoPosicion[$elemento][0]]=$costoFoco;
+                        $costoFocoA+=$costoFoco; //acumulado
+                    }
+
+
+
+        }
+        $prueba=$costoFocoA;
+
 
         foreach( $tiposArmas as $elemento) {
 
@@ -937,18 +964,7 @@ $cteAriete=1;
                     if ($e>0 and $correcto>0){
 
                         $hayalgo=1;
-                        $cteFoco=1;
-                        $costoFoco=1;
 
-                        // focos
-                        if($cantiFocos[$danoPosicion[$elemento][0]]>0){
-                            $e2=$danoPosicion[$elemento][0]+80;
-                            $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
-                            $cuantos2=$cantiFocos[$danoPosicion[$elemento][0]];
-                            $cteFoco=$cuantos2;//lo que varia por nivel de tecno
-                            $costoFoco=(1+($costeobj2['mineral']/100) )*$cuantos2; // es el que se usa para todos
-                            $danoFocos[$danoPosicion[$elemento][0]]=$costoFoco;
-                        }
                         $costoPunteria=1;
                         $ctePunteria=1;
                         if ($ctrlPunteria>0){
@@ -1000,7 +1016,7 @@ $cteAriete=1;
 
                         // sumo costes
                         $costeobj=$costesArmas->where('armas_codigo',$e)->first();
-                        $misCostes=sumaCostos($misCostes,$multiplicador*$variacionAlcance*$variacionDispersion*$costoFoco*$costoPunteria*$costoAriete,$costeobj);// sumo recursos basicos
+                        $misCostes=sumaCostos($misCostes,$multiplicador*$variacionAlcance*$variacionDispersion*$costoFocoA*$costoPunteria*$costoAriete,$costeobj);// sumo recursos basicos
                         // sumo cualidades
                         $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
                         $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
