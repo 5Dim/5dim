@@ -1741,6 +1741,7 @@ $.each( armas[elemento], function( key, e ) {
 valueF=formatNumber (Math.round (cualidades['energia']));
 $("#energiamejora").text(valueF);
 cteAriete=1;
+costoFocoA=1; //coste acumulado foco
 
 @if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
 //// armas ///////
@@ -1833,7 +1834,24 @@ if (armasTengo['cantidadCBombas']==0){energiabomba=0;} else {
     armasDispersion['armasBomba']=dispersionArmasBombas.noUiSlider.get();
 }
 
+$.each(tiposArmas,function(key,elemento){
+            // focos
+            cteFoco=1;
+            costoFoco=1;
+            if(cantiFocos[danoPosicion[elemento][0]]>0){
+                e2=danoPosicion[elemento][0]+80;
+                var obj2=$.grep(armasL, function(obj2){return obj2.codigo == e2;})[0];
+                var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj2['codigo'];})[0]; // busca costes este objeto entre las armas
+                var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj2['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
+                var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj2['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
+                cuantos=cantiFocos[danoPosicion[elemento][0]];
+                cteFoco=1+(miConstanteI*nivelInv*cuantos);//lo que varia por nivel de tecno
+                costoFoco=(1+(costeobj['mineral']/100) )*cuantos; //es el que se usa para todos
+                danoFocos[danoPosicion[elemento][0]]=costoFoco;
+                costoFocoA+=costoFoco; //acumulado
 
+            }
+    });
 
 // sumamos la energia que gasta cada arma de su tipo
 //elemento='armasLigera';
@@ -1854,26 +1872,16 @@ dañoarmasArm=0;
     energiaXarma=1/energiaArm;
 
 /// daño del arma por unidad de energia y costo
+
+
+
+
     hayalgo=0;
     $.each( armas[elemento], function( key, e ) {
 
         if (e>0){
         hayalgo=1;
-            // focos
-            cteFoco=1;
-            costoFoco=1;
-            if(cantiFocos[danoPosicion[elemento][0]]>0){
-                e2=danoPosicion[elemento][0]+80;
-                var obj2=$.grep(armasL, function(obj2){return obj2.codigo == e2;})[0];
-                var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj2['codigo'];})[0]; // busca costes este objeto entre las armas
-                var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj2['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
-                var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj2['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-                cuantos=cantiFocos[danoPosicion[elemento][0]];
-                cteFoco=1+(miConstanteI*nivelInv*cuantos);//lo que varia por nivel de tecno
-                costoFoco=(1+(costeobj['mineral']/100) )*cuantos; //es el que se usa para todos
-                danoFocos[danoPosicion[elemento][0]]=costoFoco;
 
-            }
             costoPunteria=1;
             ctePunteria=1;
             if (ctrlPunteria>0){
@@ -1914,7 +1922,7 @@ dañoarmasArm=0;
                 variacionAlcance= Math.pow(2.5,(1*armasAlcance[elemento]));
             variacionDispersion=Math.pow(1.5,(1*armasDispersion[elemento]));
 
-            sumaCostos(misCostes,multiplicador*variacionAlcance*variacionDispersion*costoFoco*costoPunteria*costoAriete,costeobj);// sumo recursos basicos
+            sumaCostos(misCostes,multiplicador*variacionAlcance*variacionDispersion*costoFocoA*costoPunteria*costoAriete,costeobj);// sumo recursos basicos
             costesVacio['mantenimiento']=costeobj['mantenimiento']*variacionAlcance*variacionDispersion;
             costesVacio['masa']=costeobj['masa'];
             costesVacio['municion']=costeobj['municion']*variacionAlcance*variacionDispersion/ctePunteria;
@@ -1992,11 +2000,11 @@ for(F=0;F<5;F++){
         valueAqui=danoTotal['invEnergia'][F][C]+danoTotal['invPlasma'][F][C]+danoTotal['invBalistica'][F][C]+danoTotal['invMa'][F][C];
         if (valueAqui>0){
 
-            danoTotalV[F][C]+=valueAqui*danoFocos[F];
+            danoTotalV[F][C]+=valueAqui; //*danoFocos[F];
                 for(c=C-1;c>-1;c--){ //atras
                     aAriete=1;
                     if (c==0 && ariete>0){aAriete=ariete*cteAriete;}
-                    danoTotalV[F][c]+=aAriete*valueAqui*(1+(dispersion*(C-c) ))*danoFocos[F];
+                    danoTotalV[F][c]+=aAriete*valueAqui*(1+(dispersion*(C-c) )); //*danoFocos[F];
                     danoInf=aAriete*valueAqui*(1+(dispersion*(C-c) ))/1.25;
                     for(f=F+1;f<4;f++){ //atras abajo
                         danoTotalV[f][c]+=danoInf;
@@ -2014,6 +2022,14 @@ for(F=0;F<5;F++){
 
         }
         if (danoTotalV[F][C]<1){danoTotalV[F][C]=0;}
+
+    }
+}
+
+// focos
+for(F=0;F<5;F++){
+    for(C=7;C>-1;C--){
+        danoTotalV[F][C]= Math.round (danoTotalV[F][C])*danoFocos[F];
 
     }
 }
