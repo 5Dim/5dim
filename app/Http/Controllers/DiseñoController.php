@@ -1065,8 +1065,22 @@ $costoFocoA=1; //coste acumulado foco
 
         $diseñoS=new Diseños();
         $diseñoS->nombre=$datosBasicos['nombre'];
-        $diseñoS->descripcion=$datosBasicos['descripcion'];
-        $diseñoS->posicion=$datosBasicos['posicion'];
+        if ($datosBasicos['descripcion']=""){
+            $diseñoS->descripcion="";
+        } else {
+            $diseñoS->descripcion=$datosBasicos['descripcion'];
+        }
+
+        $position=$datosBasicos['posicion'];
+        if ($position=""){
+            $diseñoS->posicion=1;
+        } else {
+            if ((int)($position)<1){$position=1;}
+            if ((int)($position)>9){$position=9;}
+            $diseñoS->posicion=$position;
+        }
+
+
         $diseñoS->codigo=$diseño->codigo;
         $diseñoS->skin=$datosBasicos['skin'];
         $diseñoS->save();
@@ -1173,6 +1187,43 @@ $costoFocoA=1; //coste acumulado foco
             }
         }
 
+
+        /// guardando elementos
+        /*
+
+        $armasTengo = ($_POST['armas']);
+        $energiaArmas = ($_POST['energiaArmas']);
+        $armasAlcance = ($_POST['armasAlcance']);
+        $armasDispersion = ($_POST['armasDispersion']);
+        */
+
+        $armasCualidades=[];
+        for ($x=0;$x<100;$x++){
+            array_push($armasCualidades, 0);
+        }
+
+        foreach( $armasTengo as $elemento) {
+            //$prueba=$elemento;
+            foreach( $elemento as $e) {
+                if ($e>0){
+                    $armasCualidades[$e]++;
+                }
+            }
+        }
+
+        for ($x=0;$x<100;$x++){
+            if ($armasCualidades[$x]>0){
+                $filaCualidades=new CualidadesDiseños();
+                $filaCualidades->codigo=$x;
+                $filaCualidades->cantidad=$armasCualidades[$x];
+                $filaCualidades->categoria="";
+
+            }
+
+        }
+
+        //$prueba=$armasCualidades;
+        //$prueba=$armasTengo;
 
     //use App\DañosDiseños;
     //use App\CostesDiseños;
