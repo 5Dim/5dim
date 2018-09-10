@@ -2229,6 +2229,7 @@ function crearDiseño() {
         error: function (xhr, textStatus, thrownError) {
             alert(xhr.status);
             alert(thrownError);
+            //alert(textStatus);
         }
     });
 

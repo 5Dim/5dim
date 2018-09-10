@@ -16,10 +16,10 @@ class CreateDiseñosTable extends Migration
         Schema::create('diseños', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('descripcion');
-            $table->integer('posicion');
+            $table->string('descripcion')->default(" ");
+            $table->integer('posicion')->default(9);
             $table->string('codigo');
-            $table->integer('skin');
+            $table->integer('skin')->default(1);
             $table->timestamps();
         });
     }

@@ -1065,11 +1065,15 @@ $costoFocoA=1; //coste acumulado foco
 
         $diseñoS=new Diseños();
         $diseñoS->nombre=$datosBasicos['nombre'];
+
+
         if ($datosBasicos['descripcion']=""){
-            $diseñoS->descripcion="";
+            $diseñoS->descripcion=" ";
         } else {
             $diseñoS->descripcion=$datosBasicos['descripcion'];
         }
+
+        $prueba=$datosBasicos['descripcion'];
 
         $position=$datosBasicos['posicion'];
         if ($position=""){
@@ -1080,7 +1084,7 @@ $costoFocoA=1; //coste acumulado foco
             $diseñoS->posicion=$position;
         }
 
-
+        $diseñoS->fuselajes_id= $idFuselaje;
         $diseñoS->codigo=$diseño->codigo;
         $diseñoS->skin=$datosBasicos['skin'];
         $diseñoS->save();
@@ -1216,10 +1220,46 @@ $costoFocoA=1; //coste acumulado foco
                 $filaCualidades=new CualidadesDiseños();
                 $filaCualidades->codigo=$x;
                 $filaCualidades->cantidad=$armasCualidades[$x];
-                $filaCualidades->categoria="";
-
+                $filaCualidades->diseños_id=$diseñoId;
+                $obj=$armas->where('codigo',$x)->first();
+                $filaCualidades->categoria=$obj->ranura;
+                $filaCualidades->save();
             }
+        }
 
+        $x=999;
+        foreach($energiaArmas as $elemento) {
+            $x++;
+            $filaCualidades=new CualidadesDiseños();
+            $filaCualidades->codigo=$x;
+            $filaCualidades->cantidad=$elemento*100;
+            $filaCualidades->diseños_id=$diseñoId;
+            $filaCualidades->categoria="energia";
+            $filaCualidades->save();
+        }
+        $x=1009;
+        foreach($armasAlcance as $elemento) {
+            $x++;
+            if ($elemento!=0){
+                $filaCualidades=new CualidadesDiseños();
+                $filaCualidades->codigo=$x;
+                $filaCualidades->cantidad=$elemento;
+                $filaCualidades->diseños_id=$diseñoId;
+                $filaCualidades->categoria="armasAlcance";
+                $filaCualidades->save();
+            }
+        }
+        $x=1019;
+        foreach($armasDispersion as $elemento) {
+            $x++;
+            if ($elemento!=0){
+                $filaCualidades=new CualidadesDiseños();
+                $filaCualidades->codigo=$x;
+                $filaCualidades->cantidad=$elemento;
+                $filaCualidades->diseños_id=$diseñoId;
+                $filaCualidades->categoria="armasDispersion";
+                $filaCualidades->save();
+            }
         }
 
         //$prueba=$armasCualidades;
@@ -1230,16 +1270,6 @@ $costoFocoA=1; //coste acumulado foco
     //use App\CualidadesDiseños;
 
 
-
-
-
-    /*
-        $interviniente = new MensajesIntervinientes();
-        $interviniente->receptor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
-        $interviniente->leido = false;
-        $interviniente->mensajes_id = $mensaje->id;
-        $interviniente->save();
-        */
 
 
     }
