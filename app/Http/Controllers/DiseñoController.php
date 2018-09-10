@@ -914,25 +914,20 @@ $costoFocoA=1; //coste acumulado foco
         $costoFocoA=1;
         foreach( $tiposArmas as $elemento) {
 
+            $hayalgo=1;
+            $cteFoco=1;
+            $costoFoco=1;
 
-
-                    $hayalgo=1;
-                    $cteFoco=1;
-                    $costoFoco=1;
-
-                    // focos
-                    if($cantiFocos[$danoPosicion[$elemento][0]]>0){
-                        $e2=$danoPosicion[$elemento][0]+80;
-                        $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
-                        $cuantos2=$cantiFocos[$danoPosicion[$elemento][0]];
-                        $cteFoco=$cuantos2;//lo que varia por nivel de tecno
-                        $costoFoco=(1+($costeobj2['mineral']/100) )*$cuantos2; // es el que se usa para todos
-                        $danoFocos[$danoPosicion[$elemento][0]]=$costoFoco;
-                        $costoFocoA+=$costoFoco; //acumulado
-                    }
-
-
-
+            // focos
+            if($cantiFocos[$danoPosicion[$elemento][0]]>0){
+                $e2=$danoPosicion[$elemento][0]+80;
+                $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
+                $cuantos2=$cantiFocos[$danoPosicion[$elemento][0]];
+                $cteFoco=$cuantos2;//lo que varia por nivel de tecno
+                $costoFoco=(1+($costeobj2['mineral']/100) )*$cuantos2; // es el que se usa para todos
+                $danoFocos[$danoPosicion[$elemento][0]]=$costoFoco;
+                $costoFocoA+=$costoFoco; //acumulado
+            }
         }
         $prueba=$costoFocoA;
 
