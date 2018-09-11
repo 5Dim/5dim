@@ -1072,6 +1072,8 @@ var energiaArmas={!!json_encode($arrayEnergiaArmas)!!};
         armasBomba:armasBombas,
     }
 
+    var elementosEncajar=['motor','blindaje','mejora','armasLigera','armasMedia','armasPesada','armasInsertada','armasMisil','armasBomba','cargaPequeña','cargaMediana','cargaGrande','cargaEnorme','cargaMega'];
+
 function limpiar(){
 
     $.each( armas, function( key, elemento ) {
@@ -1109,6 +1111,24 @@ function limpiar(){
             }
             $('#'+ elemento + n).attr("src", img);
             n++;
+        });
+
+        calculoTotalR();
+    }
+
+    function encajarTodo(){
+
+        elementosEncajar.forEach(function(elemento) {
+            n=0;
+            armas[elemento].forEach(function(e) {
+                if (e==0){
+                    img = "../../../img/fotos armas/vacio.png";
+                } else {
+                    img = "../../../img/fotos armas/arma" + e + ".jpg" ;
+                }
+                $('#'+ elemento + n).attr("src", img);
+                n++;
+            });
         });
 
         calculoTotalR();
@@ -2138,7 +2158,7 @@ $( document ).ready(function() {
         if (armasDispersion['armasInsertada']!=0){dispersionArmasInsertadas.noUiSlider.set(armasDispersion['armasInsertada']);}
         if (armasDispersion['armasBomba']!=0){dispersionArmasBombas.noUiSlider.set(armasDispersion['armasBomba']);}
 
-
+        encajarTodo(); //todas las armas que traigo
 
         calculoTotalR();
 
