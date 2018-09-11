@@ -2036,11 +2036,14 @@ for(F=0;F<5;F++){
 
 // pintado
 for(F=0;F<5;F++){
+    sumaF=0;
     for(C=7;C>-1;C--){
         sumaataque+=Math.round (danoTotalV[F][C]);
         valueF=formatNumber (Math.round (danoTotalV[F][C]));
         $("#"+F+C).text(valueF);
+        sumaF+=(Math.round (danoTotalV[F][C]));
     }
+    $("#filaDT"+F).text(formatNumber (sumaF));
 }
 
     valueF=formatNumber (sumaataque);
@@ -2179,6 +2182,20 @@ $( document ).ready(function() {
 
 function crearDiseño() {
     imagen=imagen{{$diseño->id }};
+    error=0;
+    elerror="";
+    if ($("#nombre").val()==""){
+        elerror=("El diseño necesita un nombre.");
+        error++;
+    }
+    if ($("#energiamotor").text()=="0"){
+        elerror+=(" La nave necesita algún motor.");
+        error++;
+    }
+
+    if (error>0){
+        alert(elerror)
+    } else {
 
     datosBasicos={
         "id":{{$diseño->id }},
@@ -2212,8 +2229,11 @@ function crearDiseño() {
         error: function (xhr, textStatus, thrownError) {
             alert(xhr.status);
             alert(thrownError);
+            //alert(textStatus);
         }
     });
+
+    }
 
 }
 function formSuccess(){

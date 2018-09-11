@@ -872,7 +872,7 @@ foreach( $armasTengo[$elemento] as $e) {
 };
 
 $cteAriete=1;
-
+$costoFocoA=1; //coste acumulado foco
 
         if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0){
         //// armas ///////
@@ -913,7 +913,29 @@ $cteAriete=1;
             'invMa'=>$danoinvMa
         ];
 
+        $cteFoco=1;
+        $costoFoco=1;
         $energiaUsada=0;
+        $costoFocoA=1;
+        foreach( $tiposArmas as $elemento) {
+
+            $hayalgo=1;
+            $cteFoco=1;
+            $costoFoco=1;
+
+            // focos
+            if($cantiFocos[$danoPosicion[$elemento][0]]>0){
+                $e2=$danoPosicion[$elemento][0]+80;
+                $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
+                $cuantos2=$cantiFocos[$danoPosicion[$elemento][0]];
+                $cteFoco=$cuantos2;//lo que varia por nivel de tecno
+                $costoFoco=(1+($costeobj2['mineral']/100) )*$cuantos2; // es el que se usa para todos
+                $danoFocos[$danoPosicion[$elemento][0]]=$costoFoco;
+                $costoFocoA+=$costoFoco; //acumulado
+            }
+        }
+        $prueba=$costoFocoA;
+
 
         foreach( $tiposArmas as $elemento) {
 
@@ -942,18 +964,7 @@ $cteAriete=1;
                     if ($e>0 and $correcto>0){
 
                         $hayalgo=1;
-                        $cteFoco=1;
-                        $costoFoco=1;
 
-                        // focos
-                        if($cantiFocos[$danoPosicion[$elemento][0]]>0){
-                            $e2=$danoPosicion[$elemento][0]+80;
-                            $costeobj2=$costesArmas->where('armas_codigo',$e2)->first();
-                            $cuantos2=$cantiFocos[$danoPosicion[$elemento][0]];
-                            $cteFoco=$cuantos2;//lo que varia por nivel de tecno
-                            $costoFoco=(1+($costeobj2['mineral']/100) )*$cuantos2; // es el que se usa para todos
-                            $danoFocos[$danoPosicion[$elemento][0]]=$costoFoco;
-                        }
                         $costoPunteria=1;
                         $ctePunteria=1;
                         if ($ctrlPunteria>0){
@@ -1005,7 +1016,7 @@ $cteAriete=1;
 
                         // sumo costes
                         $costeobj=$costesArmas->where('armas_codigo',$e)->first();
-                        $misCostes=sumaCostos($misCostes,$multiplicador*$variacionAlcance*$variacionDispersion*$costoFoco*$costoPunteria*$costoAriete,$costeobj);// sumo recursos basicos
+                        $misCostes=sumaCostos($misCostes,$multiplicador*$variacionAlcance*$variacionDispersion*$costoFocoA*$costoPunteria*$costoAriete,$costeobj);// sumo recursos basicos
                         // sumo cualidades
                         $costesVacio[$genera]=$costeobj[$genera]*1*$factorFuselaje; //lo q mejora por esos niveles
                         $costesVacio['tiempo']=$costeobj['tiempo']*$factorFuselaje;
@@ -1059,8 +1070,26 @@ $cteAriete=1;
 
         $diseñoS=new Diseños();
         $diseñoS->nombre=$datosBasicos['nombre'];
-        $diseñoS->descripcion=$datosBasicos['descripcion'];
-        $diseñoS->posicion=$datosBasicos['posicion'];
+
+
+        if ($datosBasicos['descripcion']=""){
+            $diseñoS->descripcion=" ";
+        } else {
+            $diseñoS->descripcion=$datosBasicos['descripcion'];
+        }
+
+        $prueba=$datosBasicos['descripcion'];
+
+        $position=$datosBasicos['posicion'];
+        if ($position=""){
+            $diseñoS->posicion=1;
+        } else {
+            if ((int)($position)<1){$position=1;}
+            if ((int)($position)>9){$position=9;}
+            $diseñoS->posicion=$position;
+        }
+
+        $diseñoS->fuselajes_id= $idFuselaje;
         $diseñoS->codigo=$diseño->codigo;
         $diseñoS->skin=$datosBasicos['skin'];
         $diseñoS->save();
@@ -1168,21 +1197,84 @@ $cteAriete=1;
         }
 
 
+        /// guardando elementos
+        /*
+
+        $armasTengo = ($_POST['armas']);
+        $energiaArmas = ($_POST['energiaArmas']);
+        $armasAlcance = ($_POST['armasAlcance']);
+        $armasDispersion = ($_POST['armasDispersion']);
+        */
+
+        $armasCualidades=[];
+        for ($x=0;$x<100;$x++){
+            array_push($armasCualidades, 0);
+        }
+
+        foreach( $armasTengo as $elemento) {
+            //$prueba=$elemento;
+            foreach( $elemento as $e) {
+                if ($e>0){
+                    $armasCualidades[$e]++;
+                }
+            }
+        }
+
+        for ($x=0;$x<100;$x++){
+            if ($armasCualidades[$x]>0){
+                $filaCualidades=new CualidadesDiseños();
+                $filaCualidades->codigo=$x;
+                $filaCualidades->cantidad=$armasCualidades[$x];
+                $filaCualidades->diseños_id=$diseñoId;
+                $obj=$armas->where('codigo',$x)->first();
+                $filaCualidades->categoria=$obj->ranura;
+                $filaCualidades->save();
+            }
+        }
+
+        $x=999;
+        foreach($energiaArmas as $elemento) {
+            $x++;
+            $filaCualidades=new CualidadesDiseños();
+            $filaCualidades->codigo=$x;
+            $filaCualidades->cantidad=$elemento*100;
+            $filaCualidades->diseños_id=$diseñoId;
+            $filaCualidades->categoria="energia";
+            $filaCualidades->save();
+        }
+        $x=1009;
+        foreach($armasAlcance as $elemento) {
+            $x++;
+            if ($elemento!=0){
+                $filaCualidades=new CualidadesDiseños();
+                $filaCualidades->codigo=$x;
+                $filaCualidades->cantidad=$elemento;
+                $filaCualidades->diseños_id=$diseñoId;
+                $filaCualidades->categoria="armasAlcance";
+                $filaCualidades->save();
+            }
+        }
+        $x=1019;
+        foreach($armasDispersion as $elemento) {
+            $x++;
+            if ($elemento!=0){
+                $filaCualidades=new CualidadesDiseños();
+                $filaCualidades->codigo=$x;
+                $filaCualidades->cantidad=$elemento;
+                $filaCualidades->diseños_id=$diseñoId;
+                $filaCualidades->categoria="armasDispersion";
+                $filaCualidades->save();
+            }
+        }
+
+        //$prueba=$armasCualidades;
+        //$prueba=$armasTengo;
+
     //use App\DañosDiseños;
     //use App\CostesDiseños;
     //use App\CualidadesDiseños;
 
 
-
-
-
-    /*
-        $interviniente = new MensajesIntervinientes();
-        $interviniente->receptor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
-        $interviniente->leido = false;
-        $interviniente->mensajes_id = $mensaje->id;
-        $interviniente->save();
-        */
 
 
     }

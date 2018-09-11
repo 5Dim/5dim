@@ -61,19 +61,19 @@ $arrayNaves=['Cazas','Ligeras','Medias','Pesadas/Estaciones','Defensas'];
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td class="anchofijo text-secondary borderless">
-                        Daño total a cazas: 0
+                        Daño total a cazas: <span id="filaDT0">0</span>
                     </td>
                     <td class="anchofijo text-secondary borderless">
-                        Daño total a ligeras: 0
+                        Daño total a ligeras: <span id="filaDT1">0</span>
                     </td>
                     <td class="anchofijo text-secondary borderless">
-                        Daño total a medias: 0
+                        Daño total a medias: <span id="filaDT2">0</span>
                     </td>
                     <td class="anchofijo text-secondary borderless">
-                        Daño total a pesadas/estaciones: 0
+                        Daño total a pesadas/estaciones: <span id="filaDT3">0</span>
                     </td>
                     <td class="anchofijo text-secondary borderless">
-                        Daño total a defensas: 0
+                        Daño total a defensas: <span id="filaDT4">0</span>
                     </td>
                 </tr>
             </table>

@@ -15,29 +15,35 @@ class CreateViewDiseñosTable extends Migration
     {
         DB::statement("DROP VIEW IF EXISTS view_diseños");
 
-        DB::statement("CREATE VIEW view_diseños AS
-                        SELECT
-                            cd.id as id,
-                            cd.fuel as fuel,
-                            cd.municion as municion,
-                            cd.mantenimiento as mantenimiento,
-                            cd.defensa as defensa,
-                            cd.ataque as ataque,
-                            cd.tiempo as tiempo,
-                            cd.velocidad as velocidad,
-                            cd.carga as carga,
-                            cd.cargaPequeña as cargaPequeña,
-                            cd.cargaMediana as cargaMediana,
-                            cd.cargaGrande as cargaGrande,
-                            cd.cargaEnorme as cargaEnorme,
-                            cd.cargaMega as cargaMega,
-                            cd.diseños_id as diseños_id
+        DB::statement("CREATE VIEW view_diseños
 
-                        FROM
-                            costes_diseños AS cd,
-                            diseños as d
-                        WHERE
-                            cd.diseños_id = d.id");
+        AS select
+            cd.id AS id,
+
+            cd.fuel AS fuel,
+            cd.municion AS municion,
+            cd.mantenimiento AS mantenimiento,
+            cd.defensa AS defensa,
+            cd.ataque AS ataque,
+            cd.tiempo AS tiempo,
+            cd.velocidad  AS velocidad ,
+            cd.carga AS carga,
+            cd.cargaPequeña AS cargaPequeña,
+            cd.cargaMediana AS cargaMediana,
+            cd.cargaGrande AS cargaGrande,
+            cd.cargaEnorme AS cargaEnorme,
+            cd.cargaMega AS cargaMega,
+            cd.diseños_id AS diseños_id
+
+        from
+            costes_diseños as  cd
+            LEFT JOIN diseños diseños ON cd.diseños_id=diseños.id
+            LEFT JOIN diseños_jugadores diseñosjugadores ON diseñosjugadores.id=diseños.id
+            LEFT JOIN jugadores jugadores ON jugadores.id= diseñosjugadores.id
+            LEFT JOIN investigaciones investigaciones ON investigaciones.jugadores_id=jugadores.id
+            ");
+
+
     }
 
 

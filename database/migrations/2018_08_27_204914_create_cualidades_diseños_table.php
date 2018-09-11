@@ -15,10 +15,10 @@ class CreateCualidadesDiseñosTable extends Migration
     {
         Schema::create('cualidades_diseños', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('armasTengo');
-            $table->string('energiaArmas');
-            $table->string('armasAlcance');
-            $table->string('armasDispersion');
+            $table->string('codigo');
+            $table->integer('cantidad');
+            $table->string('categoria');
+
 
 
         });
