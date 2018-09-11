@@ -36,7 +36,7 @@ class CostesDiseños extends Model
         $costes->energia=0;
         $costes->defensa=3000;
         $costes->ataque=0;
-        $costes->tiempo=0;
+        $costes->tiempo=1000;
         $costes->velocidad=3;
         $costes->carga=40000;
         $costes->cargaPequeña=0;

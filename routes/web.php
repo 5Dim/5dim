@@ -84,9 +84,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/juego/diseño', 'DiseñoController@index');
     Route::get('/juego/diseño/diseñar/{id}', 'DiseñoController@diseñar');
     Route::post('/juego/diseño/crearDiseño/{id?}', 'DiseñoController@crearDiseño');
+    Route::get('/juego/diseño/borrarDiseño/{id}', 'DiseñoController@borrarDiseño');
 
     //Fabricas
     Route::get('/juego/fabricas', 'FabricasController@index');
+    Route::get('/juego/fabricar/construir/{id}/{cantidad}', 'FabricasController@construir');
 
     //Astrometria
     Route::get('/juego/astrometria', 'AstrometriaController@index');

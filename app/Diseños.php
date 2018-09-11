@@ -37,6 +37,11 @@ class Diseños extends Model
         return $this->hasOne(ViewDañosDiseños::class);
     }
 
+    public function cola ()
+    {
+        return $this->hasMany(EnDiseños::class);
+    }
+
     public function fuselajes ()
     {
         return $this->belongsTo(Fuselajes::class);

@@ -23,6 +23,7 @@ use App\Alianzas;
 use App\Jugadores;
 use Auth;
 use App\Tiendas;
+use App\Diseños;
 
 class JuegoController extends Controller
 {
@@ -298,6 +299,14 @@ class JuegoController extends Controller
         }else {
             session()->put('jugadores_id', Jugadores::where(['universo_id', $universo],['user_id', Auth::user()->id])->first()->id);
         }
+
+        $jugadores = Jugadores::find(session()->get('jugadores_id'));
+        $diseños = Diseños::where('id', '<', 100)->get();
+
+        foreach ($diseños as $diseño) {
+            $jugadores->diseños()->attach($diseño->id);
+        }
+
         return redirect('/planeta');
     }
 }

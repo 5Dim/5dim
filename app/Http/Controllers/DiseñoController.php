@@ -179,7 +179,12 @@ class DiseñoController extends Controller
         'planetasJugador', 'planetasAlianza'));
     }
 
+    public function borrarDiseño ($idDiseño) {
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        $jugadorActual->diseños()->detach($idDiseño);
 
+        return redirect('/juego/diseño');
+    }
 
     public function crearDiseño($id = false){  //////////////////////////////////////***************** */
 
@@ -295,30 +300,30 @@ class DiseñoController extends Controller
 
 
         $arrayArmasTengo=[
-            'cantidadCLigeras'=>0,
-            'cantidadCMedias'=>0,
-            'cantidadCPesadas'=>0,
-            'cantidadCInsertadas'=>0,
-            'cantidadCMisiles'=>0,
-            'cantidadCBombas'=>0
+            'cantidadCLigeras' => 0,
+            'cantidadCMedias' => 0,
+            'cantidadCPesadas' => 0,
+            'cantidadCInsertadas' => 0,
+            'cantidadCMisiles' => 0,
+            'cantidadCBombas' => 0
         ];
 
         $cualidades=[
-            'fuel'=>0,
-            'municion'=>0,
-            'masa'=>0,
-            'energia'=>0,
-            'tiempo'=>0,
-            'mantenimiento'=>0,
-            'ataque'=>0,
-            'defensa'=>0,
-            'velocidad'=>0,
-            'carga'=>0,
-            'cargaPequeña'=>0,
-            'cargaMediana'=>0,
-            'cargaGrande'=>0,
-            'cargaEnorme'=>0,
-            'cargaMega'=>0,
+            'fuel' => 0,
+            'municion' => 0,
+            'masa' => 0,
+            'energia' => 0,
+            'tiempo' => 0,
+            'mantenimiento' => 0,
+            'ataque' => 0,
+            'defensa' => 0,
+            'velocidad' => 0,
+            'carga' => 0,
+            'cargaPequeña' => 0,
+            'cargaMediana' => 0,
+            'cargaGrande' => 0,
+            'cargaEnorme' => 0,
+            'cargaMega' => 0,
         ];
 
 
