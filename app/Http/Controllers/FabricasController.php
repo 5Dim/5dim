@@ -19,6 +19,8 @@ use App\Investigaciones;
 use App\Alianzas;
 use App\Jugadores;
 use Auth;
+use App\Diseños;
+use App\EnDiseños;
 
 class FabricasController extends Controller
 {
@@ -90,5 +92,97 @@ class FabricasController extends Controller
         return view('juego.fabrica', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
         'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones',
         'factoresIndustrias', 'planetasJugador', 'planetasAlianza'));
+    }
+
+    public function construir ($idDiseño, $cantidad) {
+
+        $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
+        $diseño = Diseños::find($idDiseño);
+        $costes = $diseño->costes;
+        $inicio = date("Y-m-d H:i:s");
+        $error = false;
+
+        //Comprobamos si hay recursos
+        if ($recursos->mineral < ($costes->mineral * $cantidad)) {
+            $error = true;
+        }
+        if ($recursos->cristal < ($costes->cristal * $cantidad)) {
+            $error = true;
+        }
+        if ($recursos->gas < ($costes->gas * $cantidad)) {
+            $error = true;
+        }
+        if ($recursos->plastico < ($costes->plastico * $cantidad)) {
+            $error = true;
+        }
+        if ($recursos->ceramica < ($costes->ceramica * $cantidad)) {
+            $error = true;
+        }
+        if ($recursos->liquido < ($costes->liquido * $cantidad)) {
+            $error = true;
+        }
+        if ($recursos->micros < ($costes->micros * $cantidad)) {
+            $error = true;
+        }
+
+        if (!$error) {
+
+            //Restamos recursos
+            $recursos->mineral -= ($costes->mineral * $cantidad);
+            $recursos->cristal -= ($costes->cristal * $cantidad);
+            $recursos->gas -= ($costes->gas * $cantidad);
+            $recursos->plastico -= ($costes->plastico * $cantidad);
+            $recursos->ceramica -= ($costes->ceramica * $cantidad);
+            $recursos->liquido -= ($costes->liquido * $cantidad);
+            $recursos->micros -= ($costes->micros * $cantidad);
+
+            $inicio = date('Y/m/d H:i:s');
+
+            for ($i=0; $i < $cantidad; $i++) {
+                //Generamos la cola
+                $cola = new EnDiseños();
+                $cola->accion = 'Construyendo';
+                $cola->tiempo = $costes->tiempo;
+                $cola->grupo = time();
+                $cola->created_at = strtotime($inicio);
+                $final = $inicio + $costes->tiempo;
+                $cola->finished_at = date('Y/m/d H:i:s', strtotime($final));
+                $cola->diseños_id = $diseño->id;
+                $cola->planetas_id = session()->get('planetas_id');
+                $cola->save();
+                $inicio = strtotime($cola->finished_at);
+            }
+        }
+
+        return redirect('/juego/diseño');
+    }
+
+    public function reciclar ($idDiseño, $cantidad) {
+
+        $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
+        $costes = Diseños::find($idDiseño)->costes;
+        $inicio = date("Y-m-d H:i:s");
+        /*
+        $constanteReciclaje = Constantes::where('codigo', 'perdidaReciclar')->first();
+
+        //Restamos recursos
+        $recursos->mineral += (($costes->mineral * $cantidad) / $constanteReciclaje->valor);
+        $recursos->cristal += (($costes->cristal * $cantidad) / $constanteReciclaje->valor);
+        $recursos->gas += (($costes->gas * $cantidad) / $constanteReciclaje->valor);
+        $recursos->plastico += (($costes->plastico * $cantidad) / $constanteReciclaje->valor);
+        $recursos->ceramica += (($costes->ceramica * $cantidad) / $constanteReciclaje->valor);
+        $recursos->liquido += (($costes->liquido * $cantidad) / $constanteReciclaje->valor);
+        $recursos->micros += (($costes->micros * $cantidad) / $constanteReciclaje->valor);
+        */
+
+        //Generamos la cola
+        $cola = new EnDiseños();
+        $cola->cantidad = $cantidad;
+        $cola->accion = 'Reciclando';
+        $cola->tiempo = $costes->tiempo;
+        $cola->finished_at = strtotime($inicio) + $cola->total;
+        $cola->save();
+
+        return redirect('/juego/diseño');
     }
 }
