@@ -173,10 +173,37 @@ class DiseñoController extends Controller
         $constantesI=Constantes::where('tipo','investigacion')->get();
         $costesArmas = CostesArmas::all();
 
+        $arrayAlcance=[
+            'armasLigera'=>0,
+            'armasMedia'=>0,
+            'armasPesada'=>0,
+            'armasInsertada'=>0,
+            'armasMisil'=>0,
+            'armasBomba'=>0
+        ];
+
+        $arrayDispersion=[
+            'armasLigera'=>0,
+            'armasMedia'=>0,
+            'armasPesada'=>0,
+            'armasInsertada'=>0,
+            'armasMisil'=>0,
+            'armasBomba'=>0
+        ];
+
+        $arrayEnergiaArmas=[
+            'armasLigera'=>20,
+            'armasMedia'=>40,
+            'armasPesada'=>60,
+            'armasInsertada'=>70,
+            'armasMisil'=>80,
+            'armasBomba'=>100
+        ];
+
 
         return view('juego.diseñar.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio',
         'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones', 'armas', 'constantesI', 'costesArmas', 'factoresIndustrias',
-        'planetasJugador', 'planetasAlianza'));
+        'planetasJugador', 'planetasAlianza','arrayAlcance','arrayDispersion','arrayEnergiaArmas'));
     }
 
     public function borrarDiseño ($idDiseño) {
@@ -187,6 +214,86 @@ class DiseñoController extends Controller
     }
 
 
+    public function editarDiseño ($idDiseño)
+    {
+        $diseño=Diseños::where('id',$idDiseño)->first();
+        $idFuselaje=$diseño->fuselajes_id;
+
+        //Inicio recursos
+        if (empty(session()->get('planetas_id'))) {
+            return redirect('/planeta');
+        }
+        if (empty(session()->get('jugadores_id'))) {
+            return redirect('/jugador');
+        }
+        $constantesCheck = Constantes::find(1);
+        if (empty($constantesCheck)) {
+            return redirect('/admin/DatosMaestros');
+        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
+            return redirect('/planeta');
+        }
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+        $jugadorAlianza = new Jugadores();
+        $jugadorAlianza->id = 0;
+        $planetasAlianza = null;
+        if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
+        }
+        EnConstrucciones::terminarColaConstrucciones();
+        $construcciones = Construcciones::construcciones($planetaActual);
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
+        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        Recursos::calcularRecursos($planetaActual->id);
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
+        $personal = 0;
+        $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
+        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
+        foreach ($colaConstruccion as $cola) {
+            $personal += $cola->personal;
+        }
+        foreach ($colaInvestigacion as $cola) {
+            if ($cola->planetas->id == session()->get('planetas_id')) {
+                $personal += $cola->personal;
+            }
+        }
+        $tipoPlaneta = $planetaActual->tipo;
+        $investigacion = new Investigaciones();
+        $investigaciones = $investigacion->investigaciones($planetaActual);
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
+        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
+        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
+        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+        $factoresIndustrias = [];
+        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
+        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorLiquido);
+        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMicros);
+        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorFuel);
+        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMa);
+        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
+        array_push($factoresIndustrias, $factorMunicion);
+        //Fin recursos
+
+        $diseño = Fuselajes::find($idFuselaje);
+
+        $armas = Armas::all();
+
+        $constantesI=Constantes::where('tipo','investigacion')->get();
+        $costesArmas = CostesArmas::all();
+
+
+        return view('juego.diseñar.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio',
+        'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones', 'armas', 'constantesI', 'costesArmas', 'factoresIndustrias',
+        'planetasJugador', 'planetasAlianza'));
+    }
 
 
     public function crearDiseño($id = false){  //////////////////////////////////////***************** */

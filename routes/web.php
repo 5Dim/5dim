@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/juego/diseño/diseñar/{id}', 'DiseñoController@diseñar');
     Route::post('/juego/diseño/crearDiseño/{id?}', 'DiseñoController@crearDiseño');
     Route::get('/juego/diseño/borrarDiseño/{id}', 'DiseñoController@borrarDiseño');
+    Route::get('/juego/diseño/editarDiseño/{id}', 'DiseñoController@editarDiseño');
 
     //Fabricas
     Route::get('/juego/fabricas', 'FabricasController@index');
