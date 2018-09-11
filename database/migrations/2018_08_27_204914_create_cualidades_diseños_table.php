@@ -18,9 +18,6 @@ class CreateCualidadesDiseñosTable extends Migration
             $table->string('codigo');
             $table->integer('cantidad');
             $table->string('categoria');
-
-
-
         });
     }
 

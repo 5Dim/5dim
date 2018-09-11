@@ -1494,7 +1494,7 @@ $.each( armas[elemento], function( key, e ) {
         costesVacio['mantenimiento']=costeobj['mantenimiento']*factorFuselaje;
         costesVacio['fuel']=costeobj['fuel']*factorFuselaje;
         sumaCualidades(costesMisMotores,multiplicadorMotores,costesVacio);
-        empujeT+=empuje[obj['codigo']]*multiplicadorMotores*cualidadesFuselaje['velocidad']*cte; //el empuje del motor por la cantidad por el factor de fuselaje
+        empujeT+=costeobj['velocidad']*multiplicadorMotores*cualidadesFuselaje['velocidad']*cte; //el empuje del motor por la cantidad por el factor de fuselaje
 
     }
 });

@@ -181,6 +181,9 @@ class DiseñoController extends Controller
 
 
 
+
+
+
     public function crearDiseño($id = false){  //////////////////////////////////////***************** */
 
         $armasTengo = ($_POST['armas']);
@@ -556,14 +559,6 @@ class DiseñoController extends Controller
 
         $empujeT=0;
 
-        $empuje=[
-            '59'=>100,
-            '60'=>300000,
-            '61'=>1000000,
-            '62'=>1000000,
-            '63'=>1400000,
-            '64'=>2000000,
-        ];
 
         $prueba="";
 
@@ -599,7 +594,7 @@ class DiseñoController extends Controller
                     $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
                     $costesVacio['fuel']=$costeobj['fuel']*$factorFuselaje;
                     $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
-                    $empujeT+=$empuje[$obj['codigo']]*$multiplicador*$cualidadesFuselaje['velocidad'];
+                    $empujeT+=$costeobj['velocidad']*$multiplicador*$cualidadesFuselaje['velocidad'];
                     $costesMisMotores=$misCostes;
                 }
             }
