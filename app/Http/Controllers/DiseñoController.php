@@ -200,10 +200,50 @@ class DiseñoController extends Controller
             'armasBomba'=>100
         ];
 
+        $motor=[];for($n=0;$n<6;$n++){ array_push($motor,0);}
+        $blindaje=[];for($n=0;$n<14;$n++){ array_push($blindaje,0);}
+        $mejora=[];for($n=0;$n<20;$n++){ array_push($mejora,0);}
+        $cargaPequeña=[];for($n=0;$n<10;$n++){ array_push($cargaPequeña,0);}
+        $cargaMediana=[];for($n=0;$n<10;$n++){ array_push($cargaMediana,0);}
+        $cargaGrande=[];for($n=0;$n<10;$n++){ array_push($cargaGrande,0);}
+        $cargaEnorme=[];for($n=0;$n<10;$n++){ array_push($cargaEnorme,0);}
+        $cargaMega=[];for($n=0;$n<10;$n++){ array_push($cargaMega,0);}
+
+        $armasLigera=[];for($n=0;$n<6;$n++){ array_push($armasLigera,0);}
+        $armasMedia=[];for($n=0;$n<6;$n++){ array_push($armasMedia,0);}
+        $armasPesada=[];for($n=0;$n<6;$n++){ array_push($armasPesada,0);}
+        $armasInsertada=[];for($n=0;$n<6;$n++){ array_push($armasInsertada,0);}
+        $armasMisil=[];for($n=0;$n<6;$n++){ array_push($armasMisil,0);}
+        $armasBomba=[];for($n=0;$n<6;$n++){ array_push($armasBomba,0);}
+
+        $arrayObjetos=[
+            'motor'=>$motor,
+            'blindaje'=>$blindaje,
+            'mejora'=>$mejora,
+            'cargaPequeña'=>$cargaPequeña,
+            'cargaMediana'=>$cargaMediana,
+            'cargaGrande'=>$cargaGrande,
+            'cargaEnorme'=>$cargaEnorme,
+            'cargaMega'=>$cargaMega,
+            'armasLigera'=>$armasLigera,
+            'armasMedia'=>$armasMedia,
+            'armasPesada'=>$armasPesada,
+            'armasInsertada'=>$armasInsertada,
+            'armasMisil'=>$armasMisil,
+            'armasBomba'=>$armasBomba
+        ];
+
+        $esteDiseño=[
+            'nombre'=>'',
+            'descripcion'=>'',
+            'skin'=>1,
+            'posicion'=>9
+        ];
+
 
         return view('juego.diseñar.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio',
         'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones', 'armas', 'constantesI', 'costesArmas', 'factoresIndustrias',
-        'planetasJugador', 'planetasAlianza','arrayAlcance','arrayDispersion','arrayEnergiaArmas'));
+        'planetasJugador', 'planetasAlianza','arrayAlcance','arrayDispersion','arrayEnergiaArmas','arrayObjetos','esteDiseño'));
     }
 
     public function borrarDiseño ($idDiseño) {
@@ -216,8 +256,8 @@ class DiseñoController extends Controller
 
     public function editarDiseño ($idDiseño)
     {
-        $diseño=Diseños::where('id',$idDiseño)->first();
-        $idFuselaje=$diseño->fuselajes_id;
+        $esteDiseño=Diseños::where('id',$idDiseño)->first();
+        $idFuselaje=$esteDiseño->fuselajes_id;
 
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
@@ -289,10 +329,84 @@ class DiseñoController extends Controller
         $constantesI=Constantes::where('tipo','investigacion')->get();
         $costesArmas = CostesArmas::all();
 
+        // valores de objetos
+        $listaObjetos=CualidadesDiseños::where('diseños_id',$idDiseño)->get();
+
+
+        $arrayAlcance=[
+            'armasLigera'=>$listaObjetos->where('codigo',1020)->first()==null ? 0 : $listaObjetos->where('codigo',1020)->first()->cantidad,
+            'armasMedia'=>$listaObjetos->where('codigo',1021)->first()==null ? 0 : $listaObjetos->where('codigo',1021)->first()->cantidad,
+            'armasPesada'=>$listaObjetos->where('codigo',1022)->first()==null ? 0 : $listaObjetos->where('codigo',1022)->first()->cantidad,
+            'armasInsertada'=>$listaObjetos->where('codigo',1023)->first()==null ? 0 : $listaObjetos->where('codigo',1023)->first()->cantidad,
+            'armasMisil'=>$listaObjetos->where('codigo',1024)->first()==null ? 0 : $listaObjetos->where('codigo',1024)->first()->cantidad,
+            'armasBomba'=>$listaObjetos->where('codigo',1025)->first()==null ? 0 : $listaObjetos->where('codigo',1025)->first()->cantidad
+        ];
+
+        $arrayDispersion=[
+            'armasLigera'=>$listaObjetos->where('codigo',1010)->first()==null ? 0 : $listaObjetos->where('codigo',1010)->first()->cantidad,
+            'armasMedia'=>$listaObjetos->where('codigo',1011)->first()==null ? 0 : $listaObjetos->where('codigo',1011)->first()->cantidad,
+            'armasPesada'=>$listaObjetos->where('codigo',1012)->first()==null ? 0 : $listaObjetos->where('codigo',1012)->first()->cantidad,
+            'armasInsertada'=>$listaObjetos->where('codigo',1013)->first()==null ? 0 : $listaObjetos->where('codigo',1013)->first()->cantidad,
+            'armasMisil'=>$listaObjetos->where('codigo',1014)->first()==null ? 0 : $listaObjetos->where('codigo',1014)->first()->cantidad,
+            'armasBomba'=>$listaObjetos->where('codigo',1015)->first()==null ? 0 : $listaObjetos->where('codigo',1015)->first()->cantidad
+        ];
+
+        $arrayEnergiaArmas=[
+            'armasLigera'=>$listaObjetos->where('codigo',1000)->first()==null ? 0 : $listaObjetos->where('codigo',1000)->first()->cantidad,
+            'armasMedia'=>$listaObjetos->where('codigo',1001)->first()==null ? 0 : $listaObjetos->where('codigo',1001)->first()->cantidad,
+            'armasPesada'=>$listaObjetos->where('codigo',1002)->first()==null ? 0 : $listaObjetos->where('codigo',1002)->first()->cantidad,
+            'armasInsertada'=>$listaObjetos->where('codigo',1003)->first()==null ? 0 : $listaObjetos->where('codigo',1003)->first()->cantidad,
+            'armasMisil'=>$listaObjetos->where('codigo',1004)->first()==null ? 0 : $listaObjetos->where('codigo',1004)->first()->cantidad,
+            'armasBomba'=>$listaObjetos->where('codigo',1005)->first()==null ? 0 : $listaObjetos->where('codigo',1005)->first()->cantidad
+        ];
+
+
+        $motor=[];for($n=0;$n<6;$n++){ array_push($motor,0);}
+        $blindaje=[];for($n=0;$n<14;$n++){ array_push($blindaje,0);}
+        $mejora=[];for($n=0;$n<20;$n++){ array_push($mejora,0);}
+        $cargaPequeña=[];for($n=0;$n<10;$n++){ array_push($cargaPequeña,0);}
+        $cargaMediana=[];for($n=0;$n<10;$n++){ array_push($cargaMediana,0);}
+        $cargaGrande=[];for($n=0;$n<10;$n++){ array_push($cargaGrande,0);}
+        $cargaEnorme=[];for($n=0;$n<10;$n++){ array_push($cargaEnorme,0);}
+        $cargaMega=[];for($n=0;$n<10;$n++){ array_push($cargaMega,0);}
+
+        $armasLigera=[];for($n=0;$n<6;$n++){ array_push($armasLigera,0);}
+        $armasMedia=[];for($n=0;$n<6;$n++){ array_push($armasMedia,0);}
+        $armasPesada=[];for($n=0;$n<6;$n++){ array_push($armasPesada,0);}
+        $armasInsertada=[];for($n=0;$n<6;$n++){ array_push($armasInsertada,0);}
+        $armasMisil=[];for($n=0;$n<6;$n++){ array_push($armasMisil,0);}
+        $armasBomba=[];for($n=0;$n<6;$n++){ array_push($armasBomba,0);}
+
+
+        foreach($listaObjetos->where('codigo','<',1000) as $valor){
+            for ($x=0;$x<$valor->cantidad;$x++){
+                $categoria=$valor->categoria;
+                array_unshift($$categoria, $valor->codigo);
+            }
+        }
+
+
+        $arrayObjetos=[
+            'motor'=>$motor,
+            'blindaje'=>$blindaje,
+            'mejora'=>$mejora,
+            'cargaPequeña'=>$cargaPequeña,
+            'cargaMediana'=>$cargaMediana,
+            'cargaGrande'=>$cargaGrande,
+            'cargaEnorme'=>$cargaEnorme,
+            'cargaMega'=>$cargaMega,
+            'armasLigera'=>$armasLigera,
+            'armasMedia'=>$armasMedia,
+            'armasPesada'=>$armasPesada,
+            'armasInsertada'=>$armasInsertada,
+            'armasMisil'=>$armasMisil,
+            'armasBomba'=>$armasBomba
+        ];
+
 
         return view('juego.diseñar.diseñar', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'diseño', 'nivelImperio',
         'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas','investigaciones', 'armas', 'constantesI', 'costesArmas', 'factoresIndustrias',
-        'planetasJugador', 'planetasAlianza'));
+        'planetasJugador', 'planetasAlianza','arrayAlcance','arrayDispersion','arrayEnergiaArmas','arrayObjetos','esteDiseño'));
     }
 
 
@@ -1309,7 +1423,7 @@ $costoFocoA=1; //coste acumulado foco
         */
 
         $armasCualidades=[];
-        for ($x=0;$x<100;$x++){
+        for ($x=0;$x<200;$x++){
             array_push($armasCualidades, 0);
         }
 
@@ -1322,7 +1436,7 @@ $costoFocoA=1; //coste acumulado foco
             }
         }
 
-        for ($x=0;$x<100;$x++){
+        for ($x=0;$x<200;$x++){
             if ($armasCualidades[$x]>0){
                 $filaCualidades=new CualidadesDiseños();
                 $filaCualidades->codigo=$x;

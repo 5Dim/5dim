@@ -61,11 +61,12 @@ $multiplicadorblindajes=($diseño->cualidades->blindajes/$cantidadblindajes);
 $cantidadMejoras=$diseño->cualidades->mejoras;
 $multiplicadormejoras=1;
 
-$porcent=1;
+$porcentAcumulado=0;
 $cantidadCLigeras=$diseño->cualidades->armasLigeras;
 $multiplicadorCLigeras=1;
 if ($cantidadCLigeras>0){
-    array_push($arrayStart,$arrayEnergiaArmas['armasLigera']);
+    $porcentAcumulado+=$arrayEnergiaArmas['armasLigera'];
+    array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-1-color');
     array_push($arrayTooltip,'% de energía a cañones ligeros');
@@ -79,7 +80,8 @@ if ($cantidadCLigeras>6){
 $cantidadCMedias=$diseño->cualidades->armasMedias;
 $multiplicadorCMedias=1;
 if ($cantidadCMedias>0){
-    array_push($arrayStart,$arrayEnergiaArmas['armasMedia']);
+    $porcentAcumulado+=$arrayEnergiaArmas['armasMedia'];
+    array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-2-color');
     array_push($arrayTooltip,'% de energía a cañones medios');
@@ -93,7 +95,8 @@ if ($cantidadCMedias>6){
 $cantidadCPesadas=$diseño->cualidades->armasPesadas;
 $multiplicadorCPesadas=1;
 if ($cantidadCPesadas>0){
-    array_push($arrayStart,$arrayEnergiaArmas['armasPesada']);
+    $porcentAcumulado+=$arrayEnergiaArmas['armasPesada'];
+    array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-3-color');
     array_push($arrayTooltip,'% de energía a cañones pesados');
@@ -107,7 +110,8 @@ if ($cantidadCPesadas>6){
 $cantidadCInsertadas=$diseño->cualidades->armasInsertadas;
 $multiplicadorCInsertadas=1;
 if ($cantidadCInsertadas>0){
-    array_push($arrayStart,$arrayEnergiaArmas['armasInsertada']);
+    $porcentAcumulado+=$arrayEnergiaArmas['armasInsertada'];
+    array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-4-color');
     array_push($arrayTooltip,'% de energía a cañones insertados');
@@ -121,7 +125,8 @@ if ($cantidadCInsertadas>6){
 $cantidadCMisiles=$diseño->cualidades->armasMisiles;
 $multiplicadorCMisiles=1;
 if ($cantidadCMisiles>0){
-    array_push($arrayStart,$arrayEnergiaArmas['armasMisil']);
+    $porcentAcumulado+=$arrayEnergiaArmas['armasMisil'];
+    array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-5-color');
     array_push($arrayTooltip,'% de energía a misiles');
@@ -135,7 +140,8 @@ if ($cantidadCMisiles>6){
 $cantidadCBombas=$diseño->cualidades->armasBombas;
 $multiplicadorCBombas=1;
 if ($cantidadCBombas>0){
-    array_push($arrayStart,$arrayEnergiaArmas['armasBomba']);
+    $porcentAcumulado+=$arrayEnergiaArmas['armasBomba'];
+    array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-6-color');
     array_push($arrayTooltip,'% de energía a bombas');
@@ -188,46 +194,46 @@ $multiplicadorCargaMega=($diseño->cualidades->cargaMega/$cantidadCargaMega);
 
 //arrays que vienen
 $motores=[];
-for($n=0;$n<$cantidadMotores;$n++){ array_push($motores,0);}
+for($n=0;$n<$cantidadMotores;$n++){ array_push($motores,$arrayObjetos['motor'][$n]);}
 
 $blindajes=[];
-for($n=0;$n<$cantidadblindajes;$n++){ array_push($blindajes,0);}
+for($n=0;$n<$cantidadblindajes;$n++){ array_push($blindajes,$arrayObjetos['blindaje'][$n]);}
 
 $mejoras=[];
-for($n=0;$n<$cantidadMejoras;$n++){ array_push($mejoras,0);}
+for($n=0;$n<$cantidadMejoras;$n++){ array_push($mejoras,$arrayObjetos['mejora'][$n]);}
 
 $cargaPequeñas=[];
-for($n=0;$n<$cantidadCargaPequeña;$n++){ array_push($cargaPequeñas,0);}
+for($n=0;$n<$cantidadCargaPequeña;$n++){  array_push($cargaPequeñas,$arrayObjetos['cargaPequeña'][$n]);}
 
 $cargaMedianas=[];
-for($n=0;$n<$cantidadCargaMedia;$n++){ array_push($cargaMedianas,0);}
+for($n=0;$n<$cantidadCargaMedia;$n++){  array_push($cargaMedianas,$arrayObjetos['cargaMediana'][$n]);}
 
 $cargaGrandes=[];
-for($n=0;$n<$cantidadCargaGrande;$n++){ array_push($cargaGrandes,0);}
+for($n=0;$n<$cantidadCargaGrande;$n++){  array_push($cargaGrandes,$arrayObjetos['cargaGrande'][$n]);}
 
 $cargaEnorme=[];
-for($n=0;$n<$cantidadCargaEnorme;$n++){ array_push($cargaEnorme,0);}
+for($n=0;$n<$cantidadCargaEnorme;$n++){ array_push($cargaEnorme,$arrayObjetos['cargaEnorme'][$n]);}
 
 $cargaMega=[];
-for($n=0;$n<$cantidadCargaMega;$n++){ array_push($cargaMega,0);}
+for($n=0;$n<$cantidadCargaMega;$n++){  array_push($cargaMega,$arrayObjetos['cargaMega'][$n]);}
 
 $armasLigeras=[];
-for($n=0;$n<$cantidadCLigeras;$n++){ array_push($armasLigeras,0);}
+for($n=0;$n<$cantidadCLigeras;$n++){ array_push($armasLigeras,$arrayObjetos['armasLigera'][$n]);}
 
 $armasMedias=[];
-for($n=0;$n<$cantidadCMedias;$n++){ array_push($armasMedias,0);}
+for($n=0;$n<$cantidadCMedias;$n++){ array_push($armasMedias,$arrayObjetos['armasMedia'][$n]);}
 
 $armasPesadas=[];
-for($n=0;$n<$cantidadCPesadas;$n++){ array_push($armasPesadas,0);}
+for($n=0;$n<$cantidadCPesadas;$n++){ array_push($armasPesadas,$arrayObjetos['armasPesada'][$n]);}
 
 $armasInsertadas=[];
-for($n=0;$n<$cantidadCInsertadas;$n++){ array_push($armasInsertadas,0);}
+for($n=0;$n<$cantidadCInsertadas;$n++){ array_push($armasInsertadas,$arrayObjetos['armasInsertada'][$n]);}
 
 $armasMisiles=[];
-for($n=0;$n<$cantidadCMisiles;$n++){ array_push($armasMisiles,0);}
+for($n=0;$n<$cantidadCMisiles;$n++){ array_push($armasMisiles,$arrayObjetos['armasMisil'][$n]);}
 
 $armasBombas=[];
-for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,0);}
+for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armasBomba'][$n]);}
 
 
 
@@ -1053,6 +1059,7 @@ var armasTengo={!!json_encode($arrayArmasTengo)!!};
 var armasAlcance ={!!json_encode($arrayAlcance)!!};
 var armasDispersion ={!!json_encode($arrayDispersion)!!};
 var energiaArmas={!!json_encode($arrayEnergiaArmas)!!};
+var esteDiseño={!!json_encode($esteDiseño)!!};
 
     var armas={
         motor:motores,
@@ -2157,6 +2164,17 @@ $( document ).ready(function() {
         if (armasDispersion['armasMisil']!=0){dispersionArmasMisiles.noUiSlider.set(armasDispersion['armasMisil']);}
         if (armasDispersion['armasInsertada']!=0){dispersionArmasInsertadas.noUiSlider.set(armasDispersion['armasInsertada']);}
         if (armasDispersion['armasBomba']!=0){dispersionArmasBombas.noUiSlider.set(armasDispersion['armasBomba']);}
+
+        $("#nombre").val(esteDiseño['nombre']);
+        $("#descripcion").val(esteDiseño['descripcion']);
+        $("#posicionCombate").val(esteDiseño['posicion']);
+
+        id={{$diseño->id}};
+        eval("imagen=imagen" + id + ";");
+        sumask=esteDiseño['skin'];
+        imagen.dataset.skin = sumask;
+        img = "background: url('http://localhost/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;";
+        $("#tablaArmas").prop("style", img);
 
         encajarTodo(); //todas las armas que traigo
 

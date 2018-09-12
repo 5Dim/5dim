@@ -14,7 +14,9 @@
                 'costesArmas'=>$costesArmas,
                 'arrayAlcance'=>$arrayAlcance,
                 'arrayDispersion'=>$arrayDispersion,
-                'arrayEnergiaArmas'=>$arrayEnergiaArmas
+                'arrayEnergiaArmas'=>$arrayEnergiaArmas,
+                'arrayObjetos'=>$arrayObjetos,
+                'esteDiseño'=>$esteDiseño
             ])
             @include ('juego.diseñar.tablaDaños', [
                 'diseño' => $diseño,
