@@ -136,21 +136,19 @@ class FabricasController extends Controller
             $recursos->liquido -= ($costes->liquido * $cantidad);
             $recursos->micros -= ($costes->micros * $cantidad);
 
-            $inicio = date('Y/m/d H:i:s');
-
             for ($i=0; $i < $cantidad; $i++) {
+
+                $final = (strtotime($inicio) + ($costes->tiempo * ($i + 1)));
+
                 //Generamos la cola
                 $cola = new EnDiseños();
                 $cola->accion = 'Construyendo';
                 $cola->tiempo = $costes->tiempo;
-                $cola->grupo = time();
-                $cola->created_at = strtotime($inicio);
-                $final = $inicio + $costes->tiempo;
-                $cola->finished_at = date('Y/m/d H:i:s', strtotime($final));
                 $cola->diseños_id = $diseño->id;
                 $cola->planetas_id = session()->get('planetas_id');
+                $cola->created_at = $inicio;
+                $cola->finished_at = date('Y/m/d H:i:s', $final);
                 $cola->save();
-                $inicio = strtotime($cola->finished_at);
             }
         }
 
