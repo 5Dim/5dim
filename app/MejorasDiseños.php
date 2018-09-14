@@ -15,35 +15,26 @@ class MejorasDiseños extends Model
         $n=1;
 
         $mejoras=new MejorasDiseños(); //recolector
-        $mejoras->velocidad=0;
-        $mejoras->carga=0;
-        $mejoras->hangar=0;
+        $mejoras->invPropPlasma=0;
         $mejoras->fuel=0;
+        $mejoras->ataque=0;
         $mejoras->defensa=0;
         $mejoras->mantenimiento=0;
         $mejoras->tiempo=0;
-        $mejoras->cazas=0;
-        $mejoras->ligeras=0;
-        $mejoras->medias=0;
-        $mejoras->pesadas=0;
-        $mejoras->defensas=0;
+        $mejoras->carga=40000;
         $mejoras->diseños_id=$n;
         array_push($mejorasDiseños, $mejoras);
         $n++;
 
-        $mejoras=new MjorasDiseños(); //remolcador
-        $mejoras->velocidad=0;
-        $mejoras->carga=0;
-        $mejoras->hangar=0;
+        $mejoras=new MejorasDiseños(); //remolcador
+        $mejoras->invPropPlasma=5;
         $mejoras->fuel=0;
+        $mejoras->ataque=0;
         $mejoras->defensa=0;
         $mejoras->mantenimiento=0;
         $mejoras->tiempo=0;
-        $mejoras->cazas=0;
-        $mejoras->ligeras=0;
-        $mejoras->medias=0;
-        $mejoras->pesadas=0;
-        $mejoras->defensas=0;
+        $mejoras->carga=100000;
+        $mejoras->hangarMega=1;
         $mejoras->diseños_id=$n;
         array_push($mejorasDiseños, $mejoras);
         $n++;

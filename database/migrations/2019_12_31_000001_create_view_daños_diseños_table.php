@@ -19,9 +19,6 @@ class CreateViewDañosDiseñosTable extends Migration
 
 
 
-
-
-
   		select diseños_id,fila,
   		sum(distancia0) as distancia0,
   		sum(distancia1) as distancia1,
@@ -48,20 +45,49 @@ class CreateViewDañosDiseñosTable extends Migration
 				where investigacion='invEnergia'
   			) union all
   			(select daños.diseños_id,daños.fila,jugadores.id as jugador,
-				daños.distancia0 as distancia0,
-				daños.distancia1 as distancia1,
-				daños.distancia2 as distancia2,
-				daños.distancia3 as distancia3,
-				daños.distancia4 as distancia4,
-				daños.distancia5 as distancia5,
-				daños.distancia6 as distancia6,
-				daños.distancia7 as distancia7
+				ROUND (daños.distancia0 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvPlasma') ,0) distancia0,
+				ROUND (daños.distancia1 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvPlasma') ,0) distancia1,
+				ROUND (daños.distancia2 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvPlasma') ,0) distancia2,
+				ROUND (daños.distancia3 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvPlasma') ,0) distancia3,
+				ROUND (daños.distancia4 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvPlasma') ,0) distancia4,
+				ROUND (daños.distancia5 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvPlasma') ,0) distancia5,
+				ROUND (daños.distancia6 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvPlasma') ,0) distancia6,
+				ROUND (daños.distancia7 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvPlasma') ,0) distancia7
   			from daños_diseños as daños
-
   				INNER JOIN diseños_jugadores diseñosjugadores ON diseñosjugadores.id=daños.diseños_id
 				INNER JOIN jugadores jugadores ON jugadores.id= diseñosjugadores.jugadores_id
-				INNER JOIN investigaciones investigaciones ON investigaciones.jugadores_id=jugadores.id
-  			where investigacion='invPlasma'
+				INNER JOIN investigaciones investigaciones ON investigaciones.jugadores_id=jugadores.id and investigaciones.codigo='invPlasma'
+				where investigacion='invPlasma'
+  			)union all
+  			(select daños.diseños_id,daños.fila,jugadores.id as jugador,
+				ROUND (daños.distancia0 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvBalistica') ,0) distancia0,
+				ROUND (daños.distancia1 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvBalistica') ,0) distancia1,
+				ROUND (daños.distancia2 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvBalistica') ,0) distancia2,
+				ROUND (daños.distancia3 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvBalistica') ,0) distancia3,
+				ROUND (daños.distancia4 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvBalistica') ,0) distancia4,
+				ROUND (daños.distancia5 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvBalistica') ,0) distancia5,
+				ROUND (daños.distancia6 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvBalistica') ,0) distancia6,
+				ROUND (daños.distancia7 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvBalistica') ,0) distancia7
+  			from daños_diseños as daños
+  				INNER JOIN diseños_jugadores diseñosjugadores ON diseñosjugadores.id=daños.diseños_id
+				INNER JOIN jugadores jugadores ON jugadores.id= diseñosjugadores.jugadores_id
+				INNER JOIN investigaciones investigaciones ON investigaciones.jugadores_id=jugadores.id and investigaciones.codigo='invBalistica'
+				where investigacion='invBalistica'
+  			)union all
+  			(select daños.diseños_id,daños.fila,jugadores.id as jugador,
+				ROUND (daños.distancia0 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvMa') ,0) distancia0,
+				ROUND (daños.distancia1 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvMa') ,0) distancia1,
+				ROUND (daños.distancia2 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvMa') ,0) distancia2,
+				ROUND (daños.distancia3 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvMa') ,0) distancia3,
+				ROUND (daños.distancia4 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvMa') ,0) distancia4,
+				ROUND (daños.distancia5 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvMa') ,0) distancia5,
+				ROUND (daños.distancia6 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvMa') ,0) distancia6,
+				ROUND (daños.distancia7 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvMa') ,0) distancia7
+  			from daños_diseños as daños
+  				INNER JOIN diseños_jugadores diseñosjugadores ON diseñosjugadores.id=daños.diseños_id
+				INNER JOIN jugadores jugadores ON jugadores.id= diseñosjugadores.jugadores_id
+				INNER JOIN investigaciones investigaciones ON investigaciones.jugadores_id=jugadores.id and investigaciones.codigo='invMa'
+				where investigacion='invMa'
   			)
 
   		) inv

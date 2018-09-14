@@ -26,6 +26,7 @@ use App\Diseños;
 use App\DañosDiseños;
 use App\CostesDiseños;
 use App\CualidadesDiseños;
+use App\MejorasDiseños;
 
 class DiseñoController extends Controller
 {
@@ -563,6 +564,15 @@ class DiseñoController extends Controller
             'masa'=> $diseño->cualidades->masa,
         ];
 
+        $velocidad=[
+            'invPropQuimico'=>0,
+            'invPropNuk'=>0,
+            'invPropIon'=>0,
+            'invPropPlasma'=>0,
+            'invPropMa'=>0,
+            'invPropHMA'=>0,
+        ];
+
         $cantiFocos=[0,0,0,0,0]; //cada fila
         $danoFocos=[1,1,1,1,1]; //cada fila
         $empujeT=0;
@@ -783,7 +793,7 @@ class DiseñoController extends Controller
             if ($valor>7){$correcto=false;};
         }
 
-        $empujeT=0;
+        //$empujeT=0;
 
 
         $prueba="";
@@ -820,7 +830,9 @@ class DiseñoController extends Controller
                     $costesVacio['mantenimiento']=$costeobj['mantenimiento']*$factorFuselaje;
                     $costesVacio['fuel']=$costeobj['fuel']*$factorFuselaje;
                     $misCostes=sumaCualidades($misCostes,$multiplicador,$costesVacio);
-                    $empujeT+=$costeobj['velocidad']*$multiplicador*$cualidadesFuselaje['velocidad'];
+                    $empujeT+=$costeobj['velocidad']*$multiplicador*$cualidadesFuselaje['velocidad'];//realmente no vale para calcular velocidadya
+
+                    $velocidad[$clase]+=$costeobj['velocidad']*$multiplicador*$cualidadesFuselaje['velocidad'];
                     $costesMisMotores=$misCostes;
                 }
             }
@@ -1325,23 +1337,33 @@ $costoFocoA=1; //coste acumulado foco
         $costesDiseñoS->micros=$costesDiseño['micros'];
         $costesDiseñoS->fuel=$cualidades['fuel'];
         $costesDiseñoS->ma=0;
-        $costesDiseñoS->municion=$cualidades['fuel'];
         $costesDiseñoS->personal=$costesDiseño['personal'];
-        $costesDiseñoS->mantenimiento=$cualidades['fuel'];
         $costesDiseñoS->masa=$pesoTotal;
-        $costesDiseñoS->energia=0;
-        $costesDiseñoS->defensa=$cualidades['defensa'];
-        $costesDiseñoS->ataque=0;
-        $costesDiseñoS->tiempo=$cualidades['tiempo'];
-        $costesDiseñoS->velocidad=$cualidades['velocidad'];
-        $costesDiseñoS->carga=$cualidades['carga'];
-        $costesDiseñoS->cargaPequeña=$cualidades['cargaPequeña'];
-        $costesDiseñoS->cargaMediana=$cualidades['cargaMediana'];
-        $costesDiseñoS->cargaGrande=$cualidades['cargaGrande'];
-        $costesDiseñoS->cargaEnorme=$cualidades['cargaEnorme'];
-        $costesDiseñoS->cargaMega=$cualidades['cargaMega'];
+        $costesDiseñoS->energia=$costesMisMotores['energia'];
         $costesDiseñoS->diseños_id=$diseñoId;
         $costesDiseñoS->save();
+
+        $mejorasDiseños=new MejorasDiseños();
+        $mejorasDiseños->invPropQuimico=$velocidad['invPropQuimico'];
+        $mejorasDiseños->invPropNuk=$velocidad['invPropNuk'];
+        $mejorasDiseños->invPropIon=$velocidad['invPropIon'];
+        $mejorasDiseños->invPropPlasma=$velocidad['invPropPlasma'];
+        $mejorasDiseños->invPropMa=$velocidad['invPropMa'];
+        $mejorasDiseños->invPropHMA=$velocidad['invPropHMA'];
+        $mejorasDiseños->fuel=$cualidades['fuel'];
+        $mejorasDiseños->ataque=0;
+        $mejorasDiseños->defensa=$cualidades['defensa'];
+        $mejorasDiseños->mantenimiento=$cualidades['mantenimiento'];
+        $mejorasDiseños->tiempo=$cualidades['tiempo'];
+        $mejorasDiseños->carga=$cualidades['carga'];
+        $mejorasDiseños->hangarPequeño=$cualidades['cargaPequeña'];
+        $mejorasDiseños->hangarMediano=$cualidades['cargaMediana'];
+        $mejorasDiseños->hangarGrande=$cualidades['cargaGrande'];
+        $mejorasDiseños->hangarEnorme=$cualidades['cargaEnorme'];
+        $mejorasDiseños->hangarMega=$cualidades['cargaMega'];
+        $mejorasDiseños->diseños_id=$diseñoId;
+        $mejorasDiseños->save();
+
 
 
         //function dibujaDano($armasDispersion ){

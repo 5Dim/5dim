@@ -15,25 +15,11 @@ class CreateViewDiseñosTable extends Migration
     {
         DB::statement("DROP VIEW IF EXISTS view_diseños");
 
+
         DB::statement("CREATE VIEW view_diseños
 
         AS select
-            cd.id AS id,
-
-            cd.fuel AS fuel,
-            cd.municion AS municion,
-            cd.mantenimiento AS mantenimiento,
-            cd.defensa AS defensa,
-            cd.ataque AS ataque,
-            cd.tiempo AS tiempo,
-            cd.velocidad  AS velocidad ,
-            cd.carga AS carga,
-            cd.cargaPequeña AS cargaPequeña,
-            cd.cargaMediana AS cargaMediana,
-            cd.cargaGrande AS cargaGrande,
-            cd.cargaEnorme AS cargaEnorme,
-            cd.cargaMega AS cargaMega,
-            cd.diseños_id AS diseños_id
+            cd.id AS id
 
         from
             costes_diseños as  cd

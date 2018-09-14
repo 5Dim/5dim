@@ -15,18 +15,23 @@ class CreateMejorasDiseñosTable extends Migration
     {
         Schema::create('mejoras_diseños', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('velocidad');
-            $table->integer('carga');
-            $table->integer('hangar');
-            $table->integer('fuel');
-            $table->integer('defensa');
-            $table->integer('mantenimiento');
-            $table->integer('tiempo');
-            $table->integer('cazas');
-            $table->integer('ligeras');
-            $table->integer('medias');
-            $table->integer('pesadas');
-            $table->integer('defensas');
+            $table->integer('invPropQuimico')->default(0);
+            $table->integer('invPropNuk')->default(0);
+            $table->integer('invPropIon')->default(0);
+            $table->integer('invPropPlasma')->default(0);
+            $table->integer('invPropMa')->default(0);
+            $table->integer('invPropHMA')->default(0);
+            $table->integer('fuel')->default(0);
+            $table->integer('ataque')->default(0);
+            $table->integer('defensa')->default(0);
+            $table->integer('mantenimiento')->default(0);
+            $table->integer('tiempo')->default(0);
+            $table->integer('carga')->default(0);
+            $table->integer('hangarPequeño')->default(0);
+            $table->integer('hangarMediano')->default(0);
+            $table->integer('hangarGrande')->default(0);
+            $table->integer('hangarEnorme')->default(0);
+            $table->integer('hangarMega')->default(0);
         });
     }
 
