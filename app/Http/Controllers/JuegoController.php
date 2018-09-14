@@ -300,11 +300,14 @@ class JuegoController extends Controller
             session()->put('jugadores_id', Jugadores::where(['universo_id', $universo],['user_id', Auth::user()->id])->first()->id);
         }
 
-        $jugadores = Jugadores::find(session()->get('jugadores_id'));
-        $diseños = Diseños::where('id', '<', 100)->get();
+        $jugador = Jugadores::find(session()->get('jugadores_id'));
 
-        foreach ($diseños as $diseño) {
-            $jugadores->diseños()->attach($diseño->id);
+        if (empty($jugador->diseños[0])) {
+            $diseños = Diseños::where('id', '<', 100)->get();
+
+            foreach ($diseños as $diseño) {
+                $jugador->diseños()->attach($diseño->id);
+            }
         }
 
         return redirect('/planeta');

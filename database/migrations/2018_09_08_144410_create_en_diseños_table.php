@@ -17,7 +17,6 @@ class CreateEnDiseñosTable extends Migration
             $table->increments('id');
             $table->string('accion');
             $table->integer('tiempo');
-            $table->integer('grupo');
             $table->timestamps();
             $table->timestamp('finished_at')->nullable();
         });
