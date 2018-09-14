@@ -27,6 +27,7 @@ use App\DañosDiseños;
 use App\CostesDiseños;
 use App\CualidadesDiseños;
 use App\MejorasDiseños;
+use App\EnDiseños;
 
 class DiseñoController extends Controller
 {
@@ -94,6 +95,8 @@ class DiseñoController extends Controller
         $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
+
+        EnDiseños::terminarColaDiseños();
 
         //Devolvemos todos los diseños
         $diseños = $jugadorActual->diseños;
