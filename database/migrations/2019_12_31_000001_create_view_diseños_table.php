@@ -19,7 +19,21 @@ class CreateViewDiseñosTable extends Migration
         DB::statement("CREATE VIEW view_diseños
 
         AS select
-            cd.id AS id
+        cd.id AS id,
+        cd.id  AS fuel,
+        cd.id  AS municion,
+        cd.id  AS mantenimiento,
+        cd.id  AS defensa,
+        cd.id  AS ataque,
+        cd.id  AS tiempo,
+        cd.id  AS velocidad,
+        cd.id  AS carga,
+        cd.id  AS cargaPequeña,
+        cd.id  AS cargaMediana,
+        cd.id  AS cargaGrande,
+        cd.id  AS cargaEnorme,
+        cd.id  AS cargaMega,
+        cd.id  AS diseños_id
 
         from
             costes_diseños as  cd

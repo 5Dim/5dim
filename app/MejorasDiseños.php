@@ -34,7 +34,7 @@ class MejorasDiseños extends Model
         $mejoras->mantenimiento=0;
         $mejoras->tiempo=0;
         $mejoras->carga=100000;
-        $mejoras->hangarMega=1;
+        $mejoras->cargaMega=1;
         $mejoras->diseños_id=$n;
         array_push($mejorasDiseños, $mejoras);
         $n++;

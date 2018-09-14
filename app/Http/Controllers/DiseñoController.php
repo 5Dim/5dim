@@ -1356,11 +1356,11 @@ $costoFocoA=1; //coste acumulado foco
         $mejorasDiseños->mantenimiento=$cualidades['mantenimiento'];
         $mejorasDiseños->tiempo=$cualidades['tiempo'];
         $mejorasDiseños->carga=$cualidades['carga'];
-        $mejorasDiseños->hangarPequeño=$cualidades['cargaPequeña'];
-        $mejorasDiseños->hangarMediano=$cualidades['cargaMediana'];
-        $mejorasDiseños->hangarGrande=$cualidades['cargaGrande'];
-        $mejorasDiseños->hangarEnorme=$cualidades['cargaEnorme'];
-        $mejorasDiseños->hangarMega=$cualidades['cargaMega'];
+        $mejorasDiseños->cargaPequeño=$cualidades['cargaPequeña'];
+        $mejorasDiseños->cargaMediano=$cualidades['cargaMediana'];
+        $mejorasDiseños->cargaGrande=$cualidades['cargaGrande'];
+        $mejorasDiseños->cargaEnorme=$cualidades['cargaEnorme'];
+        $mejorasDiseños->cargaMega=$cualidades['cargaMega'];
         $mejorasDiseños->diseños_id=$diseñoId;
         $mejorasDiseños->save();
 

@@ -27,11 +27,11 @@ class CreateMejorasDiseñosTable extends Migration
             $table->integer('mantenimiento')->default(0);
             $table->integer('tiempo')->default(0);
             $table->integer('carga')->default(0);
-            $table->integer('hangarPequeño')->default(0);
-            $table->integer('hangarMediano')->default(0);
-            $table->integer('hangarGrande')->default(0);
-            $table->integer('hangarEnorme')->default(0);
-            $table->integer('hangarMega')->default(0);
+            $table->integer('cargaPequeño')->default(0);
+            $table->integer('cargaMediano')->default(0);
+            $table->integer('cargaGrande')->default(0);
+            $table->integer('cargaEnorme')->default(0);
+            $table->integer('cargaMega')->default(0);
         });
     }
 
