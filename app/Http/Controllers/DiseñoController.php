@@ -239,7 +239,6 @@ class DiseñoController extends Controller
 
         $esteDiseño=[
             'nombre'=>'',
-            'descripcion'=>'',
             'skin'=>1,
             'posicion'=>9
         ];
@@ -1303,13 +1302,6 @@ $costoFocoA=1; //coste acumulado foco
         $diseñoS->nombre=$datosBasicos['nombre'];
 
 
-        if ($datosBasicos['descripcion']=""){
-            $diseñoS->descripcion=" ";
-        } else {
-            $diseñoS->descripcion=$datosBasicos['descripcion'];
-        }
-
-        $prueba=$datosBasicos['descripcion'];
 
         $position=$datosBasicos['posicion'];
         if ($position=""){
@@ -1323,6 +1315,7 @@ $costoFocoA=1; //coste acumulado foco
         $diseñoS->fuselajes_id= $idFuselaje;
         $diseñoS->codigo=$diseño->codigo;
         $diseñoS->skin=$datosBasicos['skin'];
+        $diseñoS->jugadores_id=$jugadorActual->id;
         $diseñoS->save();
         $jugadorActual->diseños()->attach($diseñoS->id);
 
@@ -1338,8 +1331,6 @@ $costoFocoA=1; //coste acumulado foco
         $costesDiseñoS->ceramica=$costesDiseño['ceramica'];
         $costesDiseñoS->liquido=$costesDiseño['liquido'];
         $costesDiseñoS->micros=$costesDiseño['micros'];
-        $costesDiseñoS->fuel=$cualidades['fuel'];
-        $costesDiseñoS->ma=0;
         $costesDiseñoS->personal=$costesDiseño['personal'];
         $costesDiseñoS->masa=$pesoTotal;
         $costesDiseñoS->energia=$costesMisMotores['energia'];
@@ -1354,13 +1345,13 @@ $costoFocoA=1; //coste acumulado foco
         $mejorasDiseños->invPropMa=$velocidad['invPropMa'];
         $mejorasDiseños->invPropHMA=$velocidad['invPropHMA'];
         $mejorasDiseños->fuel=$cualidades['fuel'];
-        $mejorasDiseños->ataque=0;
+        $mejorasDiseños->municion=$cualidades['municion'];
         $mejorasDiseños->defensa=$cualidades['defensa'];
         $mejorasDiseños->mantenimiento=$cualidades['mantenimiento'];
         $mejorasDiseños->tiempo=$cualidades['tiempo'];
         $mejorasDiseños->carga=$cualidades['carga'];
-        $mejorasDiseños->cargaPequeño=$cualidades['cargaPequeña'];
-        $mejorasDiseños->cargaMediano=$cualidades['cargaMediana'];
+        $mejorasDiseños->cargaPequeña=$cualidades['cargaPequeña'];
+        $mejorasDiseños->cargaMediana=$cualidades['cargaMediana'];
         $mejorasDiseños->cargaGrande=$cualidades['cargaGrande'];
         $mejorasDiseños->cargaEnorme=$cualidades['cargaEnorme'];
         $mejorasDiseños->cargaMega=$cualidades['cargaMega'];

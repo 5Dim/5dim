@@ -19,6 +19,7 @@ class CreateViewDañosDiseñosTable extends Migration
 
 
 
+
   		select diseños_id,fila,
   		sum(distancia0) as distancia0,
   		sum(distancia1) as distancia1,
@@ -27,7 +28,8 @@ class CreateViewDañosDiseñosTable extends Migration
   		sum(distancia4) as distancia4,
   		sum(distancia5) as distancia5,
   		sum(distancia6) as distancia6,
-  		sum(distancia7) as distancia7
+  		sum(distancia7) as distancia7,
+  		sum(distancia0)+sum(distancia1)+sum(distancia2)+sum(distancia3)+sum(distancia4)+sum(distancia5)+sum(distancia6)+sum(distancia7)  as total
   		from (
   			(select daños.diseños_id,daños.fila,jugadores.id as jugador,
 				ROUND (daños.distancia0 * investigaciones.nivel * (select valor from constantes where codigo='mejorainvEnergia') ,0) distancia0,

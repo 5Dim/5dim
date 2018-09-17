@@ -15,9 +15,8 @@ class MejorasDiseños extends Model
         $n=1;
 
         $mejoras=new MejorasDiseños(); //recolector
-        $mejoras->invPropPlasma=10000;
+        $mejoras->invPropPlasma=5000000;
         $mejoras->fuel=0;
-        $mejoras->ataque=0;
         $mejoras->defensa=0;
         $mejoras->mantenimiento=0;
         $mejoras->tiempo=0;
@@ -27,9 +26,8 @@ class MejorasDiseños extends Model
         $n++;
 
         $mejoras=new MejorasDiseños(); //remolcador
-        $mejoras->invPropPlasma=100000;
+        $mejoras->invPropPlasma=250000000;
         $mejoras->fuel=0;
-        $mejoras->ataque=0;
         $mejoras->defensa=0;
         $mejoras->mantenimiento=0;
         $mejoras->tiempo=0;

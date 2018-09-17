@@ -21,14 +21,14 @@ class CreateMejorasDiseñosTable extends Migration
             $table->integer('invPropPlasma')->default(0);
             $table->integer('invPropMa')->default(0);
             $table->integer('invPropHMA')->default(0);
+            $table->integer('municion')->default(0);
             $table->integer('fuel')->default(0);
-            $table->integer('ataque')->default(0);
             $table->integer('defensa')->default(0);
             $table->integer('mantenimiento')->default(0);
             $table->integer('tiempo')->default(0);
             $table->integer('carga')->default(0);
-            $table->integer('cargaPequeño')->default(0);
-            $table->integer('cargaMediano')->default(0);
+            $table->integer('cargaPequeña')->default(0);
+            $table->integer('cargaMediana')->default(0);
             $table->integer('cargaGrande')->default(0);
             $table->integer('cargaEnorme')->default(0);
             $table->integer('cargaMega')->default(0);

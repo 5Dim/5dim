@@ -59,6 +59,7 @@ class Diseños extends Model
         $diseño->fuselajes_id=69;
         $diseño->codigo="RECOLECTOR";
         $diseño->skin=1;
+        $diseño->jugadores_id=1;
         array_push($diseños, $diseño);
 
         $diseño =new Diseños();
@@ -68,6 +69,7 @@ class Diseños extends Model
         $diseño->fuselajes_id=70;
         $diseño->codigo="REMOLCADOR";
         $diseño->skin=1;
+        $diseño->jugadores_id=1;
         array_push($diseños, $diseño);
 
 

@@ -15,20 +15,20 @@ class CreateCostesDiseñosTable extends Migration
     {
         Schema::create('costes_diseños', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('mineral');
-            $table->integer('cristal');
-            $table->integer('gas');
-            $table->integer('plastico');
-            $table->integer('ceramica');
-            $table->integer('liquido');
-            $table->integer('micros');
-            $table->integer('fuel');
-            $table->integer('ma');
-           // $table->integer('municion');
-            $table->integer('personal');
+            $table->integer('mineral')->default(0);
+            $table->integer('cristal')->default(0);
+            $table->integer('gas')->default(0);
+            $table->integer('plastico')->default(0);
+            $table->integer('ceramica')->default(0);
+            $table->integer('liquido')->default(0);
+            $table->integer('micros')->default(0);
+            //$table->integer('fuel')->default(0);
+           // $table->integer('ma')->default(0);
+           // $table->integer('municion')->default(0);
+            $table->integer('personal')->default(0);
            // $table->integer('mantenimiento');
-            $table->integer('masa');
-            $table->integer('energia');
+            $table->integer('masa')->default(0);
+            $table->integer('energia')->default(0);
            // $table->integer('defensa');
            // $table->integer('ataque');
            // $table->integer('tiempo');

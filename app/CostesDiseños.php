@@ -27,8 +27,6 @@ class CostesDiseños extends Model
         $costes->ceramica=6000;
         $costes->liquido=1500;
         $costes->micros=9000;
-        $costes->fuel=400;
-        $costes->ma=0;
         $costes->personal=4;
         $costes->masa=100000;
         $costes->energia=0;
@@ -44,8 +42,6 @@ class CostesDiseños extends Model
         $costes->ceramica=50000;
         $costes->liquido=40000;
         $costes->micros=30000;
-        $costes->fuel=1000;
-        $costes->ma=0;
         $costes->personal=400;
         $costes->masa=10000000;
         $costes->energia=0;

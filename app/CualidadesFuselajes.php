@@ -2633,7 +2633,7 @@ class CualidadesFuselajes extends Model
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec17=0;  //ataque
             $inirec18=1;  //factor de velocidad base
-            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=3; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 0; 	// cañones media, cantidad por tipo
@@ -2676,7 +2676,7 @@ class CualidadesFuselajes extends Model
             $inirec16=1; ////defensa ya tiene en cuenta el tamaño y cuando sale
             $inirec17=0;  //ataque
             $inirec18=1;  //factor de velocidad base
-            $maxvel=0; // indica la velocidad máxima que puede tener este diseño,
+            $maxvel=5; // indica la velocidad máxima que puede tener este diseño,
 
             $CRnave1 = 0; 	// cañones ligeros, cantidad por tipo
             $CRnave2 = 0; 	// cañones media, cantidad por tipo
