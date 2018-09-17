@@ -16,9 +16,10 @@ class CreateViewDiseñosTable extends Migration
         DB::statement("DROP VIEW IF EXISTS view_diseños");
 
 
-        DB::statement("CREATE VIEW view_diseños
+        DB::statement("CREATE VIEW view_diseños  AS
 
-        AS select
+
+select
         cd.id AS id,
         cd.id  AS fuel,
         cd.id  AS municion,
@@ -26,7 +27,13 @@ class CreateViewDiseñosTable extends Migration
         cd.id  AS defensa,
         cd.id  AS ataque,
         cd.id  AS tiempo,
-        cd.id  AS velocidad,
+        ( ( mejoras.invPropQuimico * (select nivel from investigaciones where codigo='invPropQuimico' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropQuimico')
+			+mejoras.invPropNuk * (select nivel from investigaciones where codigo='invPropNuk' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropNuk')
+			+mejoras.invPropIon * (select nivel from investigaciones where codigo='invPropIon' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropIon')
+			+mejoras.invPropPlasma * (select nivel from investigaciones where codigo='invPropPlasma' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropPlasma')
+			+mejoras.invPropMa * (select nivel from investigaciones where codigo='invPropMa' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropMa')
+			+mejoras.invPropHMA  * (select nivel from investigaciones where codigo='invPropHMA' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropHMA')
+			) / cd.masa)  AS velocidad,
         cd.id  AS carga,
         cd.id  AS cargaPequeña,
         cd.id  AS cargaMediana,
@@ -37,10 +44,20 @@ class CreateViewDiseñosTable extends Migration
 
         from
             costes_diseños as  cd
-            LEFT JOIN diseños diseños ON cd.diseños_id=diseños.id
-            LEFT JOIN diseños_jugadores diseñosjugadores ON diseñosjugadores.id=diseños.id
-            LEFT JOIN jugadores jugadores ON jugadores.id= diseñosjugadores.id
-            LEFT JOIN investigaciones investigaciones ON investigaciones.jugadores_id=jugadores.id
+            INNER JOIN mejoras_diseños mejoras ON cd.diseños_id=mejoras.id
+            INNER JOIN diseños diseños ON cd.diseños_id=diseños.id
+            INNER JOIN diseños_jugadores diseñosjugadores ON diseñosjugadores.id=diseños.id
+            INNER JOIN jugadores jugadores ON jugadores.id= diseñosjugadores.id
+
+
+
+
+
+
+
+
+
+
             ");
 
 

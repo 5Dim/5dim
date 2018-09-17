@@ -102,7 +102,7 @@ class Constantes extends Model
                 $constante->minimo=.5;
                 $constante->maximo=1;
                 $constante->codigo='perdidaCancelar';
-                $constante->descripcion='lo que te queda por cancelar construccion';
+                $constante->descripcion='lo que te queda por cancelar construccion o naves';
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
@@ -112,7 +112,7 @@ class Constantes extends Model
                 $constante->minimo=.3;
                 $constante->maximo=1;
                 $constante->codigo='perdidaReciclar';
-                $constante->descripcion='lo que te queda por reciclar construccion';
+                $constante->descripcion='lo que te queda por reciclar construccion o naves';
                 $constante->tipo='construccion';
                 array_push($producciones, $constante);
 
@@ -318,6 +318,16 @@ class Constantes extends Model
                 $constante->maximo=.2;
                 $constante->codigo='mejorainvPropMa';
                 $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion motor MA';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.05;
+                $constante->minimo=.01;
+                $constante->maximo=.2;
+                $constante->codigo='mejorainvPropHma';
+                $constante->descripcion='porcentaje que aumenta en diseño cada nivel investigacion motor HMA';
                 $constante->tipo='investigacion';
                 array_push($producciones, $constante);
 

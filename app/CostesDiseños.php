@@ -30,7 +30,7 @@ class CostesDiseños extends Model
         $costes->fuel=400;
         $costes->ma=0;
         $costes->personal=4;
-        $costes->masa=1000;
+        $costes->masa=100000;
         $costes->energia=0;
         $costes->diseños_id=$n;
         array_push($costesDiseños, $costes);
@@ -47,7 +47,7 @@ class CostesDiseños extends Model
         $costes->fuel=1000;
         $costes->ma=0;
         $costes->personal=400;
-        $costes->masa=1000;
+        $costes->masa=10000000;
         $costes->energia=0;
         $costes->diseños_id=$n;
         array_push($costesDiseños, $costes);
