@@ -89,6 +89,9 @@ class FabricasController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
+        EnDiseños::terminarColaDiseños();
+        $colaDiseños = EnDiseños::where('planetas_id', session()->get('planetas_id'));
+
         return view('juego.fabrica', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
         'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones',
         'factoresIndustrias', 'planetasJugador', 'planetasAlianza'));
@@ -99,6 +102,7 @@ class FabricasController extends Controller
         $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
         $diseño = Diseños::find($idDiseño);
         $costes = $diseño->costes;
+        $tiempo = $diseño->viewDiseños->tiempo;
         $inicio = date("Y-m-d H:i:s");
         $error = false;
 
@@ -135,15 +139,16 @@ class FabricasController extends Controller
             $recursos->ceramica -= ($costes->ceramica * $cantidad);
             $recursos->liquido -= ($costes->liquido * $cantidad);
             $recursos->micros -= ($costes->micros * $cantidad);
+            $recursos->save();
 
             for ($i=0; $i < $cantidad; $i++) {
 
-                $final = (strtotime($inicio) + ($costes->tiempo * ($i + 1)));
+                $final = (strtotime($inicio) + ($tiempo * ($i + 1)));
 
                 //Generamos la cola
                 $cola = new EnDiseños();
                 $cola->accion = 'Construyendo';
-                $cola->tiempo = $costes->tiempo;
+                $cola->tiempo = $tiempo;
                 $cola->diseños_id = $diseño->id;
                 $cola->planetas_id = session()->get('planetas_id');
                 $cola->created_at = $inicio;
@@ -160,18 +165,6 @@ class FabricasController extends Controller
         $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
         $costes = Diseños::find($idDiseño)->costes;
         $inicio = date("Y-m-d H:i:s");
-        /*
-        $constanteReciclaje = Constantes::where('codigo', 'perdidaReciclar')->first();
-
-        //Restamos recursos
-        $recursos->mineral += (($costes->mineral * $cantidad) / $constanteReciclaje->valor);
-        $recursos->cristal += (($costes->cristal * $cantidad) / $constanteReciclaje->valor);
-        $recursos->gas += (($costes->gas * $cantidad) / $constanteReciclaje->valor);
-        $recursos->plastico += (($costes->plastico * $cantidad) / $constanteReciclaje->valor);
-        $recursos->ceramica += (($costes->ceramica * $cantidad) / $constanteReciclaje->valor);
-        $recursos->liquido += (($costes->liquido * $cantidad) / $constanteReciclaje->valor);
-        $recursos->micros += (($costes->micros * $cantidad) / $constanteReciclaje->valor);
-        */
 
         //Generamos la cola
         $cola = new EnDiseños();
