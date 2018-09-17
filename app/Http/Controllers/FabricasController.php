@@ -90,6 +90,7 @@ class FabricasController extends Controller
         //Fin recursos
 
         EnDiseños::terminarColaDiseños();
+        $colaDiseños = EnDiseños::where('planetas_id', session()->get('planetas_id'));
 
         return view('juego.fabrica', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
         'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones',
@@ -138,6 +139,7 @@ class FabricasController extends Controller
             $recursos->ceramica -= ($costes->ceramica * $cantidad);
             $recursos->liquido -= ($costes->liquido * $cantidad);
             $recursos->micros -= ($costes->micros * $cantidad);
+            $recursos->save();
 
             for ($i=0; $i < $cantidad; $i++) {
 
@@ -163,18 +165,6 @@ class FabricasController extends Controller
         $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
         $costes = Diseños::find($idDiseño)->costes;
         $inicio = date("Y-m-d H:i:s");
-        /*
-        $constanteReciclaje = Constantes::where('codigo', 'perdidaReciclar')->first();
-
-        //Restamos recursos
-        $recursos->mineral += (($costes->mineral * $cantidad) / $constanteReciclaje->valor);
-        $recursos->cristal += (($costes->cristal * $cantidad) / $constanteReciclaje->valor);
-        $recursos->gas += (($costes->gas * $cantidad) / $constanteReciclaje->valor);
-        $recursos->plastico += (($costes->plastico * $cantidad) / $constanteReciclaje->valor);
-        $recursos->ceramica += (($costes->ceramica * $cantidad) / $constanteReciclaje->valor);
-        $recursos->liquido += (($costes->liquido * $cantidad) / $constanteReciclaje->valor);
-        $recursos->micros += (($costes->micros * $cantidad) / $constanteReciclaje->valor);
-        */
 
         //Generamos la cola
         $cola = new EnDiseños();
