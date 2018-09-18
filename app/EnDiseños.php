@@ -11,6 +11,11 @@ class EnDiseños extends Model
         return $this->belongsTo(Diseños::class);
     }
 
+    public function planetas ()
+    {
+        return $this->belongsTo(Planetas::class);
+    }
+
     //Funcion para terminar las ordenes terminadas
     public static function terminarColaDiseños() {
         $colas = EnDiseños::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
@@ -23,10 +28,10 @@ class EnDiseños extends Model
             ])->first();
 
             if (!empty($diseño)) {
-                $diseño->cantidad += 1;
+                $diseño->cantidad -= 1;
                 //En caso de reciclaje debe devolver los recursos
                 if ($cola->accion == "Reciclando") {
-                    $coste = $cola->diseños->coste;
+                    $coste = $cola->diseños->costes;
                     $recursos = $cola->planetas->recursos;
 
                     //Restaurar beneficio por reciclaje
@@ -48,7 +53,7 @@ class EnDiseños extends Model
                 $diseño->cantidad = 1;
                 $diseño->tipo = $cola->diseños->fuselajes->tipo;
                 if ($cola->accion == "Reciclando") {
-                    $coste = $cola->diseños->coste;
+                    $coste = $cola->diseños->costes;
                     $recursos = $cola->planetas->recursos;
 
                     //Restaurar beneficio por reciclaje

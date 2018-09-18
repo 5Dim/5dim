@@ -47,6 +47,16 @@ class Diseños extends Model
         return $this->belongsTo(Fuselajes::class);
     }
 
+    public function estacionadas ()
+    {
+        return $this->hasOne(DiseñosEnPlaneta::class);
+    }
+
+    public function creador ()
+    {
+        return $this->belongsTo(Jugadores::class, 'jugadores_id');
+    }
+
     public function generarDatosDiseños(){
 
         $diseños=[];

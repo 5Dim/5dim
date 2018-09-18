@@ -161,18 +161,24 @@ class FabricasController extends Controller
     }
 
     public function reciclar ($idDiseño, $cantidad) {
-
-        $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
-        $costes = Diseños::find($idDiseño)->costes;
+        $diseño = Diseños::find($idDiseño);
+        $tiempo = $diseño->viewDiseños->tiempo;
         $inicio = date("Y-m-d H:i:s");
 
-        //Generamos la cola
-        $cola = new EnDiseños();
-        $cola->cantidad = $cantidad;
-        $cola->accion = 'Reciclando';
-        $cola->tiempo = $costes->tiempo;
-        $cola->finished_at = strtotime($inicio) + $cola->total;
-        $cola->save();
+
+        for ($i=0; $i < $cantidad; $i++) {
+            $final = (strtotime($inicio) + ($tiempo * ($i + 1)));
+
+            //Generamos la cola
+            $cola = new EnDiseños();
+            $cola->accion = 'Reciclando';
+            $cola->tiempo = $tiempo;
+            $cola->diseños_id = $diseño->id;
+            $cola->planetas_id = session()->get('planetas_id');
+            $cola->created_at = $inicio;
+            $cola->finished_at = date('Y/m/d H:i:s', $final);
+            $cola->save();
+        }
 
         return redirect('/juego/diseño');
     }

@@ -44,7 +44,7 @@ function construirDiseño(id) {
     window.location.href = "http://localhost/juego/fabricar/construir/" + id + "/" + cantidad;
 }
 
-function reciclarDiseños(id) {
+function reciclarDiseño(id) {
     var cantidad = $('#diseño' + id).val();
     window.location.href = "http://localhost/juego/fabricar/reciclar/" + id + "/" + cantidad;
 }
