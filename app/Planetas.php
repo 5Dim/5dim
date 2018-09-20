@@ -35,4 +35,14 @@ class Planetas extends Model
     {
         return $this->hasOne(CualidadesPlanetas::class);
     }
+
+    public function flotas ()
+    {
+        return $this->hasMany(PlanetasEnDiseños::class);
+    }
+
+    public function enDiseños ()
+    {
+        return $this->hasMany(EnDiseños::class);
+    }
 }

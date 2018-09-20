@@ -90,6 +90,7 @@ Route::middleware('auth')->group(function () {
     //Fabricas
     Route::get('/juego/fabricas', 'FabricasController@index');
     Route::get('/juego/fabricar/construir/{id}/{cantidad}', 'FabricasController@construir');
+    Route::get('/juego/fabricar/reciclar/{id}/{cantidad}', 'FabricasController@reciclar');
 
     //Astrometria
     Route::get('/juego/astrometria', 'AstrometriaController@index');
