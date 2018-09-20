@@ -13,11 +13,10 @@ class CreateViewDiseñosTable extends Migration
      */
     public function up()
     {
-        DB::statement("DROP VIEW IF EXISTS view_diseños");
+        DB::statement("DROP VIEW IF EXISTS view_diseños");   //coalesce max (enconstruccion) contruccion
 
 
         DB::statement("CREATE VIEW view_diseños  AS
-
 
 
 select
@@ -26,8 +25,8 @@ select
         ROUND ( mejoras.municion *  (1+((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),0)  AS municion,
         ROUND (mejoras.mantenimiento * (1+((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),0)  AS mantenimiento,
         ROUND (mejoras.defensa * (1+((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),0)  AS defensa,
-        ROUND (mejoras.tiempo * (1+((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),0)   AS tiempo,
-        (select SUM(total) from (  select total from  view_daños_diseños where diseños_id= 3) AS ataque) as ataque,
+        ROUND (mejoras.tiempo * greatest ((1-((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),100),0)   AS tiempo,
+        ifnull ((select SUM(total) from  view_daños_diseños where diseños_id= diseños.id),0) as ataque,
         ROUND (least (
         ( ( mejoras.invPropQuimico * (select nivel from investigaciones where codigo='invPropQuimico' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropQuimico')
 			+mejoras.invPropNuk * (select nivel from investigaciones where codigo='invPropNuk' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropNuk')
@@ -51,6 +50,10 @@ select
             INNER JOIN diseños_jugadores diseñosjugadores ON diseñosjugadores.id=diseños.id
             INNER JOIN jugadores jugadores ON jugadores.id= diseños.jugadores_id
             INNER JOIN cualidades_fuselajes cualidadesFuselajes ON diseños.fuselajes_id=cualidadesFuselajes.fuselajes_id
+
+
+
+
 
 
 

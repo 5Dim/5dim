@@ -103,11 +103,13 @@ class Construcciones extends Model
             $construccion->save();
         }
 
+        /*
         for ($i = 0 ; $i < count($listaNombres) ; $i++) {
             $costeConstruccion = new CostesConstrucciones();
             $coste = $costeConstruccion->generarDatosCostesConstruccion(0, $listaNombres[$i], $listaConstrucciones[$i]->id);
             $coste->save();
         }
+        */
 
         $industrias=new Industrias();
         $industrias->planetas_id=$planeta;

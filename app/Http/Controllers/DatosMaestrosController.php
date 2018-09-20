@@ -16,6 +16,7 @@ use App\Tiendas;
 use App\Diseños;
 use App\CostesDiseños;
 use App\MejorasDiseños;
+use App\CostesBasicosConstruccion;
 
 class DatosMaestrosController extends Controller
 {
@@ -38,8 +39,11 @@ class DatosMaestrosController extends Controller
         $almacen=new Almacenes();
         $almacenes=$almacen->generarDatosAlmacenes();
 
-        //$produccion=new Producciones();
-        //$producciones=$produccion->generarDatosProducciones(); //esta en seed
+       // $produccion=new Producciones();
+       // $producciones=$produccion->generarDatosProducciones(); //esta en seed
+
+        $construccion=new CostesBasicosConstruccion();
+        $construcciones=$construccion->generarDatosCostesBasicosConstruccion();
 
         $dependencia=new Dependencias();
         $dependencias=$dependencia->generarDatosDependencias();

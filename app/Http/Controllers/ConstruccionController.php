@@ -209,12 +209,15 @@ class ConstruccionController extends Controller
             $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
             $construyendo->save();
 
+            /*
             //Generamos el coste del edificio
             $costeConstrucciones = new CostesConstrucciones();
             $costeAntiguo = CostesConstrucciones::where('construcciones_id', $construccion->id)->first();
             $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
             $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
             $costeAntiguo->save();
+            */
+
         }
 
         return redirect('/juego/construccion/'.$tab);
@@ -276,12 +279,14 @@ class ConstruccionController extends Controller
             $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
             $construyendo->save();
 
+            /*
             //Generamos el coste del edificio
             $costeConstrucciones = new CostesConstrucciones();
             $costeAntiguo = CostesConstrucciones::where('construcciones_id', $construccion->id)->first();
             $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
             $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
             $costeAntiguo->save();
+            */
         }
 
         return redirect('/juego/construccion');
@@ -303,12 +308,14 @@ class ConstruccionController extends Controller
         }
         $reciclaje = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
 
+        /*
         //Generamos el coste del edificio
         $costeConstrucciones = new CostesConstrucciones();
         $costeAntiguo = CostesConstrucciones::where('construcciones_id', $cola->construcciones->id)->first();
         $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $cola->construcciones->codigo, $cola->construcciones->id);
         $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
         $costeAntiguo->save();
+        */
 
         //Ahora cancelamos toda la cola con nivel superiore a la cancelada
         foreach ($listaCola as $colita) {
