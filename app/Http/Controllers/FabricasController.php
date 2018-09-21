@@ -90,11 +90,11 @@ class FabricasController extends Controller
         //Fin recursos
 
         EnDiseños::terminarColaDiseños();
-        $colaDiseños = EnDiseños::where('planetas_id', session()->get('planetas_id'));
+        $colaDiseños = EnDiseños::where('planetas_id', session()->get('planetas_id'))->get();
 
         return view('juego.fabrica', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
         'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones',
-        'factoresIndustrias', 'planetasJugador', 'planetasAlianza'));
+        'factoresIndustrias', 'planetasJugador', 'planetasAlianza', 'colaDiseños'));
     }
 
     public function construir ($idDiseño, $cantidad) {
@@ -130,31 +130,30 @@ class FabricasController extends Controller
         }
 
         if (!$error) {
+            $cadenaProduccion = EnDiseños::cadenaProduccion($cantidad, $diseño->fuselajes->tnave);
 
             //Restamos recursos
-            $recursos->mineral -= ($costes->mineral * $cantidad);
-            $recursos->cristal -= ($costes->cristal * $cantidad);
-            $recursos->gas -= ($costes->gas * $cantidad);
-            $recursos->plastico -= ($costes->plastico * $cantidad);
-            $recursos->ceramica -= ($costes->ceramica * $cantidad);
-            $recursos->liquido -= ($costes->liquido * $cantidad);
-            $recursos->micros -= ($costes->micros * $cantidad);
+            $recursos->mineral -= (($costes->mineral * $cantidad) * $cadenaProduccion);
+            $recursos->cristal -= (($costes->cristal * $cantidad) * $cadenaProduccion);
+            $recursos->gas -= (($costes->gas * $cantidad) * $cadenaProduccion);
+            $recursos->plastico -= (($costes->plastico * $cantidad) * $cadenaProduccion);
+            $recursos->ceramica -= (($costes->ceramica * $cantidad) * $cadenaProduccion);
+            $recursos->liquido -= (($costes->liquido * $cantidad) * $cadenaProduccion);
+            $recursos->micros -= (($costes->micros * $cantidad) * $cadenaProduccion);
             $recursos->save();
 
-            for ($i=0; $i < $cantidad; $i++) {
+            $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
 
-                $final = (strtotime($inicio) + ($tiempo * ($i + 1)));
-
-                //Generamos la cola
-                $cola = new EnDiseños();
-                $cola->accion = 'Construyendo';
-                $cola->tiempo = $tiempo;
-                $cola->diseños_id = $diseño->id;
-                $cola->planetas_id = session()->get('planetas_id');
-                $cola->created_at = $inicio;
-                $cola->finished_at = date('Y/m/d H:i:s', $final);
-                $cola->save();
-            }
+            //Generamos la cola
+            $cola = new EnDiseños();
+            $cola->accion = 'Construyendo';
+            $cola->tiempo = $tiempo;
+            $cola->cantidad = $cantidad;
+            $cola->diseños_id = $diseño->id;
+            $cola->planetas_id = session()->get('planetas_id');
+            $cola->created_at = $inicio;
+            $cola->finished_at = date('Y/m/d H:i:s', $final);
+            $cola->save();
         }
 
         return redirect('/juego/diseño');
@@ -164,21 +163,18 @@ class FabricasController extends Controller
         $diseño = Diseños::find($idDiseño);
         $tiempo = $diseño->viewDiseños->tiempo;
         $inicio = date("Y-m-d H:i:s");
+        $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
 
-
-        for ($i=0; $i < $cantidad; $i++) {
-            $final = (strtotime($inicio) + ($tiempo * ($i + 1)));
-
-            //Generamos la cola
-            $cola = new EnDiseños();
-            $cola->accion = 'Reciclando';
-            $cola->tiempo = $tiempo;
-            $cola->diseños_id = $diseño->id;
-            $cola->planetas_id = session()->get('planetas_id');
-            $cola->created_at = $inicio;
-            $cola->finished_at = date('Y/m/d H:i:s', $final);
-            $cola->save();
-        }
+        //Generamos la cola
+        $cola = new EnDiseños();
+        $cola->accion = 'Reciclando';
+        $cola->tiempo = $tiempo;
+        $cola->cantidad = $cantidad;
+        $cola->diseños_id = $diseño->id;
+        $cola->planetas_id = session()->get('planetas_id');
+        $cola->created_at = $inicio;
+        $cola->finished_at = date('Y/m/d H:i:s', $final);
+        $cola->save();
 
         return redirect('/juego/diseño');
     }

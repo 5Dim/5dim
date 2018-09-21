@@ -2,6 +2,53 @@
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
+        @if (count($colaDiseños) > 0)
+            <div class="row rounded cajita">
+                <div class="col-12">
+                    <div id="cuadro1" class="table-responsive">
+                        <table class="table table-borderless borderless table-sm text-center anchofijo" style="margin-bottom: 15px !important;">
+                            <tr>
+                                <td class=" text-warning">Diseño</td>
+                                <td class=" text-warning">Accion</td>
+                                <td class=" text-warning">Cantidad</td>
+                                <td class=" text-warning">Tiempo</td>
+                                <td class=" text-warning">Empeza a las</td>
+                                <td class=" text-warning">Acaba a las</td>
+                                <td>&nbsp;</td>
+                            </tr>
+
+                            @for ($i = 0 ; $i < count($colaDiseños) ; $i++)
+                                <tr>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ $colaDiseños[$i]->nombre }}
+                                    </td>
+                                    <td class=" {{ $colaDiseños[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">
+                                        {{ $colaDiseños[$i]->accion }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ $colaDiseños[$i]->cantidad }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ $colaDiseños[$i]->tiempo }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        {{ $colaDiseños[$i]->created_at }}
+                                    </td>
+                                    <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
+                                        {{ $colaDiseños[$i]->finished_at }}
+                                    </td>
+                                    <td class=" text-light align-middle borderless">
+                                        <button type="button" class="btn btn-outline-danger btn-block btn-sm" onclick="sendCancelarDiseño('{{ $colaDiseños[$i]->id }}')">
+                                            <i class="fa fa-trash"></i> Cancelar
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endfor
+                        </table>
+                    </div>
+                </div>
+            </div>
+        @endif
         <nav>
             <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
                 <a class="nav-item nav-link" id="prediseñadas-tab" data-toggle="tab" href="#prediseñadas" role="tab" aria-controls="prediseñadas" aria-selected="false">

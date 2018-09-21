@@ -28,11 +28,11 @@ class EnDiseños extends Model
             ])->first();
 
             if (!empty($diseño)) {
-                $diseño->cantidad -= 1;
                 //En caso de reciclaje debe devolver los recursos
                 if ($cola->accion == "Reciclando") {
                     $coste = $cola->diseños->costes;
                     $recursos = $cola->planetas->recursos;
+                    $diseño->cantidad -= $cola->cantidad;
 
                     //Restaurar beneficio por reciclaje
                     $recursos->mineral += ($coste->mineral * $reciclaje);
@@ -43,6 +43,8 @@ class EnDiseños extends Model
                     $recursos->liquido += ($coste->liquido * $reciclaje);
                     $recursos->micros += ($coste->micros * $reciclaje);
                     $recursos->save();
+                }else{
+                    $diseño->cantidad += $cola->cantidad;
                 }
                 $diseño->save();
                 $cola->delete();
@@ -50,25 +52,18 @@ class EnDiseños extends Model
                 $diseño = new DiseñosEnPlaneta();
                 $diseño->planetas_id = $cola->planetas_id;
                 $diseño->diseños_id = $cola->diseños_id;
-                $diseño->cantidad = 1;
+                $coste = $cola->diseños->costes;
                 $diseño->tipo = $cola->diseños->fuselajes->tipo;
-                if ($cola->accion == "Reciclando") {
-                    $coste = $cola->diseños->costes;
-                    $recursos = $cola->planetas->recursos;
-
-                    //Restaurar beneficio por reciclaje
-                    $recursos->mineral += ($coste->mineral * $reciclaje);
-                    $recursos->cristal += ($coste->cristal * $reciclaje);
-                    $recursos->gas += ($coste->gas * $reciclaje);
-                    $recursos->plastico += ($coste->plastico * $reciclaje);
-                    $recursos->ceramica += ($coste->ceramica * $reciclaje);
-                    $recursos->liquido += ($coste->liquido * $reciclaje);
-                    $recursos->micros += ($coste->micros * $reciclaje);
-                    $recursos->save();
-                }
                 $diseño->save();
                 $cola->delete();
             }
         }
+    }
+
+    public static function cadenaProduccion ($cantidad, $tamaño) {
+        $return = 1;
+
+
+        return $return;
     }
 }

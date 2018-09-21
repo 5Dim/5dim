@@ -8,8 +8,6 @@ class CostesBasicosConstruccion extends Model
 {
     public $timestamps = false;
 
-
-
     public function  generarDatosCostesBasicosConstruccion()
     {
 

@@ -15,7 +15,9 @@ class CreateEnDiseñosTable extends Migration
     {
         Schema::create('en_diseños', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
             $table->string('accion');
+            $table->integer('cantidad');
             $table->integer('tiempo');
             $table->timestamps();
             $table->timestamp('finished_at')->nullable();
