@@ -112,12 +112,13 @@ class Investigaciones extends Model
         foreach ($listaInvestigaciones as $investigacion) {
             $investigacion->save();
         }
-
+        /*
         for ($i = 0 ; $i < count($listaNombres) ; $i++) {
             $costeInvestigaciones = new CostesInvestigaciones();
             $coste = $costeInvestigaciones->generarDatosCostesInvestigacion(0, $listaNombres[$i], $listaInvestigaciones[$i]->id);
             $coste->save();
         }
+        */
     }
 
     public static function investigaciones ($planetaActual) {

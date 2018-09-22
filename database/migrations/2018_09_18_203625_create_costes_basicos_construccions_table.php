@@ -16,13 +16,13 @@ class CreateCostesBasicosConstruccionsTable extends Migration
         Schema::create('costes_basicos_construccions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo');
-            $table->double('mineral');
-            $table->double('cristal');
-            $table->double('gas');
-            $table->double('plastico');
-            $table->double('ceramica');
-            $table->double('liquido');
-            $table->double('micros');
+            $table->decimal('mineral',6,2)->default(0);
+            $table->decimal('cristal',6,2)->default(0);
+            $table->decimal('gas',6,2)->default(0);
+            $table->decimal('plastico',6,2)->default(0);
+            $table->decimal('ceramica',6,2)->default(0);
+            $table->decimal('liquido',6,2)->default(0);
+            $table->decimal('micros',6,2)->default(0);
 
            // $table->timestamps();
         });

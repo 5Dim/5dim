@@ -14,8 +14,8 @@ class AddInvestigacionesIdToCostesinvestigaciones extends Migration
     public function up()
     {
         Schema::table('costes_investigaciones', function (Blueprint $table) {
-            $table->integer('investigaciones_id')->unsigned();
-            $table->foreign('investigaciones_id')->references('id')->on('investigaciones');
+         //   $table->integer('investigaciones_id')->unsigned();
+         //   $table->foreign('investigaciones_id')->references('id')->on('investigaciones');
         });
     }
 
@@ -27,8 +27,8 @@ class AddInvestigacionesIdToCostesinvestigaciones extends Migration
     public function down()
     {
         Schema::table('costes_investigaciones', function (Blueprint $table) {
-            $table->dropforeign(['investigaciones_id']);
-            $table->dropColumn('investigaciones_id');
+         //   $table->dropforeign(['investigaciones_id']);
+         //   $table->dropColumn('investigaciones_id');
         });
     }
 }

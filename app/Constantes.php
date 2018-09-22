@@ -372,8 +372,107 @@ class Constantes extends Model
                 array_push($producciones, $constante);
 
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=5;
+                $constante->minimo=2;
+                $constante->maximo=10;
+                $constante->codigo='descuentoMInvestArmas';
+                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestArmas';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
 
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.1;
+                $constante->minimo=.2;
+                $constante->maximo=.05;
+                $constante->codigo='descuentoCInvestArmas';
+                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestArmas';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=5;
+                $constante->minimo=2;
+                $constante->maximo=10;
+                $constante->codigo='descuentoMInvestDiseño';
+                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestDiseño';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.1;
+                $constante->minimo=.2;
+                $constante->maximo=.05;
+                $constante->codigo='descuentoCInvestDiseño';
+                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestDiseño';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=5;
+                $constante->minimo=2;
+                $constante->maximo=10;
+                $constante->codigo='descuentoMInvestImperio';
+                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestImperio';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.1;
+                $constante->minimo=.2;
+                $constante->maximo=.05;
+                $constante->codigo='descuentoCInvestImperio';
+                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestImperio';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=5;
+                $constante->minimo=2;
+                $constante->maximo=10;
+                $constante->codigo='descuentoMInvestMotores';
+                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestMotores';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.1;
+                $constante->minimo=.2;
+                $constante->maximo=.05;
+                $constante->codigo='descuentoCInvestMotores';
+                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestMotores';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=5;
+                $constante->minimo=2;
+                $constante->maximo=10;
+                $constante->codigo='descuentoMInvestIndustrias';
+                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestIndustrias';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.1;
+                $constante->minimo=.2;
+                $constante->maximo=.05;
+                $constante->codigo='descuentoCInvestIndustrias';
+                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestIndustrias';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
                 /////// FUSELAJES  ///////////////////////////////////////////////////
                 //Naves//////////////////////////////////////////////////////////////////////////7
 

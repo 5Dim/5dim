@@ -17,6 +17,7 @@ use App\Diseños;
 use App\CostesDiseños;
 use App\MejorasDiseños;
 use App\CostesBasicosConstruccion;
+use App\CostesBasicosInvestigacion;
 
 class DatosMaestrosController extends Controller
 {
@@ -44,6 +45,9 @@ class DatosMaestrosController extends Controller
 
         $construccion=new CostesBasicosConstruccion();
         $construcciones=$construccion->generarDatosCostesBasicosConstruccion();
+
+        $investigacion=new CostesBasicosInvestigacion();
+        $investigaciones=$investigacion->generarDatosCostesBasicosConstruccion();
 
         $dependencia=new Dependencias();
         $dependencias=$dependencia->generarDatosDependencias();

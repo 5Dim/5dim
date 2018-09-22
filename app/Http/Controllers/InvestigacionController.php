@@ -98,9 +98,6 @@ class InvestigacionController extends Controller
         // vemos las dependencias
         $dependencias=Dependencias::where('tipo','investigacion')->get();
 
-        //Devolvemos la vista con todas las variables
-        $velInvest=$CConstantes->where('codigo','velInvest')->first();
-
         //nivel del laboratorio
         $nivelLaboratorio=Construcciones::where([
             ['planetas_id',$planetaActual->id],
