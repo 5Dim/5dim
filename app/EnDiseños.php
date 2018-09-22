@@ -46,17 +46,16 @@ class EnDiseños extends Model
                 }else{
                     $diseño->cantidad += $cola->cantidad;
                 }
-                $diseño->save();
-                $cola->delete();
             }else{
                 $diseño = new DiseñosEnPlaneta();
                 $diseño->planetas_id = $cola->planetas_id;
+                $diseño->cantidad = $cola->cantidad;
                 $diseño->diseños_id = $cola->diseños_id;
                 $coste = $cola->diseños->costes;
                 $diseño->tipo = $cola->diseños->fuselajes->tipo;
-                $diseño->save();
-                $cola->delete();
             }
+            $diseño->save();
+            $cola->delete();
         }
     }
 

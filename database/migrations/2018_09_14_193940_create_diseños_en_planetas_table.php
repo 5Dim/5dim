@@ -15,7 +15,7 @@ class CreateDiseñosEnPlanetasTable extends Migration
     {
         Schema::create('diseños_en_planetas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cantidad');
+            $table->integer('cantidad')->default(0);
             $table->string('tipo');
             $table->timestamps();
         });

@@ -146,6 +146,7 @@ class FabricasController extends Controller
 
             //Generamos la cola
             $cola = new EnDiseños();
+            $cola->nombre = $diseño->nombre;
             $cola->accion = 'Construyendo';
             $cola->tiempo = $tiempo;
             $cola->cantidad = $cantidad;
@@ -163,10 +164,12 @@ class FabricasController extends Controller
         $diseño = Diseños::find($idDiseño);
         $tiempo = $diseño->viewDiseños->tiempo;
         $inicio = date("Y-m-d H:i:s");
+        $cadenaProduccion = EnDiseños::cadenaProduccion($cantidad, $diseño->fuselajes->tnave);
         $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
 
         //Generamos la cola
         $cola = new EnDiseños();
+        $cola->nombre = $diseño->nombre;
         $cola->accion = 'Reciclando';
         $cola->tiempo = $tiempo;
         $cola->cantidad = $cantidad;
