@@ -181,4 +181,24 @@ class FabricasController extends Controller
 
         return redirect('/juego/diseño');
     }
+
+    public function cancelar ($idCola) {
+        $cola = EnDiseños::find($idCola);
+        $coste = Diseños::find($cola->diseños_id)->costes;
+        $recursos = $cola->planetas->recursos;
+        $cancelar = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
+
+        $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
+        $recursos->cristal += (($coste->cristal * $cola->cantidad) * $cancelar);
+        $recursos->gas += (($coste->gas * $cola->cantidad) * $cancelar);
+        $recursos->plastico += (($coste->plastico * $cola->cantidad) * $cancelar);
+        $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $cancelar);
+        $recursos->liquido += (($coste->liquido * $cola->cantidad) * $cancelar);
+        $recursos->micros += (($coste->micros * $cola->cantidad) * $cancelar);
+        $recursos->save();
+        $cola->delete();
+
+
+        return redirect('/juego/diseño');
+    }
 }

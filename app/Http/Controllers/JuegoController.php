@@ -93,7 +93,7 @@ class JuegoController extends Controller
         //Fin recursos
 
         return view('juego.layouts.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves',
-        'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'planetasJugador', 'planetasAlianza'));
+        'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'planetasJugador', 'planetasAlianza', 'factoresIndustrias'));
     }
 
     public function estadisticas()
