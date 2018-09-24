@@ -49,6 +49,21 @@ function reciclarDiseño(id) {
     window.location.href = "http://localhost/juego/fabricar/reciclar/" + id + "/" + cantidad;
 }
 
+function sendCancelarDiseño(id) {
+    window.location.href = "http://localhost/juego/fabricar/cancelar/" + id;
+}
+
+function formatTimestamp(timestamp) {
+    if (timestamp > 0) {
+        lhora = Math.floor((timestamp / 3600));
+        lminuto = Math.floor((timestamp - (lhora * 3600)) / 60);
+        lsegundo = Math.floor(timestamp - (lhora * 3600 + lminuto * 60));
+
+        horaImprimible = lhora + "h " + lminuto + "m " + lsegundo + "s";
+    }
+    return horaImprimible;
+}
+
 function calcularRecursos() {
     //Pruebas
     //console.log(recursos);

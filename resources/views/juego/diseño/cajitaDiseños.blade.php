@@ -175,12 +175,24 @@
                                 </div>
                             </div>
                         </td>
+                        <td class="anchofijo text-secondary borderless">
+                            <div class="input-group mb-3 borderless">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-dark text-light">
+                                        Tiempo
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2" id="diseño{{ $diseño->id }}Tiempo">
+                            </div>
+                        </td>
                         <td>
                             <button type="button" class="btn btn-outline-success btn-block btn-sm" onclick="construirDiseño({{ $diseño->id }})">
                                 <i class="fa fa-plus-circle"></i> Construir
                             </button>
                         </td>
                     </tr>
+                </table>
+                <table class="table table-sm table-borderless text-center anchofijo">
                     <tr>
                         <td>
                             <a type="button" class="btn btn-outline-danger btn-block btn-sm text-danger" href="{{ url('juego/diseño/borrarDiseño/' . $diseño->id) }}">

@@ -1,0 +1,13 @@
+{
+	"idioma":0,
+	"global":97000,
+	"ancho":500,
+	"fondo":"img/fondo.png",
+	"sistemas":[
+    { "estrella":209, "habitado":0 },
+    { "estrella":575, "habitado":0 },
+    { "estrella":698, "habitado":0 },
+    { "estrella":709, "habitado":0 },
+    { "estrella":841, "habitado":0 },
+    { "estrella":846, "habitado":0 }
+]}

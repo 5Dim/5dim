@@ -35,13 +35,13 @@ class EnDiseños extends Model
                     $diseño->cantidad -= $cola->cantidad;
 
                     //Restaurar beneficio por reciclaje
-                    $recursos->mineral += ($coste->mineral * $reciclaje);
-                    $recursos->cristal += ($coste->cristal * $reciclaje);
-                    $recursos->gas += ($coste->gas * $reciclaje);
-                    $recursos->plastico += ($coste->plastico * $reciclaje);
-                    $recursos->ceramica += ($coste->ceramica * $reciclaje);
-                    $recursos->liquido += ($coste->liquido * $reciclaje);
-                    $recursos->micros += ($coste->micros * $reciclaje);
+                    $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
+                    $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
+                    $recursos->gas += (($coste->gas * $cola->cantidad) * $reciclaje);
+                    $recursos->plastico += (($coste->plastico * $cola->cantidad) * $reciclaje);
+                    $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $reciclaje);
+                    $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
+                    $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
                     $recursos->save();
                 }else{
                     $diseño->cantidad += $cola->cantidad;
