@@ -30,9 +30,7 @@ class CostesInvestigaciones extends Model
     }
 
     public function generaCostesInvestigaciones($investigaciones){
-        $investigaciones = Investigaciones::where('jugadores_id', 1)->get();
-
-        $costesi = new CostesInvestigaciones();
+       // $investigaciones = Investigaciones::where('jugadores_id', 1)->get();
 
         $IConstantes=Constantes::where('tipo','investigacion')->get();
 
@@ -47,6 +45,7 @@ class CostesInvestigaciones extends Model
         $costesInvestigacion=[];
 
         foreach($investigaciones as $investigacion){
+            $costesi = new CostesInvestigaciones();
 
             $nivel=$investigacion->nivel;
             $codigo=$investigaciones->codigo;
