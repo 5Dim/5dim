@@ -10,28 +10,15 @@ use App\Constantes;
 
 class Investigaciones extends Model
 {
-    // No queremos timestamps en este modelo
     public $timestamps = false;
-
-    /**
-     * Relacion de los construcciones con el planeta
-     */
     public function jugadores ()
     {
         return $this->belongsTo(Jugadores::class);
     }
-
-    /**
-     * Relacion de los planetas con los usuarios
-     */
     public function enInvestigaciones ()
     {
         return $this->hasMany(EnInvestigaciones::class);
     }
-
-    /**
-     * Relacion de los construcciones con el coste
-     */
     public function coste ()
     {
         return $this->hasOne(CostesInvestigaciones::class);
@@ -121,12 +108,12 @@ class Investigaciones extends Model
         */
     }
 
-    public static function investigaciones ($planetaActual) {
-        $investigaciones = Investigaciones::where('jugadores_id', $planetaActual->jugadores->id)->get();
+    public static function investigaciones () {
+        $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
         if (empty($investigaciones[0]->codigo)) {
             $investigacion = new Investigaciones();
-            $investigacion->nuevoJugador($planetaActual->jugadores->id);
-            $investigaciones = Investigaciones::where('jugadores_id', $planetaActual->jugadores->id)->get();
+            $investigacion->nuevoJugador(session()->get('jugadores_id'));
+            $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
         }
         return $investigaciones;
     }
