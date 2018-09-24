@@ -29,6 +29,157 @@ class CostesConstrucciones extends Model
 
         $avelprodminas=Constantes::where('codigo','avelprodminas')->first()->valor /10;
 
+        $costesConstruccion=[];
+
+        foreach($construcciones as $construccion){
+
+            $nivel=$construccion->nivel;
+            $codigo=$construccion->codigo;
+
+            switch($codigo){
+                case "minaMineral":
+                $r1cce = [$codigo,.55,0,0,0,0,0,0,$nivel];
+                $coste = $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "minaCristal":
+                $r1cce=[$codigo,.5,.3,0,0,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "minaGas":
+                $r1cce=[$codigo,1,.9,0,0,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "minaPlastico":
+                $r1cce=[$codigo,.8,.7,.6,0,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "minaCeramica": ///5
+                $r1cce=[$codigo,.7,.6,.5,.4,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "indLiquido":
+                $r1cce=[$codigo,.6,.5,.4,.3,.2,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "indMicros":
+                $r1cce=[$codigo,.4,.4,.5,.1,0,.8,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "indFuel":
+                $r1cce=[$codigo,1,1.8,.2,0,3,0,1,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "indMA":
+                $r1cce=[$codigo,1.5,2,.2,.5,3,0,1,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "indMunicion": //10
+                $r1cce=[$codigo,.2,.3,0,.4,.1,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "indPersonal":
+                $r1cce=[$codigo,.2,0,0,.2,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almMineral":
+                $r1cce=[$codigo,.5,.3,0,0,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almCristal":
+                $r1cce=[$codigo,.6,.3,0,0,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almGas":
+                $r1cce=[$codigo,.2,.2,0,0,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almPlastico":
+                $r1cce=[$codigo,1,1,0,0,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almCeramica":
+                $r1cce=[$codigo,1.5,1.1,0,1.2,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almLiquido":
+                $r1cce=[$codigo,1.5,1.1,0,0,1,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almMicros":
+                $r1cce=[$codigo,5,4.5,0,0,0,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almFuel":
+                $r1cce=[$codigo,1.1,1.1,.8,0,1,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almMA":
+                $r1cce=[$codigo,2,2.5,1.2,1.1,1.7,2,2.5,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "almMunicion":
+                $r1cce=[$codigo,1.2,1.2,0,0,1.2,0,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "laboratorio":
+                $r1cce=[$codigo,2,2,1,1.5,1.2,.2,2,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "fabNaves":
+                $r1cce=[$codigo,3,3,.2,1.5,1,.5,1.5,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "fabTropas":
+                $r1cce=[$codigo,.5,.1,0,.2,.6,0,.1,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "fabDefensas":
+                $r1cce=[$codigo,1,.8,0,0,1,0,.5,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "observacion":
+                $r1cce=[$codigo,.5,1.0,0,0,0,0,3.5,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "refugio":
+                $r1cce=[$codigo,1.5,1.5,15.5,6.9,8.5,1,0,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "terraformador":
+                $r1cce=[$codigo,80.2,60.5,40.5,0.3,1,5.8,1,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "comercio":
+                $r1cce=[$codigo,3,15,5.3,1.5,.6,1.2,3.5,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "escudo":
+                $r1cce=[$codigo,2.5,1.1,.1,23.1,16,6.1,.3,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "potenciador":
+                $r1cce=[$codigo,55,18,.1,24.1,12.5,4.3,.7,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "inhibidorHMA":
+                $r1cce=[$codigo,70,20,15,1,32,2.3,1.3,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "nodEstructura":
+                $r1cce=[$codigo,3.5,3.5,0,2,0,0,2.8,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+                case "nodMotorMA":
+                $r1cce=[$codigo,3.5,2.8,2,2.8,2.5,4.5,2,$nivel];
+                $coste= $costesc->calculos($r1cce, $avelprodminas);
+                break;
+            }
+
+            array_push($costesConstruccion, $coste);
+
+        }
+        return $coste;
+
 
     }
 
@@ -177,7 +328,9 @@ class CostesConstrucciones extends Model
         }
         return $coste;
     }
-    function calculos($r1cce, $idConstruccion,$avelprodminas){
+
+
+    function calculos($r1cce, $avelprodminas){
         //$avelprodminas=1.6; //para costes edificios, por defecto es igual a $Avelprodminas, para uni mutante
         $potcosto = .7; //la potencia del costo
         $factoramort = 5/ $avelprodminas; //indica que en esas horas se amortiza la mina mineral nivel 1
@@ -192,7 +345,7 @@ class CostesConstrucciones extends Model
         $coste =new CostesConstrucciones();
         //$coste->codigo=$r1cce[0];
         //$coste->nivel=$r1cce[8];
-        $coste->construcciones_id = $idConstruccion;
+
         $coste->mineral=$r1cce[1] * ((pow ($r1cce[8] , $potcosto))*(($cntinic1 * pow ($r1cce[8] , $lapotencia1)))*$factoramort);
         $coste->cristal=$r1cce[2] * ((pow ($r1cce[8] , $potcosto))*(($cntinic2 * pow ($r1cce[8] , $lapotencia2)))*$factoramort);
         $coste->gas=    $r1cce[3] * ((pow ($r1cce[8] , $potcosto))*(($cntinic3 * pow ($r1cce[8] , $lapotencia3)))*$factoramort);
