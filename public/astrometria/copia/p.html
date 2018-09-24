@@ -1,0 +1,191 @@
+<code class="javascript hljs" id="code"><span class="hljs-keyword">const</span> PIXI = <span class="hljs-built_in">require</span>(<span class="hljs-string">'pixi.js'</span>)
+<span class="hljs-keyword">const</span> Ease = <span class="hljs-built_in">require</span>(<span class="hljs-string">'pixi-ease'</span>)
+<span class="hljs-keyword">const</span> Random = <span class="hljs-built_in">require</span>(<span class="hljs-string">'yy-random'</span>)
+<span class="hljs-keyword">const</span> Counter = <span class="hljs-built_in">require</span>(<span class="hljs-string">'yy-counter'</span>)
+<span class="hljs-keyword">const</span> FPS = <span class="hljs-built_in">require</span>(<span class="hljs-string">'yy-fps'</span>)
+<span class="hljs-keyword">const</span> clicked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'clicked'</span>)
+
+<span class="hljs-comment">// const Viewport = require('../dist/viewport')</span>
+<span class="hljs-keyword">const</span> Viewport = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../src/viewport'</span>)
+
+<span class="hljs-keyword">const</span> gui = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./gui'</span>)
+
+<span class="hljs-keyword">const</span> BORDER = <span class="hljs-number">10</span>
+<span class="hljs-keyword">const</span> WIDTH = <span class="hljs-number">5000</span>
+<span class="hljs-keyword">const</span> HEIGHT = <span class="hljs-number">5000</span>
+<span class="hljs-keyword">const</span> STAR_SIZE = <span class="hljs-number">30</span>
+<span class="hljs-keyword">const</span> OBJECT_SIZE = <span class="hljs-number">50</span>
+<span class="hljs-keyword">const</span> OBJECT_ROTATION_TIME = <span class="hljs-number">1000</span>
+<span class="hljs-keyword">const</span> OBJECT_SPEED = <span class="hljs-number">0.25</span>
+<span class="hljs-keyword">const</span> FADE_TIME = <span class="hljs-number">2000</span>
+
+<span class="hljs-keyword">let</span> _fps, _renderer, _viewport, _ease, _object, _stars = []
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">viewport</span>(<span class="hljs-params"></span>)
+</span>{
+    _viewport = _renderer.stage.addChild(<span class="hljs-keyword">new</span> Viewport())
+    _viewport
+        .drag({ <span class="hljs-attr">clampWheel</span>: <span class="hljs-literal">true</span> })
+        .wheel()
+        .pinch()
+        .decelerate()
+        .bounce()
+        .on(<span class="hljs-string">'clicked'</span>, click)
+    resize()
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">resize</span>(<span class="hljs-params"></span>)
+</span>{
+    _renderer.renderer.resize(<span class="hljs-built_in">window</span>.innerWidth, <span class="hljs-built_in">window</span>.innerHeight)
+    _viewport.resize(<span class="hljs-built_in">window</span>.innerWidth, <span class="hljs-built_in">window</span>.innerHeight, WIDTH, HEIGHT)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addCounter</span>(<span class="hljs-params">name</span>)
+</span>{
+    <span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> Counter({ <span class="hljs-attr">side</span>: <span class="hljs-string">'top-left'</span> })
+    counter.log(name)
+    <span class="hljs-keyword">const</span> ease = _ease.to(counter.div.style, { <span class="hljs-attr">opacity</span>: <span class="hljs-number">0</span> }, FADE_TIME, { <span class="hljs-attr">ease</span>: <span class="hljs-string">'easeInOutSine'</span> })
+    ease.once(<span class="hljs-string">'done'</span>, () =&gt; counter.div.remove())
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">events</span>(<span class="hljs-params"></span>)
+</span>{
+    _viewport.on(<span class="hljs-string">'clicked'</span>, () =&gt; addCounter(<span class="hljs-string">'clicked'</span>))
+    _viewport.on(<span class="hljs-string">'drag-start'</span>, () =&gt; addCounter(<span class="hljs-string">'drag-start'</span>))
+    _viewport.on(<span class="hljs-string">'drag-end'</span>, () =&gt; addCounter(<span class="hljs-string">'drag-end'</span>))
+    _viewport.on(<span class="hljs-string">'pinch-start'</span>, () =&gt; addCounter(<span class="hljs-string">'pinch-start'</span>))
+    _viewport.on(<span class="hljs-string">'pinch-end'</span>, () =&gt; addCounter(<span class="hljs-string">'pinch-end'</span>))
+    _viewport.on(<span class="hljs-string">'bounce-start-x'</span>, () =&gt; addCounter(<span class="hljs-string">'bounce-start-x'</span>))
+    _viewport.on(<span class="hljs-string">'bounce-end-x'</span>, () =&gt; addCounter(<span class="hljs-string">'bounce-end-x'</span>))
+    _viewport.on(<span class="hljs-string">'bounce-start-y'</span>, () =&gt; addCounter(<span class="hljs-string">'bounce-start-y'</span>))
+    _viewport.on(<span class="hljs-string">'bounce-end-y'</span>, () =&gt; addCounter(<span class="hljs-string">'bounce-end-y'</span>))
+    _viewport.on(<span class="hljs-string">'snap-start'</span>, () =&gt; addCounter(<span class="hljs-string">'snap-start'</span>))
+    _viewport.on(<span class="hljs-string">'snap-end'</span>, () =&gt; addCounter(<span class="hljs-string">'snap-end'</span>))
+    _viewport.on(<span class="hljs-string">'snap-zoom-start'</span>, () =&gt; addCounter(<span class="hljs-string">'snap-zoom-start'</span>))
+    _viewport.on(<span class="hljs-string">'snap-zoom-end'</span>, () =&gt; addCounter(<span class="hljs-string">'snap-zoom-end'</span>))
+    _viewport.on(<span class="hljs-string">'mouse-edges-start'</span>, () =&gt; addCounter(<span class="hljs-string">'mouse-edges-start'</span>))
+    _viewport.on(<span class="hljs-string">'mouse-edges-end'</span>, () =&gt; addCounter(<span class="hljs-string">'mouse-edges-end'</span>))
+    <span class="hljs-comment">// _viewport.on('moved', (data) =&gt; addCounter('moved: ' + data.type))</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">line</span>(<span class="hljs-params">x, y, width, height</span>)
+</span>{
+    <span class="hljs-keyword">const</span> line = _viewport.addChild(<span class="hljs-keyword">new</span> PIXI.Sprite(PIXI.Texture.WHITE))
+    line.tint = <span class="hljs-number">0xff0000</span>
+    line.position.set(x, y)
+    line.width = width
+    line.height = height
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">border</span>(<span class="hljs-params"></span>)
+</span>{
+    line(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, _viewport.worldWidth, BORDER)
+    line(<span class="hljs-number">0</span>, _viewport.worldHeight - BORDER, _viewport.worldWidth, BORDER)
+    line(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, BORDER, _viewport.worldHeight)
+    line(_viewport.worldWidth - BORDER, <span class="hljs-number">0</span>, BORDER, _viewport.worldHeight)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stars</span>(<span class="hljs-params"></span>)
+</span>{
+    <span class="hljs-keyword">const</span> stars = (_viewport.worldWidth * _viewport.worldHeight) / <span class="hljs-built_in">Math</span>.pow(STAR_SIZE, <span class="hljs-number">2</span>) * <span class="hljs-number">0.1</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; stars; i++)
+    {
+        <span class="hljs-keyword">const</span> star = _viewport.addChild(<span class="hljs-keyword">new</span> PIXI.Sprite(PIXI.Texture.WHITE))
+        star.anchor.set(<span class="hljs-number">0.5</span>)
+        star.tint = Random.color()
+        star.width = star.height = STAR_SIZE
+        star.alpha = Random.range(<span class="hljs-number">0.25</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">true</span>)
+        star.position.set(Random.range(STAR_SIZE / <span class="hljs-number">2</span> + BORDER, _viewport.worldWidth - STAR_SIZE - BORDER), Random.range(BORDER, _viewport.worldHeight - BORDER - STAR_SIZE))
+        _stars.push(star)
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createTarget</span>(<span class="hljs-params"></span>)
+</span>{
+
+    <span class="hljs-keyword">const</span> x = Random.range(OBJECT_SIZE / <span class="hljs-number">2</span> + BORDER, _viewport.worldWidth - OBJECT_SIZE / <span class="hljs-number">2</span> - BORDER)
+    <span class="hljs-keyword">const</span> y = Random.range(OBJECT_SIZE / <span class="hljs-number">2</span> + BORDER, _viewport.worldHeight - OBJECT_SIZE / <span class="hljs-number">2</span> - BORDER)
+    <span class="hljs-keyword">const</span> target = _ease.target(_object, { x, y }, OBJECT_SPEED)
+    target.once(<span class="hljs-string">'done'</span>, createTarget)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span>(<span class="hljs-params"></span>)
+</span>{
+    _object = _viewport.addChild(<span class="hljs-keyword">new</span> PIXI.Sprite(PIXI.Texture.WHITE))
+    _object.anchor.set(<span class="hljs-number">0.5</span>)
+    _object.tint = <span class="hljs-number">0</span>
+    _object.width = _object.height = OBJECT_SIZE
+    _object.position.set(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>)
+    _ease.to(_object, { <span class="hljs-attr">rotation</span>: <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> }, OBJECT_ROTATION_TIME, { <span class="hljs-attr">repeat</span>: <span class="hljs-literal">true</span> })
+    createTarget()
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">click</span>(<span class="hljs-params">data</span>)
+</span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> star <span class="hljs-keyword">of</span> _stars)
+    {
+        <span class="hljs-keyword">if</span> (star.containsPoint(data.screen))
+        {
+            _ease.to(star, { <span class="hljs-attr">width</span>: STAR_SIZE * <span class="hljs-number">3</span>, <span class="hljs-attr">height</span>: STAR_SIZE * <span class="hljs-number">3</span> }, FADE_TIME, { <span class="hljs-attr">reverse</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">ease</span>: <span class="hljs-string">'easeInOutSine'</span> })
+            <span class="hljs-keyword">return</span>
+        }
+    }
+    <span class="hljs-keyword">const</span> sprite = _viewport.addChild(<span class="hljs-keyword">new</span> PIXI.Text(<span class="hljs-string">'click'</span>, { <span class="hljs-attr">fill</span>: <span class="hljs-number">0xff0000</span> }))
+    sprite.anchor.set(<span class="hljs-number">0.5</span>)
+    sprite.rotation = Random.range(<span class="hljs-number">-0.1</span>, <span class="hljs-number">0.1</span>)
+    sprite.position = data.world
+    <span class="hljs-keyword">const</span> fade = _ease.to(sprite, { <span class="hljs-attr">alpha</span>: <span class="hljs-number">0</span> }, FADE_TIME)
+    fade.on(<span class="hljs-string">'done'</span>, () =&gt; _viewport.removeChild(sprite))
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">drawWorld</span>(<span class="hljs-params"></span>)
+</span>{
+    _ease.removeAll()
+    _viewport.removeChildren()
+    stars()
+    object()
+    border()
+    _viewport.moveCorner(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">API</span>(<span class="hljs-params"></span>)
+</span>{
+    <span class="hljs-keyword">const</span> button = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'button'</span>)
+    <span class="hljs-built_in">document</span>.body.appendChild(button)
+    button.innerText = <span class="hljs-string">'API Documentation'</span>
+    button.style.backgroundColor = <span class="hljs-string">'#3498db'</span>
+    button.style.color = <span class="hljs-string">'white'</span>
+    button.style.position = <span class="hljs-string">'fixed'</span>
+    button.style.left = <span class="hljs-string">'1em'</span>
+    button.style.top = <span class="hljs-string">'1em'</span>
+    button.style.backgroundImage = <span class="hljs-string">'linear-gradient(to bottom, #3498db, #2980b9)'</span>
+    <span class="hljs-comment">// button.style.borderRadius = '20px'</span>
+    button.style.padding = <span class="hljs-string">'10px 20px 10px 20px'</span>
+    clicked(button, () =&gt; <span class="hljs-built_in">window</span>.location.href = <span class="hljs-string">'https://davidfig.github.io/pixi-viewport/jsdoc/'</span>)
+}
+
+<span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)
+</span>{
+    _fps = <span class="hljs-keyword">new</span> FPS({ <span class="hljs-attr">side</span>: <span class="hljs-string">'bottom-left'</span> })
+    _renderer = <span class="hljs-keyword">new</span> PIXI.Application({ <span class="hljs-attr">transparent</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">width</span>: <span class="hljs-built_in">window</span>.innerWidth, <span class="hljs-attr">height</span>: <span class="hljs-built_in">window</span>.innerHeight, <span class="hljs-attr">resolution</span>: <span class="hljs-built_in">window</span>.devicePixelRatio })
+    <span class="hljs-built_in">document</span>.body.appendChild(_renderer.view)
+    _renderer.view.style.position = <span class="hljs-string">'fixed'</span>
+    _renderer.view.style.width = <span class="hljs-string">'100vw'</span>
+    _renderer.view.style.height = <span class="hljs-string">'100vh'</span>
+
+    viewport()
+
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'resize'</span>, resize)
+
+    _ease = <span class="hljs-keyword">new</span> Ease.list()
+    drawWorld()
+    events()
+
+    PIXI.ticker.shared.add(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> _fps.frame())
+
+    gui.gui(_viewport, drawWorld, _object)
+
+    API()
+
+    <span class="hljs-built_in">require</span>(<span class="hljs-string">'./highlight'</span>)(<span class="hljs-string">'https://github.com/davidfig/pixi-viewport'</span>)
+}</code>
