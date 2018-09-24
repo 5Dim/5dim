@@ -70,7 +70,7 @@ class InvestigacionController extends Controller
         }
         $tipoPlaneta = $planetaActual->tipo;
         $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
+        $investigaciones = $investigacion->investigaciones();
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
         $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
         $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
