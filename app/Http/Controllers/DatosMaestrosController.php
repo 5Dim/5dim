@@ -46,8 +46,8 @@ class DatosMaestrosController extends Controller
         $construccion=new CostesBasicosConstruccion();
         $construcciones=$construccion->generarDatosCostesBasicosConstruccion();
 
-        $investigacion=new CostesBasicosInvestigacion();
-        $investigaciones=$investigacion->generarDatosCostesBasicosConstruccion();
+       // $investigacion=new CostesBasicosInvestigacion();
+       // $investigaciones=$investigacion->generarDatosCostesBasicosConstruccion();
 
         $dependencia=new Dependencias();
         $dependencias=$dependencia->generarDatosDependencias();
