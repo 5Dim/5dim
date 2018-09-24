@@ -70,7 +70,7 @@ class InvestigacionController extends Controller
         }
         $tipoPlaneta = $planetaActual->tipo;
         $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones();
+        $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
         $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
         $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
@@ -89,6 +89,9 @@ class InvestigacionController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
+        $costesInvestigaciones = new Investigaciones();
+        $costesInvestigaciones->generaCostesInvestigaciones($investigaciones);
+
         //Constantes de construccion
         $CConstantes=Constantes::where('tipo','investigacion')->get();
 
@@ -106,7 +109,7 @@ class InvestigacionController extends Controller
 
         return view('juego.investigaciones.investigacion', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
         'velInvest', 'dependencias', 'colaInvestigacion', 'investigaciones', 'nivelLaboratorio', 'tab', 'nivelImperio', 'nivelEnsamblajeNaves',
-        'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'factoresIndustrias', 'planetasJugador', 'planetasAlianza'));
+        'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'factoresIndustrias', 'planetasJugador', 'planetasAlianza', 'costesInvestigaciones'));
     }
 
     //Acceso a subir nivel de construccion
