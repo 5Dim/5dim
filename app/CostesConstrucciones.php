@@ -23,6 +23,16 @@ class CostesConstrucciones extends Model
         $costeAntiguo->micros = $costeNuevo->micros;
         return $costeAntiguo;
     }
+
+
+    public function generaCostesConstrucciones($construcciones){
+
+        $avelprodminas=Constantes::where('codigo','avelprodminas')->first()->valor /10;
+
+
+    }
+
+
     public function  generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion)
     {
         $avelprodminas=Constantes::where('codigo','avelprodminas')->first()->valor /10;
