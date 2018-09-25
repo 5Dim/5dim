@@ -74,6 +74,7 @@
                 @for ($i = 0 ; $i < 4 ; $i++)
                     @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
+                        'costeInv' => $costeInvestigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
                 @endfor
@@ -82,6 +83,7 @@
                 @for ($i = 4 ; $i < 7 ; $i++)
                     @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
+                        'costeInv' => $costeInvestigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
                 @endfor
@@ -90,6 +92,7 @@
                 @for ($i = 7 ; $i < 12 ; $i++)
                     @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
+                        'costeInv' => $costeInvestigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
                 @endfor
@@ -98,6 +101,7 @@
                 @for ($i = 12 ; $i < 18 ; $i++)
                     @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
+                        'costeInv' => $costeInvestigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
                 @endfor
@@ -106,6 +110,7 @@
                 @for ($i = 18 ; $i < 23 ; $i++)
                     @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion' => $investigaciones[$i],
+                        'costeInv' => $costeInvestigaciones[$i],
                         'personal' => $recursos->personal - $personal,
                     ])
                 @endfor
@@ -138,16 +143,16 @@
     $( document ).ready(function() {
     @for ($i = 0 ; $i < 22 ; $i++)
         calculaTiempoInvestigacion(
-            {{ $investigaciones[$i]->coste->mineral +
-            $investigaciones[$i]->coste->cristal +
-            $investigaciones[$i]->coste->gas +
-            $investigaciones[$i]->coste->plastico +
-            $investigaciones[$i]->coste->ceramica +
-            $investigaciones[$i]->coste->liquido +
-            $investigaciones[$i]->coste->micros +
-            $investigaciones[$i]->coste->fuel +
-            $investigaciones[$i]->coste->municion +
-            $investigaciones[$i]->coste->ma
+            {{ $costeInvestigaciones[$i]->mineral +
+            $costeInvestigaciones[$i]->cristal +
+            $costeInvestigaciones[$i]->gas +
+            $costeInvestigaciones[$i]->plastico +
+            $costeInvestigaciones[$i]->ceramica +
+            $costeInvestigaciones[$i]->liquido +
+            $costeInvestigaciones[$i]->micros +
+            $costeInvestigaciones[$i]->fuel +
+            $costeInvestigaciones[$i]->municion +
+            $costeInvestigaciones[$i]->ma
         }},
             {{$velInvest->valor}},
             '{{$investigaciones[$i]->codigo}}',
