@@ -13,8 +13,8 @@
                         <td colspan="3" class="text-success text-center borderless align-middle" id="{{ 'tiempo' . $construccion->codigo }}">Tiempo:</td>
                         <td colspan="2" class="text-success text-right borderless align-middle">
                             <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input" placeholder="personal" value="{{number_format($personal, 0,"","")}}"
-                            onkeyup="calculaTiempo({{$construccion->coste->mineral+$construccion->coste->cristal+$construccion->coste->gas+$construccion->coste->plastico +$construccion->coste->ceramica+
-                            $construccion->coste->liquido + $construccion->coste->micros +12}} ,{{$velocidadConst->valor}}, '{{$construccion->codigo}}') ">
+                            onkeyup="calculaTiempo({{$costesCons->mineral+$costesCons->cristal+$costesCons->gas+$costesCons->plastico +$costesCons->ceramica+
+                            $costesCons->liquido + $costesCons->micros +12}} ,{{$velocidadConst->valor}}, '{{$construccion->codigo}}') ">
                         </td>
                     </tr>
                     <tr>
@@ -24,13 +24,13 @@
                         <td colspan="11" class="borderless">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="anchofijo {{ $construccion->coste->mineral == 0 ? 'text-muted' : 'text-warning' }} borderless">Mineral</td>
-                        <td class="anchofijo {{ $construccion->coste->cristal == 0 ? 'text-muted' : 'text-warning' }} borderless">cristal</td>
-                        <td class="anchofijo {{ $construccion->coste->gas == 0 ? 'text-muted' : 'text-warning' }} borderless">Gas</td>
-                        <td class="anchofijo {{ $construccion->coste->plastico == 0 ? 'text-muted' : 'text-warning' }} borderless">Plástico</td>
-                        <td class="anchofijo {{ $construccion->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }} borderless">Cerámica</td>
-                        <td class="anchofijo {{ $construccion->coste->liquido == 0 ? 'text-muted' : 'text-warning' }} borderless">Liquido</td>
-                        <td class="anchofijo {{ $construccion->coste->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">Micros</td>
+                        <td class="anchofijo {{ $costesCons->mineral == 0 ? 'text-muted' : 'text-warning' }} borderless">Mineral</td>
+                        <td class="anchofijo {{ $costesCons->cristal == 0 ? 'text-muted' : 'text-warning' }} borderless">cristal</td>
+                        <td class="anchofijo {{ $costesCons->gas == 0 ? 'text-muted' : 'text-warning' }} borderless">Gas</td>
+                        <td class="anchofijo {{ $costesCons->plastico == 0 ? 'text-muted' : 'text-warning' }} borderless">Plástico</td>
+                        <td class="anchofijo {{ $costesCons->ceramica == 0 ? 'text-muted' : 'text-warning' }} borderless">Cerámica</td>
+                        <td class="anchofijo {{ $costesCons->liquido == 0 ? 'text-muted' : 'text-warning' }} borderless">Liquido</td>
+                        <td class="anchofijo {{ $costesCons->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">Micros</td>
                         <td class="anchofijo text-muted borderless">Fuel</td>
                         <td class="anchofijo text-muted borderless">M-A</td>
                         <td class="anchofijo text-muted borderless">Munición</td>
@@ -41,13 +41,13 @@
                             $error = false;
                             $clase = 'light';
                             $coste = '';
-                            if ($construccion->coste->mineral > 0) {
-                                if ($construccion->coste->mineral > $recursos->mineral) {
+                            if ($costesCons->mineral > 0) {
+                                if ($costesCons->mineral > $recursos->mineral) {
                                     $clase = 'danger';
-                                    $coste = $construccion->coste->mineral;
+                                    $coste = $costesCons->mineral;
                                     $error = true;
                                 }else {
-                                    $coste = $construccion->coste->mineral;
+                                    $coste = $costesCons->mineral;
                                 }
                             }
                         @endphp
@@ -57,13 +57,13 @@
                         @php
                             $clase = 'light';
                             $coste = '';
-                            if ($construccion->coste->cristal > 0) {
-                                if ($construccion->coste->cristal > $recursos->cristal) {
+                            if ($costesCons->cristal > 0) {
+                                if ($costesCons->cristal > $recursos->cristal) {
                                     $clase = 'danger';
-                                    $coste = $construccion->coste->cristal;
+                                    $coste = $costesCons->cristal;
                                     $error = true;
                                 }else {
-                                    $coste = $construccion->coste->cristal;
+                                    $coste = $costesCons->cristal;
                                 }
                             }
                         @endphp
@@ -73,13 +73,13 @@
                         @php
                             $clase = 'light';
                             $coste = '';
-                            if ($construccion->coste->gas > 0) {
-                                if ($construccion->coste->gas > $recursos->gas) {
+                            if ($costesCons->gas > 0) {
+                                if ($costesCons->gas > $recursos->gas) {
                                     $clase = 'danger';
-                                    $coste = $construccion->coste->gas;
+                                    $coste = $costesCons->gas;
                                     $error = true;
                                 }else {
-                                    $coste = $construccion->coste->gas;
+                                    $coste = $costesCons->gas;
                                 }
                             }
                         @endphp
@@ -89,13 +89,13 @@
                         @php
                             $clase = 'light';
                             $coste = '';
-                            if ($construccion->coste->plastico > 0) {
-                                if ($construccion->coste->plastico > $recursos->plastico) {
+                            if ($costesCons->plastico > 0) {
+                                if ($costesCons->plastico > $recursos->plastico) {
                                     $clase = 'danger';
-                                    $coste = $construccion->coste->plastico;
+                                    $coste = $costesCons->plastico;
                                     $error = true;
                                 }else {
-                                    $coste = $construccion->coste->plastico;
+                                    $coste = $costesCons->plastico;
                                 }
                             }
                         @endphp
@@ -105,12 +105,12 @@
                         @php
                             $clase = 'light';
                             $coste = '';
-                            if ($construccion->coste->ceramica > 0) {
-                                if ($construccion->coste->ceramica > $recursos->ceramica) {
+                            if ($costesCons->ceramica > 0) {
+                                if ($costesCons->ceramica > $recursos->ceramica) {
                                     $clase = 'danger';
-                                    $coste = $construccion->coste->ceramica;
+                                    $coste = $costesCons->ceramica;
                                 }else {
-                                    $coste = $construccion->coste->ceramica;
+                                    $coste = $costesCons->ceramica;
                                 }
                             }
                         @endphp
@@ -120,13 +120,13 @@
                         @php
                             $clase = 'light';
                             $coste = '';
-                            if ($construccion->coste->liquido > 0) {
-                                if ($construccion->coste->liquido > $recursos->liquido) {
+                            if ($costesCons->liquido > 0) {
+                                if ($costesCons->liquido > $recursos->liquido) {
                                     $clase = 'danger';
-                                    $coste = $construccion->coste->liquido;
+                                    $coste = $costesCons->liquido;
                                     $error = true;
                                 }else {
-                                    $coste = $construccion->coste->liquido;
+                                    $coste = $costesCons->liquido;
                                 }
                             }
                         @endphp
@@ -136,13 +136,13 @@
                         @php
                             $clase = 'light';
                             $coste = '';
-                            if ($construccion->coste->micros > 0) {
-                                if ($construccion->coste->micros > $recursos->micros) {
+                            if ($costesCons->micros > 0) {
+                                if ($costesCons->micros > $recursos->micros) {
                                     $clase = 'danger';
-                                    $coste = $construccion->coste->micros;
+                                    $coste = $costesCons->micros;
                                     $error = true;
                                 }else {
-                                    $coste = $construccion->coste->micros;
+                                    $coste = $costesCons->micros;
                                 }
                             }
                         @endphp
@@ -159,12 +159,12 @@
                             @php
                                 $clase = 'light';
                                 $coste = '';
-                                if ($construccion->coste->mineral > 0) {
-                                    if ($construccion->coste->mineral > $recursos->mineral) {
+                                if ($costesCons->mineral > 0) {
+                                    if ($costesCons->mineral > $recursos->mineral) {
                                         $clase = 'danger';
-                                        $coste = $recursos->mineral - $construccion->coste->mineral;
+                                        $coste = $recursos->mineral - $costesCons->mineral;
                                     }else {
-                                        $coste = $recursos->mineral - $construccion->coste->mineral;
+                                        $coste = $recursos->mineral - $costesCons->mineral;
                                     }
                                 }
                             @endphp
@@ -174,12 +174,12 @@
                             @php
                                 $clase = 'light';
                                 $coste = '';
-                                if ($construccion->coste->cristal > 0) {
-                                    if ($construccion->coste->cristal > $recursos->cristal) {
+                                if ($costesCons->cristal > 0) {
+                                    if ($costesCons->cristal > $recursos->cristal) {
                                         $clase = 'danger';
-                                        $coste = $recursos->cristal - $construccion->coste->cristal;
+                                        $coste = $recursos->cristal - $costesCons->cristal;
                                     }else {
-                                        $coste = $recursos->cristal - $construccion->coste->cristal;
+                                        $coste = $recursos->cristal - $costesCons->cristal;
                                     }
                                 }
                             @endphp
@@ -189,12 +189,12 @@
                             @php
                                 $clase = 'light';
                                 $coste = '';
-                                if ($construccion->coste->gas > 0) {
-                                    if ($construccion->coste->gas > $recursos->gas) {
+                                if ($costesCons->gas > 0) {
+                                    if ($costesCons->gas > $recursos->gas) {
                                         $clase = 'danger';
-                                        $coste = $recursos->gas - $construccion->coste->gas;
+                                        $coste = $recursos->gas - $costesCons->gas;
                                     }else {
-                                        $coste = $recursos->gas - $construccion->coste->gas;
+                                        $coste = $recursos->gas - $costesCons->gas;
                                     }
                                 }
                             @endphp
@@ -204,12 +204,12 @@
                             @php
                                 $clase = 'light';
                                 $coste = '';
-                                if ($construccion->coste->plastico > 0) {
-                                    if ($construccion->coste->plastico > $recursos->plastico) {
+                                if ($costesCons->plastico > 0) {
+                                    if ($costesCons->plastico > $recursos->plastico) {
                                         $clase = 'danger';
-                                        $coste = $recursos->plastico - $construccion->coste->plastico;
+                                        $coste = $recursos->plastico - $costesCons->plastico;
                                     }else {
-                                        $coste = $recursos->plastico - $construccion->coste->plastico;
+                                        $coste = $recursos->plastico - $costesCons->plastico;
                                     }
                                 }
                             @endphp
@@ -219,12 +219,12 @@
                             @php
                                 $clase = 'light';
                                 $coste = '';
-                                if ($construccion->coste->ceramica > 0) {
-                                    if ($construccion->coste->ceramica > $recursos->ceramica) {
+                                if ($costesCons->ceramica > 0) {
+                                    if ($costesCons->ceramica > $recursos->ceramica) {
                                         $clase = 'danger';
-                                        $coste = $recursos->ceramica - $construccion->coste->ceramica;
+                                        $coste = $recursos->ceramica - $costesCons->ceramica;
                                     }else {
-                                        $coste = $recursos->ceramica - $construccion->coste->ceramica;
+                                        $coste = $recursos->ceramica - $costesCons->ceramica;
                                     }
                                 }
                             @endphp
@@ -234,12 +234,12 @@
                             @php
                                 $clase = 'light';
                                 $coste = '';
-                                if ($construccion->coste->liquido > 0) {
-                                    if ($construccion->coste->liquido > $recursos->liquido) {
+                                if ($costesCons->liquido > 0) {
+                                    if ($costesCons->liquido > $recursos->liquido) {
                                         $clase = 'danger';
-                                        $coste = $recursos->liquido - $construccion->coste->liquido;
+                                        $coste = $recursos->liquido - $costesCons->liquido;
                                     }else {
-                                        $coste = $recursos->liquido - $construccion->coste->liquido;
+                                        $coste = $recursos->liquido - $costesCons->liquido;
                                     }
                                 }
                             @endphp
@@ -249,12 +249,12 @@
                             @php
                                 $clase = 'light';
                                 $coste = '';
-                                if ($construccion->coste->micros > 0) {
-                                    if ($construccion->coste->micros > $recursos->micros) {
+                                if ($costesCons->micros > 0) {
+                                    if ($costesCons->micros > $recursos->micros) {
                                         $clase = 'danger';
-                                        $coste = $recursos->micros - $construccion->coste->micros;
+                                        $coste = $recursos->micros - $costesCons->micros;
                                     }else {
-                                        $coste = $recursos->micros - $construccion->coste->micros;
+                                        $coste = $recursos->micros - $costesCons->micros;
                                     }
                                 }
                             @endphp

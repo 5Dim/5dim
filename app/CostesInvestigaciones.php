@@ -47,7 +47,6 @@ class CostesInvestigaciones extends Model
 
         $nivelesMaximos=DB::table('investigaciones')->select("codigo", DB::raw('max(nivel) as nivel'))->groupBy('codigo')->get();
 
-
         foreach($investigaciones as $investigacion){
             $costesi = new CostesInvestigaciones();
 
@@ -57,8 +56,6 @@ class CostesInvestigaciones extends Model
             // rebaja por niveles maximos
             $nivelBajoElQueRebajar=5;
             $porcentRebajaXNivel=.1;
-
-
 
             switch($codigo){
                 case "invEnergia":

@@ -76,6 +76,7 @@
                 @for ($i = 0 ; $i < 6 ; $i++)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
+                        'costesCons' => $costesConstrucciones[$i],
                         'personal' => $recursos->personal - $personal,
                         'tab' => 'mina-tab',
                     ])
@@ -85,6 +86,7 @@
                 @for ($i = 6 ; $i < 11 ; $i++)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
+                        'costesCons' => $costesConstrucciones[$i],
                         'personal' => $recursos->personal - $personal,
                         'tab' => 'industria-tab',
                     ])
@@ -99,6 +101,7 @@
                 @for ($i = 13 ; $i < 21 ; $i++)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
+                        'costesCons' => $costesConstrucciones[$i],
                         'personal' => $recursos->personal - $personal,
                         'tab' => 'almacenes-tab',
                     ])
@@ -108,6 +111,7 @@
                 @for ($i = 21 ; $i < 26 ; $i++)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
+                        'costesCons' => $costesConstrucciones[$i],
                         'personal' => $recursos->personal - $personal,
                         'tab' => 'militares-tab',
                     ])
@@ -117,6 +121,7 @@
                 @for ($i = 26 ; $i < 29 ; $i++)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
+                        'costesCons' => $costesConstrucciones[$i],
                         'personal' => $recursos->personal - $personal,
                         'tab' => 'desarrollo-tab',
                     ])
@@ -126,6 +131,7 @@
                 @for ($i = 29 ; $i < 32 ; $i++)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion' => $construcciones[$i],
+                        'costesCons' => $costesConstrucciones[$i],
                         'personal' => $recursos->personal - $personal,
                         'tab' => 'observacion-tab',
                     ])

@@ -88,6 +88,10 @@ class ConstruccionController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
+        //Costes construcciones
+        $costes = new CostesConstrucciones();
+        $costesConstrucciones = $costes->generaCostesConstrucciones($construcciones);
+
         //Constantes de construccion
         $CConstantes=Constantes::where('tipo','construccion')->get();
 
@@ -97,14 +101,11 @@ class ConstruccionController extends Controller
         // vemos las dependencias
         $dependencias=Dependencias::where('tipo','construccion')->get();
 
-        //$tab=session()->get('tabConstruccion');
-        //session()->put('tabConstruccion', $tab);
-
         //Devolvemos la vista con todas las variables
         return view('juego.construcciones.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones',
         'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual', 'nivelImperio',
         'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
-        'planetasJugador', 'planetasAlianza'));
+        'planetasJugador', 'planetasAlianza', 'costesConstrucciones'));
     }
 
     //Acceso a subir nivel de construccion

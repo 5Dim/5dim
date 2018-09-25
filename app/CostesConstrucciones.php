@@ -32,7 +32,7 @@ class CostesConstrucciones extends Model
         $costesConstruccion=[];
 
         foreach($construcciones as $construccion){
-
+            $costesc = new CostesConstrucciones();
             $nivel=$construccion->nivel;
             $codigo=$construccion->codigo;
 
