@@ -116,7 +116,9 @@ class ConstruccionController extends Controller
         $error = false;
 
         //Recuperar construccion
+        $construccionesMax = [];
         $construccion = Construcciones::where('id', $idConstruccion)->first();
+        array_push($construccionesMax, $construccion);
         $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
         $almacenes = Almacenes::calcularAlmacenes($construcciones);
@@ -143,6 +145,7 @@ class ConstruccionController extends Controller
         if (!empty($cola)) {
             $inicio = $cola->finished_at;
             $nivel = $cola->nivel + 1;
+            $construccionesMax[0]->nivel = $nivel;
 
             //Comprobamos si ya hay cola de este edificio
             $accion = $cola->accion;
@@ -150,11 +153,16 @@ class ConstruccionController extends Controller
             //Valores por defecto
             $inicio = date("Y-m-d H:i:s");
             $nivel = $construccion->nivel + 1;
+            $construccionesMax[0]->nivel = $nivel;
             $accion = 'Construyendo';
         }
 
+        //Costes construcciones
+        $costes = new CostesConstrucciones();
+        $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
+
         //Calculamos el coste para calcular el tiempo
-        $costeTotal = $construccion->sumarCostes($construccion->coste);
+        $costeTotal = $construccion->sumarCostes($costesConstrucciones[0]);
 
         //Calcular el tiempo de construccion
         $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
@@ -168,19 +176,19 @@ class ConstruccionController extends Controller
         $fechaFin = strtotime($inicio) + $tiempo;
 
         //Comprobamos que el edificio se puede construir
-        if ($construccion->planetas->recursos->mineral < $construccion->coste->mineral) {
+        if ($construccion->planetas->recursos->mineral < $costesConstrucciones[0]->mineral) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->cristal < $construccion->coste->cristal) {
+        }elseif ($construccion->planetas->recursos->cristal < $costesConstrucciones[0]->cristal) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->gas < $construccion->coste->gas) {
+        }elseif ($construccion->planetas->recursos->gas < $costesConstrucciones[0]->gas) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->plastico < $construccion->coste->plastico) {
+        }elseif ($construccion->planetas->recursos->plastico < $costesConstrucciones[0]->plastico) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->ceramica < $construccion->coste->ceramica) {
+        }elseif ($construccion->planetas->recursos->ceramica < $costesConstrucciones[0]->ceramica) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->liquido < $construccion->coste->liquido) {
+        }elseif ($construccion->planetas->recursos->liquido < $costesConstrucciones[0]->liquido) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->micros < $construccion->coste->micros) {
+        }elseif ($construccion->planetas->recursos->micros < $costesConstrucciones[0]->micros) {
             $error = true;
         }elseif (($construccion->planetas->recursos->personal - $personalUsado) < $personal) {
             $error = true;
@@ -191,13 +199,13 @@ class ConstruccionController extends Controller
         //Si no tenemos ningun error continuamos
         if (!$error) {
             //Restamos el coste a los recursos
-            $construccion->planetas->recursos->mineral -= $construccion->coste->mineral;
-            $construccion->planetas->recursos->cristal -= $construccion->coste->cristal;
-            $construccion->planetas->recursos->gas -= $construccion->coste->gas;
-            $construccion->planetas->recursos->plastico -= $construccion->coste->plastico;
-            $construccion->planetas->recursos->ceramica -= $construccion->coste->ceramica;
-            $construccion->planetas->recursos->liquido -= $construccion->coste->liquido;
-            $construccion->planetas->recursos->micros -= $construccion->coste->micros;
+            $construccion->planetas->recursos->mineral -= $costesConstrucciones[0]->mineral;
+            $construccion->planetas->recursos->cristal -= $costesConstrucciones[0]->cristal;
+            $construccion->planetas->recursos->gas -= $costesConstrucciones[0]->gas;
+            $construccion->planetas->recursos->plastico -= $costesConstrucciones[0]->plastico;
+            $construccion->planetas->recursos->ceramica -= $costesConstrucciones[0]->ceramica;
+            $construccion->planetas->recursos->liquido -= $costesConstrucciones[0]->liquido;
+            $construccion->planetas->recursos->micros -= $costesConstrucciones[0]->micros;
             $construccion->planetas->recursos->save();
 
             //Generamos la cola
@@ -228,7 +236,9 @@ class ConstruccionController extends Controller
     public function reciclar ($idConstruccion, $personal)
     {
         //Recuperar construccion
+        $construccionesMax = [];
         $construccion = Construcciones::where('id', $idConstruccion)->first();
+        array_push($construccionesMax, $construccion);
 
         //Recuperamos su ultima cola (si existe)
         $cola = EnConstrucciones::where('construcciones_id', $idConstruccion)->orderBy('id', 'desc')->first();
@@ -250,8 +260,12 @@ class ConstruccionController extends Controller
             $accion = 'Reciclando';
         }
 
+        //Costes construcciones
+        $costes = new CostesConstrucciones();
+        $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax[0]);
+
         //Calculamos el coste para calcular el tiempo
-        $costeTotal = $construccion->sumarCostes($construccion->coste);
+        $costeTotal = $construccion->sumarCostes($construccionesMax[0]);
 
         //Calcular el tiempo de construccion
         $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
@@ -322,35 +336,39 @@ class ConstruccionController extends Controller
         foreach ($listaCola as $colita) {
             //En caso de ser una construccion debe devolver parte de los recursos
             if ($colita->accion == "Construyendo") {
+                $construccionesMax[0]->nivel = $colita->nivel;
+                //Costes construcciones
+                $costes = new CostesConstrucciones();
+                $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax[0]);
+
                 $costeconstruccion = new CostesConstrucciones();
                 $coste = $costeconstruccion->generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
                 $recursos = $colita->construcciones->planetas->recursos;
 
                 //Restaurar beneficio por reciclaje
-                $recursos->mineral += ($coste->mineral * $reciclaje);
-                $recursos->cristal += ($coste->cristal * $reciclaje);
-                $recursos->gas += ($coste->gas * $reciclaje);
-                $recursos->plastico += ($coste->plastico * $reciclaje);
-                $recursos->ceramica += ($coste->ceramica * $reciclaje);
-                $recursos->liquido += ($coste->liquido * $reciclaje);
-                $recursos->micros += ($coste->micros * $reciclaje);
+                $recursos->mineral += ($costesConstrucciones[0]->mineral * $reciclaje);
+                $recursos->cristal += ($costesConstrucciones[0]->cristal * $reciclaje);
+                $recursos->gas += ($costesConstrucciones[0]->gas * $reciclaje);
+                $recursos->plastico += ($costesConstrucciones[0]->plastico * $reciclaje);
+                $recursos->ceramica += ($costesConstrucciones[0]->ceramica * $reciclaje);
+                $recursos->liquido += ($costesConstrucciones[0]->liquido * $reciclaje);
+                $recursos->micros += ($costesConstrucciones[0]->micros * $reciclaje);
                 $recursos->save();
             }
             $colita->delete();
         }
         //En caso de ser una construccion debe devolver parte de los recursos
         if ($cola->accion == "Construyendo") {
-            $coste = $cola->construcciones->coste;
             $recursos = $cola->construcciones->planetas->recursos;
 
             //Restaurar beneficio por reciclaje
-            $recursos->mineral += ($coste->mineral * $reciclaje);
-            $recursos->cristal += ($coste->cristal * $reciclaje);
-            $recursos->gas += ($coste->gas * $reciclaje);
-            $recursos->plastico += ($coste->plastico * $reciclaje);
-            $recursos->ceramica += ($coste->ceramica * $reciclaje);
-            $recursos->liquido += ($coste->liquido * $reciclaje);
-            $recursos->micros += ($coste->micros * $reciclaje);
+            $recursos->mineral += ($costesConstrucciones[0]->mineral * $reciclaje);
+            $recursos->cristal += ($costesConstrucciones[0]->cristal * $reciclaje);
+            $recursos->gas += ($costesConstrucciones[0]->gas * $reciclaje);
+            $recursos->plastico += ($costesConstrucciones[0]->plastico * $reciclaje);
+            $recursos->ceramica += ($costesConstrucciones[0]->ceramica * $reciclaje);
+            $recursos->liquido += ($costesConstrucciones[0]->liquido * $reciclaje);
+            $recursos->micros += ($costesConstrucciones[0]->micros * $reciclaje);
             $recursos->save();
         }
         $cola->delete();
