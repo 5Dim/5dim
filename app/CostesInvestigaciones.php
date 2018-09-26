@@ -5,6 +5,7 @@ namespace App;
 use App\Constantes;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class CostesInvestigaciones extends Model
 {
@@ -44,13 +45,7 @@ class CostesInvestigaciones extends Model
 
         $costesInvestigacion=[];
 
-        $nivelesMaximos=DB::select("
-            select
-            codigo,
-            max(nivel) as nivel
-            from investigaciones as inv group by codigo
-        ");
-
+        $nivelesMaximos=DB::table('investigaciones')->select("codigo", DB::raw('max(nivel) as nivel'))->groupBy('codigo')->get();
 
         foreach($investigaciones as $investigacion){
             $costesi = new CostesInvestigaciones();
@@ -62,13 +57,11 @@ class CostesInvestigaciones extends Model
             $nivelBajoElQueRebajar=5;
             $porcentRebajaXNivel=.1;
 
-
-
             switch($codigo){
                 case "invEnergia":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -81,7 +74,7 @@ class CostesInvestigaciones extends Model
                 case "invPlasma":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -94,7 +87,7 @@ class CostesInvestigaciones extends Model
                 case "invBalistica":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -107,7 +100,7 @@ class CostesInvestigaciones extends Model
                 case "invMa":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -120,7 +113,7 @@ class CostesInvestigaciones extends Model
                 case "invCarga":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -133,7 +126,7 @@ class CostesInvestigaciones extends Model
                 case "invBlindaje":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -146,7 +139,7 @@ class CostesInvestigaciones extends Model
                 case "invIa":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -159,7 +152,7 @@ class CostesInvestigaciones extends Model
                 case "invImperio":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -172,7 +165,7 @@ class CostesInvestigaciones extends Model
                 case "invObservacion":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -185,7 +178,7 @@ class CostesInvestigaciones extends Model
                 case "invEnsamblajeNaves":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -198,7 +191,7 @@ class CostesInvestigaciones extends Model
                 case "invEnsamblajeTropas":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -211,7 +204,7 @@ class CostesInvestigaciones extends Model
                 case "invEnsamblajeDefensas":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -224,7 +217,7 @@ class CostesInvestigaciones extends Model
                 case "invPropQuimico":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -237,7 +230,7 @@ class CostesInvestigaciones extends Model
                 case "invPropNuk":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -250,7 +243,7 @@ class CostesInvestigaciones extends Model
                 case "invPropIon":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -263,7 +256,7 @@ class CostesInvestigaciones extends Model
                 case "invPropPlasma":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -276,7 +269,7 @@ class CostesInvestigaciones extends Model
                 case "invPropMa":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -289,7 +282,7 @@ class CostesInvestigaciones extends Model
                 case "invPropHMA":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -303,7 +296,7 @@ class CostesInvestigaciones extends Model
                 case "invIndLiquido":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -316,7 +309,7 @@ class CostesInvestigaciones extends Model
                 case "invIndMicros":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -329,7 +322,7 @@ class CostesInvestigaciones extends Model
                 case "invIndFuel":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -342,7 +335,7 @@ class CostesInvestigaciones extends Model
                 case "invIndMa":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
@@ -355,7 +348,7 @@ class CostesInvestigaciones extends Model
                 case "invIndMunicion":
                     // maximos
                     $factorRebajaXMaximo=1;
-                    $UmbralNivelRebaja=$nivelesMaximos->$codigo-$nivelBajoElQueRebajar;
+                    $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
                     if ($UmbralNivelRebaja>$nivel){//hay rebaja
                         $factorRebajaXMaximo=max(1-(($UmbralNivelRebaja-$nivel)*$porcentRebajaXNivel),0);
                     }
