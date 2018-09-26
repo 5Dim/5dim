@@ -372,107 +372,7 @@ class Constantes extends Model
                 array_push($producciones, $constante);
 
 
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=5;
-                $constante->minimo=2;
-                $constante->maximo=10;
-                $constante->codigo='descuentoMInvestArmas';
-                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestArmas';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
 
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=.1;
-                $constante->minimo=.2;
-                $constante->maximo=.05;
-                $constante->codigo='descuentoCInvestArmas';
-                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestArmas';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=5;
-                $constante->minimo=2;
-                $constante->maximo=10;
-                $constante->codigo='descuentoMInvestDiseño';
-                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestDiseño';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
-
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=.1;
-                $constante->minimo=.2;
-                $constante->maximo=.05;
-                $constante->codigo='descuentoCInvestDiseño';
-                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestDiseño';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=5;
-                $constante->minimo=2;
-                $constante->maximo=10;
-                $constante->codigo='descuentoMInvestImperio';
-                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestImperio';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=.1;
-                $constante->minimo=.2;
-                $constante->maximo=.05;
-                $constante->codigo='descuentoCInvestImperio';
-                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestImperio';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=5;
-                $constante->minimo=2;
-                $constante->maximo=10;
-                $constante->codigo='descuentoMInvestMotores';
-                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestMotores';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=.1;
-                $constante->minimo=.2;
-                $constante->maximo=.05;
-                $constante->codigo='descuentoCInvestMotores';
-                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestMotores';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=5;
-                $constante->minimo=2;
-                $constante->maximo=10;
-                $constante->codigo='descuentoMInvestIndustrias';
-                $constante->descripcion='cuantos niveles por debajo del maximo del universo empieza el descuento para el grupo de tecnos InvestIndustrias';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
-
-                $constante =new Constantes();
-                $constante->universo_id=$universo;
-                $constante->valor=.1;
-                $constante->minimo=.2;
-                $constante->maximo=.05;
-                $constante->codigo='descuentoCInvestIndustrias';
-                $constante->descripcion='cuanto se descuenta por nivel menos que le mayor para el grupo de tecnos InvestIndustrias';
-                $constante->tipo='investigacion';
-                array_push($producciones, $constante);
                 /////// FUSELAJES  ///////////////////////////////////////////////////
                 //Naves//////////////////////////////////////////////////////////////////////////7
 
@@ -1642,6 +1542,83 @@ class Constantes extends Model
                 $constante->descripcion='variación de la velocidad de construccion fuselaje naves defensa';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
+
+
+
+                /////PRODUCCION
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.5;
+                $constante->maximo=2;
+                $constante->codigo='ahorroXCantidad';
+                $constante->descripcion='factor de cuanto se ahorra por cantidad de naves fabricadas';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.7;
+                $constante->minimo=.5;
+                $constante->maximo=1;
+                $constante->codigo='maximoAhorroXCantidad';
+                $constante->descripcion='máximo ahorro por cantidad de naves fabricadas';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=10000;
+                $constante->minimo=5000;
+                $constante->maximo=30000;
+                $constante->codigo='AhorroXcazas';
+                $constante->descripcion='factor de cuanto se ahorra por cantidad de cazas';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=100;
+                $constante->minimo=0;
+                $constante->maximo=300;
+                $constante->codigo='AhorroXligeras';
+                $constante->descripcion='factor de cuanto se ahorra por cantidad de ligeras';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=3;
+                $constante->minimo=0;
+                $constante->maximo=6;
+                $constante->codigo='AhorroXmedias';
+                $constante->descripcion='factor de cuanto se ahorra por cantidad de medias';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=0;
+                $constante->maximo=3;
+                $constante->codigo='AhorroXpesadas';
+                $constante->descripcion='factor de cuanto se ahorra por cantidad de pesadas';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=.5;
+                $constante->minimo=0;
+                $constante->maximo=300;
+                $constante->codigo='AhorroXestaciones';
+                $constante->descripcion='factor de cuanto se ahorra por cantidad de estaciones';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
+
+
 
 
 

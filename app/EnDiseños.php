@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Constantes;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -60,9 +61,44 @@ class EnDiseños extends Model
     }
 
     public static function cadenaProduccion ($cantidad, $tamaño) {
-        $return = 1;
 
+        $PConstantes=Constantes::where('tipo','produccion')->get();
+        $ahorroXCantidad=$PConstantes->where('codigo','ahorroXCantidad')->first()->valor ;
+        $maximoAhorroXCantidad=$PConstantes->where('codigo','maximoAhorroXCantidad')->first()->valor ;
 
-        return $return;
+        $factorTamaño=100;
+
+        switch($tamaño){
+            case 1: //caza
+                $factorTamaño=$PConstantes->where('codigo','AhorroXcazas')->first()->valor /100;
+            break;
+            case 2:
+                $factorTamaño=$PConstantes->where('codigo','AhorroXligeras')->first()->valor /100;
+            break;
+            case 3:
+                $factorTamaño=$PConstantes->where('codigo','AhorroXmedias')->first()->valor /100;
+            break;
+            case 4:
+                $factorTamaño=$PConstantes->where('codigo','AhorroXpesadas')->first()->valor /100;
+            break;
+            case 5:
+                $factorTamaño=$PConstantes->where('codigo','AhorroXestacion')->first()->valor /100;
+            break;
+        }
+
+        $factor=1-(pow($cantidad,2)*1/($ahorroXCantidad*100000))/$factorTamaño;
+        if ($factor<$maximoAhorroXCantidad){$factor=$maximoAhorroXCantidad;}
+        if ($factor>1){$factor=1;}
+        if ($cantidad==1){$factor=1;}
+
+        return  $factor;
+
     }
+
+    public static function tiempoProduccion ($cantidad, $nivelFabrica) {
+
+
+    }
+
+
 }
