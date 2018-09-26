@@ -69,19 +69,19 @@ class EnDiseños extends Model
         $factorTamaño=100;
 
         switch($tamaño){
-            case 1: //caza
+            case 0: //caza
                 $factorTamaño=$PConstantes->where('codigo','AhorroXcazas')->first()->valor /100;
             break;
-            case 2:
+            case 1:
                 $factorTamaño=$PConstantes->where('codigo','AhorroXligeras')->first()->valor /100;
             break;
-            case 3:
+            case 2:
                 $factorTamaño=$PConstantes->where('codigo','AhorroXmedias')->first()->valor /100;
             break;
-            case 4:
+            case 3:
                 $factorTamaño=$PConstantes->where('codigo','AhorroXpesadas')->first()->valor /100;
             break;
-            case 5:
+            case 4:
                 $factorTamaño=$PConstantes->where('codigo','AhorroXestacion')->first()->valor /100;
             break;
         }

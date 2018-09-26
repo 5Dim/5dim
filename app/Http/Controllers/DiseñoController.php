@@ -98,13 +98,14 @@ class DiseñoController extends Controller
 
         EnDiseños::terminarColaDiseños();
         $colaDiseños = EnDiseños::where('planetas_id', session()->get('planetas_id'))->get();
+        $PConstantes=Constantes::where('tipo','produccion')->get();
 
         //Devolvemos todos los diseños
         $diseños = $jugadorActual->diseños;
 
         return view('juego.diseño.diseño', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio',
         'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
-        'planetasJugador', 'planetasAlianza', 'diseños', 'colaDiseños'));
+        'planetasJugador', 'planetasAlianza', 'diseños', 'colaDiseños','PConstantes'));
     }
     public function diseñar ($idFuselaje)
     {

@@ -107,5 +107,63 @@
 </div>
 
 <script>
+var diseños={!!json_encode($diseños)!!};
+var PConstantes={!!json_encode($PConstantes)!!};
+
+function recalculaCostos(id){
+
+    if (Number.isInteger($("#diseño"+id).val()*1)){
+        var cantidad=Math.round ($("#diseño"+id).val());
+        diseño=$.grep(diseños, function(obj){return obj.id == id;})[0];
+        factor=cadenaProduccion(cantidad,1);
+
+        $("#mineral"+id).text( formatNumber (Math.round (factor * cantidad * diseño["costes"]["mineral"])))
+        $("#cristal"+id).text( formatNumber (Math.round (factor * cantidad * diseño["costes"]["cristal"])))
+        $("#gas"+id).text( formatNumber (Math.round (factor * cantidad * diseño["costes"]["gas"])))
+        $("#plastico"+id).text( formatNumber (Math.round (factor * cantidad * diseño["costes"]["plastico"])))
+        $("#ceramica"+id).text( formatNumber (Math.round (factor * cantidad * diseño["costes"]["ceramica"])))
+        $("#liquido"+id).text( formatNumber (Math.round (factor * cantidad * diseño["costes"]["liquido"])))
+        $("#micros"+id).text( formatNumber (Math.round (factor * cantidad * diseño["costes"]["micros"])))
+        $("#personal"+id).text( formatNumber (Math.round (factor * cantidad * diseño["costes"]["personal"])))
+
+    }
+}
+
+
+function cadenaProduccion (cantidad, tamaño) {
+
+ahorroXCantidad=$.grep(PConstantes, function(obj){return obj.codigo == "ahorroXCantidad";})[0]['valor'];
+maximoAhorroXCantidad=$.grep(PConstantes, function(obj){return obj.codigo == "maximoAhorroXCantidad";})[0]['valor'];
+
+var factorTamaño=100;
+
+switch(tamaño){
+    case 0: //caza
+        factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXcazas";})[0]['valor'] /100;
+    break;
+    case 1:
+        factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXligeras";})[0]['valor'] /100;
+    break;
+    case 2:
+        factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXmedias";})[0]['valor'] /100;
+    break;
+    case 3:
+        factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXpesadas";})[0]['valor'] /100;
+    break;
+    case 4:
+        factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXestaciones";})[0]['valor'] /100;
+    break;
+}
+
+factor=1-(Math.pow(cantidad,2)*1/(ahorroXCantidad*100000))/factorTamaño;
+if (factor<maximoAhorroXCantidad){factor=maximoAhorroXCantidad;}
+if (factor>1){factor=1;}
+if (cantidad==1){factor=1;}
+
+return factor;
+
+}
+
+
 </script>
 @endsection

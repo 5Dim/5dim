@@ -113,28 +113,28 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="anchofijo text-{{ $diseño->costes->mineral > 0 ? 'light' : 'muted' }} borderless">
+                        <td id="mineral{{$diseño->id}}" class="anchofijo text-{{ $diseño->costes->mineral > 0 ? 'light' : 'muted' }} borderless">
                             {{ number_format($diseño->costes->mineral, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-{{ $diseño->costes->cristal > 0 ? 'light' : 'muted' }} borderless">
+                        <td id="cristal{{$diseño->id}}" class="anchofijo text-{{ $diseño->costes->cristal > 0 ? 'light' : 'muted' }} borderless">
                             {{ number_format($diseño->costes->cristal, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-{{ $diseño->costes->gas > 0 ? 'light' : 'muted' }} borderless">
+                        <td id="gas{{$diseño->id}}" class="anchofijo text-{{ $diseño->costes->gas > 0 ? 'light' : 'muted' }} borderless">
                             {{ number_format($diseño->costes->gas, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-{{ $diseño->costes->plastico > 0 ? 'light' : 'muted' }} borderless">
+                        <td id="plastico{{$diseño->id}}" class="anchofijo text-{{ $diseño->costes->plastico > 0 ? 'light' : 'muted' }} borderless">
                             {{ number_format($diseño->costes->plastico, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-{{ $diseño->costes->ceramica > 0 ? 'light' : 'muted' }} borderless">
+                        <td id="ceramica{{$diseño->id}}" class="anchofijo text-{{ $diseño->costes->ceramica > 0 ? 'light' : 'muted' }} borderless">
                             {{ number_format($diseño->costes->ceramica, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-{{ $diseño->costes->liquido > 0 ? 'light' : 'muted' }} borderless">
+                        <td id="liquido{{$diseño->id}}" class="anchofijo text-{{ $diseño->costes->liquido > 0 ? 'light' : 'muted' }} borderless">
                             {{ number_format($diseño->costes->liquido, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-{{ $diseño->costes->micros > 0 ? 'light' : 'muted' }} borderless">
+                        <td id="micros{{$diseño->id}}" class="anchofijo text-{{ $diseño->costes->micros > 0 ? 'light' : 'muted' }} borderless">
                             {{ number_format($diseño->costes->micros, 0,",",".") }}
                         </td>
-                        <td class="anchofijo text-{{ $diseño->costes->personal > 0 ? 'light' : 'muted' }} borderless">
+                        <td id="personal{{$diseño->id}}" class="anchofijo text-{{ $diseño->costes->personal > 0 ? 'light' : 'muted' }} borderless">
                             {{ number_format($diseño->costes->personal, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-{{ $diseño->viewDiseños->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">
@@ -165,7 +165,7 @@
                                         </button>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2" id="diseño{{ $diseño->id }}">
+                                <input type="text" class="form-control input" value="0" aria-label="" aria-describedby="basic-addon2" id="diseño{{ $diseño->id }}" onkeyup="recalculaCostos({{ $diseño->id }})">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-dark text-light">
                                         <button type="button" class="btn btn-dark btn-sm text-warning">
