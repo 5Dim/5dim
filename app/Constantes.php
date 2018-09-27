@@ -1577,7 +1577,6 @@ class Constantes extends Model
                 $constante->tipo='produccion';
                 array_push($producciones, $constante);
 
-
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
                 $constante->valor=100;
@@ -1618,6 +1617,15 @@ class Constantes extends Model
                 $constante->tipo='produccion';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=50;
+                $constante->minimo=10;
+                $constante->maximo=100;
+                $constante->codigo='velhangarxnivel';
+                $constante->descripcion='% que aumenta la velocidad de la fabrica de naves por nivel';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
 
 
 

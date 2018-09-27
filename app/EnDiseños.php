@@ -95,8 +95,15 @@ class EnDiseños extends Model
 
     }
 
-    public static function tiempoProduccion ($cantidad, $nivelFabrica) {
+    public static function tiempoProduccion ($cantidad, $nivelFabrica,$tiempoxunidad) {
 
+        $velhangarxnivel= Constantes::where('codigo', 'velhangarxnivel')->first()->valor;
+
+        $velprodhangar= (1+(($nivelFabrica * $velhangarxnivel)/100)); //por lo que se divide el tiempo, cada nivel un 20 %
+        $periodo= (1 * $tiempoxunidad)/$velprodhangar; //tiempo por unidad
+        $tiempocns = ($cantidad * $tiempoxunidad)/$velprodhangar;
+
+        return $tiempocns;
 
     }
 
