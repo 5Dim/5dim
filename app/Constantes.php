@@ -1619,6 +1619,16 @@ class Constantes extends Model
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
+                $constante->valor=.5;
+                $constante->minimo=0;
+                $constante->maximo=300;
+                $constante->codigo='AhorroXdefensa';
+                $constante->descripcion='factor de cuanto se ahorra por cantidad de defensa';
+                $constante->tipo='produccion';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
                 $constante->valor=50;
                 $constante->minimo=10;
                 $constante->maximo=100;

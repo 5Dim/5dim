@@ -138,21 +138,30 @@ maximoAhorroXCantidad=$.grep(PConstantes, function(obj){return obj.codigo == "ma
 var factorTamaño=100;
 
 switch(tamaño){
-    case 0: //caza
+    case 0:
+    case 8: //caza
         factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXcazas";})[0]['valor'] /100;
     break;
     case 1:
+    case 9:
         factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXligeras";})[0]['valor'] /100;
     break;
     case 2:
+    case 10:
         factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXmedias";})[0]['valor'] /100;
     break;
     case 3:
+    case 11:
         factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXpesadas";})[0]['valor'] /100;
     break;
     case 4:
+    case 5:
         factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXestaciones";})[0]['valor'] /100;
     break;
+    case 6:
+        factorTamaño=$.grep(PConstantes, function(obj){return obj.codigo == "AhorroXdefensa";})[0]['valor'] /100;
+    break;
+
 }
 
 factor=1-(Math.pow(cantidad,2)*1/(ahorroXCantidad*100000))/factorTamaño;
