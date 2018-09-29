@@ -346,7 +346,7 @@
                             </div>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/astrometria')}}" target="_self">
+                            <a id="constr" href="{{url('/juego/astrometria')}}" target="_blank">
                                 <img title="Astrometría"
                                 src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}"
                                 onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}"
