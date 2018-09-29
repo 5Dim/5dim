@@ -6,51 +6,51 @@ $(function () {
 
 function sendConstruir(id, codigo, modal) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://localhost/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
+    window.location.href = "/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
 }
 
 function sendReciclar(id, codigo) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://localhost/juego/construccion/reciclar/" + id + "/" + personal;
+    window.location.href = "/juego/construccion/reciclar/" + id + "/" + personal;
 }
 
 function sendCancelar(id) {
-    window.location.href = "http://localhost/juego/construccion/cancelar/" + id;
+    window.location.href = "/juego/construccion/cancelar/" + id;
 }
 
 function sendIndustria(industria) {
-    window.location.href = "http://localhost/juego/construccion/industria/" + industria;
+    window.location.href = "/juego/construccion/industria/" + industria;
 }
 
 function sendInvestigar(id, codigo) {
     var personal = $('#personal' + codigo).val();
-    window.location.href = "http://localhost/juego/investigacion/construir/" + id + "/" + personal;
+    window.location.href = "/juego/investigacion/construir/" + id + "/" + personal;
 }
 
 function sendCancelarInvestigacion(id) {
-    window.location.href = "http://localhost/juego/investigacion/cancelar/" + id;
+    window.location.href = "/juego/investigacion/cancelar/" + id;
 }
 
 function sendDesbloquear(id) {
-    window.location.href = "http://localhost/juego/fuselajes/desbloquear/" + id;
+    window.location.href = "/juego/fuselajes/desbloquear/" + id;
 }
 
 function sendDiseñar(id) {
-    window.location.href = "http://localhost/juego/diseño/diseñar/" + id;
+    window.location.href = "/juego/diseño/diseñar/" + id;
 }
 
 function construirDiseño(id) {
     var cantidad = $('#diseño' + id).val();
-    window.location.href = "http://localhost/juego/fabricar/construir/" + id + "/" + cantidad;
+    window.location.href = "/juego/fabricar/construir/" + id + "/" + cantidad;
 }
 
 function reciclarDiseño(id) {
     var cantidad = $('#diseño' + id).val();
-    window.location.href = "http://localhost/juego/fabricar/reciclar/" + id + "/" + cantidad;
+    window.location.href = "/juego/fabricar/reciclar/" + id + "/" + cantidad;
 }
 
 function sendCancelarDiseño(id) {
-    window.location.href = "http://localhost/juego/fabricar/cancelar/" + id;
+    window.location.href = "/juego/fabricar/cancelar/" + id;
 }
 
 function formatTimestamp(timestamp) {
@@ -327,7 +327,7 @@ function timeDura(result, dndv) { /// da tiempo en formato y lo imprime en dnv
 function mostrarDatosConstruccion(codigo) {
     $.ajax({
         method: "GET",
-        url: "http://localhost/juego/construccion/datos/" + codigo,
+        url: "/juego/construccion/datos/" + codigo,
         success: function (data) {
             $("#datosContenido").html(data.descripcionConstruccion)
             $("#ModalTitulo").html(data.nombreConstruccion)
@@ -338,7 +338,7 @@ function mostrarDatosConstruccion(codigo) {
 function mostrarDatosInvestigacion(codigo) {
     $.ajax({
         method: "GET",
-        url: "http://localhost/juego/investigacion/datos/" + codigo,
+        url: "/juego/investigacion/datos/" + codigo,
         success: function (data) {
             $("#datosContenido").html(data.descripcionInvestigacion)
             $("#ModalTitulo").html(data.nombreInvestigacion)
@@ -349,7 +349,7 @@ function mostrarDatosInvestigacion(codigo) {
 function mostrarDatosFuselaje(codigo) {
     $.ajax({
         method: "GET",
-        url: "http://localhost/juego/fuselajes/datos/" + codigo,
+        url: "/juego/fuselajes/datos/" + codigo,
         success: function (data) {
             $("#datosContenido").html(data.descripcionInvestigacion)
             $("#ModalTitulo").html(data.nombreInvestigacion)
@@ -367,7 +367,7 @@ function changeSkin(id) { /// cambia la skin de las naves en fuselajes
         sumask = 1;
     }
     imagen.dataset.skin = sumask;
-    img = "background: url('http://localhost/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;"
+    img = "background: url('/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;"
     // $('#imagen' + id).attr("src", img);
     $("#tablaArmas").prop("style", img)
 }
