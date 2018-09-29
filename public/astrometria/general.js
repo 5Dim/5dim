@@ -4,7 +4,7 @@ var textura_ef_circulo
 function  carga_textura_flotas(){
 
 PIXI.loader
-    .add('circulo', 'img/ef_circulo.json')
+    .add('circulo', 'astrometria/img/ef_circulo.json')
     .load(ef_circulo_cargado);
 
 function ef_circulo_cargado() {
@@ -48,7 +48,7 @@ function ef_circulo_cargado() {
 
 function Sistema(n, x, y, habitado) {
 
-   var estrella = viewport.addChild(new PIXI.Sprite(PIXI.Texture.fromImage('img/estrella-blanca.png')))
+   var estrella = viewport.addChild(new PIXI.Sprite(PIXI.Texture.fromImage('astrometria/img/estrella-blanca.png')))
 
        // box.tint = Math.floor(Math.random() * 0xffffff)
         estrella.width = estrella.height = 70
@@ -201,9 +201,9 @@ class Line extends PIXI.Graphics {
 function botonA(texto){
 
 	// texturas para los botones
-	var textureButton = PIXI.Texture.fromImage('img/botones/boton1.png');
-	var textureButtonDown = PIXI.Texture.fromImage('img/botones/boton1.png');
-	var textureButtonOver = PIXI.Texture.fromImage('img/botones/boton1.png');
+	var textureButton = PIXI.Texture.fromImage('astrometria/img/botones/boton1.png');
+	var textureButtonDown = PIXI.Texture.fromImage('astrometria/img/botones/boton1.png');
+	var textureButtonOver = PIXI.Texture.fromImage('astrometria/img/botones/boton1.png');
 
     botA = new PIXI.Sprite(textureButton);
     botA.buttonMode = true;
@@ -275,8 +275,8 @@ function botonA(texto){
 function botonF(){
 
     // texturas para los botones
-    var text_on = PIXI.Texture.fromImage('img/botones/flotas2.png');
-    var text_off = PIXI.Texture.fromImage('img/botones/flotas1.png');
+    var text_on = PIXI.Texture.fromImage('astrometria/img/botones/flotas2.png');
+    var text_off = PIXI.Texture.fromImage('astrometria/img/botones/flotas1.png');
 
     //estado del botón
     var estado = true
@@ -414,8 +414,8 @@ function onButtonOut() {
 function botonR(){
     
     // texturas para los botones
-    var text_on = PIXI.Texture.fromImage('img/botones/radar2.png');
-    var text_off = PIXI.Texture.fromImage('img/botones/radar1.png');
+    var text_on = PIXI.Texture.fromImage('astrometria/img/botones/radar2.png');
+    var text_off = PIXI.Texture.fromImage('astrometria/img/botones/radar1.png');
 
     //estado del botón
     var estado = true

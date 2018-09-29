@@ -45,7 +45,7 @@ function mueve_sis( posfinalx,posfinaly){
 function creasistemas(texto){
 
         // texturas para los botones
-        var texturafondo = PIXI.Texture.fromImage('img/fondo_sistema.png');
+        var texturafondo = PIXI.Texture.fromImage('astrometria/img/fondo_sistema.png');
 
         fondo_sistema = new PIXI.Sprite(texturafondo);
         
@@ -67,20 +67,20 @@ function creasistemas(texto){
         txtsistema.position.set (47, 173)
 
         // texturas para boton cerrar
-        var cerrar_on = PIXI.Texture.fromImage('img/botones/cerrar1.png');
-        var cerrar_off = PIXI.Texture.fromImage('img/botones/cerrar0.png');
-        var atacar_on = PIXI.Texture.fromImage('img/botones/atacar1.png');
-        var atacar_off = PIXI.Texture.fromImage('img/botones/atacar0.png');
-        var conquistar_on = PIXI.Texture.fromImage('img/botones/conquistar1.png');
-        var conquistar_off = PIXI.Texture.fromImage('img/botones/conquistar0.png');
-        var recolectar_on = PIXI.Texture.fromImage('img/botones/recolectar1.png');
-        var recolectar_off = PIXI.Texture.fromImage('img/botones/recolectar0.png');
-        var observar_on = PIXI.Texture.fromImage('img/botones/observar1.png');
-        var observar_off = PIXI.Texture.fromImage('img/botones/observar0.png');
-        var colonizar_on = PIXI.Texture.fromImage('img/botones/colonizar1.png');
-        var colonizar_off = PIXI.Texture.fromImage('img/botones/colonizar0.png');
-        var flotas_on = PIXI.Texture.fromImage('img/botones/vflotas1.png');
-        var flotas_off = PIXI.Texture.fromImage('img/botones/vflotas0.png');
+        var cerrar_on = PIXI.Texture.fromImage('astrometria/img/botones/cerrar1.png');
+        var cerrar_off = PIXI.Texture.fromImage('astrometria/img/botones/cerrar0.png');
+        var atacar_on = PIXI.Texture.fromImage('astrometria/img/botones/atacar1.png');
+        var atacar_off = PIXI.Texture.fromImage('astrometria/img/botones/atacar0.png');
+        var conquistar_on = PIXI.Texture.fromImage('astrometria/img/botones/conquistar1.png');
+        var conquistar_off = PIXI.Texture.fromImage('astrometria/img/botones/conquistar0.png');
+        var recolectar_on = PIXI.Texture.fromImage('astrometria/img/botones/recolectar1.png');
+        var recolectar_off = PIXI.Texture.fromImage('astrometria/img/botones/recolectar0.png');
+        var observar_on = PIXI.Texture.fromImage('astrometria/img/botones/observar1.png');
+        var observar_off = PIXI.Texture.fromImage('astrometria/img/botones/observar0.png');
+        var colonizar_on = PIXI.Texture.fromImage('astrometria/img/botones/colonizar1.png');
+        var colonizar_off = PIXI.Texture.fromImage('astrometria/img/botones/colonizar0.png');
+        var flotas_on = PIXI.Texture.fromImage('astrometria/img/botones/vflotas1.png');
+        var flotas_off = PIXI.Texture.fromImage('astrometria/img/botones/vflotas0.png');
 
         b_cerrar = new PIXI.Sprite(cerrar_off) // se inicia activo
         b_atacar = new PIXI.Sprite(atacar_off) // se inicia activo
