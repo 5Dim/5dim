@@ -262,7 +262,7 @@ class ConstruccionController extends Controller
 
         //Costes construcciones
         $costes = new CostesConstrucciones();
-        $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax[0]);
+        $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
 
         //Calculamos el coste para calcular el tiempo
         $costeTotal = $construccion->sumarCostes($construccionesMax[0]);
@@ -337,13 +337,16 @@ class ConstruccionController extends Controller
             //En caso de ser una construccion debe devolver parte de los recursos
             if ($colita->accion == "Construyendo") {
                 $construccionesMax[0]->nivel = $colita->nivel;
+
                 //Costes construcciones
                 $costes = new CostesConstrucciones();
-                $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax[0]);
+                $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
+                $recursos = $colita->construcciones->planetas->recursos;
 
+                /*
                 $costeconstruccion = new CostesConstrucciones();
                 $coste = $costeconstruccion->generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
-                $recursos = $colita->construcciones->planetas->recursos;
+                */
 
                 //Restaurar beneficio por reciclaje
                 $recursos->mineral += ($costesConstrucciones[0]->mineral * $reciclaje);
