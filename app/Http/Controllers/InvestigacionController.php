@@ -281,6 +281,7 @@ class InvestigacionController extends Controller
                 $costesInvestigaciones = $costes->generaCostesInvestigaciones($investigacionesMax);
                 $recursos = $cola->planetas->recursos;
 
+
                 //Restaurar beneficio por reciclaje
                 $recursos->mineral += ($costesInvestigaciones[0]->mineral * $reciclaje);
                 $recursos->cristal += ($costesInvestigaciones[0]->cristal * $reciclaje);
@@ -307,6 +308,8 @@ class InvestigacionController extends Controller
             $costesInvestigaciones = $costes->generaCostesInvestigaciones($investigacionesMax[0]);
             $recursos = $cola->planetas->recursos;
 
+
+            if (!empty($costesInvestigaciones)){
             //Restaurar beneficio por reciclaje
             $recursos->mineral += ($costesInvestigaciones[0]->mineral * $reciclaje);
             $recursos->cristal += ($costesInvestigaciones[0]->cristal * $reciclaje);
@@ -315,6 +318,18 @@ class InvestigacionController extends Controller
             $recursos->ceramica += ($costesInvestigaciones[0]->ceramica * $reciclaje);
             $recursos->liquido += ($costesInvestigaciones[0]->liquido * $reciclaje);
             $recursos->micros += ($costesInvestigaciones[0]->micros * $reciclaje);
+        } else {
+
+            $recursos->mineral += 0;
+            $recursos->cristal += 0;
+            $recursos->gas += 0;
+            $recursos->plastico += 0;
+            $recursos->ceramica += 0;
+            $recursos->liquido += 0;
+            $recursos->micros += 0;
+        }
+
+
             $recursos->save();
         }
         $cola->delete();
