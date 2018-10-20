@@ -91,6 +91,7 @@ class InvestigacionController extends Controller
 
         $investiga = new CostesInvestigaciones();
         $costeInvestigaciones = $investiga->generaCostesInvestigaciones($investigaciones);
+        //dd($investigaciones);
 
         //Constantes de construccion
         $CConstantes=Constantes::where('tipo','investigacion')->get();

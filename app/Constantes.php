@@ -371,6 +371,15 @@ class Constantes extends Model
                 $constante->tipo='investigacion';
                 array_push($producciones, $constante);
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=1;
+                $constante->minimo=.5;
+                $constante->maximo=2;
+                $constante->codigo='amplitudobservacion';
+                $constante->descripcion='factor por lo que se multiplica la observacion para dar un radio de vision de flotas en curso, sobre el nivel de investigacion';
+                $constante->tipo='investigacion';
+                array_push($producciones, $constante);
 
 
                 /////// FUSELAJES  ///////////////////////////////////////////////////
@@ -1638,6 +1647,38 @@ class Constantes extends Model
                 array_push($producciones, $constante);
 
 
+                ////// UNIVERSO ///
+
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=100;
+                $constante->maximo=1000;
+                $constante->codigo='anchouniverso';
+                $constante->descripcion='ancho del universo';
+                $constante->tipo='universo';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=2 * 365*24*3600;
+                $constante->minimo=1 * 365*24*3600;
+                $constante->maximo=5 * 365*24*3600;
+                $constante->codigo='luzdemallauniverso';
+                $constante->descripcion='distancia entre puntos de la malla en seg/luz';
+                $constante->tipo='universo';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=7500;
+                $constante->minimo=6000;
+                $constante->maximo=10000;
+                $constante->codigo='saltodelinea';
+                $constante->descripcion='cantidad sistemas que se general al inicio';
+                $constante->tipo='universo';
+                array_push($producciones, $constante);
 
 
 

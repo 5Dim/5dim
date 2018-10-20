@@ -116,4 +116,20 @@ class EnDiseños extends Model
     }
 
 
+    public function distanciatiempo($origen,$destino){
+// coordenadas
+$luzdemallauniverso=$luzdemallauniverso/$freductoruni;
+
+if ($distancia<100000) {$valveW=.00001;} else {$valveW=.5;};
+$tllegada1= (1/$Amovnaves) * pow (($distancia / ($valveW * $velock * $velock)),.5);
+
+
+        $distancia= sqrt ( (($destinox-$origenx) * ($destinox-$origenx)) + (($destinoy-$origeny) * ($destinoy-$origeny)));
+
+        $distancia=round ($distancia * $luzdemallauniverso);
+        $distancia=$distancia + $distp;
+
+    }
+
+
 }

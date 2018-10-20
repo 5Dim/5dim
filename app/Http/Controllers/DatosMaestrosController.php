@@ -43,11 +43,11 @@ class DatosMaestrosController extends Controller
        // $produccion=new Producciones();
        // $producciones=$produccion->generarDatosProducciones(); //esta en seed
 
-        $construccion=new CostesBasicosConstruccion();
-        $construcciones=$construccion->generarDatosCostesBasicosConstruccion();
+        //$construccion=new CostesBasicosConstruccion();
+        //$construcciones=$construccion->generarDatosCostesBasicosConstruccion();
 
-       // $investigacion=new CostesBasicosInvestigacion();
-       // $investigaciones=$investigacion->generarDatosCostesBasicosConstruccion();
+        //$investigacion=new CostesBasicosInvestigacion();
+        //$investigaciones=$investigacion->generarDatosCostesBasicosInvestigacion();
 
         $dependencia=new Dependencias();
         $dependencias=$dependencia->generarDatosDependencias();

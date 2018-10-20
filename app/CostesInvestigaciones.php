@@ -59,8 +59,9 @@ class CostesInvestigaciones extends Model
 
         foreach($investigaciones as $investigacion){
             $costesi = new CostesInvestigaciones();
+            //dd(isset($investigacion->nivel));
 
-            if (!empty($investigacion->nivel)){
+            if (isset($investigacion->nivel)){
                 $nivel=$investigacion->nivel;
                 $codigo=$investigacion->codigo;
 
