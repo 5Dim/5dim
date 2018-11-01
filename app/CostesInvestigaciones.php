@@ -62,7 +62,7 @@ class CostesInvestigaciones extends Model
             //dd(isset($investigacion->nivel));
 
             if (isset($investigacion->nivel)){
-                $nivel=$investigacion->nivel;
+                $nivel=$investigacion->nivel + 1;
                 $codigo=$investigacion->codigo;
 
                 //dd($investigacion->nivel);

@@ -144,22 +144,25 @@ class ConstruccionController extends Controller
         //Sobreescribimos datos en caso de que la construccion tenga alguna orden en cola
         if (!empty($cola)) {
             $inicio = $cola->finished_at;
-            $nivel = $cola->nivel + 1;
+            $nivel = $cola->nivel;
             $construccionesMax[0]->nivel = $nivel;
+            $nivel = $cola->nivel + 1;
 
             //Comprobamos si ya hay cola de este edificio
             $accion = $cola->accion;
         }else{
             //Valores por defecto
             $inicio = date("Y-m-d H:i:s");
-            $nivel = $construccion->nivel + 1;
+            $nivel = $construccion->nivel;
             $construccionesMax[0]->nivel = $nivel;
+            $nivel = $construccion->nivel + 1;
             $accion = 'Construyendo';
         }
 
         //Costes construcciones
         $costes = new CostesConstrucciones();
         $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
+        //dd($construccionesMax);
 
         //Calculamos el coste para calcular el tiempo
         $costeTotal = $construccion->sumarCostes($costesConstrucciones[0]);
