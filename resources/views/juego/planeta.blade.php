@@ -8,14 +8,18 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
 <div class="container-fluid">
     <div class="container-fluid">
         <nav>
-            <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px" align="center">
-                <a class="nav-item nav-link active" id="colonia-tab" data-toggle="tab" href="#colonia" role="tab" aria-controls="colonia" aria-selected="true">
+            <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
+                align="center">
+                <a class="nav-item nav-link active" id="colonia-tab" data-toggle="tab" href="#colonia" role="tab"
+                    aria-controls="colonia" aria-selected="true">
                     Colonia
                 </a>
-                <a class="nav-item nav-link" id="imperio-tab" data-toggle="tab" href="#imperio" role="tab" aria-controls="imperio" aria-selected="false">
+                <a class="nav-item nav-link" id="imperio-tab" data-toggle="tab" href="#imperio" role="tab"
+                    aria-controls="imperio" aria-selected="false">
                     Imperio
                 </a>
-                <a class="nav-item nav-link" id="refugio-tab" data-toggle="tab" href="#refugio" role="tab" aria-controls="refugio" aria-selected="false">
+                <a class="nav-item nav-link" id="refugio-tab" data-toggle="tab" href="#refugio" role="tab"
+                    aria-controls="refugio" aria-selected="false">
                     Refugio
                 </a>
             </div>
@@ -30,28 +34,34 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-secondary borderless">
-                            <div class="input-group mb-3 borderless" style="padding-left: 10px !important; padding-right: 5px !important">
+                            <div class="input-group mb-3 borderless"
+                                style="padding-left: 10px !important; padding-right: 5px !important">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-dark text-light">Nombre de la colonia</span>
                                 </div>
-                                <input type="text" class="form-control input" placeholder="Nombre de la colonia" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control input" placeholder="Nombre de la colonia"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
                             </div>
                         </td>
                         <td class="anchofijo text-secondary borderless">
-                            <div class="input-group mb-3 borderless" style="padding-left: 5px !important; padding-right: 5px !important">
+                            <div class="input-group mb-3 borderless"
+                                style="padding-left: 5px !important; padding-right: 5px !important">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-dark text-light">Ceder colonia</span>
                                 </div>
-                                <input type="text" class="form-control input" placeholder="Ceder colonia a" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control input" placeholder="Ceder colonia a"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
                             </div>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
+                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
+                                data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
                                 <i class="fa fa-save"></i> Guardar cambios
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-danger btn-block btn-sm " data-toggle="modal" data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
+                            <button type="button" class="btn btn-outline-danger btn-block btn-sm " data-toggle="modal"
+                                data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
                                 <i class="fa fa-times-circle"></i> Abandonar colonia
                             </button>
                         </td>
@@ -70,7 +80,8 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td colspan="6" class="anchofijo text-light borderless">
-                            El <span class="text-success">terraformador</span> es un edificio que nos ayuda a subir el nivel de nuestros yacimientos para poder produccir más en la colonia.
+                            El <span class="text-success">terraformador</span> es un edificio que nos ayuda a subir el
+                            nivel de nuestros yacimientos para poder produccir más en la colonia.
                         </td>
                     </tr>
                     <tr>
@@ -826,11 +837,10 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                         <td class="anchofijo text-warning borderless">
                             Capacidad del refugio
                         </td>
-                        @for ($i = 0 ; $i < 11 ; $i++)
-                            <td class="anchofijo text-light borderless">
-                                {{ number_format($capacidadRefugio, 0,",",".") }}
+                        @for ($i = 0 ; $i < 11 ; $i++) <td class="anchofijo text-light borderless">
+                            {{ number_format($capacidadRefugio, 0,",",".") }}
                             </td>
-                        @endfor
+                            @endfor
                     </tr>
                     <tr>
                         <td class="anchofijo text-danger borderless">

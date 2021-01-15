@@ -4,10 +4,9 @@
             background-color: #000000;
             background-image: url(../astrometria/img/fondo.png);
             width: 100%;
-            height: 100%
-            margin: 0;
+            height: 100% margin: 0;
             padding: 0;
-            overflow:hidden;
+            overflow: hidden;
             font-size: 1.5em;
         }
 
@@ -99,8 +98,8 @@
     </script>
 </head>
 
-    <body>
-        <script>
+<body>
+    <script>
 
-        </script>
-    </body>
+    </script>
+</body>

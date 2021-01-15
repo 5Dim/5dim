@@ -1,5 +1,24 @@
 <?php
 
+use App\Http\Controllers\AlianzaController;
+use App\Http\Controllers\AstrometriaController;
+use App\Http\Controllers\BancoController;
+use App\Http\Controllers\ComercioController;
+use App\Http\Controllers\ConstruccionController;
+use App\Http\Controllers\DatosMaestrosController;
+use App\Http\Controllers\DisenioController;
+use App\Http\Controllers\FabricasController;
+use App\Http\Controllers\FlotaController;
+use App\Http\Controllers\FuselajesController;
+use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvestigacionController;
+use App\Http\Controllers\JuegoController;
+use App\Http\Controllers\MensajesController;
+use App\Http\Controllers\PlanetaController;
+use App\Http\Controllers\PrincipalController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,117 +30,102 @@
 |
 */
 
-//Rutas para login y registro
-//Auth::routes();
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-// Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/', [PrincipalController::class, 'index'])->name('root');
 
-// Registration Routes...
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home');
 
-// Password Reset Routes...
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Rutas para administrador
-Route::get('/admin/DatosMaestros', 'DatosMaestrosController@index');
+Route::get('/admin/DatosMaestros', [DatosMaestrosController::class, 'index']);
 
 //Rutas generales sin auth
-Route::get('/', 'PrincipalController@index');
-Route::get('/pruebas', 'JuegoController@pruebas');
+Route::get('/pruebas', [JuegoController::class, 'pruebas']);
 
-Route::get('/juego/astrometria/ajax/universo', 'AstrometriaController@generarUniverso');
-Route::get('/juego/astrometria/ajax/radares', 'AstrometriaController@generarRadares');
-Route::get('/juego/astrometria/ajax/flotas', 'AstrometriaController@generarFlotas');
+Route::get('/juego/astrometria/ajax/universo', [AstrometriaController::class, 'generarUniverso']);
+Route::get('/juego/astrometria/ajax/radares', [AstrometriaController::class, 'generarRadares']);
+Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'generarFlotas']);
 
 //Middleware de auth
 Route::middleware('auth')->group(function () {
     //Cambiar opciones del usuario
-    Route::get('/configuracion', 'PrincipalController@configuracion');
-    Route::post('/update', 'PrincipalController@update');
+    Route::get('/configuracion', [PrincipalController::class, 'configuracion']);
+    Route::post('/update', [PrincipalController::class, 'update']);
 
     //Rutas generales
-    Route::get('/juego', 'JuegoController@index');
-    Route::get('/planeta/{planeta?}', ['uses' => 'JuegoController@planeta']);
-    Route::get('/jugador/{universo?}', ['uses' => 'JuegoController@jugador']);
-    Route::get('/juego/tienda', 'JuegoController@tienda');
-    Route::get('/juego/estadisticas', 'JuegoController@estadisticas');
-    Route::get('/juego/calcularPuntos', 'JuegoController@calcularPuntos');
+    Route::get('/juego', [JuegoController::class, 'index']);
+    Route::get('/planeta/{planeta?}', [JuegoController::class, 'planeta']);
+    Route::get('/jugador/{universo?}', [JuegoController::class, 'jugador']);
+    Route::get('/juego/tienda', [JuegoController::class, 'tienda']);
+    Route::get('/juego/estadisticas', [JuegoController::class, 'estadisticas']);
+    Route::get('/juego/calcularPuntos', [JuegoController::class, 'calcularPuntos']);
 
     //Construccion
-    Route::get('/juego/construccion/{tab?}', 'ConstruccionController@index');
-    Route::get('/juego/construccion/construir/{id}/{personal}/{tab}', ['uses' => 'ConstruccionController@construir']);
-    Route::get('/juego/construccion/reciclar/{id}/{personal}', ['uses' => 'ConstruccionController@reciclar']);
-    Route::get('/juego/construccion/cancelar/{id}', ['uses' => 'ConstruccionController@cancelar']);
-    Route::get('/juego/construccion/datos/{codigo}', ['uses' => 'ConstruccionController@datos']);
-    Route::get('/juego/construccion/industria/{industria}', ['uses' => 'ConstruccionController@industria']);
+    Route::get('/juego/construccion/{tab?}', [ConstruccionController::class, 'index']);
+    Route::get('/juego/construccion/construir/{id}/{personal}/{tab}', [ConstruccionController::class, 'construir']);
+    Route::get('/juego/construccion/reciclar/{id}/{personal}', [ConstruccionController::class, 'reciclar']);
+    Route::get('/juego/construccion/cancelar/{id}', [ConstruccionController::class, 'cancelar']);
+    Route::get('/juego/construccion/datos/{codigo}', [ConstruccionController::class, 'datos']);
+    Route::get('/juego/construccion/industria/{industria}', [ConstruccionController::class, 'industria']);
 
     //Investigacion
-    Route::get('/juego/investigacion/{tab?}', 'InvestigacionController@index');
-    Route::get('/juego/investigacion/construir/{id}/{personal}/{tab?}', ['uses' => 'InvestigacionController@construir']);
-    Route::get('/juego/investigacion/cancelar/{id}', ['uses' => 'InvestigacionController@cancelar']);
-    Route::get('/juego/investigacion/datos/{codigo}', ['uses' => 'InvestigacionController@datos']);
+    Route::get('/juego/investigacion/{tab?}', [InvestigacionController::class, 'index']);
+    Route::get('/juego/investigacion/construir/{id}/{personal}/{tab?}', [InvestigacionController::class, 'construir']);
+    Route::get('/juego/investigacion/cancelar/{id}', [InvestigacionController::class, 'cancelar']);
+    Route::get('/juego/investigacion/datos/{codigo}', [InvestigacionController::class, 'datos']);
 
     //Planeta
-    Route::get('/juego/planeta', 'PlanetaController@index');
+    Route::get('/juego/planeta', [PlanetaController::class, 'index']);
 
     //Fuselajes
-    Route::get('/juego/fuselajes', 'FuselajesController@index');
-    Route::get('/juego/fuselajes/desbloquear/{id}', ['uses' => 'FuselajesController@desbloquear']);
-    Route::get('/juego/fuselajes/diseñar/{id}', ['uses' => 'FuselajesController@diseñar']);
-    Route::get('/juego/fuselajes/datos/{codigo}', ['uses' => 'FuselajesController@datos']);
+    Route::get('/juego/fuselajes', [FuselajesController::class, 'index']);
+    Route::get('/juego/fuselajes/desbloquear/{id}', [FuselajesController::class, 'desbloquear']);
+    Route::get('/juego/fuselajes/diseniar/{id}', [FuselajesController::class, 'diseniar']);
+    Route::get('/juego/fuselajes/datos/{codigo}', [FuselajesController::class, 'datos']);
 
-    //Diseño
-    Route::get('/juego/diseño', 'DiseñoController@index');
-    Route::get('/juego/diseño/diseñar/{id}', 'DiseñoController@diseñar');
-    Route::post('/juego/diseño/crearDiseño/{id?}', 'DiseñoController@crearDiseño');
-    Route::get('/juego/diseño/borrarDiseño/{id}', 'DiseñoController@borrarDiseño');
-    Route::get('/juego/diseño/editarDiseño/{id}', 'DiseñoController@editarDiseño');
+    //Disenio
+    Route::get('/juego/disenio', [DisenioController::class, 'index']);
+    Route::get('/juego/disenio/diseniar/{id}', [DisenioController::class, 'diseniar']);
+    Route::post('/juego/disenio/crearDisenio/{id?}', [DisenioController::class, 'crearDisenio']);
+    Route::get('/juego/disenio/borrarDisenio/{id}', [DisenioController::class, 'borrarDisenio']);
+    Route::get('/juego/disenio/editarDisenio/{id}', [DisenioController::class, 'editarDisenio']);
 
     //Fabricas
-    Route::get('/juego/fabricas', 'FabricasController@index');
-    Route::get('/juego/fabricar/construir/{id}/{cantidad}', 'FabricasController@construir');
-    Route::get('/juego/fabricar/reciclar/{id}/{cantidad}', 'FabricasController@reciclar');
-    Route::get('/juego/fabricar/cancelar/{id}', 'FabricasController@cancelar');
+    Route::get('/juego/fabricas', [FabricasController::class, 'index']);
+    Route::get('/juego/fabricar/construir/{id}/{cantidad}', [FabricasController::class, 'construir']);
+    Route::get('/juego/fabricar/reciclar/{id}/{cantidad}', [FabricasController::class, 'reciclar']);
+    Route::get('/juego/fabricar/cancelar/{id}', [FabricasController::class, 'cancelar']);
 
     //Astrometria
-    Route::get('/juego/astrometria', 'AstrometriaController@index');
+    Route::get('/juego/astrometria', [AstrometriaController::class, 'index']);
 
     //Flota
-    Route::get('/juego/flotas', 'FlotaController@index');
+    Route::get('/juego/flotas', [FlotaController::class, 'index']);
 
     //Banco
-    Route::get('/juego/banco', 'BancoController@index');
+    Route::get('/juego/banco', [BancoController::class, 'index']);
 
     //Comercio
-    Route::get('/juego/comercio', 'ComercioController@index');
+    Route::get('/juego/comercio', [ComercioController::class, 'index']);
 
     //General
-    Route::get('/juego/general', 'GeneralController@index');
+    Route::get('/juego/general', [GeneralController::class, 'index']);
 
     //Alianza
-    Route::get('/juego/alianza', 'AlianzaController@index');
-    Route::get('/juego/crearAlianza', 'AlianzaController@crearAlianza');
-    Route::post('/juego/generarAlianza', 'AlianzaController@generarAlianza');
-    Route::post('/juego/solicitudAlianza', 'AlianzaController@solicitudAlianza');
-    Route::get('/juego/expulsarMiembro/{id}', 'AlianzaController@expulsarMiembro');
-    Route::get('/juego/rechazarSolicitud/{id}', 'AlianzaController@rechazarSolicitud');
-    Route::get('/juego/aceptarSolicitud/{id}', 'AlianzaController@aceptarSolicitud');
+    Route::get('/juego/alianza', [AlianzaController::class, 'index']);
+    Route::get('/juego/crearAlianza', [AlianzaController::class, 'crearAlianza']);
+    Route::post('/juego/generarAlianza', [AlianzaController::class, 'generarAlianza']);
+    Route::post('/juego/solicitudAlianza', [AlianzaController::class, 'solicitudAlianza']);
+    Route::get('/juego/expulsarMiembro/{id}', [AlianzaController::class, 'expulsarMiembro']);
+    Route::get('/juego/rechazarSolicitud/{id}', [AlianzaController::class, 'rechazarSolicitud']);
+    Route::get('/juego/aceptarSolicitud/{id}', [AlianzaController::class, 'aceptarSolicitud']);
 
     //Mensajes
-    Route::get('/juego/mensajes', 'MensajesController@index');
-    Route::get('/juego/nuevoMensaje', 'MensajesController@nuevoMensaje');
-    Route::post('/juego/enviarMensaje', 'MensajesController@enviarMensaje');
+    Route::get('/juego/mensajes', [MensajesController::class, 'index']);
+    Route::get('/juego/nuevoMensaje', [MensajesController::class, 'nuevoMensaje']);
+    Route::post('/juego/enviarMensaje', [MensajesController::class, 'enviarMensaje']);
 });
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

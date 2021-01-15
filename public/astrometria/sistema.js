@@ -2,25 +2,25 @@
 /*
 var sprites = {};
 var loader = PIXI.loader.add('cloudstars',"img/botones/atacar0.png")
-                        .add('star1',"img/botones/cerrar0.png")    
-                        .add('star2',"img/botones/colonizar0.png")    
-                        .add('star3',"img/botones/vflotas0.png")    
-                        .add('star4',"img/botones/conquistar0.png")    
-                        .add('ship',"img/botones/recolectar0.png")    
-                        .add('shield_straight',"img/botones/atacar1.png")    
-                        .add('shield_edge',"img/botones/cerrar1.png")    
-                        .add('title_ship',"img/botones/colonizar1.png")    
-                        .load(function (loader, resources) {        
+                        .add('star1',"img/botones/cerrar0.png")
+                        .add('star2',"img/botones/colonizar0.png")
+                        .add('star3',"img/botones/vflotas0.png")
+                        .add('star4',"img/botones/conquistar0.png")
+                        .add('ship',"img/botones/recolectar0.png")
+                        .add('shield_straight',"img/botones/atacar1.png")
+                        .add('shield_edge',"img/botones/cerrar1.png")
+                        .add('title_ship',"img/botones/colonizar1.png")
+                        .load(function (loader, resources) {
                             sprites.cloudstars = new PIXI.extras.TilingSprite(resources.cloudstars.texture);
-                            sprites.star1 = new PIXI.extras.TilingSprite(resources.star1.texture);        
-                            sprites.star2 = new PIXI.extras.TilingSprite(resources.star2.texture);        
-                            sprites.star3 = new PIXI.extras.TilingSprite(resources.star3.texture);        
-                            sprites.star4 = new PIXI.extras.TilingSprite(resources.star4.texture);        
-                            sprites.ship = new PIXI.Sprite(resources.ship.texture);        
-                            sprites.shield_straight = new PIXI.Sprite(resources.shield_straight.texture);        
-                            sprites.shield_edge = new PIXI.Sprite(resources.shield_edge.texture);        
-                            sprites.title_ship = new PIXI.Sprite(resources.title_ship.texture);        
-                            //var ready = setTimeout(accountSetup,3000);    
+                            sprites.star1 = new PIXI.extras.TilingSprite(resources.star1.texture);
+                            sprites.star2 = new PIXI.extras.TilingSprite(resources.star2.texture);
+                            sprites.star3 = new PIXI.extras.TilingSprite(resources.star3.texture);
+                            sprites.star4 = new PIXI.extras.TilingSprite(resources.star4.texture);
+                            sprites.ship = new PIXI.Sprite(resources.ship.texture);
+                            sprites.shield_straight = new PIXI.Sprite(resources.shield_straight.texture);
+                            sprites.shield_edge = new PIXI.Sprite(resources.shield_edge.texture);
+                            sprites.title_ship = new PIXI.Sprite(resources.title_ship.texture);
+                            //var ready = setTimeout(accountSetup,3000);
                         })
 */
 
@@ -36,7 +36,7 @@ txtsistema.text =texto.n
 }
 
 function mueve_sis( posfinalx,posfinaly){
-  
+
   sistemas.y = (sistemas.y+(posfinaly-sistemas.y)*1/8);
   sistemas.x = (sistemas.x+(posfinalx-sistemas.x)*1/8);
 
@@ -48,7 +48,7 @@ function creasistemas(texto){
         var texturafondo = PIXI.Texture.fromImage('img/fondo_sistema.png');
 
         fondo_sistema = new PIXI.Sprite(texturafondo);
-        
+
         // hacer el botón interactivo
         fondo_sistema.buttonMode = true;
         fondo_sistema.interactive = true;
@@ -172,7 +172,7 @@ col1=2,VCODE,vcode,1,-LR-,33,ACTIVO,40,40,40,40,40,60,1,1,1,1,1,181,0,0,1
 0 ->nº del planeta
 1 ->nombre del planeta, "?"=DESCONOCIDO
 2 ->nombre del jugador, AVANDONADO, VACIO, "?"=MUY LEJOS
-3 ->" D" DUEÑO
+3 ->" D" DUENIO
 4 ->etiqueta alianza
 5 ->
 6 ->ACTIVO, AVANDONADO, "-"=Deshabitado

@@ -4,27 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Recursos;
-use App\Almacenes;
-use App\Planetas;
-use App\Industrias;
-use App\Constantes;
-use App\Dependencias;
-use App\Producciones;
-use App\Construcciones;
-use App\EnConstrucciones;
-use App\EnInvestigaciones;
-use App\CostesConstrucciones;
-use App\Investigaciones;
-use App\Alianzas;
-use App\Jugadores;
+use App\Models\Recursos;
+use App\Models\Almacenes;
+use App\Models\Planetas;
+use App\Models\Industrias;
+use App\Models\Constantes;
+use App\Models\Dependencias;
+use App\Models\Producciones;
+use App\Models\Construcciones;
+use App\Models\EnConstrucciones;
+use App\Models\EnInvestigaciones;
+use App\Models\CostesConstrucciones;
+use App\Models\Investigaciones;
+use App\Models\Alianzas;
+use App\Models\Jugadores;
 use Auth;
-use App\Fuselajes;
+use App\Models\Fuselajes;
 
 class FuselajesController extends Controller
 {
 
-    public function index ()
+    public function index()
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
@@ -92,29 +92,44 @@ class FuselajesController extends Controller
         $fuselajes = Fuselajes::all();
         $fuselajesJugador = Auth::user()->jugadores[0]->fuselajes;
 
-        return view('juego.fuselajes.fuselajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
-        'fuselajes', 'fuselajesJugador', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas',
-        'investigaciones', 'factoresIndustrias', 'planetasJugador', 'planetasAlianza'));
+        return view('juego.fuselajes.fuselajes', compact(
+            'recursos',
+            'almacenes',
+            'producciones',
+            'personal',
+            'tipoPlaneta',
+            'planetaActual',
+            'fuselajes',
+            'fuselajesJugador',
+            'nivelImperio',
+            'nivelEnsamblajeNaves',
+            'nivelEnsamblajeDefensas',
+            'nivelEnsamblajeTropas',
+            'investigaciones',
+            'factoresIndustrias',
+            'planetasJugador',
+            'planetasAlianza'
+        ));
     }
 
     //Acceso a subir nivel de construccion
-    public function desbloquear ($idFuselaje)
+    public function desbloquear($idFuselaje)
     {
         Auth::user()->jugadores[0]->fuselajes()->attach($idFuselaje);
         return redirect('/juego/fuselajes');
     }
 
     //Acceso a subir nivel de construccion
-    public function diseñar ($idFuselaje)
+    public function diseniar($idFuselaje)
     {
         //Auth::user()->jugadores[0]->fuselajes()->attach($idFuselaje);
         return redirect('/juego/fuselajes');
     }
 
-    public function datos ($id)
+    public function datos($id)
     {
-        $nombreInvestigacion=Fuselajes::find($id)->codigo;
-        $descripcionInvestigacion = trans('fuselaje.' .'Dnave'.$id);
+        $nombreInvestigacion = Fuselajes::find($id)->codigo;
+        $descripcionInvestigacion = trans('fuselaje.' . 'Dnave' . $id);
         return compact('descripcionInvestigacion', 'nombreInvestigacion');
     }
 }

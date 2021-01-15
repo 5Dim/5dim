@@ -3,74 +3,75 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Constantes;
-use App\Almacenes;
-use App\Producciones;
-use App\Variables;
-use App\CostesConstrucciones;
-use App\Dependencias;
-use App\Fuselajes;
-use App\Armas;
-use App\CostesArmas;
-use App\Tiendas;
-use App\Diseños;
-use App\CostesDiseños;
-use App\MejorasDiseños;
-use App\CostesBasicosConstruccion;
-use App\CostesBasicosInvestigacion;
+use App\Models\Constantes;
+use App\Models\Almacenes;
+use App\Models\Producciones;
+use App\Models\Variables;
+use App\Models\CostesConstrucciones;
+use App\Models\Dependencias;
+use App\Models\Fuselajes;
+use App\Models\Armas;
+use App\Models\CostesArmas;
+use App\Models\Tiendas;
+use App\Models\Disenios;
+use App\Models\CostesDisenios;
+use App\Models\MejorasDisenios;
+use App\Models\CostesBasicosConstruccion;
+use App\Models\CostesBasicosInvestigacion;
 
 class DatosMaestrosController extends Controller
 {
-    public function index(){   ///http://localhost/admin/DatosMaestros
-        $datosM=new DatosMaestrosController();
+    public function index()
+    {   // http://localhost/admin/DatosMaestros
+        $datosM = new DatosMaestrosController();
         $datosM->DatosMaestros();
 
         return redirect('/jugador');
     }
 
 
-    public function DatosMaestros(){
-        $constante=new Constantes();
-        $constantes=$constante->generarDatosConstantes();
+    public function DatosMaestros()
+    {
+        $constante = new Constantes();
+        $constantes = $constante->generarDatosConstantes();
 
-        $variable=new Variables();
-        $variables=$variable->generarDatosVariables();
+        $variable = new Variables();
+        $variables = $variable->generarDatosVariables();
 
+        $almacen = new Almacenes();
+        $almacenes = $almacen->generarDatosAlmacenes();
 
-        $almacen=new Almacenes();
-        $almacenes=$almacen->generarDatosAlmacenes();
+        $produccion = new Producciones();
+        $producciones = $produccion->generarDatosProducciones(); //esta en seed
 
-       // $produccion=new Producciones();
-       // $producciones=$produccion->generarDatosProducciones(); //esta en seed
+        // $construccion = new CostesBasicosConstruccion();
+        // $construcciones = $construccion->generarDatosCostesBasicosConstruccion();
 
-        //$construccion=new CostesBasicosConstruccion();
-        //$construcciones=$construccion->generarDatosCostesBasicosConstruccion();
+        // $investigacion = new CostesBasicosInvestigacion();
+        // $investigaciones = $investigacion->generarDatosCostesBasicosInvestigacion();
 
-        //$investigacion=new CostesBasicosInvestigacion();
-        //$investigaciones=$investigacion->generarDatosCostesBasicosInvestigacion();
+        $dependencia = new Dependencias();
+        $dependencias = $dependencia->generarDatosDependencias();
 
-        $dependencia=new Dependencias();
-        $dependencias=$dependencia->generarDatosDependencias();
+        $fuselaje = new Fuselajes();
+        $fuselajes = $fuselaje->generarDatosFuselajes();
 
-        $fuselaje=new Fuselajes();
-        $fuselajes=$fuselaje->generarDatosFuselajes();
+        $arma = new Armas();
+        $armas = $arma->generarDatosArmas();
 
-        $arma=new Armas();
-        $armas=$arma->generarDatosArmas();
+        // $costesArmas = new CostesArmas();
+        // $costesArmas = $costesArmas->generarDatosCostesArmas();
 
-        $costesArmas=new CostesArmas();
-        $costesArmas=$costesArmas->generarDatosCostesArmas();
+        $tiendas = new Tiendas();
+        $tiendas = $tiendas->generarDatosTiendas();
 
-        $tiendas=new Tiendas();
-        $tiendas=$tiendas->generarDatosTiendas();
+        $disenios=new Disenios();
+        $disenios=$disenios->generarDatosDisenios();
 
-        $diseños=new Diseños();
-        $diseños=$diseños->generarDatosDiseños();
+        $costesDisenios=new CostesDisenios();
+        $costesDisenios=$costesDisenios->generarDatosCostesDisenios();
 
-        $costesDiseños=new CostesDiseños();
-        $costesDiseños=$costesDiseños->generarDatosCostesDiseños();
-
-        $mejorasDiseños=new MejorasDiseños();
-        $mejorasDiseños=$mejorasDiseños->generarDatosMejorasDiseños();
+        $mejorasDisenios = new MejorasDisenios();
+        $mejorasDisenios = $mejorasDisenios->generarDatosMejorasDisenios();
     }
 }

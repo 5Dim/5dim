@@ -7,15 +7,18 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Auth;
-use App\User;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth as Auth;
 
-class PrincipalController extends Controller{
-    public function index(){
+class PrincipalController extends Controller
+{
+    public function index()
+    {
         return view('principal.index');
     }
 
-    public function configuracion () {
+    public function configuracion()
+    {
         return view('configuracion');
     }
     public function update()
@@ -36,18 +39,18 @@ class PrincipalController extends Controller{
             }
             if (!$error) {
                 $user->email =  request()->input('email');
-            }else{
-                $emailDup = "La direccion de email " . request()->input('email') ." ya está en uso";
+            } else {
+                $emailDup = "La direccion de email " . request()->input('email') . " ya está en uso";
             }
         }
         if (!empty(request()->input('password')) and request()->input('password') == request()->input('password_confirmation')) {
-            $user->password = \Hash::make(request()->input('password'));
+            $user->password = Hash::make(request()->input('password'));
         }
         $user->save();
 
         if ($error) {
             return view('configuracion', compact('emailDup'));
-        }else{
+        } else {
             return view('home');
         }
     }

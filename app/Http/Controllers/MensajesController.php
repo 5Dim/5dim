@@ -3,28 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Recursos;
-use App\Almacenes;
-use App\Planetas;
-use App\Industrias;
-use App\Constantes;
-use App\Dependencias;
-use App\Producciones;
-use App\Construcciones;
-use App\EnConstrucciones;
-use App\EnInvestigaciones;
-use App\CostesConstrucciones;
-use App\Investigaciones;
-use App\Alianzas;
-use App\Jugadores;
+use App\Models\Recursos;
+use App\Models\Almacenes;
+use App\Models\Planetas;
+use App\Models\Industrias;
+use App\Models\Constantes;
+use App\Models\Dependencias;
+use App\Models\Producciones;
+use App\Models\Construcciones;
+use App\Models\EnConstrucciones;
+use App\Models\EnInvestigaciones;
+use App\Models\CostesConstrucciones;
+use App\Models\Investigaciones;
+use App\Models\Alianzas;
+use App\Models\Jugadores;
 use Auth;
-use App\Mensajes;
-use App\MensajesIntervinientes;
+use App\Models\Mensajes;
+use App\Models\MensajesIntervinientes;
 
 class MensajesController extends Controller
 {
 
-    public function index ()
+    public function index()
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
@@ -98,12 +98,29 @@ class MensajesController extends Controller
         //Lista de mensajes enviados
         $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orWhere('receptor', $jugadorAlianza->id)->get();
 
-        return view('juego.mensajes.mensajes', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta',
-        'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones',
-        'factoresIndustrias', 'jugadores', 'recibidos', 'enviados', 'planetasJugador', 'planetasAlianza'));
+        return view('juego.mensajes.mensajes', compact(
+            'recursos',
+            'almacenes',
+            'producciones',
+            'personal',
+            'tipoPlaneta',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeNaves',
+            'nivelEnsamblajeDefensas',
+            'nivelEnsamblajeTropas',
+            'investigaciones',
+            'factoresIndustrias',
+            'jugadores',
+            'recibidos',
+            'enviados',
+            'planetasJugador',
+            'planetasAlianza'
+        ));
     }
 
-    public function enviarMensaje() {
+    public function enviarMensaje()
+    {
         $mensaje = new Mensajes();
         $mensaje->mensaje = request()->input('descripcion');
         $mensaje->emisor = session()->get('jugadores_id');
@@ -112,7 +129,7 @@ class MensajesController extends Controller
         $mensaje->categoria = "recibidos";
         $mensaje->save();
         $intervinientes = request()->input('listaJugadores');
-        $listIntervinientes = explode( ',', $intervinientes );
+        $listIntervinientes = explode(',', $intervinientes);
         foreach ($listIntervinientes as $receptor) {
             if (!empty($receptor) or $receptor != 0) {
                 $interviniente = new MensajesIntervinientes();

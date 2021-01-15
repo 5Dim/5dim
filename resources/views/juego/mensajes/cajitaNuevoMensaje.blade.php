@@ -3,7 +3,8 @@
         @csrf
         <div class="row">
             <div class="col-9">
-                <input id="asunto" name="asunto" type="text" class="form-control input" placeholder="Asunto" maxlength="150">
+                <input id="asunto" name="asunto" type="text" class="form-control input" placeholder="Asunto"
+                    maxlength="150">
                 <textarea class="ckeditor" name="descripcion" id="descripcion" maxlength="1500"></textarea>
             </div>
             <div class="col-3">

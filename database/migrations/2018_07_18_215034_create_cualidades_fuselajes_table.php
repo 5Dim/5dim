@@ -31,7 +31,7 @@ class CreateCualidadesFuselajesTable extends Migration
             $table->integer('armasBombas');
             $table->integer('armasMisiles');
 
-            $table->integer('cargaPequeña');
+            $table->integer('cargaPequenia');
             $table->integer('cargaMedia');
             $table->integer('cargaGrande');
             $table->integer('cargaEnorme');

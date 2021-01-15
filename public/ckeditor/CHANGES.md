@@ -267,7 +267,7 @@ New Features:
 
 * [#16755](https://dev.ckeditor.com/ticket/16755): Added the [Table Selection](https://ckeditor.com/cke4/addon/tableselection) plugin that lets you select and manipulate an arbitrary rectangular table fragment (a few cells, a row or a column).
 * [#16961](https://dev.ckeditor.com/ticket/16961): Added support for pasting from Microsoft Excel.
-* [#13381](https://dev.ckeditor.com/ticket/13381): Dynamic code evaluation call in [`CKEDITOR.template`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.template) removed. CKEditor can now be used without the `unsafe-eval` Content Security Policy. Thanks to [Caridy Patiño](http://caridy.name)!
+* [#13381](https://dev.ckeditor.com/ticket/13381): Dynamic code evaluation call in [`CKEDITOR.template`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.template) removed. CKEditor can now be used without the `unsafe-eval` Content Security Policy. Thanks to [Caridy Patinio](http://caridy.name)!
 * [#16971](https://dev.ckeditor.com/ticket/16971): Added support for color in the `background` property containing also other styles for table cells in the [Table Tools](https://ckeditor.com/cke4/addon/tabletools) plugin.
 * [#16847](https://dev.ckeditor.com/ticket/16847): Added support for parsing and inlining any formatting created using the Microsoft Word style system to the [Paste from Word](https://ckeditor.com/cke4/addon/pastefromword) plugin.
 * [#16818](https://dev.ckeditor.com/ticket/16818): Added table cell height parsing in the [Paste from Word](https://ckeditor.com/cke4/addon/pastefromword) plugin.

@@ -14,7 +14,7 @@ class AddUserToHistorial extends Migration
     public function up()
     {
         Schema::table('tienda_historials', function (Blueprint $table) {
-            $table->integer('users_id')->unsigned();
+            $table->unsignedBigInteger('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');
         });
     }

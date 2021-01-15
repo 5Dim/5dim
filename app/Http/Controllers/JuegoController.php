@@ -7,23 +7,23 @@ use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
-use App\Recursos;
-use App\Almacenes;
-use App\Planetas;
-use App\Industrias;
-use App\Constantes;
-use App\Dependencias;
-use App\Producciones;
-use App\Construcciones;
-use App\EnConstrucciones;
-use App\EnInvestigaciones;
-use App\CostesConstrucciones;
-use App\Investigaciones;
-use App\Alianzas;
-use App\Jugadores;
-use Auth;
-use App\Tiendas;
-use App\Diseños;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Recursos;
+use App\Models\Almacenes;
+use App\Models\Planetas;
+use App\Models\Industrias;
+use App\Models\Constantes;
+use App\Models\Dependencias;
+use App\Models\Producciones;
+use App\Models\Construcciones;
+use App\Models\EnConstrucciones;
+use App\Models\EnInvestigaciones;
+use App\Models\CostesConstrucciones;
+use App\Models\Investigaciones;
+use App\Models\Alianzas;
+use App\Models\Jugadores;
+use App\Models\Tiendas;
+use App\Models\Disenios;
 
 class JuegoController extends Controller
 {
@@ -92,8 +92,21 @@ class JuegoController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        return view('juego.layouts.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves',
-        'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'planetasJugador', 'planetasAlianza', 'factoresIndustrias'));
+        return view('juego.layouts.recursosFrame', compact(
+            'recursos',
+            'almacenes',
+            'producciones',
+            'personal',
+            'tipoPlaneta',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeNaves',
+            'nivelEnsamblajeDefensas',
+            'nivelEnsamblajeTropas',
+            'planetasJugador',
+            'planetasAlianza',
+            'factoresIndustrias'
+        ));
     }
 
     public function estadisticas()
@@ -166,16 +179,31 @@ class JuegoController extends Controller
 
         //Lista de jugadores
         $jugadores = DB::table('jugadores')
-                        ->select('*')
-                        ->orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion`"), 'desc')
-                        ->get();
+            ->select('*')
+            ->orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion`"), 'desc')
+            ->get();
 
         //Devolvemos todas las alianzas
         $alianzas = Alianzas::all();
 
-        return view('juego.estadisticas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
-        'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
-        'jugadores', 'alianzas', 'planetasJugador', 'planetasAlianza'));
+        return view('juego.estadisticas', compact(
+            'recursos',
+            'almacenes',
+            'producciones',
+            'personal',
+            'tipoPlaneta',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeNaves',
+            'nivelEnsamblajeDefensas',
+            'nivelEnsamblajeTropas',
+            'investigaciones',
+            'factoresIndustrias',
+            'jugadores',
+            'alianzas',
+            'planetasJugador',
+            'planetasAlianza'
+        ));
     }
 
     public function tienda()
@@ -245,9 +273,23 @@ class JuegoController extends Controller
 
         $articulos = Tiendas::all();
 
-        return view('juego.tienda.tienda', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
-        'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
-        'articulos', 'planetasJugador', 'planetasAlianza'));
+        return view('juego.tienda.tienda', compact(
+            'recursos',
+            'almacenes',
+            'producciones',
+            'personal',
+            'tipoPlaneta',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeNaves',
+            'nivelEnsamblajeDefensas',
+            'nivelEnsamblajeTropas',
+            'investigaciones',
+            'factoresIndustrias',
+            'articulos',
+            'planetasJugador',
+            'planetasAlianza'
+        ));
     }
 
     //Cambiar de planeta
@@ -255,7 +297,7 @@ class JuegoController extends Controller
     {
         if (!empty(session()->get('jugadores_id'))) {
             Jugadores::calcularPuntos(session()->get('jugadores_id'));
-        }else{
+        } else {
             return redirect('/jugador');
         }
         return redirect('/juego/construccion');
@@ -277,15 +319,15 @@ class JuegoController extends Controller
             //En que planeta estamos
             if (!$planeta) {
                 session()->put('planetas_id', Auth::user()->jugadores->where('id', session()->get('jugadores_id'))->first()->planetas[0]->id);
-            }else{
+            } else {
                 $planetaBusqueda = Planetas::find($planeta);
                 if ($planetaBusqueda->jugadores->id == $jugadorActual->id or $planetaBusqueda->jugadores->id == $jugadorAlianza->id) {
                     session()->put('planetas_id', $planeta);
-                }else{
+                } else {
                     return redirect('/planeta');
                 }
             }
-        }else{
+        } else {
             return redirect('/jugador');
         }
         return redirect('/juego/calcularPuntos');
@@ -295,18 +337,19 @@ class JuegoController extends Controller
     public function jugador($universo = false)
     {
         if (!$universo) {
+
             session()->put('jugadores_id', Auth::user()->jugadores[0]->id);
-        }else {
-            session()->put('jugadores_id', Jugadores::where(['universo_id', $universo],['user_id', Auth::user()->id])->first()->id);
+        } else {
+            session()->put('jugadores_id', Jugadores::where(['universo_id', $universo], ['user_id', Auth::user()->id])->first()->id);
         }
 
         $jugador = Jugadores::find(session()->get('jugadores_id'));
 
-        if (empty($jugador->diseños[0])) {
-            $diseños = Diseños::where('id', '<', 100)->get();
+        if (empty($jugador->disenios[0])) {
+            $disenios = Disenios::where('id', '<', 100)->get();
 
-            foreach ($diseños as $diseño) {
-                $jugador->diseños()->attach($diseño->id);
+            foreach ($disenios as $disenio) {
+                $jugador->disenios()->attach($disenio->id);
             }
         }
 

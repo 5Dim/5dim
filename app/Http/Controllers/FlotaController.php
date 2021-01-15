@@ -4,25 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Recursos;
-use App\Almacenes;
-use App\Planetas;
-use App\Industrias;
-use App\Constantes;
-use App\Dependencias;
-use App\Producciones;
-use App\Construcciones;
-use App\EnConstrucciones;
-use App\EnInvestigaciones;
-use App\CostesConstrucciones;
-use App\Investigaciones;
-use App\Alianzas;
-use App\Jugadores;
+use App\Models\Recursos;
+use App\Models\Almacenes;
+use App\Models\Planetas;
+use App\Models\Industrias;
+use App\Models\Constantes;
+use App\Models\Dependencias;
+use App\Models\Producciones;
+use App\Models\Construcciones;
+use App\Models\EnConstrucciones;
+use App\Models\EnInvestigaciones;
+use App\Models\CostesConstrucciones;
+use App\Models\Investigaciones;
+use App\Models\Alianzas;
+use App\Models\Jugadores;
 use Auth;
 
 class FlotaController extends Controller
 {
-    public function index ()
+    public function index()
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
@@ -87,8 +87,21 @@ class FlotaController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        return view('juego.flotas', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
-        'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones',
-        'factoresIndustrias', 'planetasJugador', 'planetasAlianza'));
+        return view('juego.flotas', compact(
+            'recursos',
+            'almacenes',
+            'producciones',
+            'personal',
+            'tipoPlaneta',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeNaves',
+            'nivelEnsamblajeDefensas',
+            'nivelEnsamblajeTropas',
+            'investigaciones',
+            'factoresIndustrias',
+            'planetasJugador',
+            'planetasAlianza'
+        ));
     }
 }

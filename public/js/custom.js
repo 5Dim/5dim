@@ -35,21 +35,21 @@ function sendDesbloquear(id) {
     window.location.href = "/juego/fuselajes/desbloquear/" + id;
 }
 
-function sendDiseñar(id) {
-    window.location.href = "/juego/diseño/diseñar/" + id;
+function sendDiseniar(id) {
+    window.location.href = "/juego/disenio/diseniar/" + id;
 }
 
-function construirDiseño(id) {
-    var cantidad = $('#diseño' + id).val();
+function construirDisenio(id) {
+    var cantidad = $('#disenio' + id).val();
     window.location.href = "/juego/fabricar/construir/" + id + "/" + cantidad;
 }
 
-function reciclarDiseño(id) {
-    var cantidad = $('#diseño' + id).val();
+function reciclarDisenio(id) {
+    var cantidad = $('#disenio' + id).val();
     window.location.href = "/juego/fabricar/reciclar/" + id + "/" + cantidad;
 }
 
-function sendCancelarDiseño(id) {
+function sendCancelarDisenio(id) {
     window.location.href = "/juego/fabricar/cancelar/" + id;
 }
 
@@ -265,10 +265,10 @@ function calculaTiempoInvestigacion(preciototal, velocidadConst, dnd, nivel, niv
 
 
 
-function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas y lo pone en hastacuando'+dndv
+function timeg(yqmas, dndv) { /// da tiempo final desde ahora aniadiendole yqmas y lo pone en hastacuando'+dndv
 
     var d = new Date()
-    var diftime = yqmas; // hora españa UTC +3600
+    var diftime = yqmas; // hora espania UTC +3600
 
     days = diftime / (3600 * 24);
 
@@ -303,7 +303,7 @@ function timeg(yqmas, dndv) { /// da tiempo final desde ahora añadiendole yqmas
         resultg = "Hoy a las " + hora + ":" + minuto;
     };
     if (diadehoy == day - 1 && yqmas < 48 * 3600) {
-        resultg = "Mañana a las " + hora + ":" + minuto;
+        resultg = "Maniana a las " + hora + ":" + minuto;
     };
 
     $('#' + dndv).html(resultg);

@@ -4,27 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Recursos;
-use App\Almacenes;
-use App\Planetas;
-use App\Industrias;
-use App\Constantes;
-use App\Dependencias;
-use App\Producciones;
-use App\Construcciones;
-use App\EnConstrucciones;
-use App\EnInvestigaciones;
-use App\CostesConstrucciones;
-use App\Investigaciones;
-use App\Alianzas;
-use App\Jugadores;
+use App\Models\Recursos;
+use App\Models\Almacenes;
+use App\Models\Planetas;
+use App\Models\Industrias;
+use App\Models\Constantes;
+use App\Models\Dependencias;
+use App\Models\Producciones;
+use App\Models\Construcciones;
+use App\Models\EnConstrucciones;
+use App\Models\EnInvestigaciones;
+use App\Models\CostesConstrucciones;
+use App\Models\Investigaciones;
+use App\Models\Alianzas;
+use App\Models\Jugadores;
 use Auth;
-use App\Diseños;
-use App\EnDiseños;
+use App\Models\Disenios;
+use App\Models\EnDisenios;
 
 class FabricasController extends Controller
 {
-    public function index ()
+    public function index()
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
@@ -89,20 +89,35 @@ class FabricasController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        EnDiseños::terminarColaDiseños();
-        $colaDiseños = EnDiseños::where('planetas_id', session()->get('planetas_id'))->get();
+        EnDisenios::terminarColaDisenios();
+        $colaDisenios = EnDisenios::where('planetas_id', session()->get('planetas_id'))->get();
 
-        return view('juego.fabrica', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual',
-        'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones',
-        'factoresIndustrias', 'planetasJugador', 'planetasAlianza', 'colaDiseños'));
+        return view('juego.fabrica', compact(
+            'recursos',
+            'almacenes',
+            'producciones',
+            'personal',
+            'tipoPlaneta',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeNaves',
+            'nivelEnsamblajeDefensas',
+            'nivelEnsamblajeTropas',
+            'investigaciones',
+            'factoresIndustrias',
+            'planetasJugador',
+            'planetasAlianza',
+            'colaDisenios'
+        ));
     }
 
-    public function construir ($idDiseño, $cantidad) {
+    public function construir($idDisenio, $cantidad)
+    {
 
         $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
-        $diseño = Diseños::find($idDiseño);
-        $costes = $diseño->costes;
-        $tiempo = $diseño->viewDiseños->tiempo;
+        $disenio = Disenios::find($idDisenio);
+        $costes = $disenio->costes;
+        $tiempo = $disenio->viewDisenios->tiempo;
         $inicio = date("Y-m-d H:i:s");
         $error = false;
 
@@ -130,7 +145,7 @@ class FabricasController extends Controller
         }
 
         if (!$error) {
-            $cadenaProduccion = EnDiseños::cadenaProduccion($cantidad, $diseño->fuselajes->tnave);
+            $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
 
             //Restamos recursos
             $recursos->mineral -= (($costes->mineral * $cantidad) * $cadenaProduccion);
@@ -145,46 +160,48 @@ class FabricasController extends Controller
             $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
 
             //Generamos la cola
-            $cola = new EnDiseños();
-            $cola->nombre = $diseño->nombre;
+            $cola = new EnDisenios();
+            $cola->nombre = $disenio->nombre;
             $cola->accion = 'Construyendo';
             $cola->tiempo = $tiempo;
             $cola->cantidad = $cantidad;
-            $cola->diseños_id = $diseño->id;
+            $cola->disenios_id = $disenio->id;
             $cola->planetas_id = session()->get('planetas_id');
             $cola->created_at = $inicio;
             $cola->finished_at = date('Y/m/d H:i:s', $final);
             $cola->save();
         }
 
-        return redirect('/juego/diseño');
+        return redirect('/juego/disenio');
     }
 
-    public function reciclar ($idDiseño, $cantidad) {
-        $diseño = Diseños::find($idDiseño);
-        $tiempo = $diseño->viewDiseños->tiempo;
+    public function reciclar($idDisenio, $cantidad)
+    {
+        $disenio = Disenios::find($idDisenio);
+        $tiempo = $disenio->viewDisenios->tiempo;
         $inicio = date("Y-m-d H:i:s");
-        $cadenaProduccion = EnDiseños::cadenaProduccion($cantidad, $diseño->fuselajes->tnave);
+        $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
         $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
 
         //Generamos la cola
-        $cola = new EnDiseños();
-        $cola->nombre = $diseño->nombre;
+        $cola = new EnDisenios();
+        $cola->nombre = $disenio->nombre;
         $cola->accion = 'Reciclando';
         $cola->tiempo = $tiempo;
         $cola->cantidad = $cantidad;
-        $cola->diseños_id = $diseño->id;
+        $cola->disenios_id = $disenio->id;
         $cola->planetas_id = session()->get('planetas_id');
         $cola->created_at = $inicio;
         $cola->finished_at = date('Y/m/d H:i:s', $final);
         $cola->save();
 
-        return redirect('/juego/diseño');
+        return redirect('/juego/disenio');
     }
 
-    public function cancelar ($idCola) {
-        $cola = EnDiseños::find($idCola);
-        $coste = Diseños::find($cola->diseños_id)->costes;
+    public function cancelar($idCola)
+    {
+        $cola = EnDisenios::find($idCola);
+        $coste = Disenios::find($cola->disenios_id)->costes;
         $recursos = $cola->planetas->recursos;
         $cancelar = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
 
@@ -199,6 +216,6 @@ class FabricasController extends Controller
         $cola->delete();
 
 
-        return redirect('/juego/diseño');
+        return redirect('/juego/disenio');
     }
 }

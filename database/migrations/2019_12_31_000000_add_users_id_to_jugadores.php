@@ -14,7 +14,7 @@ class AddUsersIdToJugadores extends Migration
     public function up()
     {
         Schema::table('jugadores', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
