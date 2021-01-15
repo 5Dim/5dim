@@ -35,7 +35,7 @@
                 <thead>
                     <tr>
                         <th class="text-warning borderless ">
-                            <a href="{{url('/juego/mensajes')}}" target="_self">
+                            <a href="{{ url('/juego/mensajes') }}" target="_self">
                                 <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men.png') }}"
                                     title="Mensajes" />
                             </a>
@@ -46,7 +46,7 @@
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="{{url('/juego/estadisticas')}}" target="_self">
+                            <a href="{{ url('/juego/estadisticas') }}" target="_self">
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-est.png') }}"
                                     title="Estadisticas" />
                             </a>
@@ -62,46 +62,39 @@
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus"
-                                title="Tienes 1 ataque(s) en curso"
-                                data-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
-                                Ataques <span class="badge badge-danger">1</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
+                                data-trigger="focus" title="Tienes 1 ataque(s) en curso"
+                                data-bs-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
+                                Ataques <span class="badge bg-danger">1</span>
                             </button>
                         </th>
                         <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus"
-                                title="Puntos de imperio"
-                                data-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
+                                data-trigger="focus" title="Puntos de imperio"
+                                data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
                                 PI <span
-                                    class="badge badge-warning">{{ (($nivelImperio * 15) + 10) - (count(Auth::user()->jugadores[0]->planetas) * 10) }}</span>
+                                    class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count(Auth::user()->jugadores[0]->planetas) * 10 }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus"
-                                title="Novas"
-                                data-content="Las novas se usan para adquirir fuselajes especiales, modo premium y algunos packs de defensa, están disponibles en la tienda">
-                                Novas <span class="badge badge-warning">{{ Auth::user()->novas }}</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
+                                data-trigger="focus" title="Novas"
+                                data-bs-content="Las novas se usan para adquirir fuselajes especiales, modo premium y algunos packs de defensa, están disponibles en la tienda">
+                                Novas <span class="badge bg-warning text-dark">{{ Auth::user()->novas }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus"
-                                title="Puntos de ensamblaje de naves"
-                                data-content="Estos son los puntos de ensamblaje de naves disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
-                                PEN <span class="badge badge-warning">{{ $nivelEnsamblajeNaves }}</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
+                                data-trigger="focus" title="Puntos de ensamblaje de naves"
+                                data-bs-content="Estos son los puntos de ensamblaje de naves disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
+                                PEN <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeNaves }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus"
-                                title="Puntos de ensamblaje de defensas"
-                                data-content="Estos son los puntos de ensamblaje de defensas disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
-                                PED <span class="badge badge-warning">{{ $nivelEnsamblajeDefensas }}</span>
-                            </button>
-                        </th>
-                        <th class="text-warning borderless ">
-                            <button type="button" class="btn btn-sm btn-dark" data-toggle="popover" data-trigger="focus"
-                                title="Puntos de ensamblaje de tropas"
-                                data-content="Estos son los puntos de ensamblaje de tropas disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
-                                PET <span class="badge badge-warning">{{ $nivelEnsamblajeNaves }}</span>
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
+                                data-trigger="focus" title="Puntos de ensamblaje de defensas"
+                                data-bs-content="Estos son los puntos de ensamblaje de defensas disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
+                                PED <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeDefensas }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">
@@ -182,21 +175,21 @@
                 <tbody>
                     <tr>
                         <td class="text-danger borderless">
-                            ({{ number_format($personal, 0,",",".") }})
+                            ({{ number_format($personal, 0, ',', '.') }})
                         </td>
                         @foreach ($almacenes as $almacen)
-                        @if ($loop->index == 5)
-                        <td class="text-danger borderless">
-                            Almacenes
-                        </td>
-                        @endif
-                        <td class="text-danger borderless">
-                            @if ($almacen->capacidad != 'Almacen')
-                            {{ number_format($almacen->capacidad, 0,",",".") }}
-                            @else
-                            {{ $almacen->capacidad }}
+                            @if ($loop->index == 5)
+                                <td class="text-danger borderless">
+                                    Almacenes
+                                </td>
                             @endif
-                        </td>
+                            <td class="text-danger borderless">
+                                @if ($almacen->capacidad != 'Almacen')
+                                    {{ number_format($almacen->capacidad, 0, ',', '.') }}
+                                @else
+                                    {{ $almacen->capacidad }}
+                                @endif
+                            </td>
                         @endforeach
                         <td class="text-danger borderless">
                             3200 ud/d
@@ -204,43 +197,43 @@
                     </tr>
                     <tr>
                         <td id="personal" class="text-warning borderless">
-                            {{ number_format($recursos->personal-$personal, 0,",",".") }}
+                            {{ number_format($recursos->personal - $personal, 0, ',', '.') }}
                         </td>
                         <td id="mineral" class="text-warning borderless">
-                            {{ number_format($recursos->mineral, 0,",",".") }}
+                            {{ number_format($recursos->mineral, 0, ',', '.') }}
                         </td>
                         <td id="cristal" class="text-warning borderless">
-                            {{ number_format($recursos->cristal, 0,",",".") }}
+                            {{ number_format($recursos->cristal, 0, ',', '.') }}
                         </td>
                         <td id="gas" class="text-warning borderless">
-                            {{ number_format($recursos->gas, 0,",",".") }}
+                            {{ number_format($recursos->gas, 0, ',', '.') }}
                         </td>
                         <td id="plastico" class="text-warning borderless">
-                            {{ number_format($recursos->plastico, 0,",",".") }}
+                            {{ number_format($recursos->plastico, 0, ',', '.') }}
                         </td>
                         <td id="ceramica" class="text-warning borderless">
-                            {{ number_format($recursos->ceramica, 0,",",".") }}
+                            {{ number_format($recursos->ceramica, 0, ',', '.') }}
                         </td>
                         <td class="text-warning borderless">
                             Producido
                         </td>
                         <td id="liquido" class="text-warning borderless">
-                            {{ number_format($recursos->liquido, 0,",",".") }}
+                            {{ number_format($recursos->liquido, 0, ',', '.') }}
                         </td>
                         <td id="micros" class="text-warning borderless">
-                            {{ number_format($recursos->micros, 0,",",".") }}
+                            {{ number_format($recursos->micros, 0, ',', '.') }}
                         </td>
                         <td id="fuel" class="text-warning borderless">
-                            {{ number_format($recursos->fuel, 0,",",".") }}
+                            {{ number_format($recursos->fuel, 0, ',', '.') }}
                         </td>
                         <td id="ma" class="text-warning borderless">
-                            {{ number_format($recursos->ma, 0,",",".") }}
+                            {{ number_format($recursos->ma, 0, ',', '.') }}
                         </td>
                         <td id="municion" class="text-warning borderless">
-                            {{ number_format($recursos->municion, 0,",",".") }}
+                            {{ number_format($recursos->municion, 0, ',', '.') }}
                         </td>
                         <td class="text-warning borderless">
-                            {{ number_format($recursos->creditos, 0,",",".") }}
+                            {{ number_format($recursos->creditos, 0, ',', '.') }}
                         </td>
                     </tr>
                     @php
@@ -249,48 +242,48 @@
                     @endphp
                     <tr>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[0]->personal, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[0]->personal, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[1]->mineral, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[1]->mineral, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[2]->cristal, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[2]->cristal, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[3]->gas, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[3]->gas, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[4]->plastico, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[4]->plastico, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[5]->ceramica, 0,",",".") }}</span> ud/h
+                            <span>{{ number_format($producciones[5]->ceramica, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             Producción
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[6]->liquido * $factoresIndustrias[0], 0,",",".") }}</span>
+                            <span>{{ number_format($producciones[6]->liquido * $factoresIndustrias[0], 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[7]->micros * $factoresIndustrias[1], 0,",",".") }}</span>
+                            <span>{{ number_format($producciones[7]->micros * $factoresIndustrias[1], 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[8]->fuel * $factoresIndustrias[2], 0,",",".") }}</span>
+                            <span>{{ number_format($producciones[8]->fuel * $factoresIndustrias[2], 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[9]->ma * $factoresIndustrias[3], 0,",",".") }}</span>
+                            <span>{{ number_format($producciones[9]->ma * $factoresIndustrias[3], 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[10]->municion * $factoresIndustrias[4], 0,",",".") }}</span>
+                            <span>{{ number_format($producciones[10]->municion * $factoresIndustrias[4], 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[11]->creditos, 0,",",".") }}</span> ud/d
+                            <span>{{ number_format($producciones[11]->creditos, 0, ',', '.') }}</span> ud/d
                         </td>
                     </tr>
                 </tbody>
@@ -301,7 +294,7 @@
                 <thead>
                     <tr>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/construccion')}}" title="Construye tu imperio"
+                            <a id="constr" href="{{ url('/juego/construccion') }}" title="Construye tu imperio"
                                 target="_self">
                                 <img title="Construcción" src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-cons1.png') }}"
@@ -309,35 +302,35 @@
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/investigacion')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/investigacion') }}" target="_self">
                                 <img title="Investigación" src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-inv1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/planeta')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/planeta') }}" target="_self">
                                 <img title="Planeta" src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-pla1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/fuselajes')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/fuselajes') }}" target="_self">
                                 <img title="fuselajes" src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-def1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/disenio')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/disenio') }}" target="_self">
                                 <img title="Disenios" src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-dis1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/fabricas')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/fabricas') }}" target="_self">
                                 <img title="Producción" src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-prod1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}" />
@@ -346,66 +339,66 @@
                         <th class="text-warning borderless">
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ $planetaActual->estrella }}x{{ $planetaActual->orbita }}
                                     {{ $planetaActual->nombre }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     @foreach ($planetasJugador as $planeta)
-                                    <a class="dropdown-item"
-                                        href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }}
-                                        {{ $planeta->nombre }}</a>
+                                        <a class="dropdown-item"
+                                            href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }}
+                                            {{ $planeta->nombre }}</a>
                                     @endforeach
                                     @if (!empty($planetasAlianza))
-                                    @foreach ($planetasAlianza as $planeta)
-                                    @if ($loop->iteration == 1)
-                                    <div class="dropdown-divider"></div>
-                                    @endif
-                                    <a class="dropdown-item text-primary"
-                                        href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }}
-                                        {{ $planeta->nombre }}</a>
-                                    @endforeach
+                                        @foreach ($planetasAlianza as $planeta)
+                                            @if ($loop->iteration == 1)
+                                                <div class="dropdown-divider"></div>
+                                            @endif
+                                            <a class="dropdown-item text-primary"
+                                                href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }}
+                                                {{ $planeta->nombre }}</a>
+                                        @endforeach
                                     @endif
                                 </div>
                             </div>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/astrometria')}}" target="_blank">
+                            <a id="constr" href="{{ url('/juego/astrometria') }}" target="_blank">
                                 <img title="Astrometría" src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/flotas')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/flotas') }}" target="_self">
                                 <img title="Flotas" src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-flo1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/banco')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/banco') }}" target="_self">
                                 <img title="Banco" src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ban1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/comercio')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/comercio') }}" target="_self">
                                 <img title="Comercio" src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-com1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/general')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/general') }}" target="_self">
                                 <img title="General" src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a id="constr" href="{{url('/juego/alianza')}}" target="_self">
+                            <a id="constr" href="{{ url('/juego/alianza') }}" target="_self">
                                 <img title="Alianza" src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}"
                                     onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ali1.png') }}"
                                     onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}" />
@@ -418,11 +411,10 @@
     </div>
 
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
 
     <!-- Bootstrap -->
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
     <!-- sliders -->
     <script src="{{ asset('js/nouislider/nouislider.min.js') }}"></script>
@@ -434,23 +426,19 @@
     <!-- Personalizado -->
     <script src="{{ asset('js/custom.js') }}"></script>
     <script>
-        $( document ).ready(function() {
-            var recursos = {!! json_encode($recursos) !!};
-            recursos.personal -= {{$personal}}
+        $(document).ready(function() {
+            var recursos = @json($recursos);
+            recursos.personal -= @json($personal);
             //console.log(recursos);
-            var produccion = {!! json_encode($producciones) !!};
+            var produccion = @json($producciones);
             //console.log(produccion);
-            var almacenes = {!! json_encode($almacenes) !!};
+            var almacenes = @json($almacenes);
             //console.log(almacenes);
-            var techs = {!! json_encode($factoresIndustrias) !!};
+            var techs = @json($factoresIndustrias);
             //console.log(techs);
             activarIntervalo(recursos, almacenes, produccion, 250, techs);
         });
-    </script>
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover()
-        })
+
     </script>
     @yield('content')
 </body>
