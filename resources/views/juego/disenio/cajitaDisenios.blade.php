@@ -14,6 +14,7 @@
                         <big>Cantidad:
                             {{ empty($disenio->estacionadas->cantidad) ? '0' : number_format($disenio->estacionadas->cantidad, 0, ',', '.') }}<big>
                     </th>
+                    {{$disenio->estacionadas}}
                 </tr>
                 <tr>
                     <td rowspan="4" class="anchofijo text-warning borderless">
@@ -172,7 +173,7 @@
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-danger btn-block btn-sm"
+                        <button type="button" class="btn btn-outline-danger col-12 btn-sm"
                             onclick="reciclarDisenio({{ $disenio->id }})">
                             <i class="fa fa-info-circle"></i> Reciclar nave
                         </button>
@@ -210,7 +211,7 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success btn-block btn-sm"
+                        <button type="button" class="btn btn-outline-success col-12 btn-sm"
                             onclick="construirDisenio({{ $disenio->id }})">
                             <i class="fa fa-plus-circle"></i> Construir
                         </button>
@@ -220,19 +221,19 @@
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
-                        <a type="button" class="btn btn-outline-danger btn-block btn-sm text-danger"
+                        <a type="button" class="btn btn-outline-danger col-12 btn-sm text-danger"
                             href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
                             <i class="fa fa-times "></i> Borrar disenio
                         </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
+                        <button type="button" class="btn btn-outline-primary col-12 btn-sm " data-toggle="modal"
                             data-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
                     <td>
-                        <a type="button" class="btn btn-outline-success btn-block btn-sm text-success"
+                        <a type="button" class="btn btn-outline-success col-12 btn-sm text-success"
                             href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
                             <i class="fa fa-edit"></i> Editar disenio
                         </a>

@@ -53,23 +53,23 @@
         <nav>
             <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                 align="center">
-                <a class="nav-item nav-link  active" id="militares-tab" data-toggle="tab" href="#militares" role="tab"
+                <a class="nav-item nav-link  active" id="militares-tab" data-bs-toggle="tab" href="#militares" role="tab"
                     aria-controls="militares" aria-selected="true">
                     Militares
                 </a>
-                <a class="nav-item nav-link" id="misc-tab" data-toggle="tab" href="#misc" role="tab"
+                <a class="nav-item nav-link" id="misc-tab" data-bs-toggle="tab" href="#misc" role="tab"
                     aria-controls="misc" aria-selected="false">
                     Varios
                 </a>
-                <a class="nav-item nav-link" id="personales-tab" data-toggle="tab" href="#personales" role="tab"
+                <a class="nav-item nav-link" id="personales-tab" data-bs-toggle="tab" href="#personales" role="tab"
                     aria-controls="personales" aria-selected="false">
                     Imperio
                 </a>
-                <a class="nav-item nav-link" id="motores-tab" data-toggle="tab" href="#motores" role="tab"
+                <a class="nav-item nav-link" id="motores-tab" data-bs-toggle="tab" href="#motores" role="tab"
                     aria-controls="motores" aria-selected="false">
                     Motores
                 </a>
-                <a class="nav-item nav-link" id="industrias-tab" data-toggle="tab" href="#industrias" role="tab"
+                <a class="nav-item nav-link" id="industrias-tab" data-bs-toggle="tab" href="#industrias" role="tab"
                     aria-controls="industrias" aria-selected="false">
                     Mejoras de industrias
                 </a>
@@ -125,11 +125,11 @@
 <!-- Modal -->
 <div class="modal fade" id="datosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalTitulo"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

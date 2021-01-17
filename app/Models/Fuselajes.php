@@ -104,16 +104,16 @@ class Fuselajes extends Model
             "AURA",
 
             //Nodriza
-            "PLACA TERMICA",
-            "MAMPARO",
-            "CUADERNA",
-            "ESTRUCTURA",
+            // "PLACA TERMICA",
+            // "MAMPARO",
+            // "CUADERNA",
+            // "ESTRUCTURA",
 
             //Prediseniadas
-            "RECOLECTOR",
-            "REMOLCADOR",
-            "RA",
-            "OBSERVADOR",
+            // "RECOLECTOR",
+            // "REMOLCADOR",
+            // "RA",
+            // "OBSERVADOR",
 
             //Novas
             "ISIS",
@@ -123,7 +123,7 @@ class Fuselajes extends Model
             "BAAL",
 
             //DEFENSAS
-            //Orbitales
+            //Ligeras
             "YETI",
             "CROM",
             "DAGON",
@@ -135,7 +135,7 @@ class Fuselajes extends Model
             "BALROG",
             "CTHULHU",
 
-            //Terrestres
+            //Medias
             "MORLOCK",
             "SARLACC",
             "RATHTARS",
@@ -147,22 +147,21 @@ class Fuselajes extends Model
             "DALEK",
             "BYAKKO",
 
-            //Tropas
-            //Infanteria
+            //Pesadas
             "CÍCLOPE",
             "ORCO",
             "TROLL",
             "OGRO",
             "ETTIN",
 
-            //Avion
+            //Estacion
             "ARPÍA",
             "WYVERN",
             "MANTÍCORA",
             "DRAGÓN",
             "FÉNIX",
 
-            //Vehiculo
+            //estacion
             "BISILISCO",
             "CENTAURO",
             "CANCERBERO",
@@ -170,16 +169,16 @@ class Fuselajes extends Model
             "LICÁNTROPO",
 
             //Mech
-            "GORGONA",
-            "NAGA",
-            "HIDRA",
-            "LEVIATÁN",
-            "KRAKEN",
+            // "GORGONA",
+            // "NAGA",
+            // "HIDRA",
+            // "LEVIATÁN",
+            // "KRAKEN",
 
-            //MegaBot
-            "HOMÚNCULO",
-            "GARGOLA",
-            "GOLEM",
+            // //MegaBot
+            // "HOMÚNCULO",
+            // "GARGOLA",
+            // "GOLEM",
 
         ];
         return $listaNombres;
@@ -881,86 +880,87 @@ class Fuselajes extends Model
                     break;
 
 
-                case "PLACA TERMICA":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "caza";
-                    $fuselaje->tipo = "nave";
-                    $fuselaje->tnave = "0";
-                    $fuselaje->categoria = "prediseniada";
-                    array_push($fuselajes, $fuselaje);
-                    break;
 
-                case "MAMPARO":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "ligera";
-                    $fuselaje->tipo = "nave";
-                    $fuselaje->tnave = "1";
-                    $fuselaje->categoria = "prediseniada";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                // case "PLACA TERMICA":
+                //     $fuselaje = new Fuselajes();
+                //     $fuselaje->codigo = $codigo;
+                //     $fuselaje->tamanio = "caza";
+                //     $fuselaje->tipo = "nave";
+                //     $fuselaje->tnave = "0";
+                //     $fuselaje->categoria = "prediseniada";
+                //     array_push($fuselajes, $fuselaje);
+                //     break;
 
-                case "CUADERNA":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "media";
-                    $fuselaje->tipo = "nave";
-                    $fuselaje->tnave = "2";
-                    $fuselaje->categoria = "prediseniada";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                // case "MAMPARO":
+                //     $fuselaje = new Fuselajes();
+                //     $fuselaje->codigo = $codigo;
+                //     $fuselaje->tamanio = "ligera";
+                //     $fuselaje->tipo = "nave";
+                //     $fuselaje->tnave = "1";
+                //     $fuselaje->categoria = "prediseniada";
+                //     array_push($fuselajes, $fuselaje);
+                //     break;
 
-                case "ESTRUCTURA":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "pesada";
-                    $fuselaje->tipo = "nave";
-                    $fuselaje->tnave = "3";
-                    $fuselaje->categoria = "prediseniada";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                // case "CUADERNA":
+                //     $fuselaje = new Fuselajes();
+                //     $fuselaje->codigo = $codigo;
+                //     $fuselaje->tamanio = "media";
+                //     $fuselaje->tipo = "nave";
+                //     $fuselaje->tnave = "2";
+                //     $fuselaje->categoria = "prediseniada";
+                //     array_push($fuselajes, $fuselaje);
+                //     break;
 
-                case "RECOLECTOR":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "ligera";
-                    $fuselaje->tipo = "nave";
-                    $fuselaje->tnave = "1";
-                    $fuselaje->categoria = "prediseniada";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                // case "ESTRUCTURA":
+                //     $fuselaje = new Fuselajes();
+                //     $fuselaje->codigo = $codigo;
+                //     $fuselaje->tamanio = "pesada";
+                //     $fuselaje->tipo = "nave";
+                //     $fuselaje->tnave = "3";
+                //     $fuselaje->categoria = "prediseniada";
+                //     array_push($fuselajes, $fuselaje);
+                //     break;
 
-                case "REMOLCADOR":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "masiva";
-                    $fuselaje->tipo = "nave";
-                    $fuselaje->tnave = "5";
-                    $fuselaje->categoria = "prediseniada";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                // case "RECOLECTOR":
+                //     $fuselaje = new Fuselajes();
+                //     $fuselaje->codigo = $codigo;
+                //     $fuselaje->tamanio = "ligera";
+                //     $fuselaje->tipo = "nave";
+                //     $fuselaje->tnave = "1";
+                //     $fuselaje->categoria = "prediseniada";
+                //     array_push($fuselajes, $fuselaje);
+                //     break;
 
-                case "RA":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "estacion";
-                    $fuselaje->tipo = "nave";
-                    $fuselaje->tnave = "4";
-                    $fuselaje->categoria = "prediseniada";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                // case "REMOLCADOR":
+                //     $fuselaje = new Fuselajes();
+                //     $fuselaje->codigo = $codigo;
+                //     $fuselaje->tamanio = "masiva";
+                //     $fuselaje->tipo = "nave";
+                //     $fuselaje->tnave = "5";
+                //     $fuselaje->categoria = "prediseniada";
+                //     array_push($fuselajes, $fuselaje);
+                //     break;
+
+                // case "RA":
+                //     $fuselaje = new Fuselajes();
+                //     $fuselaje->codigo = $codigo;
+                //     $fuselaje->tamanio = "estacion";
+                //     $fuselaje->tipo = "nave";
+                //     $fuselaje->tnave = "4";
+                //     $fuselaje->categoria = "prediseniada";
+                //     array_push($fuselajes, $fuselaje);
+                //     break;
 
 
-                case "OBSERVADOR":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "ligera";
-                    $fuselaje->tipo = "nave";
-                    $fuselaje->tnave = "1";
-                    $fuselaje->categoria = "prediseniada";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                // case "OBSERVADOR":
+                //     $fuselaje = new Fuselajes();
+                //     $fuselaje->codigo = $codigo;
+                //     $fuselaje->tamanio = "ligera";
+                //     $fuselaje->tipo = "nave";
+                //     $fuselaje->tnave = "1";
+                //     $fuselaje->categoria = "prediseniada";
+                //     array_push($fuselajes, $fuselaje);
+                //     break;
 
                 case "ISIS":
                     $fuselaje = new Fuselajes();
@@ -1022,9 +1022,9 @@ class Fuselajes extends Model
                 case "YETI":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1032,9 +1032,9 @@ class Fuselajes extends Model
                 case "CROM":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1042,9 +1042,9 @@ class Fuselajes extends Model
                 case "DAGON":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1052,9 +1052,9 @@ class Fuselajes extends Model
                 case "HASTUR":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1062,9 +1062,9 @@ class Fuselajes extends Model
                 case "VALKIRIA":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1072,9 +1072,9 @@ class Fuselajes extends Model
                 case "KITSUNE":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1082,9 +1082,9 @@ class Fuselajes extends Model
                 case "AZAZEL":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1092,9 +1092,9 @@ class Fuselajes extends Model
                 case "NAZGUL":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1102,9 +1102,9 @@ class Fuselajes extends Model
                 case "BALROG":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1112,9 +1112,9 @@ class Fuselajes extends Model
                 case "CTHULHU":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1122,9 +1122,9 @@ class Fuselajes extends Model
                 case "MORLOCK":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1132,9 +1132,9 @@ class Fuselajes extends Model
                 case "SARLACC":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1142,9 +1142,9 @@ class Fuselajes extends Model
                 case "RATHTARS":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1152,9 +1152,9 @@ class Fuselajes extends Model
                 case "ROC":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1162,9 +1162,9 @@ class Fuselajes extends Model
                 case "SHOGGOTZ":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1172,9 +1172,9 @@ class Fuselajes extends Model
                 case "UNGOLIANTH":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1182,9 +1182,9 @@ class Fuselajes extends Model
                 case "NECROCOLOSO":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1192,9 +1192,9 @@ class Fuselajes extends Model
                 case "RANCOR":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1202,9 +1202,9 @@ class Fuselajes extends Model
                 case "DALEK":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1212,23 +1212,21 @@ class Fuselajes extends Model
                 case "BYAKKO":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "defensa";
+                    $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "defensa";
-                    $fuselaje->tnave = "6";
+                    $fuselaje->tnave = "1";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
 
 
-
-                    //DEFENSAS ///////////////////////////////////////////////////////////////////////////
                     //AVIONES
                 case "ARPÍA":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "avion";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "7";
+                    $fuselaje->tamanio = "media";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "2";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1236,9 +1234,9 @@ class Fuselajes extends Model
                 case "WYVERN":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "avion";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "7";
+                    $fuselaje->tamanio = "media";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "2";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1246,9 +1244,9 @@ class Fuselajes extends Model
                 case "MANTÍCORA":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "avion";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "7";
+                    $fuselaje->tamanio = "media";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "2";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1256,9 +1254,9 @@ class Fuselajes extends Model
                 case "DRAGÓN":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "avion";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "7";
+                    $fuselaje->tamanio = "media";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "2";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1266,9 +1264,9 @@ class Fuselajes extends Model
                 case "FÉNIX":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "avion";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "7";
+                    $fuselaje->tamanio = "media";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "2";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1279,9 +1277,9 @@ class Fuselajes extends Model
                 case "CÍCLOPE":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "infanteria";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "8";
+                    $fuselaje->tamanio = "pesada";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "3";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1289,9 +1287,9 @@ class Fuselajes extends Model
                 case "ORCO":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "infanteria";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "8";
+                    $fuselaje->tamanio = "pesada";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "3";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1299,9 +1297,9 @@ class Fuselajes extends Model
                 case "TROLL":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "infanteria";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "8";
+                    $fuselaje->tamanio = "pesada";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "3";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1309,9 +1307,9 @@ class Fuselajes extends Model
                 case "OGRO":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "infanteria";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "8";
+                    $fuselaje->tamanio = "pesada";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "3";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1319,22 +1317,22 @@ class Fuselajes extends Model
                 case "ETTIN":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "infanteria";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "8";
+                    $fuselaje->tamanio = "pesada";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "3";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
 
 
 
-                    //Vehiculos
+                    //estacions
                 case "BISILISCO":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "vehiculo";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "9";
+                    $fuselaje->tamanio = "estacion";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "4";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1342,9 +1340,9 @@ class Fuselajes extends Model
                 case "CENTAURO":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "vehiculo";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "9";
+                    $fuselaje->tamanio = "estacion";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "4";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1352,9 +1350,9 @@ class Fuselajes extends Model
                 case "CANCERBERO":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "vehiculo";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "9";
+                    $fuselaje->tamanio = "estacion";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "4";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1362,9 +1360,9 @@ class Fuselajes extends Model
                 case "RAKSHASA":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "vehiculo";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "9";
+                    $fuselaje->tamanio = "estacion";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "4";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1372,9 +1370,9 @@ class Fuselajes extends Model
                 case "LICÁNTROPO":
                     $fuselaje = new Fuselajes();
                     $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "vehiculo";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "9";
+                    $fuselaje->tamanio = "estacion";
+                    $fuselaje->tipo = "defensa";
+                    $fuselaje->tnave = "4";
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -1382,88 +1380,88 @@ class Fuselajes extends Model
 
 
                     //Mechas
-                case "GORGONA":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "mech";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "10";
-                    $fuselaje->categoria = "jugador";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                    // case "GORGONA":
+                    //     $fuselaje = new Fuselajes();
+                    //     $fuselaje->codigo = $codigo;
+                    //     $fuselaje->tamanio = "mech";
+                    //     $fuselaje->tipo = "defensa";
+                    //     $fuselaje->tnave = "10";
+                    //     $fuselaje->categoria = "jugador";
+                    //     array_push($fuselajes, $fuselaje);
+                    //     break;
 
-                case "NAGA":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "mech";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "10";
-                    $fuselaje->categoria = "jugador";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                    // case "NAGA":
+                    //     $fuselaje = new Fuselajes();
+                    //     $fuselaje->codigo = $codigo;
+                    //     $fuselaje->tamanio = "mech";
+                    //     $fuselaje->tipo = "defensa";
+                    //     $fuselaje->tnave = "10";
+                    //     $fuselaje->categoria = "jugador";
+                    //     array_push($fuselajes, $fuselaje);
+                    //     break;
 
-                case "HIDRA":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "mech";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "10";
-                    $fuselaje->categoria = "jugador";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                    // case "HIDRA":
+                    //     $fuselaje = new Fuselajes();
+                    //     $fuselaje->codigo = $codigo;
+                    //     $fuselaje->tamanio = "mech";
+                    //     $fuselaje->tipo = "defensa";
+                    //     $fuselaje->tnave = "10";
+                    //     $fuselaje->categoria = "jugador";
+                    //     array_push($fuselajes, $fuselaje);
+                    //     break;
 
-                case "LEVIATÁN":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "mech";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "10";
-                    $fuselaje->categoria = "jugador";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                    // case "LEVIATÁN":
+                    //     $fuselaje = new Fuselajes();
+                    //     $fuselaje->codigo = $codigo;
+                    //     $fuselaje->tamanio = "mech";
+                    //     $fuselaje->tipo = "defensa";
+                    //     $fuselaje->tnave = "10";
+                    //     $fuselaje->categoria = "jugador";
+                    //     array_push($fuselajes, $fuselaje);
+                    //     break;
 
-                case "KRAKEN":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "mech";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "10";
-                    $fuselaje->categoria = "jugador";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                    // case "KRAKEN":
+                    //     $fuselaje = new Fuselajes();
+                    //     $fuselaje->codigo = $codigo;
+                    //     $fuselaje->tamanio = "mech";
+                    //     $fuselaje->tipo = "defensa";
+                    //     $fuselaje->tnave = "10";
+                    //     $fuselaje->categoria = "jugador";
+                    //     array_push($fuselajes, $fuselaje);
+                    //     break;
 
 
 
-                    //MegaBots
-                case "HOMÚNCULO":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "megaBot";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "11";
-                    $fuselaje->categoria = "jugador";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                    //     //MegaBots
+                    // case "HOMÚNCULO":
+                    //     $fuselaje = new Fuselajes();
+                    //     $fuselaje->codigo = $codigo;
+                    //     $fuselaje->tamanio = "megaBot";
+                    //     $fuselaje->tipo = "defensa";
+                    //     $fuselaje->tnave = "11";
+                    //     $fuselaje->categoria = "jugador";
+                    //     array_push($fuselajes, $fuselaje);
+                    //     break;
 
-                case "GARGOLA":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "megaBot";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "11";
-                    $fuselaje->categoria = "jugador";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                    // case "GARGOLA":
+                    //     $fuselaje = new Fuselajes();
+                    //     $fuselaje->codigo = $codigo;
+                    //     $fuselaje->tamanio = "megaBot";
+                    //     $fuselaje->tipo = "defensa";
+                    //     $fuselaje->tnave = "11";
+                    //     $fuselaje->categoria = "jugador";
+                    //     array_push($fuselajes, $fuselaje);
+                    //     break;
 
-                case "GOLEM":
-                    $fuselaje = new Fuselajes();
-                    $fuselaje->codigo = $codigo;
-                    $fuselaje->tamanio = "megaBot";
-                    $fuselaje->tipo = "tropa";
-                    $fuselaje->tnave = "11";
-                    $fuselaje->categoria = "jugador";
-                    array_push($fuselajes, $fuselaje);
-                    break;
+                    // case "GOLEM":
+                    //     $fuselaje = new Fuselajes();
+                    //     $fuselaje->codigo = $codigo;
+                    //     $fuselaje->tamanio = "megaBot";
+                    //     $fuselaje->tipo = "defensa";
+                    //     $fuselaje->tnave = "11";
+                    //     $fuselaje->categoria = "jugador";
+                    //     array_push($fuselajes, $fuselaje);
+                    //     break;
             }
         }
 

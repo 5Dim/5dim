@@ -25,22 +25,22 @@
         <table class="table table-sm table-borderless text-center anchofijo">
             <tr>
                 <td>
-                    <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                    <button type="button" class="btn btn-outline-primary col-12 btn-sm">
                         <i class="fa fa-trash"></i> Reciclar
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                    <button type="button" class="btn btn-outline-primary col-12 btn-sm">
                         <i class="fa fa-trash"></i> Reciclar
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary btn-block btn-sm">
+                    <button type="button" class="btn btn-outline-primary col-12 btn-sm">
                         <i class="fa fa-trash"></i> Reciclar
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-outline-success btn-block btn-sm">
+                    <button type="button" class="btn btn-outline-success col-12 btn-sm">
                         <i class="fa fa-shopping-cart"></i> Adquirir por {{ $articulo->coste }}
                     </button>
                 </td>

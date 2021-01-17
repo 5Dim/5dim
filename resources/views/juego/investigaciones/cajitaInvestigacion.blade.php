@@ -381,14 +381,14 @@
                         @php
                         //Posible boton de proto
                         @endphp
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal" onclick="mostrarDatosInvestigacion('{{$investigacion->codigo}}')">
+                        <button type="button" class="btn btn-outline-primary col-12 btn-sm " data-bs-toggle="modal"
+                            data-bs-target="#datosModal" onclick="mostrarDatosInvestigacion('{{$investigacion->codigo}}')">
                             <i class="fa fa-question"></i> nombre prototipo desbloqueado
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal" onclick="mostrarDatosInvestigacion('{{$investigacion->codigo}}')">
+                        <button type="button" class="btn btn-outline-primary col-12 btn-sm " data-bs-toggle="modal"
+                            data-bs-target="#datosModal" onclick="mostrarDatosInvestigacion('{{$investigacion->codigo}}')">
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
@@ -426,7 +426,7 @@
                             $clase="light";
                             }
                             @endphp
-                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}}
+                            <button type="button" class="btn btn-outline-{{$clase}} col-12 btn-sm" {{$deshabilitado}}
                                 onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}')">
                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                             </button>

@@ -179,11 +179,11 @@
                     <td class="anchofijo text-secondary borderless">
                         <div class="input-group mb-3 borderless"
                             style="padding-left: 5px !important; padding-right: 5px !important">
-                            <div class="input-group-prepend">
+                            <div class="input-group-prepend col-3">
                                 <label class="input-group-text bg-dark text-light"
                                     for="posicionCombate">Posicion</label>
                             </div>
-                            <select class="custom-select select" id="posicionCombate">
+                            <select class="custom-select select col-9" id="posicionCombate">
                                 <option value="" selected>Elige una posicion</option>
 
                                 <option value="1">Vanguardia 1</option>
@@ -200,10 +200,21 @@
                             </select>
                         </div>
                     </td>
+                    @php
+                    $texto = 'Se requiere el diseño';
+                    $clase = 'light';
+                    $deshabilitado = 'disabled';
+                    if (!empty(Auth::user()->jugadores[0]->fuselajes->where('id', $disenio->id)->first())) {
+                    if ($disenio->id == Auth::user()->jugadores[0]->fuselajes->where('id', $disenio->id)->first()->id) {
+                    $texto = 'Diseniar';
+                    $clase = 'primary';
+                    $deshabilitado = '';
+                    }
+                    }
+                    @endphp
                     <td>
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal" onclick="crearDisenio()">
-                            <i class="fa fa-cogs"></i> Diseniar
+                        <button type="button" class="btn btn-outline-{{ $clase }} col-12" onclick="crearDisenio()" {{ $deshabilitado }}>
+                            <i class="fa fa-cogs"></i> {{ $texto }}
                         </button>
                     </td>
                 </tr>

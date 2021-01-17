@@ -63,6 +63,7 @@ class Construcciones extends Model
             "observacion",
             "potenciador",
             "inhibidorHMA",
+            //Nodriza
             "nodEstructura",
             "nodMotorMA",
         ];

@@ -307,15 +307,15 @@
                         }
                         }
                         if ($construccion->nivel < 1) { $deshabilitado=" disabled='disabled' " ; $clase="light" ; }
-                            @endphp <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm"
+                            @endphp <button type="button" class="btn btn-outline-{{$clase}} col-12"
                             {{$deshabilitado}}
                             onclick="sendReciclar('{{ $construccion->id }}', '{{ $construccion->codigo }}')">
                             <i class="fa fa-trash"></i> Reciclar
                             </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal" onclick="mostrarDatosConstruccion('{{$construccion->codigo}}')">
+                        <button type="button" class="btn btn-outline-primary col-12 " data-bs-toggle="modal"
+                            data-bs-target="#datosModal" onclick="mostrarDatosConstruccion('{{$construccion->codigo}}')">
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
@@ -328,7 +328,7 @@
                         $industria = substr($construcciones[$i]->codigo, 3);
                         }
                         @endphp
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm"
+                        <button type="button" class="btn btn-outline-primary col-12"
                             onclick="sendIndustria('{{ strtolower($industria) }}')">
                             <i class="fa fa-play"></i> Producir
                         </button>
@@ -365,7 +365,7 @@
                             $clase="light";
                             }
                             @endphp
-                            <button type="button" class="btn btn-outline-{{$clase}} btn-block btn-sm" {{$deshabilitado}}
+                            <button type="button" class="btn btn-outline-{{$clase}} col-12" {{$deshabilitado}}
                                 onclick="sendConstruir('{{ $construccion->id }}', '{{ $construccion->codigo }}', '{{ $tab }}')">
                                 <i class="fa fa-arrow-alt-circle-up "></i> {{$texto}}
                             </button>

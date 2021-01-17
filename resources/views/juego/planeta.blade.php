@@ -10,15 +10,15 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
         <nav>
             <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                 align="center">
-                <a class="nav-item nav-link active" id="colonia-tab" data-toggle="tab" href="#colonia" role="tab"
+                <a class="nav-item nav-link active" id="colonia-tab" data-bs-toggle="tab" href="#colonia" role="tab"
                     aria-controls="colonia" aria-selected="true">
                     Colonia
                 </a>
-                <a class="nav-item nav-link" id="imperio-tab" data-toggle="tab" href="#imperio" role="tab"
+                <a class="nav-item nav-link" id="imperio-tab" data-bs-toggle="tab" href="#imperio" role="tab"
                     aria-controls="imperio" aria-selected="false">
                     Imperio
                 </a>
-                <a class="nav-item nav-link" id="refugio-tab" data-toggle="tab" href="#refugio" role="tab"
+                <a class="nav-item nav-link" id="refugio-tab" data-bs-toggle="tab" href="#refugio" role="tab"
                     aria-controls="refugio" aria-selected="false">
                     Refugio
                 </a>
@@ -54,14 +54,14 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             </div>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
-                                data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
+                            <button type="button" class="btn btn-outline-primary col-12 btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#datosModal" onclick="mostrarDatosConstruccion('')">
                                 <i class="fa fa-save"></i> Guardar cambios
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-danger btn-block btn-sm " data-toggle="modal"
-                                data-target="#datosModal" onclick="mostrarDatosConstruccion('')">
+                            <button type="button" class="btn btn-outline-danger col-12 btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#datosModal" onclick="mostrarDatosConstruccion('')">
                                 <i class="fa fa-times-circle"></i> Abandonar colonia
                             </button>
                         </td>

@@ -63,34 +63,34 @@ class Disenios extends Model
     public function generarDatosDisenios()
     {
 
-        $disenios = [];
+        // $disenios = [];
         // $costesDisenios = [];
 
-        $disenio = new Disenios();
-        $disenio->nombre = 'Recolector';
-        $disenio->posicion = 9;
-        $disenio->descripcion = "Podemos dejar esta nave en órbita de asteroides para recolectar y otra nave que traiga los recursos.";
-        $disenio->fuselajes_id = 69;
-        $disenio->codigo = "RECOLECTOR";
-        $disenio->skin = 1;
-        $disenio->jugadores_id = 1;
-        array_push($disenios, $disenio);
+        // $disenio = new Disenios();
+        // $disenio->nombre = 'Recolector';
+        // $disenio->posicion = 9;
+        // $disenio->descripcion = "Podemos dejar esta nave en órbita de asteroides para recolectar y otra nave que traiga los recursos.";
+        // $disenio->fuselajes_id = 69;
+        // $disenio->codigo = "RECOLECTOR";
+        // $disenio->skin = 1;
+        // $disenio->jugadores_id = 1;
+        // array_push($disenios, $disenio);
 
-        $disenio = new Disenios();
-        $disenio->nombre = 'Remolcador';
-        $disenio->posicion = 9;
-        $disenio->descripcion = "Esta nave está diseniada para remolcar estaciones o mover planetoides colonizados.";
-        $disenio->fuselajes_id = 70;
-        $disenio->codigo = "REMOLCADOR";
-        $disenio->skin = 1;
-        $disenio->jugadores_id = 1;
-        array_push($disenios, $disenio);
+        // $disenio = new Disenios();
+        // $disenio->nombre = 'Remolcador';
+        // $disenio->posicion = 9;
+        // $disenio->descripcion = "Esta nave está diseniada para remolcar estaciones o mover planetoides colonizados.";
+        // $disenio->fuselajes_id = 70;
+        // $disenio->codigo = "REMOLCADOR";
+        // $disenio->skin = 1;
+        // $disenio->jugadores_id = 1;
+        // array_push($disenios, $disenio);
 
 
 
-        foreach ($disenios as $estedisenio) {
-            $estedisenio->save();
-        }
+        // foreach ($disenios as $estedisenio) {
+        //     $estedisenio->save();
+        // }
 
         //return $result;
     }

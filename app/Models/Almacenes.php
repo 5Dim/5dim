@@ -21,10 +21,10 @@ class Almacenes extends Model
         basicos  $arec3 = $cantalmainir3 + ((10000* (pow ($linearecursos->EDIFICIO12 ,3)))/$potalmar3); */
 
         $almacenes = [];
-        $cantalmainir = 0;
-        $potalmar = 10;
+        $cantalmainir = 0; // Cantidad inicial
+        $potalmar = 10; //Potencia almacenamiento
 
-        for ($n = 0; $n < 100; $n++) {
+        for ($n = 0; $n < 250; $n++) {
             $capacidad = $cantalmainir + ((10000 * (pow($n, 3))) / $potalmar);
             $almacen = new Almacenes();
             $almacen->nivel = $n;

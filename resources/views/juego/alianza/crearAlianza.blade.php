@@ -6,11 +6,11 @@
     <nav>
         <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
             align="center">
-            <a class="nav-item nav-link active" id="buscar-tab" data-toggle="tab" href="#buscar" role="tab"
+            <a class="nav-item nav-link active" id="buscar-tab" data-bs-toggle="tab" href="#buscar" role="tab"
                 aria-controls="buscar" aria-selected="true">
                 Buscar alianza
             </a>
-            <a class="nav-item nav-link" id="crear-tab" data-toggle="tab" href="#crear" role="tab" aria-controls="crear"
+            <a class="nav-item nav-link" id="crear-tab" data-bs-toggle="tab" href="#crear" role="tab" aria-controls="crear"
                 aria-selected="false">
                 Crear alianza
             </a>

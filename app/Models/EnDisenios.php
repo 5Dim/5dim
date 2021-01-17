@@ -25,7 +25,6 @@ class EnDisenios extends Model
     public static function terminarColaDisenios()
     {
         $colas = EnDisenios::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
-        $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
 
         foreach ($colas as $cola) {
             $disenio = DiseniosEnPlaneta::where([
@@ -34,6 +33,7 @@ class EnDisenios extends Model
             ])->first();
 
             if (!empty($disenio)) {
+                $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
                 //En caso de reciclaje debe devolver los recursos
                 if ($cola->accion == "Reciclando") {
                     $coste = $cola->disenios->costes;
@@ -55,7 +55,7 @@ class EnDisenios extends Model
             } else {
                 $disenio = new DiseniosEnPlaneta();
                 $disenio->planetas_id = $cola->planetas_id;
-                $disenio->cantidad = $cola->cantidad;
+                $disenio->cantidad += $cola->cantidad;
                 $disenio->disenios_id = $cola->disenios_id;
                 $coste = $cola->disenios->costes;
                 $disenio->tipo = $cola->disenios->fuselajes->tipo;

@@ -18,8 +18,8 @@ use App\Models\CostesConstrucciones;
 use App\Models\Investigaciones;
 use App\Models\Alianzas;
 use App\Models\Jugadores;
-use Auth;
 use App\Models\Fuselajes;
+use Illuminate\Support\Facades\Auth;
 
 class FuselajesController extends Controller
 {
