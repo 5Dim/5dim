@@ -170,8 +170,6 @@ class DisenioController extends Controller
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
         $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -311,9 +309,9 @@ class DisenioController extends Controller
             'planetaActual',
             'disenio',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
+            // 'nivelEnsamblajeDefensas',
+            // 'nivelEnsamblajeTropas',
             'investigaciones',
             'armas',
             'constantesI',
@@ -390,8 +388,6 @@ class DisenioController extends Controller
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
         $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -539,9 +535,9 @@ class DisenioController extends Controller
             'planetaActual',
             'disenio',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
+            // 'nivelEnsamblajeDefensas',
+            // 'nivelEnsamblajeTropas',
             'investigaciones',
             'armas',
             'constantesI',

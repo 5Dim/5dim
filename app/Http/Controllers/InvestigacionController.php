@@ -95,7 +95,10 @@ class InvestigacionController extends Controller
 
         $investiga = new CostesInvestigaciones();
         $costeInvestigaciones = $investiga->generaCostesInvestigaciones($investigaciones);
-        //dd($investigaciones);
+        for ($i=0; $i < count($investigaciones); $i++) {
+            $investigaciones[$i]->coste = $costeInvestigaciones[$i];
+        }
+        // dd($investigaciones);
 
         //Constantes de investigacion
         $CConstantes = Constantes::where('tipo', 'investigacion')->get();
@@ -122,7 +125,7 @@ class InvestigacionController extends Controller
             'velInvest',
             'dependencias',
             'colaInvestigacion',
-            // 'investigaciones',
+            'investigaciones',
             'militares',
             'civiles',
             'imperiales',

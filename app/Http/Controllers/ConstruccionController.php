@@ -74,6 +74,7 @@ class ConstruccionController extends Controller
         $observaciones = $construcciones->where('categoria', 'observacion');
         $especializaciones = $construcciones->where('categoria', 'especializacion');
         $especiales = $construcciones->where('categoria', 'especial');
+
         $tipoPlaneta = $planetaActual->tipo;
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones($planetaActual);

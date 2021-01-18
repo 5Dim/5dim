@@ -288,7 +288,7 @@ function calculaTiempoInvestigacion(
             velocidadConst *
             100 *
             nivel *
-            (preciototal / (personal * nivelLaboratorio));
+            (precioTotal / (personal * nivelLaboratorio));
         result = result - premiun * 5 * 60;
         if (result < 1) {
             result = 0;
