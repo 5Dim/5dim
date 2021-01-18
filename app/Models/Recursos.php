@@ -78,7 +78,7 @@ class Recursos extends Model
         //Calculamos lo producido
 
         //Calculamos los yacimientos y el terraformador
-        $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
+        $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
 
         //Minas
         $contProducciones = 1;
@@ -184,10 +184,6 @@ class Recursos extends Model
 
         //Comprobamos almacenes
         $contAlmacenes = 0;
-        $recursos->mineral >= $almacenes[$contAlmacenes]->capacidad ? $recursos->mineral = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->cristal >= $almacenes[$contAlmacenes]->capacidad ? $recursos->cristal = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
         $recursos->gas >= $almacenes[$contAlmacenes]->capacidad ? $recursos->gas = $almacenes[$contAlmacenes]->capacidad : '';
         $contAlmacenes++;
         $recursos->plastico >= $almacenes[$contAlmacenes]->capacidad ? $recursos->plastico = $almacenes[$contAlmacenes]->capacidad : '';
@@ -204,7 +200,7 @@ class Recursos extends Model
         $contAlmacenes++;
         $recursos->municion >= $almacenes[$contAlmacenes]->capacidad ? $recursos->municion = $almacenes[$contAlmacenes]->capacidad : '';
         $contAlmacenes++;
-        $recursos->personal;
+        // $recursos->personal;
 
         //Guardamos los cambios
         $recursos->save();

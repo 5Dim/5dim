@@ -50,11 +50,10 @@
     </div>
 
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
 
     <!-- Bootstrap -->
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ asset('js//custom.js') }}" type="text/javascript"></script>
 

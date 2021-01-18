@@ -2,7 +2,7 @@
 @section('content')
 
 @php
-$nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
+$nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
 @endphp
 
 <div class="container-fluid">
@@ -480,7 +480,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
 
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria liquido
+                            Mejora liquido
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -518,7 +518,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria micros
+                            Mejora micros
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -556,7 +556,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria fuel
+                            Mejora fuel
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -594,7 +594,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria MA
+                            Mejora MA
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -632,7 +632,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria municion
+                            Mejora municion
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0

@@ -91,13 +91,6 @@
                             </button>
                         </th>
                         <th class="text-warning borderless ">
-                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Puntos de ensamblaje de defensas"
-                                data-bs-content="Estos son los puntos de ensamblaje de defensas disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
-                                PED <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeDefensas }}</span>
-                            </button>
-                        </th>
-                        <th class="text-warning borderless ">
                             <a href="cuenta.php" target="_self">
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}" title="Opciones" />
                             </a>
@@ -177,7 +170,13 @@
                         <td class="text-danger borderless">
                             ({{ number_format($personal, 0, ',', '.') }})
                         </td>
-                        @foreach ($almacenes as $almacen)
+                        <td class="text-danger borderless">
+                            Ilimitado
+                        </td>
+                        <td class="text-danger borderless">
+                            Ilimitado
+                        </td>
+                        @foreach ($CapacidadAlmacenes as $almacen)
                             @if ($loop->index == 5)
                                 <td class="text-danger borderless">
                                     Almacenes
@@ -238,7 +237,7 @@
                     </tr>
                     @php
                     $nivelTerraformador = $planetaActual->construcciones->where('codigo',
-                    'terraformador')->first()->nivel;
+                    'terraformadorMinero')->first()->nivel;
                     @endphp
                     <tr>
                         <td class="text-primary borderless">
@@ -432,8 +431,8 @@
             //console.log(recursos);
             var produccion = @json($producciones);
             //console.log(produccion);
-            var almacenes = @json($almacenes);
-            //console.log(almacenes);
+            var almacenes = @json($CapacidadAlmacenes);
+            // console.log(almacenes);
             var techs = @json($factoresIndustrias);
             //console.log(techs);
             activarIntervalo(recursos, almacenes, produccion, 250, techs);

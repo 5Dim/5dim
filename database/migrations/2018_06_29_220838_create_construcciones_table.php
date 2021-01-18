@@ -16,7 +16,8 @@ class CreateConstruccionesTable extends Migration
         Schema::create('construcciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo');
-            $table->integer('nivel');
+            $table->string('categoria');
+            $table->integer('nivel')->default(0);
         });
     }
 

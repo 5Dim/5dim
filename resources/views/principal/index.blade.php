@@ -10,12 +10,6 @@
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
 
-    <!-- custom.css -->
-    <link href="{{ asset('css/app.css') }}" media="all" rel="stylesheet" type="text/css" />
-
-    <!-- custom.js -->
-    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-
     <!-- Custom fonts for this template -->
     <link href="{{ asset('fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
@@ -300,11 +294,10 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
 
     <!-- Bootstrap -->
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ asset('js/jquery/jquery.easing.min.js') }}" type="text/javascript"></script>
 
