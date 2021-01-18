@@ -55,7 +55,7 @@ class InvestigacionController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -71,7 +71,7 @@ class InvestigacionController extends Controller
         }
         $tipoPlaneta = $planetaActual->tipo;
         $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
+        $investigaciones = $investigacion->investigaciones();
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
         $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
         $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
@@ -111,7 +111,7 @@ class InvestigacionController extends Controller
 
         return view('juego.investigaciones.investigacion', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',
@@ -143,7 +143,7 @@ class InvestigacionController extends Controller
         //Recuperar construccion
         $construcciones = Construcciones::construcciones($planetaActual);
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
         $personalUsado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);

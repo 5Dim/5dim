@@ -52,7 +52,7 @@ class FlotaController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -89,7 +89,7 @@ class FlotaController extends Controller
 
         return view('juego.flotas', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',

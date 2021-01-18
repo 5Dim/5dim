@@ -52,7 +52,7 @@ class ConstruccionController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $CapacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -111,7 +111,7 @@ class ConstruccionController extends Controller
         //Devolvemos la vista con todas las variables
         return view('juego.construcciones.construccion', compact(
             'recursos',
-            'CapacidadAlmacenes',
+            'capacidadAlmacenes',
             'producciones',
             'construcciones',
             'minas',
@@ -154,7 +154,7 @@ class ConstruccionController extends Controller
         array_push($construccionesMax, $construccion);
         $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         $personalUsado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);

@@ -57,7 +57,7 @@ class JuegoController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -94,7 +94,7 @@ class JuegoController extends Controller
 
         return view('juego.layouts.recursosFrame', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',
@@ -139,7 +139,7 @@ class JuegoController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -188,7 +188,7 @@ class JuegoController extends Controller
 
         return view('juego.estadisticas', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',
@@ -236,7 +236,7 @@ class JuegoController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -275,7 +275,7 @@ class JuegoController extends Controller
 
         return view('juego.tienda.tienda', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',

@@ -61,7 +61,7 @@ class DisenioController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -105,7 +105,7 @@ class DisenioController extends Controller
 
         return view('juego.disenio.disenio', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',
@@ -153,7 +153,7 @@ class DisenioController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -306,7 +306,7 @@ class DisenioController extends Controller
 
         return view('juego.diseniar.diseniar', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',
@@ -373,7 +373,7 @@ class DisenioController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -534,7 +534,7 @@ class DisenioController extends Controller
 
         return view('juego.diseniar.diseniar', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',

@@ -176,7 +176,7 @@
                         <td class="text-danger borderless">
                             Ilimitado
                         </td>
-                        @foreach ($CapacidadAlmacenes as $almacen)
+                        @foreach ($capacidadAlmacenes as $almacen)
                             @if ($loop->index == 5)
                                 <td class="text-danger borderless">
                                     Almacenes
@@ -431,7 +431,7 @@
             //console.log(recursos);
             var produccion = @json($producciones);
             //console.log(produccion);
-            var almacenes = @json($CapacidadAlmacenes);
+            var almacenes = @json($capacidadAlmacenes);
             // console.log(almacenes);
             var techs = @json($factoresIndustrias);
             //console.log(techs);
