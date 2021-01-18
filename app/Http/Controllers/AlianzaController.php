@@ -25,7 +25,7 @@ use App\Models\MensajesIntervinientes;
 
 class AlianzaController extends Controller
 {
-    public function index ()
+    public function index()
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
@@ -73,9 +73,7 @@ class AlianzaController extends Controller
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+        $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -96,15 +94,46 @@ class AlianzaController extends Controller
         //Comprobar si el jugador tiene alianza
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         if (empty($jugadorActual->alianzas_id)) {
-            return view('juego.alianza.crearAlianza', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'alianzas', 'planetasJugador', 'planetasAlianza'));
-        }else{
-            return view('juego.alianza.alianza', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta', 'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias', 'alianzas', 'planetasJugador', 'planetasAlianza', 'jugadorActual'));
+            return view('juego.alianza.crearAlianza', compact(
+                'recursos',
+                'capacidadAlmacenes',
+                'producciones',
+                'personal',
+                'tipoPlaneta',
+                'planetaActual',
+                'nivelImperio',
+                'nivelEnsamblajeFuselajes',
+                // 'nivelEnsamblajeDefensas',
+                // 'nivelEnsamblajeTropas',
+                'investigaciones',
+                'factoresIndustrias',
+                'alianzas',
+                'planetasJugador',
+                'planetasAlianza'
+            ));
+        } else {
+            return view('juego.alianza.alianza', compact(
+                'recursos',
+                'capacidadAlmacenes',
+                'producciones',
+                'personal',
+                'tipoPlaneta',
+                'planetaActual',
+                'nivelImperio',
+                'nivelEnsamblajeFuselajes',
+                // 'nivelEnsamblajeDefensas',
+                // 'nivelEnsamblajeTropas',
+                'investigaciones',
+                'factoresIndustrias',
+                'alianzas',
+                'planetasJugador',
+                'planetasAlianza',
+                'jugadorActual'
+            ));
         }
     }
 
-    public function solicitudAlianza ()
+    public function solicitudAlianza()
     {
         $alianza = Alianzas::find(request()->input('listaAlianzas'));
         $cuerpo = request()->input('solicitud');
@@ -131,7 +160,7 @@ class AlianzaController extends Controller
         return redirect('/juego/alianza');
     }
 
-    public function generarAlianza ()
+    public function generarAlianza()
     {
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $alianza = new Alianzas();
@@ -172,7 +201,7 @@ class AlianzaController extends Controller
         return redirect('/juego/alianza');
     }
 
-    public function expulsarMiembro ($idJugador)
+    public function expulsarMiembro($idJugador)
     {
         //Buscamos el jugador
         $jugador = Jugadores::find($idJugador);
@@ -182,7 +211,7 @@ class AlianzaController extends Controller
         return redirect('/juego/alianza');
     }
 
-    public function rechazarSolicitud ($idSolicitud)
+    public function rechazarSolicitud($idSolicitud)
     {
         //Buscamos la solicitud
         $solicitud = SolicitudesAlianzas::find($idSolicitud);
@@ -191,7 +220,7 @@ class AlianzaController extends Controller
         return redirect('/juego/alianza');
     }
 
-    public function aceptarSolicitud ($idSolicitud)
+    public function aceptarSolicitud($idSolicitud)
     {
         //Buscamos la solicitud y la alianza
         $solicitud = SolicitudesAlianzas::find($idSolicitud);
@@ -206,7 +235,7 @@ class AlianzaController extends Controller
                     $investigacionAlianza->nivel = $investigacion->nivel;
                     $investigacionAlianza->save();
                 }
-            }elseif ($investigacion->nivel < $solicitud->alianzas->miembros[1]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel) {
+            } elseif ($investigacion->nivel < $solicitud->alianzas->miembros[1]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel) {
                 $investigacion->nivel = $solicitud->alianzas->miembros[1]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel;
                 $investigacion->save();
             }

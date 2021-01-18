@@ -1,5 +1,5 @@
+// Variables para el calculo de recursos
 var recursos, produccion, almacenes, invProduccion;
-// tooltip text bootstrap
 
 // Popover
 var popoverTriggerList = [].slice.call(
@@ -279,6 +279,7 @@ function calculaTiempoInvestigacion(
     nivel,
     nivelLaboratorio
 ) {
+    var precioTotal = calculaCosteTotal(costes);
     premiun = 0;
     personal = $("#personal" + dnd).val();
     horaImprimible = "";

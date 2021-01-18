@@ -70,9 +70,7 @@ class FlotaController extends Controller
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+        $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -95,9 +93,9 @@ class FlotaController extends Controller
             'tipoPlaneta',
             'planetaActual',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
+            // 'nivelEnsamblajeDefensas',
+            // 'nivelEnsamblajeTropas',
             'investigaciones',
             'factoresIndustrias',
             'planetasJugador',

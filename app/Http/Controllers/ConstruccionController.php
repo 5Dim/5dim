@@ -78,7 +78,7 @@ class ConstruccionController extends Controller
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
+        $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -130,14 +130,14 @@ class ConstruccionController extends Controller
             'tab',
             'planetaActual',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
+            'nivelEnsamblajeFuselajes',
             // 'nivelEnsamblajeDefensas',
             // 'nivelEnsamblajeTropas',
             'investigaciones',
             'factoresIndustrias',
             'planetasJugador',
             'planetasAlianza',
-            'costesConstrucciones'
+            // 'costesConstrucciones'
         ));
     }
 

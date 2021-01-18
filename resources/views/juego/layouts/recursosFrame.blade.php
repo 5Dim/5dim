@@ -85,9 +85,9 @@
                         </th>
                         <th class="text-warning borderless ">
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Puntos de ensamblaje de naves"
-                                data-bs-content="Estos son los puntos de ensamblaje de naves disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
-                                PEN <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeNaves }}</span>
+                                data-bs-trigger="focus" title="Puntos de ensamblaje de fuselajes"
+                                data-bs-content="Estos son los puntos de ensamblaje de fuselajes disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
+                                PEN <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeFuselajes }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">

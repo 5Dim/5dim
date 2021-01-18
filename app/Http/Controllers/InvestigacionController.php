@@ -72,10 +72,13 @@ class InvestigacionController extends Controller
         $tipoPlaneta = $planetaActual->tipo;
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones();
+        $militares = $investigaciones->where('categoria', 'militar');
+        $civiles = $investigaciones->where('categoria', 'civil');
+        $imperiales = $investigaciones->where('categoria', 'imperial');
+        $motores = $investigaciones->where('categoria', 'motor');
+        $industrial = $investigaciones->where('categoria', 'industria');
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+        $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -94,7 +97,7 @@ class InvestigacionController extends Controller
         $costeInvestigaciones = $investiga->generaCostesInvestigaciones($investigaciones);
         //dd($investigaciones);
 
-        //Constantes de construccion
+        //Constantes de investigacion
         $CConstantes = Constantes::where('tipo', 'investigacion')->get();
 
         //Enviamos los datos para la velocidad de construccion
@@ -119,17 +122,20 @@ class InvestigacionController extends Controller
             'velInvest',
             'dependencias',
             'colaInvestigacion',
-            'investigaciones',
+            // 'investigaciones',
+            'militares',
+            'civiles',
+            'imperiales',
+            'motores',
+            'industrial',
             'nivelLaboratorio',
             'tab',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
             'factoresIndustrias',
             'planetasJugador',
             'planetasAlianza',
-            'costeInvestigaciones'
+            // 'costeInvestigaciones'
         ));
     }
 
@@ -143,7 +149,7 @@ class InvestigacionController extends Controller
         //Recuperar construccion
         $construcciones = Construcciones::construcciones($planetaActual);
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         $personalUsado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);

@@ -23,7 +23,7 @@ use Auth;
 class ComercioController extends Controller
 {
 
-    public function index ()
+    public function index()
     {
         //Inicio recursos
         if (empty(session()->get('planetas_id'))) {
@@ -71,9 +71,7 @@ class ComercioController extends Controller
         $investigacion = new Investigaciones();
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+        $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -88,8 +86,21 @@ class ComercioController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
         //Fin recursos
 
-        return view('juego.layouts.recursosFrame', compact('recursos', 'almacenes', 'producciones', 'personal', 'tipoPlaneta',
-        'planetaActual', 'nivelImperio', 'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas',
-        'investigaciones', 'factoresIndustrias', 'planetasJugador', 'planetasAlianza'));
+        return view('juego.layouts.recursosFrame', compact(
+            'recursos',
+            'capacidadAlmacenes',
+            'producciones',
+            'personal',
+            'tipoPlaneta',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
+            // 'nivelEnsamblajeDefensas',
+            // 'nivelEnsamblajeTropas',
+            'investigaciones',
+            'factoresIndustrias',
+            'planetasJugador',
+            'planetasAlianza'
+        ));
     }
 }

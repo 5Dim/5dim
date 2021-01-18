@@ -38,35 +38,32 @@ class Investigaciones extends Model
     public function listaNombres()
     {
         $listaNombres = [
+            // Militares
             "invEnergia",
             "invPlasma",
             "invBalistica",
             "invMa",
-
+            // Civiles
             "invBlindaje",
             "invCarga",
             "invIa",
-
-            "invEnsamblajeNaves",
-            "invEnsamblajeDefensas",
-            "invEnsamblajeTropas",
+            // Imperiales
+            "invEnsamblajeFuselajes",
             "invImperio",
             "invObservacion",
-
+            // Motores
             "invPropQuimico",
             "invPropNuk",
             "invPropIon",
             "invPropPlasma",
             "invPropMa",
-            "invPropHMA",
-
+            // "invPropHMA",
+            // Industriales
             "invIndLiquido",
             "invIndMicros",
             "invIndFuel",
             "invIndMa",
             "invIndMunicion",
-
-
         ];
         return $listaNombres;
     }
@@ -94,10 +91,40 @@ class Investigaciones extends Model
         $investigaciones = new Investigaciones();
         $listaNombres = $investigaciones->listaNombres();
 
+        $listaCategorias = [
+            // Militares
+            "militar",
+            "militar",
+            "militar",
+            "militar",
+            // Civiles
+            "civil",
+            "civil",
+            "civil",
+            // Imperiales
+            "imperial",
+            "imperial",
+            "imperial",
+            // Motores
+            "motor",
+            "motor",
+            "motor",
+            "motor",
+            "motor",
+            // "invPropHMA",
+            // Industriales
+            "industria",
+            "industria",
+            "industria",
+            "industria",
+            "industria",
+        ];
+
         for ($i = 0; $i < count($listaNombres); $i++) {
             $investigacion = new Investigaciones();
             $investigacion->jugadores_id = $idJugador;
             $investigacion->codigo = $listaNombres[$i];
+            $investigacion->categoria = $listaCategorias[$i];
             $investigacion->nivel = 0;
             array_push($listaInvestigaciones, $investigacion);
         }
@@ -105,13 +132,6 @@ class Investigaciones extends Model
         foreach ($listaInvestigaciones as $investigacion) {
             $investigacion->save();
         }
-        /*
-        for ($i = 0 ; $i < count($listaNombres) ; $i++) {
-            $costeInvestigaciones = new CostesInvestigaciones();
-            $coste = $costeInvestigaciones->generarDatosCostesInvestigacion(0, $listaNombres[$i], $listaInvestigaciones[$i]->id);
-            $coste->save();
-        }
-        */
     }
 
     public static function investigaciones()
