@@ -95,7 +95,7 @@ class InvestigacionController extends Controller
 
         $investiga = new CostesInvestigaciones();
         $costeInvestigaciones = $investiga->generaCostesInvestigaciones($investigaciones);
-        for ($i=0; $i < count($investigaciones); $i++) {
+        for ($i = 0; $i < count($investigaciones); $i++) {
             $investigaciones[$i]->coste = $costeInvestigaciones[$i];
         }
         // dd($investigaciones);
@@ -274,8 +274,11 @@ class InvestigacionController extends Controller
         //Recuperar construccion
         $cola = EnInvestigaciones::where('id', $idColaInvestigacion)->first();
 
-        //Comprobamos si hay algun edificio por encima del nivel que se ha cancelado
-        $listaCola = EnInvestigaciones::where([['investigaciones_id', '=', $cola->investigaciones->id], ['nivel', '>', $cola->nivel]])->get();
+        //Comprobamos si hay alguna investigación por encima del nivel que se ha cancelado
+        $listaCola = EnInvestigaciones::where([
+            ['investigaciones_id', '=', $cola->investigaciones->id],
+            ['nivel', '>', $cola->nivel]
+        ])->get();
 
         if ($cola->accion == 'Investigando') {
             $nivel = $cola->nivel - 1;
@@ -287,20 +290,11 @@ class InvestigacionController extends Controller
         $investigacionesMax = [];
         array_push($investigacionesMax, $investigacion);
 
-        //Costes construcciones
+        //Costes investigacion
         $costes = new CostesInvestigaciones();
         $costesInvestigaciones = $costes->generaCostesInvestigaciones($investigacionesMax);
 
-        /*
-        //Generamos el coste del edificio
-        $costeConstrucciones = new CostesInvestigaciones();
-        $costeAntiguo = CostesInvestigaciones::where('investigaciones_id', $cola->investigaciones->id)->first();
-        $coste = $costeConstrucciones->generarDatosCostesInvestigacion($nivel, $cola->investigaciones->codigo, $cola->investigaciones->id);
-        $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
-        $costeAntiguo->save();
-        */
-
-        //Ahora cancelamos toda la cola con nivel superiore a la cancelada
+        //Ahora cancelamos toda la cola con nivel superior a la cancelada
         foreach ($listaCola as $colita) {
             //En caso de ser una construccion debe devolver parte de los recursos
             if ($colita->accion == "Investigando") {
@@ -310,7 +304,6 @@ class InvestigacionController extends Controller
                 $costes = new CostesInvestigaciones();
                 $costesInvestigaciones = $costes->generaCostesInvestigaciones($investigacionesMax);
                 $recursos = $cola->planetas->recursos;
-
 
                 //Restaurar beneficio por reciclaje
                 $recursos->mineral += ($costesInvestigaciones[0]->mineral * $reciclaje);
@@ -333,12 +326,6 @@ class InvestigacionController extends Controller
             $recursos = $cola->planetas->recursos;
             $investigacionesMax[0]->nivel = $cola->nivel;
 
-            //Costes construcciones
-            $costes = new CostesInvestigaciones();
-            $costesInvestigaciones = $costes->generaCostesInvestigaciones($investigacionesMax[0]);
-            $recursos = $cola->planetas->recursos;
-
-
             if (!empty($costesInvestigaciones)) {
                 //Restaurar beneficio por reciclaje
                 $recursos->mineral += ($costesInvestigaciones[0]->mineral * $reciclaje);
@@ -349,7 +336,6 @@ class InvestigacionController extends Controller
                 $recursos->liquido += ($costesInvestigaciones[0]->liquido * $reciclaje);
                 $recursos->micros += ($costesInvestigaciones[0]->micros * $reciclaje);
             } else {
-
                 $recursos->mineral += 0;
                 $recursos->cristal += 0;
                 $recursos->gas += 0;

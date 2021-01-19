@@ -1,3 +1,10 @@
+<script>
+    var coste = @json($investigacion->coste);
+    var velInvest = @json($velInvest->valor);
+    var codigo = @json($investigacion->codigo);
+    var nivel = @json($investigacion->nivel);
+    var lab = @json($nivelLaboratorio->nivel);
+</script>
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
@@ -17,8 +24,8 @@
                         id="{{ 'tiempo' . $investigacion->codigo }}">Tiempo:</td>
                     <td colspan="2" class="text-success text-right borderless align-middle">
                         <input id="{{ 'personal' . $investigacion->codigo }}" type="number" class="personal1 input"
-                            placeholder="personal" value="{{number_format($personal, 0,"","")}}"
-                            onkeyup="calculaTiempoInvestigacion( coste, velInvest, codigo, nivel, lab); ">
+                            placeholder="personal" value="{{number_format($personal-1, 0,"","")}}"
+                            onkeyup='calculaTiempoInvestigacion(@json($investigacion->coste), @json($velInvest->valor), @json($investigacion->codigo), @json($investigacion->nivel), @json($nivelLaboratorio->nivel))'>
                     </td>
                 </tr>
                 <tr>
@@ -435,10 +442,5 @@
     </div>
 </div>
 <script>
-    var coste = @json($investigacion->coste);
-    var velInvest = @json($velInvest->valor);
-    var codigo = @json($investigacion->codigo);
-    var nivel = @json($investigacion->nivel);
-    var lab = @json($nivelLaboratorio->nivel);
     calculaTiempoInvestigacion( coste, velInvest, codigo, nivel, lab);
 </script>
