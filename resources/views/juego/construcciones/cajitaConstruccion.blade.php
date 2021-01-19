@@ -17,7 +17,7 @@
                         id="{{ 'tiempo' . $construccion->codigo }}">Tiempo:</td>
                     <td colspan="2" class="text-success text-right borderless align-middle">
                         <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input"
-                            placeholder="personal" value="{{number_format($personal, 0,"","")}}"
+                            placeholder="personal" value="{{number_format($personal-1, 0,"","")}}"
                             onkeyup="calculaTiempo( coste, velocidadCons, codigo)">
                     </td>
                 </tr>
@@ -339,7 +339,7 @@
                             $texto=" Construir";
                             foreach ($dependencias as $dependencia) {
                                 if ($dependencia->codigo==$construccion->codigo){
-                                        Log::error($construcciones->where('codigo',$dependencia->codigoRequiere)->first()->nivel);
+                                        // Log::error($construcciones->where('codigo',$dependencia->codigoRequiere)->first()->nivel);
                                         $nivelTengo=$construcciones->where('codigo',$dependencia->codigoRequiere)->first()->nivel;
                                     if ( $nivelTengo < $dependencia->nivelRequiere){
                                         $texto.=" requiere ".trans('construccion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
