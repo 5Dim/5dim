@@ -18,7 +18,7 @@
                     <td colspan="2" class="text-success text-right borderless align-middle">
                         <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input"
                             placeholder="personal" value="{{number_format($personal-1, 0,"","")}}"
-                            onkeyup="calculaTiempo( coste, velocidadCons, codigo)">
+                            onkeyup='calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo))'>
                     </td>
                 </tr>
                 <tr>
@@ -375,8 +375,5 @@
 </div>
 
 <script>
-    var coste = @json($construccion->coste);
-    var velocidadCons = @json($velocidadConst->valor);
-    var codigo = @json($construccion->codigo);
-    calculaTiempo( coste, velocidadCons, codigo);
+    calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo));
 </script>

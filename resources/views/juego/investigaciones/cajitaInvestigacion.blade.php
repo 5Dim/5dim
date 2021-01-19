@@ -1,10 +1,3 @@
-<script>
-    var coste = @json($investigacion->coste);
-    var velInvest = @json($velInvest->valor);
-    var codigo = @json($investigacion->codigo);
-    var nivel = @json($investigacion->nivel);
-    var lab = @json($nivelLaboratorio->nivel);
-</script>
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
