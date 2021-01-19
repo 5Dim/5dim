@@ -177,7 +177,7 @@
                             Ilimitado
                         </td>
                         @foreach ($capacidadAlmacenes as $almacen)
-                            @if ($loop->index == 5)
+                            @if ($loop->index == 3)
                                 <td class="text-danger borderless">
                                     Almacenes
                                 </td>
