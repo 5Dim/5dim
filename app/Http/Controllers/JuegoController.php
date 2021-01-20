@@ -57,7 +57,7 @@ class JuegoController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -137,7 +137,7 @@ class JuegoController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -156,8 +156,6 @@ class JuegoController extends Controller
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
         $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -192,9 +190,7 @@ class JuegoController extends Controller
             'tipoPlaneta',
             'planetaActual',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
             'investigaciones',
             'factoresIndustrias',
             'jugadores',
@@ -234,7 +230,7 @@ class JuegoController extends Controller
         $construcciones = Construcciones::construcciones($planetaActual);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes= Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $personal = 0;
@@ -253,8 +249,6 @@ class JuegoController extends Controller
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
         $nivelEnsamblajeFuselajes = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -279,9 +273,7 @@ class JuegoController extends Controller
             'tipoPlaneta',
             'planetaActual',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
             'investigaciones',
             'factoresIndustrias',
             'articulos',
@@ -302,55 +294,34 @@ class JuegoController extends Controller
     }
 
     //Cambiar de planeta
-    public function planeta($planeta = false)
+    public function planeta($planeta)
     {
-
         //Comprobar si el jugador tiene alianza
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
         //Comprobamos si el usuario tiene alianza para devolver los planetas
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->get('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
         }
+        //Planeta al que queremos acceder
+        $planetaBusqueda = Planetas::find($planeta);
 
-        if (!empty(session()->get('jugadores_id'))) {
-            //En que planeta estamos
-            if (!$planeta) {
-                session()->put('planetas_id', Auth::user()->jugadores->where('id', session()->get('jugadores_id'))->first()->planetas[0]->id);
-            } else {
-                $planetaBusqueda = Planetas::find($planeta);
-                if ($planetaBusqueda->jugadores->id == $jugadorActual->id or $planetaBusqueda->jugadores->id == $jugadorAlianza->id) {
-                    session()->put('planetas_id', $planeta);
-                } else {
-                    return redirect('/planeta');
-                }
-            }
+        // Comprobamos si el planeta pertenece al jugador o a la alianza
+        if (
+            $planetaBusqueda->jugadores->id == $jugadorActual->id or
+            $planetaBusqueda->jugadores->id == $jugadorAlianza->id
+        ) {
+            session()->put('planetas_id', $planeta);
         } else {
-            return redirect('/jugador');
+            redirect('/juego/construccion');
         }
         return redirect('/juego/calcularPuntos');
     }
 
-    //Cambiar de jugador
-    public function jugador($universo = false)
-    {
-        if (!$universo) {
-
-            session()->put('jugadores_id', Auth::user()->jugadores[0]->id);
-        } else {
-            session()->put('jugadores_id', Jugadores::where(['universo_id', $universo], ['user_id', Auth::user()->id])->first()->id);
-        }
-
-        $jugador = Jugadores::find(session()->get('jugadores_id'));
-
-        if (empty($jugador->disenios[0])) {
-            $disenios = Disenios::where('id', '<', 100)->get();
-
-            foreach ($disenios as $disenio) {
-                $jugador->disenios()->attach($disenio->id);
-            }
-        }
-
-        return redirect('/planeta');
-    }
+    //Cambiar de jugador (Se sustituye por el middleware)
+    // public function jugador()
+    // {
+    //     session()->put('jugadores_id', Auth::user()->jugadores[0]->id);
+    //     return redirect('/planeta');
+    // }
 }

@@ -32,7 +32,7 @@ class CostesConstrucciones extends Model
     }
 
 
-    public function generaCostesConstrucciones($construcciones)
+    public static function generaCostesConstrucciones($construcciones)
     {
 
         $avelprodminas = Constantes::where('codigo', 'avelprodminas')->first()->valor / 10;

@@ -435,5 +435,5 @@
     </div>
 </div>
 <script>
-    calculaTiempoInvestigacion( coste, velInvest, codigo, nivel, lab);
+    calculaTiempoInvestigacion(@json($investigacion->coste), @json($velInvest->valor), @json($investigacion->codigo), @json($investigacion->nivel), @json($nivelLaboratorio->nivel));
 </script>

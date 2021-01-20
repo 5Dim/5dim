@@ -78,7 +78,6 @@ class Producciones extends Model
                 $industrias = Industrias::where('planetas_id', $planetaActual->id)->first();
                 $industria = strtolower(substr($construcciones[$i]->codigo, 3));
                 if ($industria == 'liquido') {
-                    error_log($industrias);
                     if ($industrias->liquido == 1) {
                         $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
                     } else {
@@ -123,6 +122,7 @@ class Producciones extends Model
             }
         }
 
+        // dd($producciones);
 
         if ($calcular) {
             //Si no tiene cualidades asociadas, las genera
@@ -151,14 +151,42 @@ class Producciones extends Model
             //Constantes de costes
             $CConstantes = Constantes::where('tipo', 'construccion')->get();
 
-            //Calcular gastos de producciones
-            $producciones[1]->mineral -= ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
-            $producciones[2]->cristal -= ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
-            $producciones[3]->gas -= ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
-            $producciones[4]->plastico -= ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
-            $producciones[5]->ceramica -= ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
-        }
+            // Investigaciones de industrias
+            $investigaciones = Investigaciones::investigaciones($planetaActual);
+            $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
+            $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
+            $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
+            $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
+            $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
+            $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
 
+            //Calcular gastos de producciones
+            $produccion->personal = $producciones[0]->personal;
+            $produccion->mineral = $producciones[1]->mineral - ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
+            $produccion->cristal = $producciones[2]->cristal - ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
+            $produccion->gas = $producciones[3]->gas - ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
+            $produccion->plastico = $producciones[4]->plastico - ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
+            $produccion->ceramica = $producciones[5]->ceramica - ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
+
+            $produccion->liquido = $producciones[6]->liquido * $factorLiquido;
+            $produccion->micros = $producciones[7]->micros * $factorMicros;
+            $produccion->fuel = $producciones[8]->fuel * $factorFuel;
+            $produccion->ma = $producciones[9]->ma * $factorMa;
+            $produccion->municion = $producciones[10]->municion * $factorMunicion;
+        } else {
+            $produccion->personal = $producciones[0]->personal;
+            $produccion->mineral = $producciones[1]->mineral;
+            $produccion->cristal = $producciones[2]->cristal;
+            $produccion->gas = $producciones[3]->gas;
+            $produccion->plastico = $producciones[4]->plastico;
+            $produccion->ceramica = $producciones[5]->ceramica;
+
+            $produccion->liquido = $producciones[6]->liquido;
+            $produccion->micros = $producciones[7]->micros;
+            $produccion->fuel = $producciones[8]->fuel;
+            $produccion->ma = $producciones[9]->ma;
+            $produccion->municion = $producciones[10]->municion;
+        }
 
         //calculo de niveles totales
         $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
@@ -168,9 +196,12 @@ class Producciones extends Model
                 $numeroNiveles += $construccion->nivel;
             }
         }
-        $produccion = new Producciones();
+        // $produccion = new Producciones();
         $produccion->creditos = $numeroNiveles * 1000 * $constanteCreditos;
-        array_push($producciones, $produccion);
-        return $producciones;
+        // array_push($producciones, $produccion);
+
+        // dd($produccion);
+
+        return $produccion;
     }
 }

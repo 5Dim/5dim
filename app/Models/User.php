@@ -59,9 +59,9 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function jugadores()
+    public function jugador()
     {
-        return $this->hasMany(Jugadores::class);
+        return $this->hasOne(Jugadores::class);
     }
 
     public function transacciones()

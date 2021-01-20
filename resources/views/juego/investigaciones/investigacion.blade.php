@@ -81,7 +81,7 @@
                     @foreach ($militares as $militar)
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $militar,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         ])
                     @endforeach
                 </div>
@@ -89,7 +89,7 @@
                     @foreach ($civiles as $civil)
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $civil,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         ])
                     @endforeach
                 </div>
@@ -97,7 +97,7 @@
                     @foreach ($imperiales as $imperial)
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $imperial,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         ])
                     @endforeach
                 </div>
@@ -105,7 +105,7 @@
                     @foreach ($motores as $motor)
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $motor,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         ])
                     @endforeach
                 </div>
@@ -113,7 +113,7 @@
                     @foreach ($industrial as $industria)
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $industria,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         ])
                     @endforeach
                 </div>

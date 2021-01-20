@@ -26,8 +26,7 @@ class EnInvestigaciones extends Model
     {
         $colas = EnInvestigaciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
         foreach ($colas as $cola) {
-            $nivelNuevo = $cola->nivel;
-            $cola->investigaciones->nivel = $nivelNuevo;
+            $cola->investigaciones->nivel = $cola->nivel;
             $cola->investigaciones->save();
             $cola->delete();
         }

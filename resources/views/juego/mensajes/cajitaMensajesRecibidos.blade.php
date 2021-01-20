@@ -3,24 +3,24 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-borderless borderless table-sm text-center anchofijo">
                 <tr>
-                    <td colspan="1" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button"
-                            aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}"
-                            aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
+                    <td colspan="2" class="text-{{ $clase }} text-center borderless align-middle">
+                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href="#" role="button"
+                            aria-expanded="false" data-bs-target=".mensajeRecibido{{ $mensaje->id }}"
+                            aria-controls="mensajeRecibido{{ $mensaje->id }}">
                             <big>{{ $mensaje->jugadores->nombre }}<big>
                         </a>
                     </td>
-                    <td colspan="8" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button"
-                            aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}"
-                            aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
+                    <td colspan="6" class="text-{{ $clase }} text-center borderless align-middle">
+                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href="#" role="button"
+                            aria-expanded="false" data-bs-target=".mensajeRecibido{{ $mensaje->id }}"
+                            aria-controls="mensajeRecibido{{ $mensaje->id }}">
                             <big>Asunto: {{ $mensaje->asunto }}<big>
                         </a>
                     </td>
-                    <td colspan="1" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button"
-                            aria-expanded="false" data-target=".mensajeRecibido{{ $mensaje->id }}"
-                            aria-controls="mensajeRecibido{{ $mensaje->id }}1 mensajeRecibido{{ $mensaje->id }}2 mensajeRecibido{{ $mensaje->id }}3">
+                    <td colspan="2" class="text-{{ $clase }} text-center borderless align-middle">
+                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href="#" role="button"
+                            aria-expanded="false" data-bs-target=".mensajeRecibido{{ $mensaje->id }}"
+                            aria-controls="mensajeRecibido{{ $mensaje->id }}">
                             <big>{{ $mensaje->created_at }}<big>
                         </a>
                     </td>
@@ -44,20 +44,20 @@
                 class="table table-sm table-borderless text-center anchofijo collapse mensajeRecibido{{ $mensaje->id }}">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-danger btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal">
+                        <button type="button" class="btn btn-outline-danger col-12" data-bs-toggle="modal"
+                            data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Eliminar
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal">
+                        <button type="button" class="btn btn-outline-primary col-12" data-bs-toggle="modal"
+                            data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Reportar
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal">
+                        <button type="button" class="btn btn-outline-success col-12" data-bs-toggle="modal"
+                            data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Responder
                         </button>
                     </td>

@@ -26,7 +26,7 @@ class Investigaciones extends Model
         return $this->hasOne(CostesInvestigaciones::class);
     }
 
-    public function sumatorio($num)
+    public static function sumatorio($num)
     {
         $sum = 0;
         for ($i = $num; $i > 0; $i--) {

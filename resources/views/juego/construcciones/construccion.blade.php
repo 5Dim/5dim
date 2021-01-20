@@ -94,7 +94,7 @@
                     @foreach ($minas as $mina)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $mina,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'mina-tab',
                         ])
                     @endforeach
@@ -103,7 +103,7 @@
                     @foreach ($industrias as $industria)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $industria,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'industria-tab',
                     ])
                     @endforeach
@@ -112,7 +112,7 @@
                     @foreach ($almacenes as $almacen)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $almacen,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'almacenes-tab',
                     ])
                     @endforeach
@@ -121,7 +121,7 @@
                     @foreach ($militares as $militar)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $militar,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'militares-tab',
                     ])
                     @endforeach
@@ -130,7 +130,7 @@
                     @foreach ($desarrollos as $desarrollo)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $desarrollo,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'desarrollo-tab',
                     ])
                     @endforeach
@@ -139,7 +139,7 @@
                     @foreach ($observaciones as $observacion)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $observacion,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'observacion-tab',
                     ])
                     @endforeach
@@ -148,7 +148,7 @@
                     @foreach ($especializaciones as $especializacion)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $especializacion,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'observacion-tab',
                     ])
                     @endforeach
@@ -157,7 +157,7 @@
                     @foreach ($especiales as $especial)
                     @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $especial,
-                        'personal' => $recursos->personal - $personal,
+                        'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'observacion-tab',
                     ])
                     @endforeach

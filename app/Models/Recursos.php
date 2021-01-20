@@ -20,15 +20,15 @@ class Recursos extends Model
         return $this->belongsTo(Planetas::class);
     }
 
-    public static function calcularRecursos($id)
+    public static function calcularRecursos($idPlaneta)
     {
         //Buscamos el planeta actual
-        $planetaActual = Planetas::find($id);
+        $planetaActual = Planetas::find($idPlaneta);
         //Definimos los objetos que vamos a necesitar
-        $recursos = Recursos::where('planetas_id', $id)->first();
-        //$planeta = Planeta::where('id', $id)->first();
-        $construcciones = Construcciones::where('planetas_id', $id)->get();
-        $industrias = Industrias::where('planetas_id', $id)->first();
+        $recursos = Recursos::where('planetas_id', $idPlaneta)->first();
+        //$planeta = Planeta::where('id', $idPlaneta)->first();
+        $construcciones = Construcciones::where('planetas_id', $idPlaneta)->get();
+        $industrias = Industrias::where('planetas_id', $idPlaneta)->first();
         $producciones = [];
         $almacenes = [];
 

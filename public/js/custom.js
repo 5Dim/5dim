@@ -94,23 +94,24 @@ function calcularRecursos() {
     recursos.ma = parseFloat(recursos.ma);
     recursos.municion = parseFloat(recursos.municion);
     //Calculos
-    recursos.personal += produccion[0].personal / 3600 / 4;
-    recursos.mineral += produccion[1].mineral / 3600 / 4;
-    recursos.cristal += produccion[2].cristal / 3600 / 4;
-    recursos.gas += produccion[3].gas / 3600 / 4;
-    recursos.plastico += produccion[4].plastico / 3600 / 4;
-    recursos.ceramica += produccion[5].ceramica / 3600 / 4;
-    recursos.liquido += (produccion[6].liquido * invProduccion[0]) / 3600 / 4;
-    recursos.micros += (produccion[7].micros * invProduccion[1]) / 3600 / 4;
-    recursos.fuel += (produccion[8].fuel * invProduccion[2]) / 3600 / 4;
-    recursos.ma += (produccion[9].ma * invProduccion[3]) / 3600 / 4;
-    recursos.municion +=
-        (produccion[10].municion * invProduccion[4]) / 3600 / 4;
+    recursos.personal += produccion.personal / 3600 / 4;
+    recursos.mineral += produccion.mineral / 3600 / 4;
+    recursos.cristal += produccion.cristal / 3600 / 4;
+    recursos.gas += produccion.gas / 3600 / 4;
+    recursos.plastico += produccion.plastico / 3600 / 4;
+    recursos.ceramica += produccion.ceramica / 3600 / 4;
+    recursos.liquido += produccion.liquido / 3600 / 4;
+    recursos.micros += produccion.micros / 3600 / 4;
+    recursos.fuel += produccion.fuel / 3600 / 4;
+    recursos.ma += produccion.ma / 3600 / 4;
+    recursos.municion += produccion.municion / 3600 / 4;
+    recursos.creditos += produccion.creditos / 24 / 3600 / 4;
 
     //Insertar
     $("#personal").text(Math.trunc(recursos.personal).toLocaleString("es"));
     $("#mineral").text(Math.trunc(recursos.mineral).toLocaleString("es"));
     $("#cristal").text(Math.trunc(recursos.cristal).toLocaleString("es"));
+    $("#creditos").text(Math.trunc(recursos.creditos).toLocaleString("es"));
 
     //Comprobar almacenes
     var counter = 0;
@@ -215,13 +216,11 @@ function activarIntervalo(
     recEntrantes,
     almEntrante,
     proEntrante,
-    intervalo,
-    invEntrante
+    intervalo
 ) {
     recursos = recEntrantes;
     produccion = proEntrante;
     almacenes = almEntrante;
-    invProduccion = invEntrante;
     setInterval(calcularRecursos, intervalo);
 }
 
@@ -266,9 +265,9 @@ function calculaTiempo(costes, velocidadConst, codigo) {
     }
 }
 
-function mostrarTab (tab) {
+function mostrarTab(tab) {
     if (!!tab) {
-        $("#" + tab).tab("show");
+        $("#" + tab).show();
     }
 }
 

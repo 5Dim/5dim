@@ -97,7 +97,7 @@ class Construcciones extends Model
         return $result;
     }
 
-    public function nuevaColonia ($planeta) {
+    public static function nuevaColonia ($planeta) {
         $listaConstrucciones = [];
         $construccion = new Construcciones();
         $listaNombres = $construccion->listaNombres();
@@ -178,8 +178,7 @@ class Construcciones extends Model
     public static function construcciones ($planetaActual) {
         $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         if (empty($construcciones[0]->codigo)) {
-            $construccion = new Construcciones();
-            $construccion->nuevaColonia($planetaActual->id);
+            Construcciones::nuevaColonia($planetaActual->id);
             $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         }
         return $construcciones;

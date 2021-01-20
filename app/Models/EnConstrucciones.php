@@ -19,8 +19,7 @@ class EnConstrucciones extends Model
     public static function terminarColaConstrucciones() {
         $colas = EnConstrucciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
         foreach ($colas as $cola) {
-            $nivelNuevo = $cola->nivel;
-            $cola->construcciones->nivel = $nivelNuevo;
+            $cola->construcciones->nivel = $$cola->nivel;
 
             //En caso de reciclaje debe devolver los recursos
             if ($cola->accion == "Reciclando") {
@@ -44,13 +43,16 @@ class EnConstrucciones extends Model
     }
 
     public static function colaConstrucciones ($planetaActual) {
-        $colaConstruccion= [];
-        $colaConstruccion2=[];
+        $colaConstruccion = [];
+        $colaConstruccion2 = [];
+        // Comprueba cada construcción para ver si está en la cola
         foreach ($planetaActual->construcciones as $construccion){
             if(!empty($construccion->enConstrucciones[0])){
                 array_push($colaConstruccion2, $construccion->enConstrucciones);
             }
         }
+
+        // Recorremos toda la lista de enConsrtruccion
         for ($i=0; $i < count($colaConstruccion2); $i++) {
             if (!empty($colaConstruccion2[$i])) {
                 foreach ($colaConstruccion2[$i] as $colita) {

@@ -334,7 +334,7 @@
                                 <select name="listaPlanetas" id="listaPlanetas" class="form-control">
                                     <option value="none">Selecciona un planeta</option>
                                     <optgroup label="Propios">
-                                        @foreach (Auth::user()->jugadores[0]->planetas as $planeta)
+                                        @foreach (Auth::user()->jugador->planetas as $planeta)
                                             <option value="{{ $planeta->id }}">
                                                 {{ $planeta->estrella }}x{{ $planeta->orbita }}
                                                 {{ $planeta->nombre }}
@@ -569,7 +569,7 @@
                                 <select name="listaPlanetas" id="listaPlanetas2" class="form-control">
                                     <option value="none">Selecciona un planeta</option>
                                     <optgroup label="Propios">
-                                        @foreach (Auth::user()->jugadores[0]->planetas as $planeta)
+                                        @foreach (Auth::user()->jugador->planetas as $planeta)
                                             <option value="{{ $planeta->id }}">
                                                 {{ $planeta->estrella }}x{{ $planeta->orbita }}
                                                 {{ $planeta->nombre }}

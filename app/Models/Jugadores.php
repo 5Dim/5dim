@@ -9,61 +9,59 @@ class Jugadores extends Model
 {
     use HasFactory;
 
-    public function user ()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function planetas ()
+    public function planetas()
     {
         return $this->hasMany(Planetas::class);
     }
 
-    public function investigaciones ()
+    public function investigaciones()
     {
         return $this->hasMany(Investigaciones::class);
     }
 
-    public function fuselajes ()
+    public function fuselajes()
     {
         return $this->belongsToMany(Fuselajes::class);
     }
 
-    public function mensajes ()
+    public function mensajes()
     {
         return $this->hasMany(Mensajes::class, 'emisor');
     }
 
-    public function intervinientes ()
+    public function intervinientes()
     {
         return $this->hasMany(MensajesIntervinientes::class, 'receptor');
     }
 
-    public function alianzas ()
+    public function alianzas()
     {
         return $this->belongsTo(Alianzas::class);
     }
 
-    public function solicitudes ()
+    public function solicitudes()
     {
         return $this->hasMany(SolicitudesAlianzas::class);
     }
 
-    public function disenios ()
+    public function disenios()
     {
         return $this->belongsToMany(Disenios::class);
     }
 
-    public static function calcularPuntos ($idPlaneta)
+    public static function calcularPuntos($idJugador)
     {
         $puntosJugador = 0;
-        $jugador = Jugadores::find($idPlaneta);
+        $jugador = Jugadores::find($idJugador);
         foreach ($jugador->planetas as $planeta) {
             if (!empty($planeta)) {
                 foreach ($planeta->construcciones as $construccion) {
-                    if ($construccion->codigo != "almMineral" and $construccion->codigo != "almCristal") {
-                        $puntosJugador += $construccion->nivel;
-                    }
+                    $puntosJugador += $construccion->nivel;
                 }
             }
         }

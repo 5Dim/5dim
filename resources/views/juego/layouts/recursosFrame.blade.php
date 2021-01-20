@@ -73,7 +73,7 @@
                                 data-trigger="focus" title="Puntos de imperio"
                                 data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
                                 PI <span
-                                    class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count(Auth::user()->jugadores[0]->planetas) * 10 }}</span>
+                                    class="badge bg-warning text-dark">{{ ($nivelImperio * 15 + 10) - count(Auth::user()->jugador->planetas) * 10 }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless">
@@ -87,7 +87,7 @@
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
                                 data-bs-trigger="focus" title="Puntos de ensamblaje de fuselajes"
                                 data-bs-content="Estos son los puntos de ensamblaje de fuselajes disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
-                                PEN <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeFuselajes }}</span>
+                                PE <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeFuselajes }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">
@@ -168,7 +168,7 @@
                 <tbody>
                     <tr>
                         <td class="text-danger borderless">
-                            ({{ number_format($personal, 0, ',', '.') }})
+                            ({{ number_format($personalOcupado, 0, ',', '.') }})
                         </td>
                         <td class="text-danger borderless">
                             Ilimitado
@@ -196,7 +196,7 @@
                     </tr>
                     <tr>
                         <td id="personal" class="text-warning borderless">
-                            {{ number_format($recursos->personal - $personal, 0, ',', '.') }}
+                            {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
                         </td>
                         <td id="mineral" class="text-warning borderless">
                             {{ number_format($recursos->mineral, 0, ',', '.') }}
@@ -241,48 +241,48 @@
                     @endphp
                     <tr>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[0]->personal, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->personal, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[1]->mineral, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->mineral, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[2]->cristal, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->cristal, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[3]->gas, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->gas, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[4]->plastico, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->plastico, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[5]->ceramica, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->ceramica, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             Producción
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[6]->liquido * $factoresIndustrias[0], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->liquido, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[7]->micros * $factoresIndustrias[1], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->micros, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[8]->fuel * $factoresIndustrias[2], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->fuel, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[9]->ma * $factoresIndustrias[3], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->ma, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[10]->municion * $factoresIndustrias[4], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->municion, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[11]->creditos, 0, ',', '.') }}</span> ud/d
+                            <span>{{ number_format($produccion->creditos, 0, ',', '.') }}</span> ud/d
                         </td>
                     </tr>
                 </tbody>
@@ -427,15 +427,13 @@
     <script>
         $(document).ready(function() {
             var recursos = @json($recursos);
-            recursos.personal -= @json($personal);
+            recursos.personal -= @json($personalOcupado);
             //console.log(recursos);
-            var produccion = @json($producciones);
+            var produccion = @json($produccion);
             //console.log(produccion);
             var almacenes = @json($capacidadAlmacenes);
             // console.log(almacenes);
-            var techs = @json($factoresIndustrias);
-            //console.log(techs);
-            activarIntervalo(recursos, almacenes, produccion, 250, techs);
+            activarIntervalo(recursos, almacenes, produccion, 250);
         });
 
     </script>
