@@ -17,6 +17,9 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
 });
 
+// Select2
+$.fn.select2.defaults.set("theme", "bootstrap4");
+
 function sendConstruir(id, codigo, modal) {
     var personal = $("#personal" + codigo).val();
     window.location.href =
@@ -212,12 +215,7 @@ function calcularRecursos() {
     }
 }
 
-function activarIntervalo(
-    recEntrantes,
-    almEntrante,
-    proEntrante,
-    intervalo
-) {
+function activarIntervalo(recEntrantes, almEntrante, proEntrante, intervalo) {
     recursos = recEntrantes;
     produccion = proEntrante;
     almacenes = almEntrante;
@@ -267,7 +265,10 @@ function calculaTiempo(costes, velocidadConst, codigo) {
 
 function mostrarTab(tab) {
     if (!!tab) {
-        $("#" + tab).show();
+        var tabSelected = document.querySelector("#" + tab);
+        var tab = new bootstrap.Tab(tabSelected);
+
+        tab.show();
     }
 }
 

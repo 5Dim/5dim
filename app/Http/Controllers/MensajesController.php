@@ -67,13 +67,13 @@ class MensajesController extends Controller
         //Lista de mensajes recibidos
         if ($jugadorActual->alianza_id) {
             $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orWhere('emisor', $jugadorAlianza->id)->get();
-        }else{
+        } else {
             $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->get();
         }
 
         //Lista de mensajes enviados
         if ($jugadorActual->alianza_id) {
-        $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orWhere('receptor', $jugadorAlianza->id)->get();
+            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orWhere('receptor', $jugadorAlianza->id)->get();
         } else {
             $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
         }
@@ -97,7 +97,7 @@ class MensajesController extends Controller
         ));
     }
 
-    public function enviarMensaje()
+    public function enviarMensaje(Request $request)
     {
         $mensaje = new Mensajes();
         $mensaje->mensaje = request()->input('descripcion');
@@ -106,17 +106,13 @@ class MensajesController extends Controller
         $mensaje->eliminado = false;
         $mensaje->categoria = "recibidos";
         $mensaje->save();
-        $intervinientes = request()->input('listaJugadores');
-        $listIntervinientes = explode(',', $intervinientes);
-        // dd(request()->input('listaJugadores'));
-        foreach ($listIntervinientes as $receptor) {
-            if (!empty($receptor) or $receptor != 0) {
-                $interviniente = new MensajesIntervinientes();
-                $interviniente->receptor = $receptor;
-                $interviniente->leido = false;
-                $interviniente->mensajes_id = $mensaje->id;
-                $interviniente->save();
-            }
+        $receptor = request()->input('listaJugadores');
+        if (!empty($receptor) or $receptor != 0) {
+            $interviniente = new MensajesIntervinientes();
+            $interviniente->receptor = $receptor;
+            $interviniente->leido = false;
+            $interviniente->mensajes_id = $mensaje->id;
+            $interviniente->save();
         }
         return redirect('/juego/mensajes');
     }

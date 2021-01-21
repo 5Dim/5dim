@@ -36,9 +36,9 @@ class ConstruccionController extends Controller
         }
 
         //Recursos
+        $construcciones = Construcciones::construcciones($planetaActual);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $construcciones = Construcciones::construcciones($planetaActual);
         $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
         $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
 
@@ -84,8 +84,6 @@ class ConstruccionController extends Controller
 
         // vemos las dependencias
         $dependencias = Dependencias::where('tipo', 'construccion')->get();
-
-
 
         //Devolvemos la vista con todas las variables
         return view('juego.construcciones.construccion', compact(
@@ -192,27 +190,28 @@ class ConstruccionController extends Controller
         $fechaFin = strtotime($inicio) + $tiempo;
 
         //Comprobamos que el edificio se puede construir
-        if ($construccion->planetas->recursos->mineral <= $costesConstrucciones[0]->mineral) {
+        if ($construccion->planetas->recursos->mineral < $costesConstrucciones[0]->mineral) {
             $error = true;
-        } elseif ($construccion->planetas->recursos->cristal <= $costesConstrucciones[0]->cristal) {
+        } elseif ($construccion->planetas->recursos->cristal < $costesConstrucciones[0]->cristal) {
             $error = true;
-        } elseif ($construccion->planetas->recursos->gas <= $costesConstrucciones[0]->gas) {
+        } elseif ($construccion->planetas->recursos->gas < $costesConstrucciones[0]->gas) {
             $error = true;
-        } elseif ($construccion->planetas->recursos->plastico <= $costesConstrucciones[0]->plastico) {
+            dd($error);
+        } elseif ($construccion->planetas->recursos->plastico < $costesConstrucciones[0]->plastico) {
             $error = true;
-        } elseif ($construccion->planetas->recursos->ceramica <= $costesConstrucciones[0]->ceramica) {
+        } elseif ($construccion->planetas->recursos->ceramica < $costesConstrucciones[0]->ceramica) {
             $error = true;
-        } elseif ($construccion->planetas->recursos->liquido <= $costesConstrucciones[0]->liquido) {
+        } elseif ($construccion->planetas->recursos->liquido < $costesConstrucciones[0]->liquido) {
             $error = true;
-        } elseif ($construccion->planetas->recursos->micros <= $costesConstrucciones[0]->micros) {
+        } elseif ($construccion->planetas->recursos->micros < $costesConstrucciones[0]->micros) {
             $error = true;
-        } elseif (($construccion->planetas->recursos->personal - $personalUsado) <= $personal) {
+        } elseif (($construccion->planetas->recursos->personal - $personalUsado) < $personal) {
             $error = true;
         } elseif ($accion != "Construyendo") {
             $error = true;
         }
 
-        // dd(!$error);
+        // dd("NO ES");
 
         //Si no tenemos ningun error continuamos
         if (!$error) {

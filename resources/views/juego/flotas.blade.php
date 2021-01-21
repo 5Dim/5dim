@@ -536,7 +536,7 @@
                         <tr>
                             <th colspan="7" class="text-success">
                                 <big>
-                                    Destino 1
+                                    Destino 2
                                 </big>
                             </th>
                         </tr>
@@ -566,8 +566,7 @@
                         </tr>
                         <tr>
                             <td class="text-light">
-                                <select name="listaPlanetas" id="listaPlanetas2" class="form-control">
-                                    <option value="none">Selecciona un planeta</option>
+                                <select name="listaPlanetas" id="listaPlanetas2" class="select form-control">
                                     <optgroup label="Propios">
                                         @foreach (Auth::user()->jugador->planetas as $planeta)
                                             <option value="{{ $planeta->id }}">
@@ -578,14 +577,14 @@
                                     </optgroup>
                                 </select>
                             </td>
-                            <td class="text-light">
+                            <td>
                                 <input type="text" class="form-control input" placeholder="Numero de sistema">
                             </td>
-                            <td class="text-light">
+                            <td>
                                 <input type="text" class="form-control input" placeholder="Numero de orbita">
                             </td>
-                            <td class="text-light">
-                                <select name="orden" id="orden" class="select form-control" data-live-search="true">
+                            <td>
+                                <select name="orden" id="orden" class="select form-control">
                                     <option value="" selected>-- Selecciona una orden --</option>
                                     <option value="transportar">Transportar</option>
                                     <option value="transferir">Transferir</option>
@@ -594,7 +593,7 @@
                                     <option value="recolectar">Recolectar</option>
                                 </select>
                             </td>
-                            <td class="text-light">
+                            <td>
                                 <div class="input-group mb-3 borderless"
                                     style="padding-left: 10px !important; padding-right: 5px !important">
                                     <input type="text" class="form-control input" value="100"
@@ -770,13 +769,11 @@
         $(document).ready(function() {
             $('#listaPlanetas').select2({
                 placeholder: "Nombre del planeta",
-                theme: "bootstrap",
                 width: '100%',
                 language: "es"
             });
             $('#listaPlanetas2').select2({
                 placeholder: "Nombre del planeta",
-                theme: "bootstrap",
                 width: '100%',
                 language: "es"
             });

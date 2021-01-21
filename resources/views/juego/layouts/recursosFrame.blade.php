@@ -17,15 +17,19 @@
 
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
+
+    <!-- CKEditor -->
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
     <!-- Select2 -->
     <link href="{{ asset('css/select2/select2.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/select2/select2-bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
 
-    <!-- CKEditor -->
+    <!-- NoUISlider -->
     <link href="{{ asset('css/nouislider/nouislider.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+    <!-- Custom -->
+    <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="bg" id="recursosFrame">
@@ -73,7 +77,7 @@
                                 data-trigger="focus" title="Puntos de imperio"
                                 data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
                                 PI <span
-                                    class="badge bg-warning text-dark">{{ ($nivelImperio * 15 + 10) - count(Auth::user()->jugador->planetas) * 10 }}</span>
+                                    class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count(Auth::user()->jugador->planetas) * 10 }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless">
@@ -421,9 +425,9 @@
     <!-- Select2 -->
     <script src="{{ asset('js/select2/select2.min.js') }}"></script>
 
-
     <!-- Personalizado -->
     <script src="{{ asset('js/custom.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             var recursos = @json($recursos);
@@ -434,6 +438,7 @@
             var almacenes = @json($capacidadAlmacenes);
             // console.log(almacenes);
             activarIntervalo(recursos, almacenes, produccion, 250);
+            // $('select').selectpicker();
         });
 
     </script>

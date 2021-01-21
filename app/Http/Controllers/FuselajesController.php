@@ -85,7 +85,7 @@ class FuselajesController extends Controller
     //Acceso a subir nivel de construccion
     public function desbloquear($idFuselaje)
     {
-        Auth::user()->jugadores[0]->fuselajes()->attach($idFuselaje);
+        Auth::user()->jugador->fuselajes()->attach($idFuselaje);
         return redirect('/juego/fuselajes');
     }
 

@@ -8,10 +8,10 @@
                 <textarea class="ckeditor" name="descripcion" id="descripcion" maxlength="1500"></textarea>
             </div>
             <div class="col-3">
-                <button class="btn btn-success btn-block align-bottom" type="submit">
+                <button class="btn btn-success col-12 align-bottom" type="submit">
                     <i class="fa fa-share-square"></i> Enviar
                 </button>
-                <select id="listaJugadores" name="listaJugadores" type="text" class="form-control" multiple></select>
+                <select id="listaJugadores" name="listaJugadores" type="text" class="form-control"></select>
             </div>
         </div>
     </form>
@@ -19,9 +19,9 @@
 <script>
     $(document).ready(function() {
         $('#listaJugadores').select2({
-            theme: "bootstrap",
+            // theme: "bootstrap",
             width: '100%',
-            closeOnSelect: false,
+            // closeOnSelect: false,
             placeholder: "Nombre del jugador",
             data: [
                 @foreach ($jugadores as $jugador)
@@ -31,4 +31,10 @@
             language: "es"
         });
     });
+    CKEDITOR.editorConfig = function( config ) {
+        config.language = 'es';
+        config.uiColor = '#000000';
+        config.height = 300;
+        config.toolbarCanCollapse = true;
+    };
 </script>

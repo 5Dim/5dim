@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
+use App\Models\Jugadores;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class TerminarColas
         // Terminar colas pendientes
         EnConstrucciones::terminarColaConstrucciones();
         EnInvestigaciones::terminarColaInvestigaciones();
+        Jugadores::calcularPuntos(session()->get('jugadores_id'));
         return $next($request);
     }
 }

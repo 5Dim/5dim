@@ -204,8 +204,8 @@
                     $texto = 'Se requiere el diseño';
                     $clase = 'light';
                     $deshabilitado = 'disabled';
-                    if (!empty(Auth::user()->jugadores[0]->fuselajes->where('id', $disenio->id)->first())) {
-                    if ($disenio->id == Auth::user()->jugadores[0]->fuselajes->where('id', $disenio->id)->first()->id) {
+                    if (!empty(Auth::user()->jugador->fuselajes->where('id', $disenio->id)->first())) {
+                    if ($disenio->id == Auth::user()->jugador->fuselajes->where('id', $disenio->id)->first()->id) {
                     $texto = 'Diseniar';
                     $clase = 'primary';
                     $deshabilitado = '';

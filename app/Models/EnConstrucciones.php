@@ -19,7 +19,7 @@ class EnConstrucciones extends Model
     public static function terminarColaConstrucciones() {
         $colas = EnConstrucciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
         foreach ($colas as $cola) {
-            $cola->construcciones->nivel = $$cola->nivel;
+            $cola->construcciones->nivel = $cola->nivel;
 
             //En caso de reciclaje debe devolver los recursos
             if ($cola->accion == "Reciclando") {

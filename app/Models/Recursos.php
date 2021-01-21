@@ -80,6 +80,12 @@ class Recursos extends Model
         //Calculamos los yacimientos y el terraformador
         $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
 
+        if (empty($planetaActual->cualidades)) {
+            dd("TEST");
+            CualidadesPlanetas::agregarCualidades($planetaActual->id);
+            $planetaActual = Planetas::find($idPlaneta);
+        }
+
         //Minas
         $contProducciones = 1;
         $recursos->mineral += (($producciones[$contProducciones]->mineral * (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador) / 100)) / 3600 * $fechaCalculo);
@@ -173,14 +179,12 @@ class Recursos extends Model
         $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
         $numeroNiveles = 0;
         foreach ($construcciones as $construccion) {
-            if ($construccion->codigo != "almMineral" and $construccion->codigo != "almCristal") {
-                $numeroNiveles += $construccion->nivel;
-            }
+            $numeroNiveles += $construccion->nivel;
         }
 
         //Personal y creditos
         $recursos->personal = ($producciones[0]->personal / 3600 * $fechaCalculo) + $recursos->personal;
-        $recursos->creditos = ((($numeroNiveles * 1000 * $constanteCreditos) / (24 * 3600)) * $fechaCalculo) + $recursos->creditos;
+        $recursos->creditos = ((($numeroNiveles * $constanteCreditos * 1000) / (24 * 3600)) * $fechaCalculo) + $recursos->creditos;
 
         //Comprobamos almacenes
         $contAlmacenes = 0;

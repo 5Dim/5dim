@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Jugadores::factory()->times(100)->create();
         Planetas::factory()->times(1000)->create();
-        CualidadesPlanetas::factory()->times(100)->create();
+        CualidadesPlanetas::factory()->times(1000)->create();
         Recursos::factory()->times(1)->create();
     }
 }

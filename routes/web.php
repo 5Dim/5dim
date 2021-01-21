@@ -48,6 +48,15 @@ Route::get('/admin/DatosMaestros', [DatosMaestrosController::class, 'index']);
 //Rutas generales sin auth
 Route::get('/pruebas', [JuegoController::class, 'pruebas']);
 
+Route::middleware(
+    ['auth:sanctum', 'verified']
+)->group(
+    function () {
+        //Cambiar opciones del usuario
+        Route::get('/configuracion', [PrincipalController::class, 'configuracion']);
+        Route::post('/update', [PrincipalController::class, 'update']);
+    }
+);
 Route::get('/juego/astrometria/ajax/universo', [AstrometriaController::class, 'generarUniverso']);
 Route::get('/juego/astrometria/ajax/radares', [AstrometriaController::class, 'generarRadares']);
 Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'generarFlotas']);
@@ -56,9 +65,6 @@ Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'gen
 Route::middleware(
     ['auth:sanctum', 'verified', JugadorLogueado::class, TerminarColas::class]
 )->group(function () {
-    //Cambiar opciones del usuario
-    Route::get('/configuracion', [PrincipalController::class, 'configuracion']);
-    Route::post('/update', [PrincipalController::class, 'update']);
 
     //Rutas generales
     Route::get('/juego', [JuegoController::class, 'index']);
