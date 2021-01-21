@@ -13,4 +13,5 @@ npm-debug.log
 yarn-error.log
 *.sql
 *.xlsx
-vagrant.sh
+start.sh
+stop.sh
