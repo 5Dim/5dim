@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Jugadores extends Model
 {
@@ -74,5 +75,17 @@ class Jugadores extends Model
         }
         $jugador->puntos_investigacion = $puntosJugador * 1000;
         $jugador->save();
+    }
+
+    public static function nuevoJugador () {
+        $jugador = new Jugadores();
+        $jugador->nombre = Auth::user()->name;
+        $jugador->avatar = "/img/avatar.jpg";
+        $jugador->user_id = Auth::user()->id;
+        $jugador->save();
+        $planetaElegido = Planetas::inRandomOrder()->first();
+        $planetaElegido->jugadores_id = $jugador->id;
+        $planetaElegido->save();
+        CualidadesPlanetas::agregarCualidades($planetaElegido->id, 40);
     }
 }

@@ -20,6 +20,16 @@ class JugadorLogueado
      */
     public function handle(Request $request, Closure $next)
     {
+        // Comprobamos que los datos maestros existan
+        $constantesCheck = Constantes::find(1);
+        if (empty($constantesCheck)) {
+            return redirect('/admin/DatosMaestros');
+        }
+        //Comprobamos si el usuario tiene un jugador en el mundo
+        if (empty(Auth::user()->jugador)) {
+            Jugadores::nuevoJugador();
+            return redirect('/juego/construccion'); //Se redirige para que coja los cambios
+        }
         // Añadimos el jugador
         if (!session()->has('jugadores_id')) {
             session()->put('jugadores_id', Auth::user()->jugador->id);
@@ -53,10 +63,6 @@ class JugadorLogueado
             ) {
                 session()->put('planetas_id', Auth::user()->jugador->planetas[0]->id);
             }
-        }
-        $constantesCheck = Constantes::find(1);
-        if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
         }
         return $next($request);
     }

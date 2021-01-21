@@ -20,7 +20,7 @@ class CreateJugadoresTable extends Migration
             $table->integer('puntos_construccion')->default(0);
             $table->integer('puntos_investigacion')->default(0);
             $table->integer('puntos_flotas')->default(0);
-            $table->integer('universo_id');
+            // $table->integer('universo_id');
             $table->timestamp('premiun_at')->nullable();
             $table->timestamps();
         });
