@@ -63,7 +63,12 @@ Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'gen
 
 //Middleware de auth
 Route::middleware(
-    ['auth:sanctum', 'verified', JugadorLogueado::class, TerminarColas::class]
+    [
+        'auth:sanctum',
+        'verified',
+        JugadorLogueado::class,
+        TerminarColas::class
+    ]
 )->group(function () {
 
     //Rutas generales
