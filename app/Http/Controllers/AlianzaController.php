@@ -150,7 +150,6 @@ class AlianzaController extends Controller
 
         $jugador = new Jugadores();
         $jugador->nombre = request()->input('nombre');
-        $jugador->universo_id = 0;
         $jugador->alianzas_id = $alianza->id;
         $jugador->save();
 

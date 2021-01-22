@@ -8,7 +8,7 @@
                         {{ trans('investigacion.' . $investigacion->codigo) }} nivel {{ $investigacion->nivel
                             }} (de 90)
                         <span class="text-warning">
-                            {{ count($investigacion->eninvestigaciones) > 0 and $clase != 'danger' ? 'En cola nivel: ' . $investigacion->eninvestigaciones[count($investigacion->eninvestigaciones) - 1]->nivel : '' }}
+                            {{ count($investigacion->eninvestigaciones) > 0 ? 'En cola nivel: ' . $investigacion->eninvestigaciones[count($investigacion->eninvestigaciones) - 1]->nivel : '' }}
                         </span>
                     </td>
                     <td colspan="3" class="text-success text-center borderless align-middle"

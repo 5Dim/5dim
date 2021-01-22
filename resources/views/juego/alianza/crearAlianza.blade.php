@@ -40,7 +40,7 @@
                                         </select>
                                     </td>
                                     <td class="anchofijo text-secondary ">
-                                        <button type="submit" class="btn btn-outline-success btn-block">
+                                        <button type="submit" class="btn btn-outline-success col-12">
                                             <i class="fa fa-check-double"></i> Enviar solicitud
                                         </button>
                                     </td>
@@ -141,7 +141,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="anchofijo text-success borderless">
-                                        <button type="submit" class="btn btn-outline-success btn-block btn-sm">
+                                        <button type="submit" class="btn btn-outline-success col-12 btn-sm">
                                             <i class="fa fa-check-double"></i> Fundar alianza
                                         </button>
                                     </td>
@@ -157,7 +157,7 @@
         $(document).ready(function() {
             $('#listaAlianzas').select2({
                 placeholder: "Nombre de la alianza",
-                theme: "bootstrap",
+                // theme: "bootstrap",
                 width: '100%',
                 language: "es"
             });

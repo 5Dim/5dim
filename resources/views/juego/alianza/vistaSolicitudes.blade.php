@@ -55,13 +55,13 @@
                 </tr>
                 <tr>
                     <td colspan="3" width="50%">
-                        <a class="btn btn-outline-danger btn-block btn-sm"
+                        <a class="btn btn-outline-danger col-12 btn-sm"
                             href="{{ url('juego/rechazarSolicitud/' . $solicitud->id) }}" role="button">
                             <i class="fa fa-times"></i> Rechazar
                         </a>
                     </td>
                     <td colspan="3" width="50%">
-                        <a class="btn btn-outline-success btn-block btn-sm"
+                        <a class="btn btn-outline-success col-12 btn-sm"
                             href="{{ url('juego/aceptarSolicitud/' . $solicitud->id) }}" role="button">
                             <i class="fa fa-check-square"></i> Aceptar
                         </a>

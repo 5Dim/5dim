@@ -4,22 +4,22 @@
             <table class="table table-borderless borderless table-sm text-center anchofijo">
                 <tr>
                     <td colspan="1" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button"
-                            aria-expanded="false" data-target=".mensajeEnviado{{ $mensaje->id }}"
+                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href="" role="button"
+                            aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <big>{{ $mensaje->jugadores->nombre }}<big>
                         </a>
                     </td>
                     <td colspan="8" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button"
-                            aria-expanded="false" data-target=".mensajeEnviado{{ $mensaje->id }}"
+                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href="" role="button"
+                            aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <big>Asunto: {{ $mensaje->asunto }}<big>
                         </a>
                     </td>
                     <td colspan="1" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-toggle="collapse" href="" role="button"
-                            aria-expanded="false" data-target=".mensajeEnviado{{ $mensaje->id }}"
+                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href="" role="button"
+                            aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <big>{{ $mensaje->created_at }}<big>
                         </a>
@@ -52,20 +52,20 @@
                 class="table table-sm table-borderless text-center anchofijo collapse mensajeEnviado{{ $mensaje->id }}">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-danger btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal">
+                        <button type="button" class="btn btn-outline-danger col-12 btn-sm " data-bs-toggle="modal"
+                            data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Eliminar
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal">
+                        <button type="button" class="btn btn-outline-primary col-12 btn-sm " data-bs-toggle="modal"
+                            data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Reportar
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success btn-block btn-sm " data-toggle="modal"
-                            data-target="#datosModal">
+                        <button type="button" class="btn btn-outline-success col-12 btn-sm " data-bs-toggle="modal"
+                            data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Responder
                         </button>
                     </td>

@@ -68,7 +68,6 @@ class DisenioController extends Controller
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
 
-        EnDisenios::terminarColaDisenios();
         $colaDisenios = EnDisenios::where('planetas_id', session()->get('planetas_id'))->get();
         $PConstantes = Constantes::where('tipo', 'produccion')->get();
 

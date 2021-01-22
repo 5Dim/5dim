@@ -82,7 +82,7 @@ class AstrometriaController extends Controller
         $universo = [];
         $planetas = Planetas::select('estrella', 'jugadores_id')->orderBy('jugadores_id', 'desc')->distinct()->get(['estrella']);
         foreach ($planetas as $planeta) {
-            if ($planeta->jugadores_id > 1) {
+            if ($planeta->jugadores_id > 0) {
                 $planetita = new Planetas();
                 $planetita->habitado = 1;
                 $planetita->estrella = $planeta->estrella;

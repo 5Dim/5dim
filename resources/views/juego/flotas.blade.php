@@ -54,12 +54,12 @@
                                 Cantidad
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     En la flota
                                 </button>
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     En hangar
                                 </button>
                             </th>
@@ -415,69 +415,69 @@
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     Tienes
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     Envias
                                 </button>
                             </td>
@@ -649,69 +649,69 @@
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     Tienes
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     Envias
                                 </button>
                             </td>

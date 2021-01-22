@@ -48,6 +48,6 @@ class DatabaseSeeder extends Seeder
             'tipo' => 'canon',
         ]);
         // CualidadesPlanetas::factory()->times(1000)->create();
-        Recursos::factory()->times(1)->create();
+        // Recursos::factory()->times(1)->create();
     }
 }

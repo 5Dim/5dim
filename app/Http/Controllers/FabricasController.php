@@ -149,6 +149,9 @@ class FabricasController extends Controller
         $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
         $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
 
+        $disenio->estacionadas->cantidad -= $cantidad;
+        $disenio->estacionadas->save();
+
         //Generamos la cola
         $cola = new EnDisenios();
         $cola->nombre = $disenio->nombre;
@@ -167,18 +170,24 @@ class FabricasController extends Controller
     public function cancelar($idCola)
     {
         $cola = EnDisenios::find($idCola);
-        $coste = Disenios::find($cola->disenios_id)->costes;
+        $disenio = Disenios::find($cola->disenios_id);
+        $coste = $disenio->costes;
         $recursos = $cola->planetas->recursos;
         $cancelar = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
 
-        $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
-        $recursos->cristal += (($coste->cristal * $cola->cantidad) * $cancelar);
-        $recursos->gas += (($coste->gas * $cola->cantidad) * $cancelar);
-        $recursos->plastico += (($coste->plastico * $cola->cantidad) * $cancelar);
-        $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $cancelar);
-        $recursos->liquido += (($coste->liquido * $cola->cantidad) * $cancelar);
-        $recursos->micros += (($coste->micros * $cola->cantidad) * $cancelar);
-        $recursos->save();
+        if ($cola->accion == "Reciclando") {
+            $disenio->estacionadas->cantidad += $cola->cantidad;
+            $disenio->estacionadas->save();
+        }else {
+            $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
+            $recursos->cristal += (($coste->cristal * $cola->cantidad) * $cancelar);
+            $recursos->gas += (($coste->gas * $cola->cantidad) * $cancelar);
+            $recursos->plastico += (($coste->plastico * $cola->cantidad) * $cancelar);
+            $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $cancelar);
+            $recursos->liquido += (($coste->liquido * $cola->cantidad) * $cancelar);
+            $recursos->micros += (($coste->micros * $cola->cantidad) * $cancelar);
+            $recursos->save();
+        }
         $cola->delete();
 
 
