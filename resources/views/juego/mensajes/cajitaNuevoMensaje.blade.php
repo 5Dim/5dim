@@ -24,6 +24,7 @@
             // closeOnSelect: false,
             placeholder: "Nombre del jugador",
             data: [
+                { id: 0, text: "Nombre del jugador" },
                 @foreach ($jugadores as $jugador)
                     { id: {{ $jugador->id }}, text: "{{ $jugador->nombre }}" },
                 @endforeach

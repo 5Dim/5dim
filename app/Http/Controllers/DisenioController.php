@@ -461,6 +461,10 @@ class DisenioController extends Controller
             'arrayEnergiaArmas',
             'arrayObjetos',
             'esteDisenio',
+            'disenio',
+            'armas',
+            'constantesI',
+            'costesArmas',
         ));
     }
 

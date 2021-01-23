@@ -339,7 +339,6 @@
                             $texto=" Construir";
                             foreach ($dependencias as $dependencia) {
                                 if ($dependencia->codigo==$construccion->codigo){
-                                        // Log::error($construcciones->where('codigo',$dependencia->codigoRequiere)->first()->nivel);
                                         $nivelTengo=$construcciones->where('codigo',$dependencia->codigoRequiere)->first()->nivel;
                                     if ( $nivelTengo < $dependencia->nivelRequiere){
                                         $texto.=" requiere ".trans('construccion.' .  $dependencia->codigoRequiere)." nivel ".$dependencia->nivelRequiere;
