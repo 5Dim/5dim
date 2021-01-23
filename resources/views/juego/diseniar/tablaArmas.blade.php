@@ -69,7 +69,7 @@ if ($cantidadCLigeras>0){
     array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-1-color');
-    array_push($arrayTooltip,'% de energía a caniones ligeros');
+    array_push($arrayTooltip,'% de energía a cañones ligeros');
     $arrayArmasTengo['cantidadCLigeras']=1;
 }
 if ($cantidadCLigeras>6){
@@ -84,7 +84,7 @@ if ($cantidadCMedias>0){
     array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-2-color');
-    array_push($arrayTooltip,'% de energía a caniones medios');
+    array_push($arrayTooltip,'% de energía a cañones medios');
     $arrayArmasTengo['cantidadCMedias']=1;
 }
 if ($cantidadCMedias>6){
@@ -99,7 +99,7 @@ if ($cantidadCPesadas>0){
     array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-3-color');
-    array_push($arrayTooltip,'% de energía a caniones pesados');
+    array_push($arrayTooltip,'% de energía a cañones pesados');
     $arrayArmasTengo['cantidadCPesadas']=1;
 }
 if ($cantidadCPesadas>6){
@@ -114,7 +114,7 @@ if ($cantidadCInsertadas>0){
     array_push($arrayStart,$porcentAcumulado);
     array_push($arrayConnect,true);
     array_push($arrayCss,'c-4-color');
-    array_push($arrayTooltip,'% de energía a caniones insertados');
+    array_push($arrayTooltip,'% de energía a cañones insertados');
     $arrayArmasTengo['cantidadCInsertadas']=1;
 }
 if ($cantidadCInsertadas>6){
@@ -252,7 +252,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                 <div id="cuadro1" class=" cajita">
                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                         <tr>
-                                            <td colspan="4">
+                                            <td colspan="7">
                                                 <div class=" text-light" id="motorestxt"> x{{$multiplicadorMotores}} Motores, &nbsp;&nbsp;&nbsp; Energía:  <span class="text-success" id ="energiamotor"></span></div>
                                             </td>
                                         </tr>
@@ -537,7 +537,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                 <div id="cuadro1" class=" cajita">
                                     <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                         <tr>
-                                            <td colspan="4">
+                                            <td colspan="7">
                                                 <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes, &nbsp;&nbsp;&nbsp;Energía: <span class="text-danger"  id ="energiablindaje"></span></div>
                                             </td>
                                             </td>
@@ -593,7 +593,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                     <div class="slider" id="dispersionArmasLigeras"></div>
                                 </td>
                                 <td class="text-warning align-middle">
-                                    x{{$multiplicadorCLigeras}}   Caniones Ligeros <br>(energía=<span id="energiaarmasLigera"></span>)
+                                    x{{$multiplicadorCLigeras}}   Cañones Ligeros <br>(energía=<span id="energiaarmasLigera"></span>)
                                 </td>
                                 <script>
                                     noUiSlider.create(document.getElementById('alcanceArmasLigeras'), {
@@ -633,7 +633,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                     <div class="slider" id="dispersionArmasMedias"></div>
                                 </td>
                                 <td class="text-warning align-middle">
-                                    x{{$multiplicadorCMedias}}   Caniones Medios <br>(energía=<span id="energiaarmasMedia"></span>)
+                                    x{{$multiplicadorCMedias}}   Cañones Medios <br>(energía=<span id="energiaarmasMedia"></span>)
                                 </td>
                                 <script>
                                     noUiSlider.create(document.getElementById('alcanceArmasMedias'), {
@@ -673,7 +673,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                     <div class="slider" id="dispersionArmasPesadas"></div>
                                 </td>
                                 <td class="text-warning align-middle">
-                                    x{{$multiplicadorCPesadas}}   Caniones Pesados<br>(energía=<span id="energiaarmasPesada"></span>)
+                                    x{{$multiplicadorCPesadas}}   Cañones Pesados<br>(energía=<span id="energiaarmasPesada"></span>)
                                 </td>
                                 <script>
                                     noUiSlider.create(document.getElementById('alcanceArmasPesadas'), {
@@ -713,7 +713,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                     <div class="slider" id="dispersionArmasInsertadas"></div>
                                 </td>
                                 <td class="text-warning align-middle">
-                                    x{{$multiplicadorCInsertadas}}   Caniones insertados<br>(energía=<span id="energiaarmasInsertada"></span>)
+                                    x{{$multiplicadorCInsertadas}}   Cañones insertados<br>(energía=<span id="energiaarmasInsertada"></span>)
                                 </td>
                                 <script>
                                     noUiSlider.create(document.getElementById('alcanceArmasInsertadas'), {
@@ -1141,8 +1141,11 @@ function limpiar(){
 //tooltip de slider
 
         var arrayTooltip={!!json_encode($arrayTooltip)!!};
+        var repartoInicial=100/arrayTooltip.length;
+        var repartoarray=new Array();
         var a=1;
         arrayTooltip.forEach(function(n){
+            repartoarray[a-1]=repartoInicial*a;
                 a++;
                 if(a==2){
                     $("#slider-color > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").prop("data-bs-toggle","tooltip");
@@ -1155,6 +1158,7 @@ function limpiar(){
                 }
 
             })
+            slider.noUiSlider.set(repartoarray); //reparte a partes iguales las barras
 @endif
 
 
@@ -1452,7 +1456,7 @@ ataques={
 };
 
 
-// aniado energia
+// añado energia
 elemento='motor';
 genera='energia';
 $.each( armas[elemento], function( key, e ) {
