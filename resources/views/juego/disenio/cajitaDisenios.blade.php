@@ -14,7 +14,6 @@
                         <big>Cantidad:
                             {{ empty($disenio->estacionadas->cantidad) ? '0' : number_format($disenio->estacionadas->cantidad, 0, ',', '.') }}<big>
                     </th>
-                    {{$disenio->estacionadas}}
                 </tr>
                 <tr>
                     <td rowspan="4" class="anchofijo text-warning borderless">
@@ -227,8 +226,8 @@
                         </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12 btn-sm " data-toggle="modal"
-                            data-target="#datosModal">
+                        <button type="button" class="btn btn-outline-primary col-12 btn-sm " data-bs-toggle="modal"
+                            data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>

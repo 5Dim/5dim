@@ -68,7 +68,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "NIKE":
+            case  "MIZAR":
                 $Tnavet = "ligera";
                 $Tnave = 1;
                 $inirec8 = 1;
@@ -105,7 +105,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "HACHIMAN":
+            case  "ISHTAR":
                 $Tnavet = "ligera";
                 $Tnave = 1;
                 $inirec8 = 1;
@@ -116,7 +116,7 @@ class CualidadesFuselajes extends Model
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa
                 $inirec18 = 1;  //factor de velocidad base
-                $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 14; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 2;     // caniones ligeros, cantidad por tipo
                 $CRnave2 = 1;     // caniones media, cantidad por tipo
@@ -339,8 +339,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 30;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -376,11 +376,11 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 2000;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;  //factor de velocidad base
-                $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 3; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 18;     // caniones ligeros, cantidad por tipo
                 $CRnave2 = 12;     // caniones media, cantidad por tipo
@@ -389,14 +389,14 @@ class CualidadesFuselajes extends Model
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
                 $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
-                $CRnave8 = 20;     // CARGA PEQUEniA, cantidad por tipo
-                $CRnave9 = 0;     // MEDIANA, cantidad por tipo
+                $CRnave8 = 30;     // CARGA PEQUEniA, cantidad por tipo
+                $CRnave9 = 5;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 4;         //mejoras
                 $CRnave12 = 210;         // blindajes
-                $CRnave13 = 60;         // motores
+                $CRnave13 = 100;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -413,7 +413,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 60;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -425,14 +425,14 @@ class CualidadesFuselajes extends Model
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 6;     // caniones Misiles, cantidad por tipo
+                $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 90;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 4;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 5;         //mejoras
-                $CRnave12 = 26;         // blindajes
+                $CRnave12 = 35;         // blindajes
                 $CRnave13 = 52;         // motores
 
 
@@ -457,7 +457,7 @@ class CualidadesFuselajes extends Model
                 $inirec18 = 1;  //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 2;     // caniones ligeros, cantidad por tipo
+                $CRnave1 = 1;     // caniones ligeros, cantidad por tipo
                 $CRnave2 = 0;     // caniones media, cantidad por tipo
                 $CRnave3 = 0;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
@@ -490,19 +490,19 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 15; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 3;     // caniones ligeros, cantidad por tipo
-                $CRnave2 = 3;     // caniones media, cantidad por tipo
+                $CRnave1 = 2;     // caniones ligeros, cantidad por tipo
+                $CRnave2 = 2;     // caniones media, cantidad por tipo
                 $CRnave3 = 0;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 2;     // caniones Misiles, cantidad por tipo
+                $CRnave7 = 4;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 0;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 0;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
@@ -547,7 +547,7 @@ class CualidadesFuselajes extends Model
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
-                $CRnave11 = 3;         //mejoras
+                $CRnave11 = 1;         //mejoras
                 $CRnave12 = 2;         // blindajes
                 $CRnave13 = 12;         // motores
 
@@ -603,8 +603,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 150;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
@@ -614,7 +614,7 @@ class CualidadesFuselajes extends Model
                 $CRnave3 = 1;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
-                $CRnave6 = 3;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
+                $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
                 $CRnave7 = 2;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 30;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 2;     // MEDIANA, cantidad por tipo
@@ -641,7 +641,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -677,7 +677,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 1500;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -697,7 +697,7 @@ class CualidadesFuselajes extends Model
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 6;         //mejoras
                 $CRnave12 = 80;         // blindajes
-                $CRnave13 = 1322;         // motores
+                $CRnave13 = 1323;         // motores
 
 
 
@@ -716,7 +716,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 75;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ///defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -754,7 +754,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ///defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
@@ -794,7 +794,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ////factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
@@ -833,7 +833,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ////factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
@@ -869,8 +869,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 40;
                 $inirec12 = 1;    ////factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -907,7 +907,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ////factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;  //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -925,7 +925,7 @@ class CualidadesFuselajes extends Model
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 4;         //mejoras
-                $CRnave12 = 2;         // blindajes
+                $CRnave12 = 3;         // blindajes
                 $CRnave13 = 20;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
@@ -944,10 +944,10 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
-                $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 4;     // caniones ligeros, cantidad por tipo
                 $CRnave2 = 1;     // caniones media, cantidad por tipo
@@ -980,8 +980,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 40;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;  //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -999,7 +999,7 @@ class CualidadesFuselajes extends Model
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 6;         //mejoras
-                $CRnave12 = 30;         // blindajes
+                $CRnave12 = 40;         // blindajes
                 $CRnave13 = 268;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
@@ -1017,8 +1017,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 110;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ///defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -1056,27 +1056,27 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 700;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;  //factor de velocidad base
-                $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 5; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 6;     // caniones ligeros, cantidad por tipo
-                $CRnave2 = 6;     // caniones media, cantidad por tipo
-                $CRnave3 = 12;     //caniones pesados, cantidad por tipo
+                $CRnave1 = 35;     // caniones ligeros, cantidad por tipo
+                $CRnave2 = 25;     // caniones media, cantidad por tipo
+                $CRnave3 = 20;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 2;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 18;     // caniones Misiles, cantidad por tipo
+                $CRnave7 = 15;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 20;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 2;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 1;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 6;         //mejoras
-                $CRnave12 = 308;         // blindajes
-                $CRnave13 = 486;         // motores
+                $CRnave12 = 624;         // blindajes
+                $CRnave13 = 870;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1093,27 +1093,27 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 650;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
-                $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 4; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 6;     // caniones ligeros, cantidad por tipo
-                $CRnave2 = 48;     // caniones media, cantidad por tipo
-                $CRnave3 = 30;     //caniones pesados, cantidad por tipo
-                $CRnave4 = 18;     //caniones insertado, cantidad por tipo
+                $CRnave1 = 10;     // caniones ligeros, cantidad por tipo
+                $CRnave2 = 10;     // caniones media, cantidad por tipo
+                $CRnave3 = 20;     //caniones pesados, cantidad por tipo
+                $CRnave4 = 15;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 12;     // caniones Misiles, cantidad por tipo
-                $CRnave8 = 50;     // CARGA PEQUEniA, cantidad por tipo
-                $CRnave9 = 10;     // MEDIANA, cantidad por tipo
-                $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
-                $CRnave14 = 2;
+                $CRnave7 = 50;     // caniones Misiles, cantidad por tipo
+                $CRnave8 = 20;     // CARGA PEQUEniA, cantidad por tipo
+                $CRnave9 = 5;     // MEDIANA, cantidad por tipo
+                $CRnave10 = 1;     //CARGA GRANDE, cantidad por tipo
+                $CRnave14 = 0;  //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 8;         //mejoras
-                $CRnave12 = 490;         // blindajes
-                $CRnave13 = 1500;         // motores
+                $CRnave12 = 1200;         // blindajes
+                $CRnave13 = 2635;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1141,7 +1141,7 @@ class CualidadesFuselajes extends Model
                 $CRnave3 = 0;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
-                $CRnave6 = 4;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
+                $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
                 $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 20;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 16;     // MEDIANA, cantidad por tipo
@@ -1150,7 +1150,7 @@ class CualidadesFuselajes extends Model
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 6;         //mejoras
                 $CRnave12 = 55;         // blindajes
-                $CRnave13 = 48;         // motores
+                $CRnave13 = 70;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1169,8 +1169,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 450;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
@@ -1206,8 +1206,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 850;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
@@ -1243,8 +1243,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 3;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -1280,7 +1280,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 20;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -1312,7 +1312,7 @@ class CualidadesFuselajes extends Model
 
 
 
-            case  "ISHTAR": // sin espacios ni signos
+            case  "SONDA": // sin espacios ni signos
 
 
                 $Tnavet = "ligera";
@@ -1325,7 +1325,7 @@ class CualidadesFuselajes extends Model
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
-                $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 22; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 0;     // caniones ligeros, cantidad por tipo
                 $CRnave2 = 0;     // caniones media, cantidad por tipo
@@ -1367,20 +1367,20 @@ class CualidadesFuselajes extends Model
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 6;     // caniones ligeros, cantidad por tipo
+                $CRnave1 = 3;     // caniones ligeros, cantidad por tipo
                 $CRnave2 = 0;     // caniones media, cantidad por tipo
                 $CRnave3 = 0;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 1;     // caniones Misiles, cantidad por tipo
+                $CRnave7 = 2;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 0;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 0;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 5;         //mejoras
-                $CRnave12 = 1;         // blindajes
+                $CRnave12 = 2;         // blindajes
                 $CRnave13 = 74;         // motores
 
 
@@ -1401,19 +1401,19 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 140;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 4;     // caniones ligeros, cantidad por tipo
-                $CRnave2 = 8;     // caniones media, cantidad por tipo
-                $CRnave3 = 4;     //caniones pesados, cantidad por tipo
+                $CRnave2 = 10;     // caniones media, cantidad por tipo
+                $CRnave3 = 6;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
-                $CRnave6 = 1;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 2;     // caniones Misiles, cantidad por tipo
+                $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
+                $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 10;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 0;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
@@ -1442,7 +1442,7 @@ class CualidadesFuselajes extends Model
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
-                $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 17; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 6;     // caniones ligeros, cantidad por tipo
                 $CRnave2 = 4;     // caniones media, cantidad por tipo
@@ -1458,7 +1458,7 @@ class CualidadesFuselajes extends Model
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 4;         //mejoras
                 $CRnave12 = 4;         // blindajes
-                $CRnave13 = 44;         // motores
+                $CRnave13 = 35;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1475,8 +1475,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 190;
                 $inirec12 = 1;    //; //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -1533,7 +1533,7 @@ class CualidadesFuselajes extends Model
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 5;         //mejoras
-                $CRnave12 = 56;         // blindajes
+                $CRnave12 = 75;         // blindajes
                 $CRnave13 = 90;         // motores
 
 
@@ -1552,8 +1552,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 190;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -1564,7 +1564,7 @@ class CualidadesFuselajes extends Model
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 2;     // caniones Misiles, cantidad por tipo
+                $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 60;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 0;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
@@ -1590,7 +1590,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -1626,8 +1626,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 240;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -1663,8 +1663,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 100;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
@@ -1700,8 +1700,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 240;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -1737,27 +1737,27 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 1400;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;    //factor de velocidad base
-                $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 4; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 30;     // caniones ligeros, cantidad por tipo
-                $CRnave2 = 24;     // caniones media, cantidad por tipo
-                $CRnave3 = 12;     //caniones pesados, cantidad por tipo
-                $CRnave4 = 6;     //caniones insertado, cantidad por tipo
+                $CRnave1 = 120;     // caniones ligeros, cantidad por tipo
+                $CRnave2 = 60;     // caniones media, cantidad por tipo
+                $CRnave3 = 40;     //caniones pesados, cantidad por tipo
+                $CRnave4 = 2;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 8;     // caniones Misiles, cantidad por tipo
+                $CRnave7 = 10;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 10;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 4;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 2;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 7;         //mejoras
-                $CRnave12 = 364;         // blindajes
-                $CRnave13 = 344;         // motores
+                $CRnave12 = 1125;         // blindajes
+                $CRnave13 = 2350;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1774,8 +1774,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 140;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -1785,15 +1785,15 @@ class CualidadesFuselajes extends Model
                 $CRnave3 = 3;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
-                $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 13;     // caniones Misiles, cantidad por tipo
+                $CRnave6 = 30;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
+                $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 0;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 0;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 7;         //mejoras
-                $CRnave12 = 32;         // blindajes
+                $CRnave12 = 70;         // blindajes
                 $CRnave13 = 208;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
@@ -1811,27 +1811,27 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 1000;
                 $inirec12 = 1;    ////factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;  //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 6;     // caniones ligeros, cantidad por tipo
-                $CRnave2 = 12;     // caniones media, cantidad por tipo
-                $CRnave3 = 6;     //caniones pesados, cantidad por tipo
-                $CRnave4 = 3;     //caniones insertado, cantidad por tipo
+                $CRnave1 = 10;     // caniones ligeros, cantidad por tipo
+                $CRnave2 = 6;     // caniones media, cantidad por tipo
+                $CRnave3 = 5;     //caniones pesados, cantidad por tipo
+                $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 6;     // caniones Misiles, cantidad por tipo
-                $CRnave8 = 40;     // CARGA PEQUEniA, cantidad por tipo
-                $CRnave9 = 10;     // MEDIANA, cantidad por tipo
-                $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
-                $CRnave14 = 0;    //Carga ENorme
+                $CRnave7 = 3;     // caniones Misiles, cantidad por tipo
+                $CRnave8 = 500;     // CARGA PEQUEniA, cantidad por tipo
+                $CRnave9 = 50;     // MEDIANA, cantidad por tipo
+                $CRnave10 = 25;     //CARGA GRANDE, cantidad por tipo
+                $CRnave14 = 15;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 5;         //mejoras
-                $CRnave12 = 266;         // blindajes
-                $CRnave13 = 130;         // motores
+                $CRnave12 = 326;         // blindajes
+                $CRnave13 = 314;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1860,15 +1860,15 @@ class CualidadesFuselajes extends Model
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 4;     // caniones Misiles, cantidad por tipo
+                $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 20;     // CARGA PEQUEniA, cantidad por tipo
-                $CRnave9 = 1;     // MEDIANA, cantidad por tipo
+                $CRnave9 = 20;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 3;         //mejoras
-                $CRnave12 = 40;         // blindajes
-                $CRnave13 = 36;         // motores
+                $CRnave12 = 20;         // blindajes
+                $CRnave13 = 60;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1885,8 +1885,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 140;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -1904,8 +1904,8 @@ class CualidadesFuselajes extends Model
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 5;         //mejoras
-                $CRnave12 = 24;         // blindajes
-                $CRnave13 = 98;         // motores
+                $CRnave12 = 30;         // blindajes
+                $CRnave13 = 170;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1922,7 +1922,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 1540;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -1942,7 +1942,7 @@ class CualidadesFuselajes extends Model
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 5;         //mejoras
                 $CRnave12 = 115;         // blindajes
-                $CRnave13 = 252;         // motores
+                $CRnave13 = 412;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -1978,7 +1978,7 @@ class CualidadesFuselajes extends Model
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 3;         //mejoras
-                $CRnave12 = 1;         // blindajes
+                $CRnave12 = 2;         // blindajes
                 $CRnave13 = 24;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
@@ -1997,25 +1997,25 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 2;     // caniones ligeros, cantidad por tipo
+                $CRnave1 = 10;     // caniones ligeros, cantidad por tipo
                 $CRnave2 = 0;     // caniones media, cantidad por tipo
-                $CRnave3 = 2;     //caniones pesados, cantidad por tipo
+                $CRnave3 = 0;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 3;     // caniones Misiles, cantidad por tipo
+                $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 8;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 0;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 6;         //mejoras
-                $CRnave12 = 8;         // blindajes
+                $CRnave12 = 10;         // blindajes
                 $CRnave13 = 44;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
@@ -2033,8 +2033,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 2800;
                 $inirec12 = 1;    ////factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -2073,8 +2073,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 3440;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -2133,10 +2133,7 @@ class CualidadesFuselajes extends Model
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 4;         //mejoras
                 $CRnave12 = 14;         // blindajes
-                $CRnave13 = 15;         // motores
-
-
-
+                $CRnave13 = 70;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -2153,7 +2150,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 100;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -2190,27 +2187,27 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 5140;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
-                $maxvel = 06; // indica la velocidad máxima que puede tener este disenio,
+                $maxvel = 4; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 6;     // caniones ligeros, cantidad por tipo
-                $CRnave2 = 3;     // caniones media, cantidad por tipo
-                $CRnave3 = 2;     //caniones pesados, cantidad por tipo
+                $CRnave1 = 15;     // caniones ligeros, cantidad por tipo
+                $CRnave2 = 10;     // caniones media, cantidad por tipo
+                $CRnave3 = 10;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 6;     // caniones Misiles, cantidad por tipo
-                $CRnave8 = 500;     // CARGA PEQUEniA, cantidad por tipo
-                $CRnave9 = 50;     // MEDIANA, cantidad por tipo
-                $CRnave10 = 20;     //CARGA GRANDE, cantidad por tipo
-                $CRnave14 = 8;
+                $CRnave7 = 10;     // caniones Misiles, cantidad por tipo
+                $CRnave8 = 1500;     // CARGA PEQUEniA, cantidad por tipo
+                $CRnave9 = 500;     // MEDIANA, cantidad por tipo
+                $CRnave10 = 100;     //CARGA GRANDE, cantidad por tipo
+                $CRnave14 = 30;
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 5;         //mejoras
-                $CRnave12 = 252;         // blindajes
-                $CRnave13 = 312;         // motores
+                $CRnave12 = 584;         // blindajes
+                $CRnave13 = 624;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -2228,7 +2225,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -2238,16 +2235,16 @@ class CualidadesFuselajes extends Model
                 $CRnave3 = 12;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
-                $CRnave6 = 2;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
+                $CRnave6 = 40;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
                 $CRnave7 = 4;     // caniones Misiles, cantidad por tipo
-                $CRnave8 = 60;     // CARGA PEQUEniA, cantidad por tipo
+                $CRnave8 = 0;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 6;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 7;         //mejoras
                 $CRnave12 = 125;         // blindajes
-                $CRnave13 = 356;         // motores
+                $CRnave13 = 732;         // motores
 
 
 
@@ -2267,8 +2264,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 3240;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
@@ -2305,7 +2302,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
@@ -2341,8 +2338,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 140;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -2360,7 +2357,7 @@ class CualidadesFuselajes extends Model
                 $CRnave14 = 0;
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 6;         //mejoras
-                $CRnave12 = 105;         // blindajes
+                $CRnave12 = 130;         // blindajes
                 $CRnave13 = 232;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
@@ -2378,27 +2375,27 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 340;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
 
-                $CRnave1 = 8;     // caniones ligeros, cantidad por tipo
-                $CRnave2 = 8;     // caniones media, cantidad por tipo
-                $CRnave3 = 4;     //caniones pesados, cantidad por tipo
+                $CRnave1 = 100;     // caniones ligeros, cantidad por tipo
+                $CRnave2 = 20;     // caniones media, cantidad por tipo
+                $CRnave3 = 10;     //caniones pesados, cantidad por tipo
                 $CRnave4 = 0;     //caniones insertado, cantidad por tipo
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
-                $CRnave6 = 4;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
-                $CRnave7 = 6;     // caniones Misiles, cantidad por tipo
-                $CRnave8 = 150;     // CARGA PEQUEniA, cantidad por tipo
-                $CRnave9 = 10;     // MEDIANA, cantidad por tipo
-                $CRnave10 = 5;     //CARGA GRANDE, cantidad por tipo
+                $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
+                $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
+                $CRnave8 = 0;     // CARGA PEQUEniA, cantidad por tipo
+                $CRnave9 = 0;     // MEDIANA, cantidad por tipo
+                $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 7;         //mejoras
                 $CRnave12 = 165;         // blindajes
-                $CRnave13 = 420;         // motores
+                $CRnave13 = 1714;         // motores
 
                 $cualidades = [$codigo, $inirec8, $inirec12, $inirec13, $inirec14, $inirec15, $inirec16, $inirec18, $maxvel];
                 $armas = [$CRnave1, $CRnave2, $CRnave3, $CRnave4, $CRnave6, $CRnave7, $CRnave8, $CRnave9, $CRnave10, $CRnave14, $CRnave15, $CRnave11, $CRnave12, $CRnave13];
@@ -2417,8 +2414,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 940;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 20; // indica la velocidad máxima que puede tener este disenio,
@@ -2431,8 +2428,8 @@ class CualidadesFuselajes extends Model
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
                 $CRnave7 = 10;     // caniones Misiles, cantidad por tipo
                 $CRnave8 = 200;     // CARGA PEQUEniA, cantidad por tipo
-                $CRnave9 = 20;     // MEDIANA, cantidad por tipo
-                $CRnave10 = 10;     //CARGA GRANDE, cantidad por tipo
+                $CRnave9 = 25;     // MEDIANA, cantidad por tipo
+                $CRnave10 = 15;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 8;         //mejoras
@@ -2464,8 +2461,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec17 = 0;  //ataque
                 $inirec18 = 1;  //factor de velocidad base
@@ -2511,8 +2508,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec17 = 0;  //ataque
                 $inirec18 = 1;  //factor de velocidad base
@@ -2558,8 +2555,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec17 = 0;  //ataque
                 $inirec18 = 1;  //factor de velocidad base
@@ -2605,8 +2602,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec17 = 0;  //ataque
                 $inirec18 = 1;  //factor de velocidad base
@@ -2653,8 +2650,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec17 = 0;  //ataque
                 $inirec18 = 1;  //factor de velocidad base
@@ -2700,8 +2697,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec17 = 0;  //ataque
                 $inirec18 = 1;  //factor de velocidad base
@@ -2748,8 +2745,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec17 = 0;  //ataque
                 $inirec18 = 1;  //factor de velocidad base
@@ -2795,8 +2792,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec17 = 0;  //ataque
                 $inirec18 = 1;  //factor de velocidad base
@@ -2832,7 +2829,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
@@ -2909,7 +2906,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
@@ -2949,7 +2946,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
@@ -2990,7 +2987,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
@@ -3028,7 +3025,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 75;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1;  //defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -3062,7 +3059,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 75;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1;  //defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -3363,7 +3360,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 75;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1;  //defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -3397,7 +3394,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 75;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1;  //defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -3740,7 +3737,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 75;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ///defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -3775,7 +3772,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -3809,7 +3806,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -3842,7 +3839,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 10;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -3948,7 +3945,7 @@ class CualidadesFuselajes extends Model
                 $inirec12 = 1;    ////factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;  //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4087,8 +4084,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 150;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4121,8 +4118,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 30;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4155,8 +4152,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 40;
                 $inirec12 = 1;    ////factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4189,8 +4186,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 140;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4257,7 +4254,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 1500;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -4291,8 +4288,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 110;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ///defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4325,7 +4322,7 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 1540;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
+                $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
@@ -4359,8 +4356,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 450;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4393,8 +4390,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 2000;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;  //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4427,8 +4424,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 1400;
                 $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;    //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
@@ -4461,8 +4458,8 @@ class CualidadesFuselajes extends Model
                 $inirec11 = 650;
                 $inirec12 = 1;    // //factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
-                $inirec14 = 1;; //tiempo
-                $inirec15 = 1;; //moneda
+                $inirec14 = 1; //tiempo
+                $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 1;   //factor de velocidad base
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,

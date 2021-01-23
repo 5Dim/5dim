@@ -32,7 +32,7 @@ class CostesConstrucciones extends Model
     }
 
 
-    public function generaCostesConstrucciones($construcciones)
+    public static function generaCostesConstrucciones($construcciones)
     {
 
         $avelprodminas = Constantes::where('codigo', 'avelprodminas')->first()->valor / 10;
@@ -133,18 +133,18 @@ class CostesConstrucciones extends Model
                     $r1cce = [$codigo, 2, 2, 1, 1.5, 1.2, .2, 2, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                case "fabNaves":
+                case "hangar":
                     $r1cce = [$codigo, 3, 3, .2, 1.5, 1, .5, 1.5, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                case "fabTropas":
-                    $r1cce = [$codigo, .5, .1, 0, .2, .6, 0, .1, $nivel];
-                    $coste = $costesc->calculos($r1cce, $avelprodminas);
-                    break;
-                case "fabDefensas":
-                    $r1cce = [$codigo, 1, .8, 0, 0, 1, 0, .5, $nivel];
-                    $coste = $costesc->calculos($r1cce, $avelprodminas);
-                    break;
+                // case "fabTropas":
+                //     $r1cce = [$codigo, .5, .1, 0, .2, .6, 0, .1, $nivel];
+                //     $coste = $costesc->calculos($r1cce, $avelprodminas);
+                //     break;
+                // case "fabDefensas":
+                //     $r1cce = [$codigo, 1, .8, 0, 0, 1, 0, .5, $nivel];
+                //     $coste = $costesc->calculos($r1cce, $avelprodminas);
+                //     break;
                 case "observacion":
                     $r1cce = [$codigo, .5, 1.0, 0, 0, 0, 0, 3.5, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
@@ -165,7 +165,11 @@ class CostesConstrucciones extends Model
                     $r1cce = [$codigo, 2.5, 1.1, .1, 23.1, 16, 6.1, .3, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                case "potenciador":
+                case "potenciadorMinero":
+                    $r1cce = [$codigo, 55, 18, .1, 24.1, 12.5, 4.3, .7, $nivel];
+                    $coste = $costesc->calculos($r1cce, $avelprodminas);
+                    break;
+                case "potenciadorIndustrial":
                     $r1cce = [$codigo, 55, 18, .1, 24.1, 12.5, 4.3, .7, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;

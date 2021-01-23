@@ -20,15 +20,15 @@ class Recursos extends Model
         return $this->belongsTo(Planetas::class);
     }
 
-    public static function calcularRecursos($id)
+    public static function calcularRecursos($idPlaneta)
     {
         //Buscamos el planeta actual
-        $planetaActual = Planetas::find($id);
+        $planetaActual = Planetas::find($idPlaneta);
         //Definimos los objetos que vamos a necesitar
-        $recursos = Recursos::where('planetas_id', $id)->first();
-        //$planeta = Planeta::where('id', $id)->first();
-        $construcciones = Construcciones::where('planetas_id', $id)->get();
-        $industrias = Industrias::where('planetas_id', $id)->first();
+        $recursos = Recursos::where('planetas_id', $idPlaneta)->first();
+        //$planeta = Planeta::where('id', $idPlaneta)->first();
+        $construcciones = Construcciones::where('planetas_id', $idPlaneta)->get();
+        $industrias = Industrias::where('planetas_id', $idPlaneta)->first();
         $producciones = [];
         $almacenes = [];
 
@@ -78,7 +78,13 @@ class Recursos extends Model
         //Calculamos lo producido
 
         //Calculamos los yacimientos y el terraformador
-        $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
+        $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
+
+        if (empty($planetaActual->cualidades)) {
+            dd("TEST");
+            CualidadesPlanetas::agregarCualidades($planetaActual->id);
+            $planetaActual = Planetas::find($idPlaneta);
+        }
 
         //Minas
         $contProducciones = 1;
@@ -173,21 +179,15 @@ class Recursos extends Model
         $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
         $numeroNiveles = 0;
         foreach ($construcciones as $construccion) {
-            if ($construccion->codigo != "almMineral" and $construccion->codigo != "almCristal") {
-                $numeroNiveles += $construccion->nivel;
-            }
+            $numeroNiveles += $construccion->nivel;
         }
 
         //Personal y creditos
         $recursos->personal = ($producciones[0]->personal / 3600 * $fechaCalculo) + $recursos->personal;
-        $recursos->creditos = ((($numeroNiveles * 1000 * $constanteCreditos) / (24 * 3600)) * $fechaCalculo) + $recursos->creditos;
+        $recursos->creditos = ((($numeroNiveles * $constanteCreditos * 1000) / (24 * 3600)) * $fechaCalculo) + $recursos->creditos;
 
         //Comprobamos almacenes
         $contAlmacenes = 0;
-        $recursos->mineral >= $almacenes[$contAlmacenes]->capacidad ? $recursos->mineral = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->cristal >= $almacenes[$contAlmacenes]->capacidad ? $recursos->cristal = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
         $recursos->gas >= $almacenes[$contAlmacenes]->capacidad ? $recursos->gas = $almacenes[$contAlmacenes]->capacidad : '';
         $contAlmacenes++;
         $recursos->plastico >= $almacenes[$contAlmacenes]->capacidad ? $recursos->plastico = $almacenes[$contAlmacenes]->capacidad : '';
@@ -204,7 +204,7 @@ class Recursos extends Model
         $contAlmacenes++;
         $recursos->municion >= $almacenes[$contAlmacenes]->capacidad ? $recursos->municion = $almacenes[$contAlmacenes]->capacidad : '';
         $contAlmacenes++;
-        $recursos->personal;
+        // $recursos->personal;
 
         //Guardamos los cambios
         $recursos->save();

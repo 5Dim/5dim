@@ -26,7 +26,7 @@ class DatosMaestrosController extends Controller
         $datosM = new DatosMaestrosController();
         $datosM->DatosMaestros();
 
-        return redirect('/jugador');
+        return redirect('/juego/construccion');
     }
 
 

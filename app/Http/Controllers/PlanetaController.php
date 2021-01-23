@@ -25,55 +25,52 @@ class PlanetaController extends Controller
 
     public function index()
     {
-        //Inicio recursos
-        if (empty(session()->get('planetas_id'))) {
-            return redirect('/planeta');
-        }
-        if (empty(session()->get('jugadores_id'))) {
-            return redirect('/jugador');
-        }
-        $constantesCheck = Constantes::find(1);
-        if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
-        }
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
-            return redirect('/planeta');
-        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $jugadorAlianza = new Jugadores();
-        $jugadorAlianza->id = 0;
         $planetasAlianza = null;
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->has('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
-        EnConstrucciones::terminarColaConstrucciones();
-        $construcciones = Construcciones::construcciones($planetaActual);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        //Recursos
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $personal = 0;
+        $construcciones = Construcciones::construcciones($planetaActual);
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        // Personal ocupado
+        $personalOcupado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
-            $personal += $cola->personal;
+            $personalOcupado += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalOcupado += $cola->personal;
             }
         }
-        $tipoPlaneta = $planetaActual->tipo;
-        $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
+
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+        // Fin obligatorio por recursos
+
+        //Producciones sin calcular
+        $produccionesSinCalcular = Producciones::calcularProducciones($construcciones, $planetaActual, false);
+
+        //Constantes
+        $constantes = Constantes::where('tipo', 'construccion')->get();
+
+        //Variables del refugio
+        $nivelRefugio = Construcciones::where([['codigo', 'refugio'], ['planetas_id', session()->get('planetas_id')]])->first()->nivel;
+        $capacidadRefugio = Almacenes::where('nivel', $nivelRefugio)->first()->capacidad;
+
+        // Factores de las industrias
         $factoresIndustrias = [];
         $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
         $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
@@ -86,36 +83,26 @@ class PlanetaController extends Controller
         array_push($factoresIndustrias, $factorMa);
         $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
         array_push($factoresIndustrias, $factorMunicion);
-        //Fin recursos
 
-        //Producciones sin calcular
-        $produccionesSinCalcular = Producciones::calcularProducciones($construcciones, $planetaActual, false);
-
-        //Constantes
-        $constantes = Constantes::where('tipo', 'construccion')->get();
-
-        //Variables del refugio
-        $nivelRefugio = Construcciones::where([['codigo', 'refugio'], ['planetas_id', session()->get('planetas_id')]])->first()->nivel;
-        $capacidadRefugio = Almacenes::where('nivel', $nivelRefugio)->first()->capacidad;
+        // dd($produccionesSinCalcular);
 
         return view('juego.planeta', compact(
+            // Recursos
             'recursos',
-            'almacenes',
-            'producciones',
-            'personal',
-            'tipoPlaneta',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+
             'planetaActual',
-            'constantes',
-            'produccionesSinCalcular',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
-            'capacidadRefugio',
+            'nivelEnsamblajeFuselajes',
             'investigaciones',
             'factoresIndustrias',
-            'planetasJugador',
-            'planetasAlianza'
+            'constantes',
+            'produccionesSinCalcular',
+            'capacidadRefugio',
         ));
     }
 }

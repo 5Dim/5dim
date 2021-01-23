@@ -36,14 +36,14 @@ class CostesFuselajes extends Model
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
-            case "NIKE":
+            case "MIZAR":
                 $Tnave = "ligera";
                 $factn = .6;
                 $r1cce = [$codigo, 30000, 8000, 5000, 20000, 4500, 5000, 11000, 1, 0, 2];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
-            case "HACHIMAN":
+            case "ISHTAR":
                 $Tnave = "ligera";
                 $factn = .65;
                 $r1cce = [$codigo, 35000, 10000, 5000, 25000, 30000, 15000, 30000, 2, 2];
@@ -267,7 +267,7 @@ class CostesFuselajes extends Model
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
-            case "ISHTAR":
+            case "SONDA":
                 $Tnave = "ligera";
                 $factn = 1;
                 $r1cce = [$codigo, 100, 150, 0, 100, 10000, 2000, 5000, .4, 0, 1];

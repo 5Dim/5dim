@@ -2,7 +2,7 @@
 @section('content')
 
 @php
-$nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformador')->first()->nivel;
+$nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
 @endphp
 
 <div class="container-fluid">
@@ -214,22 +214,22 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             Produccion de las minas
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[0]->personal, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->personal, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[1]->mineral, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->mineral, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[2]->cristal, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->cristal, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[3]->gas, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->gas, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[4]->plastico, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->plastico, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[5]->ceramica, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->ceramica, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -255,19 +255,19 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="text-success borderless">
-                            {{ number_format($produccionesSinCalcular[1]->mineral * (($planetaActual->cualidades->mineral + $nivelTerraformador)/100), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->mineral * (($planetaActual->cualidades->mineral + $nivelTerraformador)/100), 0,",",".") }}
                         </td>
                         <td class="text-success borderless">
-                            {{ number_format($produccionesSinCalcular[2]->cristal * (($planetaActual->cualidades->cristal + $nivelTerraformador)/100), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->cristal * (($planetaActual->cualidades->cristal + $nivelTerraformador)/100), 0,",",".") }}
                         </td>
                         <td class="text-success borderless">
-                            {{ number_format($produccionesSinCalcular[3]->gas * (($planetaActual->cualidades->gas + $nivelTerraformador)/100), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->gas * (($planetaActual->cualidades->gas + $nivelTerraformador)/100), 0,",",".") }}
                         </td>
                         <td class="text-success borderless">
-                            {{ number_format($produccionesSinCalcular[4]->plastico * (($planetaActual->cualidades->plastico + $nivelTerraformador)/100), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->plastico * (($planetaActual->cualidades->plastico + $nivelTerraformador)/100), 0,",",".") }}
                         </td>
                         <td class="text-success borderless">
-                            {{ number_format($produccionesSinCalcular[5]->ceramica * (($planetaActual->cualidades->ceramica + $nivelTerraformador)/100), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->ceramica * (($planetaActual->cualidades->ceramica + $nivelTerraformador)/100), 0,",",".") }}
                         </td>
                         <td class="text-muted borderless">
                             0
@@ -293,7 +293,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            -{{ number_format($producciones[6]->liquido * $constantes->where('codigo', 'costoLiquido')->first()->valor, 0,",",".") }}
+                            -{{ number_format($produccion->liquido * $constantes->where('codigo', 'costoLiquido')->first()->valor, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -308,7 +308,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[6]->liquido, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->liquido, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -334,7 +334,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            -{{ number_format($produccionesSinCalcular[7]->micros*$constantes->where('codigo', 'costoMicros')->first()->valor, 0,",",".") }}
+                            -{{ number_format($produccionesSinCalcular->micros*$constantes->where('codigo', 'costoMicros')->first()->valor, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -349,7 +349,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[7]->micros, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->micros, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -375,7 +375,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            -{{ number_format($produccionesSinCalcular[8]->fuel*$constantes->where('codigo', 'costoFuel')->first()->valor, 0,",",".") }}
+                            -{{ number_format($produccionesSinCalcular->fuel*$constantes->where('codigo', 'costoFuel')->first()->valor, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -390,7 +390,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[8]->fuel, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->fuel, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -416,7 +416,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            -{{ number_format($produccionesSinCalcular[9]->ma * $constantes->where('codigo', 'costoMa')->first()->valor, 0,",",".") }}
+                            -{{ number_format($produccionesSinCalcular->ma * $constantes->where('codigo', 'costoMa')->first()->valor, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -431,7 +431,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[9]->ma, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->ma, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -457,7 +457,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            -{{ number_format($produccionesSinCalcular[10]->municion * $constantes->where('codigo', 'costoMunicion')->first()->valor, 0,",",".") }}
+                            -{{ number_format($produccionesSinCalcular->municion * $constantes->where('codigo', 'costoMunicion')->first()->valor, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -472,7 +472,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[10]->municion, 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->municion, 0,",",".") }}
                         </td>
                     </tr>
 
@@ -480,7 +480,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
 
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria liquido
+                            Mejora liquido
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -501,7 +501,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[6]->liquido * ($factoresIndustrias[0] - 1), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->liquido * ($factoresIndustrias[0] - 1), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -518,7 +518,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria micros
+                            Mejora micros
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -542,7 +542,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[7]->micros * ($factoresIndustrias[1] - 1), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->micros * ($factoresIndustrias[1] - 1), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -556,7 +556,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria fuel
+                            Mejora fuel
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -583,7 +583,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[8]->fuel * ($factoresIndustrias[2] - 1), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->fuel * ($factoresIndustrias[2] - 1), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -594,7 +594,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria MA
+                            Mejora MA
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -624,7 +624,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[9]->ma * ($factoresIndustrias[3] - 1), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->ma * ($factoresIndustrias[3] - 1), 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -632,7 +632,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                     </tr>
                     <tr>
                         <td class="anchofijo text-info borderless">
-                            Mejora industria municion
+                            Mejora municion
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -665,7 +665,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-success borderless">
-                            {{ number_format($produccionesSinCalcular[10]->municion * ($factoresIndustrias[4] - 1), 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->municion, 0,",",".") }}
                         </td>
                     </tr>
                     <tr>
@@ -673,37 +673,37 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             Totales por hora
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[0]->personal, 0,",",".") }}
+                            {{ number_format($produccion->personal, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[1]->mineral, 0,",",".") }}
+                            {{ number_format($produccion->mineral, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[2]->cristal, 0,",",".") }}
+                            {{ number_format($produccion->cristal, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[3]->gas, 0,",",".") }}
+                            {{ number_format($produccion->gas, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[4]->plastico, 0,",",".") }}
+                            {{ number_format($produccion->plastico, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[5]->ceramica, 0,",",".") }}
+                            {{ number_format($produccion->ceramica, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[6]->liquido * $factoresIndustrias[0], 0,",",".") }}
+                            {{ number_format($produccion->liquido * $factoresIndustrias[0], 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[7]->micros * $factoresIndustrias[1], 0,",",".") }}
+                            {{ number_format($produccion->micros * $factoresIndustrias[1], 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[8]->fuel * $factoresIndustrias[2], 0,",",".") }}
+                            {{ number_format($produccion->fuel * $factoresIndustrias[2], 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[9]->ma * $factoresIndustrias[3], 0,",",".") }}
+                            {{ number_format($produccion->ma * $factoresIndustrias[3], 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[10]->municion * $factoresIndustrias[4], 0,",",".") }}
+                            {{ number_format($produccion->municion * $factoresIndustrias[4], 0,",",".") }}
                         </td>
                     </tr>
                     <tr>
@@ -711,37 +711,37 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             Totales por dia
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[0]->personal*24, 0,",",".") }}
+                            {{ number_format($produccion->personal*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[1]->mineral*24, 0,",",".") }}
+                            {{ number_format($produccion->mineral*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[2]->cristal*24, 0,",",".") }}
+                            {{ number_format($produccion->cristal*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[3]->gas*24, 0,",",".") }}
+                            {{ number_format($produccion->gas*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[4]->plastico*24, 0,",",".") }}
+                            {{ number_format($produccion->plastico*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[5]->ceramica*24, 0,",",".") }}
+                            {{ number_format($produccion->ceramica*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[6]->liquido*24, 0,",",".") }}
+                            {{ number_format($produccion->liquido*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[7]->micros*24, 0,",",".") }}
+                            {{ number_format($produccion->micros*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[8]->fuel*24, 0,",",".") }}
+                            {{ number_format($produccion->fuel*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[9]->ma*24, 0,",",".") }}
+                            {{ number_format($produccion->ma*24, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[10]->municion*24, 0,",",".") }}
+                            {{ number_format($produccion->municion*24, 0,",",".") }}
                         </td>
                     </tr>
                     <tr>
@@ -749,37 +749,37 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             Totales por semana
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[0]->personal*24*7, 0,",",".") }}
+                            {{ number_format($produccion->personal*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[1]->mineral*24*7, 0,",",".") }}
+                            {{ number_format($produccion->mineral*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[2]->cristal*24*7, 0,",",".") }}
+                            {{ number_format($produccion->cristal*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[3]->gas*24*7, 0,",",".") }}
+                            {{ number_format($produccion->gas*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[4]->plastico*24*7, 0,",",".") }}
+                            {{ number_format($produccion->plastico*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[5]->ceramica*24*7, 0,",",".") }}
+                            {{ number_format($produccion->ceramica*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[6]->liquido*24*7, 0,",",".") }}
+                            {{ number_format($produccion->liquido*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[7]->micros*24*7, 0,",",".") }}
+                            {{ number_format($produccion->micros*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[8]->fuel*24*7, 0,",",".") }}
+                            {{ number_format($produccion->fuel*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[9]->ma*24*7, 0,",",".") }}
+                            {{ number_format($produccion->ma*24*7, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($producciones[10]->municion*24*7, 0,",",".") }}
+                            {{ number_format($produccion->municion*24*7, 0,",",".") }}
                         </td>
                     </tr>
                 </table>

@@ -54,12 +54,12 @@
                                 Cantidad
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     En la flota
                                 </button>
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     En hangar
                                 </button>
                             </th>
@@ -334,7 +334,7 @@
                                 <select name="listaPlanetas" id="listaPlanetas" class="form-control">
                                     <option value="none">Selecciona un planeta</option>
                                     <optgroup label="Propios">
-                                        @foreach (Auth::user()->jugadores[0]->planetas as $planeta)
+                                        @foreach (Auth::user()->jugador->planetas as $planeta)
                                             <option value="{{ $planeta->id }}">
                                                 {{ $planeta->estrella }}x{{ $planeta->orbita }}
                                                 {{ $planeta->nombre }}
@@ -415,69 +415,69 @@
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     Tienes
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     Envias
                                 </button>
                             </td>
@@ -536,7 +536,7 @@
                         <tr>
                             <th colspan="7" class="text-success">
                                 <big>
-                                    Destino 1
+                                    Destino 2
                                 </big>
                             </th>
                         </tr>
@@ -566,10 +566,9 @@
                         </tr>
                         <tr>
                             <td class="text-light">
-                                <select name="listaPlanetas" id="listaPlanetas2" class="form-control">
-                                    <option value="none">Selecciona un planeta</option>
+                                <select name="listaPlanetas" id="listaPlanetas2" class="select form-control">
                                     <optgroup label="Propios">
-                                        @foreach (Auth::user()->jugadores[0]->planetas as $planeta)
+                                        @foreach (Auth::user()->jugador->planetas as $planeta)
                                             <option value="{{ $planeta->id }}">
                                                 {{ $planeta->estrella }}x{{ $planeta->orbita }}
                                                 {{ $planeta->nombre }}
@@ -578,14 +577,14 @@
                                     </optgroup>
                                 </select>
                             </td>
-                            <td class="text-light">
+                            <td>
                                 <input type="text" class="form-control input" placeholder="Numero de sistema">
                             </td>
-                            <td class="text-light">
+                            <td>
                                 <input type="text" class="form-control input" placeholder="Numero de orbita">
                             </td>
-                            <td class="text-light">
-                                <select name="orden" id="orden" class="select form-control" data-live-search="true">
+                            <td>
+                                <select name="orden" id="orden" class="select form-control">
                                     <option value="" selected>-- Selecciona una orden --</option>
                                     <option value="transportar">Transportar</option>
                                     <option value="transferir">Transferir</option>
@@ -594,7 +593,7 @@
                                     <option value="recolectar">Recolectar</option>
                                 </select>
                             </td>
-                            <td class="text-light">
+                            <td>
                                 <div class="input-group mb-3 borderless"
                                     style="padding-left: 10px !important; padding-right: 5px !important">
                                     <input type="text" class="form-control input" value="100"
@@ -650,69 +649,69 @@
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     Tienes
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                             <td class="anchofijo text-light">
-                                <button type="button" class="btn btn-dark btn-block btn-sm">
+                                <button type="button" class="btn btn-dark col-12 btn-sm">
                                     125.248
                                 </button>
                             </td>
                         </tr>
                         <tr>
                             <td class="anchofijo">
-                                <button type="button" class="btn btn-dark btn-block btn-sm text-warning">
+                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
                                     Envias
                                 </button>
                             </td>
@@ -770,13 +769,11 @@
         $(document).ready(function() {
             $('#listaPlanetas').select2({
                 placeholder: "Nombre del planeta",
-                theme: "bootstrap",
                 width: '100%',
                 language: "es"
             });
             $('#listaPlanetas2').select2({
                 placeholder: "Nombre del planeta",
-                theme: "bootstrap",
                 width: '100%',
                 language: "es"
             });

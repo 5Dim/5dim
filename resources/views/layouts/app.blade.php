@@ -16,8 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 
@@ -29,10 +28,11 @@
                     Quinta Dimension
                 </a>
                 @auth
-                    <div class="dropdown show">
-                        <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             {{ Auth::user()->name }}
-                        </a>
+                        </button>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="{{ url('/home') }}">Acceder a los universos</a>
@@ -50,11 +50,10 @@
     </div>
 
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
 
     <!-- Bootstrap -->
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ asset('js//custom.js') }}" type="text/javascript"></script>
 

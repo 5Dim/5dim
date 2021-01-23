@@ -14,7 +14,7 @@ class AddJugadoresIdToPlaneta extends Migration
     public function up()
     {
         Schema::table('planetas', function (Blueprint $table) {
-            $table->integer('jugadores_id')->unsigned();
+            $table->integer('jugadores_id')->unsigned()->nullable();
             $table->foreign('jugadores_id')->references('id')->on('jugadores');
         });
     }

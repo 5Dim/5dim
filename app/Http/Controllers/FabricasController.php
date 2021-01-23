@@ -26,88 +26,54 @@ class FabricasController extends Controller
 {
     public function index()
     {
-        //Inicio recursos
-        if (empty(session()->get('planetas_id'))) {
-            return redirect('/planeta');
-        }
-        if (empty(session()->get('jugadores_id'))) {
-            return redirect('/jugador');
-        }
-        $constantesCheck = Constantes::find(1);
-        if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
-        }
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
-            return redirect('/planeta');
-        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $jugadorAlianza = new Jugadores();
-        $jugadorAlianza->id = 0;
         $planetasAlianza = null;
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->has('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
-        EnConstrucciones::terminarColaConstrucciones();
-        $construcciones = Construcciones::construcciones($planetaActual);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        //Recursos
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $personal = 0;
+        $construcciones = Construcciones::construcciones($planetaActual);
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        // Personal ocupado
+        $personalOcupado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
-            $personal += $cola->personal;
+            $personalOcupado += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalOcupado += $cola->personal;
             }
         }
-        $tipoPlaneta = $planetaActual->tipo;
-        $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
-        $factoresIndustrias = [];
-        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
-        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorLiquido);
-        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMicros);
-        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorFuel);
-        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMa);
-        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMunicion);
-        //Fin recursos
 
-        EnDisenios::terminarColaDisenios();
-        $colaDisenios = EnDisenios::where('planetas_id', session()->get('planetas_id'))->get();
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+        // Fin obligatorio por recursos
 
         return view('juego.fabrica', compact(
+            // Recursos
             'recursos',
-            'almacenes',
-            'producciones',
-            'personal',
-            'tipoPlaneta',
-            'planetaActual',
-            'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
-            'investigaciones',
-            'factoresIndustrias',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
             'planetasJugador',
             'planetasAlianza',
-            'colaDisenios'
+
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
+            'investigaciones',
         ));
     }
 
@@ -183,6 +149,9 @@ class FabricasController extends Controller
         $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
         $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
 
+        $disenio->estacionadas->cantidad -= $cantidad;
+        $disenio->estacionadas->save();
+
         //Generamos la cola
         $cola = new EnDisenios();
         $cola->nombre = $disenio->nombre;
@@ -201,18 +170,24 @@ class FabricasController extends Controller
     public function cancelar($idCola)
     {
         $cola = EnDisenios::find($idCola);
-        $coste = Disenios::find($cola->disenios_id)->costes;
+        $disenio = Disenios::find($cola->disenios_id);
+        $coste = $disenio->costes;
         $recursos = $cola->planetas->recursos;
         $cancelar = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
 
-        $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
-        $recursos->cristal += (($coste->cristal * $cola->cantidad) * $cancelar);
-        $recursos->gas += (($coste->gas * $cola->cantidad) * $cancelar);
-        $recursos->plastico += (($coste->plastico * $cola->cantidad) * $cancelar);
-        $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $cancelar);
-        $recursos->liquido += (($coste->liquido * $cola->cantidad) * $cancelar);
-        $recursos->micros += (($coste->micros * $cola->cantidad) * $cancelar);
-        $recursos->save();
+        if ($cola->accion == "Reciclando") {
+            $disenio->estacionadas->cantidad += $cola->cantidad;
+            $disenio->estacionadas->save();
+        }else {
+            $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
+            $recursos->cristal += (($coste->cristal * $cola->cantidad) * $cancelar);
+            $recursos->gas += (($coste->gas * $cola->cantidad) * $cancelar);
+            $recursos->plastico += (($coste->plastico * $cola->cantidad) * $cancelar);
+            $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $cancelar);
+            $recursos->liquido += (($coste->liquido * $cola->cantidad) * $cancelar);
+            $recursos->micros += (($coste->micros * $cola->cantidad) * $cancelar);
+            $recursos->save();
+        }
         $cola->delete();
 
 

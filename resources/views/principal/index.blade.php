@@ -10,12 +10,6 @@
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
 
-    <!-- custom.css -->
-    <link href="{{ asset('css/app.css') }}" media="all" rel="stylesheet" type="text/css" />
-
-    <!-- custom.js -->
-    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-
     <!-- Custom fonts for this template -->
     <link href="{{ asset('fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
@@ -31,8 +25,8 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Quinta dimension</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
                 Menu
                 <i class="fa fa-bars"></i>
@@ -81,9 +75,9 @@
                 <div class="col-lg-8 mx-auto">
                     <h2>Accede a tu cuenta</h2>
                     <div class="nav nav-tabs" id="login" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-login-tab" data-toggle="tab" href="#nav-login"
+                        <a class="nav-item nav-link active" id="nav-login-tab" data-bs-toggle="tab" href="#nav-login"
                             role="tab" aria-controls="nav-login" aria-selected="true">Login</a>
-                        <a class="nav-item nav-link" id="nav-registro-tab" data-toggle="tab" href="#nav-registro"
+                        <a class="nav-item nav-link" id="nav-registro-tab" data-bs-toggle="tab" href="#nav-registro"
                             role="tab" aria-controls="nav-registro" aria-selected="false">Registro</a>
                     </div>
                     <div class="tab-content" id="loginContent">
@@ -211,15 +205,15 @@
                 <h2>El juego</h2>
                 <ul class="nav nav-tabs" id="juego" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link text-info active" id="astrometria-tab" data-toggle="tab" href="#astrometria"
+                        <a class="nav-link text-info active" id="astrometria-tab" data-bs-toggle="tab" href="#astrometria"
                             role="tab" aria-controls="astrometria" aria-selected="true">Astrometria</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-info" id="economia-tab" data-toggle="tab" href="#economia" role="tab"
+                        <a class="nav-link text-info" id="economia-tab" data-bs-toggle="tab" href="#economia" role="tab"
                             aria-controls="economia" aria-selected="false">Economia</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-info" id="flota-tab" data-toggle="tab" href="#flota" role="tab"
+                        <a class="nav-link text-info" id="flota-tab" data-bs-toggle="tab" href="#flota" role="tab"
                             aria-controls="flota" aria-selected="false">Flota</a>
                     </li>
                 </ul>
@@ -300,11 +294,10 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
 
     <!-- Bootstrap -->
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ asset('js/jquery/jquery.easing.min.js') }}" type="text/javascript"></script>
 

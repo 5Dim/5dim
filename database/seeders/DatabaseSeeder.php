@@ -31,9 +31,23 @@ class DatabaseSeeder extends Seeder
             'email' => 'odinspn@gmail.com',
             'password' => Hash::make('1234'),
         ]);
-        Jugadores::factory()->times(100)->create();
-        Planetas::factory()->times(1000)->create();
-        CualidadesPlanetas::factory()->times(100)->create();
-        Recursos::factory()->times(1)->create();
+        // Jugadores::factory()->times(100)->create();
+        Planetas::factory()->times(1000)->create([
+            'tipo' => 'planeta',
+        ]);
+        Planetas::factory()->times(3)->create([
+            'tipo' => 'nodriza',
+        ]);
+        Planetas::factory()->times(30)->create([
+            'tipo' => 'anubis',
+        ]);
+        Planetas::factory()->times(20)->create([
+            'tipo' => 'dyson',
+        ]);
+        Planetas::factory()->times(50)->create([
+            'tipo' => 'canon',
+        ]);
+        // CualidadesPlanetas::factory()->times(1000)->create();
+        // Recursos::factory()->times(1)->create();
     }
 }

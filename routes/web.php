@@ -17,6 +17,8 @@ use App\Http\Controllers\JuegoController;
 use App\Http\Controllers\MensajesController;
 use App\Http\Controllers\PlanetaController;
 use App\Http\Controllers\PrincipalController;
+use App\Http\Middleware\JugadorLogueado;
+use App\Http\Middleware\TerminarColas;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +36,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [PrincipalController::class, 'index'])->name('root');
+Route::get('/', [PrincipalController::class, 'index'])->name('root')->withoutMiddleware([JugadorLogueado::class]);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home')->withoutMiddleware([JugadorLogueado::class]);
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -46,20 +48,34 @@ Route::get('/admin/DatosMaestros', [DatosMaestrosController::class, 'index']);
 //Rutas generales sin auth
 Route::get('/pruebas', [JuegoController::class, 'pruebas']);
 
+Route::middleware(
+    ['auth:sanctum', 'verified']
+)->group(
+    function () {
+        //Cambiar opciones del usuario
+        Route::get('/configuracion', [PrincipalController::class, 'configuracion']);
+        Route::post('/update', [PrincipalController::class, 'update']);
+    }
+);
 Route::get('/juego/astrometria/ajax/universo', [AstrometriaController::class, 'generarUniverso']);
 Route::get('/juego/astrometria/ajax/radares', [AstrometriaController::class, 'generarRadares']);
 Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'generarFlotas']);
 
 //Middleware de auth
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    //Cambiar opciones del usuario
-    Route::get('/configuracion', [PrincipalController::class, 'configuracion']);
-    Route::post('/update', [PrincipalController::class, 'update']);
+Route::middleware(
+    [
+        'auth:sanctum',
+        'verified',
+        JugadorLogueado::class,
+        TerminarColas::class
+    ]
+)->group(function () {
 
     //Rutas generales
     Route::get('/juego', [JuegoController::class, 'index']);
-    Route::get('/planeta/{planeta?}', [JuegoController::class, 'planeta']);
-    Route::get('/jugador/{universo?}', [JuegoController::class, 'jugador']);
+    Route::get('/planeta/{planeta}', [JuegoController::class, 'planeta']);
+    // Route::get('/jugador', [JuegoController::class, 'jugador']);
+
     Route::get('/juego/tienda', [JuegoController::class, 'tienda']);
     Route::get('/juego/estadisticas', [JuegoController::class, 'estadisticas']);
     Route::get('/juego/calcularPuntos', [JuegoController::class, 'calcularPuntos']);

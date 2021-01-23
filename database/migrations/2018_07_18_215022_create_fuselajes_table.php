@@ -19,6 +19,7 @@ class CreateFuselajesTable extends Migration
             $table->string('tamanio');
             $table->string('tipo');
             $table->integer('tnave');
+            $table->integer('coste');
             $table->string('categoria');
         });
     }

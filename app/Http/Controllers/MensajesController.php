@@ -26,100 +26,78 @@ class MensajesController extends Controller
 
     public function index()
     {
-        //Inicio recursos
-        if (empty(session()->get('planetas_id'))) {
-            return redirect('/planeta');
-        }
-        if (empty(session()->get('jugadores_id'))) {
-            return redirect('/jugador');
-        }
-        $constantesCheck = Constantes::find(1);
-        if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
-        }
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
-            return redirect('/planeta');
-        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $jugadorAlianza = new Jugadores();
-        $jugadorAlianza->id = 0;
         $planetasAlianza = null;
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->has('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
-        EnConstrucciones::terminarColaConstrucciones();
-        $construcciones = Construcciones::construcciones($planetaActual);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        //Recursos
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $personal = 0;
+        $construcciones = Construcciones::construcciones($planetaActual);
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        // Personal ocupado
+        $personalOcupado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
-            $personal += $cola->personal;
+            $personalOcupado += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalOcupado += $cola->personal;
             }
         }
-        $tipoPlaneta = $planetaActual->tipo;
-        $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
-        $factoresIndustrias = [];
-        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
-        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorLiquido);
-        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMicros);
-        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorFuel);
-        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMa);
-        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMunicion);
-        //Fin recursos
+
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+        // Fin obligatorio por recursos
 
         //Todos los jugadores para la lista de envio
         $jugadores = Jugadores::all();
 
         //Lista de mensajes recibidos
-        $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orWhere('emisor', $jugadorAlianza->id)->get();
+        if ($jugadorActual->alianza_id) {
+            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orWhere('emisor', $jugadorAlianza->id)->get();
+        } else {
+            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->get();
+        }
 
         //Lista de mensajes enviados
-        $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orWhere('receptor', $jugadorAlianza->id)->get();
+        if ($jugadorActual->alianza_id) {
+            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orWhere('receptor', $jugadorAlianza->id)->get();
+        } else {
+            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
+        }
 
         return view('juego.mensajes.mensajes', compact(
+            // Recursos
             'recursos',
-            'almacenes',
-            'producciones',
-            'personal',
-            'tipoPlaneta',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+
             'planetaActual',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
             'investigaciones',
-            'factoresIndustrias',
             'jugadores',
             'recibidos',
             'enviados',
-            'planetasJugador',
-            'planetasAlianza'
         ));
     }
 
-    public function enviarMensaje()
+    public function enviarMensaje(Request $request)
     {
         $mensaje = new Mensajes();
         $mensaje->mensaje = request()->input('descripcion');
@@ -128,16 +106,13 @@ class MensajesController extends Controller
         $mensaje->eliminado = false;
         $mensaje->categoria = "recibidos";
         $mensaje->save();
-        $intervinientes = request()->input('listaJugadores');
-        $listIntervinientes = explode(',', $intervinientes);
-        foreach ($listIntervinientes as $receptor) {
-            if (!empty($receptor) or $receptor != 0) {
-                $interviniente = new MensajesIntervinientes();
-                $interviniente->receptor = $receptor;
-                $interviniente->leido = false;
-                $interviniente->mensajes_id = $mensaje->id;
-                $interviniente->save();
-            }
+        $receptor = request()->input('listaJugadores');
+        if (!empty($receptor) or $receptor != 0) {
+            $interviniente = new MensajesIntervinientes();
+            $interviniente->receptor = $receptor;
+            $interviniente->leido = false;
+            $interviniente->mensajes_id = $mensaje->id;
+            $interviniente->save();
         }
         return redirect('/juego/mensajes');
     }

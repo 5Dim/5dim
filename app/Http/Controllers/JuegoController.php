@@ -29,150 +29,89 @@ class JuegoController extends Controller
 {
     public function index()
     {
-        //Inicio recursos
-        if (empty(session()->get('planetas_id'))) {
-            return redirect('/planeta');
-        }
-        if (empty(session()->get('jugadores_id'))) {
-            return redirect('/jugador');
-        }
-        $constantesCheck = Constantes::find(1);
-        if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
-        }
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
-            return redirect('/planeta');
-        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $jugadorAlianza = new Jugadores();
-        $jugadorAlianza->id = 0;
         $planetasAlianza = null;
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->has('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
-        EnConstrucciones::terminarColaConstrucciones();
-        $construcciones = Construcciones::construcciones($planetaActual);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        //Recursos
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $personal = 0;
+        $construcciones = Construcciones::construcciones($planetaActual);
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        // Personal ocupado
+        $personalOcupado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
-            $personal += $cola->personal;
+            $personalOcupado += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalOcupado += $cola->personal;
             }
         }
-        $tipoPlaneta = $planetaActual->tipo;
-        $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
-        $factoresIndustrias = [];
-        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
-        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorLiquido);
-        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMicros);
-        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorFuel);
-        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMa);
-        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMunicion);
-        //Fin recursos
+
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+        // Fin obligatorio por recursos
 
         return view('juego.layouts.recursosFrame', compact(
             'recursos',
-            'almacenes',
+            'capacidadAlmacenes',
             'producciones',
             'personal',
             'tipoPlaneta',
             'planetaActual',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
-            'planetasJugador',
-            'planetasAlianza',
-            'factoresIndustrias'
+            'nivelEnsamblajeFuselajes',
         ));
     }
 
     public function estadisticas()
     {
-        //Inicio recursos
-        if (empty(session()->get('planetas_id'))) {
-            return redirect('/planeta');
-        }
-        if (empty(session()->get('jugadores_id'))) {
-            return redirect('/jugador');
-        }
-        $constantesCheck = Constantes::find(1);
-        if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
-        }
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
-            return redirect('/planeta');
-        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $jugadorAlianza = new Jugadores();
-        $jugadorAlianza->id = 0;
         $planetasAlianza = null;
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->has('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
-        EnConstrucciones::terminarColaConstrucciones();
-        $construcciones = Construcciones::construcciones($planetaActual);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        //Recursos
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $personal = 0;
+        $construcciones = Construcciones::construcciones($planetaActual);
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        // Personal ocupado
+        $personalOcupado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
-            $personal += $cola->personal;
+            $personalOcupado += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalOcupado += $cola->personal;
             }
         }
-        $tipoPlaneta = $planetaActual->tipo;
-        $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
-        $factoresIndustrias = [];
-        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
-        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorLiquido);
-        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMicros);
-        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorFuel);
-        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMa);
-        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMunicion);
-        //Fin recursos
+
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+        // Fin obligatorio por recursos
 
         //Actualizamos estadisticas
         Jugadores::calcularPuntos(session()->get('jugadores_id'));
@@ -187,172 +126,108 @@ class JuegoController extends Controller
         $alianzas = Alianzas::all();
 
         return view('juego.estadisticas', compact(
+            // Recursos
             'recursos',
-            'almacenes',
-            'producciones',
-            'personal',
-            'tipoPlaneta',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+
             'planetaActual',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
             'investigaciones',
-            'factoresIndustrias',
             'jugadores',
             'alianzas',
-            'planetasJugador',
-            'planetasAlianza'
         ));
     }
 
     public function tienda()
     {
-        //Inicio recursos
-        if (empty(session()->get('planetas_id'))) {
-            return redirect('/planeta');
-        }
-        if (empty(session()->get('jugadores_id'))) {
-            return redirect('/jugador');
-        }
-        $constantesCheck = Constantes::find(1);
-        if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
-        }
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
-            return redirect('/planeta');
-        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $jugadorAlianza = new Jugadores();
-        $jugadorAlianza->id = 0;
         $planetasAlianza = null;
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->has('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
-        EnConstrucciones::terminarColaConstrucciones();
-        $construcciones = Construcciones::construcciones($planetaActual);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        //Recursos
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $personal = 0;
+        $construcciones = Construcciones::construcciones($planetaActual);
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        // Personal ocupado
+        $personalOcupado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
-            $personal += $cola->personal;
+            $personalOcupado += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalOcupado += $cola->personal;
             }
         }
-        $tipoPlaneta = $planetaActual->tipo;
-        $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
-        $factoresIndustrias = [];
-        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
-        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorLiquido);
-        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMicros);
-        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorFuel);
-        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMa);
-        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMunicion);
-        //Fin recursos
+
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+        // Fin obligatorio por recursos
 
         $articulos = Tiendas::all();
 
         return view('juego.tienda.tienda', compact(
+            // Recursos
             'recursos',
-            'almacenes',
-            'producciones',
-            'personal',
-            'tipoPlaneta',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+
             'planetaActual',
             'nivelImperio',
-            'nivelEnsamblajeNaves',
-            'nivelEnsamblajeDefensas',
-            'nivelEnsamblajeTropas',
+            'nivelEnsamblajeFuselajes',
             'investigaciones',
-            'factoresIndustrias',
             'articulos',
-            'planetasJugador',
-            'planetasAlianza'
         ));
     }
 
     //Cambiar de planeta
     public function calcularPuntos()
     {
-        if (!empty(session()->get('jugadores_id'))) {
-            Jugadores::calcularPuntos(session()->get('jugadores_id'));
-        } else {
-            return redirect('/jugador');
-        }
+        Jugadores::calcularPuntos(session()->get('jugadores_id'));
         return redirect('/juego/construccion');
     }
 
     //Cambiar de planeta
-    public function planeta($planeta = false)
+    public function planeta($planeta)
     {
-
         //Comprobar si el jugador tiene alianza
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
         //Comprobamos si el usuario tiene alianza para devolver los planetas
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->get('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
         }
+        //Planeta al que queremos acceder
+        $planetaBusqueda = Planetas::find($planeta);
 
-        if (!empty(session()->get('jugadores_id'))) {
-            //En que planeta estamos
-            if (!$planeta) {
-                session()->put('planetas_id', Auth::user()->jugadores->where('id', session()->get('jugadores_id'))->first()->planetas[0]->id);
-            } else {
-                $planetaBusqueda = Planetas::find($planeta);
-                if ($planetaBusqueda->jugadores->id == $jugadorActual->id or $planetaBusqueda->jugadores->id == $jugadorAlianza->id) {
-                    session()->put('planetas_id', $planeta);
-                } else {
-                    return redirect('/planeta');
-                }
-            }
+        // Comprobamos si el planeta pertenece al jugador o a la alianza
+        if (
+            $planetaBusqueda->jugadores->id == $jugadorActual->id or
+            $planetaBusqueda->jugadores->id == $jugadorAlianza->id
+        ) {
+            session()->put('planetas_id', $planeta);
         } else {
-            return redirect('/jugador');
+            redirect('/juego/construccion');
         }
         return redirect('/juego/calcularPuntos');
-    }
-
-    //Cambiar de jugador
-    public function jugador($universo = false)
-    {
-        if (!$universo) {
-
-            session()->put('jugadores_id', Auth::user()->jugadores[0]->id);
-        } else {
-            session()->put('jugadores_id', Jugadores::where(['universo_id', $universo], ['user_id', Auth::user()->id])->first()->id);
-        }
-
-        $jugador = Jugadores::find(session()->get('jugadores_id'));
-
-        if (empty($jugador->disenios[0])) {
-            $disenios = Disenios::where('id', '<', 100)->get();
-
-            foreach ($disenios as $disenio) {
-                $jugador->disenios()->attach($disenio->id);
-            }
-        }
-
-        return redirect('/planeta');
     }
 }

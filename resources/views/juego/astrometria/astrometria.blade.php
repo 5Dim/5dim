@@ -80,7 +80,6 @@
             padding: 20px;
             font-size: 20px;
         }
-
     </style>
 
     <script src="{{ asset('astrometria/pixi.min.js') }}"></script>
@@ -90,16 +89,8 @@
     <script src="{{ asset('astrometria/sistema.js') }}"></script>
     <script src="{{ asset('astrometria/general.js') }}"></script>
     <script src="{{ asset('astrometria/main.js') }}"></script>
-    <script type="text/javascript">
-        /* Get the documentElement (<html>) to display the page in fullscreen
-
-    javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()
-    */
-    </script>
 </head>
 
 <body>
-    <script>
 
-    </script>
 </body>

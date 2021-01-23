@@ -1,5 +1,5 @@
 body.bg {
-    background: url('../img/principal/fondo2.jpg') no-repeat center top fixed !important;
+    background: url("../img/principal/fondo2.jpg") no-repeat center top fixed !important;
     background-color: #000000 !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -8,16 +8,16 @@ body.bg {
 }
 
 #menuCuenta {
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 #menuRecursos {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding-top: 5px !important;
 }
 
 #menuIconos {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding-top: 15px !important;
 }
 
@@ -60,60 +60,60 @@ table.anchofijo {
     border: 1px solid orange !important;
 }
 
-.tab-content>.active {
+.tab-content > .active {
     display: contents;
 }
 
 .cajita {
-    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid orange;
     margin-top: 5px;
 }
 
 .cajita-primary {
-    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #0275d8;
     margin-top: 5px;
 }
 
 .cajita-success {
-    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #5cb85c;
     margin-top: 5px;
 }
 
 .cajita-info {
-    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #5bc0de;
     margin-top: 5px;
 }
 
 .cajita-warning {
-    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #f0ad4e;
     margin-top: 5px;
 }
 
 .cajita-danger {
-    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #d9534f;
     margin-top: 5px;
 }
 
 .cajita-dark {
-    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #292b2c;
     margin-top: 5px;
 }
 
 .cajita-light {
-    background-image: url('/img/juego/skin0/cons-fondo2.png');
+    background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #f7f7f7;
     margin-top: 5px;
 }
 
 textarea {
-    background-image: url('/img/juego/skin0/cons-fondo3.png');
+    background-image: url("/img/juego/skin0/cons-fondo3.png");
     border: 1px solid cyan;
     margin-top: 5px;
     border-radius: 5px;
@@ -129,7 +129,7 @@ textarea {
 }
 
 .textarea {
-    background-image: url('/img/juego/skin0/cons-fondo3.png');
+    background-image: url("/img/juego/skin0/cons-fondo3.png");
     border: 1px solid cyan !important;
 }
 
@@ -141,32 +141,26 @@ textarea {
 
 .c-2-color {
     background: brown !important;
-    ;
 }
 
 .c-3-color {
     background: purple !important;
-    ;
 }
 
 .c-4-color {
     background: cyan !important;
-    ;
 }
 
 .c-5-color {
     background: orange !important;
-    ;
 }
 
 .c-6-color {
     background: grey !important;
-    ;
 }
 
 .c-7-color {
     background: black !important;
-    ;
 }
 
 .noUi-tooltip {

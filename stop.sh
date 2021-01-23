@@ -1,0 +1,2 @@
+cd ../../homestead
+vagrant halt

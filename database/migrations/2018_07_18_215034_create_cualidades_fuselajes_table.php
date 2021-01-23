@@ -40,7 +40,6 @@ class CreateCualidadesFuselajesTable extends Migration
             $table->integer('mejoras');
             $table->integer('blindajes');
             $table->integer('motores');
-
         });
     }
 

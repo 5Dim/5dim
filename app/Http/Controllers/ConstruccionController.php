@@ -23,93 +23,103 @@ use Auth;
 class ConstruccionController extends Controller
 {
     //Acceso a construcciones
-    public function index($tab="")
+    public function index($tab = "mina-tab")
     {
-        //Inicio recursos
-        if (empty(session()->get('planetas_id'))) {
-            return redirect('/planeta');
-        }
-        if (empty(session()->get('jugadores_id'))) {
-            return redirect('/jugador');
-        }
-        $constantesCheck = Constantes::find(1);
-        if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
-        }
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        if ($planetaActual->jugadores->id != $jugadorActual->id and $planetaActual->jugadores->id != $jugadorAlianza->id) {
-            return redirect('/planeta');
-        }
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $jugadorAlianza = new Jugadores();
-        $jugadorAlianza->id = 0;
         $planetasAlianza = null;
-        if (!empty($jugadorActual->alianzas)) {
+        if (session()->has('alianza_id') != "nulo") {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
-        EnConstrucciones::terminarColaConstrucciones();
+
+        //Recursos
         $construcciones = Construcciones::construcciones($planetaActual);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $personal = 0;
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
+
+        // Personal ocupado
+        $personalOcupado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
         foreach ($colaConstruccion as $cola) {
-            $personal += $cola->personal;
+            $personalOcupado += $cola->personal;
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalOcupado += $cola->personal;
             }
         }
-        $tipoPlaneta = $planetaActual->tipo;
-        $investigacion = new Investigaciones();
-        $investigaciones = $investigacion->investigaciones($planetaActual);
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel;
-        $nivelEnsamblajeNaves = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeNaves')->first()->nivel);
-        $nivelEnsamblajeDefensas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeDefensas')->first()->nivel);
-        $nivelEnsamblajeTropas = $investigacion->sumatorio($investigaciones->where('codigo', 'invEnsamblajeTropas')->first()->nivel);
-        $factoresIndustrias = [];
-        $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
-        $factorLiquido = (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorLiquido);
-        $factorMicros = (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMicros);
-        $factorFuel = (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorFuel);
-        $factorMa = (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMa);
-        $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
-        array_push($factoresIndustrias, $factorMunicion);
-        //Fin recursos
+
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+        // Fin obligatorio por recursos
+
+        //Construcciones por categoria para dibujarlas
+        $minas = $construcciones->where('categoria', 'mina');
+        $industrias = $construcciones->where('categoria', 'industria');
+        $almacenes = $construcciones->where('categoria', 'almacen');
+        $militares = $construcciones->where('categoria', 'militar');
+        $desarrollos = $construcciones->where('categoria', 'desarrollo');
+        $observaciones = $construcciones->where('categoria', 'observacion');
+        $especializaciones = $construcciones->where('categoria', 'especializacion');
+        $especiales = $construcciones->where('categoria', 'especial');
 
         //Costes construcciones
-        $costes = new CostesConstrucciones();
-        $costesConstrucciones = $costes->generaCostesConstrucciones($construcciones);
+        $costesConstrucciones = CostesConstrucciones::generaCostesConstrucciones($construcciones);
+
+        // Tipo planeta
+        $tipoPlaneta = $planetaActual->tipo;
 
         //Constantes de construccion
-        $CConstantes=Constantes::where('tipo','construccion')->get();
+        $CConstantes = Constantes::where('tipo', 'construccion')->get();
 
         //Enviamos los datos para la velocidad de construccion
-        $velocidadConst=$CConstantes->where('codigo','velocidadConst')->first();
+        $velocidadConst = $CConstantes->where('codigo', 'velocidadConst')->first();
 
         // vemos las dependencias
-        $dependencias=Dependencias::where('tipo','construccion')->get();
+        $dependencias = Dependencias::where('tipo', 'construccion')->get();
 
         //Devolvemos la vista con todas las variables
-        return view('juego.construcciones.construccion', compact('recursos', 'almacenes', 'producciones', 'construcciones',
-        'colaConstruccion','velocidadConst', 'tipoPlaneta','dependencias', 'personal','tab', 'planetaActual', 'nivelImperio',
-        'nivelEnsamblajeNaves', 'nivelEnsamblajeDefensas', 'nivelEnsamblajeTropas', 'investigaciones', 'factoresIndustrias',
-        'planetasJugador', 'planetasAlianza', 'costesConstrucciones'));
+        return view('juego.construcciones.construccion', compact(
+            // Recursos
+            'recursos',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+
+            // Categorias
+            'construcciones',
+            'minas',
+            'industrias',
+            'almacenes',
+            'militares',
+            'desarrollos',
+            'observaciones',
+            'especializaciones',
+            'especiales',
+
+            // Especificas
+            'colaConstruccion',
+            'velocidadConst',
+            'tipoPlaneta',
+            'dependencias',
+            'tab',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
+        ));
     }
 
     //Acceso a subir nivel de construccion
-    public function construir ($idConstruccion, $personal,$tab)
+    public function construir($idConstruccion, $personal, $tab)
     {
         //En que planeta estamos
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
@@ -121,7 +131,7 @@ class ConstruccionController extends Controller
         array_push($construccionesMax, $construccion);
         $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $almacenes = Almacenes::calcularAlmacenes($construcciones);
+        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         $personalUsado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
@@ -130,9 +140,10 @@ class ConstruccionController extends Controller
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalUsado += $cola->personal;
             }
         }
+        // dd($personalUsado);
         $tipoPlaneta = $planetaActual->tipo;
 
         //Recuperamos su ultima cola (si existe)
@@ -150,7 +161,7 @@ class ConstruccionController extends Controller
 
             //Comprobamos si ya hay cola de este edificio
             $accion = $cola->accion;
-        }else{
+        } else {
             //Valores por defecto
             $inicio = date("Y-m-d H:i:s");
             $nivel = $construccion->nivel;
@@ -181,23 +192,26 @@ class ConstruccionController extends Controller
         //Comprobamos que el edificio se puede construir
         if ($construccion->planetas->recursos->mineral < $costesConstrucciones[0]->mineral) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->cristal < $costesConstrucciones[0]->cristal) {
+        } elseif ($construccion->planetas->recursos->cristal < $costesConstrucciones[0]->cristal) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->gas < $costesConstrucciones[0]->gas) {
+        } elseif ($construccion->planetas->recursos->gas < $costesConstrucciones[0]->gas) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->plastico < $costesConstrucciones[0]->plastico) {
+            dd($error);
+        } elseif ($construccion->planetas->recursos->plastico < $costesConstrucciones[0]->plastico) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->ceramica < $costesConstrucciones[0]->ceramica) {
+        } elseif ($construccion->planetas->recursos->ceramica < $costesConstrucciones[0]->ceramica) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->liquido < $costesConstrucciones[0]->liquido) {
+        } elseif ($construccion->planetas->recursos->liquido < $costesConstrucciones[0]->liquido) {
             $error = true;
-        }elseif ($construccion->planetas->recursos->micros < $costesConstrucciones[0]->micros) {
+        } elseif ($construccion->planetas->recursos->micros < $costesConstrucciones[0]->micros) {
             $error = true;
-        }elseif (($construccion->planetas->recursos->personal - $personalUsado) < $personal) {
+        } elseif (($construccion->planetas->recursos->personal - $personalUsado) < $personal) {
             $error = true;
-        }elseif ($accion != "Construyendo") {
+        } elseif ($accion != "Construyendo") {
             $error = true;
         }
+
+        // dd("NO ES");
 
         //Si no tenemos ningun error continuamos
         if (!$error) {
@@ -211,6 +225,8 @@ class ConstruccionController extends Controller
             $construccion->planetas->recursos->micros -= $costesConstrucciones[0]->micros;
             $construccion->planetas->recursos->save();
 
+            // dd($construccion->planetas->recursos);
+
             //Generamos la cola
             $construyendo = new EnConstrucciones();
             $construyendo->personal = $personal;
@@ -221,22 +237,14 @@ class ConstruccionController extends Controller
             $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
             $construyendo->save();
 
-            /*
-            //Generamos el coste del edificio
-            $costeConstrucciones = new CostesConstrucciones();
-            $costeAntiguo = CostesConstrucciones::where('construcciones_id', $construccion->id)->first();
-            $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
-            $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
-            $costeAntiguo->save();
-            */
-
+            // dd($construyendo);
         }
 
-        return redirect('/juego/construccion/'.$tab);
+        return redirect('/juego/construccion/' . $tab);
     }
 
     //Acceso a subir nivel de construccion
-    public function reciclar ($idConstruccion, $personal)
+    public function reciclar($idConstruccion, $personal)
     {
         //Recuperar construccion
         $construccionesMax = [];
@@ -256,7 +264,7 @@ class ConstruccionController extends Controller
 
             //Comprobamos si ya hay cola de este edificio
             $accion = $cola->accion;
-        }else{
+        } else {
             //Valores por defecto
             $inicio = date("Y-m-d H:i:s");
             $nivel = $construccion->nivel - 1;
@@ -280,9 +288,9 @@ class ConstruccionController extends Controller
         $error = false;
         if ($construccion->planetas->recursos->personal < $personal) {
             $error = true;
-        }elseif ($accion != "Reciclando") {
+        } elseif ($accion != "Reciclando") {
             $error = true;
-        }elseif ($nivel < 0) {
+        } elseif ($nivel < 0) {
             $error = true;
         }
 
@@ -311,7 +319,7 @@ class ConstruccionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function cancelar ($idColaConstruccion = 1)
+    public function cancelar($idColaConstruccion = 1)
     {
         //Recuperar construccion
         $cola = EnConstrucciones::where('id', $idColaConstruccion)->first();
@@ -321,44 +329,33 @@ class ConstruccionController extends Controller
 
         if ($cola->accion == 'Construyendo') {
             $nivel = $cola->nivel - 1;
-        }else{
+        } else {
             $nivel = $cola->nivel + 1;
         }
         $reciclaje = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
-
-        /*
-        //Generamos el coste del edificio
-        $costeConstrucciones = new CostesConstrucciones();
-        $costeAntiguo = CostesConstrucciones::where('construcciones_id', $cola->construcciones->id)->first();
-        $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $cola->construcciones->codigo, $cola->construcciones->id);
-        $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
-        $costeAntiguo->save();
-        */
 
         //Ahora cancelamos toda la cola con nivel superiore a la cancelada
         foreach ($listaCola as $colita) {
             //En caso de ser una construccion debe devolver parte de los recursos
             if ($colita->accion == "Construyendo") {
-                $construccionesMax[0]->nivel = $colita->nivel;
+                // $construccionesMax[0]->nivel = $colita->nivel;
 
                 //Costes construcciones
-                $costes = new CostesConstrucciones();
-                $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
+                // $costes = new CostesConstrucciones();
+                // $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
                 $recursos = $colita->construcciones->planetas->recursos;
 
-                /*
                 $costeconstruccion = new CostesConstrucciones();
-                $coste = $costeconstruccion->generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
-                */
+                $costesConstrucciones = $costeconstruccion->generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
 
                 //Restaurar beneficio por reciclaje
-                $recursos->mineral += ($costesConstrucciones[0]->mineral * $reciclaje);
-                $recursos->cristal += ($costesConstrucciones[0]->cristal * $reciclaje);
-                $recursos->gas += ($costesConstrucciones[0]->gas * $reciclaje);
-                $recursos->plastico += ($costesConstrucciones[0]->plastico * $reciclaje);
-                $recursos->ceramica += ($costesConstrucciones[0]->ceramica * $reciclaje);
-                $recursos->liquido += ($costesConstrucciones[0]->liquido * $reciclaje);
-                $recursos->micros += ($costesConstrucciones[0]->micros * $reciclaje);
+                $recursos->mineral += ($costesConstrucciones->mineral * $reciclaje);
+                $recursos->cristal += ($costesConstrucciones->cristal * $reciclaje);
+                $recursos->gas += ($costesConstrucciones->gas * $reciclaje);
+                $recursos->plastico += ($costesConstrucciones->plastico * $reciclaje);
+                $recursos->ceramica += ($costesConstrucciones->ceramica * $reciclaje);
+                $recursos->liquido += ($costesConstrucciones->liquido * $reciclaje);
+                $recursos->micros += ($costesConstrucciones->micros * $reciclaje);
                 $recursos->save();
             }
             $colita->delete();
@@ -367,14 +364,17 @@ class ConstruccionController extends Controller
         if ($cola->accion == "Construyendo") {
             $recursos = $cola->construcciones->planetas->recursos;
 
+            $costeconstruccion = new CostesConstrucciones();
+            $costesConstrucciones = $costeconstruccion->generarDatosCostesConstruccion($cola->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
+
             //Restaurar beneficio por reciclaje
-            $recursos->mineral += ($costesConstrucciones[0]->mineral * $reciclaje);
-            $recursos->cristal += ($costesConstrucciones[0]->cristal * $reciclaje);
-            $recursos->gas += ($costesConstrucciones[0]->gas * $reciclaje);
-            $recursos->plastico += ($costesConstrucciones[0]->plastico * $reciclaje);
-            $recursos->ceramica += ($costesConstrucciones[0]->ceramica * $reciclaje);
-            $recursos->liquido += ($costesConstrucciones[0]->liquido * $reciclaje);
-            $recursos->micros += ($costesConstrucciones[0]->micros * $reciclaje);
+            $recursos->mineral += ($costesConstrucciones->mineral * $reciclaje);
+            $recursos->cristal += ($costesConstrucciones->cristal * $reciclaje);
+            $recursos->gas += ($costesConstrucciones->gas * $reciclaje);
+            $recursos->plastico += ($costesConstrucciones->plastico * $reciclaje);
+            $recursos->ceramica += ($costesConstrucciones->ceramica * $reciclaje);
+            $recursos->liquido += ($costesConstrucciones->liquido * $reciclaje);
+            $recursos->micros += ($costesConstrucciones->micros * $reciclaje);
             $recursos->save();
         }
         $cola->delete();
@@ -383,7 +383,7 @@ class ConstruccionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function datos ($codigo)
+    public function datos($codigo)
     {
         $nombreConstruccion = trans('construccion.' . $codigo);
         $descripcionConstruccion = trans('construccion.' . $codigo . 'Descripcion');
@@ -391,37 +391,37 @@ class ConstruccionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function industria ($industria)
+    public function industria($industria)
     {
         $industrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
         if ($industria == 'liquido') {
             if ($industrias->liquido == 0) {
                 $industrias->liquido = 1;
-            }else{
+            } else {
                 $industrias->liquido = 0;
             }
-        }elseif ($industria == 'micros') {
+        } elseif ($industria == 'micros') {
             if ($industrias->micros == 0) {
                 $industrias->micros = 1;
-            }else{
+            } else {
                 $industrias->micros = 0;
             }
-        }elseif ($industria == 'fuel') {
+        } elseif ($industria == 'fuel') {
             if ($industrias->fuel == 0) {
                 $industrias->fuel = 1;
-            }else{
+            } else {
                 $industrias->fuel = 0;
             }
-        }elseif ($industria == 'ma') {
+        } elseif ($industria == 'ma') {
             if ($industrias->ma == 0) {
                 $industrias->ma = 1;
-            }else{
+            } else {
                 $industrias->ma = 0;
             }
-        }elseif ($industria == 'municion') {
+        } elseif ($industria == 'municion') {
             if ($industrias->municion == 0) {
                 $industrias->municion = 1;
-            }else{
+            } else {
                 $industrias->municion = 0;
             }
         }

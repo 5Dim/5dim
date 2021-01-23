@@ -1,5 +1,5 @@
 @php
-$arrayNaves=['Cazas','Ligeras','Medias','Pesadas/Estaciones','Defensas'];
+$arrayNaves=['Cazas','Ligeras','Medias','Pesadas','Estaciones'];
 
 @endphp
 
@@ -49,9 +49,9 @@ $arrayNaves=['Cazas','Ligeras','Medias','Pesadas/Estaciones','Defensas'];
                     @for($m=0;$m<8;$m++) <td id="{{$n}}{{$m}}" class="anchofijo text-light borderless">
                         0
                         </td>
-                        @endfor
-                        </tr>
-                        @endfor
+                    @endfor
+                    </tr>
+                @endfor
             </table>
         </div>
     </div>

@@ -17,15 +17,19 @@
 
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
+
+    <!-- CKEditor -->
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
     <!-- Select2 -->
     <link href="{{ asset('css/select2/select2.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/select2/select2-bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
 
-    <!-- CKEditor -->
+    <!-- NoUISlider -->
     <link href="{{ asset('css/nouislider/nouislider.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+    <!-- Custom -->
+    <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="bg" id="recursosFrame">
@@ -73,7 +77,7 @@
                                 data-trigger="focus" title="Puntos de imperio"
                                 data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
                                 PI <span
-                                    class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count(Auth::user()->jugadores[0]->planetas) * 10 }}</span>
+                                    class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count(Auth::user()->jugador->planetas) * 10 }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless">
@@ -85,16 +89,9 @@
                         </th>
                         <th class="text-warning borderless ">
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Puntos de ensamblaje de naves"
-                                data-bs-content="Estos son los puntos de ensamblaje de naves disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
-                                PEN <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeNaves }}</span>
-                            </button>
-                        </th>
-                        <th class="text-warning borderless ">
-                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Puntos de ensamblaje de defensas"
-                                data-bs-content="Estos son los puntos de ensamblaje de defensas disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
-                                PED <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeDefensas }}</span>
+                                data-bs-trigger="focus" title="Puntos de ensamblaje de fuselajes"
+                                data-bs-content="Estos son los puntos de ensamblaje de fuselajes disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
+                                PE <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeFuselajes }}</span>
                             </button>
                         </th>
                         <th class="text-warning borderless ">
@@ -175,10 +172,16 @@
                 <tbody>
                     <tr>
                         <td class="text-danger borderless">
-                            ({{ number_format($personal, 0, ',', '.') }})
+                            ({{ number_format($personalOcupado, 0, ',', '.') }})
                         </td>
-                        @foreach ($almacenes as $almacen)
-                            @if ($loop->index == 5)
+                        <td class="text-danger borderless">
+                            Ilimitado
+                        </td>
+                        <td class="text-danger borderless">
+                            Ilimitado
+                        </td>
+                        @foreach ($capacidadAlmacenes as $almacen)
+                            @if ($loop->index == 3)
                                 <td class="text-danger borderless">
                                     Almacenes
                                 </td>
@@ -197,7 +200,7 @@
                     </tr>
                     <tr>
                         <td id="personal" class="text-warning borderless">
-                            {{ number_format($recursos->personal - $personal, 0, ',', '.') }}
+                            {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
                         </td>
                         <td id="mineral" class="text-warning borderless">
                             {{ number_format($recursos->mineral, 0, ',', '.') }}
@@ -238,52 +241,52 @@
                     </tr>
                     @php
                     $nivelTerraformador = $planetaActual->construcciones->where('codigo',
-                    'terraformador')->first()->nivel;
+                    'terraformadorMinero')->first()->nivel;
                     @endphp
                     <tr>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[0]->personal, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->personal, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[1]->mineral, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->mineral, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[2]->cristal, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->cristal, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[3]->gas, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->gas, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[4]->plastico, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->plastico, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[5]->ceramica, 0, ',', '.') }}</span> ud/h
+                            <span>{{ number_format($produccion->ceramica, 0, ',', '.') }}</span> ud/h
                         </td>
                         <td class="text-primary borderless">
                             Producción
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[6]->liquido * $factoresIndustrias[0], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->liquido, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[7]->micros * $factoresIndustrias[1], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->micros, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[8]->fuel * $factoresIndustrias[2], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->fuel, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[9]->ma * $factoresIndustrias[3], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->ma, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[10]->municion * $factoresIndustrias[4], 0, ',', '.') }}</span>
+                            <span>{{ number_format($produccion->municion, 0, ',', '.') }}</span>
                             ud/h
                         </td>
                         <td class="text-primary borderless">
-                            <span>{{ number_format($producciones[11]->creditos, 0, ',', '.') }}</span> ud/d
+                            <span>{{ number_format($produccion->creditos, 0, ',', '.') }}</span> ud/d
                         </td>
                     </tr>
                 </tbody>
@@ -422,21 +425,20 @@
     <!-- Select2 -->
     <script src="{{ asset('js/select2/select2.min.js') }}"></script>
 
-
     <!-- Personalizado -->
     <script src="{{ asset('js/custom.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             var recursos = @json($recursos);
-            recursos.personal -= @json($personal);
+            recursos.personal -= @json($personalOcupado);
             //console.log(recursos);
-            var produccion = @json($producciones);
+            var produccion = @json($produccion);
             //console.log(produccion);
-            var almacenes = @json($almacenes);
-            //console.log(almacenes);
-            var techs = @json($factoresIndustrias);
-            //console.log(techs);
-            activarIntervalo(recursos, almacenes, produccion, 250, techs);
+            var almacenes = @json($capacidadAlmacenes);
+            // console.log(almacenes);
+            activarIntervalo(recursos, almacenes, produccion, 250);
+            // $('select').selectpicker();
         });
 
     </script>

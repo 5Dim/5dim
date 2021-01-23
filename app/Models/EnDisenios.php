@@ -38,7 +38,7 @@ class EnDisenios extends Model
                 if ($cola->accion == "Reciclando") {
                     $coste = $cola->disenios->costes;
                     $recursos = $cola->planetas->recursos;
-                    $disenio->cantidad -= $cola->cantidad;
+                    //$disenio->cantidad -= $cola->cantidad;
 
                     //Restaurar beneficio por reciclaje
                     $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);

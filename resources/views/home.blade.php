@@ -27,8 +27,8 @@
                 </tbody>
             </table>
             <hr>
-            <p class="mb-0 text-right">
-                <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/jugador/0') }}';">
+            <p class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-dark me-md-2" onclick="location.href='{{ url('/juego/construccion') }}'">
                     Entrar
                 </button>
             </p>
@@ -70,8 +70,8 @@
                 </tbody>
             </table>
             <hr>
-            <p class="mb-0 text-right">
-                <button type="button" class="btn btn-dark" onclick="location.href='{{ url('/jugador/1') }}';">
+            <p class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-dark me-md-2" onclick="location.href='{{ url('/jugador/1') }}';">
                     Entrar
                 </button>
             </p>

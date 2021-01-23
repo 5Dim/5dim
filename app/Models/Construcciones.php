@@ -31,19 +31,20 @@ class Construcciones extends Model
 
     public function listaNombres () {
         $listaNombres = [
+            // Minas
             "indPersonal",
             "minaMineral",
             "minaCristal",
             "minaGas",
             "minaPlastico",
             "minaCeramica",
+            // Industrias
             "indLiquido",
             "indMicros",
             "indFuel",
             "indMA",
             "indMunicion",
-            "almMineral",
-            "almCristal",
+            // Almacenes
             "almGas",
             "almPlastico",
             "almCeramica",
@@ -52,20 +53,30 @@ class Construcciones extends Model
             "almFuel",
             "almMA",
             "almMunicion",
+            // Militares
             "refugio",
-            "fabDefensas",
-            "fabNaves",
-            "fabTropas",
-            "escudo",
+            "hangar",
+            //  Desarrollo
             "laboratorio",
-            "terraformador",
             "comercio",
+            // Observacion
             "observacion",
-            "potenciador",
             "inhibidorHMA",
-            //Nodriza
+            //Especializaciones
+            "potenciador",
+            "terraformadorMinero",
+            "terraformadorIndustrial",
+            "redLogistica",
+            "megaAstillero",
+            "redInvestigacion",
+            "redObservatorios",
+            "redComercio",
+            // Especiales
             "nodEstructura",
             "nodMotorMA",
+            "disparoFlotas",
+            "teleportFlota",
+            "teleportNodriza",
         ];
         return $listaNombres;
     }
@@ -86,34 +97,72 @@ class Construcciones extends Model
         return $result;
     }
 
-    public function nuevaColonia ($planeta) {
+    public static function nuevaColonia ($planeta) {
         $listaConstrucciones = [];
         $construccion = new Construcciones();
         $listaNombres = $construccion->listaNombres();
+
+        $listaCategoriasPorOrden = [
+            // Minas
+            "mina",
+            "mina",
+            "mina",
+            "mina",
+            "mina",
+            "mina",
+            // Industrias
+            "industria",
+            "industria",
+            "industria",
+            "industria",
+            "industria",
+            // Almacenes
+            "almacen",
+            "almacen",
+            "almacen",
+            "almacen",
+            "almacen",
+            "almacen",
+            "almacen",
+            "almacen",
+            // Militares
+            "militar",
+            "militar",
+            // Desarrollo
+            "desarrollo",
+            "desarrollo",
+            // Observacion
+            "observacion",
+            "observacion",
+            //Especializaciones
+            "especializacion",
+            "especializacion",
+            "especializacion",
+            "especializacion",
+            "especializacion",
+            "especializacion",
+            "especializacion",
+            "especializacion",
+            // Especiales
+            "especial",
+            "especial",
+            "especial",
+            "especial",
+            "especial",
+        ];
 
         for ($i = 0 ; $i < count($listaNombres) ; $i++) {
             $construccion = new Construcciones();
             $construccion->planetas_id = $planeta;
             $construccion->codigo = $listaNombres[$i];
-            if ($listaNombres[$i] == 'almMineral' or $listaNombres[$i] == 'almCristal') {
-                $construccion->nivel = 99;
-            }else{
-                $construccion->nivel = 0;
-            }
+            $construccion->categoria = $listaCategoriasPorOrden[$i];
+            // $construccion->nivel = 0;
             array_push($listaConstrucciones, $construccion);
         }
 
         foreach ($listaConstrucciones as $construccion) {
             $construccion->save();
         }
-
-        /*
-        for ($i = 0 ; $i < count($listaNombres) ; $i++) {
-            $costeConstruccion = new CostesConstrucciones();
-            $coste = $costeConstruccion->generarDatosCostesConstruccion(0, $listaNombres[$i], $listaConstrucciones[$i]->id);
-            $coste->save();
-        }
-        */
 
         $industrias=new Industrias();
         $industrias->planetas_id=$planeta;
@@ -129,8 +178,7 @@ class Construcciones extends Model
     public static function construcciones ($planetaActual) {
         $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         if (empty($construcciones[0]->codigo)) {
-            $construccion = new Construcciones();
-            $construccion->nuevaColonia($planetaActual->id);
+            Construcciones::nuevaColonia($planetaActual->id);
             $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         }
         return $construcciones;
