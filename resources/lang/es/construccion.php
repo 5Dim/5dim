@@ -37,7 +37,6 @@ return [
     'nodEstructura' => "Módulo estructural",
     'nodMotorMA' => "Motor HMA",
 
-
     'minaMineralDescripcion' => "se incluyen en esta construcci&oacute;n la extracci&oacute;n y elaboraci&oacute;n de todo tipo de materiales para construcción de estructuras terrestres como el acero, hormig&oacute;n, etc.<br>Este recurso se extrae automáticamente a mayor velocidad seg&uacute;n el nivel de la mina de mineral,  se acumula al aire libre sin necesidad de almacenes especiales. ",
     'minaCristalDescripcion' => "todos los minerales y aleaciones son procesados en estas industrias para elaborar materiales de construción especiales como aluminio, titanio o vidrio.<br>Este recurso se extrae autom&aacute;ticamente a mayor velocidad seg&uacute;n el nivel de la mina de cristal,  se acumula al aire libre sin necesidad de almacenes especiales.",
     'minaGasDescripcion' => "todo tipo de elementos naturales en forma gaseosa son extraidos del subsuelo y luego purificados mediante complejos procesos químicos, otros sin embargo se obtienen de forma artificial mediante transformaciones químicas. Gases orgánicos como el metanos o inorgánicos como el hidrógeno son imprescindibles para la industria o para obtener nuevos compuestos, por eso es muy utilizado en multitud de investigaciones.<br>Este recurso se extrae automáticamente a mayor velocidad hasta que se llena su almacén",
@@ -72,11 +71,4 @@ return [
     'inhibidorHMADescripcion' => "Esta enorme estrucutura defensiva crea interferencias en el hiperespacio evitando que cualquier motor HMA o sus efectos dentro de su rango, que escala por el nivel del edificio.",
     'nodEstructuraDescripcion' => "Para que una nave nodriza crezca es necesario construir nuevas estructuras que albergen los nuevos módulos. Cada nivel aporta 6 huecos para subir otros tantos niveles otras construcciones, el límite son 588 huecos<br>Subiendo su nivel se aumenta el espacio para nuevas construcciones, pero aumenta también su peso para ser movido por los motores. Esta construcción es exclusiva de las naves nodriza.",
     'nodMotorMADescripcion' => "Para que una nave nodriza se mueva necesita de unos motores especiales alimentados por MA que crean un pliege espacio temporal<br>Cada nave, defensa, edificio, recurso y todo lo que contiene la nodriza es pesado para tener en cuenta el gasto de combustible del desplazamiento.",
-
-
-
-
-
-
-
 ];

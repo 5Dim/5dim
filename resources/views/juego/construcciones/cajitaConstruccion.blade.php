@@ -333,5 +333,4 @@
 
 <script>
     calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo));
-
 </script>

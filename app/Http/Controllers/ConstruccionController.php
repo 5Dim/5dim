@@ -184,7 +184,7 @@ class ConstruccionController extends Controller
         // Comprobar dependencias
         $construcciones = Construcciones::construcciones($planetaActual);
         $dependencia = Dependencias::where('tipo', 'construccion')->get()->where('codigo', $construccion->codigo)->first();
-        if ($dependencia->nivelRequiere < $construcciones->where('codigo', $dependencia->codigoRequiere)->first()->nivel) {
+        if ($dependencia->nivelRequiere > $construcciones->where('codigo', $dependencia->codigoRequiere)->first()->nivel) {
             $error = true;
         }
 
