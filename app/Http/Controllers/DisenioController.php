@@ -134,6 +134,7 @@ class DisenioController extends Controller
         $armas = Armas::all();
 
         $constantesI = Constantes::where('tipo', 'investigacion')->get();
+        $constantesF = Constantes::where('tipo', 'fuselajes')->get();
         $costesArmas = CostesArmas::all();
 
         $arrayAlcance = [
@@ -262,6 +263,7 @@ class DisenioController extends Controller
             'disenio',
             'armas',
             'constantesI',
+            'constantesF',
             'costesArmas',
             'arrayAlcance',
             'arrayDispersion',
@@ -322,6 +324,7 @@ class DisenioController extends Controller
         $disenio = Fuselajes::find($idFuselaje);
         $armas = Armas::all();
         $constantesI = Constantes::where('tipo', 'investigacion')->get();
+        $constantesF = Constantes::where('tipo', 'fuselajes')->get();
         $costesArmas = CostesArmas::all();
 
         // valores de objetos
@@ -464,6 +467,7 @@ class DisenioController extends Controller
             'disenio',
             'armas',
             'constantesI',
+            'constantesF',
             'costesArmas',
         ));
     }
@@ -487,6 +491,7 @@ class DisenioController extends Controller
         $investigaciones = $investigacion->investigaciones($planetaActual);
         $disenio = Fuselajes::find($idFuselaje);
         $constantesI = Constantes::where('tipo', 'investigacion')->get();
+        $constantesF = Constantes::where('tipo', 'fuselajes')->get();
         $costesArmas = CostesArmas::all();
         $armas = Armas::all();
 
@@ -1446,7 +1451,8 @@ class DisenioController extends Controller
                 $pesoInicial = .0005 * $disenio->cualidades->masa * ($disenio->costes->mineral * 50 + $disenio->costes->cristal * 260 + $disenio->costes->gas * 1000 + $disenio->costes->plastico * 4000 + $disenio->costes->ceramica * 600 + $disenio->costes->liquido * 500 + $disenio->costes->micros * 2000 + $disenio->costes->personal * 500);
 
                 $pesoTotal = ($cualidades['masa'] + $pesoInicial);
-                $cualidades['velocidad'] = min($empujeT / $pesoTotal, $cualidadesFuselaje['velocidadMax'], 19.99);
+                //$cualidades['velocidad'] = min($empujeT / $pesoTotal, $cualidadesFuselaje['velocidadMax'], 19.99); // limita por velmax
+                $cualidades['velocidad'] = $empujeT / $pesoTotal;
                 $cualidades['velocidad'] = (round($cualidades['velocidad'] * 100, 0)) / 100;
 
 

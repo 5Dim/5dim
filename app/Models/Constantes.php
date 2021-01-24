@@ -888,9 +888,132 @@ class Constantes extends Model
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
 
+                    /// velocidades maximas
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveVelocidadMaximaTodas';
+                $constante->descripcion='Velocidad Máxima de fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveVelocidadMaximacaza';
+                $constante->descripcion='Velocidad Máxima de fuselaje naves caza';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveVelocidadMaximaligera';
+                $constante->descripcion='Velocidad Máxima de fuselaje naves ligera';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveVelocidadMaximamedia';
+                $constante->descripcion='Velocidad Máxima de fuselaje naves media';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveVelocidadMaximapesada';
+                $constante->descripcion='Velocidad Máxima de fuselaje naves pesada';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveVelocidadMaximaestacion';
+                $constante->descripcion='Velocidad Máxima de fuselaje naves estacion';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
 
 
+                /// maniobrabilidades maximas
 
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveManiobrabilidadMaximaTodas';
+                $constante->descripcion='Maniobrabilidad Máxima de fuselaje naves ';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveManiobrabilidadMaximacaza';
+                $constante->descripcion='Maniobrabilidad Máxima de fuselaje naves caza';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveManiobrabilidadMaximaligera';
+                $constante->descripcion='Maniobrabilidad Máxima de fuselaje naves ligera';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveManiobrabilidadMaximamedia';
+                $constante->descripcion='Maniobrabilidad Máxima de fuselaje naves media';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveManiobrabilidadMaximapesada';
+                $constante->descripcion='Maniobrabilidad Máxima de fuselaje naves pesada';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+                $constante =new Constantes();
+                $constante->universo_id=$universo;
+                $constante->valor=500;
+                $constante->minimo=200;
+                $constante->maximo=800;
+                $constante->codigo='fuselajenaveManiobrabilidadMaximaestacion';
+                $constante->descripcion='Maniobrabilidad Máxima de fuselaje naves estacion';
+                $constante->tipo='fuselajes';
+                array_push($producciones, $constante);
+
+/*
                 //Defensas ////////////////////////////////////////////////////////////////////////
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -1061,9 +1184,9 @@ class Constantes extends Model
                 $constante->descripcion='variación de los Tiempo de fuselaje naves defensa';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
+*/
 
-
-
+/*
                 //Tropas ////////////////////////////////////////////////////////////////////////
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
@@ -1194,7 +1317,8 @@ class Constantes extends Model
                 $constante->descripcion='variación de la velocidad de construccion fuselaje naves defensa';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
-
+*/
+/*
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
                 $constante->valor=1;
@@ -1534,6 +1658,10 @@ class Constantes extends Model
                 $constante->descripcion='variación de la velocidad de construccion fuselaje naves defensa';
                 $constante->tipo='fuselajes';
                 array_push($producciones, $constante);
+*/
+
+
+                /////UNIVERSO
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;

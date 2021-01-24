@@ -569,7 +569,7 @@ class CostesFuselajes extends Model
                 break;
 
 
-
+/*
 
                 //DEFENSAS ORBITALES  ///////////////////////////////////////////
             case "YETI":
@@ -880,12 +880,11 @@ class CostesFuselajes extends Model
                 $r1cce = [$codigo, 5000000, 2000000, 3000000, 2300000, 450000, 1000000, 135000, .8, 0, 650];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'tropa', $Tnave, $factn);
                 break;
+
+                */
         }
 
 
-
-
-        // tropas   ///////////////////////////////////////////
 
         return $coste;
     }

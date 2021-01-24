@@ -121,7 +121,7 @@ class Fuselajes extends Model
             "ENLIL",
             "ESUS",
             "BAAL",
-
+/*
             //DEFENSAS
             //Ligeras
             "YETI",
@@ -179,6 +179,7 @@ class Fuselajes extends Model
             // "HOMÚNCULO",
             // "GARGOLA",
             // "GOLEM",
+            */
 
         ];
         return $listaNombres;
@@ -1093,7 +1094,7 @@ class Fuselajes extends Model
                     array_push($fuselajes, $fuselaje);
                     break;
 
-
+/*
 
                 //DEFENSAS ///////////////////////////////////////////////////////////////////////////
                 // Ligeras
@@ -1583,6 +1584,8 @@ class Fuselajes extends Model
                     //     $fuselaje->categoria = "jugador";
                     //     array_push($fuselajes, $fuselaje);
                     //     break;
+
+                    */
             }
         }
 
