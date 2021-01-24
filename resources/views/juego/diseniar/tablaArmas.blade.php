@@ -250,7 +250,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                             <div class="col-12 ">
                                 @if ($investNiveles["invPropQuimico"]+$investNiveles["invPropNuk"]+$investNiveles["invPropIon"]+$investNiveles["invPropPlasma"]+$investNiveles["invPropMa"]>0)
                                 <div id="cuadro1" class=" cajita">
-                                    <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                    <table class=" table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                         <tr>
                                             <td colspan="7">
                                                 <div class=" text-light" id="motorestxt"> x{{$multiplicadorMotores}} Motores, &nbsp;&nbsp;&nbsp; Energía:  <span class="text-success" id ="energiamotor"></span></div>
@@ -535,7 +535,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                             <div class="col-12 " rowspan="2">
                                 @if ($investNiveles["invBlindaje"]>0)
                                 <div id="cuadro1" class=" cajita">
-                                    <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                    <table class="table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                         <tr>
                                             <td colspan="7">
                                                 <div class=" text-light" id="blindajestxt">x{{$multiplicadorblindajes}} Blindajes, &nbsp;&nbsp;&nbsp;Energía: <span class="text-danger"  id ="energiablindaje"></span></div>
@@ -824,7 +824,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                     <div class="col-12 ">
                                         <div id="cuadro1" class=" cajita">
                                             <div class=" text-light" id="cargatxt">Carga, &nbsp;&nbsp;&nbsp;Energía: <span class="text-danger"  id ="energiacarga"></span></div>
-                                            <table class="table table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
+                                            <table class=" table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
                                                     @for($codigo=90;$codigo<102;$codigo++)
                                                     @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
@@ -1170,6 +1170,7 @@ var armasL={!!json_encode($armas)!!};
 var cualidadesFuselaje={!!json_encode($disenio->cualidades)!!};
 var costesFuselaje={!!json_encode($disenio->costes)!!};
 var constantesI={!!json_encode($constantesI)!!};
+var constantesF={!!json_encode($constantesF)!!};
 var investigaciones={!!json_encode($investigaciones)!!};
 var tnave= {!!json_encode($disenio->tnave)!!};
 
@@ -1956,7 +1957,8 @@ sumaCualidades(cualidades,cte,costesMisMejoras);
 pesoInicial=.0005*{{$disenio->cualidades->masa}} * (costesFuselaje['mineral']*50+costesFuselaje['cristal']*260+costesFuselaje['gas']*1000+costesFuselaje['plastico']*4000+costesFuselaje['ceramica']*600+costesFuselaje['liquido']*500+costesFuselaje['micros']*2000+costesFuselaje['personal']*500);
 
 pesoTotal=(cualidades['masa']+pesoInicial);
-cualidades['velocidad']=Math.min(empujeT/pesoTotal,cualidadesFuselaje['velocidadMax'],19.99);
+///cualidades['velocidad']=Math.min(empujeT/pesoTotal,cualidadesFuselaje['velocidadMax'],19.99); // limita la velmax
+cualidades['velocidad']=empujeT/pesoTotal;
 cualidades['velocidad']=( Math.round(cualidades['velocidad']*100))/100;
 
 mostrarResultado();

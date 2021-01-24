@@ -5,7 +5,7 @@
                 style="margin-top: 5px !important">
                 <tr>
                     <th colspan="10" class="text-success text-center borderless align-middle">
-                        Resumen del disenio {{ strtoupper($disenio->tamanio . ' ' . $disenio->codigo) }}
+                        Resumen del diseño {{ strtoupper($disenio->tamanio . ' ' . $disenio->codigo) }}
                     </th>
                 </tr>
                 <tr>

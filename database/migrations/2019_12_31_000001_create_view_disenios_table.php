@@ -19,23 +19,29 @@ class CreateViewDiseniosTable extends Migration
 
         DB::statement("CREATE VIEW view_disenios  AS
 
+/* (select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) *
+(select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) *
+(select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) *
+(select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) *
+greatest (select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) *
+*/
 
 select
         cd.id AS id,
-        ROUND ( mejoras.fuel * (1+((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),0)  AS fuel,
-        ROUND ( mejoras.municion *  (1+((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),0)  AS municion,
-        ROUND (mejoras.mantenimiento * (1+((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),0)  AS mantenimiento,
-        ROUND (mejoras.defensa * (1+((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),0)  AS defensa,
-        ROUND (mejoras.tiempo * greatest ((1-((select nivel from investigaciones where codigo='invIa' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvIa'))),100),0)   AS tiempo,
+        ROUND ( mejoras.fuel * (1-( (select valor from constantes where codigo='mejorainvIa'))),0)  AS fuel,
+        ROUND ( mejoras.municion *  (1-( (select valor from constantes where codigo='mejorainvIa'))),0)  AS municion,
+        ROUND (mejoras.mantenimiento * (1-( (select valor from constantes where codigo='mejorainvIa'))),0)  AS mantenimiento,
+        ROUND (mejoras.defensa * (1+( (select valor from constantes where codigo='mejorainvIa'))),0)  AS defensa,
+        ROUND (mejoras.tiempo * greatest ((1-( (select valor from constantes where codigo='mejorainvIa'))),0),0)   AS tiempo,
         ifnull ((select SUM(total) from  view_danios_disenios where disenios_id= disenios.id),0) as ataque,
-        ROUND (least (
+        ROUND (
         ( ( mejoras.invPropQuimico * (select nivel from investigaciones where codigo='invPropQuimico' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropQuimico')
-			+mejoras.invPropNuk * (select nivel from investigaciones where codigo='invPropNuk' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropNuk')
-			+mejoras.invPropIon * (select nivel from investigaciones where codigo='invPropIon' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropIon')
-			+mejoras.invPropPlasma * (select nivel from investigaciones where codigo='invPropPlasma' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropPlasma')
-			+mejoras.invPropMa * (select nivel from investigaciones where codigo='invPropMa' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropMa')
-			+mejoras.invPropHMA  * (select nivel from investigaciones where codigo='invPropHMA' and jugadores_id=jugadores.id)* (select valor from constantes where codigo='mejorainvPropHMA')
-			) / cd.masa) ,cualidadesFuselajes.velocidadMax),2) as velocidad,
+			+mejoras.invPropNuk * IFNULL( (select nivel from investigaciones where codigo='invPropNuk' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropNuk')
+			+mejoras.invPropIon * IFNULL( (select nivel from investigaciones where codigo='invPropIon' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropIon')
+			+mejoras.invPropPlasma * IFNULL( (select nivel from investigaciones where codigo='invPropPlasma' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropPlasma')
+			+mejoras.invPropMa * IFNULL( (select nivel from investigaciones where codigo='invPropMa' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropMa')
+			+mejoras.invPropHMA  * IFNULL( (select nivel from investigaciones where codigo='invPropHMA' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropHMA')
+			) / cd.masa) ,2) as velocidad,
         ROUND (mejoras.carga * (1+((select nivel from investigaciones where codigo='invCarga' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvCarga'))),0)    AS carga,
         ROUND (mejoras.cargaPequenia * (1+((select nivel from investigaciones where codigo='invCarga' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvCarga'))),0)  AS cargaPequenia,
         ROUND (mejoras.cargaMediana * (1+((select nivel from investigaciones where codigo='invCarga' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvCarga'))),0)  AS cargaMediana,
