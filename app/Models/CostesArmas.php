@@ -18,7 +18,7 @@ class CostesArmas extends Model
         /// construcciones y produccion
         $fcmot=1;  //factor corrector costos motor
         $fcenermot=1; // energia que te el motor
-        $fcblind=1;  //factor corrector blindaje
+        $fcblind=3;  //factor corrector blindaje
         $fccc=1; //Factor corrector comp. de carga
         $fcae=1; //factor corrector costo armas energía
         $fcab=1; //factor corrector costo armas balistica
@@ -28,8 +28,8 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="59";  //motor quimico
-                $coste->mineral=2000*$fcmot;
-                $coste->cristal=1500*$fcmot;
+                $coste->mineral=2000*$fcmot*.5;
+                $coste->cristal=1500*$fcmot*.3;
                 $coste->gas=1000*$fcmot;
                 $coste->plastico=$fcmot*100; //4
                 $coste->ceramica=$fcmot*50; //5
@@ -40,7 +40,7 @@ class CostesArmas extends Model
                 $coste->municion=0; //10
                 $coste->personal=$fcmot*8; //11
                 $coste->masa=3000;
-                $coste->energia=750*$fcenermot*20;
+                $coste->energia=750*$fcenermot*24;
                 $coste->tiempo=$fcmot*200;
                 $coste->mantenimiento=$fcmot*1;
                 $coste->defensa=-10000;
@@ -56,8 +56,8 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="60"; //motor nuk
-                $coste->mineral=12000*$fcmot;
-                $coste->cristal=4300*$fcmot;
+                $coste->mineral=12000*$fcmot*.5;
+                $coste->cristal=4300*$fcmot*.3;
                 $coste->gas=250*$fcmot;
                 $coste->plastico=$fcmot*430; //4
                 $coste->ceramica=$fcmot*200; //5
@@ -84,13 +84,13 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="61"; //motor ion
-                $coste->mineral=28000*$fcmot;
-                $coste->cristal=14000*$fcmot;
-                $coste->gas=2670*$fcmot;
-                $coste->plastico=$fcmot*11070; //4
-                $coste->ceramica=$fcmot*6865; //5
-                $coste->liquido=$fcmot*3500; //6
-                $coste->micros=$fcmot*9040;   //7
+                $coste->mineral=15000*$fcmot*.5;
+                $coste->cristal=5000*$fcmot*.3;
+                $coste->gas=267*$fcmot;
+                $coste->plastico=$fcmot*1107; //4
+                $coste->ceramica=$fcmot*686; //5
+                $coste->liquido=$fcmot*350; //6
+                $coste->micros=$fcmot*904;   //7
                 $coste->fuel=$fcmot*4;     //8
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
@@ -112,8 +112,8 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="62"; //motor plasma
-                $coste->mineral=8280*$fcmot;
-                $coste->cristal=4300*$fcmot;
+                $coste->mineral=8280*$fcmot*.5;
+                $coste->cristal=4300*$fcmot*.3;
                 $coste->gas=1230*$fcmot;
                 $coste->plastico=$fcmot*5300; //4
                 $coste->ceramica=$fcmot*485; //5
@@ -140,8 +140,8 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="63"; //motor MA
-                $coste->mineral=32500*$fcmot;
-                $coste->cristal=7095*$fcmot;
+                $coste->mineral=32500*$fcmot*.5;
+                $coste->cristal=7095*$fcmot*.3;
                 $coste->gas=290*$fcmot;
                 $coste->plastico=$fcmot*190; //4
                 $coste->ceramica=$fcmot*430; //5
@@ -168,8 +168,8 @@ class CostesArmas extends Model
 
                 $coste =new CostesArmas();
                 $coste->armas_codigo="64"; //motor HMA
-                $coste->mineral=1000*$fcmot;
-                $coste->cristal=2000*$fcmot;
+                $coste->mineral=1000*$fcmot*.5;
+                $coste->cristal=2000*$fcmot*.3;
                 $coste->gas=3000*$fcmot;
                 $coste->plastico=$fcmot*4000; //4
                 $coste->ceramica=$fcmot*6000; //5
@@ -1122,8 +1122,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="11"; //arma ligera energia
-        $coste->mineral=$fcae*6000;
-        $coste->cristal=$fcae*2400;
+        $coste->mineral=$fcae*6000 * .5;
+        $coste->cristal=$fcae*2400 * .3;
         $coste->gas=$fcae*300;
         $coste->plastico=$fcae*300;
         $coste->ceramica=$fcae*500;
@@ -1151,8 +1151,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="12"; //arma media energia
-        $coste->mineral=$fcae*6000 * 27;
-        $coste->cristal=$fcae*2400 * 27;   //+
+        $coste->mineral=$fcae*6000 * 27 * .5;
+        $coste->cristal=$fcae*2400 * 27;   // * .3+
         $coste->gas=$fcae*300 * 27;
         $coste->plastico=$fcae*300 * 27;   //-
         $coste->ceramica=$fcae*500 * 27;
@@ -1180,8 +1180,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="13"; //arma pesada energia
-        $coste->mineral=$fcae*6000 * 100;
-        $coste->cristal=$fcae*2400 * 100;   //+
+        $coste->mineral=$fcae*6000 * 100 * .5;
+        $coste->cristal=$fcae*2400 * 100;   // * .3+
         $coste->gas=$fcae*300 * 100;
         $coste->plastico=$fcae*300 * 100;   //-
         $coste->ceramica=$fcae*500 * 100;
@@ -1209,8 +1209,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="14"; //arma insertado energia
-        $coste->mineral=$fcae*6000 * 25;
-        $coste->cristal=$fcae*2400 * 25;   //+
+        $coste->mineral=$fcae*6000 * 25 * .5;
+        $coste->cristal=$fcae*2400 * 25;   // * .3+
         $coste->gas=$fcae*300 * 25;
         $coste->plastico=$fcae*300 * 25;   //-
         $coste->ceramica=$fcae*500 * 25;
@@ -1238,8 +1238,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="15"; //arma misiles energia
-        $coste->mineral=$fcae*6000 * 40;
-        $coste->cristal=$fcae*2400 * 40;   //+
+        $coste->mineral=$fcae*6000 * 40 * .5;
+        $coste->cristal=$fcae*2400 * 40;   // * .3+
         $coste->gas=$fcae*300 * 40;
         $coste->plastico=$fcae*300 * 40;   //-
         $coste->ceramica=$fcae*500 * 40;
@@ -1266,8 +1266,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="16"; //arma bombas energia
-        $coste->mineral=$fcae*6000 * 60;
-        $coste->cristal=$fcae*2400 * 60;   //+
+        $coste->mineral=$fcae*6000 * 60 * .5;
+        $coste->cristal=$fcae*2400 * 60;   // * .3+
         $coste->gas=$fcae*300 * 60;
         $coste->plastico=$fcae*300 * 60;   //-
         $coste->ceramica=$fcae*500 * 60;
@@ -1295,8 +1295,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="21"; //arma ligera plasma
-        $coste->mineral=$fcae*5500; //-
-        $coste->cristal=$fcae*2000;
+        $coste->mineral=$fcae*5500; // * .5-
+        $coste->cristal=$fcae*2000 * .3;
         $coste->gas=$fcae*300;
         $coste->plastico=$fcae*400;
         $coste->ceramica=$fcae*650; //+
@@ -1324,8 +1324,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="22"; //arma media plasma
-        $coste->mineral=$fcae*5500 * 27; //-
-        $coste->cristal=$fcae*2000 * 27;
+        $coste->mineral=$fcae*5500 * 27; // * .5-
+        $coste->cristal=$fcae*2000 * 27 * .3;
         $coste->gas=$fcae*300 * 27;
         $coste->plastico=$fcae*400 * 27;
         $coste->ceramica=$fcae*650 * 27; //+
@@ -1353,8 +1353,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="23"; //arma pesada plasma
-        $coste->mineral=$fcae*5500 * 100; //-
-        $coste->cristal=$fcae*2000 * 100;
+        $coste->mineral=$fcae*5500 * 100; // * .5-
+        $coste->cristal=$fcae*2000 * 100 * .3;
         $coste->gas=$fcae*300 * 100;
         $coste->plastico=$fcae*400 * 100;
         $coste->ceramica=$fcae*650 * 100; //+
@@ -1382,8 +1382,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="24"; //arma insertado plasma
-        $coste->mineral=$fcae*5500 * 25; //-
-        $coste->cristal=$fcae*2000 * 25;
+        $coste->mineral=$fcae*5500 * 25; // * .5-
+        $coste->cristal=$fcae*2000 * 25 * .3;
         $coste->gas=$fcae*300 * 25;
         $coste->plastico=$fcae*400 * 25;
         $coste->ceramica=$fcae*650 * 25; //+
@@ -1411,8 +1411,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="25"; //arma misiles plasma
-        $coste->mineral=$fcae*5500 * 40; //-
-        $coste->cristal=$fcae*2000 * 40;
+        $coste->mineral=$fcae*5500 * 40; // * .5-
+        $coste->cristal=$fcae*2000 * 40 * .3;
         $coste->gas=$fcae*300 * 40;
         $coste->plastico=$fcae*400 * 40;
         $coste->ceramica=$fcae*650 * 40; //+
@@ -1439,8 +1439,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="26"; //arma bombas plasma
-        $coste->mineral=$fcae*5500 * 60; //-
-        $coste->cristal=$fcae*2000 * 60;
+        $coste->mineral=$fcae*5500 * 60; // * .5-
+        $coste->cristal=$fcae*2000 * 60 * .3;
         $coste->gas=$fcae*300 * 60;
         $coste->plastico=$fcae*400 * 60;
         $coste->ceramica=$fcae*650 * 60; //+
@@ -1469,8 +1469,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="31"; //arma ligera balistica
-        $coste->mineral=$fcae*8000;     //+
-        $coste->cristal=$fcae*2000;
+        $coste->mineral=$fcae*8000;     // * .5+
+        $coste->cristal=$fcae*2000 * .3;
         $coste->gas=$fcae*300;
         $coste->plastico=$fcae*200;     //-
         $coste->ceramica=$fcae*500;
@@ -1498,8 +1498,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="32"; //arma media balistica
-        $coste->mineral=$fcae*8000 * 27;    //+
-        $coste->cristal=$fcae*2000 * 27;
+        $coste->mineral=$fcae*8000 * 27;    // * .5+
+        $coste->cristal=$fcae*2000 * 27 * .3;
         $coste->gas=$fcae*300 * 27;
         $coste->plastico=$fcae*200 * 27;    //-
         $coste->ceramica=$fcae*500 * 27;
@@ -1527,8 +1527,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="33"; //arma pesada balistica
-        $coste->mineral=$fcae*8000 * 100;   //+
-        $coste->cristal=$fcae*2000 * 100;
+        $coste->mineral=$fcae*8000 * 100;   // * .5+
+        $coste->cristal=$fcae*2000 * 100 * .3;
         $coste->gas=$fcae*300 * 100;
         $coste->plastico=$fcae*200 * 100;   //-
         $coste->ceramica=$fcae*500 * 100;
@@ -1556,8 +1556,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="34"; //arma insertado balistica
-        $coste->mineral=$fcae*8000 * 25;    //+
-        $coste->cristal=$fcae*2000 * 25;
+        $coste->mineral=$fcae*8000 * 25;    // * .5+
+        $coste->cristal=$fcae*2000 * 25 * .3;
         $coste->gas=$fcae*300 * 25;
         $coste->plastico=$fcae*200 * 25;    //-
         $coste->ceramica=$fcae*500 * 25;
@@ -1585,8 +1585,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="35"; //arma misiles balistica
-        $coste->mineral=$fcae*8000 * 40;    //+
-        $coste->cristal=$fcae*2000 * 40;
+        $coste->mineral=$fcae*8000 * 40;    // * .5+
+        $coste->cristal=$fcae*2000 * 40 * .3;
         $coste->gas=$fcae*300 * 40;
         $coste->plastico=$fcae*200 * 40;    //-
         $coste->ceramica=$fcae*500 * 40;
@@ -1613,8 +1613,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="36"; //arma bombas balistica
-        $coste->mineral=$fcae*8000 * 60;    //+
-        $coste->cristal=$fcae*2000 * 60;
+        $coste->mineral=$fcae*8000 * 60;    // * .5+
+        $coste->cristal=$fcae*2000 * 60 * .3;
         $coste->gas=$fcae*300 * 60;
         $coste->plastico=$fcae*200 * 60;    //-
         $coste->ceramica=$fcae*500 * 60;
@@ -1641,8 +1641,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="41"; //arma ligera M-A
-        $coste->mineral=$fcae*6000;
-        $coste->cristal=$fcae*2000;
+        $coste->mineral=$fcae*6000 * .5;
+        $coste->cristal=$fcae*2000 * .3;
         $coste->gas=$fcae*300;
         $coste->plastico=$fcae*400;
         $coste->ceramica=$fcae*600;
@@ -1670,8 +1670,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="42"; //arma media M-A
-        $coste->mineral=$fcae*6000 * 27;
-        $coste->cristal=$fcae*2000 * 27;
+        $coste->mineral=$fcae*6000 * 27 * .5;
+        $coste->cristal=$fcae*2000 * 27 * .3;
         $coste->gas=$fcae*300 * 27;
         $coste->plastico=$fcae*400 * 27;
         $coste->ceramica=$fcae*500 * 27;
@@ -1699,8 +1699,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="43"; //arma pesada M-A
-        $coste->mineral=$fcae*6000 * 100;
-        $coste->cristal=$fcae*2000 * 100;
+        $coste->mineral=$fcae*6000 * 100 * .5;
+        $coste->cristal=$fcae*2000 * 100 * .3;
         $coste->gas=$fcae*300 * 100;
         $coste->plastico=$fcae*400 * 100;
         $coste->ceramica=$fcae*500 * 100;
@@ -1728,8 +1728,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="44"; //arma insertado M-A
-        $coste->mineral=$fcae*6000 * 25;
-        $coste->cristal=$fcae*2000 * 25;
+        $coste->mineral=$fcae*6000 * 25 * .5;
+        $coste->cristal=$fcae*2000 * 25 * .3;
         $coste->gas=$fcae*300 * 25;
         $coste->plastico=$fcae*400 * 25;
         $coste->ceramica=$fcae*500 * 25;
@@ -1757,8 +1757,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="45"; //arma misiles M-A
-        $coste->mineral=$fcae*6000 * 40;
-        $coste->cristal=$fcae*2000 * 40;
+        $coste->mineral=$fcae*6000 * 40 * .5;
+        $coste->cristal=$fcae*2000 * 40 * .3;
         $coste->gas=$fcae*300 * 40;
         $coste->plastico=$fcae*400 * 40;
         $coste->ceramica=$fcae*500 * 40;
@@ -1785,8 +1785,8 @@ class CostesArmas extends Model
 
         $coste =new CostesArmas();
         $coste->armas_codigo="46"; //arma bombas M-A
-        $coste->mineral=$fcae*6000 * 60;
-        $coste->cristal=$fcae*2000 * 60;
+        $coste->mineral=$fcae*6000 * 60 * .5;
+        $coste->cristal=$fcae*2000 * 60 * .3;
         $coste->gas=$fcae*300 * 60;
         $coste->plastico=$fcae*400 * 60;
         $coste->ceramica=$fcae*500 * 60;
