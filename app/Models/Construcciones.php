@@ -62,21 +62,22 @@ class Construcciones extends Model
             // Observacion
             "observacion",
             "inhibidorHMA",
-            //Especializaciones
+
+            // //Especializaciones
             "potenciador",
             "terraformadorMinero",
-            "terraformadorIndustrial",
-            "redLogistica",
-            "megaAstillero",
-            "redInvestigacion",
-            "redObservatorios",
-            "redComercio",
-            // Especiales
-            "nodEstructura",
-            "nodMotorMA",
-            "disparoFlotas",
-            "teleportFlota",
-            "teleportNodriza",
+            // "terraformadorIndustrial",
+            // "redLogistica",
+            // "megaAstillero",
+            // "redInvestigacion",
+            // "redObservatorios",
+            // "redComercio",
+            // // Especiales
+            // "nodEstructura",
+            // "nodMotorMA",
+            // "disparoFlotas",
+            // "teleportFlota",
+            // "teleportNodriza",
         ];
         return $listaNombres;
     }

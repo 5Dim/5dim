@@ -23,7 +23,7 @@
                                             {{ trans('construccion.' . $colaConstruccion[$i]->construcciones->codigo) }}
                                         </td>
                                         <td
-                                            class=" {{ $colaConstruccion[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">
+                                            class=" {{ $colaConstruccion[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} align-middle borderless">
                                             {{ $colaConstruccion[$i]->accion }}
                                         </td>
                                         <td class=" text-light align-middle borderless">
@@ -80,15 +80,15 @@
                         aria-controls="observacion" aria-selected="false">
                         Observacion
                     </a>
-                    <a class="nav-item nav-link" id="especialidades-tab" data-bs-toggle="tab" href="#especialidades"
+                    {{-- <a class="nav-item nav-link" id="especialidad-tab" data-bs-toggle="tab" href="#especialidad"
                         role="tab"
-                        aria-controls="especialidades" aria-selected="false">
+                        aria-controls="especialidad" aria-selected="false">
                         Especialidades
                     </a>
-                    <a class="nav-item nav-link" id="especiales-tab" data-bs-toggle="tab" href="#especiales" role="tab"
-                        aria-controls="especiales" aria-selected="false">
+                    <a class="nav-item nav-link" id="especial-tab" data-bs-toggle="tab" href="#especial" role="tab"
+                        aria-controls="especial" aria-selected="false">
                         Especiales
-                    </a>
+                    </a> --}}
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -96,6 +96,8 @@
                     @foreach ($minas as $mina)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $mina,
+                        'dependencia' => $dependencias->where('codigo', $mina->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $mina->codigo)->first()->codigoRequiere)->first()->nivel,
                         'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'mina-tab',
                         ])
@@ -105,6 +107,8 @@
                     @foreach ($industrias as $industria)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $industria,
+                        'dependencia' => $dependencias->where('codigo', $industria->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $industria->codigo)->first()->codigoRequiere)->first()->nivel,
                         'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'industria-tab',
                         ])
@@ -114,6 +118,8 @@
                     @foreach ($almacenes as $almacen)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $almacen,
+                        'dependencia' => $dependencias->where('codigo', $almacen->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $almacen->codigo)->first()->codigoRequiere)->first()->nivel,
                         'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'almacenes-tab',
                         ])
@@ -123,6 +129,8 @@
                     @foreach ($militares as $militar)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $militar,
+                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
                         'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'militares-tab',
                         ])
@@ -132,6 +140,8 @@
                     @foreach ($desarrollos as $desarrollo)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $desarrollo,
+                        'dependencia' => $dependencias->where('codigo', $desarrollo->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $desarrollo->codigo)->first()->codigoRequiere)->first()->nivel,
                         'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'desarrollo-tab',
                         ])
@@ -141,29 +151,35 @@
                     @foreach ($observaciones as $observacion)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $observacion,
+                        'dependencia' => $dependencias->where('codigo', $observacion->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $observacion->codigo)->first()->codigoRequiere)->first()->nivel,
                         'personal' => $recursos->personal - $personalOcupado,
                         'tab' => 'observacion-tab',
                         ])
                     @endforeach
                 </div>
-                <div class="tab-pane fade" id="especialidades" role="tabpanel" aria-labelledby="especialidades-tab">
+                {{-- <div class="tab-pane fade" id="especialidad" role="tabpanel" aria-labelledby="especialidad-tab">
                     @foreach ($especializaciones as $especializacion)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $especializacion,
+                        'dependencia' => $dependencias->where('codigo', $especializacion->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $especializacion->codigo)->first()->codigoRequiere)->first()->nivel,
                         'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'observacion-tab',
+                        'tab' => 'especializacion-tab',
                         ])
                     @endforeach
                 </div>
-                <div class="tab-pane fade" id="especiales" role="tabpanel" aria-labelledby="especiales-tab">
+                <div class="tab-pane fade" id="especial" role="tabpanel" aria-labelledby="especial-tab">
                     @foreach ($especiales as $especial)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $especial,
+                        'dependencia' => $dependencias->where('codigo', $especial->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $especial->codigo)->first()->codigoRequiere)->first()->nivel,
                         'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'observacion-tab',
+                        'tab' => 'especial-tab',
                         ])
                     @endforeach
-                </div>
+                </div> --}}
             </div>
         </div>
 

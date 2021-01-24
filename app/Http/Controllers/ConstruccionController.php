@@ -129,9 +129,6 @@ class ConstruccionController extends Controller
         $construccionesMax = [];
         $construccion = Construcciones::where('id', $idConstruccion)->first();
         array_push($construccionesMax, $construccion);
-        $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         $personalUsado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
@@ -143,14 +140,9 @@ class ConstruccionController extends Controller
                 $personalUsado += $cola->personal;
             }
         }
-        // dd($personalUsado);
-        $tipoPlaneta = $planetaActual->tipo;
 
         //Recuperamos su ultima cola (si existe)
         $cola = EnConstrucciones::where('construcciones_id', $idConstruccion)->orderBy('id', 'desc')->first();
-
-        //Parametros por defecto
-        $codigo = $construccion->codigo;
 
         //Sobreescribimos datos en caso de que la construccion tenga alguna orden en cola
         if (!empty($cola)) {
@@ -188,6 +180,13 @@ class ConstruccionController extends Controller
 
         //Fecha prueba
         $fechaFin = strtotime($inicio) + $tiempo;
+
+        // Comprobar dependencias
+        $construcciones = Construcciones::construcciones($planetaActual);
+        $dependencia = Dependencias::where('tipo', 'construccion')->get()->where('codigo', $construccion->codigo)->first();
+        if ($dependencia->nivelRequiere < $construcciones->where('codigo', $dependencia->codigoRequiere)->first()->nivel) {
+            $error = true;
+        }
 
         //Comprobamos que el edificio se puede construir
         if ($construccion->planetas->recursos->mineral < $costesConstrucciones[0]->mineral) {
@@ -426,6 +425,6 @@ class ConstruccionController extends Controller
             }
         }
         $industrias->save();
-        return redirect('/juego/construccion');
+        return redirect('/juego/construccion/industria-tab');
     }
 }
