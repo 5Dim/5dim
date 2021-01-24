@@ -70,6 +70,9 @@ class ConstruccionController extends Controller
         $especializaciones = $construcciones->where('categoria', 'especializacion');
         $especiales = $construcciones->where('categoria', 'especial');
 
+        // Sacamos el estado de las industrias
+        $encendidoIndustrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
+
         //Costes construcciones
         $costesConstrucciones = CostesConstrucciones::generaCostesConstrucciones($construcciones);
 
@@ -99,6 +102,7 @@ class ConstruccionController extends Controller
             'construcciones',
             'minas',
             'industrias',
+            'encendidoIndustrias',
             'almacenes',
             'militares',
             'desarrollos',
