@@ -206,9 +206,9 @@ class Constantes extends Model
 
                 $constante =new Constantes();
                 $constante->universo_id=$universo;
-                $constante->valor=1.03;
-                $constante->minimo=1;
-                $constante->maximo=1.1;
+                $constante->valor=1.1;
+                $constante->minimo=1.03;
+                $constante->maximo=1.2;
                 $constante->codigo='costoInvestImperio';
                 $constante->descripcion='costo investigaciones imperio es EXPONENCIAL aprox 1.1 aumenta el 100%';
                 $constante->tipo='investigacion';

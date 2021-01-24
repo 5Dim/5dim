@@ -66,7 +66,7 @@ class CostesBasicosInvestigacion extends Model
         $valores=["invImperio","costoInvestImperio","descuentoMInvestImperio","descuentoCInvestArmas",2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,25000,0,0,0];calculos($valores);
         $valores=["invObservacion","costoInvestImperio","descuentoMInvestImperio","descuentoCInvestArmas",1.5,2,2,2,2,2,1.5,2,2,2,2000,0,0,0,0,0,20000,0,0,0];calculos($valores);
 
-        $valores=["invEnsamblajeNaves","costoInvestDisenio","descuentoMInvestDisenio","descuentoCInvestArmas",2,2,2,2,2,2,2,2,2,2,4000,0,0,1000,0,0,6000,0,0,0];calculos($valores);
+        $valores=["invEnsamblajeFuselajes","costoInvestDisenio","descuentoMInvestDisenio","descuentoCInvestArmas",2,2,2,2,2,2,2,2,2,2,4000,0,0,1000,0,0,6000,0,0,0];calculos($valores);
         $valores=["invEnsamblajeTropas","costoInvestDisenio","descuentoMInvestDisenio","descuentoCInvestArmas",2,2,2,2,2,2,2,2,2,2,4000,0,0,1000,0,0,6000,0,0,0];calculos($valores);
         $valores=["invEnsamblajeDefensas","costoInvestDisenio","descuentoMInvestDisenio","descuentoCInvestArmas",2,2,2,2,2,2,2,2,2,2,4000,0,0,1000,0,0,6000,0,0,0];calculos($valores);
 
