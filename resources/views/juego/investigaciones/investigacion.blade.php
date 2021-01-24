@@ -72,7 +72,7 @@
                     </a>
                     <a class="nav-item nav-link" id="industrias-tab" data-bs-toggle="tab" href="#industrias" role="tab"
                         aria-controls="industrias" aria-selected="false">
-                        Mejoras de industrias
+                        Industriales
                     </a>
                 </div>
             </nav>
@@ -82,6 +82,9 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $militar,
                         'personal' => $recursos->personal - $personalOcupado,
+                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'tab' => 'militares-tab',
                         ])
                     @endforeach
                 </div>
@@ -90,6 +93,9 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $civil,
                         'personal' => $recursos->personal - $personalOcupado,
+                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'tab' => 'civiles-tab',
                         ])
                     @endforeach
                 </div>
@@ -98,6 +104,9 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $imperial,
                         'personal' => $recursos->personal - $personalOcupado,
+                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'tab' => 'imperiales-tab',
                         ])
                     @endforeach
                 </div>
@@ -106,6 +115,9 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $motor,
                         'personal' => $recursos->personal - $personalOcupado,
+                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'tab' => 'motores-tab',
                         ])
                     @endforeach
                 </div>
@@ -114,6 +126,9 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $industria,
                         'personal' => $recursos->personal - $personalOcupado,
+                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'tab' => 'industrias-tab',
                         ])
                     @endforeach
                 </div>
@@ -143,8 +158,6 @@
     </div>
 
     <script>
-        var tab = @json($tab);
-        mostrarTab(tab);
-
+        mostrarTab(@json($tab));
     </script>
 @endsection

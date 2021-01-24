@@ -214,6 +214,28 @@ class Dependencias extends Model
 
         /////  dependencias investigaciones  //////////////////////////////////////////////
 
+        // Militares
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invEnergia';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invPlasma';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invBalistica';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
         $dependencia = new Dependencias();
         $dependencia->codigo = 'invMa';
         $dependencia->codigoRequiere = 'invBalistica';
@@ -221,10 +243,62 @@ class Dependencias extends Model
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
+        // Civil
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invBlindaje';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invCarga';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
         $dependencia = new Dependencias();
         $dependencia->codigo = 'invIa';
         $dependencia->codigoRequiere = 'invPlasma';
         $dependencia->nivelRequiere = 4;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        // Imperio
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invEnsamblajeFuselajes';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invImperio';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invObservacion';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        // Motores
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invPropQuimico';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invPropNuk';
+        $dependencia->codigoRequiere = 'invEnergia';
+        $dependencia->nivelRequiere = 0;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
@@ -256,38 +330,39 @@ class Dependencias extends Model
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
+        // Industriales
         $dependencia = new Dependencias();
         $dependencia->codigo = 'invIndLiquido';
         $dependencia->codigoRequiere = 'invImperio';
-        $dependencia->nivelRequiere = 4;
+        $dependencia->nivelRequiere = 3;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
         $dependencia = new Dependencias();
         $dependencia->codigo = 'invIndMicros';
         $dependencia->codigoRequiere = 'invImperio';
-        $dependencia->nivelRequiere = 5;
+        $dependencia->nivelRequiere = 4;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
         $dependencia = new Dependencias();
         $dependencia->codigo = 'invIndFuel';
         $dependencia->codigoRequiere = 'invImperio';
-        $dependencia->nivelRequiere = 6;
+        $dependencia->nivelRequiere = 5;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
         $dependencia = new Dependencias();
         $dependencia->codigo = 'invIndMa';
         $dependencia->codigoRequiere = 'invImperio';
-        $dependencia->nivelRequiere = 7;
+        $dependencia->nivelRequiere = 6;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
         $dependencia = new Dependencias();
         $dependencia->codigo = 'invIndMunicion';
         $dependencia->codigoRequiere = 'invImperio';
-        $dependencia->nivelRequiere = 8;
+        $dependencia->nivelRequiere = 7;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
@@ -296,14 +371,14 @@ class Dependencias extends Model
 
         $dependencia = new Dependencias();
         $dependencia->codigo = 'MIZAR';
-        $dependencia->codigoRequiere = 'XG';
+        $dependencia->codigoRequiere = 'invEnsamblajeFuselajes';
         $dependencia->nivelRequiere = 0;
         $dependencia->tipo = 'fuselaje';
         array_push($dependencias, $dependencia);
 
         $dependencia = new Dependencias();
         $dependencia->codigo = 'XG';
-        $dependencia->codigoRequiere = 'HIDRA';
+        $dependencia->codigoRequiere = 'invEnsamblajeFuselajes';
         $dependencia->nivelRequiere = 0;
         $dependencia->tipo = 'fuselaje';
         array_push($dependencias, $dependencia);
