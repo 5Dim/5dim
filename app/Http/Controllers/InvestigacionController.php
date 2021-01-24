@@ -24,7 +24,7 @@ use App\Models\CostesInvestigaciones;
 class InvestigacionController extends Controller
 {
 
-    public function index($tab = "")
+    public function index($tab = "militares-tab")
     {
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
@@ -116,7 +116,7 @@ class InvestigacionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function construir($idInvestigacion, $personal, $tab = '')
+    public function construir($idInvestigacion, $personal, $tab = "militares-tab")
     {
         //En que planeta estamos
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
@@ -124,8 +124,6 @@ class InvestigacionController extends Controller
 
         //Recuperar construccion
         $construcciones = Construcciones::construcciones($planetaActual);
-        $producciones = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
         $personalUsado = 0;
         $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
         $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
@@ -137,7 +135,6 @@ class InvestigacionController extends Controller
                 $personal += $cola->personal;
             }
         }
-        $tipoPlaneta = $planetaActual->tipo;
 
         //La investigacion que estamos subiendo
         $investigacion = Investigaciones::find($idInvestigacion);
@@ -146,9 +143,6 @@ class InvestigacionController extends Controller
 
         //Recuperamos su ultima cola (si existe)
         $cola = EnInvestigaciones::where('investigaciones_id', $idInvestigacion)->orderBy('id', 'desc')->first();
-
-        //Parametros por defecto
-        $codigo = $investigacion->codigo;
 
         //Sobreescribimos datos en caso de que la construccion tenga alguna orden en cola
         if (!empty($cola)) {
@@ -183,6 +177,15 @@ class InvestigacionController extends Controller
 
         //Fecha prueba
         $fechaFin = strtotime($inicio) + $tiempo;
+
+        // Comprobar dependencias
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $dependencia = Dependencias::where('tipo', 'investigacion')->get()->where('codigo', $investigacion->codigo)->first();
+        if (
+            $dependencia->nivelRequiere > $investigaciones->where('codigo', $dependencia->codigoRequiere)->first()->nivel
+        ) {
+            $error = true;
+        }
 
         //Comprobamos que el edificio se puede construir
         if ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->mineral < $costesConstrucciones[0]->mineral) {
@@ -238,7 +241,7 @@ class InvestigacionController extends Controller
             */
         }
 
-        return redirect('/juego/investigacion');
+        return redirect('/juego/investigacion/' . $tab);
     }
 
     //Acceso a subir nivel de construccion

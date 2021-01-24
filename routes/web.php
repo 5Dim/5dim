@@ -90,7 +90,7 @@ Route::middleware(
 
     //Investigacion
     Route::get('/juego/investigacion/{tab?}', [InvestigacionController::class, 'index']);
-    Route::get('/juego/investigacion/construir/{id}/{personal}/{tab?}', [InvestigacionController::class, 'construir']);
+    Route::get('/juego/investigacion/construir/{id}/{personal}/{tab}', [InvestigacionController::class, 'construir']);
     Route::get('/juego/investigacion/cancelar/{id}', [InvestigacionController::class, 'cancelar']);
     Route::get('/juego/investigacion/datos/{codigo}', [InvestigacionController::class, 'datos']);
 

@@ -40,10 +40,10 @@ function sendIndustria(industria) {
     window.location.href = "/juego/construccion/industria/" + industria;
 }
 
-function sendInvestigar(id, codigo) {
+function sendInvestigar(id, codigo, tab) {
     var personal = $("#personal" + codigo).val();
     window.location.href =
-        "/juego/investigacion/construir/" + id + "/" + personal;
+        "/juego/investigacion/construir/" + id + "/" + personal + "/" + tab;
 }
 
 function sendCancelarInvestigacion(id) {

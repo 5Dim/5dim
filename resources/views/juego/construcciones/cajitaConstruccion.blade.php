@@ -291,20 +291,21 @@
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
-                    @if (substr($construccion->codigo, 0, 3) == 'ind' and substr($construccion->codigo, 3) != 'Personal')
-                        <td>
-                            @php
-                            $industria = "";
-                            if (substr($construccion->codigo, 0, 3) == 'ind') {
-                            $industria = substr($construccion->codigo, 3);
-                            }
-                            @endphp
-                            <button type="button" class="btn btn-outline-primary col-12"
-                                onclick="sendIndustria('{{ strtolower($industria) }}')">
-                                <i class="fa fa-play"></i> Producir
-                            </button>
-                        </td>
-                    @endif
+                    <td>
+                        @if (substr($construccion->codigo, 0, 3) == 'ind' and substr($construccion->codigo, 3) != 'Personal')
+                            @if ($encendidoIndustrias[strtolower(substr($construccion->codigo, 3))] == 1)
+                                <button type="button" class="btn btn-outline-danger col-12"
+                                    onclick="sendIndustria('{{ strtolower($industria) }}')">
+                                    <i class="fa fa-pause"></i> Parar la produccion
+                                </button>
+                            @else
+                                <button type="button" class="btn btn-outline-success col-12"
+                                    onclick="sendIndustria('{{ strtolower($industria) }}')">
+                                    <i class="fa fa-play"></i> Encender la produccion
+                                </button>
+                            @endif
+                        @endif
+                    </td>
                     <td>
                         @if ($dependencia->nivelRequiere <= $nivel)
                             @if ($construccion->nivel >= 99 or $construccion->coste->mineral > $recursos->mineral or $construccion->coste->cristal > $recursos->cristal or $construccion->coste->gas > $recursos->gas or $construccion->coste->plastico > $recursos->plastico or $construccion->coste->ceramica > $recursos->ceramica or $construccion->coste->liquido > $recursos->liquido or $construccion->coste->micros > $recursos->micros)
@@ -333,5 +334,4 @@
 
 <script>
     calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo));
-
 </script>

@@ -67,19 +67,19 @@
                         </th>
                         <th class="text-warning borderless">
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Tienes 1 ataque(s) en curso"
-                                data-bs-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
-                                Ataques <span class="badge bg-danger">1</span>
-                            </button>
-                        </th>
-                        <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
                                 data-trigger="focus" title="Puntos de imperio"
                                 data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
                                 PI <span
                                     class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count(Auth::user()->jugador->planetas) * 10 }}</span>
                             </button>
                         </th>
+                        {{-- <th class="text-warning borderless">
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
+                                data-trigger="focus" title="Tienes 1 ataque(s) en curso"
+                                data-bs-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
+                                Ataques <span class="badge bg-danger">1</span>
+                            </button>
+                        </th> --}}
                         <th class="text-warning borderless">
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
                                 data-trigger="focus" title="Novas"
@@ -87,13 +87,13 @@
                                 Novas <span class="badge bg-warning text-dark">{{ Auth::user()->novas }}</span>
                             </button>
                         </th>
-                        <th class="text-warning borderless ">
+                        {{-- <th class="text-warning borderless ">
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
                                 data-bs-trigger="focus" title="Puntos de ensamblaje de fuselajes"
                                 data-bs-content="Estos son los puntos de ensamblaje de fuselajes disponibles, se usan para adquirir fuselajes en la pantalla de fuselajes">
                                 PE <span class="badge bg-warning text-dark">{{ $nivelEnsamblajeFuselajes }}</span>
                             </button>
-                        </th>
+                        </th> --}}
                         <th class="text-warning borderless ">
                             <a href="cuenta.php" target="_self">
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}" title="Opciones" />
@@ -147,7 +147,7 @@
                             Cerámica
                         </th>
                         <th class="text-warning borderless ">
-                            Recargar
+
                         </th>
                         <th class="text-warning borderless ">
                             Liquido
