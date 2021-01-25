@@ -153,7 +153,7 @@
                         </td>
                     @endif
                     @if (empty($fuselajesJugador->where('id', $fuselaje->id)->first()))
-                        @if($nivelEnsamblajeFuselajes > $fuselaje->coste)
+                        @if($nivelEnsamblajeFuselajes >= $fuselaje->coste)
                             <td>
                                 <button type="button" class="btn btn-outline-success col-12 btn-sm"
                                     onclick="sendDesbloquear('{{ $fuselaje->id }}', '{{ $tab }}')">
