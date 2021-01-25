@@ -18,12 +18,6 @@
                                 Nombre del disenio
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Clase
-                            </th>
-                            <th class="anchofijo text-warning align-middle">
-                                Modelo
-                            </th>
-                            <th class="anchofijo text-warning align-middle">
                                 Ataque
                             </th>
                             <th class="anchofijo text-warning align-middle">
@@ -43,9 +37,6 @@
                             </th>
                             <th class="anchofijo text-warning align-middle">
                                 H. pesadas
-                            </th>
-                            <th class="anchofijo text-warning align-middle">
-                                H. estaciones
                             </th>
                             <th class="anchofijo text-warning align-middle">
                                 Velocidad
@@ -69,12 +60,6 @@
                                 Destructor 9.000
                             </td>
                             <td class="anchofijo text-light align-middle">
-                                Pesada
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                Trauma
-                            </td>
-                            <td class="anchofijo text-light align-middle">
                                 14.935.000
                             </td>
                             <td class="anchofijo text-light align-middle">
@@ -88,9 +73,6 @@
                             </td>
                             <td class="anchofijo text-light align-middle">
                                 1
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
                             </td>
                             <td class="anchofijo text-light align-middle">
                                 0
@@ -214,12 +196,12 @@
                             </td>
                         </tr>
                     </table>
-                    <table class="table table-borderless borderless table-sm text-center anchofijo"
+                    <table class="table table-borderless borderless table-sm text-center"
                         style="margin-top: 5px !important">
                         <tr>
                             <th colspan="6" class="text-success">
                                 <big>
-                                    Estado de los hangares
+                                    Estado de los hangares <i class="fa fa-arrow-alt-circle-down"></i>
                                 </big>
                             </th>
                         </tr>
