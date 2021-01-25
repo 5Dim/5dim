@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class DisenioController extends Controller
 {
-    public function index()
+    public function index($tab = 'cazas-tab')
     {
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
@@ -136,6 +136,7 @@ class DisenioController extends Controller
             'pesadas',
             'estaciones',
             'novas',
+            'tab',
         ));
     }
     public function diseniar($idFuselaje)
