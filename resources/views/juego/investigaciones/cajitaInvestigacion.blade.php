@@ -15,9 +15,18 @@
                     <td colspan="3" class="text-success text-center borderless align-middle"
                         id="{{ 'tiempo' . $investigacion->codigo }}">Tiempo:</td>
                     <td colspan="2" class="text-success text-right borderless align-middle">
-                        <input id="{{ 'personal' . $investigacion->codigo }}" type="number" class="personal1 input"
+                        <div class="input-group mb-3 input-group-sm borderless">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-dark text-light" style="padding: 0px">
+                                    <button type="button" class="btn btn-dark btn-sm text-light">
+                                        Personal
+                                    </button>
+                                </span>
+                            </div>
+                            <input id="{{ 'personal' . $investigacion->codigo }}" type="number" class="personal1 input"
                             placeholder="personal" value="{{ number_format($personal - 1, 0, '', '') }}"
                             onkeyup='calculaTiempoInvestigacion(@json($investigacion->coste), @json($velInvest->valor), @json($investigacion->codigo), @json($investigacion->nivel), @json($nivelLaboratorio->nivel))'>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -368,18 +377,18 @@
                             @if ($investigacion->nivel >= 99 or $investigacion->coste->mineral > $recursos->mineral or $investigacion->coste->cristal > $recursos->cristal or $investigacion->coste->gas > $recursos->gas or $investigacion->coste->plastico > $recursos->plastico or $investigacion->coste->ceramica > $recursos->ceramica or $investigacion->coste->liquido > $recursos->liquido or $investigacion->coste->micros > $recursos->micros)
                                 <button type="button" class="btn btn-outline-light col-12" disabled
                                     onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
-                                    <i class="fa fa-arrow-alt-circle-up "></i> construir
+                                    <i class="fa fa-arrow-alt-circle-up "></i> Construir
                                 </button>
                             @else
                                 <button type="button" class="btn btn-outline-success col-12"
                                     onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
-                                    <i class="fa fa-arrow-alt-circle-up "></i> construir
+                                    <i class="fa fa-arrow-alt-circle-up "></i> Construir
                                 </button>
                             @endif
                         @else
                             <button type="button" class="btn btn-outline-light col-12" disabled
                                 onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
-                                <i class="fa fa-arrow-alt-circle-up "></i> Requiere {{ strtolower(trans('investigacion.' .  $dependencia->codigoRequiere)) }} nivel {{$dependencia->nivelRequiere}}
+                                <i class="fa fa-arrow-alt-circle-up "></i> Requiere {{ strtolower(trans('investigacion.' .  $dependencia->codigoRequiere)) }} nivel {{$dependencia->nivelRequiere }}
                             </button>
                         @endif
                     </td>

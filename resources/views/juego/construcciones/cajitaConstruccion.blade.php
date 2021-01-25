@@ -15,9 +15,18 @@
                     <td colspan="3" class="text-success text-center borderless align-middle"
                         id="{{ 'tiempo' . $construccion->codigo }}">Tiempo:</td>
                     <td colspan="2" class="text-success text-right borderless align-middle">
-                        <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input"
-                            placeholder="personal" value="{{ number_format($personal - 1, 0, '', '') }}"
-                            onkeyup='calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo))'>
+                        <div class="input-group mb-3 input-group-sm borderless">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-dark text-light" style="padding: 0px">
+                                    <button type="button" class="btn btn-dark btn-sm text-light">
+                                        Personal
+                                    </button>
+                                </span>
+                            </div>
+                            <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input"
+                                placeholder="personal" value="{{ number_format($personal - 1, 0, '', '') }}"
+                                onkeyup='calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo))'>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -291,7 +300,7 @@
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
-                        @if (substr($construccion->codigo, 0, 3) == 'ind' and substr($construccion->codigo, 3) != 'Personal')
+                    @if (substr($construccion->codigo, 0, 3) == 'ind' and substr($construccion->codigo, 3) != 'Personal')
                         <td>
                             @if ($encendidoIndustrias[strtolower(substr($construccion->codigo, 3))] == 1)
                                 <button type="button" class="btn btn-outline-danger col-12"
@@ -305,24 +314,29 @@
                                 </button>
                             @endif
                         </td>
-                        @endif
+                    @endif
                     <td>
                         @if ($dependencia->nivelRequiere <= $nivel)
-                            @if ($construccion->nivel >= 99 or $construccion->coste->mineral > $recursos->mineral or $construccion->coste->cristal > $recursos->cristal or $construccion->coste->gas > $recursos->gas or $construccion->coste->plastico > $recursos->plastico or $construccion->coste->ceramica > $recursos->ceramica or $construccion->coste->liquido > $recursos->liquido or $construccion->coste->micros > $recursos->micros)
-                                <button type="button" class="btn btn-outline-light col-12" disabled
-                                    onclick="sendConstruir('{{ $construccion->id }}', '{{ $construccion->codigo }}', '{{ $tab }}')">
-                                    <i class="fa fa-arrow-alt-circle-up "></i> construir
-                                </button>
-                            @else
-                                <button type="button" class="btn btn-outline-success col-12"
-                                    onclick="sendConstruir('{{ $construccion->id }}', '{{ $construccion->codigo }}', '{{ $tab }}')">
-                                    <i class="fa fa-arrow-alt-circle-up "></i> construir
-                                </button>
-                            @endif
+                            @if ($construccion->nivel >= 99 or $construccion->coste->mineral >
+                            $recursos->mineral or $construccion->coste->cristal > $recursos->cristal or
+                            $construccion->coste->gas > $recursos->gas or $construccion->coste->plastico >
+                            $recursos->plastico or $construccion->coste->ceramica > $recursos->ceramica or
+                            $construccion->coste->liquido > $recursos->liquido or $construccion->coste->micros >
+                            $recursos->micros) <button type="button" class="btn
+                            btn-outline-light col-12" disabled>
+                            <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                            </button>
                         @else
-                            <button type="button" class="btn btn-outline-light col-12" disabled
-                                onclick="sendConstruir('{{ $construccion->id }}', '{{ $construccion->codigo }}', '{{ $tab }}')">
-                                <i class="fa fa-arrow-alt-circle-up "></i> Requiere {{ strtolower(trans('construccion.' .  $dependencia->codigoRequiere)) }} nivel {{$dependencia->nivelRequiere}}
+                            <button type="button" class="btn btn-outline-success col-12"
+                            onclick="sendConstruir('{{ $construccion->id }}',
+                            '{{ $construccion->codigo }}', '{{ $tab }}')">
+                            <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                            </button> @endif
+                        @else
+                            <button type="button" class="btn btn-outline-light col-12" disabled>
+                                <i class="fa fa-arrow-alt-circle-up "></i> Requiere
+                                {{ strtolower(trans('construccion.' . $dependencia->codigoRequiere)) }} nivel
+                                {{ $dependencia->nivelRequiere }}
                             </button>
                         @endif
                     </td>
@@ -334,4 +348,5 @@
 
 <script>
     calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo));
+
 </script>
