@@ -28,6 +28,7 @@ use App\Models\CostesDisenios;
 use App\Models\CualidadesDisenios;
 use App\Models\MejorasDisenios;
 use App\Models\EnDisenios;
+use Illuminate\Database\Eloquent\Builder;
 
 class DisenioController extends Controller
 {
@@ -73,6 +74,45 @@ class DisenioController extends Controller
 
         //Devolvemos todos los disenios
         $disenios = $jugadorActual->disenios;
+        $cazas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
+            ->whereHas('fuselajes', function (Builder $query) {
+                $query->where([
+                    ['tamanio', 'caza'],
+                    ['categoria', 'jugador'],
+                ]);
+            })->get();
+        $ligeras = Disenios::where('jugadores_id', session()->get('jugadores_id'))
+            ->whereHas('fuselajes', function (Builder $query) {
+                $query->where([
+                    ['tamanio', 'ligera'],
+                    ['categoria', 'jugador'],
+                ]);
+            })->get();
+        $medias = Disenios::where('jugadores_id', session()->get('jugadores_id'))
+            ->whereHas('fuselajes', function (Builder $query) {
+                $query->where([
+                    ['tamanio', 'media'],
+                    ['categoria', 'jugador'],
+                ]);
+            })->get();
+        $pesadas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
+            ->whereHas('fuselajes', function (Builder $query) {
+                $query->where([
+                    ['tamanio', 'pesada'],
+                    ['categoria', 'jugador'],
+                ]);
+            })->get();
+        $estaciones = Disenios::where('jugadores_id', session()->get('jugadores_id'))
+            ->whereHas('fuselajes', function (Builder $query) {
+                $query->where([
+                    ['tamanio', 'estacion'],
+                    ['categoria', 'jugador'],
+                ]);
+            })->get();
+        $novas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
+            ->whereHas('fuselajes', function (Builder $query) {
+                $query->where('categoria', 'compra');
+            })->get();
 
         return view('juego.disenio.disenio', compact(
             // Recursos
@@ -89,7 +129,13 @@ class DisenioController extends Controller
             'investigaciones',
             'disenios',
             'colaDisenios',
-            'PConstantes'
+            'PConstantes',
+            'cazas',
+            'ligeras',
+            'medias',
+            'pesadas',
+            'estaciones',
+            'novas',
         ));
     }
     public function diseniar($idFuselaje)

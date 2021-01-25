@@ -81,43 +81,51 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
-                    @foreach ($disenios as $disenio)
-                        @include('juego.disenio.cajitaDisenios', [ 'disenio' =>
-                        $disenio, ]) @endforeach
+                    @foreach ($cazas as $caza)
+                        @include('juego.disenio.cajitaDisenios', [
+                            'disenio' => $caza,
+                            'tab' => $tab,
+                        ])
+                    @endforeach
                 </div>
                 <div class="tab-pane fade" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
+                    @foreach ($ligeras as $ligera)
+                        @include('juego.disenio.cajitaDisenios', [
+                            'disenio' => $ligera,
+                            'tab' => $tab,
+                        ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="medias" role="tabpanel" aria-labelledby="medias-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
+                    @foreach ($medias as $media)
+                        @include('juego.disenio.cajitaDisenios', [
+                            'disenio' => $media,
+                            'tab' => $tab,
+                        ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="pesadas" role="tabpanel" aria-labelledby="pesadas-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
+                    @foreach ($pesadas as $pesada)
+                        @include('juego.disenio.cajitaDisenios', [
+                            'disenio' => $pesada,
+                            'tab' => $tab,
+                        ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="estaciones" role="tabpanel" aria-labelledby="estaciones-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
+                    @foreach ($estaciones as $estacion)
+                        @include('juego.disenio.cajitaDisenios', [
+                            'disenio' => $disenio,
+                            'tab' => $tab,
+                        ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="novas" role="tabpanel" aria-labelledby="novas-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
+                    @foreach ($novas as $nova)
+                        @include('juego.disenio.cajitaDisenios', [
+                            'disenio' => $nova,
+                            'tab' => $tab,
+                        ])
                     @endforeach
                 </div>
             </div>

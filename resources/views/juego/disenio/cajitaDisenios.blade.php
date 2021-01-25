@@ -172,7 +172,7 @@
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-danger col-12 btn-sm"
+                        <button type="button" class="btn btn-outline-danger col-12"
                             onclick="reciclarDisenio({{ $disenio->id }})">
                             <i class="fa fa-info-circle"></i> Reciclar nave
                         </button>
@@ -181,7 +181,7 @@
                         <div class="input-group mb-3 input-group-sm borderless">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">
-                                    <button type="button" class="btn btn-dark btn-sm text-warning">
+                                    <button type="button" class="btn btn-dark text-warning">
                                         0
                                     </button>
                                 </span>
@@ -191,7 +191,7 @@
                                 onkeyup="recalculaCostos({{ $disenio->id }})">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">
-                                    <button type="button" class="btn btn-dark btn-sm text-warning">
+                                    <button type="button" class="btn btn-dark text-warning">
                                         M
                                     </button>
                                 </span>
@@ -210,7 +210,7 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success col-12 btn-sm"
+                        <button type="button" class="btn btn-outline-success col-12"
                             onclick="construirDisenio({{ $disenio->id }})">
                             <i class="fa fa-plus-circle"></i> Construir
                         </button>
@@ -220,19 +220,19 @@
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
-                        <a type="button" class="btn btn-outline-danger col-12 btn-sm text-danger"
+                        <a type="button" class="btn btn-outline-danger col-12 text-danger"
                             href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
                             <i class="fa fa-times "></i> Borrar disenio
                         </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12 btn-sm " data-bs-toggle="modal"
+                        <button type="button" class="btn btn-outline-primary col-12 " data-bs-toggle="modal"
                             data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
                     <td>
-                        <a type="button" class="btn btn-outline-success col-12 btn-sm text-success"
+                        <a type="button" class="btn btn-outline-success col-12 text-success"
                             href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
                             <i class="fa fa-edit"></i> Editar disenio
                         </a>
