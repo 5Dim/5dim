@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 class FuselajesController extends Controller
 {
 
-    public function index()
+    public function index($tab = "cazas-tab")
     {
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
@@ -58,11 +58,35 @@ class FuselajesController extends Controller
 
         $investigaciones = Investigaciones::investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
-        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
 
-        $fuselajes = Fuselajes::all();
+        // $fuselajes = Fuselajes::all();
+        $cazas = Fuselajes::where([
+            ["tamanio", 'caza'],
+            ["categoria", 'jugador']
+        ])->orderBy('coste', 'asc')->orderBy('codigo', 'asc')->get();
+        $ligeras = Fuselajes::where([
+            ["tamanio", 'ligera'],
+            ["categoria", 'jugador']
+        ])->orderBy('coste', 'asc')->orderBy('codigo', 'asc')->get();
+        $medias = Fuselajes::where([
+            ["tamanio", 'media'],
+            ["categoria", 'jugador']
+        ])->orderBy('coste', 'asc')->orderBy('codigo', 'asc')->get();
+        $pesadas = Fuselajes::where([
+            ["tamanio", 'pesada'],
+            ["categoria", 'jugador']
+        ])->orderBy('coste', 'asc')->orderBy('codigo', 'asc')->get();
+        $estaciones = Fuselajes::where([
+            ["tamanio", 'estacion'],
+            ["categoria", 'jugador']
+        ])->orderBy('coste', 'asc')->orderBy('codigo', 'asc')->get();
+        $novas = Fuselajes::where("categoria", 'compra')->orderBy('coste', 'asc')->orderBy('tamanio', 'asc')->get();
         $fuselajesJugador = Auth::user()->jugador->fuselajes;
+        $nivelEnsamblajeFuselajes = Investigaciones::where([
+            ['jugadores_id', session()->get('jugadores_id')],
+            ['codigo', 'invEnsamblajeFuselajes'],
+        ])->first()->nivel;
 
         return view('juego.fuselajes.fuselajes', compact(
             // Recursos
@@ -77,16 +101,30 @@ class FuselajesController extends Controller
             'nivelImperio',
             'nivelEnsamblajeFuselajes',
             'investigaciones',
-            'fuselajes',
+            // 'fuselajes',
+            'cazas',
+            'ligeras',
+            'medias',
+            'pesadas',
+            'estaciones',
+            'novas',
             'fuselajesJugador',
+            'tab',
         ));
     }
 
     //Acceso a subir nivel de construccion
-    public function desbloquear($idFuselaje)
+    public function desbloquear($idFuselaje, $tab)
     {
-        Auth::user()->jugador->fuselajes()->attach($idFuselaje);
-        return redirect('/juego/fuselajes');
+        $nivelEnsamblajeFuselajes = Investigaciones::where([
+            ['jugadores_id', session()->get('jugadores_id')],
+            ['codigo', 'invEnsamblajeFuselajes'],
+        ])->first()->nivel;
+        $fuselaje = Fuselajes::find($idFuselaje);
+        if ($nivelEnsamblajeFuselajes >= $fuselaje->coste) {
+            Auth::user()->jugador->fuselajes()->attach($idFuselaje);
+        }
+        return redirect('/juego/fuselajes/' . $tab);
     }
 
     //Acceso a subir nivel de construccion

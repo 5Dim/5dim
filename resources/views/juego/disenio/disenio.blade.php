@@ -73,22 +73,6 @@
                         aria-controls="estaciones" aria-selected="false">
                         Estaciones espaciales
                     </a>
-                    <a class="nav-item nav-link" id="defensas-ligeras-tab" data-bs-toggle="tab" href="#defensas-ligeras"
-                        role="tab" aria-controls="defensas-ligeras" aria-selected="false">
-                        Defensas ligeras
-                    </a>
-                    <a class="nav-item nav-link" id="defensas-medias-tab" data-bs-toggle="tab" href="#defensas-medias"
-                        role="tab" aria-controls="defensas-medias" aria-selected="false">
-                        Defensas medias
-                    </a>
-                    <a class="nav-item nav-link" id="defensas-pesadas-tab" data-bs-toggle="tab" href="#defensas-pesadas"
-                        role="tab" aria-controls="defensas-pesadas" aria-selected="false">
-                        Defensas pesadas
-                    </a>
-                    <a class="nav-item nav-link" id="defensas-estaciones-tab" data-bs-toggle="tab"
-                        href="#defensas-estaciones" role="tab" aria-controls="defensas-estaciones" aria-selected="false">
-                        Estaciones de defensa
-                    </a>
                     <a class="nav-item nav-link" id="novas-tab" data-bs-toggle="tab" href="#novas" role="tab"
                         aria-controls="novas" aria-selected="false">
                         Novas
@@ -123,34 +107,6 @@
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="estaciones" role="tabpanel" aria-labelledby="estaciones-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
-                    @endforeach
-                </div>
-                <div class="tab-pane fade" id="defensas-ligeras" role="tabpanel" aria-labelledby="defensas-ligeras-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
-                    @endforeach
-                </div>
-                <div class="tab-pane fade" id="defensas-medias" role="tabpanel" aria-labelledby="defensas-medias-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
-                    @endforeach
-                </div>
-                <div class="tab-pane fade" id="defensas-pesadas" role="tabpanel" aria-labelledby="defensas-pesadas-tab">
-                    @foreach ($disenios as $disenio)
-                        {{-- @include('juego.disenio.cajitaDisenios', [
-                        'disenio' => $disenio,
-                        ]) --}}
-                    @endforeach
-                </div>
-                <div class="tab-pane fade" id="defensas-estacion" role="tabpanel" aria-labelledby="defensas-estacion-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,

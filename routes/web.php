@@ -98,8 +98,8 @@ Route::middleware(
     Route::get('/juego/planeta', [PlanetaController::class, 'index']);
 
     //Fuselajes
-    Route::get('/juego/fuselajes', [FuselajesController::class, 'index']);
-    Route::get('/juego/fuselajes/desbloquear/{id}', [FuselajesController::class, 'desbloquear']);
+    Route::get('/juego/fuselajes/{tab?}', [FuselajesController::class, 'index']);
+    Route::get('/juego/fuselajes/desbloquear/{id}/{tab}', [FuselajesController::class, 'desbloquear']);
     Route::get('/juego/fuselajes/diseniar/{id}', [FuselajesController::class, 'diseniar']);
     Route::get('/juego/fuselajes/datos/{codigo}', [FuselajesController::class, 'datos']);
 

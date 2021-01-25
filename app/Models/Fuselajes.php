@@ -226,7 +226,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 1;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -237,7 +237,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 2;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -248,7 +248,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 7;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -259,7 +259,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "caza";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "0";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 5;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -270,7 +270,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 5;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -281,7 +281,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 9;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -292,7 +292,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 11;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -303,7 +303,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "estacion";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "4";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 3;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -314,7 +314,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 20;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -325,7 +325,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "caza";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 10;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -336,7 +336,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 17;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -347,7 +347,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 4;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -358,7 +358,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 12;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -369,7 +369,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 15;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -380,7 +380,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 11;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -391,7 +391,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 17;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -402,7 +402,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 6;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -413,7 +413,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 16;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -425,7 +425,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 14;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -437,7 +437,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 24;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -449,7 +449,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 13;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -461,7 +461,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "caza";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "0";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 14;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -472,7 +472,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 10;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -483,7 +483,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 21;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -495,7 +495,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 21;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -507,7 +507,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "estacion";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "4";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 13;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -519,7 +519,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "estacion";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "4";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 27;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -531,7 +531,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 24;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -543,7 +543,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 31;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -555,7 +555,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 27;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -567,7 +567,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 9;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -579,7 +579,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 25;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -603,7 +603,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "caza";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "0";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 20;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -615,7 +615,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 28;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -627,7 +627,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 15;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -639,7 +639,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 19;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -651,7 +651,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 26;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -663,7 +663,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 16;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -675,7 +675,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 28;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -687,7 +687,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 23;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -699,7 +699,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 29;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -711,7 +711,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 14;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -723,7 +723,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "estacion";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "4";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 22;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -735,7 +735,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 22;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -747,7 +747,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "estacion";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "4";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 8;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -759,7 +759,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 25;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -771,7 +771,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 29;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -783,7 +783,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 30;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -795,7 +795,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "caza";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "0";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 18;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -807,7 +807,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 19;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -819,7 +819,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 23;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -831,7 +831,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 25;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -843,7 +843,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 29;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -855,7 +855,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "ligera";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "1";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 9;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -867,7 +867,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "estacion";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "4";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 18;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -879,7 +879,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 26;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -891,7 +891,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 28;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -903,7 +903,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 26;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -915,7 +915,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 29;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -927,7 +927,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 30;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -939,7 +939,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "pesada";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "3";
-                    $fuselaje->coste = 0;
+                    $fuselaje->coste = 31;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
-            <div class="col-12 cajita-info">
+            <div class="col-12 cajita-info rounded">
                 <div id="cuadro1" class="table-responsive">
                     <table class="table table-borderless table-sm text-center" style="margin-top: 5px !important">
                         <tr>
@@ -276,7 +276,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 cajita-success">
+            <div class="col-12 cajita-success rounded">
                 <div id="cuadro1" class="table-responsive">
                     <table class="table table-borderless borderless table-sm text-center anchofijo"
                         style="margin-top: 5px !important">
@@ -511,7 +511,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 cajita-success">
+            <div class="col-12 cajita-success rounded">
                 <div id="cuadro1" class="table-responsive">
                     <table class="table table-borderless borderless table-sm text-center anchofijo"
                         style="margin-top: 5px !important">

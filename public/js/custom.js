@@ -50,8 +50,8 @@ function sendCancelarInvestigacion(id) {
     window.location.href = "/juego/investigacion/cancelar/" + id;
 }
 
-function sendDesbloquear(id) {
-    window.location.href = "/juego/fuselajes/desbloquear/" + id;
+function sendDesbloquear(id, tab) {
+    window.location.href = "/juego/fuselajes/desbloquear/" + id + "/" + tab;
 }
 
 function sendDiseniar(id) {

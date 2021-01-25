@@ -1,21 +1,17 @@
-@php
-$clase = 'light';
-if (!empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
-if ($fuselaje->id == $fuselajesJugador->where('id', $fuselaje->id)->first()->id) {
-$clase = 'success';
-}
-}
-@endphp
-<div class="row rounded cajita-{{ $clase }}">
+@if(empty($fuselajesJugador->where('id', $fuselaje->id)->first()->id))
+    <div class="row rounded cajita-light">
+@else
+    <div class="row rounded cajita-success">
+@endif
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
             <table class="table table-borderless borderless table-sm text-center anchofijo"
                 style="margin-top: 5px !important">
                 <tr>
-                    <td colspan="4" class="text-{{ $clase }} text-center borderless align-middle">
+                    <td colspan="4" class="text-light text-center borderless align-middle">
                         <big>Modelo: {{ $fuselaje->codigo }}<big>
                     </td>
-                    <td colspan="4" class="text-{{ $clase }} text-center borderless align-middle">
+                    <td colspan="4" class="text-light text-center borderless align-middle">
                         <big>Propiedad de {{ $fuselaje->categoria }}<big>
                     </td>
                 </tr>
@@ -141,39 +137,43 @@ $clase = 'success';
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
-                    @php
-                    $text = 'Diseniar';
-                    $clase = 'success';
-                    if (empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
-                    // $desabilitado = 'disabled';
-                    $text = 'Probar disenio';
-                    $clase = 'info';
-                    }
-                    @endphp
-                    <td>
-                        <button type="button" class="btn btn-outline-{{ $clase }} col-12 btn-sm"
-                            onclick="sendDiseniar('{{ $fuselaje->id }}')">
-                            <i class="fa fa-cogs"></i> {{$text}}
-                        </button>
-                    </td>
-                    @php
-                    $texto = ' Desbloquear';
-                    $desabilitado = '';
-                    $clase = 'success';
-                    if (!empty($fuselajesJugador->where('id', $fuselaje->id)->first())) {
-                    if ($fuselaje->id == $fuselajesJugador->where('id', $fuselaje->id)->first()->id) {
-                    $clase = 'light';
-                    $desabilitado = 'disabled';
-                    $texto = ' Ya en propiedad';
-                    }
-                    }
-                    @endphp
-                    <td>
-                        <button type="button" class="btn btn-outline-{{ $clase }} col-12 btn-sm"
-                            onclick="sendDesbloquear('{{ $fuselaje->id }}')" {{ $desabilitado }}>
-                            <i class="fa fa-unlock-alt"></i> {{ $texto }}
-                        </button>
-                    </td>
+                    @if(empty($fuselajesJugador->where('id', $fuselaje->id)->first()))
+                        <td>
+                            <button type="button" class="btn btn-outline-info col-12 btn-sm"
+                                onclick="sendDiseniar('{{ $fuselaje->id }}')">
+                                <i class="fa fa-cogs"></i> Probar diseño
+                            </button>
+                        </td>
+                    @else
+                        <td>
+                            <button type="button" class="btn btn-outline-success col-12 btn-sm"
+                                onclick="sendDiseniar('{{ $fuselaje->id }}')">
+                                <i class="fa fa-cogs"></i> Diseñar
+                            </button>
+                        </td>
+                    @endif
+                    @if (empty($fuselajesJugador->where('id', $fuselaje->id)->first()))
+                        @if($nivelEnsamblajeFuselajes > $fuselaje->coste)
+                            <td>
+                                <button type="button" class="btn btn-outline-success col-12 btn-sm"
+                                    onclick="sendDesbloquear('{{ $fuselaje->id }}', '{{ $tab }}')">
+                                    <i class="fa fa-unlock-alt"></i> Desbloquear
+                                </button>
+                            </td>
+                        @else
+                            <td>
+                                <button type="button" class="btn btn-outline-light col-12 btn-sm" disabled>
+                                    <i class="fa fa-unlock-alt"></i> Necesitas nivel {{$fuselaje->coste}} de {{ strtolower(trans('investigacion.invEnsamblajeFuselajes')) }}
+                                </button>
+                            </td>
+                        @endif
+                    @else
+                        <td>
+                            <button type="button" class="btn btn-outline-light col-12 btn-sm" disabled>
+                                <i class="fa fa-unlock-alt"></i> Ya disponible
+                            </button>
+                        </td>
+                    @endif
                 </tr>
             </table>
         </div>

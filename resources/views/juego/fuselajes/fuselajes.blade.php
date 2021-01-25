@@ -33,64 +33,58 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
-                    @for ($i = 0; $i < count($fuselajes); $i++)
-                        @if ($fuselajes[$i]->categoria == 'jugador' and $fuselajes[$i]->tamanio == 'caza' and $fuselajes[$i]->tipo == 'nave')
-                            @include('juego.fuselajes.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
+                    @foreach ($cazas as $caza)
+                        @include('juego.fuselajes.cajitaFuselajes', [
+                            'fuselaje' => $caza,
                             'fuselajesJugador' => $fuselajesJugador,
-                            ])
-                        @endif
-                    @endfor
+                            'tab' => 'cazas-tab'
+                        ])
+                    @endforeach
                 </div>
                 <div class="tab-pane fade" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
-                    @for ($i = 0; $i < count($fuselajes); $i++)
-                        @if ($fuselajes[$i]->categoria == 'jugador' and $fuselajes[$i]->tamanio == 'ligera' and $fuselajes[$i]->tipo == 'nave')
-                            @include('juego.fuselajes.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
+                    @foreach ($ligeras as $ligera)
+                        @include('juego.fuselajes.cajitaFuselajes', [
+                            'fuselaje' => $ligera,
                             'fuselajesJugador' => $fuselajesJugador,
-                            ])
-                        @endif
-                    @endfor
+                            'tab' => 'ligeras-tab'
+                        ])
+                    @endforeach
                 </div>
                 <div class="tab-pane fade" id="medias" role="tabpanel" aria-labelledby="medias-tab">
-                    @for ($i = 0; $i < count($fuselajes); $i++)
-                        @if ($fuselajes[$i]->categoria == 'jugador' and $fuselajes[$i]->tamanio == 'media' and $fuselajes[$i]->tipo == 'nave')
-                            @include('juego.fuselajes.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
+                    @foreach ($medias as $media)
+                        @include('juego.fuselajes.cajitaFuselajes', [
+                            'fuselaje' => $media,
                             'fuselajesJugador' => $fuselajesJugador,
-                            ])
-                        @endif
-                    @endfor
+                            'tab' => 'medias-tab'
+                        ])
+                    @endforeach
                 </div>
                 <div class="tab-pane fade" id="pesadas" role="tabpanel" aria-labelledby="pesadas-tab">
-                    @for ($i = 0; $i < count($fuselajes); $i++)
-                        @if ($fuselajes[$i]->categoria == 'jugador' and $fuselajes[$i]->tamanio == 'pesada' and $fuselajes[$i]->tipo == 'nave')
-                            @include('juego.fuselajes.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
+                    @foreach ($pesadas as $pesada)
+                        @include('juego.fuselajes.cajitaFuselajes', [
+                            'fuselaje' => $pesada,
                             'fuselajesJugador' => $fuselajesJugador,
-                            ])
-                        @endif
-                    @endfor
+                            'tab' => 'pesadas-tab'
+                        ])
+                    @endforeach
                 </div>
                 <div class="tab-pane fade" id="estaciones" role="tabpanel" aria-labelledby="estaciones-tab">
-                    @for ($i = 0; $i < count($fuselajes); $i++)
-                        @if ($fuselajes[$i]->categoria == 'jugador' and $fuselajes[$i]->tamanio == 'estacion' and $fuselajes[$i]->tipo == 'nave')
-                            @include('juego.fuselajes.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
+                    @foreach ($estaciones as $estacion)
+                        @include('juego.fuselajes.cajitaFuselajes', [
+                            'fuselaje' => $estacion,
                             'fuselajesJugador' => $fuselajesJugador,
-                            ])
-                        @endif
-                    @endfor
+                            'tab' => 'estaciones-tab'
+                        ])
+                    @endforeach
                 </div>
                 <div class="tab-pane fade" id="novas" role="tabpanel" aria-labelledby="novas-tab">
-                    @for ($i = 0; $i < count($fuselajes); $i++)
-                        @if ($fuselajes[$i]->categoria == 'compra' and $fuselajes[$i]->tipo == 'nave')
-                            @include('juego.fuselajes.cajitaFuselajes', [
-                            'fuselaje' => $fuselajes[$i],
+                    @foreach ($novas as $nova)
+                        @include('juego.fuselajes.cajitaFuselajes', [
+                            'fuselaje' => $nova,
                             'fuselajesJugador' => $fuselajesJugador,
-                            ])
-                        @endif
-                    @endfor
+                            'tab' => 'novas-tab'
+                        ])
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -118,5 +112,6 @@
     </div>
 
     <script>
+        mostrarTab(@json($tab));
     </script>
 @endsection
