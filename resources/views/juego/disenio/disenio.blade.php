@@ -5,8 +5,7 @@
                 <div class="row rounded cajita">
                     <div class="col-12">
                         <div id="cuadro1" class="table-responsive">
-                            <table
-                                class="table table-borderless borderless table-sm text-center anchofijo"
+                            <table class="table table-borderless borderless table-sm text-center anchofijo"
                                 style="margin-bottom: 15px !important">
                                 <tr>
                                     <td class="text-warning">Disenio</td>
@@ -35,15 +34,11 @@
                                         <td class="text-light align-middle borderless">
                                             {{ $colaDisenios[$i]->created_at }}
                                         </td>
-                                        <td
-                                            id="fechaFin{{ $i }}"
-                                            class="text-light align-middle borderless">
+                                        <td id="fechaFin{{ $i }}" class="text-light align-middle borderless">
                                             {{ $colaDisenios[$i]->finished_at }}
                                         </td>
                                         <td class="text-light align-middle borderless">
-                                            <button
-                                                type="button"
-                                                class="btn btn-outline-danger col-12 btn-sm"
+                                            <button type="button" class="btn btn-outline-danger col-12 btn-sm"
                                                 onclick="sendCancelarDisenio('{{ $colaDisenios[$i]->id }}')">
                                                 <i class="fa fa-trash"></i> Cancelar
                                             </button>
@@ -56,217 +51,113 @@
                 </div>
             @endif
             <nav>
-                <div
-                    class="nav nav-pills nav-justified"
-                    id="nav-tab"
-                    role="tablist"
-                    style="border: 0px; margin: 5px"
+                <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a
-                        class="nav-item nav-link active"
-                        id="cazas-tab"
-                        data-bs-toggle="tab"
-                        href="#cazas"
-                        role="tab"
-                        aria-controls="cazas"
-                        aria-selected="true">
+                    <a class="nav-item nav-link active" id="cazas-tab" data-bs-toggle="tab" href="#cazas" role="tab"
+                        aria-controls="cazas" aria-selected="true">
                         Naves cazas
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="ligeras-tab"
-                        data-bs-toggle="tab"
-                        href="#ligeras"
-                        role="tab"
-                        aria-controls="ligeras"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
+                        aria-controls="ligeras" aria-selected="false">
                         Naves Ligeras
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="medias-tab"
-                        data-bs-toggle="tab"
-                        href="#medias"
-                        role="tab"
-                        aria-controls="medias"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="medias-tab" data-bs-toggle="tab" href="#medias" role="tab"
+                        aria-controls="medias" aria-selected="false">
                         Naves Medias
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="pesadas-tab"
-                        data-bs-toggle="tab"
-                        href="#pesadas"
-                        role="tab"
-                        aria-controls="pesadas"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="pesadas-tab" data-bs-toggle="tab" href="#pesadas" role="tab"
+                        aria-controls="pesadas" aria-selected="false">
                         Naves Pesadas
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="estaciones-tab"
-                        data-bs-toggle="tab"
-                        href="#estaciones"
-                        role="tab"
-                        aria-controls="estaciones"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="estaciones-tab" data-bs-toggle="tab" href="#estaciones" role="tab"
+                        aria-controls="estaciones" aria-selected="false">
                         Estaciones espaciales
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="defensas-ligeras-tab"
-                        data-bs-toggle="tab"
-                        href="#defensas-ligeras"
-                        role="tab"
-                        aria-controls="defensas-ligeras"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="defensas-ligeras-tab" data-bs-toggle="tab" href="#defensas-ligeras"
+                        role="tab" aria-controls="defensas-ligeras" aria-selected="false">
                         Defensas ligeras
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="defensas-medias-tab"
-                        data-bs-toggle="tab"
-                        href="#defensas-medias"
-                        role="tab"
-                        aria-controls="defensas-medias"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="defensas-medias-tab" data-bs-toggle="tab" href="#defensas-medias"
+                        role="tab" aria-controls="defensas-medias" aria-selected="false">
                         Defensas medias
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="defensas-pesadas-tab"
-                        data-bs-toggle="tab"
-                        href="#defensas-pesadas"
-                        role="tab"
-                        aria-controls="defensas-pesadas"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="defensas-pesadas-tab" data-bs-toggle="tab" href="#defensas-pesadas"
+                        role="tab" aria-controls="defensas-pesadas" aria-selected="false">
                         Defensas pesadas
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="defensas-estaciones-tab"
-                        data-bs-toggle="tab"
-                        href="#defensas-estaciones"
-                        role="tab"
-                        aria-controls="defensas-estaciones"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="defensas-estaciones-tab" data-bs-toggle="tab"
+                        href="#defensas-estaciones" role="tab" aria-controls="defensas-estaciones" aria-selected="false">
                         Estaciones de defensa
                     </a>
-                    <a
-                        class="nav-item nav-link"
-                        id="novas-tab"
-                        data-bs-toggle="tab"
-                        href="#novas"
-                        role="tab"
-                        aria-controls="novas"
-                        aria-selected="false">
+                    <a class="nav-item nav-link" id="novas-tab" data-bs-toggle="tab" href="#novas" role="tab"
+                        aria-controls="novas" aria-selected="false">
                         Novas
                     </a>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div
-                    class="tab-pane fade show active"
-                    id="cazas"
-                    role="tabpanel"
-                    aria-labelledby="cazas-tab">
+                <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                     @foreach ($disenios as $disenio)
                         @include('juego.disenio.cajitaDisenios', [ 'disenio' =>
                         $disenio, ]) @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="ligeras"
-                    role="tabpanel"
-                    aria-labelledby="ligeras-tab">
+                <div class="tab-pane fade" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
                         ]) --}}
                     @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="medias"
-                    role="tabpanel"
-                    aria-labelledby="medias-tab">
+                <div class="tab-pane fade" id="medias" role="tabpanel" aria-labelledby="medias-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
                         ]) --}}
                     @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="pesadas"
-                    role="tabpanel"
-                    aria-labelledby="pesadas-tab">
+                <div class="tab-pane fade" id="pesadas" role="tabpanel" aria-labelledby="pesadas-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
                         ]) --}}
                     @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="estaciones"
-                    role="tabpanel"
-                    aria-labelledby="estaciones-tab">
+                <div class="tab-pane fade" id="estaciones" role="tabpanel" aria-labelledby="estaciones-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
                         ]) --}}
                     @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="defensas-ligeras"
-                    role="tabpanel"
-                    aria-labelledby="defensas-ligeras-tab">
+                <div class="tab-pane fade" id="defensas-ligeras" role="tabpanel" aria-labelledby="defensas-ligeras-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
                         ]) --}}
                     @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="defensas-medias"
-                    role="tabpanel"
-                    aria-labelledby="defensas-medias-tab">
+                <div class="tab-pane fade" id="defensas-medias" role="tabpanel" aria-labelledby="defensas-medias-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
                         ]) --}}
                     @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="defensas-pesadas"
-                    role="tabpanel"
-                    aria-labelledby="defensas-pesadas-tab">
+                <div class="tab-pane fade" id="defensas-pesadas" role="tabpanel" aria-labelledby="defensas-pesadas-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
                         ]) --}}
                     @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="defensas-estacion"
-                    role="tabpanel"
-                    aria-labelledby="defensas-estacion-tab">
+                <div class="tab-pane fade" id="defensas-estacion" role="tabpanel" aria-labelledby="defensas-estacion-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
                         ]) --}}
                     @endforeach
                 </div>
-                <div
-                    class="tab-pane fade"
-                    id="novas"
-                    role="tabpanel"
-                    aria-labelledby="novas-tab">
+                <div class="tab-pane fade" id="novas" role="tabpanel" aria-labelledby="novas-tab">
                     @foreach ($disenios as $disenio)
                         {{-- @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $disenio,
