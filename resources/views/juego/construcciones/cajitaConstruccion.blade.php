@@ -291,8 +291,8 @@
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
-                    <td>
                         @if (substr($construccion->codigo, 0, 3) == 'ind' and substr($construccion->codigo, 3) != 'Personal')
+                        <td>
                             @if ($encendidoIndustrias[strtolower(substr($construccion->codigo, 3))] == 1)
                                 <button type="button" class="btn btn-outline-danger col-12"
                                     onclick="sendIndustria('{{ strtolower($industria) }}')">
@@ -304,8 +304,8 @@
                                     <i class="fa fa-play"></i> Encender la produccion
                                 </button>
                             @endif
+                        </td>
                         @endif
-                    </td>
                     <td>
                         @if ($dependencia->nivelRequiere <= $nivel)
                             @if ($construccion->nivel >= 99 or $construccion->coste->mineral > $recursos->mineral or $construccion->coste->cristal > $recursos->cristal or $construccion->coste->gas > $recursos->gas or $construccion->coste->plastico > $recursos->plastico or $construccion->coste->ceramica > $recursos->ceramica or $construccion->coste->liquido > $recursos->liquido or $construccion->coste->micros > $recursos->micros)
