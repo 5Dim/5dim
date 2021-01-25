@@ -295,12 +295,12 @@
                         <td>
                             @if ($encendidoIndustrias[strtolower(substr($construccion->codigo, 3))] == 1)
                                 <button type="button" class="btn btn-outline-danger col-12"
-                                    onclick="sendIndustria('{{ strtolower($industria) }}')">
+                                    onclick="sendIndustria('{{ strtolower(substr($construccion->codigo, 3)) }}')">
                                     <i class="fa fa-pause"></i> Parar la produccion
                                 </button>
                             @else
                                 <button type="button" class="btn btn-outline-success col-12"
-                                    onclick="sendIndustria('{{ strtolower($industria) }}')">
+                                    onclick="sendIndustria('{{ strtolower(substr($construccion->codigo, 3)) }}')">
                                     <i class="fa fa-play"></i> Encender la produccion
                                 </button>
                             @endif

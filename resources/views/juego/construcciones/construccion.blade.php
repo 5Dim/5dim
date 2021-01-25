@@ -95,88 +95,88 @@
                 <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
                     @foreach ($minas as $mina)
                         @include('juego.construcciones.cajitaConstruccion', [
-                        'construccion'=> $mina,
-                        'dependencia' => $dependencias->where('codigo', $mina->codigo)->first(),
-                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $mina->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'mina-tab',
+                            'construccion'=> $mina,
+                            'dependencia' => $dependencias->where('codigo', $mina->codigo)->first(),
+                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $mina->codigo)->first()->codigoRequiere)->first()->nivel,
+                            'personal' => $recursos->personal - $personalOcupado,
+                            'tab' => 'mina-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="industria" role="tabpanel" aria-labelledby="industria-tab">
                     @foreach ($industrias as $industria)
                         @include('juego.construcciones.cajitaConstruccion', [
-                        'construccion'=> $industria,
-                        'dependencia' => $dependencias->where('codigo', $industria->codigo)->first(),
-                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $industria->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'industria-tab',
+                            'construccion'=> $industria,
+                            'dependencia' => $dependencias->where('codigo', $industria->codigo)->first(),
+                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $industria->codigo)->first()->codigoRequiere)->first()->nivel,
+                            'personal' => $recursos->personal - $personalOcupado,
+                            'tab' => 'industria-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade " id="almacenes" role="tabpanel " aria-labelledby="almacenes-tab">
                     @foreach ($almacenes as $almacen)
                         @include('juego.construcciones.cajitaConstruccion', [
-                        'construccion'=> $almacen,
-                        'dependencia' => $dependencias->where('codigo', $almacen->codigo)->first(),
-                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $almacen->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'almacenes-tab',
+                            'construccion'=> $almacen,
+                            'dependencia' => $dependencias->where('codigo', $almacen->codigo)->first(),
+                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $almacen->codigo)->first()->codigoRequiere)->first()->nivel,
+                            'personal' => $recursos->personal - $personalOcupado,
+                            'tab' => 'almacenes-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="militares" role="tabpanel" aria-labelledby="militares-tab">
                     @foreach ($militares as $militar)
                         @include('juego.construcciones.cajitaConstruccion', [
-                        'construccion'=> $militar,
-                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
-                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'militares-tab',
+                            'construccion'=> $militar,
+                            'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
+                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                            'personal' => $recursos->personal - $personalOcupado,
+                            'tab' => 'militares-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="desarrollo" role="tabpanel" aria-labelledby="desarrollo-tab">
                     @foreach ($desarrollos as $desarrollo)
                         @include('juego.construcciones.cajitaConstruccion', [
-                        'construccion'=> $desarrollo,
-                        'dependencia' => $dependencias->where('codigo', $desarrollo->codigo)->first(),
-                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $desarrollo->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'desarrollo-tab',
+                            'construccion'=> $desarrollo,
+                            'dependencia' => $dependencias->where('codigo', $desarrollo->codigo)->first(),
+                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $desarrollo->codigo)->first()->codigoRequiere)->first()->nivel,
+                            'personal' => $recursos->personal - $personalOcupado,
+                            'tab' => 'desarrollo-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="observacion" role="tabpanel" aria-labelledby="observacion-tab">
                     @foreach ($observaciones as $observacion)
                         @include('juego.construcciones.cajitaConstruccion', [
-                        'construccion'=> $observacion,
-                        'dependencia' => $dependencias->where('codigo', $observacion->codigo)->first(),
-                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $observacion->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'observacion-tab',
+                            'construccion'=> $observacion,
+                            'dependencia' => $dependencias->where('codigo', $observacion->codigo)->first(),
+                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $observacion->codigo)->first()->codigoRequiere)->first()->nivel,
+                            'personal' => $recursos->personal - $personalOcupado,
+                            'tab' => 'observacion-tab',
                         ])
                     @endforeach
                 </div>
                 {{-- <div class="tab-pane fade" id="especialidad" role="tabpanel" aria-labelledby="especialidad-tab">
                     @foreach ($especializaciones as $especializacion)
                         @include('juego.construcciones.cajitaConstruccion', [
-                        'construccion'=> $especializacion,
-                        'dependencia' => $dependencias->where('codigo', $especializacion->codigo)->first(),
-                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $especializacion->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'especializacion-tab',
+                            'construccion'=> $especializacion,
+                            'dependencia' => $dependencias->where('codigo', $especializacion->codigo)->first(),
+                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $especializacion->codigo)->first()->codigoRequiere)->first()->nivel,
+                            'personal' => $recursos->personal - $personalOcupado,
+                            'tab' => 'especializacion-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="especial" role="tabpanel" aria-labelledby="especial-tab">
                     @foreach ($especiales as $especial)
                         @include('juego.construcciones.cajitaConstruccion', [
-                        'construccion'=> $especial,
-                        'dependencia' => $dependencias->where('codigo', $especial->codigo)->first(),
-                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $especial->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'personal' => $recursos->personal - $personalOcupado,
-                        'tab' => 'especial-tab',
+                            'construccion'=> $especial,
+                            'dependencia' => $dependencias->where('codigo', $especial->codigo)->first(),
+                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $especial->codigo)->first()->codigoRequiere)->first()->nivel,
+                            'personal' => $recursos->personal - $personalOcupado,
+                            'tab' => 'especial-tab',
                         ])
                     @endforeach
                 </div> --}}
