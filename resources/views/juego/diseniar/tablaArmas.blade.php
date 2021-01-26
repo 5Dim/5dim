@@ -556,7 +556,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                             @for ($i = 0 ; $i <7; $i++)
                                             <td>
                                                 @if ($i<$cantidadblindajes-($n*7))
-                                                <div  style="border: 1px solid white;width:40px;"><img  onClick="encajar('blindaje',{{$i+(7*$n)}},'quita')" id="blindaje{{$i+(7*$n)}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
+                                                <div  style="border: 1px solid white;width:42px;"><img  onClick="encajar('blindaje',{{$i+(7*$n)}},'quita')" id="blindaje{{$i+(7*$n)}}" src="{{ asset('img/fotos armas/vacio.png') }}" width="40" height="40"></div>
                                                 @endif
                                             </td>
                                             @endfor
@@ -1032,6 +1032,7 @@ var armasAlcance ={!!json_encode($arrayAlcance)!!};
 var armasDispersion ={!!json_encode($arrayDispersion)!!};
 var energiaArmas={!!json_encode($arrayEnergiaArmas)!!};
 var esteDisenio={!!json_encode($esteDisenio)!!};
+var tamanoEstaNave={!!json_encode($disenio->tamanio)!!};
 
     var armas={
         motor:motores,
@@ -1257,6 +1258,15 @@ var multiplicadorArmas={
     'armasMisil':multiplicadorCMisiles,
     'armasBomba':multiplicadorCBombas
 };
+
+// efectos de politicas
+var factorConstantesMantenimiento=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveMantenimientoTodas';})[0].valor * $.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveMantenimiento'+tamanoEstaNave;})[0].valor;
+var factorConstantesCombustible=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveCombustibleTodas';})[0].valor * $.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveCombustible'+tamanoEstaNave;})[0].valor;
+var factorConstantesEnergia=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveEnergiaTodas';})[0].valor * $.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveEnergia'+tamanoEstaNave;})[0].valor;
+var factorConstantesDefensa=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveDefensaTodas';})[0].valor * $.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveDefensa'+tamanoEstaNave;})[0].valor;
+var factorConstantesRecursos=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveRecursosTodas';})[0].valor * $.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveRecursos'+tamanoEstaNave;})[0].valor;
+var factorConstantesTiempo=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveConstruccionTiempoTodas';})[0].valor * $.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveConstruccionTiempo'+tamanoEstaNave;})[0].valor;
+
 
 //var nivelIa=$.grep(investigaciones, function(nivelInv){return nivelInv.codigo == 'invIa'})[0]['nivel']; //para mejoras
 
@@ -1934,8 +1944,6 @@ $("#energiaarma").text(valueF);
 
 @endif
 
-
-
 //suma de todos los costes:
 cte=1;
 sumaCostos(costesDisenio,cte,costesMisMotores);
@@ -1953,13 +1961,33 @@ sumaCualidades(cualidades,cte,costesMisMejoras);
 
 ////// velocidad  //
 
-
 pesoInicial=.0005*{{$disenio->cualidades->masa}} * (costesFuselaje['mineral']*50+costesFuselaje['cristal']*260+costesFuselaje['gas']*1000+costesFuselaje['plastico']*4000+costesFuselaje['ceramica']*600+costesFuselaje['liquido']*500+costesFuselaje['micros']*2000+costesFuselaje['personal']*500);
 
 pesoTotal=(cualidades['masa']+pesoInicial);
-///cualidades['velocidad']=Math.min(empujeT/pesoTotal,cualidadesFuselaje['velocidadMax'],19.99); // limita la velmax
-cualidades['velocidad']=empujeT/pesoTotal;
-cualidades['velocidad']=( Math.round(cualidades['velocidad']*100))/100;
+var velmaxTodas=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidadMaximaTodas';})[0].valor;
+var velmaxEsteTamano=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidadMaxima'+tamanoEstaNave;})[0].valor;
+var factorVelocidadConstantes=Math.min($.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidadTodas';})[0].valor,$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidad'+tamanoEstaNave;})[0].valor);
+
+cualidades['velocidad']=Math.min((empujeT/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
+cualidades['velocidad']=( Math.round(cualidades['velocidad']*100))/100; //reondeo a 2
+
+// efectos de politicas
+
+cualidades['velocidad'] *= factorConstantesMantenimiento;
+cualidades['Combustible'] *= factorConstantesCombustible;
+cualidades['Energia'] *= factorConstantesEnergia;
+cualidades['Defensa'] *= factorConstantesDefensa;
+cualidades['Tiempo'] *= factorConstantesTiempo;
+
+    costesDisenio['mineral'] *= factorConstantesRecursos;
+    costesDisenio['cristal'] *= factorConstantesRecursos;
+    costesDisenio['gas'] *= factorConstantesRecursos;
+    costesDisenio['plastico'] *= factorConstantesRecursos;
+    costesDisenio['ceramica'] *= factorConstantesRecursos;
+    costesDisenio['liquido'] *= factorConstantesRecursos;
+    costesDisenio['micros'] *= factorConstantesRecursos;
+    costesDisenio['personal'] *= factorConstantesRecursos;
+
 
 mostrarResultado();
 dibujaDano();
