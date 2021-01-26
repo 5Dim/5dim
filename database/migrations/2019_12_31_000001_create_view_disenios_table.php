@@ -42,6 +42,14 @@ select
 			+mejoras.invPropMa * IFNULL( (select nivel from investigaciones where codigo='invPropMa' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropMa')
 			+mejoras.invPropHMA  * IFNULL( (select nivel from investigaciones where codigo='invPropHMA' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropHMA')
 			) / cd.masa) ,2) as velocidad,
+        ROUND (
+        ( ( mejoras.invPropQuimico * (select nivel from investigaciones where codigo='invPropQuimico' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvPropQuimico')
+			+mejoras.invPropNuk * IFNULL( (select nivel from investigaciones where codigo='invPropNuk' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropNuk')
+			+mejoras.invPropIon * IFNULL( (select nivel from investigaciones where codigo='invPropIon' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropIon')
+			+mejoras.invPropPlasma * IFNULL( (select nivel from investigaciones where codigo='invPropPlasma' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropPlasma')
+			+mejoras.invPropMa * IFNULL( (select nivel from investigaciones where codigo='invPropMa' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropMa')
+			+mejoras.invPropHMA  * IFNULL( (select nivel from investigaciones where codigo='invPropHMA' and jugadores_id=jugadores.id),0) * (select valor from constantes where codigo='mejorainvPropHMA')
+			) / cd.masa) ,2) as maniobra,
         ROUND (mejoras.carga * (1+((select nivel from investigaciones where codigo='invCarga' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvCarga'))),0)    AS carga,
         ROUND (mejoras.cargaPequenia * (1+((select nivel from investigaciones where codigo='invCarga' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvCarga'))),0)  AS cargaPequenia,
         ROUND (mejoras.cargaMediana * (1+((select nivel from investigaciones where codigo='invCarga' and jugadores_id=jugadores.id) * (select valor from constantes where codigo='mejorainvCarga'))),0)  AS cargaMediana,
