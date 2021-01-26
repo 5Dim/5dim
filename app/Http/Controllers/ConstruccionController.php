@@ -19,6 +19,7 @@ use App\Models\CostesConstrucciones;
 use App\Models\Alianzas;
 use App\Models\Jugadores;
 use Auth;
+use Illuminate\Support\Facades\Log;
 
 class ConstruccionController extends Controller
 {
@@ -60,6 +61,15 @@ class ConstruccionController extends Controller
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
 
+        // Sacamos el estado de las industrias
+        $encendidoIndustrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
+
+        //Costes construcciones
+        $costesConstrucciones = CostesConstrucciones::generaCostesConstrucciones($construcciones);
+        for ($i = 0; $i < count($construcciones); $i++) {
+            $construcciones[$i]->coste = $costesConstrucciones[$i];
+        }
+
         //Construcciones por categoria para dibujarlas
         $minas = $construcciones->where('categoria', 'mina');
         $industrias = $construcciones->where('categoria', 'industria');
@@ -69,12 +79,6 @@ class ConstruccionController extends Controller
         $observaciones = $construcciones->where('categoria', 'observacion');
         $especializaciones = $construcciones->where('categoria', 'especializacion');
         $especiales = $construcciones->where('categoria', 'especial');
-
-        // Sacamos el estado de las industrias
-        $encendidoIndustrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
-
-        //Costes construcciones
-        $costesConstrucciones = CostesConstrucciones::generaCostesConstrucciones($construcciones);
 
         // Tipo planeta
         $tipoPlaneta = $planetaActual->tipo;

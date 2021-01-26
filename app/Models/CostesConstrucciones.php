@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Constantes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class CostesConstrucciones extends Model
 {
@@ -89,14 +90,6 @@ class CostesConstrucciones extends Model
                     $r1cce = [$codigo, .2, 0, 0, .2, 0, 0, 0, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                case "almMineral":
-                    $r1cce = [$codigo, .5, .3, 0, 0, 0, 0, 0, $nivel];
-                    $coste = $costesc->calculos($r1cce, $avelprodminas);
-                    break;
-                case "almCristal":
-                    $r1cce = [$codigo, .6, .3, 0, 0, 0, 0, 0, $nivel];
-                    $coste = $costesc->calculos($r1cce, $avelprodminas);
-                    break;
                 case "almGas":
                     $r1cce = [$codigo, .2, .2, 0, 0, 0, 0, 0, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
@@ -129,66 +122,54 @@ class CostesConstrucciones extends Model
                     $r1cce = [$codigo, 1.2, 1.2, 0, 0, 1.2, 0, 0, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                case "laboratorio":
-                    $r1cce = [$codigo, 2, 2, 1, 1.5, 1.2, .2, 2, $nivel];
+                case "refugio":
+                    $r1cce = [$codigo, 1.5, 1.5, 15.5, 6.9, 8.5, 1, 0, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
                 case "hangar":
                     $r1cce = [$codigo, 3, 3, .2, 1.5, 1, .5, 1.5, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                // case "fabTropas":
-                //     $r1cce = [$codigo, .5, .1, 0, .2, .6, 0, .1, $nivel];
-                //     $coste = $costesc->calculos($r1cce, $avelprodminas);
-                //     break;
-                // case "fabDefensas":
-                //     $r1cce = [$codigo, 1, .8, 0, 0, 1, 0, .5, $nivel];
-                //     $coste = $costesc->calculos($r1cce, $avelprodminas);
-                //     break;
-                case "observacion":
-                    $r1cce = [$codigo, .5, 1.0, 0, 0, 0, 0, 3.5, $nivel];
-                    $coste = $costesc->calculos($r1cce, $avelprodminas);
-                    break;
-                case "refugio":
-                    $r1cce = [$codigo, 1.5, 1.5, 15.5, 6.9, 8.5, 1, 0, $nivel];
-                    $coste = $costesc->calculos($r1cce, $avelprodminas);
-                    break;
-                case "terraformador":
-                    $r1cce = [$codigo, 80.2, 60.5, 40.5, 0.3, 1, 5.8, 1, $nivel];
+                case "laboratorio":
+                    $r1cce = [$codigo, 2, 2, 1, 1.5, 1.2, .2, 2, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
                 case "comercio":
                     $r1cce = [$codigo, 3, 15, 5.3, 1.5, .6, 1.2, 3.5, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                case "escudo":
-                    $r1cce = [$codigo, 2.5, 1.1, .1, 23.1, 16, 6.1, .3, $nivel];
-                    $coste = $costesc->calculos($r1cce, $avelprodminas);
-                    break;
-                case "potenciadorMinero":
-                    $r1cce = [$codigo, 55, 18, .1, 24.1, 12.5, 4.3, .7, $nivel];
-                    $coste = $costesc->calculos($r1cce, $avelprodminas);
-                    break;
-                case "potenciadorIndustrial":
-                    $r1cce = [$codigo, 55, 18, .1, 24.1, 12.5, 4.3, .7, $nivel];
+                case "observacion":
+                    $r1cce = [$codigo, .5, 1.0, 0, 0, 0, 0, 3.5, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
                 case "inhibidorHMA":
                     $r1cce = [$codigo, 70, 20, 15, 1, 32, 2.3, 1.3, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                case "nodEstructura":
-                    $r1cce = [$codigo, 3.5, 3.5, 0, 2, 0, 0, 2.8, $nivel];
+                case "potenciador":
+                    $r1cce = [$codigo, 80.2, 60.5, 40.5, 0.3, 1, 5.8, 1, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
-                case "nodMotorMA":
-                    $r1cce = [$codigo, 3.5, 2.8, 2, 2.8, 2.5, 4.5, 2, $nivel];
+                case "terraformadorMinero":
+                    $r1cce = [$codigo, 55, 18, .1, 24.1, 12.5, 4.3, .7, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
+                    // case "terraformadorIndustrial":
+                    //     $r1cce = [$codigo, 55, 18, .1, 24.1, 12.5, 4.3, .7, $nivel];
+                    //     $coste = $costesc->calculos($r1cce, $avelprodminas);
+                    //     break;
+                    // case "nodEstructura":
+                    //     $r1cce = [$codigo, 3.5, 3.5, 0, 2, 0, 0, 2.8, $nivel];
+                    //     $coste = $costesc->calculos($r1cce, $avelprodminas);
+                    //     break;
+                    // case "nodMotorMA":
+                    //     $r1cce = [$codigo, 3.5, 2.8, 2, 2.8, 2.5, 4.5, 2, $nivel];
+                    //     $coste = $costesc->calculos($r1cce, $avelprodminas);
+                    //     break;
             }
-
             array_push($costesConstruccion, $coste);
         }
+        // dd($costesConstruccion);
         return $costesConstruccion;
     }
 
@@ -242,14 +223,6 @@ class CostesConstrucciones extends Model
                 $r1cce = [$codigo, .2, 0, 0, .2, 0, 0, 0, $nivel];
                 $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
                 break;
-            case "almMineral":
-                $r1cce = [$codigo, .5, .3, 0, 0, 0, 0, 0, $nivel];
-                $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
-                break;
-            case "almCristal":
-                $r1cce = [$codigo, .6, .3, 0, 0, 0, 0, 0, $nivel];
-                $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
-                break;
             case "almGas":
                 $r1cce = [$codigo, .2, .2, 0, 0, 0, 0, 0, $nivel];
                 $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
@@ -286,16 +259,8 @@ class CostesConstrucciones extends Model
                 $r1cce = [$codigo, 2, 2, 1, 1.5, 1.2, .2, 2, $nivel];
                 $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
                 break;
-            case "fabNaves":
+            case "hangar":
                 $r1cce = [$codigo, 3, 3, .2, 1.5, 1, .5, 1.5, $nivel];
-                $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
-                break;
-            case "fabTropas":
-                $r1cce = [$codigo, .5, .1, 0, .2, .6, 0, .1, $nivel];
-                $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
-                break;
-            case "fabDefensas":
-                $r1cce = [$codigo, 1, .8, 0, 0, 1, 0, .5, $nivel];
                 $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
                 break;
             case "observacion":
@@ -312,10 +277,6 @@ class CostesConstrucciones extends Model
                 break;
             case "comercio":
                 $r1cce = [$codigo, 3, 15, 5.3, 1.5, .6, 1.2, 3.5, $nivel];
-                $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
-                break;
-            case "escudo":
-                $r1cce = [$codigo, 2.5, 1.1, .1, 23.1, 16, 6.1, .3, $nivel];
                 $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
                 break;
             case "potenciador":

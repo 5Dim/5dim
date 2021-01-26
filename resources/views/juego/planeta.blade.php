@@ -293,7 +293,7 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             0
                         </td>
                         <td class="anchofijo text-danger borderless">
-                            -{{ number_format($produccion->liquido * $constantes->where('codigo', 'costoLiquido')->first()->valor, 0,",",".") }}
+                            -{{ number_format($produccionesSinCalcular->liquido * $constantes->where('codigo', 'costoLiquido')->first()->valor, 0,",",".") }}
                         </td>
                         <td class="anchofijo text-muted borderless">
                             0
@@ -691,19 +691,19 @@ $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraform
                             {{ number_format($produccion->ceramica, 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($produccion->liquido * $factoresIndustrias[0], 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->liquido * $factoresIndustrias[0], 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($produccion->micros * $factoresIndustrias[1], 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->micros * $factoresIndustrias[1], 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($produccion->fuel * $factoresIndustrias[2], 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->fuel * $factoresIndustrias[2], 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($produccion->ma * $factoresIndustrias[3], 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->ma * $factoresIndustrias[3], 0,",",".") }}
                         </td>
                         <td class="text-primary borderless">
-                            {{ number_format($produccion->municion * $factoresIndustrias[4], 0,",",".") }}
+                            {{ number_format($produccionesSinCalcular->municion * $factoresIndustrias[4], 0,",",".") }}
                         </td>
                     </tr>
                     <tr>

@@ -60,6 +60,11 @@ class Disenios extends Model
         return $this->belongsTo(Jugadores::class, 'jugadores_id');
     }
 
+    public function mejoras()
+    {
+        return $this->hasMany(MejorasDisenios::class);
+    }
+
     public function generarDatosDisenios()
     {
 
