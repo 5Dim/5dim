@@ -42,6 +42,9 @@
                     <td class="anchofijo text-warning borderless">
                         Carga
                     </td>
+                    <td class="anchofijo text-warning borderless">
+                        Recolección
+                    </td>
                 </tr>
                 <tr>
                     <td id="mineralD" class="anchofijo text-light borderless">
@@ -77,6 +80,9 @@
                     <td id="cargaD" class="anchofijo text-light borderless">
                         0
                     </td>
+                    <td id="recolectaD" class="anchofijo text-light borderless">
+                        0
+                    </td>
                 </tr>
                 <tr>
                     <td class="anchofijo text-warning borderless">
@@ -98,6 +104,9 @@
                         Velocidad
                     </td>
                     <td class="anchofijo text-warning borderless">
+                        Maniobrabilidad
+                    </td>
+                    <td class="anchofijo text-warning borderless">
                         Hangar cazas
                     </td>
                     <td class="anchofijo text-warning borderless">
@@ -110,7 +119,7 @@
                         Hangar pesadas
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        Hangar estación
+
                     </td>
                 </tr>
                 <tr>
@@ -130,6 +139,9 @@
                         0
                     </td>
                     <td id="velocidadD" class="anchofijo text-light borderless">
+                        {{ number_format($disenio->cualidades->velocidad, 0, ',', '.') }}
+                    </td>
+                    <td id="maniobraD" class="anchofijo text-light borderless">
                         {{ number_format($disenio->cualidades->velocidad, 0, ',', '.') }}
                     </td>
                     <td id="cargaPequeniaD" class="anchofijo text-light borderless">
