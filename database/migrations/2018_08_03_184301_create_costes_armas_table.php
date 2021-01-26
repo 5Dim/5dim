@@ -33,6 +33,7 @@ class CreateCostesArmasTable extends Migration
             $table->integer('ataque');
             $table->integer('tiempo');
             $table->integer('velocidad');
+            $table->integer('maniobra')->default(0);
             $table->integer('carga');
             $table->integer('cargaPequenia');
             $table->integer('cargaMediana');

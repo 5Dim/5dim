@@ -21,6 +21,12 @@ class CreateMejorasDiseniosTable extends Migration
             $table->integer('invPropPlasma')->default(0);
             $table->integer('invPropMa')->default(0);
             $table->integer('invPropHMA')->default(0);
+            $table->integer('invManiobraQuimico')->default(0);
+            $table->integer('invManiobraNuk')->default(0);
+            $table->integer('invManiobraIon')->default(0);
+            $table->integer('invManiobraPlasma')->default(0);
+            $table->integer('invManiobraMa')->default(0);
+            $table->integer('invManiobraHMA')->default(0);
             $table->integer('municion')->default(0);
             $table->integer('fuel')->default(0);
             $table->integer('defensa')->default(0);
