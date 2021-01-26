@@ -45,7 +45,8 @@ class CostesArmas extends Model
                 $coste->mantenimiento=$fcmot*1;
                 $coste->defensa=-10000;
                 $coste->ataque=0;
-                $coste->velocidad=1000;
+                $coste->velocidad=1000; //velocidad
+                $coste->maniobra=1000; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -73,7 +74,8 @@ class CostesArmas extends Model
                 $coste->mantenimiento=$fcmot*1;
                 $coste->defensa=-9000;
                 $coste->ataque=0;
-                $coste->velocidad=300000; // es el empuje
+                $coste->velocidad=300000; //velocidad
+                $coste->maniobra=300000; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -101,7 +103,8 @@ class CostesArmas extends Model
                 $coste->mantenimiento=$fcmot*1;
                 $coste->defensa=-15000;
                 $coste->ataque=0;
-                $coste->velocidad=1000000; //empuje
+                $coste->velocidad=1000000; //velocidad
+                $coste->maniobra=1000000; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -129,7 +132,8 @@ class CostesArmas extends Model
                 $coste->mantenimiento=$fcmot*1;
                 $coste->defensa=-20000;
                 $coste->ataque=0;
-                $coste->velocidad=1000000; //empuje
+                $coste->velocidad=1000000; //velocidad
+                $coste->maniobra=1000000; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -157,7 +161,8 @@ class CostesArmas extends Model
                 $coste->mantenimiento=$fcmot*1;
                 $coste->defensa=-40000;
                 $coste->ataque=0;
-                $coste->velocidad=1400000; //empuje
+                $coste->velocidad=1400000; //velocidad
+                $coste->maniobra=1400000; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;

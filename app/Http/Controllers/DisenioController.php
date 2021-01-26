@@ -29,6 +29,7 @@ use App\Models\CualidadesDisenios;
 use App\Models\MejorasDisenios;
 use App\Models\EnDisenios;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
 class DisenioController extends Controller
 {
@@ -1040,10 +1041,10 @@ class DisenioController extends Controller
                 }
             }
             // sin motores ya ni mires mas
-            if ($empujeT < 1) {
-                $correcto = false;
-                $razonCorrecto += "<br>No hay motores";
-            }
+            // if ($empujeT < 1) {
+            //     $correcto = false;
+            //     $razonCorrecto .= "<br>No hay motores";
+            // }
 
             // aniado blindaje
             $elemento = 'blindaje';
