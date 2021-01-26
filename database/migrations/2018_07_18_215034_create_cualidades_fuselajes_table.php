@@ -20,8 +20,8 @@ class CreateCualidadesFuselajesTable extends Migration
             $table->integer('tiempo');
             $table->integer('mantenimiento');
             $table->integer('defensa');
-            $table->integer('maniobra');
-            $table->integer('velocidad');
+            $table->integer('maniobra')->default(0);
+            $table->integer('velocidad')->default(0);
             $table->integer('velocidadMax');
             $table->integer('gastoFuel');
 

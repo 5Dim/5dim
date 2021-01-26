@@ -13,17 +13,15 @@ class Investigaciones extends Model
     use HasFactory;
 
     public $timestamps = false;
+
     public function jugadores()
     {
         return $this->belongsTo(Jugadores::class);
     }
+
     public function enInvestigaciones()
     {
         return $this->hasMany(EnInvestigaciones::class);
-    }
-    public function coste()
-    {
-        return $this->hasOne(CostesInvestigaciones::class);
     }
 
     public static function sumatorio($num)

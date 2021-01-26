@@ -14,22 +14,18 @@ class Construcciones extends Model
     // No queremos timestamps en este modelo
     public $timestamps = false;
 
-    public function planetas ()
+    public function planetas()
     {
         return $this->belongsTo(Planetas::class);
     }
 
-    public function enConstrucciones ()
+    public function enConstrucciones()
     {
         return $this->hasMany(EnConstrucciones::class);
     }
 
-    public function coste ()
+    public function listaNombres()
     {
-        return $this->hasOne(CostesConstrucciones::class);
-    }
-
-    public function listaNombres () {
         $listaNombres = [
             // Minas
             "indPersonal",
@@ -82,23 +78,26 @@ class Construcciones extends Model
         return $listaNombres;
     }
 
-    public function sumarCostes($coste) {
+    public function sumarCostes($coste)
+    {
         $nuevoCoste = $coste->mineral + $coste->cristal + $coste->gas + $coste->plastico + $coste->ceramica + $coste->liquido + $coste->micros;
 
         return $nuevoCoste;
     }
 
-    public function calcularTiempoConstrucciones($preciototal, $personal){
-        $velocidadConst=Constantes::where('codigo','velocidadConst')->first();
+    public function calcularTiempoConstrucciones($preciototal, $personal)
+    {
+        $velocidadConst = Constantes::where('codigo', 'velocidadConst')->first();
         if ($personal > 0) {
             $result = ((($preciototal + 12) * $velocidadConst->valor) / $personal);
-        }else{
+        } else {
             $result = false;
         }
         return $result;
     }
 
-    public static function nuevaColonia ($planeta) {
+    public static function nuevaColonia($planeta)
+    {
         $listaConstrucciones = [];
         $construccion = new Construcciones();
         $listaNombres = $construccion->listaNombres();
@@ -152,7 +151,7 @@ class Construcciones extends Model
             "especial",
         ];
 
-        for ($i = 0 ; $i < count($listaNombres) ; $i++) {
+        for ($i = 0; $i < count($listaNombres); $i++) {
             $construccion = new Construcciones();
             $construccion->planetas_id = $planeta;
             $construccion->codigo = $listaNombres[$i];
@@ -165,18 +164,18 @@ class Construcciones extends Model
             $construccion->save();
         }
 
-        $industrias=new Industrias();
-        $industrias->planetas_id=$planeta;
-        $industrias->liquido=false;
-        $industrias->micros=false;
-        $industrias->fuel=false;
-        $industrias->ma=false;
-        $industrias->municion=false;
+        $industrias = new Industrias();
+        $industrias->planetas_id = $planeta;
+        $industrias->liquido = false;
+        $industrias->micros = false;
+        $industrias->fuel = false;
+        $industrias->ma = false;
+        $industrias->municion = false;
         $industrias->save();
-
     }
 
-    public static function construcciones ($planetaActual) {
+    public static function construcciones($planetaActual)
+    {
         $construcciones = Construcciones::where('planetas_id', $planetaActual->id)->get();
         if (empty($construcciones[0]->codigo)) {
             Construcciones::nuevaColonia($planetaActual->id);

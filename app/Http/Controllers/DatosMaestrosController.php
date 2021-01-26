@@ -16,8 +16,6 @@ use App\Models\Tiendas;
 use App\Models\Disenios;
 use App\Models\CostesDisenios;
 use App\Models\MejorasDisenios;
-use App\Models\CostesBasicosConstruccion;
-use App\Models\CostesBasicosInvestigacion;
 
 class DatosMaestrosController extends Controller
 {
@@ -44,8 +42,8 @@ class DatosMaestrosController extends Controller
         $produccion = new Producciones();
         $producciones = $produccion->generarDatosProducciones(); //esta en seed
 
-        $construccion = new CostesBasicosConstruccion();
-        $construcciones = $construccion->generarDatosCostesBasicosConstruccion();
+        // $construccion = new CostesBasicosConstruccion();
+        // $construcciones = $construccion->generarDatosCostesBasicosConstruccion();
 
         // $investigacion = new CostesBasicosInvestigacion();
         // $investigaciones = $investigacion->generarDatosCostesBasicosInvestigacion();
