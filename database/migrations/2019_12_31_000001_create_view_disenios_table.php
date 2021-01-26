@@ -67,14 +67,6 @@ select
             INNER JOIN cualidades_fuselajes cualidadesFuselajes ON disenios.fuselajes_id=cualidadesFuselajes.fuselajes_id
 
 
-
-
-
-
-
-
-
-
             ");
 
 
