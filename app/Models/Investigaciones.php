@@ -36,14 +36,21 @@ class Investigaciones extends Model
     public function listaNombres()
     {
         $listaNombres = [
-            // Militares
+            // Armas
             "invEnergia",
             "invPlasma",
             "invBalistica",
             "invMa",
+            // Blindajes
+            "invTitanio",
+            "invReactivo",
+            "invResinas",
+            "invPlacas",
+            "invCarbonadio",
             // Civiles
-            "invBlindaje",
             "invCarga",
+            "invHangar",
+            "invRecoleccion",
             "invIa",
             // Imperiales
             "invEnsamblajeFuselajes",
@@ -90,12 +97,19 @@ class Investigaciones extends Model
         $listaNombres = $investigaciones->listaNombres();
 
         $listaCategorias = [
-            // Militares
-            "militar",
-            "militar",
-            "militar",
-            "militar",
+            // Armamento
+            "armas",
+            "armas",
+            "armas",
+            "armas",
+            // Blindajes
+            "blindaje",
+            "blindaje",
+            "blindaje",
+            "blindaje",
+            "blindaje",
             // Civiles
+            "civil",
             "civil",
             "civil",
             "civil",

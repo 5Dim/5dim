@@ -129,6 +129,71 @@ class CostesInvestigaciones extends Model
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
+                    case "invTitanio":
+                        // maximos
+                        $factorRebajaXMaximo = 1;
+                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
+                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
+                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
+                        }
+                        $costoIT = $costoInvestDisenio;
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
+                        break;
+
+                    case "invReactivo":
+                        // maximos
+                        $factorRebajaXMaximo = 1;
+                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
+                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
+                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
+                        }
+                        $costoIT = $costoInvestDisenio;
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
+                        break;
+
+                    case "invResinas":
+                        // maximos
+                        $factorRebajaXMaximo = 1;
+                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
+                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
+                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
+                        }
+                        $costoIT = $costoInvestDisenio;
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
+                        break;
+
+                    case "invCarbonadio":
+                        // maximos
+                        $factorRebajaXMaximo = 1;
+                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
+                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
+                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
+                        }
+                        $costoIT = $costoInvestDisenio;
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
+                        break;
+
+                    case "invResinas":
+                        // maximos
+                        $factorRebajaXMaximo = 1;
+                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
+                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
+                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
+                        }
+                        $costoIT = $costoInvestDisenio;
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
+                        break;
+
                     case "invCarga":
                         // maximos
                         $factorRebajaXMaximo = 1;
@@ -142,7 +207,7 @@ class CostesInvestigaciones extends Model
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
-                    case "invBlindaje":
+                    case "invHangar":
                         // maximos
                         $factorRebajaXMaximo = 1;
                         $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
@@ -151,7 +216,20 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestDisenio;
                         $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $costosIniciales = [$codigo, 15000, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
+                        break;
+
+                    case "invRecoleccion":
+                        // maximos
+                        $factorRebajaXMaximo = 1;
+                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
+                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
+                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
+                        }
+                        $costoIT = $costoInvestDisenio;
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 15000, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 

@@ -243,18 +243,61 @@ class Dependencias extends Model
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
-        // Civil
+        // Blindajes
         $dependencia = new Dependencias();
-        $dependencia->codigo = 'invBlindaje';
+        $dependencia->codigo = 'invTitanio';
         $dependencia->codigoRequiere = 'invEnergia';
         $dependencia->nivelRequiere = 0;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
         $dependencia = new Dependencias();
+        $dependencia->codigo = 'invReactivo';
+        $dependencia->codigoRequiere = 'invTitanio';
+        $dependencia->nivelRequiere = 4;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invResinas';
+        $dependencia->codigoRequiere = 'invReactivo';
+        $dependencia->nivelRequiere = 4;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invPlacas';
+        $dependencia->codigoRequiere = 'invResinas';
+        $dependencia->nivelRequiere = 4;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invCarbonadio';
+        $dependencia->codigoRequiere = 'invPlacas';
+        $dependencia->nivelRequiere = 4;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        // Civil
+        $dependencia = new Dependencias();
         $dependencia->codigo = 'invCarga';
         $dependencia->codigoRequiere = 'invEnergia';
         $dependencia->nivelRequiere = 0;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invHangar';
+        $dependencia->codigoRequiere = 'invCarga';
+        $dependencia->nivelRequiere = 4;
+        $dependencia->tipo = 'investigacion';
+        array_push($dependencias, $dependencia);
+
+        $dependencia = new Dependencias();
+        $dependencia->codigo = 'invRecoleccion';
+        $dependencia->codigoRequiere = 'invCarga';
+        $dependencia->nivelRequiere = 1;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
