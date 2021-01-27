@@ -27,6 +27,9 @@ class EnInvestigaciones extends Model
         $colas = EnInvestigaciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
         foreach ($colas as $cola) {
             $cola->investigaciones->nivel = $cola->nivel;
+            $jugadoresDeAlianza = Jugadores::where('alianzas_id', $cola->investigaciones->jugadores->alianzas_id)->get();
+            $jugadoresDeAlianza->investigaciones->where('codigo', $cola->investigaciones->codigo)->nivel = $cola->nivel;
+            $jugadoresDeAlianza->investigaciones->save();
             $cola->investigaciones->save();
             $cola->delete();
         }

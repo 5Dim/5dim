@@ -366,23 +366,6 @@ class Dependencias extends Model
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
-
-        ///////////////   FUSELAJES  ////////////////////////////////////////////////////////////////////
-
-        $dependencia = new Dependencias();
-        $dependencia->codigo = 'MIZAR';
-        $dependencia->codigoRequiere = 'invEnsamblajeFuselajes';
-        $dependencia->nivelRequiere = 0;
-        $dependencia->tipo = 'fuselaje';
-        array_push($dependencias, $dependencia);
-
-        $dependencia = new Dependencias();
-        $dependencia->codigo = 'XG';
-        $dependencia->codigoRequiere = 'invEnsamblajeFuselajes';
-        $dependencia->nivelRequiere = 0;
-        $dependencia->tipo = 'fuselaje';
-        array_push($dependencias, $dependencia);
-
         foreach ($dependencias as $estaDependencia) {
             $estaDependencia->save();
         }
