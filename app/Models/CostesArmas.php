@@ -18,12 +18,14 @@ class CostesArmas extends Model
         /// construcciones y produccion
         $fcmot=1;  //factor corrector costos motor
         $fcenermot=1; // energia que te el motor
+        $fcpotmot=1; // potencia que te el motor
         $fcblind=3;  //factor corrector blindaje
         $fccc=1; //Factor corrector comp. de carga
         $fcae=1; //factor corrector costo armas energía
         $fcab=1; //factor corrector costo armas balistica
         $fcap=1; //factor corrector costo armas plasma
         $fcam=1; //factor corrector costo armas MA
+
 
 
                 $coste =new CostesArmas();
@@ -43,10 +45,10 @@ class CostesArmas extends Model
                 $coste->energia=750*$fcenermot*24;
                 $coste->tiempo=$fcmot*200;
                 $coste->mantenimiento=$fcmot*1;
-                $coste->defensa=-10000;
+                $coste->defensa=0;
                 $coste->ataque=0;
-                $coste->velocidad=1000; //velocidad
-                $coste->maniobra=1000; //maniobra
+                $coste->velocidad=100*$fcpotmot; //velocidad
+                $coste->maniobra=10000*$fcpotmot; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -72,10 +74,10 @@ class CostesArmas extends Model
                 $coste->energia=645*$fcenermot*20;
                 $coste->tiempo=$fcmot*600;
                 $coste->mantenimiento=$fcmot*1;
-                $coste->defensa=-9000;
+                $coste->defensa=0;
                 $coste->ataque=0;
-                $coste->velocidad=300000; //velocidad
-                $coste->maniobra=300000; //maniobra
+                $coste->velocidad=4500*$fcpotmot; //velocidad
+                $coste->maniobra=4500*$fcpotmot; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -101,10 +103,10 @@ class CostesArmas extends Model
                 $coste->energia=310*$fcenermot*21;
                 $coste->tiempo=$fcmot*300;
                 $coste->mantenimiento=$fcmot*1;
-                $coste->defensa=-15000;
+                $coste->defensa=0;
                 $coste->ataque=0;
-                $coste->velocidad=1000000; //velocidad
-                $coste->maniobra=1000000; //maniobra
+                $coste->velocidad=20000*$fcpotmot; //velocidad
+                $coste->maniobra=1000*$fcpotmot; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -130,10 +132,10 @@ class CostesArmas extends Model
                 $coste->energia=845*$fcenermot*19;
                 $coste->tiempo=$fcmot*700;
                 $coste->mantenimiento=$fcmot*1;
-                $coste->defensa=-20000;
+                $coste->defensa=0;
                 $coste->ataque=0;
-                $coste->velocidad=1000000; //velocidad
-                $coste->maniobra=1000000; //maniobra
+                $coste->velocidad=24000*$fcpotmot; //velocidad
+                $coste->maniobra=30000*$fcpotmot; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -159,10 +161,10 @@ class CostesArmas extends Model
                 $coste->energia=1060*$fcenermot*18;
                 $coste->tiempo=$fcmot*2000*20;
                 $coste->mantenimiento=$fcmot*1;
-                $coste->defensa=-40000;
+                $coste->defensa=0;
                 $coste->ataque=0;
-                $coste->velocidad=1400000; //velocidad
-                $coste->maniobra=1400000; //maniobra
+                $coste->velocidad=50000*$fcpotmot; //velocidad
+                $coste->maniobra=50000*$fcpotmot; //maniobra
                 $coste->carga=0;
                 $coste->cargaPequenia=0;
                 $coste->cargaMediana=0;
@@ -214,7 +216,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcblind*0; //11
-                $coste->masa=$fcblind*5000;
+                $coste->masa=$fcblind*50000;
                 $coste->energia=0;
                 $coste->tiempo=$fcblind*100;
                 $coste->mantenimiento=$fcblind*1;
@@ -242,7 +244,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcblind*0; //11
-                $coste->masa=$fcblind*700;
+                $coste->masa=$fcblind*7000;
                 $coste->energia=-2500*$fcblind;
                 $coste->tiempo=$fcblind*50;
                 $coste->mantenimiento=$fcblind*2;
@@ -270,7 +272,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcblind*0; //11
-                $coste->masa=$fcblind*100;
+                $coste->masa=$fcblind*1000;
                 $coste->energia=0*$fcblind;
                 $coste->tiempo=$fcblind*300;
                 $coste->mantenimiento=$fcblind*3;
@@ -299,7 +301,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcblind*0; //11
-                $coste->masa=$fcblind*1200;
+                $coste->masa=$fcblind*12000;
                 $coste->energia=0*$fcblind;
                 $coste->tiempo=$fcblind*50;
                 $coste->mantenimiento=$fcblind*4;
@@ -327,7 +329,7 @@ class CostesArmas extends Model
                 $coste->ma=0;       //9
                 $coste->municion=0; //10
                 $coste->personal=$fcblind*0; //11
-                $coste->masa=$fcblind*700;
+                $coste->masa=$fcblind*7000;
                 $coste->energia=0*$fcblind;
                 $coste->tiempo=$fcblind*150;
                 $coste->mantenimiento=$fcblind*5;

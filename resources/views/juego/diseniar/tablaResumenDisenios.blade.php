@@ -119,7 +119,7 @@
                         Hangar pesadas
                     </td>
                     <td class="anchofijo text-warning borderless">
-
+                        Masa
                     </td>
                 </tr>
                 <tr>
@@ -156,7 +156,7 @@
                     <td id="cargaEnormeD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td id="CargaMegaD" class="anchofijo text-light borderless">
+                    <td id="pesoTotalD" class="anchofijo text-light borderless">
                         0
                     </td>
                 </tr>

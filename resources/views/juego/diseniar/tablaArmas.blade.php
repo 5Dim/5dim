@@ -1289,6 +1289,7 @@ danoFocos=[1,1,1,1,1]; //cada fila
 empujeT=0;
 ctrlPunteria=0;
 ariete=0;
+maniobraT=0;
 
 costesArmas= {!!json_encode($costesArmas)!!};
 
@@ -1314,7 +1315,7 @@ cualidades={
     ataque:0,
     defensa:0,
     velocidad:0,
-    maniobra=0,
+    maniobra:0,
     carga:0,
     cargaPequenia:0,
     cargaMediana:0,
@@ -1343,6 +1344,7 @@ costesMisMotores={
     defensa:0,
     ataque:0,
     velocidad:0,
+    maniobra:0,
     carga:0,
     cargaPequenia:0,
     cargaMediana:0,
@@ -1371,6 +1373,7 @@ costesMisMejoras={
     defensa:0,
     ataque:0,
     velocidad:0,
+    maniobra:0,
     carga:0,
     cargaPequenia:0,
     cargaMediana:0,
@@ -1398,6 +1401,7 @@ costesMisCargas={
     defensa:0,
     ataque:0,
     velocidad:0,
+    maniobra:0,
     carga:0,
     cargaPequenia:0,
     cargaMediana:0,
@@ -1426,6 +1430,7 @@ costesMisArmas={
     defensa:0,
     ataque:0,
     velocidad:0,
+    maniobra:0,
     carga:0,
     cargaPequenia:0,
     cargaMediana:0,
@@ -1452,6 +1457,7 @@ costesMisBlindajes={
     defensa:0,
     ataque:0,
     velocidad:0,
+    maniobra:0,
     carga:0,
     cargaPequenia:0,
     cargaMediana:0,
@@ -1488,7 +1494,7 @@ $.each( armas[elemento], function( key, e ) {
         costesVacio['fuel']=costeobj['fuel']*factorFuselaje;
         sumaCualidades(costesMisMotores,multiplicadorMotores,costesVacio);
         empujeT+=costeobj['velocidad']*multiplicadorMotores*cualidadesFuselaje['velocidad']*cte; //el empuje del motor por la cantidad por el factor de fuselaje
-
+        maniobraT+=costeobj['maniobra']*multiplicadorMotores*cualidadesFuselaje['maniobra']*cte; //el empuje del motor por la cantidad por el factor de fuselaje
     }
 });
 valueF=formatNumber (Math.round (costesMisMotores['energia']));
@@ -1867,8 +1873,6 @@ danioarmasArm=0;
 /// danio del arma por unidad de energia y costo
 
 
-
-
     hayalgo=0;
     $.each( armas[elemento], function( key, e ) {
 
@@ -1917,7 +1921,7 @@ danioarmasArm=0;
 
             sumaCostos(misCostes,multiplicador*variacionAlcance*variacionDispersion*costoFocoA*costoPunteria*costoAriete,costeobj);// sumo recursos basicos
             costesVacio['mantenimiento']=costeobj['mantenimiento']*variacionAlcance*variacionDispersion;
-            costesVacio['masa']=costeobj['masa'];
+            costesVacio['masa']=costeobj['masa']/10;//limitamos su peso en relacion a su energia
             costesVacio['municion']=costeobj['municion']*variacionAlcance*variacionDispersion/ctePunteria;
             sumaCualidades(misCostes,multiplicador,costesVacio);
 
@@ -1969,8 +1973,13 @@ var velmaxTodas=$.grep(constantesF, function(obj){return obj.codigo == 'fuselaje
 var velmaxEsteTamano=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidadMaxima'+tamanoEstaNave;})[0].valor;
 var factorVelocidadConstantes=Math.min($.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidadTodas';})[0].valor,$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidad'+tamanoEstaNave;})[0].valor);
 
-cualidades['velocidad']=Math.min((empujeT/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
-cualidades['velocidad']=( Math.round(cualidades['velocidad']*100))/100; //reondeo a 2
+cualidades['velocidad']=Math.min((Math.pow(empujeT,1.33)/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
+cualidades['velocidad']=( Math.round(cualidades['velocidad'])); //reondeo a 0
+
+//////  maniobra //
+
+cualidades['maniobra']=Math.min((Math.pow(maniobraT,1.33)/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
+cualidades['maniobra']=( Math.round(cualidades['maniobra'])); //reondeo a 0
 
 // efectos de politicas
 
@@ -2148,6 +2157,9 @@ function mostrarResultado(){
     valueF=formatNumber (Math.round (value));
         $("#"+key+"D").text(valueF);
     })
+
+pesoTotalF=formatNumber (Math.round (pesoTotal/1000));
+$("#pesoTotalD").text(pesoTotalF);
 
 // velocidad que lleva decimales
 $("#velocidadD").text(cualidades['velocidad']);
