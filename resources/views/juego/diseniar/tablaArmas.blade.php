@@ -1921,7 +1921,7 @@ danioarmasArm=0;
 
             sumaCostos(misCostes,multiplicador*variacionAlcance*variacionDispersion*costoFocoA*costoPunteria*costoAriete,costeobj);// sumo recursos basicos
             costesVacio['mantenimiento']=costeobj['mantenimiento']*variacionAlcance*variacionDispersion;
-            costesVacio['masa']=costeobj['masa']/10;//limitamos su peso en relacion a su energia
+            costesVacio['masa']=costeobj['masa'];//limitamos su peso en relacion a su energia
             costesVacio['municion']=costeobj['municion']*variacionAlcance*variacionDispersion/ctePunteria;
             sumaCualidades(misCostes,multiplicador,costesVacio);
 
