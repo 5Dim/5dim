@@ -54,9 +54,13 @@
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link  active" id="militares-tab" data-bs-toggle="tab" href="#militares" role="tab"
-                        aria-controls="militares" aria-selected="true">
-                        Militares
+                    <a class="nav-item nav-link  active" id="armamento-tab" data-bs-toggle="tab" href="#armamento"
+                        role="tab" aria-controls="armamento" aria-selected="true">
+                        Armamento
+                    </a>
+                    <a class="nav-item nav-link" id="blindajes-tab" data-bs-toggle="tab" href="#blindajes" role="tab"
+                        aria-controls="blindajes" aria-selected="false">
+                        Blindajes
                     </a>
                     <a class="nav-item nav-link" id="civiles-tab" data-bs-toggle="tab" href="#civiles" role="tab"
                         aria-controls="civiles" aria-selected="false">
@@ -77,14 +81,25 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="militares" role="tabpanel" aria-labelledby="militares-tab">
-                    @foreach ($militares as $militar)
+                <div class="tab-pane fade show active" id="armamento" role="tabpanel" aria-labelledby="armamento-tab">
+                    @foreach ($armamentos as $armamento)
                         @include('juego.investigaciones.cajitaInvestigacion', [
-                        'investigacion'=> $militar,
+                        'investigacion'=> $armamento,
                         'personal' => $recursos->personal - $personalOcupado,
-                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
-                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
-                        'tab' => 'militares-tab',
+                        'dependencia' => $dependencias->where('codigo', $armamento->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $armamento->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'tab' => 'armamento-tab',
+                        ])
+                    @endforeach
+                </div>
+                <div class="tab-pane fade" id="blindajes" role="tabpanel" aria-labelledby="blindajes-tab">
+                    @foreach ($blindajes as $blindaje)
+                        @include('juego.investigaciones.cajitaInvestigacion', [
+                        'investigacion'=> $blindaje,
+                        'personal' => $recursos->personal - $personalOcupado,
+                        'dependencia' => $dependencias->where('codigo', $blindaje->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $blindaje->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'tab' => 'blindajes-tab',
                         ])
                     @endforeach
                 </div>
@@ -93,8 +108,8 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $civil,
                         'personal' => $recursos->personal - $personalOcupado,
-                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
-                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'dependencia' => $dependencias->where('codigo', $civil->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $civil->codigo)->first()->codigoRequiere)->first()->nivel,
                         'tab' => 'civiles-tab',
                         ])
                     @endforeach
@@ -104,8 +119,8 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $imperial,
                         'personal' => $recursos->personal - $personalOcupado,
-                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
-                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'dependencia' => $dependencias->where('codigo', $imperial->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $imperial->codigo)->first()->codigoRequiere)->first()->nivel,
                         'tab' => 'imperiales-tab',
                         ])
                     @endforeach
@@ -115,8 +130,8 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $motor,
                         'personal' => $recursos->personal - $personalOcupado,
-                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
-                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'dependencia' => $dependencias->where('codigo', $motor->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $motor->codigo)->first()->codigoRequiere)->first()->nivel,
                         'tab' => 'motores-tab',
                         ])
                     @endforeach
@@ -126,8 +141,8 @@
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $industria,
                         'personal' => $recursos->personal - $personalOcupado,
-                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
-                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'dependencia' => $dependencias->where('codigo', $industria->codigo)->first(),
+                        'nivel' => $investigaciones->where('codigo', $dependencias->where('codigo', $industria->codigo)->first()->codigoRequiere)->first()->nivel,
                         'tab' => 'industrias-tab',
                         ])
                     @endforeach
@@ -159,5 +174,6 @@
 
     <script>
         mostrarTab(@json($tab));
+
     </script>
 @endsection

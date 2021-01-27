@@ -236,8 +236,8 @@ class CualidadesFuselajes extends Model
                 $inirec14 = 1; //tiempo
                 $inirec15 = 1; //moneda
                 $inirec16 = 1; ///defensa
-                $inirec18 = 1;  //factor de velocidad base
-                $inirec19 = 0;
+                $inirec18 = 0;  //factor de velocidad base
+                $inirec19 = 1;
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 4;     // caniones ligeros, cantidad por tipo

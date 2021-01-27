@@ -17,7 +17,7 @@ class Producciones extends Model
     {
         //$Avelprodminas=1.6;  // produccion de recursos en minas
 
-        $Avelprodminas = 1.6; //Constantes::where('codigo','Avelprodminas')->first()->valor;
+        $Avelprodminas = Constantes::where('codigo', 'avelprodminas')->first()->valor;
         $factorprod = 1.7 * $Avelprodminas; //por lo que se multiplica la producción
 
         $cntinic1 = 37 * $factorprod;

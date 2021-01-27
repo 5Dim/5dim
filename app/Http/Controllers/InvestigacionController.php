@@ -61,7 +61,8 @@ class InvestigacionController extends Controller
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
 
-        $militares = $investigaciones->where('categoria', 'militar');
+        $armamentos = $investigaciones->where('categoria', 'armas');
+        $blindajes = $investigaciones->where('categoria', 'blindaje');
         $civiles = $investigaciones->where('categoria', 'civil');
         $imperiales = $investigaciones->where('categoria', 'imperial');
         $motores = $investigaciones->where('categoria', 'motor');
@@ -103,7 +104,8 @@ class InvestigacionController extends Controller
             'dependencias',
             'colaInvestigacion',
             'investigaciones',
-            'militares',
+            'armamentos',
+            'blindajes',
             'civiles',
             'imperiales',
             'motores',
