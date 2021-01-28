@@ -329,7 +329,47 @@ class Constantes extends Model
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
-        $constante->codigo = 'mejorainvBlindaje';
+        $constante->codigo = 'mejorainvTitanio';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->universo_id = $universo;
+        $constante->valor = .05;
+        $constante->minimo = .01;
+        $constante->maximo = .2;
+        $constante->codigo = 'mejorainvReactivo';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->universo_id = $universo;
+        $constante->valor = .05;
+        $constante->minimo = .01;
+        $constante->maximo = .2;
+        $constante->codigo = 'mejorainvResinas';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->universo_id = $universo;
+        $constante->valor = .05;
+        $constante->minimo = .01;
+        $constante->maximo = .2;
+        $constante->codigo = 'mejorainvPlacas';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->universo_id = $universo;
+        $constante->valor = .05;
+        $constante->minimo = .01;
+        $constante->maximo = .2;
+        $constante->codigo = 'mejorainvCarbonadio';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
         $constante->tipo = 'investigacion';
         array_push($producciones, $constante);

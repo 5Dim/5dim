@@ -19,7 +19,12 @@ $investNiveles=[
     "invPropPlasma"=>$investigaciones->where("codigo","invPropPlasma")->first()->nivel,
     "invPropMa"=>$investigaciones->where("codigo","invPropMa")->first()->nivel,
 
-    "invBlindaje"=>$investigaciones->where("codigo","invBlindaje")->first()->nivel,
+    "invTitanio"=>$investigaciones->where("codigo","invTitanio")->first()->nivel,  //invBlindaje
+    "invReactivo"=>$investigaciones->where("codigo","invReactivo")->first()->nivel,
+    "invResinas"=>$investigaciones->where("codigo","invResinas")->first()->nivel,
+    "invPlacas"=>$investigaciones->where("codigo","invPlacas")->first()->nivel,
+    "invCarbonadio"=>$investigaciones->where("codigo","invCarbonadio")->first()->nivel,
+
     "invCarga"=>$investigaciones->where("codigo","invCarga")->first()->nivel,
     "invIa"=>$investigaciones->where("codigo","invIa")->first()->nivel
 ];
@@ -533,7 +538,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                     <td>
                         <div class="row rounded">
                             <div class="col-12 " rowspan="2">
-                                @if ($investNiveles["invBlindaje"]>0)
+                                @if ($investNiveles["invTitanio"]>0)
                                 <div id="cuadro1" class=" cajita">
                                     <table class="table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                         <tr>
@@ -543,13 +548,31 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                             </td>
                                         </tr>
                                         <tr>
-                                            @for($codigo=65;$codigo<70;$codigo++)
-                                            @if ($investNiveles["invBlindaje"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                            @if ($investNiveles["invTitanio"]>=$armas->where("codigo",65)->first()->niveltec)
                                             <td>
-                                                <img onClick="encajar('blindaje',{{$codigo}},'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                <img onClick="encajar('blindaje',65,'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",65)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma65.jpg') }}" width="40" height="40">
                                             </td>
                                             @endif
-                                            @endfor
+                                            @if ($investNiveles["invReactivo"]>=$armas->where("codigo",66)->first()->niveltec)
+                                            <td>
+                                                <img onClick="encajar('blindaje',66,'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",66)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma66.jpg') }}" width="40" height="40">
+                                            </td>
+                                            @endif
+                                            @if ($investNiveles["invResinas"]>=$armas->where("codigo",67)->first()->niveltec)
+                                            <td>
+                                                <img onClick="encajar('blindaje',67,'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",67)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma67.jpg') }}" width="40" height="40">
+                                            </td>
+                                            @endif
+                                            @if ($investNiveles["invPlacas"]>=$armas->where("codigo",68)->first()->niveltec)
+                                            <td>
+                                                <img onClick="encajar('blindaje',68,'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",68)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma68.jpg') }}" width="40" height="40">
+                                            </td>
+                                            @endif
+                                            @if ($investNiveles["invCarbonadio"]>=$armas->where("codigo",69)->first()->niveltec)
+                                            <td>
+                                                <img onClick="encajar('blindaje',69,'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",69)->first()->nombre}}"  src="{{ asset('img/fotos armas/arma69.jpg') }}" width="40" height="40">
+                                            </td>
+                                            @endif
                                         </tr>
                                         @for ($n=0 ; $n<3; $n++)
                                         <tr>

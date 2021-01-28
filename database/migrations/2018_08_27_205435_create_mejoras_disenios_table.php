@@ -29,7 +29,12 @@ class CreateMejorasDiseniosTable extends Migration
             $table->integer('invManiobraHMA')->default(0);
             $table->integer('municion')->default(0);
             $table->integer('fuel')->default(0);
-            $table->integer('defensa')->default(0);
+            $table->integer('defensa')->default(0); //quitar esta que ya hay  blindajes por separado
+            $table->integer('invTitanio')->default(0);
+            $table->integer('invReactivo')->default(0);
+            $table->integer('invResinas')->default(0);
+            $table->integer('invPlacas')->default(0);
+            $table->integer('invCarbonadio')->default(0);
             $table->integer('mantenimiento')->default(0);
             $table->integer('tiempo')->default(0);
             $table->integer('carga')->default(0);
