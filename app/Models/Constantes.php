@@ -226,9 +226,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvEnergia';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion Energia';
         $constante->tipo = 'investigacion';
@@ -236,9 +236,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvPlasma';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion Plasma';
         $constante->tipo = 'investigacion';
@@ -246,9 +246,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvBalistica';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion Balistica';
         $constante->tipo = 'investigacion';
@@ -256,9 +256,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvMa';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion MA';
         $constante->tipo = 'investigacion';
