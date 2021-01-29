@@ -35,13 +35,13 @@ class CualidadesFuselajes extends Model
                 $Tnave = 0;
                 $inirec8 = 1;
                 $inirec11 = 2;
-                $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+                $inirec12 = 100;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1; //tiempo
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa
                 $inirec18 = 0;  //factor de velocidad base
-                $inirec19 = 1;
+                $inirec19 = 14;
                 $maxvel = $Tnave * (20 / (2 * $Tnave + .000001)); // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 2;             //cantidad tipos caniones ligeros, cantidad por tipo
@@ -74,13 +74,13 @@ class CualidadesFuselajes extends Model
                 $Tnave = 1;
                 $inirec8 = 1;
                 $inirec11 = 2;
-                $inirec12 = 1;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
+                $inirec12 = 15;    ///factor de masa, se multiplica a una estimación segun las ranuras, a mas mejor velocidad x cosas
                 $inirec13 = 1;    //energia
                 $inirec14 = 1; //tiempo
                 $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa
-                $inirec18 = 1;  //factor de velocidad base
-                $inirec19 = 1;
+                $inirec18 = 100;  //factor de velocidad base
+                $inirec19 = 100;
                 $maxvel = 8; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 2;     // caniones ligeros, cantidad por tipo
@@ -237,7 +237,7 @@ class CualidadesFuselajes extends Model
                 $inirec15 = 1; //moneda
                 $inirec16 = 1; ///defensa
                 $inirec18 = 0;  //factor de velocidad base
-                $inirec19 = 1;
+                $inirec19 = 1.1;
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 4;     // caniones ligeros, cantidad por tipo
@@ -466,7 +466,7 @@ class CualidadesFuselajes extends Model
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 0;  //factor de velocidad base
-                $inirec19 = 1;
+                $inirec19 = 0.5;
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 1;     // caniones ligeros, cantidad por tipo
@@ -933,7 +933,7 @@ class CualidadesFuselajes extends Model
                 $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 0;  //factor de velocidad base
-                $inirec19 = 1;
+                $inirec19 = 0.8;
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 6;     // caniones ligeros, cantidad por tipo
@@ -1400,7 +1400,7 @@ class CualidadesFuselajes extends Model
                 $inirec15 = 1;  //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 0;   //factor de velocidad base
-                $inirec19 = 1;
+                $inirec19 = 0.2;
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 3;     // caniones ligeros, cantidad por tipo
@@ -2014,7 +2014,7 @@ class CualidadesFuselajes extends Model
                 $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 0;   //factor de velocidad base
-                $inirec19 = 1;
+                $inirec19 = 0.57;
                 $maxvel = 0; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 4;     // caniones ligeros, cantidad por tipo

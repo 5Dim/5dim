@@ -15,13 +15,13 @@ class CreateCualidadesFuselajesTable extends Migration
     {
         Schema::create('cualidades_fuselajes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('masa');
+            $table->decimal('masa', 8, 2);
             $table->integer('energia');
             $table->integer('tiempo');
             $table->integer('mantenimiento');
             $table->integer('defensa');
-            $table->integer('maniobra')->default(0);
-            $table->integer('velocidad');
+            $table->decimal('maniobra', 8, 2);
+            $table->decimal('velocidad', 8, 2);
             $table->integer('velocidadMax');
             $table->integer('gastoFuel');
 
