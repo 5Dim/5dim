@@ -266,9 +266,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvPropQuimico';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor quimico';
         $constante->tipo = 'investigacion';
@@ -276,9 +276,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvPropNuk';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor nuclear';
         $constante->tipo = 'investigacion';
@@ -286,9 +286,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvPropIon';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor Iones';
         $constante->tipo = 'investigacion';
@@ -296,9 +296,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvPropPlasma';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor Plasma';
         $constante->tipo = 'investigacion';
@@ -306,9 +306,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvPropMa';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor MA';
         $constante->tipo = 'investigacion';
@@ -316,9 +316,9 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->universo_id = $universo;
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvPropHma';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor HMA';
         $constante->tipo = 'investigacion';
