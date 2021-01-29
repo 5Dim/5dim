@@ -907,7 +907,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                                             </td>
                                                             @endfor
                                                             <td class="text-warning align-middle" colspan="3"  >
-                                                                x{{$multiplicadorCargaMedia}}   Carga mediana
+                                                                x{{$multiplicadorCargaMedia}}   Carga ligera
                                                             </td>
                                                             @endif
                                                         </tr>
@@ -921,7 +921,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                                             </td>
                                                             @endfor
                                                             <td class="text-warning align-middle" colspan="3"  >
-                                                                x{{$multiplicadorCargaGrande}}   Carga grande
+                                                                x{{$multiplicadorCargaGrande}}   Carga media
                                                             </td>
                                                             @endif
                                                         </tr>
@@ -935,7 +935,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                                             </td>
                                                             @endfor
                                                             <td class="text-warning align-middle" colspan="3"  >
-                                                                x{{$multiplicadorCargaEnorme}}   Carga Enorme
+                                                                x{{$multiplicadorCargaEnorme}}   Carga pesada
                                                             </td>
                                                             @endif
                                                         </tr>
@@ -949,7 +949,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                                             </td>
                                                             @endfor
                                                             <td class="text-warning align-middle" colspan="3"  >
-                                                                x{{$multiplicadorCargaMega}}   Carga Mega
+                                                                x{{$multiplicadorCargaMega}}   Carga estación
                                                             </td>
                                                             @endif
                                                         </tr>
