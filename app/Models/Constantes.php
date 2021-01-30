@@ -406,7 +406,7 @@ class Constantes extends Model
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
-        $constante->codigo = 'mejorainvHangares';
+        $constante->codigo = 'mejorainvHangar';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion hangares de naves';
         $constante->tipo = 'investigacion';
         array_push($producciones, $constante);

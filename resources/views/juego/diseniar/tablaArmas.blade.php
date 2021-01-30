@@ -2050,14 +2050,14 @@ for(F=0;F<5;F++){
                     if (c==0 && ariete>0){aAriete=ariete*cteAriete;}
                     danoTotalV[F][c]+=aAriete*valueAqui*(1+(dispersion*(C-c) )); //*danoFocos[F];
                     danoInf=aAriete*valueAqui*(1+(dispersion*(C-c) ))/1.25;
-                    for(f=F+1;f<4;f++){ //atras abajo
+                    for(f=F+1;f<5;f++){ //atras abajo
                         danoTotalV[f][c]+=danoInf;
                     }
                     for(f=F-1;f>-1;f--){ //atras arriba
                         danoTotalV[f][c]+=danoInf*.01*f;
                     }
                 }
-                for(f=F+1;f<4;f++){ // abajo
+                for(f=F+1;f<5;f++){ // abajo
                         danoTotalV[f][C]+=valueAqui/1.25;
                 }
                 for(f=F-1;f>-1;f--){ // arriba
