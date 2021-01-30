@@ -1627,14 +1627,14 @@ class DisenioController extends Controller
                                     }
                                     $danoTotalV[$F][$c] += round($aAriete * $valueAqui * (1 + ($dispersion * ($C - $c))), 0);
                                     $danoInf = $aAriete * $valueAqui * (1 + ($dispersion * ($C - $c))) / 1.25;
-                                    for ($f = $F + 1; $f < 4; $f++) { //atras abajo
+                                    for ($f = $F + 1; $f < 5; $f++) { //atras abajo
                                         $danoTotalV[$f][$c] += round($danoInf, 0);
                                     }
                                     for ($f = $F - 1; $f > -1; $f--) { //atras arriba
                                         $danoTotalV[$f][$c] += round($danoInf * .01 * $f, 0);
                                     }
                                 }
-                                for ($f = $F + 1; $f < 4; $f++) { // abajo
+                                for ($f = $F + 1; $f < 5; $f++) { // abajo
                                     $danoTotalV[$f][$C] += round($valueAqui / 1.25, 0);
                                 }
                                 for ($f = $F - 1; $f > -1; $f--) { // arriba
