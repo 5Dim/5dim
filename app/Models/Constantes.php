@@ -20,7 +20,6 @@ class Constantes extends Model
         /// construcciones y produccion
 
         $constante = new Constantes(); //  /10
-        $constante->universo_id = $universo;
         $constante->valor = 1.6;
         $constante->minimo = 1;
         $constante->maximo = 3;
@@ -30,7 +29,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 330;
         $constante->minimo = 200;
         $constante->maximo = 600;
@@ -40,7 +38,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 8;
         $constante->minimo = 3;
         $constante->maximo = 15;
@@ -50,7 +47,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 10;
         $constante->minimo = 5;
         $constante->maximo = 15;
@@ -60,7 +56,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 10;
         $constante->minimo = 5;
         $constante->maximo = 15;
@@ -70,7 +65,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 10;
         $constante->minimo = 5;
         $constante->maximo = 15;
@@ -80,7 +74,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 2;
         $constante->minimo = 1;
         $constante->maximo = 3;
@@ -90,7 +83,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .75;
         $constante->minimo = .5;
         $constante->maximo = 1;
@@ -100,7 +92,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .7;
         $constante->minimo = .3;
         $constante->maximo = 1;
@@ -111,7 +102,6 @@ class Constantes extends Model
 
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .5;
         $constante->maximo = 2;
@@ -125,7 +115,6 @@ class Constantes extends Model
         ////////  investigaciones  ////////////////////////////////////////////////////////////////
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 3;
         $constante->minimo = 1;
         $constante->maximo = 6;
@@ -135,7 +124,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 10;
         $constante->minimo = 2;
         $constante->maximo = 12;
@@ -145,7 +133,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .5;
         $constante->maximo = 1.5;
@@ -155,7 +142,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1.35;
         $constante->minimo = 1.2;
         $constante->maximo = 1.5;
@@ -165,7 +151,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1.03;
         $constante->minimo = 1;
         $constante->maximo = 1.1;
@@ -175,7 +160,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1.03;
         $constante->minimo = 1;
         $constante->maximo = 1.1;
@@ -185,7 +169,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1.03;
         $constante->minimo = 1;
         $constante->maximo = 1.1;
@@ -195,7 +178,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1.1;
         $constante->minimo = 1.03;
         $constante->maximo = 1.2;
@@ -205,7 +187,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1.03;
         $constante->minimo = 1;
         $constante->maximo = 1.1;
@@ -215,7 +196,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1.5;
         $constante->minimo = .5;
         $constante->maximo = 4;
@@ -225,7 +205,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -235,7 +214,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -245,7 +223,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -255,7 +232,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -265,7 +241,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -275,7 +250,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -285,7 +259,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -295,7 +268,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -305,7 +277,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -315,7 +286,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -325,7 +295,60 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
+        $constante->codigo = 'mejorainvManiobraQuimico';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor quimico';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
+        $constante->codigo = 'mejorainvManiobraNuk';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor nuclear';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
+        $constante->codigo = 'mejorainvManiobraIon';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor Iones';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
+        $constante->codigo = 'mejorainvManiobraPlasma';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor Plasma';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
+        $constante->codigo = 'mejorainvManiobraMa';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor MA';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
+        $constante->codigo = 'mejorainvManiobraHma';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion motor HMA';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
@@ -335,7 +358,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
@@ -345,7 +367,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
@@ -355,7 +376,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
@@ -365,7 +385,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
@@ -375,7 +394,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
@@ -385,7 +403,24 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
+        $constante->valor = .05;
+        $constante->minimo = .01;
+        $constante->maximo = .2;
+        $constante->codigo = 'mejorainvHangares';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion hangares de naves';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = .05;
+        $constante->minimo = .01;
+        $constante->maximo = .2;
+        $constante->codigo = 'mejorainvRecoleccion';
+        $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel la recoleccion';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
@@ -395,7 +430,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .05;
         $constante->minimo = .01;
         $constante->maximo = .2;
@@ -405,7 +439,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .5;
         $constante->maximo = 2;
@@ -419,7 +452,6 @@ class Constantes extends Model
         //Naves//////////////////////////////////////////////////////////////////////////7
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 0;
         $constante->minimo = -20;
         $constante->maximo = 20;
@@ -430,7 +462,6 @@ class Constantes extends Model
 
         //tiempo
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -440,7 +471,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -450,7 +480,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -460,7 +489,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -470,7 +498,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -480,7 +507,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -491,7 +517,6 @@ class Constantes extends Model
 
         //recursos
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -501,7 +526,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -511,7 +535,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -521,7 +544,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -531,7 +553,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -541,7 +562,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -552,7 +572,6 @@ class Constantes extends Model
 
         //defensa
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 3;
@@ -562,7 +581,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 3;
@@ -572,7 +590,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 3;
@@ -582,7 +599,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 3;
@@ -592,7 +608,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 3;
@@ -602,7 +617,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 3;
@@ -613,7 +627,6 @@ class Constantes extends Model
 
         //energía
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -623,7 +636,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -633,7 +645,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -643,7 +654,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -653,7 +663,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -663,7 +672,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -674,7 +682,6 @@ class Constantes extends Model
 
         //combustible
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -684,7 +691,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -694,7 +700,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -704,7 +709,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -714,7 +718,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -724,7 +727,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -735,7 +737,6 @@ class Constantes extends Model
 
         //mantenimiento
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -745,7 +746,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -755,7 +755,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -765,7 +764,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -775,7 +773,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -785,7 +782,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -796,7 +792,6 @@ class Constantes extends Model
 
         /// velocidad
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -806,7 +801,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -816,7 +810,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -826,7 +819,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -836,7 +828,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -846,7 +837,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -856,7 +846,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -866,7 +855,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -876,7 +864,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -886,7 +873,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -896,7 +882,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -906,7 +891,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .2;
         $constante->maximo = 5;
@@ -918,7 +902,6 @@ class Constantes extends Model
         /// velocidades maximas
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -928,7 +911,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -938,7 +920,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -948,7 +929,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -958,7 +938,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -968,7 +947,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -981,7 +959,6 @@ class Constantes extends Model
         /// maniobrabilidades maximas
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -991,7 +968,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -1001,7 +977,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -1011,7 +986,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -1021,7 +995,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -1031,7 +1004,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 200;
         $constante->maximo = 800;
@@ -1691,7 +1663,6 @@ class Constantes extends Model
         /////UNIVERSO
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -1701,7 +1672,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .3;
         $constante->maximo = 3;
@@ -1715,7 +1685,6 @@ class Constantes extends Model
         /////PRODUCCION
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = .5;
         $constante->maximo = 2;
@@ -1725,7 +1694,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .7;
         $constante->minimo = .5;
         $constante->maximo = 1;
@@ -1735,7 +1703,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 10000;
         $constante->minimo = 5000;
         $constante->maximo = 30000;
@@ -1745,7 +1712,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 100;
         $constante->minimo = 0;
         $constante->maximo = 300;
@@ -1755,7 +1721,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 3;
         $constante->minimo = 0;
         $constante->maximo = 6;
@@ -1765,7 +1730,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 1;
         $constante->minimo = 0;
         $constante->maximo = 3;
@@ -1775,7 +1739,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .5;
         $constante->minimo = 0;
         $constante->maximo = 300;
@@ -1785,7 +1748,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = .5;
         $constante->minimo = 0;
         $constante->maximo = 300;
@@ -1795,7 +1757,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 50;
         $constante->minimo = 10;
         $constante->maximo = 100;
@@ -1809,7 +1770,6 @@ class Constantes extends Model
 
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 500;
         $constante->minimo = 100;
         $constante->maximo = 1000;
@@ -1819,7 +1779,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 2 * 365 * 24 * 3600;
         $constante->minimo = 1 * 365 * 24 * 3600;
         $constante->maximo = 5 * 365 * 24 * 3600;
@@ -1829,7 +1788,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->universo_id = $universo;
         $constante->valor = 7500;
         $constante->minimo = 6000;
         $constante->maximo = 10000;
