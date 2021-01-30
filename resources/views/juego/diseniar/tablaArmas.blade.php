@@ -1252,7 +1252,7 @@ var danoPosicion={
     'armasPesada':[2,3],
     'armasInsertada':[3,4],
     'armasMisil':[3,5],
-    'armasBomba':[4,2]
+    'armasBomba':[4,5]
 }
 
 var tiposArmas=[
