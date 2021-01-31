@@ -73,10 +73,10 @@
                         aria-controls="estaciones" aria-selected="false">
                         Estaciones espaciales
                     </a>
-                    <a class="nav-item nav-link" id="novas-tab" data-bs-toggle="tab" href="#novas" role="tab"
+                    {{-- <a class="nav-item nav-link" id="novas-tab" data-bs-toggle="tab" href="#novas" role="tab"
                         aria-controls="novas" aria-selected="false">
                         Novas
-                    </a>
+                    </a> --}}
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -115,19 +115,19 @@
                 <div class="tab-pane fade" id="estaciones" role="tabpanel" aria-labelledby="estaciones-tab">
                     @foreach ($estaciones as $estacion)
                         @include('juego.disenio.cajitaDisenios', [
-                            'disenio' => $disenio,
+                            'disenio' => $estacion,
                             'tab' => $tab,
                         ])
                     @endforeach
                 </div>
-                <div class="tab-pane fade" id="novas" role="tabpanel" aria-labelledby="novas-tab">
+                {{-- <div class="tab-pane fade" id="novas" role="tabpanel" aria-labelledby="novas-tab">
                     @foreach ($novas as $nova)
                         @include('juego.disenio.cajitaDisenios', [
                             'disenio' => $nova,
                             'tab' => $tab,
                         ])
                     @endforeach
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
