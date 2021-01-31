@@ -431,9 +431,9 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = .05;
-        $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->valor = .03;
+        $constante->minimo = .02;
+        $constante->maximo = .04;
         $constante->codigo = 'mejorainvIa';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion IA';
         $constante->tipo = 'investigacion';

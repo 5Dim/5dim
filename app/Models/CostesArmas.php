@@ -444,17 +444,18 @@ class CostesArmas extends Model
             $coste->ceramica=10; //5
             $coste->liquido=10; //6
             $coste->micros=10;   //7
-            $coste->fuel=-2;     //8
+            $coste->fuel=10;     //8
             $coste->ma=0;       //9
             $coste->municion=0; //10
             $coste->personal=0; //11
-            $coste->masa=1;    //12
+            $coste->masa=0;    //12
             $coste->energia=0;
             $coste->tiempo=1;       //14
             $coste->mantenimiento=1;
             $coste->defensa=0;
             $coste->ataque=0;
             $coste->velocidad=0;
+            $coste->maniobra=-5;
             $coste->carga=0;
             $coste->cargaPequenia=0;
             $coste->cargaMediana=0;
@@ -494,7 +495,7 @@ class CostesArmas extends Model
 
 
             $coste =new CostesArmas();
-            $coste->armas_codigo=$niveltec+69;$niveltec++; // salvas
+            $coste->armas_codigo=$niveltec+69;$niveltec++; // Prop. Hyper
             $coste->mineral=10;
             $coste->cristal=10;
             $coste->gas=10;
@@ -504,15 +505,15 @@ class CostesArmas extends Model
             $coste->micros=10;   //7
             $coste->fuel=0;     //8
             $coste->ma=0;       //9
-            $coste->municion=-5; //10
+            $coste->municion=0; //10
             $coste->personal=0; //11
-            $coste->masa=5;    //12
+            $coste->masa=0;    //12
             $coste->energia=0;
             $coste->tiempo=0;       //14
             $coste->mantenimiento=0;
             $coste->defensa=0;
             $coste->ataque=0;
-            $coste->velocidad=0;
+            $coste->velocidad=-5;
             $coste->carga=0;
             $coste->cargaPequenia=0;
             $coste->cargaMediana=0;
