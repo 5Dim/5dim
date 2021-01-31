@@ -589,6 +589,8 @@ class DisenioController extends Controller
             $destinoCosto['cargaGrande'] += ($esteCosto['cargaGrande'] / 100) * $cte * $sobrecosto['cargaGrande'];
             $destinoCosto['cargaEnorme'] += ($esteCosto['cargaEnorme'] / 100) * $cte * $sobrecosto['cargaEnorme'];
             $destinoCosto['cargaMega'] += ($esteCosto['cargaMega'] / 100) * $cte * $sobrecosto['cargaMega'];
+            $destinoCosto['recolector'] += ($esteCosto['recolector'] / 100) * $cte * $sobrecosto['recolector'];
+            $destinoCosto['extractor'] += ($esteCosto['extractor'] / 100) * $cte * $sobrecosto['extractor'];
 
             return $destinoCosto;
         }
@@ -654,6 +656,8 @@ class DisenioController extends Controller
             $destinoCualidad['cargaGrande'] += $esteCualidad['cargaGrande'] * $cte;
             $destinoCualidad['cargaEnorme'] += $esteCualidad['cargaEnorme'] * $cte;
             $destinoCualidad['cargaMega'] += $esteCualidad['cargaMega'] * $cte;
+            $destinoCualidad['recolector'] += $esteCualidad['recolector'] * $cte;
+            $destinoCualidad['extractor'] += $esteCualidad['extractor'] * $cte;
 
             return $destinoCualidad;
         }
@@ -686,6 +690,9 @@ class DisenioController extends Controller
             'cargaGrande' => 0,
             'cargaEnorme' => 0,
             'cargaMega' => 0,
+            'recolector' => 0,
+            'extractor' => 0,
+
         ];
 
 
@@ -871,7 +878,7 @@ class DisenioController extends Controller
         ];
 
         $correcto = true; // comprobando ranuras
-        $razonCorrecto = ""; //que salio mal
+        $razonCorrecto = ""; //qué salio mal
 
         if ($cantidadMotores > 0) {
             if (count($armasTengo['motor']) != $cantidadMotores) {
@@ -978,11 +985,11 @@ class DisenioController extends Controller
 
         $cualidadesFuselaje = $disenio->cualidades;
 
-        $costesMisMotores = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0);
-        $costesMisMejoras = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0);
-        $costesMisCargas = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0);
-        $costesMisArmas = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0);
-        $costesMisBlindajes = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0);
+        $costesMisMotores = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" =>0);
+        $costesMisMejoras = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" =>0);
+        $costesMisCargas = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" =>0);
+        $costesMisArmas = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" =>0);
+        $costesMisBlindajes = array("mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" =>0);
 
         // comprobando que tengo el fuselaje
         if (empty($jugadorActual->fuselajes->where('id', $idFuselaje)->first())) {
@@ -1034,7 +1041,7 @@ class DisenioController extends Controller
                     //$obj=array_search($e,$armas);
                     $obj = $armas->where('codigo', $e)->first();
                     $factorFuselaje = $disenio->cualidades->$genera;
-                    $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0, "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0,];
+                    $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0, "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" =>0, "extractor" =>0];
 
                     //comprobando tengo la tecno necesaria
                     $clase = $obj['clase'];
@@ -1078,7 +1085,7 @@ class DisenioController extends Controller
                     //$obj=array_search($e,$armas);
                     $obj = $armas->where('codigo', $e)->first();
                     $factorFuselaje = $disenio->cualidades->$genera;
-                    $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0,];
+                    $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" =>0, "extractor" =>0];
 
                     //comprobando tengo la tecno necesaria
                     $clase = $obj['clase'];
@@ -1151,7 +1158,7 @@ class DisenioController extends Controller
                             //$obj=array_search($e,$armas);
                             $obj = $armas->where('codigo', $e)->first();
                             //$factorFuselaje=$disenio->cualidades->$genera;
-                            $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0,];
+                            $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" =>0, "extractor" =>0];
 
                             //comprobando tengo la tecno necesaria
                             $clase = $obj['clase'];
@@ -1169,6 +1176,8 @@ class DisenioController extends Controller
                             $costesVacio['tiempo'] = $costeobj['tiempo'] * $factorFuselaje;
                             $costesVacio['mantenimiento'] = $costeobj['mantenimiento'] * $factorFuselaje;
                             $costesVacio['energia'] = $costeobj['energia'] * $factorFuselaje;
+                            $costesVacio['recolector'] = $costeobj['recolector'] * $factorFuselaje;
+                            $costesVacio['extractor'] = $costeobj['extractor'] * $factorFuselaje;
                             if ($genera2 != "") {
                                 $costesVacio[$genera2] = $costeobj[$genera2];
                             } //hangares
@@ -1408,7 +1417,7 @@ class DisenioController extends Controller
                         $energiaXarma = 0;
                     }
 
-                    $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0,];
+                    $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" =>0, "extractor" =>0];
                     //$elemento='blindaje';
                     //$genera='defensa';
                     $misCostes = $costesMisArmas;
@@ -1444,7 +1453,7 @@ class DisenioController extends Controller
                             //$obj=array_search($e,$armas);
                             $obj = $armas->where('codigo', $e)->first();
                             $factorFuselaje = $disenio->cualidades->$genera;
-                            $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0, "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0,];
+                            $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0, "ataque" => 0, "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" =>0, "extractor" =>0];
 
                             //comprobando tengo la tecno necesaria
                             $clase = $obj['clase'];
@@ -1612,6 +1621,8 @@ class DisenioController extends Controller
                 $mejorasDisenios->cargaGrande = $cualidades['cargaGrande'];
                 $mejorasDisenios->cargaEnorme = $cualidades['cargaEnorme'];
                 $mejorasDisenios->cargaMega = $cualidades['cargaMega'];
+                $mejorasDisenios->recolector = $cualidades['recolector'];
+                $mejorasDisenios->extractor = $cualidades['extractor'];
                 $mejorasDisenios->disenios_id = $disenioId;
                 $mejorasDisenios->save();
 

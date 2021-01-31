@@ -40,6 +40,8 @@ class CreateCostesArmasTable extends Migration
             $table->integer('cargaGrande');
             $table->integer('cargaEnorme');
             $table->integer('cargaMega');
+            $table->integer('recolector')->default(0);
+            $table->integer('extractor')->default(0);
             //$table->timestamps();
         });
     }

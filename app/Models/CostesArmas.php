@@ -937,7 +937,7 @@ class CostesArmas extends Model
             $coste->municion=0; //10
             $coste->personal=$fccc*0; //11
             $coste->masa=$fccc*6750000;    //12
-            $coste->energia=2000*$fccc;
+            $coste->energia=0*$fccc;
             $coste->tiempo=$fccc*25000;       //14
             $coste->mantenimiento=$fccc*0;
             $coste->defensa=0;
@@ -1121,6 +1121,70 @@ class CostesArmas extends Model
             $coste->cargaEnorme=0;
             $coste->cargaMega=1;
             array_push($costes, $coste);
+
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="102"; //recolector
+            $coste->mineral=$fccc*7000;
+            $coste->cristal=$fccc*500;
+            $coste->gas=$fccc*0;
+            $coste->plastico=$fccc*500; //4
+            $coste->ceramica=$fccc*500; //5
+            $coste->liquido=$fccc*500; //6
+            $coste->micros=$fccc*1000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*10; //11
+            $coste->masa=$fccc*90000;    //12
+            $coste->energia=-5000*$fccc;
+            $coste->tiempo=$fccc*3600;       //14
+            $coste->mantenimiento=$fccc*10;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequenia=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            $coste->recolector=10000;
+            $coste->extractor=0;
+            array_push($costes, $coste);
+
+
+            $coste =new CostesArmas();
+            $coste->armas_codigo="103"; //extractor
+            $coste->mineral=$fccc*600000;
+            $coste->cristal=$fccc*200000;
+            $coste->gas=$fccc*30000;
+            $coste->plastico=$fccc*40000; //4
+            $coste->ceramica=$fccc*50000; //5
+            $coste->liquido=$fccc*50000; //6
+            $coste->micros=$fccc*10000;   //7
+            $coste->fuel=$fccc*0;     //8
+            $coste->ma=0;       //9
+            $coste->municion=0; //10
+            $coste->personal=$fccc*300; //11
+            $coste->masa=$fccc*2500000;    //12
+            $coste->energia=-90000*$fccc;
+            $coste->tiempo=$fccc*19000;       //14
+            $coste->mantenimiento=$fccc*50;
+            $coste->defensa=0;
+            $coste->ataque=0;
+            $coste->velocidad=0;
+            $coste->carga=0;
+            $coste->cargaPequenia=0;
+            $coste->cargaMediana=0;
+            $coste->cargaGrande=0;
+            $coste->cargaEnorme=0;
+            $coste->cargaMega=0;
+            $coste->recolector=0;
+            $coste->extractor=250000;
+            array_push($costes, $coste);
+
 
 
 /////////////////////////////  ARMAS   //////////////////////////////////////////////////////

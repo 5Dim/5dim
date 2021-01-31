@@ -26,6 +26,8 @@ $investNiveles=[
     "invCarbonadio"=>$investigaciones->where("codigo","invCarbonadio")->first()->nivel,
 
     "invCarga"=>$investigaciones->where("codigo","invCarga")->first()->nivel,
+    "invHangar"=>$investigaciones->where("codigo","invHangar")->first()->nivel,
+    "invRecoleccion"=>$investigaciones->where("codigo","invRecoleccion")->first()->nivel,
     "invIa"=>$investigaciones->where("codigo","invIa")->first()->nivel
 ];
 
@@ -849,7 +851,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                             <div class=" text-light" id="cargatxt">Carga, &nbsp;&nbsp;&nbsp;Energía: <span class="text-danger"  id ="energiacarga"></span></div>
                                             <table class=" table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
-                                                    @for($codigo=90;$codigo<102;$codigo++)
+                                                    @for($codigo=90;$codigo<104;$codigo++)
                                                     @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
                                                     @if ($cantidadCargaPequenia>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaPequenia")
                                                     <td>
@@ -1225,6 +1227,8 @@ var cualidades={
     cargaGrande:0,
     cargaEnorme:0,
     cargaMega:0,
+    extractor:0,
+    recolector:0,
 };
 
 var multiplicadorMotores={{$multiplicadorMotores}};
@@ -1345,6 +1349,8 @@ cualidades={
     cargaGrande:0,
     cargaEnorme:0,
     cargaMega:0,
+    extractor:0,
+    recolector:0,
 };
 
 
@@ -1374,6 +1380,8 @@ costesMisMotores={
     cargaGrande:0,
     cargaEnorme:0,
     cargaMega:0,
+    extractor:0,
+    recolector:0,
 };
 
 
@@ -1403,6 +1411,8 @@ costesMisMejoras={
     cargaGrande:0,
     cargaEnorme:0,
     cargaMega:0,
+    extractor:0,
+    recolector:0,
 };
 
 costesMisCargas={
@@ -1431,6 +1441,8 @@ costesMisCargas={
     cargaGrande:0,
     cargaEnorme:0,
     cargaMega:0,
+    extractor:0,
+    recolector:0,
 };
 
 
@@ -1460,6 +1472,8 @@ costesMisArmas={
     cargaGrande:0,
     cargaEnorme:0,
     cargaMega:0,
+    extractor:0,
+    recolector:0,
 };
 costesMisBlindajes={
     mineral:0,
@@ -1487,6 +1501,8 @@ costesMisBlindajes={
     cargaGrande:0,
     cargaEnorme:0,
     cargaMega:0,
+    extractor:0,
+    recolector:0,
 };
 ataques={
     ligera:0,
@@ -1501,7 +1517,7 @@ ataques={
 elemento='motor';
 genera='energia';
 $.each( armas[elemento], function( key, e ) {
-    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,recolector:0, extractor:0};
 
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
@@ -1530,7 +1546,7 @@ genera='defensa';
 multiplicador=multiplicadorBlindajes;
 misCostes=costesMisBlindajes;
 $.each( armas[elemento], function( key, e ) {
-    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,recolector:0, extractor:0};
 
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
@@ -1589,7 +1605,7 @@ for (x=1;x<6;x++){
 
     if (multiplicador>0){  //realmente hay de esto
         $.each( armas[elemento], function( key, e ) {
-            costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+            costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,recolector:0, extractor:0};
 
             if (e>0){
                 var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
@@ -1602,7 +1618,9 @@ for (x=1;x<6;x++){
                 costesVacio['tiempo']=costeobj['tiempo']*factorFuselaje;
                 costesVacio['mantenimiento']=costeobj['mantenimiento']*factorFuselaje;
                 costesVacio['energia']=costeobj['energia']*factorFuselaje;
-                if (genera2!=""){costesVacio[genera2]=costeobj[genera2];} //hangares
+                costesVacio['recolector']=costeobj['recolector']*factorFuselaje*cte;
+                costesVacio['extractor']=costeobj['extractor']*factorFuselaje*cte;
+                if (genera2!=""){costesVacio[genera2]=costeobj[genera2]*cte;} //hangares
                 sumaCualidades(misCostes,multiplicador,costesVacio);
             }
         });
@@ -1619,8 +1637,8 @@ genera='ia';
 multiplicador=1;
 misCostes=costesMisMejoras;
 $.each( armas[elemento], function( key, e ) {
-    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
-    sobreCostes={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,recolector:0, extractor:0};
+    sobreCostes={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,recolector:0, extractor:0};
 
     hazlo=0;
     if (e>0){
@@ -1890,7 +1908,7 @@ danioarmasArm=0;
         }
     })
 
-    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,};
+    costesVacio={mineral:0, cristal:0, gas:0, plastico:0, ceramica:0, liquido:0, micros:0, personal:0, fuel:0, ma:0, municion:0, masa:0, energia:0, tiempo:0, mantenimiento:0, defensa:0, ataque:0, velocidad:0, carga:0, cargaPequenia:0, cargaMediana:0, cargaGrande:0, cargaEnorme:0, cargaMega:0,recolector:0, extractor:0};
     energiaXarma=1/energiaArm;
 
 /// danio del arma por unidad de energia y costo
@@ -2123,6 +2141,8 @@ function sumaCualidadesMejoras(destinoCosto,cte,esteCosto,sobrecosto){
     destinoCosto['cargaGrande']+=(esteCosto['cargaGrande']/100)*cte *sobrecosto['cargaGrande'];
     destinoCosto['cargaEnorme']+=(esteCosto['cargaEnorme']/100)*cte *sobrecosto['cargaEnorme'];
     destinoCosto['cargaMega']+=(esteCosto['cargaMega']/100)*cte *sobrecosto['cargaMega'];
+    destinoCosto['recolector']+=(esteCosto['recolector']/100)*cte *sobrecosto['recolector'];
+    destinoCosto['extractor']+=(esteCosto['extractor']/100)*cte *sobrecosto['extractor'];
 
 }
 
@@ -2168,6 +2188,8 @@ function sumaCualidades(destinoCualidad,cte,esteCualidad){
     destinoCualidad['cargaGrande']+=esteCualidad['cargaGrande']*cte;
     destinoCualidad['cargaEnorme']+=esteCualidad['cargaEnorme']*cte;
     destinoCualidad['cargaMega']+=esteCualidad['cargaMega']*cte;
+    destinoCualidad['recolector']+=esteCualidad['recolector']*cte;
+    destinoCualidad['extractor']+=esteCualidad['extractor']*cte;
 }
 
 function mostrarResultado(){
@@ -2182,7 +2204,7 @@ function mostrarResultado(){
     })
 
 pesoTotalF=formatNumber (Math.round (pesoTotal/1000));
-$("#pesoTotalD").text(pesoTotalF);
+//$("#pesoTotalD").text(pesoTotalF);  // pinta la masa
 
 // velocidad que lleva decimales
 $("#velocidadD").text(cualidades['velocidad']);
