@@ -177,6 +177,8 @@ class InvestigacionController extends Controller
             $error = true;
         }
 
+        // dd($error);
+
         //Fecha prueba
         $fechaFin = strtotime($inicio) + $tiempo;
 
