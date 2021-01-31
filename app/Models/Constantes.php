@@ -111,6 +111,16 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
 
+        $constante = new Constantes();
+        $constante->valor = 40;
+        $constante->minimo = 30;
+        $constante->maximo = 50;
+        $constante->codigo = 'yacimientosIniciales';
+        $constante->descripcion = 'Yacimientos del planeta de inicio';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
+
 
         ////////  investigaciones  ////////////////////////////////////////////////////////////////
 

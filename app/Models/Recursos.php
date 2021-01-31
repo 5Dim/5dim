@@ -20,6 +20,26 @@ class Recursos extends Model
         return $this->belongsTo(Planetas::class);
     }
 
+    public static function recursosInicio($cantidad = 50000)
+    {
+        $recursos = new Recursos;
+        $recursos->mineral = $cantidad;
+        $recursos->cristal = $cantidad;
+        $recursos->gas = 0;
+        $recursos->plastico = 0;
+        $recursos->ceramica = 0;
+        $recursos->liquido = 0;
+        $recursos->micros = 0;
+        $recursos->fuel = 0;
+        $recursos->ma = 0;
+        $recursos->municion = 0;
+        $recursos->personal = $cantidad/10;
+        $recursos->creditos = $cantidad/10;
+        $recursos->planetas_id = session()->get('planetas_id');
+        $recursos->save();
+        return $recursos;
+    }
+
     public static function calcularRecursos($idPlaneta)
     {
         //Buscamos el planeta actual
@@ -34,21 +54,7 @@ class Recursos extends Model
 
         //Si no existen los recursos, los creamos
         if (empty($recursos)) {
-            $recursos = new Recursos;
-            $recursos->mineral = 1000000000;
-            $recursos->cristal = 1000000000;
-            $recursos->gas = 0;
-            $recursos->plastico = 0;
-            $recursos->ceramica = 0;
-            $recursos->liquido = 0;
-            $recursos->micros = 0;
-            $recursos->fuel = 0;
-            $recursos->ma = 0;
-            $recursos->municion = 0;
-            $recursos->personal = 1000000000;
-            $recursos->creditos = 1000000000;
-            $recursos->planetas_id = session()->get('planetas_id');
-            $recursos->save();
+            $recursos = Recursos::recursosInicio();
         }
 
         $investigaciones = $recursos->planetas->jugadores->investigaciones;
@@ -81,8 +87,7 @@ class Recursos extends Model
         $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
 
         if (empty($planetaActual->cualidades)) {
-            dd("TEST");
-            CualidadesPlanetas::agregarCualidades($planetaActual->id);
+            CualidadesPlanetas::agregarCualidades($planetaActual->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);
             $planetaActual = Planetas::find($idPlaneta);
         }
 
