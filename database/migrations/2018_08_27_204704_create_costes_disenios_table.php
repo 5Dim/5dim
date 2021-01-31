@@ -23,7 +23,7 @@ class CreateCostesDiseniosTable extends Migration
             $table->integer('liquido')->default(0);
             $table->integer('micros')->default(0);
             $table->integer('personal')->default(0);
-            $table->integer('masa')->default(0);
+            $table->decimal( 'masa', 20, 2)->default(0);
             $table->integer('energia')->default(0);
 
             // $table->integer('fuel')->default(0);
