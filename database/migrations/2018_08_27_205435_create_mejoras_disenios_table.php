@@ -42,6 +42,8 @@ class CreateMejorasDiseniosTable extends Migration
             $table->integer('cargaGrande')->default(0);
             $table->integer('cargaEnorme')->default(0);
             $table->integer('cargaMega')->default(0);
+            $table->integer('recolector')->default(0);
+            $table->integer('extractor')->default(0);
         });
     }
 

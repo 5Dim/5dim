@@ -456,6 +456,28 @@ class Armas extends Model
 
         array_push($armas, $arma);
 
+        $arma = new Armas();
+        $arma->codigo = 102;
+        $arma->nombre = 'Recolector';
+        $arma->descripcion = 'Recolector';
+        $arma->ranura = "cargaPequenia";
+        $arma->potencia = 1;
+        $arma->clase = 'invRecoleccion';
+        $arma->niveltec = 1;
+
+        array_push($armas, $arma);
+
+        $arma = new Armas();
+        $arma->codigo = 103;
+        $arma->nombre = 'Extractor';
+        $arma->descripcion = 'Extrae de los planetas';
+        $arma->ranura = "cargaEnorme";
+        $arma->potencia = 1;
+        $arma->clase = 'invRecoleccion';
+        $arma->niveltec = 10;
+
+        array_push($armas, $arma);
+
         /////////////////////////////  ARMAS   //////////////////////////////////////////////////////
 
 

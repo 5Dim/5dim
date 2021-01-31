@@ -80,7 +80,7 @@
                     <td id="cargaD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td id="recolectaD" class="anchofijo text-light borderless">
+                    <td id="recolectorD" class="anchofijo text-light borderless">
                         0
                     </td>
                 </tr>
@@ -119,7 +119,7 @@
                         Hangar pesadas
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        Masa
+                        Extracción
                     </td>
                 </tr>
                 <tr>
@@ -156,7 +156,7 @@
                     <td id="cargaEnormeD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td id="pesoTotalD" class="anchofijo text-light borderless">
+                    <td id="extractorD" class="anchofijo text-light borderless">
                         0
                     </td>
                 </tr>
