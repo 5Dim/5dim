@@ -1,14 +1,19 @@
 <?php
 return [
-
-
     'invEnergia' => "Tecnología de energía",
     'invPlasma' => "Tecnología de plasma",
     'invBalistica' => "Balística",
     'invMa' => "Materia-Antimateria",
 
-    'invBlindaje' => "Blindaje",
-    'invCarga' => "Carga y transporte",
+    'invTitanio' => "Blindaje de titanio",
+    'invReactivo' => "Blindaje reactivo",
+    'invResinas' => "Blindaje de resinas",
+    'invPlacas' => "Blindaje de placas",
+    'invCarbonadio' => "Blindajede carbonadio",
+
+    'invCarga' => "Carga de mercancias",
+    'invHangar' => "Transporte de naves",
+    'invRecoleccion' => "Recolección",
     'invIa' => "Inteligencia artificial",
 
     'invEnsamblajeFuselajes' => "Ensamblaje de Fuselajes",
@@ -35,8 +40,15 @@ return [
     'invBalisticaDescripcion' => "Pese a los avances de la tecnología no hay nada mejor para causar daño que la energía cinética de una masa. Estas armas no consumen energía y son muy potentes a corta distancia en relación a su precio. Sus mayores desventajas son el elevado gasto de munición, su elevado peso y coste de fabricación.",
     'invMaDescripcion' => "Las armas de antimateria son lo mas devastador que jamás se ha inventado, causan daños enormes y su coste de mantenimiento es muy bajo auqnue se tardan mucho en construir, además su transporte es potencialmente peligroso si es alcanzada la munición.",
 
-    'invBlindajeDescripcion' => "Los blindajes se constituyen en capas que rodean el casco de las naves, aumentando la defensa natural de las naves un porcentaje por cada capa. Podemos colocar cuantas capas queramos aunque además del factor económico está un significativo aumento de peso que se traduce en menos velocidad y más gasto de combustible.",
+    'invTitanioDescripcion' => "",
+    'invReactivoDescripcion' => "",
+    'invResinasDescripcion' => "",
+    'invPlacasDescripcion' => "",
+    'invCarbonadioDescripcion' => "",
+
     'invCargaDescripcion' => "Además de mejorar la capacidad de carga en cada nivel, en algunos podemos obtener nuevos módulos de carga para nuestras naves. Estos módulos estan agrupados por tamaños, de modo que en una nave podemos colocar en el mismo lugar carga o hangar para otras naves.",
+    'invHangarDescripcion' => "",
+    'invRecoleccionDescripcion' => "",
     'invIaDescripcion' => "Podemos crear mecanismos y sistemas accesorios que mejoren las cualidades de los diseños. Por cada nivel investigado obtenemos una mejora para nuestros diseños en algún aspecto, aunque sus costes suelen ser elevados las ventajas que aportan nos premiten afinar nuestros diseños.",
 
     'invEnsamblajeFuselajesDescripcion' => "Obtener fuselajes cada vez mejores requiere tecnologías mas avanzadas. Cada nivel de esta investigación nos da puntos para gastar en desbloquear nuevos fuselajes, estos puntos son generales de nuestra cuenta y no dependen del planeta, una vez gastados no pueden serán devueltos.",
