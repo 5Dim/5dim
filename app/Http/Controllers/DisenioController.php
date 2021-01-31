@@ -1467,9 +1467,6 @@ class DisenioController extends Controller
 
                             $cantidadArmas = $multiplicadorArmas[$elemento];
                             $estedano = $energiaArmas[$elemento] * $energiaT * $energiaXarma / $costeobj['energia'] * $cantidadArmas;
-                            //$prueba .=$costesMisMotores['energia']." ".$costesMisBlindajes['energia']." ".$costesMisCargas['energia']." ".$cualidades['energia'];;
-                            //$prueba.=" <br> ".$energiaArmas[$elemento]." ".$energiaT." ".$energiaXarma." / ".$costeobj['energia'];
-                            //$prueba.=" <br> ".$estedano;
                             $cte = 1; //la tecno
                             $creceExpo = 1 + (($estedano / $costeobj['ataque']) * 2000);
                             $danioarmasArm += round($cteFoco * ($cte * $estedano * 100000 / $creceExpo), 0); // la tecno influye solo en el valor final del danio
@@ -1492,6 +1489,7 @@ class DisenioController extends Controller
                             $costesVacio['tiempo'] = $costeobj['tiempo'] * $factorFuselaje;
                             $costesVacio['mantenimiento'] = $costeobj['mantenimiento'] * $factorFuselaje;
                             $costesVacio['energia'] = $costeobj['energia'] * $factorFuselaje;
+                            $costesVacio['municion'] = $costeobj['municion'] ;
                             $misCostes = sumaCualidades($misCostes, $multiplicador, $costesVacio);
                             $costesMisArmas = $misCostes;
 
