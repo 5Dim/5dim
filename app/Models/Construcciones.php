@@ -24,7 +24,7 @@ class Construcciones extends Model
         return $this->hasMany(EnConstrucciones::class);
     }
 
-    public function listaNombres()
+    public static function listaNombres()
     {
         $listaNombres = [
             // Minas
@@ -78,30 +78,8 @@ class Construcciones extends Model
         return $listaNombres;
     }
 
-    public function sumarCostes($coste)
+    public static function listaCategorias()
     {
-        $nuevoCoste = $coste->mineral + $coste->cristal + $coste->gas + $coste->plastico + $coste->ceramica + $coste->liquido + $coste->micros;
-
-        return $nuevoCoste;
-    }
-
-    public function calcularTiempoConstrucciones($preciototal, $personal)
-    {
-        $velocidadConst = Constantes::where('codigo', 'velocidadConst')->first();
-        if ($personal > 0) {
-            $result = ((($preciototal + 12) * $velocidadConst->valor) / $personal);
-        } else {
-            $result = false;
-        }
-        return $result;
-    }
-
-    public static function nuevaColonia($planeta)
-    {
-        $listaConstrucciones = [];
-        $construccion = new Construcciones();
-        $listaNombres = $construccion->listaNombres();
-
         $listaCategoriasPorOrden = [
             // Minas
             "mina",
@@ -150,6 +128,32 @@ class Construcciones extends Model
             "especial",
             "especial",
         ];
+        return $listaCategoriasPorOrden;
+    }
+
+    public function sumarCostes($coste)
+    {
+        $nuevoCoste = $coste->mineral + $coste->cristal + $coste->gas + $coste->plastico + $coste->ceramica + $coste->liquido + $coste->micros;
+
+        return $nuevoCoste;
+    }
+
+    public function calcularTiempoConstrucciones($preciototal, $personal)
+    {
+        $velocidadConst = Constantes::where('codigo', 'velocidadConst')->first();
+        if ($personal > 0) {
+            $result = ((($preciototal + 12) * $velocidadConst->valor) / $personal);
+        } else {
+            $result = false;
+        }
+        return $result;
+    }
+
+    public static function nuevaColonia($planeta)
+    {
+        $listaConstrucciones = [];
+        $listaNombres = Construcciones::listaNombres();
+        $listaCategoriasPorOrden = Construcciones::listaCategorias();
 
         for ($i = 0; $i < count($listaNombres); $i++) {
             $construccion = new Construcciones();

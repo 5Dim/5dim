@@ -31,6 +31,9 @@
                         Velocidad
                     </td>
                     <td class="anchofijo text-warning borderless">
+                        Maniobra
+                    </td>
+                    <td class="anchofijo text-warning borderless">
                         Consumo
                     </td>
                     <td class="anchofijo text-warning borderless">
@@ -48,46 +51,45 @@
                     <td class="anchofijo text-warning borderless">
                         Hangar ligeras
                     </td>
-                    <td class="anchofijo text-warning borderless">
-                        Hangar medias
-                    </td>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-{{ $disenio->viewDisenios->ataque > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->ataque, 0, ',', '.') }}
+                    {{ $disenio->calculaMejoras() }}
+                    {{-- {{ dd($disenio) }} --}}
+                    <td class="anchofijo text-{{ $disenio->datos->ataque > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->ataque, 0, ',', '.') }}
                     </td>
-                    <td class="anchofijo text-{{ $disenio->viewDisenios->defensa > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->defensa, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->viewDisenios->velocidad > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->velocidad, 0, ',', '.') }}
-                    </td>
-                    <td class="anchofijo text-{{ $disenio->viewDisenios->fuel > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->fuel, 0, ',', '.') }}
+                    <td class="anchofijo text-{{ $disenio->datos->defensa > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->defensa, 0, ',', '.') }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $disenio->viewDisenios->municion > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->municion, 0, ',', '.') }}
+                        class="anchofijo text-{{ $disenio->datos->velocidad > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->velocidad, 0, ',', '.') }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $disenio->viewDisenios->mantenimiento > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->mantenimiento, 0, ',', '.') }}
+                        class="anchofijo text-{{ $disenio->datos->maniobra > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->maniobra, 0, ',', '.') }}
                     </td>
-                    <td class="anchofijo text-{{ $disenio->viewDisenios->carga > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->carga, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->viewDisenios->cargaPequenia > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->cargaPequenia, 0, ',', '.') }}
+                    <td class="anchofijo text-{{ $disenio->datos->fuel > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->fuel, 0, ',', '.') }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $disenio->viewDisenios->cargaMediana > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->cargaMediana, 0, ',', '.') }}
+                        class="anchofijo text-{{ $disenio->datos->municion > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->municion, 0, ',', '.') }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $disenio->viewDisenios->cargaGrande > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->cargaGrande, 0, ',', '.') }}
+                        class="anchofijo text-{{ $disenio->datos->mantenimiento > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->mantenimiento, 0, ',', '.') }}
+                    </td>
+                    <td class="anchofijo text-{{ $disenio->datos->carga > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->carga, 0, ',', '.') }}
+                    </td>
+                    <td
+                        class="anchofijo text-{{ $disenio->datos->cargaPequenia > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->cargaPequenia, 0, ',', '.') }}
+                    </td>
+                    <td
+                        class="anchofijo text-{{ $disenio->datos->cargaMediana > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->cargaMediana, 0, ',', '.') }}
                     </td>
                 </tr>
                 <tr>
@@ -116,10 +118,10 @@
                         Personal
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        Hangar pesadas
+                        Hangar medias
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        Hangar estaciones
+                        Hangar pesadas
                     </td>
                 </tr>
                 <tr>
@@ -156,12 +158,12 @@
                         {{ number_format($disenio->costes->personal, 0, ',', '.') }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $disenio->viewDisenios->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->cargaEnorme, 0, ',', '.') }}
+                        class="anchofijo text-{{ $disenio->datos->cargaGrande > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->cargaGrande, 0, ',', '.') }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $disenio->viewDisenios->cargaMega > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->viewDisenios->cargaMega, 0, ',', '.') }}
+                        class="anchofijo text-{{ $disenio->datos->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">
+                        {{ number_format($disenio->datos->cargaEnorme, 0, ',', '.') }}
                     </td>
                 </tr>
             </table>
