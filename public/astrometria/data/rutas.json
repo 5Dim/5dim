@@ -1,0 +1,7 @@
+{"rutas":[
+    {"idruta":1,"p1x":595,"p1y":105,"p2x":665,"p2y":175,"p3x":455,"p3y":315,"tipolinea":1,"velocidad":2},
+    {"idruta":2,"p1x":200,"p1y":180,"p2x":455,"p2y":595,"p3x":90.78,"p3y":210.89,"tipolinea":1,"velocidad":2},
+    {"idruta":3,"p1x":1155,"p1y":175,"p2x":945,"p2y":245,"p3x":1715,"p3y":525,"tipolinea":2,"velocidad":2},
+    {"idruta":4,"p1x":1155,"p1y":175,"p2x":945,"p2y":245,"p3x":1715,"p3y":525,"tipolinea":2,"velocidad":2}
+
+    ]}

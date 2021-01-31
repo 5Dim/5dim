@@ -1,33 +1,15 @@
-{	"idioma":0,
-	"global":9969,
-	"ancho":500,
-	"fondo":"img/fondo.png",
+{	"idioma":0,           
+    "sistema":14443,                                        
+    "imgsol":"img/sistema/sol1.png",  
+    "imgfondo":"img/sistema/f1.png",         
     "planetas":[
-        { "planeta":2, "nom_pla":"solaris", "nom_jug": "VCODE", "alianza": "-LR-", "estado": 1, "mineral": 40, "cristal":40, "gas": 40, "plastico": 40, "ceramica": 40, "b_observar": 1, "b_atacar": 1, "b_colonizar": 1, "b_recolectar": 1, "b_conquistar": 1, "naves": 1, "img_planeta": "p1.png"},
-        { "planeta":4, "nom_pla":"solaris", "nom_jug": "VCODE", "alianza": "-LR-", "estado": 1, "mineral": 40, "cristal":40, "gas": 40, "plastico": 40, "ceramica": 40, "b_observar": 1, "b_atacar": 1, "b_colonizar": 1, "b_recolectar": 1, "b_conquistar": 1, "naves": 1, "img_planeta": "p2.png"},
-		{ "planeta":2, "nom_pla":"solaris", "nom_jug": "VCODE", "alianza": "-LR-", "estado": 1, "mineral": 40, "cristal":40, "gas": 40, "plastico": 40, "ceramica": 40, "b_observar": 1, "b_atacar": 1, "b_colonizar": 1, "b_recolectar": 1, "b_conquistar": 1, "naves": 1, "img_planeta": "p3.png"}
+        { "planeta":1, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0},
+        { "planeta":2, "nom_pla":"solaris", "nom_jug": "VCODE", "alianza": "-LR-", "estado": 1, "mineral": 27, "cristal":40, "gas": 40, "plastico": 30, "ceramica": 40, "b_observar": 1, "b_atacar": 1, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 1, "naves": 0, "img_planeta": "p1","bloqueo": 1},
+        { "planeta":3, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0},
+        { "planeta":4, "nom_pla":"Eternal", "nom_jug": "VCODE", "alianza": "-LR-", "estado": 1, "mineral": 40, "cristal":40, "gas": 40, "plastico": 40, "ceramica": 40, "b_observar": 0, "b_atacar": 0, "b_colonizar": 1, "b_recolectar": 0, "b_conquistar": 1, "naves": 1, "img_planeta": "p2","bloqueo": 0},
+        { "planeta":5, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0},
+        { "planeta":6, "nom_pla":"Novaluz", "nom_jug": "VCODE", "alianza": "-LR-", "estado": 1, "mineral": 40, "cristal":40, "gas": 40, "plastico": 40, "ceramica": 40, "b_observar": 1, "b_atacar": 1, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p3","bloqueo": 2},
+        { "planeta":7, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0},
+        { "planeta":8, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0},
+		{ "planeta":9, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0}
     ]}
-
-general=1,1,14443,5,sol1.png,p1.png,p2.png,p3.png,p4.png,p5.png,p6.png,p1.swf,p8.png,p5.swf,f1.png,imagenes/
-
-/* valores de la variable colonia
-
-1 ->nº del planeta del 1 al 9
-2 ->nombre del planeta, "?"=DESCONOCIDO
-3 ->nombre del jugador, AVANDONADO, VACIO, "?"=MUY LEJOS
-4 ->etiqueta alianza
-5 ->estado -> 1 ACTIVO, 0 AVANDONADO, 2 Deshabitado
-6 ->MINERAL
-7 ->CRISTAL
-8 ->GAS
-9->PLASTICO
-10->CERAMICA
-13->botón observar activo 1=activo 0=inactivo
-14->botón atacar activo 1=activo 0=inactivo
-15->botón colonizar activo 1=activo 0=inactivo
-16->botón recolectar activo 1=activo 0=inactivo
-17->botón conquistar activo 1=activo 0=inactivo
-18->NAVES ORBITANDO=1, BLOQUEADO=2, PROTEGIDO=3
-19->imagen del planeta p1.png p2.png ...
-
-*/
