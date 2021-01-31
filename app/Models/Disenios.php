@@ -90,7 +90,7 @@ class Disenios extends Model
         $this->datos->invCarbonadio = $this->mejoras->invCarbonadio * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invCarbonadio')->first()->nivel * Constantes::where('codigo', 'mejorainvCarbonadio')->first()->valor));
 
         // Total Defensa
-        $this->datos->defensa = $this->mejoras->defensa; // $this->datos->invTitanio + $this->datos->invReactivo + $this->datos->invResinas + $this->datos->invPlacas + $this->datos->invCarbonadio;
+        $this->datos->defensa =  $this->datos->invTitanio + $this->datos->invReactivo + $this->datos->invResinas + $this->datos->invPlacas + $this->datos->invCarbonadio;
 
         // Total ataque
         $this->datos->ataque = 0;
