@@ -455,7 +455,7 @@ class CostesArmas extends Model
             $coste->defensa=0;
             $coste->ataque=0;
             $coste->velocidad=0;
-            $coste->maniobra=-5;
+            $coste->maniobra=1;
             $coste->carga=0;
             $coste->cargaPequenia=0;
             $coste->cargaMediana=0;
@@ -513,7 +513,7 @@ class CostesArmas extends Model
             $coste->mantenimiento=0;
             $coste->defensa=0;
             $coste->ataque=0;
-            $coste->velocidad=-5;
+            $coste->velocidad=1;
             $coste->carga=0;
             $coste->cargaPequenia=0;
             $coste->cargaMediana=0;
@@ -536,7 +536,7 @@ class CostesArmas extends Model
             $coste->ma=0;       //9
             $coste->municion=0; //10
             $coste->personal=0; //11
-            $coste->masa=-5;    //12
+            $coste->masa=1;    //12
             $coste->energia=0;
             $coste->tiempo=2;       //14
             $coste->mantenimiento=0;
