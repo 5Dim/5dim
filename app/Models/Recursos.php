@@ -33,7 +33,7 @@ class Recursos extends Model
         $recursos->fuel = 0;
         $recursos->ma = 0;
         $recursos->municion = 0;
-        $recursos->personal = $cantidad/10;
+        $recursos->personal = $cantidad/2;
         $recursos->creditos = $cantidad/10;
         $recursos->planetas_id = session()->get('planetas_id');
         $recursos->save();

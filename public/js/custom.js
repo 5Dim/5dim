@@ -78,7 +78,7 @@ function formatTimestamp(timestamp) {
         lminuto = Math.floor((timestamp - lhora * 3600) / 60);
         lsegundo = Math.floor(timestamp - (lhora * 3600 + lminuto * 60));
 
-        horaImprimible = lhora + "h " + lminuto + "m " + lsegundo + "s";
+        horaImprimible = lhora + ":" + lminuto + ":" + lsegundo + "";
     }
     return horaImprimible;
 }
@@ -234,7 +234,7 @@ function calculaCosteTotal(costes) {
     total += costes.fuel || 0;
     total += costes.ma || 0;
     total += costes.municion || 0;
-    total += 12;
+    // total += 12;
     return total;
 }
 
@@ -274,7 +274,7 @@ function mostrarTab(tab) {
 
 function calculaTiempoInvestigacion(
     costes,
-    velocidadConst,
+    velocidadInvest,
     dnd,
     nivel,
     nivelLaboratorio
@@ -283,13 +283,14 @@ function calculaTiempoInvestigacion(
     premiun = 0;
     personal = $("#personal" + dnd).val();
     horaImprimible = "";
-    if (personal > 1 && nivelLaboratorio > 0) {
+    nivel++;
+    velocidadInvest *= 100;
+    if (personal > 0 && nivelLaboratorio > 0) {
         result =
-            velocidadConst *
-            100 *
+            velocidadInvest *
             nivel *
             (precioTotal / (personal * nivelLaboratorio));
-        result = result - premiun * 5 * 60;
+        // result = result - premiun * 5 * 60;
         if (result < 1) {
             result = 0;
         }
@@ -299,7 +300,6 @@ function calculaTiempoInvestigacion(
 
         horaImprimible =
             "Tiempo: " + lhora + "h " + lminuto + "m " + lsegundo + "s";
-
         $("#tiempo" + dnd).html(horaImprimible);
         timeg(result, "termina" + dnd);
     } else {
@@ -430,4 +430,128 @@ function formatNumber(num, prefix) {
         splitLeft = splitLeft.replace(regx, "$1" + "." + "$2");
     }
     return prefix + splitLeft + splitRight;
+}
+
+function recalculaCostos(id) {
+    if (Number.isInteger($("#disenio" + id).val() * 1)) {
+        console.log(id);
+        var cantidad = Math.round($("#disenio" + id).val());
+        disenio = $.grep(disenios, function (obj) {
+            return obj.id == id;
+        })[0];
+        factor = cadenaProduccion(cantidad, 1);
+
+        $("#mineral" + id).text(
+            formatNumber(
+                Math.round(factor * cantidad * disenio["costes"]["mineral"])
+            )
+        );
+        $("#cristal" + id).text(
+            formatNumber(
+                Math.round(factor * cantidad * disenio["costes"]["cristal"])
+            )
+        );
+        $("#gas" + id).text(
+            formatNumber(
+                Math.round(factor * cantidad * disenio["costes"]["gas"])
+            )
+        );
+        $("#plastico" + id).text(
+            formatNumber(
+                Math.round(factor * cantidad * disenio["costes"]["plastico"])
+            )
+        );
+        $("#ceramica" + id).text(
+            formatNumber(
+                Math.round(factor * cantidad * disenio["costes"]["ceramica"])
+            )
+        );
+        $("#liquido" + id).text(
+            formatNumber(
+                Math.round(factor * cantidad * disenio["costes"]["liquido"])
+            )
+        );
+        $("#micros" + id).text(
+            formatNumber(
+                Math.round(factor * cantidad * disenio["costes"]["micros"])
+            )
+        );
+        $("#personal" + id).text(
+            formatNumber(
+                Math.round(factor * cantidad * disenio["costes"]["personal"])
+            )
+        );
+    }
+}
+
+function cadenaProduccion(cantidad, tamanio) {
+    ahorroXCantidad = $.grep(PConstantes, function (obj) {
+        return obj.codigo == "ahorroXCantidad";
+    })[0]["valor"];
+    maximoAhorroXCantidad = $.grep(PConstantes, function (obj) {
+        return obj.codigo == "maximoAhorroXCantidad";
+    })[0]["valor"];
+
+    var factorTamanio = 100;
+
+    switch (tamanio) {
+        case 0:
+        case 8: //caza
+            factorTamanio =
+                $.grep(PConstantes, function (obj) {
+                    return obj.codigo == "AhorroXcazas";
+                })[0]["valor"] / 100;
+            break;
+        case 1:
+        case 9:
+            factorTamanio =
+                $.grep(PConstantes, function (obj) {
+                    return obj.codigo == "AhorroXligeras";
+                })[0]["valor"] / 100;
+            break;
+        case 2:
+        case 10:
+            factorTamanio =
+                $.grep(PConstantes, function (obj) {
+                    return obj.codigo == "AhorroXmedias";
+                })[0]["valor"] / 100;
+            break;
+        case 3:
+        case 11:
+            factorTamanio =
+                $.grep(PConstantes, function (obj) {
+                    return obj.codigo == "AhorroXpesadas";
+                })[0]["valor"] / 100;
+            break;
+        case 4:
+        case 5:
+            factorTamanio =
+                $.grep(PConstantes, function (obj) {
+                    return obj.codigo == "AhorroXestaciones";
+                })[0]["valor"] / 100;
+            break;
+        case 6:
+            factorTamanio =
+                $.grep(PConstantes, function (obj) {
+                    return obj.codigo == "AhorroXdefensa";
+                })[0]["valor"] / 100;
+            break;
+    }
+
+    factor =
+        1 -
+        (Math.pow(cantidad, 2) * 1) /
+            (ahorroXCantidad * 100000) /
+            factorTamanio;
+    if (factor < maximoAhorroXCantidad) {
+        factor = maximoAhorroXCantidad;
+    }
+    if (factor > 1) {
+        factor = 1;
+    }
+    if (cantidad == 1) {
+        factor = 1;
+    }
+
+    return factor;
 }

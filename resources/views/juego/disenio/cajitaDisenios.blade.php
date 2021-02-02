@@ -188,7 +188,7 @@
                                     </button>
                                 </span>
                             </div>
-                            <input type="text" class="form-control input" value="0" aria-label=""
+                            <input type="text" class="form-control input" value="1" aria-label=""
                                 aria-describedby="basic-addon2" id="disenio{{ $disenio->id }}"
                                 onkeyup="recalculaCostos({{ $disenio->id }})">
                             <div class="input-group-append">

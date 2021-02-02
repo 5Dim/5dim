@@ -104,7 +104,7 @@ Route::middleware(
     Route::get('/juego/fuselajes/datos/{codigo}', [FuselajesController::class, 'datos']);
 
     //Disenio
-    Route::get('/juego/disenio', [DisenioController::class, 'index']);
+    Route::get('/juego/disenio/{tab?}', [DisenioController::class, 'index']);
     Route::get('/juego/disenio/diseniar/{id}', [DisenioController::class, 'diseniar']);
     Route::post('/juego/disenio/crearDisenio/{id?}', [DisenioController::class, 'crearDisenio']);
     Route::get('/juego/disenio/borrarDisenio/{id}', [DisenioController::class, 'borrarDisenio']);

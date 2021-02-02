@@ -171,6 +171,7 @@ class Investigaciones extends Model
         } else {
             $result = false;
         }
+        // dd($result);
         return $result;
     }
 }
