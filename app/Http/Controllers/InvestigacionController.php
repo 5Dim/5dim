@@ -134,7 +134,7 @@ class InvestigacionController extends Controller
         }
         foreach ($colaInvestigacion as $cola) {
             if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personal += $cola->personal;
+                $personalUsado += $cola->personal;
             }
         }
 
@@ -194,21 +194,22 @@ class InvestigacionController extends Controller
         // dd($error);
 
         //Comprobamos que el edificio se puede construir
-        if ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->mineral < $costeInvestigacion[0]->mineral) {
+        $recurso = $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos;
+        if ($recurso->mineral < $costeInvestigacion[0]->mineral) {
             $error = true;
-        } elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->cristal < $costeInvestigacion[0]->cristal) {
+        } elseif ($recurso->cristal < $costeInvestigacion[0]->cristal) {
             $error = true;
-        } elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->gas < $costeInvestigacion[0]->gas) {
+        } elseif ($recurso->gas < $costeInvestigacion[0]->gas) {
             $error = true;
-        } elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->plastico < $costeInvestigacion[0]->plastico) {
+        } elseif ($recurso->plastico < $costeInvestigacion[0]->plastico) {
             $error = true;
-        } elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->ceramica < $costeInvestigacion[0]->ceramica) {
+        } elseif ($recurso->ceramica < $costeInvestigacion[0]->ceramica) {
             $error = true;
-        } elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->liquido < $costeInvestigacion[0]->liquido) {
+        } elseif ($recurso->liquido < $costeInvestigacion[0]->liquido) {
             $error = true;
-        } elseif ($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->micros < $costeInvestigacion[0]->micros) {
+        } elseif ($recurso->micros < $costeInvestigacion[0]->micros) {
             $error = true;
-        } elseif (($investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->personal - $personalUsado) < $personal) {
+        } elseif (($recurso->personal - $personalUsado) < $personal) {
             $error = true;
         } elseif ($accion != "Investigando") {
             $error = true;
@@ -218,14 +219,14 @@ class InvestigacionController extends Controller
         //Si no tenemos ningun error continuamos
         if (!$error) {
             //Restamos el coste a los recursos
-            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->mineral -= $costeInvestigacion[0]->mineral;
-            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->cristal -= $costeInvestigacion[0]->cristal;
-            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->gas -= $costeInvestigacion[0]->gas;
-            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->plastico -= $costeInvestigacion[0]->plastico;
-            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->ceramica -= $costeInvestigacion[0]->ceramica;
-            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->liquido -= $costeInvestigacion[0]->liquido;
-            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->micros -= $costeInvestigacion[0]->micros;
-            $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos->save();
+            $recurso->mineral -= $costeInvestigacion[0]->mineral;
+            $recurso->cristal -= $costeInvestigacion[0]->cristal;
+            $recurso->gas -= $costeInvestigacion[0]->gas;
+            $recurso->plastico -= $costeInvestigacion[0]->plastico;
+            $recurso->ceramica -= $costeInvestigacion[0]->ceramica;
+            $recurso->liquido -= $costeInvestigacion[0]->liquido;
+            $recurso->micros -= $costeInvestigacion[0]->micros;
+            $recurso->save();
 
             //Generamos la cola
             $construyendo = new EnInvestigaciones();
