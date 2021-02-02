@@ -63,8 +63,8 @@ class DatosMaestrosController extends Controller
         $tiendas = new Tiendas();
         $tiendas = $tiendas->generarDatosTiendas();
 
-        $disenios=new Disenios();
-        $disenios=$disenios->generarDatosDisenios();
+        // $disenios=new Disenios();
+        // $disenios=$disenios->generarDatosDisenios();
 
         $costesDisenios=new CostesDisenios();
         $costesDisenios=$costesDisenios->generarDatosCostesDisenios();
