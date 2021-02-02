@@ -173,7 +173,7 @@ class InvestigacionController extends Controller
         // dd($costeTotal);
 
         //Calcular el tiempo de construccion
-        $tiempo = $investigacion->calcularTiempoInvestigaciones($costeTotal, $personal, $nivel, $planetaActual);
+        $tiempo = $investigacion->calcularTiempoInvestigaciones($costeTotal, $personal, $nivel - 1, $planetaActual);
 
         //Comprobamos que el tiempo no sea false, seria un error de personal
         if (!$tiempo) {

@@ -68,6 +68,9 @@ class CostesInvestigaciones extends Model
 
             if (isset($investigacion->nivel)) {
                 $nivel = $investigacion->nivel + 1;
+                if (!empty($investigacion->enInvestigaciones[0])) {
+                    $nivel = EnInvestigaciones::where('investigaciones_id', $investigacion->id)->orderBy('id', 'desc')->first()->nivel + 1;
+                }
                 $codigo = $investigacion->codigo;
 
                 //dd($investigacion->nivel);

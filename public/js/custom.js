@@ -302,6 +302,7 @@ function calculaTiempoInvestigacion(
             "Tiempo: " + lhora + "h " + lminuto + "m " + lsegundo + "s";
         $("#tiempo" + dnd).html(horaImprimible);
         timeg(result, "termina" + dnd);
+        console.log(result);
     } else {
         $("#tiempo" + dnd).html(horaImprimible);
     }
