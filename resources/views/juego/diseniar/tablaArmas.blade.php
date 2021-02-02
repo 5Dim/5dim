@@ -207,7 +207,7 @@ $blindajes=[];
 for($n=0;$n<$cantidadblindajes;$n++){ array_push($blindajes,$arrayObjetos['blindaje'][$n]);}
 
 $mejoras=[];
-for($n=0;$n<$cantidadMejoras;$n++){ array_push($mejoras,$arrayObjetos['mejora'][$n]);}
+for($n=0;$n<$cantidadMejoras;$n++){ array_push($mejoras,1*$arrayObjetos['mejora'][$n]);}
 
 $cargaPequenias=[];
 for($n=0;$n<$cantidadCargaPequenia;$n++){  array_push($cargaPequenias,$arrayObjetos['cargaPequenia'][$n]);}
@@ -981,7 +981,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                         <tr>
                                             @for($codigo=70;$codigo<85;$codigo++)
                                             @if ($investNiveles["invIa"]>=$armas->where("codigo",$codigo)->first()->niveltec)
-                                            <td>
+                                            <td id="mejora{{$codigo}}" name="mejora{{$codigo}}">
                                                 <img onClick="encajar('mejora',{{$codigo}},'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                             </td>
                                             @endif
@@ -1096,15 +1096,18 @@ function limpiar(){
 }
 
 // pasar armas a huecos
+//Array [ 72, 81 ]   armas['mejora'].includes(72)
 
     function encajar(elemento,id,qhago){
         if (qhago=='aniade'){
-            for (n=0;n<armas[elemento].length;n++) {
-                if (armas[elemento][n]==0){ armas[elemento][n]=id; break;  }
-            };
+            if (!armas['mejora'].includes(id)){//una mejora igual
+                for (n=0;n<armas[elemento].length;n++) {
+                    if (armas[elemento][n]==0){ armas[elemento][n]=id; break;  }
+                };
+            }
+
         } else if (qhago=='quita'){
             armas[elemento][id]=0;
-
         }
 
         n=0;
@@ -1118,8 +1121,27 @@ function limpiar(){
             n++;
         });
 
+        MejorasVisibles();
         calculoTotalR();
     }
+
+    function MejorasVisibles(){
+        for (n=70;n<91;n++)
+        {
+            $("#mejora"+n).show();
+        };
+
+        armas['mejora'].forEach(function(e) {
+            if (e>69){
+                $("#mejora"+e).hide();
+            }
+
+        });
+
+    }
+
+
+
 
     function encajarTodo(){
 
@@ -1136,6 +1158,7 @@ function limpiar(){
             });
         });
 
+        MejorasVisibles();
         calculoTotalR();
     }
 
@@ -2029,15 +2052,15 @@ $.each( armas[elemento], function( key, e ) {
 
         switch (obj['codigo']){
             case 75: //prop hyper
-            mejoraVelocidad+=cte;
+            mejoraVelocidad+=cte*costeobj["velocidad"];
 
             break;
             case 76: //aleaciones
-            mejoraPeso+=cte;
+            mejoraPeso+=cte*costeobj["peso"];
 
             break;
             case 73: //prop maniobra
-            mejoraManiobra+=cte;
+            mejoraManiobra+=cte*costeobj["maniobra"];
 
             break;
         }

@@ -602,11 +602,12 @@ class DisenioController extends Controller
             $destinoCosto['energia'] += ($esteCosto['energia'] / 100) * $cte * $sobrecosto['energia'];
             $destinoCosto['tiempo'] += ($esteCosto['tiempo'] / 100) * $cte * $sobrecosto['tiempo'];
             $destinoCosto['mantenimiento'] += ($esteCosto['mantenimiento'] / 100) * $cte * $sobrecosto['mantenimiento'];
-            $destinoCosto['invTitanio'] += ($esteCosto['invTitanio'] / 100) * $cte * $sobrecosto['invTitanio'];
-            $destinoCosto['invReactivo'] += ($esteCosto['invReactivo'] / 100) * $cte * $sobrecosto['invReactivo'];
-            $destinoCosto['invResinas'] += ($esteCosto['invResinas'] / 100) * $cte * $sobrecosto['invResinas'];
-            $destinoCosto['invPlacas'] += ($esteCosto['invPlacas'] / 100) * $cte * $sobrecosto['invPlacas'];
-            $destinoCosto['invCarbonadio'] += ($esteCosto['invCarbonadio'] / 100) * $cte * $sobrecosto['invCarbonadio'];
+            $destinoCosto['defensa'] += ($esteCosto['defensa'] / 100) * $cte * $sobrecosto['defensa'];
+            //$destinoCosto['invTitanio'] += ($esteCosto['invTitanio'] / 100) * $cte * $sobrecosto['invTitanio'];
+            //$destinoCosto['invReactivo'] += ($esteCosto['invReactivo'] / 100) * $cte * $sobrecosto['invReactivo'];
+            //$destinoCosto['invResinas'] += ($esteCosto['invResinas'] / 100) * $cte * $sobrecosto['invResinas'];
+            //$destinoCosto['invPlacas'] += ($esteCosto['invPlacas'] / 100) * $cte * $sobrecosto['invPlacas'];
+            //$destinoCosto['invCarbonadio'] += ($esteCosto['invCarbonadio'] / 100) * $cte * $sobrecosto['invCarbonadio'];
             $destinoCosto['ataque'] += ($esteCosto['ataque'] / 100) * $cte * $sobrecosto['ataque'];
             $destinoCosto['velocidad'] += ($esteCosto['velocidad'] / 100) * $cte * $sobrecosto['velocidad'];
             $destinoCosto['carga'] += ($esteCosto['carga'] / 100) * $cte * $sobrecosto['carga'];
@@ -709,6 +710,7 @@ class DisenioController extends Controller
             'tiempo' => 0,
             'mantenimiento' => 0,
             'ataque' => 0,
+            'defensa' => 0,
             'velocidad' => 0,
             'carga' => 0,
             'cargaPequenia' => 0,
@@ -1216,20 +1218,28 @@ class DisenioController extends Controller
             }
 
 
-
-
             ///// mejoras
+
+
+            $mejoraexiste= [];
+
+            //array_push($mejoraexiste, 1);
+
             $elemento = 'mejora';
             $genera = 'ia';
             $multiplicador = 1;
             $misCostes = $costesMisMejoras;
             foreach ($armasTengo[$elemento] as $e) {
-                $costesVacio = ['mineral' => 0, 'cristal' => 0, 'gas' => 0, 'plastico' => 0, 'ceramica' => 0, 'liquido' => 0, 'micros' => 0, 'personal' => 0, 'fuel' => 0, 'ma' => 0, 'municion' => 0, 'masa' => 0, 'energia' => 0, 'tiempo' => 0, 'mantenimiento' => 0, 'defensa' => 0, 'ataque' => 0, 'velocidad' => 0, 'carga' => 0, 'cargaPequenia' => 0, 'cargaMediana' => 0, 'cargaGrande' => 0, 'cargaEnorme' => 0, 'cargaMega' => 0];
-                $sobreCostes = ['mineral' => 0, 'cristal' => 0, 'gas' => 0, 'plastico' => 0, 'ceramica' => 0, 'liquido' => 0, 'micros' => 0, 'personal' => 0, 'fuel' => 0, 'ma' => 0, 'municion' => 0, 'masa' => 0, 'energia' => 0, 'tiempo' => 0, 'mantenimiento' => 0, 'defensa' => 0, 'ataque' => 0, 'velocidad' => 0, 'carga' => 0, 'cargaPequenia' => 0, 'cargaMediana' => 0, 'cargaGrande' => 0, 'cargaEnorme' => 0, 'cargaMega' => 0];
+                $costesVacio = ['mineral' => 0, 'cristal' => 0, 'gas' => 0, 'plastico' => 0, 'ceramica' => 0, 'liquido' => 0, 'micros' => 0, 'personal' => 0, 'fuel' => 0, 'ma' => 0, 'municion' => 0, 'masa' => 0, 'energia' => 0, 'tiempo' => 0, 'mantenimiento' => 0, 'defensa' => 0, 'ataque' => 0, 'velocidad' => 0, 'carga' => 0, 'cargaPequenia' => 0, 'cargaMediana' => 0, 'cargaGrande' => 0, 'cargaEnorme' => 0, 'cargaMega' => 0, "recolector" =>0, "extractor" =>0];
+                $sobreCostes = ['mineral' => 0, 'cristal' => 0, 'gas' => 0, 'plastico' => 0, 'ceramica' => 0, 'liquido' => 0, 'micros' => 0, 'personal' => 0, 'fuel' => 0, 'ma' => 0, 'municion' => 0, 'masa' => 0, 'energia' => 0, 'tiempo' => 0, 'mantenimiento' => 0, 'defensa' => 0, 'ataque' => 0, 'velocidad' => 0, 'carga' => 0, 'cargaPequenia' => 0, 'cargaMediana' => 0, 'cargaGrande' => 0, 'cargaEnorme' => 0, 'cargaMega' => 0, "recolector" =>0, "extractor" =>0];
 
+                if (in_array($obj['codigo'],$mejoraexiste)){ //sólo se cuenta una mejora de cada tipo, por si se saltan el javascript
+                    $e=0;
+                }
                 $hazlo = 0;
                 if ($e > 0) {
                     $obj = $armas->where('codigo', $e)->first();
+                    array_push($mejoraexiste, $obj['codigo']);
 
                     switch ($obj['codigo']) {
 
@@ -1309,12 +1319,6 @@ class DisenioController extends Controller
                             $sobreCostes = sumaCualidades($sobreCostes, $cte, $costesMisCargas);
                             $sobreCostes = sumaCualidades($sobreCostes, $cte, $costesMisMejoras);
                             break;
-                        case 73: //prop maniobra
-                            $hazlo++;
-                            $cte = 1;
-                            $sobreCostes = sumaCostos($sobreCostes, $cte, $costesMisCargas);
-                            $sobreCostes = sumaCualidades($sobreCostes, $cte, $costesMisCargas);
-                            break;
                         case 71: //ctrol punteria
                             $ctrlPunteria++;
                             break;
@@ -1336,10 +1340,6 @@ class DisenioController extends Controller
                         case 84:    // foco bombas
                             $cantiFocos[4] += 1;
                             break;
-                            //$hazlo++;
-                            //$cte=1;
-                            //  sumaCostos($sobreCostes,$cte,costesMisArmas);
-                            // sumaCualidades($sobreCostes,$cte,costesMisArmas);
                             break;
                     }
 
@@ -1359,6 +1359,9 @@ class DisenioController extends Controller
                     }
                 }
             };
+
+
+            $armasTengo[$elemento]= $mejoraexiste;// si hubiera dos mejororas iguales solo dejo una
 
             $cteAriete = 1;
             $costoFocoA = 1; //coste acumulado foco
@@ -1724,13 +1727,6 @@ class DisenioController extends Controller
 
 
                 /// guardando elementos
-                /*
-
-        $armasTengo = ($_POST['armas']);
-        $energiaArmas = ($_POST['energiaArmas']);
-        $armasAlcance = ($_POST['armasAlcance']);
-        $armasDispersion = ($_POST['armasDispersion']);
-        */
 
                 $armasCualidades = [];
                 for ($x = 0; $x < 200; $x++) {
