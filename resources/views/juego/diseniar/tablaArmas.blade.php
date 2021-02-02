@@ -2056,7 +2056,7 @@ $.each( armas[elemento], function( key, e ) {
 
             break;
             case 76: //aleaciones
-            mejoraPeso+=cte*costeobj["peso"];
+            mejoraPeso+=cte*costeobj["masa"];
 
             break;
             case 73: //prop maniobra

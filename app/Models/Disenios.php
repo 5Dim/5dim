@@ -65,13 +65,18 @@ class Disenios extends Model
         $this->datos = new MejorasDisenios();
         // dd($this->mejoras);
         // Velocidades
+        $this->datos->velocidad = $this->mejoras->velocidad * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
+        $this->datos->maniobra = $this->mejoras->maniobra * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
+        $this->datos->masa = $this->mejoras->masa * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
+
+
         $this->datos->invPropQuimico = $this->mejoras->invPropQuimico * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropQuimico')->first()->nivel * Constantes::where('codigo', 'mejorainvPropQuimico')->first()->valor));
         $this->datos->invPropNuk = $this->mejoras->invPropNuk * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropNuk')->first()->nivel * Constantes::where('codigo', 'mejorainvPropNuk')->first()->valor));
         $this->datos->invPropIon = $this->mejoras->invPropIon * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropIon')->first()->nivel * Constantes::where('codigo', 'mejorainvPropIon')->first()->valor));
         $this->datos->invPropPlasma = $this->mejoras->invPropPlasma * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropPlasma')->first()->nivel * Constantes::where('codigo', 'mejorainvPropPlasma')->first()->valor));
         $this->datos->invPropMa = $this->mejoras->invPropMa * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropMa')->first()->nivel * Constantes::where('codigo', 'mejorainvPropMa')->first()->valor));
 
-        $this->datos->velocidad = ($this->datos->invPropQuimico + $this->datos->invPropNuk + $this->datos->invPropIon + $this->datos->invPropPlasma + $this->datos->invPropMa) / $this->costes->masa;
+        $this->datos->velocidad =pow(($this->datos->invPropQuimico + $this->datos->invPropNuk + $this->datos->invPropIon + $this->datos->invPropPlasma + $this->datos->invPropMa),1.33) / $this->costes->masa;
 
         // Maniobra
         $this->datos->invManiobraQuimico = $this->mejoras->invManiobraQuimico * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropQuimico')->first()->nivel * Constantes::where('codigo', 'mejorainvManiobraQuimico')->first()->valor));
@@ -80,7 +85,7 @@ class Disenios extends Model
         $this->datos->invManiobraPlasma = $this->mejoras->invManiobraPlasma * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropPlasma')->first()->nivel * Constantes::where('codigo', 'mejorainvManiobraPlasma')->first()->valor));
         $this->datos->invManiobraMa = $this->mejoras->invManiobraMa * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropMa')->first()->nivel * Constantes::where('codigo', 'mejorainvManiobraMa')->first()->valor));
 
-        $this->datos->maniobra = ($this->datos->invManiobraQuimico + $this->datos->invManiobraNuk + $this->datos->invManiobraIon + $this->datos->invManiobraPlasma + $this->datos->invManiobraMa) / $this->costes->masa;
+        $this->datos->maniobra = pow(($this->datos->invManiobraQuimico + $this->datos->invManiobraNuk + $this->datos->invManiobraIon + $this->datos->invManiobraPlasma + $this->datos->invManiobraMa),1.33) / $this->costes->masa;
 
         // Blindajes
         $this->datos->invTitanio = $this->mejoras->invTitanio * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invTitanio')->first()->nivel * Constantes::where('codigo', 'mejorainvTitanio')->first()->valor));
@@ -115,7 +120,7 @@ class Disenios extends Model
         $this->datos->mantenimiento = $this->mejoras->mantenimiento * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
         $this->datos->tiempo = $this->mejoras->tiempo * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
 
-
+        //dd($this->mejoras);
         // return $this->datos;
     }
 
