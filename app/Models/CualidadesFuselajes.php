@@ -1369,7 +1369,7 @@ class CualidadesFuselajes extends Model
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
                 $CRnave7 = 0;     // caniones Misiles, cantidad por tipo
-                $CRnave8 = 0;     // CARGA PEQUEniA, cantidad por tipo
+                $CRnave8 = 1;     // CARGA PEQUEniA, cantidad por tipo
                 $CRnave9 = 0;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
