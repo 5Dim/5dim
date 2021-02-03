@@ -36,6 +36,8 @@ class CreateMejorasDiseniosTable extends Migration
             $table->integer('invCarbonadio')->default(0);
             $table->integer('mantenimiento')->default(0);
             $table->integer('tiempo')->default(0);
+            $table->integer('masa')->default(0);
+            $table->integer('energia')->default(0);
             $table->integer('carga')->default(0);
             $table->integer('cargaPequenia')->default(0);
             $table->integer('cargaMediana')->default(0);

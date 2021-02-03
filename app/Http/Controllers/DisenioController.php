@@ -1223,7 +1223,9 @@ class DisenioController extends Controller
 
             $mejoraexiste= [];
 
-            //array_push($mejoraexiste, 1);
+            $mejoraVelocidad=0;
+            $mejoraPeso=0;
+            $mejoraManiobra=0;
 
             $elemento = 'mejora';
             $genera = 'ia';
@@ -1249,7 +1251,7 @@ class DisenioController extends Controller
                             $sobreCostes = sumaCostos($sobreCostes, $cte, $costesMisBlindajes);
                             $sobreCostes = sumaCualidades($sobreCostes, $cte, $costesMisBlindajes);
                             break;
-                        case 75: //salvas
+                        case 75: //prop. hyper
                             $hazlo++;
                             $cte = 1;
                             $sobreCostes = sumaCostos($sobreCostes, $cte, $costesMisArmas);
@@ -1347,7 +1349,10 @@ class DisenioController extends Controller
 
                         $costeobj = $costesArmas->where('armas_codigo', $e)->first();
 
-                        // sumaCostos($misCostes,$multiplicador,costeobj);// sumo recursos basicos
+                        $mejoraVelocidad+=$costeobj["velocidad"]/100;
+                        $mejoraPeso+=$costeobj["masa"]/100;
+                        $mejoraManiobra+=$costeobj["maniobra"]/100;
+
                         $cte = 1; //lo que varia por nivel de tecno
                         $factorFuselaje = 1;     // el factor que varia para cada fuselaje
                         $costesVacio[$genera] = $costeobj[$genera] * $cte * $factorFuselaje; //lo q mejora por esos niveles
@@ -1558,21 +1563,8 @@ class DisenioController extends Controller
                 $pesoInicial = .0005 * $disenio->cualidades->masa * ($disenio->costes->mineral * 50 + $disenio->costes->cristal * 260 + $disenio->costes->gas * 1000 + $disenio->costes->plastico * 4000 + $disenio->costes->ceramica * 600 + $disenio->costes->liquido * 500 + $disenio->costes->micros * 2000 + $disenio->costes->personal * 500);
 
                 $pesoTotal = ($cualidades['masa'] + $pesoInicial);
-                /*
-                $velmaxTodas=Constantes::where('codigo','fuselajenaveVelocidadMaximaTodas')->first()->valor; //
-                $velmaxEsteTamano=Constantes::where('codigo','fuselajenaveVelocidadMaxima'.$disenio->tamanio)->first()->valor; //   fuselajenaveVelocidad
-                $factorVelocidadConstantes=min(Constantes::where('codigo','fuselajenaveVelocidadTodas')->first()->valor,Constantes::where('codigo','fuselajenaveVelocidad'.$disenio->tamanio)->first()->valor);
+                $pesoTotal/=1+$mejoraPeso;
 
-
-                $cualidades['velocidad']=min((pow($empujeT,1.33)/$pesoTotal)*$factorVelocidadConstantes,$velmaxTodas,$velmaxEsteTamano);
-                $cualidades['velocidad']=(round($cualidades['velocidad'])); //reondeo a 0
-
-
-                //////  maniobra //
-
-                $cualidades['maniobra']=min((pow($maniobraT,1.33)/$pesoTotal)*$factorVelocidadConstantes,$velmaxTodas,$velmaxEsteTamano);
-                $cualidades['maniobra']=(round($cualidades['maniobra'])); //reondeo a 0
-                */
                 //guardando disenio
 
                 $disenioS = new Disenios();
@@ -1613,23 +1605,21 @@ class DisenioController extends Controller
                 $costesDisenioS->liquido = $costesDisenio['liquido'];
                 $costesDisenioS->micros = $costesDisenio['micros'];
                 $costesDisenioS->personal = $costesDisenio['personal'];
-                $costesDisenioS->masa = $pesoTotal;
-                $costesDisenioS->energia = $costesMisMotores['energia'];
                 $costesDisenioS->disenios_id = $disenioId;
                 $costesDisenioS->save();
 
                 $mejorasDisenios = new MejorasDisenios();
-                $mejorasDisenios->invPropQuimico = $velocidad['invPropQuimico'];
-                $mejorasDisenios->invPropNuk = $velocidad['invPropNuk'];
-                $mejorasDisenios->invPropIon = $velocidad['invPropIon'];
-                $mejorasDisenios->invPropPlasma = $velocidad['invPropPlasma'];
-                $mejorasDisenios->invPropMa = $velocidad['invPropMa'];
+                $mejorasDisenios->invPropQuimico = $velocidad['invPropQuimico']*(1+$mejoraVelocidad);
+                $mejorasDisenios->invPropNuk = $velocidad['invPropNuk']*(1+$mejoraVelocidad);
+                $mejorasDisenios->invPropIon = $velocidad['invPropIon']*(1+$mejoraVelocidad);
+                $mejorasDisenios->invPropPlasma = $velocidad['invPropPlasma']*(1+$mejoraVelocidad);
+                $mejorasDisenios->invPropMa = $velocidad['invPropMa']*(1+$mejoraVelocidad);
                 //$mejorasDisenios->invPropHMA = $velocidad['invPropHMA'];
-                $mejorasDisenios->invManiobraQuimico = $maniobra['invPropQuimico'];
-                $mejorasDisenios->invManiobraNuk = $maniobra['invPropNuk'];
-                $mejorasDisenios->invManiobraIon = $maniobra['invPropIon'];
-                $mejorasDisenios->invManiobraPlasma = $maniobra['invPropPlasma'];
-                $mejorasDisenios->invManiobraMa = $maniobra['invPropMa'];
+                $mejorasDisenios->invManiobraQuimico = $maniobra['invPropQuimico']*(1+$mejoraManiobra);
+                $mejorasDisenios->invManiobraNuk = $maniobra['invPropNuk']*(1+$mejoraManiobra);
+                $mejorasDisenios->invManiobraIon = $maniobra['invPropIon']*(1+$mejoraManiobra);
+                $mejorasDisenios->invManiobraPlasma = $maniobra['invPropPlasma']*(1+$mejoraManiobra);
+                $mejorasDisenios->invManiobraMa = $maniobra['invPropMa']*(1+$mejoraManiobra);
                 //$mejorasDisenios->invPropHMA = $maniobra['invPropHMA'];
                 $mejorasDisenios->fuel = $cualidades['fuel'];
                 $mejorasDisenios->municion = $cualidades['municion'];
@@ -1642,6 +1632,8 @@ class DisenioController extends Controller
                 ////
                 $mejorasDisenios->mantenimiento = $cualidades['mantenimiento'];
                 $mejorasDisenios->tiempo = $cualidades['tiempo'];
+                $mejorasDisenios->masa = $pesoTotal;
+                $mejorasDisenios->energia = $costesMisMotores['energia'];
                 $mejorasDisenios->carga = $cualidades['carga'];
                 $mejorasDisenios->cargaPequenia = $cualidades['cargaPequenia'];
                 $mejorasDisenios->cargaMediana = $cualidades['cargaMediana'];
