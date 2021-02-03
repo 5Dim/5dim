@@ -1673,7 +1673,10 @@ $.each( armas[elemento], function( key, e ) {
         hazlo++;
         cte=1;
             sumaCostos(sobreCostes,cte,costesMisBlindajes);
+            sumaCostos(sobreCostes,cte,costesMisMejoras);
+
             sumaCualidades(sobreCostes,cte,costesMisBlindajes);
+            sumaCualidades(sobreCostes,cte,costesMisMejoras);
         break;
         case 75: //prop hyper
         hazlo++;
@@ -1695,12 +1698,6 @@ $.each( armas[elemento], function( key, e ) {
             sumaCualidades(sobreCostes,cte,costesMisArmas);
             sumaCualidades(sobreCostes,cte,costesMisCargas);
             sumaCualidades(sobreCostes,cte,costesMisMejoras);
-        break;
-        case 74:
-        hazlo++;
-        cte=1;
-            sumaCostos(sobreCostes,cte,costesMisArmas);
-            sumaCualidades(sobreCostes,cte,costesMisArmas);
         break;
         case 76: //aleaciones
         hazlo++;
@@ -1733,7 +1730,7 @@ $.each( armas[elemento], function( key, e ) {
         case 74: //nanos
         hazlo++;
         cte=1;
-        sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCostos(sobreCostes,cte,costesMisMotores);
             sumaCostos(sobreCostes,cte,costesMisBlindajes);
             sumaCostos(sobreCostes,cte,costesMisArmas);
             sumaCostos(sobreCostes,cte,costesMisCargas);
