@@ -2044,23 +2044,19 @@ $.each( armas[elemento], function( key, e ) {
     hazlo=0;
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
-
         var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
-        var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
-        var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
-        var cte=(miConstanteI*nivelInv);//lo que varia por nivel de tecno
 
         switch (obj['codigo']){
             case 75: //prop hyper
-            mejoraVelocidad+=cte*costeobj["velocidad"];
+            mejoraVelocidad+=costeobj["velocidad"]/100;
 
             break;
             case 76: //aleaciones
-            mejoraPeso+=cte*costeobj["masa"];
+            mejoraPeso+=costeobj["masa"]/100;
 
             break;
             case 73: //prop maniobra
-            mejoraManiobra+=cte*costeobj["maniobra"];
+            mejoraManiobra+=costeobj["maniobra"]/100;
 
             break;
         }
@@ -2069,12 +2065,12 @@ $.each( armas[elemento], function( key, e ) {
 
 pesoTotal/=1+mejoraPeso;
 
-cualidades['velocidad']=Math.min((Math.pow(empujeT,1.33)/pesoTotal)*factorVelocidadConstantes*(1+mejoraVelocidad),velmaxTodas,velmaxEsteTamano);
+cualidades['velocidad']=Math.min((Math.pow(empujeT*(1+mejoraVelocidad),1.33)/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
 cualidades['velocidad']=( Math.round(cualidades['velocidad'])); //reondeo a 0
 
 //////  maniobra //
 
-cualidades['maniobra']=Math.min((Math.pow(maniobraT,1.33)/pesoTotal)*factorVelocidadConstantes*(1+mejoraManiobra),velmaxTodas,velmaxEsteTamano);
+cualidades['maniobra']=Math.min((Math.pow(maniobraT*(1+mejoraManiobra),1.33)/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
 cualidades['maniobra']=( Math.round(cualidades['maniobra'])); //reondeo a 0
 
 // efectos de politicas
