@@ -54,7 +54,6 @@
                 </tr>
                 <tr>
                     {{ $disenio->calculaMejoras() }}
-                    {{-- {{ dd($disenio) }} --}}
                     <td class="anchofijo text-{{ $disenio->datos->ataque > 0 ? 'light' : 'muted' }} borderless">
                         {{ number_format($disenio->datos->ataque, 0, ',', '.') }}
                     </td>

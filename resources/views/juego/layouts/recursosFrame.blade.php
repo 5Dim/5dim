@@ -242,10 +242,6 @@
                             {{ number_format($recursos->creditos, 0, ',', '.') }}
                         </td>
                     </tr>
-                    @php
-                    $nivelTerraformador = $planetaActual->construcciones->where('codigo',
-                    'terraformadorMinero')->first()->nivel;
-                    @endphp
                     <tr>
                         <td class="text-primary borderless">
                             <span>{{ number_format($produccion->personal, 0, ',', '.') }}</span> ud/h
@@ -302,44 +298,73 @@
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/construccion') }}" title="Construye tu imperio"
                                 target="_self">
-                                <img title="Construcción" src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-cons1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'construccion'))
+                                    <img title="Construcción"
+                                        src="{{ asset('img/juego/skin0/icons/ico-cons1.png') }}" />
+                                @else
+                                    <img title="Construcción"
+                                        src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-cons1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/investigacion') }}" target="_self">
-                                <img title="Investigación" src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-inv1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'investigacion'))
+                                    <img title="Investigación"
+                                        src="{{ asset('img/juego/skin0/icons/ico-inv1.png') }}" />
+                                @else
+                                    <img title="Investigación"
+                                        src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-inv1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/planeta') }}" target="_self">
-                                <img title="Planeta" src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-pla1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'planeta'))
+                                    <img title="Planeta" src="{{ asset('img/juego/skin0/icons/ico-pla1.png') }}" />
+                                @else
+                                    <img title="Planeta" src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-pla1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/fuselajes') }}" target="_self">
-                                <img title="fuselajes" src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-def1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'fuselajes'))
+                                    <img title="Fuselajes" src="{{ asset('img/juego/skin0/icons/ico-dis1.png') }}" />
+                                @else
+                                    <img title="Fuselajes" src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-dis1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/disenio') }}" target="_self">
-                                <img title="Disenios" src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-dis1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'disenio'))
+                                    <img title="Diseños"
+                                        src="{{ asset('img/juego/skin0/icons/ico-prod1.png') }}" />
+                                @else
+                                    <img title="Diseños" src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-prod1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/fabricas') }}" target="_self">
-                                <img title="Producción" src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-prod1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'fabricas'))
+                                    <img title="Politica" src="{{ asset('img/juego/skin0/icons/ico-def1.png') }}" />
+                                @else
+                                    <img title="Politica" src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-def1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
@@ -370,44 +395,69 @@
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/astrometria') }}" target="_blank">
-                                <img title="Astrometría" src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'astrometria'))
+                                    <img title="Astrometría"
+                                        src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}" />
+                                @else
+                                    <img title="Astrometría" src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/flotas') }}" target="_self">
-                                <img title="Flotas" src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-flo1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'flotas'))
+                                    <img title="Flotas" src="{{ asset('img/juego/skin0/icons/ico-flo1.png') }}" />
+                                @else
+                                    <img title="Flotas" src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-flo1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/banco') }}" target="_self">
-                                <img title="Banco" src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ban1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'banco'))
+                                    <img title="Banco" src="{{ asset('img/juego/skin0/icons/ico-ban1.png') }}" />
+                                @else
+                                    <img title="Banco" src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ban1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/comercio') }}" target="_self">
-                                <img title="Comercio" src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-com1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'comercio'))
+                                    <img title="Comercio" src="{{ asset('img/juego/skin0/icons/ico-com1.png') }}" />
+                                @else
+                                    <img title="Comercio" src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-com1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/general') }}" target="_self">
-                                <img title="General" src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'general'))
+                                    <img title="General" src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}" />
+                                @else
+                                    <img title="General" src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless">
                             <a id="constr" href="{{ url('/juego/alianza') }}" target="_self">
-                                <img title="Alianza" src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}"
-                                    onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ali1.png') }}"
-                                    onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}" />
+                                @if (strpos(Request::fullUrl(), 'alianza'))
+                                    <img title="Alianza" src="{{ asset('img/juego/skin0/icons/ico-ali1.png') }}" />
+                                @else
+                                    <img title="Alianza" src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}"
+                                        onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ali1.png') }}"
+                                        onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}" />
+                                @endif
                             </a>
                         </th>
                     </tr>
@@ -432,18 +482,15 @@
     <script src="{{ asset('js/custom.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
-            var recursos = @json($recursos);
-            recursos.personal -= @json($personalOcupado);
-            //console.log(recursos);
-            var produccion = @json($produccion);
-            //console.log(produccion);
-            var almacenes = @json($capacidadAlmacenes);
-            // console.log(almacenes);
-            activarIntervalo(recursos, almacenes, produccion, 250);
-            // $('select').selectpicker();
-        });
-
+        var recursos = @json($recursos);
+        recursos.personal -= @json($personalOcupado);
+        //console.log(recursos);
+        var produccion = @json($produccion);
+        //console.log(produccion);
+        var almacenes = @json($capacidadAlmacenes);
+        // console.log(almacenes);
+        activarIntervalo(recursos, almacenes, produccion, 250);
+        // $('select').selectpicker();
     </script>
     @yield('content')
 </body>

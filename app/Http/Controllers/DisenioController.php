@@ -548,8 +548,7 @@ class DisenioController extends Controller
 
 
     public function crearDisenio($id = false)
-    {  //////////////////////////////////////***************** */
-
+    {
         $armasTengo = ($_POST['armas']);
         $energiaArmas = ($_POST['energiaArmas']);
         $armasAlcance = ($_POST['armasAlcance']);
@@ -1221,22 +1220,22 @@ class DisenioController extends Controller
             ///// mejoras
 
 
-            $mejoraexiste= [];
+            $mejoraexiste = [];
 
-            $mejoraVelocidad=0;
-            $mejoraPeso=0;
-            $mejoraManiobra=0;
+            $mejoraVelocidad = 0;
+            $mejoraPeso = 0;
+            $mejoraManiobra = 0;
 
             $elemento = 'mejora';
             $genera = 'ia';
             $multiplicador = 1;
             $misCostes = $costesMisMejoras;
             foreach ($armasTengo[$elemento] as $e) {
-                $costesVacio = ['mineral' => 0, 'cristal' => 0, 'gas' => 0, 'plastico' => 0, 'ceramica' => 0, 'liquido' => 0, 'micros' => 0, 'personal' => 0, 'fuel' => 0, 'ma' => 0, 'municion' => 0, 'masa' => 0, 'energia' => 0, 'tiempo' => 0, 'mantenimiento' => 0, 'defensa' => 0, 'ataque' => 0, 'velocidad' => 0, 'carga' => 0, 'cargaPequenia' => 0, 'cargaMediana' => 0, 'cargaGrande' => 0, 'cargaEnorme' => 0, 'cargaMega' => 0, "recolector" =>0, "extractor" =>0];
-                $sobreCostes = ['mineral' => 0, 'cristal' => 0, 'gas' => 0, 'plastico' => 0, 'ceramica' => 0, 'liquido' => 0, 'micros' => 0, 'personal' => 0, 'fuel' => 0, 'ma' => 0, 'municion' => 0, 'masa' => 0, 'energia' => 0, 'tiempo' => 0, 'mantenimiento' => 0, 'defensa' => 0, 'ataque' => 0, 'velocidad' => 0, 'carga' => 0, 'cargaPequenia' => 0, 'cargaMediana' => 0, 'cargaGrande' => 0, 'cargaEnorme' => 0, 'cargaMega' => 0, "recolector" =>0, "extractor" =>0];
+                $costesVacio = ['mineral' => 0, 'cristal' => 0, 'gas' => 0, 'plastico' => 0, 'ceramica' => 0, 'liquido' => 0, 'micros' => 0, 'personal' => 0, 'fuel' => 0, 'ma' => 0, 'municion' => 0, 'masa' => 0, 'energia' => 0, 'tiempo' => 0, 'mantenimiento' => 0, 'defensa' => 0, 'ataque' => 0, 'velocidad' => 0, 'carga' => 0, 'cargaPequenia' => 0, 'cargaMediana' => 0, 'cargaGrande' => 0, 'cargaEnorme' => 0, 'cargaMega' => 0, "recolector" => 0, "extractor" => 0];
+                $sobreCostes = ['mineral' => 0, 'cristal' => 0, 'gas' => 0, 'plastico' => 0, 'ceramica' => 0, 'liquido' => 0, 'micros' => 0, 'personal' => 0, 'fuel' => 0, 'ma' => 0, 'municion' => 0, 'masa' => 0, 'energia' => 0, 'tiempo' => 0, 'mantenimiento' => 0, 'defensa' => 0, 'ataque' => 0, 'velocidad' => 0, 'carga' => 0, 'cargaPequenia' => 0, 'cargaMediana' => 0, 'cargaGrande' => 0, 'cargaEnorme' => 0, 'cargaMega' => 0, "recolector" => 0, "extractor" => 0];
 
-                if (in_array($obj['codigo'],$mejoraexiste)){ //sólo se cuenta una mejora de cada tipo, por si se saltan el javascript
-                    $e=0;
+                if (in_array($obj['codigo'], $mejoraexiste)) { //sólo se cuenta una mejora de cada tipo, por si se saltan el javascript
+                    $e = 0;
                 }
                 $hazlo = 0;
                 if ($e > 0) {
@@ -1349,9 +1348,9 @@ class DisenioController extends Controller
 
                         $costeobj = $costesArmas->where('armas_codigo', $e)->first();
 
-                        $mejoraVelocidad+=$costeobj["velocidad"]/100;
-                        $mejoraPeso+=$costeobj["masa"]/100;
-                        $mejoraManiobra+=$costeobj["maniobra"]/100;
+                        $mejoraVelocidad += $costeobj["velocidad"] / 100;
+                        $mejoraPeso += $costeobj["masa"] / 100;
+                        $mejoraManiobra += $costeobj["maniobra"] / 100;
 
                         $cte = 1; //lo que varia por nivel de tecno
                         $factorFuselaje = 1;     // el factor que varia para cada fuselaje
@@ -1366,11 +1365,13 @@ class DisenioController extends Controller
             };
 
 
-            $armasTengo[$elemento]= $mejoraexiste;// si hubiera dos mejororas iguales solo dejo una
+            $armasTengo[$elemento] = $mejoraexiste; // si hubiera dos mejororas iguales solo dejo una
 
             $cteAriete = 1;
             $costoFocoA = 1; //coste acumulado foco
 
+
+            Log::alert("ANTES");
             if ($cantidadCLigeras + $cantidadCMedias + $cantidadCPesadas + $cantidadCInsertadas + $cantidadCMisiles + $cantidadCBombas > 0) {
                 //// armas ///////
 
@@ -1432,7 +1433,6 @@ class DisenioController extends Controller
                     }
                 }
                 $prueba = $costoFocoA;
-
 
                 foreach ($tiposArmas as $elemento) {
 
@@ -1563,7 +1563,7 @@ class DisenioController extends Controller
                 $pesoInicial = .0005 * $disenio->cualidades->masa * ($disenio->costes->mineral * 50 + $disenio->costes->cristal * 260 + $disenio->costes->gas * 1000 + $disenio->costes->plastico * 4000 + $disenio->costes->ceramica * 600 + $disenio->costes->liquido * 500 + $disenio->costes->micros * 2000 + $disenio->costes->personal * 500);
 
                 $pesoTotal = ($cualidades['masa'] + $pesoInicial);
-                $pesoTotal/=1+$mejoraPeso;
+                $pesoTotal /= 1 + $mejoraPeso;
 
                 //guardando disenio
 
@@ -1609,17 +1609,17 @@ class DisenioController extends Controller
                 $costesDisenioS->save();
 
                 $mejorasDisenios = new MejorasDisenios();
-                $mejorasDisenios->invPropQuimico = $velocidad['invPropQuimico']*(1+$mejoraVelocidad);
-                $mejorasDisenios->invPropNuk = $velocidad['invPropNuk']*(1+$mejoraVelocidad);
-                $mejorasDisenios->invPropIon = $velocidad['invPropIon']*(1+$mejoraVelocidad);
-                $mejorasDisenios->invPropPlasma = $velocidad['invPropPlasma']*(1+$mejoraVelocidad);
-                $mejorasDisenios->invPropMa = $velocidad['invPropMa']*(1+$mejoraVelocidad);
+                $mejorasDisenios->invPropQuimico = $velocidad['invPropQuimico'] * (1 + $mejoraVelocidad);
+                $mejorasDisenios->invPropNuk = $velocidad['invPropNuk'] * (1 + $mejoraVelocidad);
+                $mejorasDisenios->invPropIon = $velocidad['invPropIon'] * (1 + $mejoraVelocidad);
+                $mejorasDisenios->invPropPlasma = $velocidad['invPropPlasma'] * (1 + $mejoraVelocidad);
+                $mejorasDisenios->invPropMa = $velocidad['invPropMa'] * (1 + $mejoraVelocidad);
                 //$mejorasDisenios->invPropHMA = $velocidad['invPropHMA'];
-                $mejorasDisenios->invManiobraQuimico = $maniobra['invPropQuimico']*(1+$mejoraManiobra);
-                $mejorasDisenios->invManiobraNuk = $maniobra['invPropNuk']*(1+$mejoraManiobra);
-                $mejorasDisenios->invManiobraIon = $maniobra['invPropIon']*(1+$mejoraManiobra);
-                $mejorasDisenios->invManiobraPlasma = $maniobra['invPropPlasma']*(1+$mejoraManiobra);
-                $mejorasDisenios->invManiobraMa = $maniobra['invPropMa']*(1+$mejoraManiobra);
+                $mejorasDisenios->invManiobraQuimico = $maniobra['invPropQuimico'] * (1 + $mejoraManiobra);
+                $mejorasDisenios->invManiobraNuk = $maniobra['invPropNuk'] * (1 + $mejoraManiobra);
+                $mejorasDisenios->invManiobraIon = $maniobra['invPropIon'] * (1 + $mejoraManiobra);
+                $mejorasDisenios->invManiobraPlasma = $maniobra['invPropPlasma'] * (1 + $mejoraManiobra);
+                $mejorasDisenios->invManiobraMa = $maniobra['invPropMa'] * (1 + $mejoraManiobra);
                 //$mejorasDisenios->invPropHMA = $maniobra['invPropHMA'];
                 $mejorasDisenios->fuel = $cualidades['fuel'];
                 $mejorasDisenios->municion = $cualidades['municion'];
@@ -1783,15 +1783,8 @@ class DisenioController extends Controller
 
                 //$prueba=$armasCualidades;
                 //$prueba=$armasTengo;
-
-                //use App\DaniosDisenios;
-                //use App\CostesDisenios;
-                //use App\CualidadesDisenios;
-
-
-
-
             }
+            Log::alert("DESPUES");
         }
 
 
