@@ -118,7 +118,7 @@ class InvestigacionController extends Controller
     }
 
     //Acceso a subir nivel de construccion
-    public function construir($idInvestigacion, $personal, $tab = "militares-tab")
+    public function investigar($idInvestigacion, $personal, $tab = "militares-tab")
     {
         //En que planeta estamos
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
@@ -176,7 +176,7 @@ class InvestigacionController extends Controller
         $tiempo = $investigacion->calcularTiempoInvestigaciones($costeTotal, $personal, $nivel - 1, $planetaActual);
 
         //Comprobamos que el tiempo no sea false, seria un error de personal
-        if (!$tiempo) {
+        if ($tiempo == false) {
             $error = true;
         }
 
@@ -191,7 +191,6 @@ class InvestigacionController extends Controller
         ) {
             $error = true;
         }
-        // dd($error);
 
         //Comprobamos que el edificio se puede construir
         $recurso = $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos;
@@ -214,7 +213,6 @@ class InvestigacionController extends Controller
         } elseif ($accion != "Investigando") {
             $error = true;
         }
-        // dd($error);
 
         //Si no tenemos ningun error continuamos
         if (!$error) {
