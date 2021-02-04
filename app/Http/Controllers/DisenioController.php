@@ -70,6 +70,7 @@ class DisenioController extends Controller
         $disenios = $jugadorActual->disenios;
         $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
         $constantes = Constantes::where('tipo', 'investigacion')->get();
+        $mejoras = $disenios->mejoras;
         $cazas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
             ->whereHas('fuselajes', function (Builder $query) {
                 $query->where([
@@ -149,6 +150,7 @@ class DisenioController extends Controller
             'disenios',
             'investigaciones',
             'constantes',
+            'mejoras',
             'colaDisenios',
             'PConstantes',
             'cazas',

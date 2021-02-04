@@ -68,7 +68,6 @@ class Disenios extends Model
         foreach ($disenios as $disenio) {
             $mejoras = $disenio->mejoras;
             $disenio->datos = new MejorasDisenios();
-            // $invPropQuimico = $investigaciones->where('codigo', 'invPropQuimico')->first()->nivel;
             // Velocidades
             $disenio->datos->invPropQuimico = $mejoras->invPropQuimico * (1 + ($investigaciones->where('codigo', 'invPropQuimico')->first()->nivel * $constantes->where('codigo', 'mejorainvPropQuimico')->first()->valor));
             $disenio->datos->invPropNuk = $mejoras->invPropNuk * (1 + ($investigaciones->where('codigo', 'invPropNuk')->first()->nivel * $constantes->where('codigo', 'mejorainvPropNuk')->first()->valor));
