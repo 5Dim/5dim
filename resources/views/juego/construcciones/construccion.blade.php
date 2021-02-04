@@ -56,8 +56,6 @@
                         id[{{ $i }}] = {{ $colaConstruccion[$i]->id }};
                         tiempos[{{ $i }}] = {{ strtotime($colaConstruccion[$i]->finished_at) - strtotime(date('Y-m-d H:i:s')) }};
                     @endfor
-                    // console.log(id);
-                    // console.log(tiempos);
                     cuentaAtras(id, tiempos);
                 </script>
             @endif

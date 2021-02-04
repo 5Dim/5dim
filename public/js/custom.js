@@ -434,56 +434,78 @@ function formatNumber(num, prefix) {
     return prefix + splitLeft + splitRight;
 }
 
-function recalculaCostos(id) {
-    if (Number.isInteger($("#disenio" + id).val() * 1)) {
-        console.log(id);
-        var cantidad = Math.round($("#disenio" + id).val());
-        disenio = $.grep(disenios, function (obj) {
-            return obj.id == id;
-        })[0];
-        factor = cadenaProduccion(cantidad, 1);
+function recalculaCostos(id, coste) {
+    var cantidad = Math.round($("#disenio" + id).val());
+    disenio = $.grep(disenios, function (obj) {
+        return obj.id == id;
+    })[0];
+    factor = cadenaProduccion(cantidad, 1);
 
-        $("#mineral" + id).text(
-            formatNumber(
-                Math.round(factor * cantidad * disenio["costes"]["mineral"])
-            )
-        );
-        $("#cristal" + id).text(
-            formatNumber(
-                Math.round(factor * cantidad * disenio["costes"]["cristal"])
-            )
-        );
-        $("#gas" + id).text(
-            formatNumber(
-                Math.round(factor * cantidad * disenio["costes"]["gas"])
-            )
-        );
-        $("#plastico" + id).text(
-            formatNumber(
-                Math.round(factor * cantidad * disenio["costes"]["plastico"])
-            )
-        );
-        $("#ceramica" + id).text(
-            formatNumber(
-                Math.round(factor * cantidad * disenio["costes"]["ceramica"])
-            )
-        );
-        $("#liquido" + id).text(
-            formatNumber(
-                Math.round(factor * cantidad * disenio["costes"]["liquido"])
-            )
-        );
-        $("#micros" + id).text(
-            formatNumber(
-                Math.round(factor * cantidad * disenio["costes"]["micros"])
-            )
-        );
-        $("#personal" + id).text(
-            formatNumber(
-                Math.round(factor * cantidad * disenio["costes"]["personal"])
-            )
-        );
-    }
+    // Recursos
+    $("#mineral" + id).text(
+        formatNumber(Math.round(factor * cantidad * coste.mineral))
+    );
+    $("#cristal" + id).text(
+        formatNumber(Math.round(factor * cantidad * coste.cristal))
+    );
+    $("#gas" + id).text(
+        formatNumber(Math.round(factor * cantidad * coste.gas))
+    );
+    $("#plastico" + id).text(
+        formatNumber(Math.round(factor * cantidad * coste.plastico))
+    );
+    $("#ceramica" + id).text(
+        formatNumber(Math.round(factor * cantidad * coste.ceramica))
+    );
+    $("#liquido" + id).text(
+        formatNumber(Math.round(factor * cantidad * coste.liquido))
+    );
+    $("#micros" + id).text(
+        formatNumber(Math.round(factor * cantidad * coste.micros))
+    );
+    $("#personal" + id).text(
+        formatNumber(Math.round(factor * cantidad * coste.personal))
+    );
+
+    // Restantres
+    $("#restantemineral" + id).text(
+        formatNumber(
+            Math.round(recursos.mineral - factor * cantidad * coste.mineral)
+        )
+    );
+    $("#restantecristal" + id).text(
+        formatNumber(
+            Math.round(recursos.cristal - factor * cantidad * coste.cristal)
+        )
+    );
+    $("#restantegas" + id).text(
+        formatNumber(Math.round(recursos.gas - factor * cantidad * coste.gas))
+    );
+    $("#restanteplastico" + id).text(
+        formatNumber(
+            Math.round(recursos.plastico - factor * cantidad * coste.plastico)
+        )
+    );
+    $("#restanteceramica" + id).text(
+        formatNumber(
+            Math.round(recursos.ceramica - factor * cantidad * coste.ceramica)
+        )
+    );
+    $("#restanteliquido" + id).text(
+        formatNumber(
+            Math.round(recursos.liquido - factor * cantidad * coste.liquido)
+        )
+    );
+    $("#restantemicros" + id).text(
+        formatNumber(
+            Math.round(recursos.micros - factor * cantidad * coste.micros)
+        )
+    );
+    $("#restantepersonal" + id).text(
+        formatNumber(
+            Math.round(recursos.personal - factor * cantidad * coste.personal)
+        )
+    );
 }
 
 function cadenaProduccion(cantidad, tamanio) {
@@ -577,4 +599,24 @@ function cuentaAtras(id, tiempos) {
             location.reload();
         });
     }
+}
+
+function calculaMaximo(costes, id) {
+    var minimo = Math.min(
+        recursos.mineral / costes.mineral,
+        recursos.cristal / costes.cristal,
+        recursos.gas / costes.gas,
+        recursos.plastico / costes.plastico,
+        recursos.ceramica / costes.ceramica,
+        recursos.liquido / costes.liquido,
+        recursos.micros / costes.micros,
+        recursos.personal / costes.personal
+    );
+    minimo = Math.floor(minimo);
+    $("#disenio" + id).val(minimo);
+    recalculaCostos(id, costes);
+}
+
+function resetCantidad(id) {
+    $("#disenio" + id).val(1);
 }
