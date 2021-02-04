@@ -112,9 +112,9 @@ class Disenios extends Model
         $this->datos->recoleccion = $mejoras->recoleccion * (1 + ($investigaciones->where('codigo', 'invRecoleccion')->first()->nivel * $constantes->where('codigo', 'mejorainvRecoleccion')->first()->valor));
 
         // Varios
-        // $this->datos->municion = $mejoras->municion * 1 - ($investigaciones->where('codigo', 'invIa')->first()->nivel * $constantes->where('codigo', 'mejorainvIa')->first()->valor);
-        // $this->datos->fuel = $mejoras->fuel * 1 - ($investigaciones->where('codigo', 'invIa')->first()->nivel * $constantes->where('codigo', 'mejorainvIa')->first()->valor);
-        // $this->datos->mantenimiento = $mejoras->mantenimiento * 1 - ($investigaciones->where('codigo', 'invIa')->first()->nivel * $constantes->where('codigo', 'mejorainvIa')->first()->valor);
-        // $this->datos->tiempo = $mejoras->tiempo * 1 - ($investigaciones->where('codigo', 'invIa')->first()->nivel * $constantes->where('codigo', 'mejorainvIa')->first()->valor);
+        $this->datos->municion = $mejoras->municion;
+        $this->datos->fuel = $mejoras->fuel;
+        $this->datos->mantenimiento = $mejoras->mantenimiento;
+        $this->datos->tiempo = $mejoras->tiempo;
     }
 }
