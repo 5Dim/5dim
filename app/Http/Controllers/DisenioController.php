@@ -73,7 +73,7 @@ class DisenioController extends Controller
         for ($i=0; $i < count($disenios); $i++) {
             $mejoras[$i] = $disenios[$i]->mejoras;
         }
-        $mejoras = $disenios->mejoras;
+        // $mejoras = $disenios->mejoras;
         $cazas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
             ->whereHas('fuselajes', function (Builder $query) {
                 $query->where([
