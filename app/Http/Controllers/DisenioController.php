@@ -68,6 +68,8 @@ class DisenioController extends Controller
 
         //Devolvemos todos los disenios
         $disenios = $jugadorActual->disenios;
+        $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
+        $constantes = Constantes::where('tipo', 'investigacion')->get();
         $cazas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
             ->whereHas('fuselajes', function (Builder $query) {
                 $query->where([
@@ -144,8 +146,9 @@ class DisenioController extends Controller
             'planetaActual',
             'nivelImperio',
             'nivelEnsamblajeFuselajes',
-            'investigaciones',
             'disenios',
+            'investigaciones',
+            'constantes',
             'colaDisenios',
             'PConstantes',
             'cazas',

@@ -134,7 +134,9 @@
 
     <script>
         var disenios = @json($disenios);
+        var investigaciones = @json($investigaciones);
+        var constantes = @json($constantes);
         var PConstantes = @json($PConstantes);
-
+        calcularDisenios(disenios, investigaciones, constantes);
     </script>
 @endsection
