@@ -478,6 +478,9 @@
     <!-- Select2 -->
     <script src="{{ asset('js/select2/select2.min.js') }}"></script>
 
+    <!-- Easy Timer JS -->
+    <script src="{{ asset('js/easytimer/easytimer.min.js') }}"></script>
+
     <!-- Personalizado -->
     <script src="{{ asset('js/custom.js') }}"></script>
 

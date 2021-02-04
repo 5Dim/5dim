@@ -13,8 +13,8 @@
                                     <td class=" text-warning">Accion</td>
                                     <td class=" text-warning">Nivel</td>
                                     <td class=" text-warning">Personal</td>
-                                    <td class=" text-warning">Empeza a las</td>
                                     <td class=" text-warning">Acaba a las</td>
+                                    <td class=" text-warning">Tiempo restante</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 @for ($i = 0; $i < count($colaConstruccion); $i++)
@@ -32,11 +32,10 @@
                                         <td class=" text-light align-middle borderless">
                                             {{ number_format($colaConstruccion[$i]->personal, 0, ',', '.') }}
                                         </td>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ $colaConstruccion[$i]->created_at }}
-                                        </td>
                                         <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
                                             {{ $colaConstruccion[$i]->finished_at }}
+                                        </td>
+                                        <td class=" text-light align-middle borderless" id="{{ $colaConstruccion[$i]->id }}">
                                         </td>
                                         <td class=" text-light align-middle borderless">
                                             <button type="button" class="btn btn-outline-danger col-12 btn-sm"
@@ -50,14 +49,24 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    var id = [];
+                    var tiempos = [];
+                    @for ($i = 0; $i < count($colaConstruccion); $i++)
+                        id[{{ $i }}] = {{ $colaConstruccion[$i]->id }};
+                        tiempos[{{ $i }}] = {{ strtotime($colaConstruccion[$i]->finished_at) - strtotime(date('Y-m-d H:i:s')) }};
+                    @endfor
+                    // console.log(id);
+                    // console.log(tiempos);
+                    cuentaAtras(id, tiempos);
+                </script>
             @endif
 
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
                     <a class="nav-item nav-link  active" id="mina-tab" data-bs-toggle="tab" href="#mina" role="tab"
-                        aria-controls="mina"
-                        aria-selected="true">
+                        aria-controls="mina" aria-selected="true">
                         Minas
                     </a>
                     <a class="nav-item nav-link" id="industria-tab" data-bs-toggle="tab" href="#industria" role="tab"
@@ -95,66 +104,72 @@
                 <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
                     @foreach ($minas as $mina)
                         @include('juego.construcciones.cajitaConstruccion', [
-                            'construccion'=> $mina,
-                            'dependencia' => $dependencias->where('codigo', $mina->codigo)->first(),
-                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $mina->codigo)->first()->codigoRequiere)->first()->nivel,
-                            'personal' => $recursos->personal - $personalOcupado,
-                            'tab' => 'mina-tab',
+                        'construccion'=> $mina,
+                        'dependencia' => $dependencias->where('codigo', $mina->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo',
+                        $mina->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'personal' => $recursos->personal - $personalOcupado,
+                        'tab' => 'mina-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="industria" role="tabpanel" aria-labelledby="industria-tab">
                     @foreach ($industrias as $industria)
                         @include('juego.construcciones.cajitaConstruccion', [
-                            'construccion'=> $industria,
-                            'dependencia' => $dependencias->where('codigo', $industria->codigo)->first(),
-                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $industria->codigo)->first()->codigoRequiere)->first()->nivel,
-                            'personal' => $recursos->personal - $personalOcupado,
-                            'tab' => 'industria-tab',
+                        'construccion'=> $industria,
+                        'dependencia' => $dependencias->where('codigo', $industria->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo',
+                        $industria->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'personal' => $recursos->personal - $personalOcupado,
+                        'tab' => 'industria-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade " id="almacenes" role="tabpanel " aria-labelledby="almacenes-tab">
                     @foreach ($almacenes as $almacen)
                         @include('juego.construcciones.cajitaConstruccion', [
-                            'construccion'=> $almacen,
-                            'dependencia' => $dependencias->where('codigo', $almacen->codigo)->first(),
-                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $almacen->codigo)->first()->codigoRequiere)->first()->nivel,
-                            'personal' => $recursos->personal - $personalOcupado,
-                            'tab' => 'almacenes-tab',
+                        'construccion'=> $almacen,
+                        'dependencia' => $dependencias->where('codigo', $almacen->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo',
+                        $almacen->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'personal' => $recursos->personal - $personalOcupado,
+                        'tab' => 'almacenes-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="militares" role="tabpanel" aria-labelledby="militares-tab">
                     @foreach ($militares as $militar)
                         @include('juego.construcciones.cajitaConstruccion', [
-                            'construccion'=> $militar,
-                            'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
-                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $militar->codigo)->first()->codigoRequiere)->first()->nivel,
-                            'personal' => $recursos->personal - $personalOcupado,
-                            'tab' => 'militares-tab',
+                        'construccion'=> $militar,
+                        'dependencia' => $dependencias->where('codigo', $militar->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo',
+                        $militar->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'personal' => $recursos->personal - $personalOcupado,
+                        'tab' => 'militares-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="desarrollo" role="tabpanel" aria-labelledby="desarrollo-tab">
                     @foreach ($desarrollos as $desarrollo)
                         @include('juego.construcciones.cajitaConstruccion', [
-                            'construccion'=> $desarrollo,
-                            'dependencia' => $dependencias->where('codigo', $desarrollo->codigo)->first(),
-                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $desarrollo->codigo)->first()->codigoRequiere)->first()->nivel,
-                            'personal' => $recursos->personal - $personalOcupado,
-                            'tab' => 'desarrollo-tab',
+                        'construccion'=> $desarrollo,
+                        'dependencia' => $dependencias->where('codigo', $desarrollo->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo',
+                        $desarrollo->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'personal' => $recursos->personal - $personalOcupado,
+                        'tab' => 'desarrollo-tab',
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="observacion" role="tabpanel" aria-labelledby="observacion-tab">
                     @foreach ($observaciones as $observacion)
                         @include('juego.construcciones.cajitaConstruccion', [
-                            'construccion'=> $observacion,
-                            'dependencia' => $dependencias->where('codigo', $observacion->codigo)->first(),
-                            'nivel' => $construcciones->where('codigo', $dependencias->where('codigo', $observacion->codigo)->first()->codigoRequiere)->first()->nivel,
-                            'personal' => $recursos->personal - $personalOcupado,
-                            'tab' => 'observacion-tab',
+                        'construccion'=> $observacion,
+                        'dependencia' => $dependencias->where('codigo', $observacion->codigo)->first(),
+                        'nivel' => $construcciones->where('codigo', $dependencias->where('codigo',
+                        $observacion->codigo)->first()->codigoRequiere)->first()->nivel,
+                        'personal' => $recursos->personal - $personalOcupado,
+                        'tab' => 'observacion-tab',
                         ])
                     @endforeach
                 </div>
@@ -184,8 +199,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="datosModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="datosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

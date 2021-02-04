@@ -1,5 +1,6 @@
 // Variables para el calculo de recursos
 var recursos, produccion, almacenes, invProduccion;
+var timers = [];
 
 // Popover
 var popoverTriggerList = [].slice.call(
@@ -555,4 +556,25 @@ function cadenaProduccion(cantidad, tamanio) {
     }
 
     return factor;
+}
+
+function cuentaAtras(id, tiempos) {
+    for (let i = 0; i < tiempos.length; i++) {
+        timers[i] = new easytimer.Timer({
+            precision: "seconds",
+            countdown: true,
+            startValues: { seconds: tiempos[i] },
+        });
+
+        timers[i].start();
+
+        $("#" + id[i]).html(timers[i].getTimeValues().toString());
+        timers[i].addEventListener("secondsUpdated", function () {
+            $("#" + id[i]).html(timers[i].getTimeValues().toString());
+        });
+
+        timers[i].addEventListener("targetAchieved", function () {
+            location.reload();
+        });
+    }
 }
