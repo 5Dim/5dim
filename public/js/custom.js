@@ -521,7 +521,16 @@ function cuentaAtras(id, tiempos) {
 
         $("#" + id[i]).html(timers[i].getTimeValues().toString());
         timers[i].addEventListener("secondsUpdated", function () {
-            $("#" + id[i]).html(timers[i].getTimeValues().toString());
+            $("#" + id[i]).html(
+                timers[i]
+                    .getTimeValues()
+                    .toString([
+                        "days",
+                        "hours",
+                        "minutes",
+                        "seconds",
+                    ])
+            );
         });
 
         timers[i].addEventListener("targetAchieved", function () {
