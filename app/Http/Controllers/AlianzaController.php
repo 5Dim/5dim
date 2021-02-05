@@ -84,6 +84,7 @@ class AlianzaController extends Controller
                 'alianzas',
             ));
         } else {
+            $alianzaActual = Alianzas::find($jugadorActual->alianzas_id);
             return view('juego.alianza.alianza', compact(
                 // Recursos
                 'recursos',
@@ -98,9 +99,8 @@ class AlianzaController extends Controller
                 'nivelEnsamblajeFuselajes',
                 'investigaciones',
                 'alianzas',
-                'planetasJugador',
-                'planetasAlianza',
-                'jugadorActual'
+                'jugadorActual',
+                'alianzaActual',
             ));
         }
     }
@@ -146,6 +146,7 @@ class AlianzaController extends Controller
         }
         $alianza->interno = request()->input('interno');
         $alianza->portada = request()->input('portada');
+        $alianza->jugadores_id = session()->get('jugadores_id');
         $alianza->save();
 
         $jugador = new Jugadores();
@@ -168,6 +169,8 @@ class AlianzaController extends Controller
 
         $jugadorActual->alianzas_id = $alianza->id;
         $jugadorActual->save();
+
+        dd($alianza->creador);
 
         return redirect('/juego/alianza');
     }

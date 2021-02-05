@@ -18,4 +18,8 @@ class Alianzas extends Model
     {
         return $this->hasMany(Jugadores::class);
     }
+
+    public function creador() {
+        return $this->hasOne(Jugadores::class, 'id', "jugadores_id");
+    }
 }

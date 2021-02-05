@@ -69,7 +69,7 @@ class DatosMaestrosController extends Controller
         $costesDisenios=new CostesDisenios();
         $costesDisenios=$costesDisenios->generarDatosCostesDisenios();
 
-        $mejorasDisenios = new MejorasDisenios();
-        $mejorasDisenios = $mejorasDisenios->generarDatosMejorasDisenios();
+        // $mejorasDisenios = new MejorasDisenios();
+        // $mejorasDisenios = $mejorasDisenios->generarDatosMejorasDisenios();
     }
 }
