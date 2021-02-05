@@ -620,3 +620,83 @@ function calculaMaximo(costes, id) {
 function resetCantidad(id) {
     $("#disenio" + id).val(1);
 }
+
+
+function calcularDisenios(disenios,mejoras, investigaciones, constantes){
+
+    var rdiseno=[];
+    var resultado=[rdiseno];
+
+    disenios.forEach(diseno => {
+
+        masa=($.grep(mejoras, function(valorBase){return valorBase.id == 1}))[0]['masa'];
+
+        // Velocidades
+
+        EinvPropQuimico=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invPropQuimico');
+        EinvPropNuk=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invPropNuk');
+        EinvPropIon=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invPropIon');
+        EinvPropPlasma=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invPropPlasma');
+        EinvPropMa=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invPropMa');
+
+        rdiseno.velocidad = Math.pow((EinvPropQuimico + EinvPropNuk + EinvPropIon + EinvPropPlasma + EinvPropMa), 1.33) / masa;
+
+
+        /// maniobra
+        invest='invManiobraQuimico';investr='invPropQuimico';minves='mejora'+invest;
+        EinvManiobraQuimico=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0][invest] * (1 + (($.grep(investigaciones, function(nivelInv){return nivelInv.codigo == investr}))[0]['nivel'] * ($.grep(constantes, function(nivelConst){return nivelConst.codigo == minves}))[0]['valor']));
+
+        invest='invManiobraNuk';investr='invPropQuimico';minves='mejora'+invest;
+        EinvManiobraNuk=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0][invest] * (1 + (($.grep(investigaciones, function(nivelInv){return nivelInv.codigo == investr}))[0]['nivel'] * ($.grep(constantes, function(nivelConst){return nivelConst.codigo == minves}))[0]['valor']));
+
+        invest='invManiobraIon';investr='invPropQuimico';minves='mejora'+invest;
+        EinvManiobraIon=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0][invest] * (1 + (($.grep(investigaciones, function(nivelInv){return nivelInv.codigo == investr}))[0]['nivel'] * ($.grep(constantes, function(nivelConst){return nivelConst.codigo == minves}))[0]['valor']));
+
+        invest='invManiobraPlasma';investr='invPropQuimico';minves='mejora'+invest;
+        EinvManiobraPlasma=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0][invest] * (1 + (($.grep(investigaciones, function(nivelInv){return nivelInv.codigo == investr}))[0]['nivel'] * ($.grep(constantes, function(nivelConst){return nivelConst.codigo == minves}))[0]['valor']));
+
+        invest='invManiobraMa';investr='invPropQuimico';minves='mejora'+invest;
+        EinvManiobraMa=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0][invest] * (1 + (($.grep(investigaciones, function(nivelInv){return nivelInv.codigo == investr}))[0]['nivel'] * ($.grep(constantes, function(nivelConst){return nivelConst.codigo == minves}))[0]['valor']));
+
+
+        rdiseno.maniobra = Math.pow((EinvManiobraQuimico + EinvManiobraNuk + EinvManiobraIon + EinvManiobraPlasma + EinvManiobraMa), 1.33) / masa;
+
+        // Blindajes
+        EinvTitanio=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invTitanio');
+        EinvReactivo=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invReactivo');
+        EinvResinas=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invResinas');
+        EinvPlacas=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invPlacas');
+        EinvCarbonadio=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invCarbonadio');
+
+        rdiseno.defensa =  EinvTitanio + EinvReactivo + EinvResinas + EinvPlacas + EinvCarbonadio;
+
+        //Carga
+        invest='invHangar';minves='mejora'+invest;
+        baseHangar=(1 + (($.grep(investigaciones, function(nivelInv){return nivelInv.codigo == invest}))[0]['nivel'] * ($.grep(constantes, function(nivelConst){return nivelConst.codigo == minves}))[0]['valor']));
+
+        rdiseno.cargaPequenia=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0]['cargaPequenia'] * baseHangar;
+        rdiseno.cargaMediana=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0]['cargaMediana'] * baseHangar;
+        rdiseno.cargaGrande=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0]['cargaGrande'] * baseHangar;
+        rdiseno.cargaEnorme=($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0]['cargaEnorme'] * baseHangar;
+
+        rdiseno.carga=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invCarga','carga');
+        rdiseno.recoleccion=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invRecoleccion','recoleccion');
+        rdiseno.extraccion=ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,'invRecoleccion','extraccion');
+
+        // Varios
+        rdiseno.municion = $.grep(mejoras, function(valorBase){return valorBase.id == diseno.id})[0]['municion'];
+        rdiseno.fuel = $.grep(mejoras, function(valorBase){return valorBase.id == diseno.id})[0]['fuel'];
+        rdiseno.mantenimiento = $.grep(mejoras, function(valorBase){return valorBase.id == diseno.id})[0]['mantenimiento'];
+        rdiseno.tiempo = $.grep(mejoras, function(valorBase){return valorBase.id == diseno.id})[0]['tiempo'];
+
+        resultado[diseno.id]=rdiseno;
+
+    });
+    console.log(resultado);
+
+}
+
+function ResultadoRealDiseno(diseno,mejoras, investigaciones, constantes,invest,invstobj=invest){
+    minves='mejora'+invest;
+    return ($.grep(mejoras, function(valorBase){return valorBase.id == diseno.id}))[0][invstobj] * (1 + (($.grep(investigaciones, function(nivelInv){return nivelInv.codigo == invest}))[0]['nivel'] * ($.grep(constantes, function(nivelConst){return nivelConst.codigo == minves}))[0]['valor']));
+}
