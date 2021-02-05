@@ -83,8 +83,8 @@ class FabricasController extends Controller
         $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
         $disenio = Disenios::find($idDisenio);
         $costes = $disenio->costes;
-        $disenio->calculaMejoras();
-        $tiempo = $disenio->datos->tiempo;
+        // $disenio->calculaMejoras();
+        $tiempo = $disenio->mejoras->tiempo;
         $inicio = date("Y-m-d H:i:s");
         $error = false;
 
