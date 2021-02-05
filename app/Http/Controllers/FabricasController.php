@@ -112,7 +112,7 @@ class FabricasController extends Controller
         }
 
         if (!$error) {
-            $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
+            $cadenaProduccion = 1; //factor de ahorro por cantidad de produccion
 
             //Restamos recursos
             $recursos->mineral -= (($costes->mineral * $cantidad) * $cadenaProduccion);
