@@ -439,7 +439,7 @@ function recalculaCostos(id, coste) {
     disenio = $.grep(disenios, function (obj) {
         return obj.id == id;
     })[0];
-    factor = cadenaProduccion(cantidad, 1);
+    factor = 1; // factor por cantidad producida
 
     // Recursos
     $("#mineral" + id).text(
