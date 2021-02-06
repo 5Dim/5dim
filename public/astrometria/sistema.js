@@ -56,12 +56,12 @@ function versistema(texto){
   var numero = Math.floor(Math.random() * (3-1) + 1);
   if (numero % 2 == 0)
   {
-    xmlhttp.open("GET", "data/planetas2.json", true);
+    xmlhttp.open("GET", "/astrometria/data/planetas2.json", true);
     // xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/universo", true);
       xmlhttp.send();
   }else 
   {
-    xmlhttp.open("GET", "data/planetas.json", true);
+    xmlhttp.open("GET", "/astrometria/data/planetas.json", true);
 // xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/universo", true);
   xmlhttp.send();
 }
@@ -118,12 +118,12 @@ function creasistemasolar(texto){
   mascara.drawRect  (0, 0, 150,1000);
   mascara.endFill();
   
-  fondo_sistema = sistemas.addChild(new PIXI.Sprite(PIXI.Texture.from('img/fondo_sistema-200.png')));
+  fondo_sistema = sistemas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/fondo_sistema-200.png')));
   cont_sistema = sistemas.addChild(new PIXI.Container());
   contenedor_efe_energia = sistemas.addChild(new PIXI.Container());   
   cont_sistema.visible =true;
-  sol = sistemas.addChild(new PIXI.Sprite(PIXI.Texture.from('img/sistema/sol1.png')));
-  fondo_sistema_marco = sistemas.addChild(new PIXI.Sprite(PIXI.Texture.from('img/fondo_sistema-200_marco.png')));
+  sol = sistemas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/sistema/sol1.png')));
+  fondo_sistema_marco = sistemas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/fondo_sistema-200_marco.png')));
   sol.mask = mascara;    
   sol.anchor.set(0.5);
 
@@ -147,8 +147,8 @@ function creasistemasolar(texto){
   txtsistema.anchor.set(0.5);
   txtsistema.position.set (45, 180);
 
-  var cerrar_on = PIXI.Texture.from('img/botones/b-cerrar1.png');
-  var cerrar_off = PIXI.Texture.from('img/botones/b-cerrar0.png');
+  var cerrar_on = PIXI.Texture.from('/astrometria/img/botones/b-cerrar1.png');
+  var cerrar_off = PIXI.Texture.from('/astrometria/img/botones/b-cerrar0.png');
 
   b_cerrar = new PIXI.Sprite(cerrar_on); // se inicia activo
   b_cerrar.anchor.set(0.5);
@@ -296,7 +296,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       nom_planet.anchor.set (0.5);
       nom_planet.position.set((n*100)+44 , 100);
 
-      var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from('img/marca-nombre-planeta.png')));
+      var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/marca-nombre-planeta.png')));
       marca_planet.anchor.set (0.5,0.5);
       marca_planet.position.set( (n*100)+44 , 100);
 
@@ -346,18 +346,18 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
 
         // texturas para los botones
 
-        var atacar_on = PIXI.Texture.from('img/botones/atacar1.png');
-        var atacar_off = PIXI.Texture.from('img/botones/atacar0.png');
-        var conquistar_on = PIXI.Texture.from('img/botones/conquistar1.png');
-        var conquistar_off = PIXI.Texture.from('img/botones/conquistar0.png');
-        var recolectar_on = PIXI.Texture.from('img/botones/recolectar1.png');
-        var recolectar_off = PIXI.Texture.from('img/botones/recolectar0.png');
-        var observar_on = PIXI.Texture.from('img/botones/observar1.png');
-        var observar_off = PIXI.Texture.from('img/botones/observar0.png');
-        var colonizar_on = PIXI.Texture.from('img/botones/colonizar1.png');
-        var colonizar_off = PIXI.Texture.from('img/botones/colonizar0.png');
-        var flotas_on = PIXI.Texture.from('img/botones/vflotas1.png');
-        var flotas_off = PIXI.Texture.from('img/botones/vflotas0.png');
+        var atacar_on = PIXI.Texture.from('/astrometria/img/botones/atacar1.png');
+        var atacar_off = PIXI.Texture.from('/astrometria/img/botones/atacar0.png');
+        var conquistar_on = PIXI.Texture.from('/astrometria/img/botones/conquistar1.png');
+        var conquistar_off = PIXI.Texture.from('/astrometria/img/botones/conquistar0.png');
+        var recolectar_on = PIXI.Texture.from('/astrometria/img/botones/recolectar1.png');
+        var recolectar_off = PIXI.Texture.from('/astrometria/img/botones/recolectar0.png');
+        var observar_on = PIXI.Texture.from('/astrometria/img/botones/observar1.png');
+        var observar_off = PIXI.Texture.from('/astrometria/img/botones/observar0.png');
+        var colonizar_on = PIXI.Texture.from('/astrometria/img/botones/colonizar1.png');
+        var colonizar_off = PIXI.Texture.from('/astrometria/img/botones/colonizar0.png');
+        var flotas_on = PIXI.Texture.from('/astrometria/img/botones/vflotas1.png');
+        var flotas_off = PIXI.Texture.from('/astrometria/img/botones/vflotas0.png');
 
         if (b_obs==1){
           b_observar = new PIXI.Sprite(observar_on);

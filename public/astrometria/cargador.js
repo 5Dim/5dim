@@ -21,11 +21,11 @@ var textura_ef_circulo,textura_ef_transicion,textura_ef_energia;
 let efNaves, efTransicion, efEnergia, efGeneral, efPlanetas1,efNavesOrbitando, efEscudo;
 let ef_circulo,ef_transicion,ef_energia, ef_general, ef_planetas1;
 
-let jsonNaves = 'img/ef_circulo.json';
-let jsonTransicion = 'img/efectos/transic.json';
+let jsonNaves = '/astrometria/img/ef_circulo.json';
+let jsonTransicion = '/astrometria/img/efectos/transic.json';
 //let jsonEnergia = 'img/efectos/energia2.json';
-let jsonGeneral = 'img/efectos-general.json';
-let jsonPlanetas1 = 'img/planetas1.json';
+let jsonGeneral = '/astrometria/img/efectos-general.json';
+let jsonPlanetas1 = '/astrometria/img/planetas1.json';
 
 
 

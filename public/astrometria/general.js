@@ -42,14 +42,14 @@ function flotasNuevas(){
 
         }
     };
-    xmlhttp.open("GET", "data/flotas2.json", true);
+    xmlhttp.open("GET", "/astrometria/data/flotas2.json", true);
     xmlhttp.send();
 
 }
 
 function Sistema(n, x, y, habitado) {
 
-   var estrella = capa_estrellas.addChild(new PIXI.Sprite(PIXI.Texture.from('img/estrella-blanca.png')));
+   var estrella = capa_estrellas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/estrella-blanca.png')));
 
     // box.tint = Math.floor(Math.random() * 0xffffff)
     estrella.width = estrella.height = 70;
@@ -130,10 +130,10 @@ function angleDegrees(ox, oy,dx,dy) {
 function Ruta(x1, y1, x2, y2, x3, y3, tipo,velocidad) {
     
     if(tipo==1){
-        texture = PIXI.Texture.from('img/flechas-peq2.png');
+        texture = PIXI.Texture.from('/astrometria/img/flechas-peq2.png');
     }
     if(tipo==2){
-        texture = PIXI.Texture.from('img/lineas1.png');
+        texture = PIXI.Texture.from('/astrometria/img/lineas1.png');
     }
 
 
@@ -267,7 +267,7 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
 
 function linea(points,lineSize, lineColor, alpha,conte,num){
    
- texture = PIXI.Texture.from('img/lineas2.png');
+ texture = PIXI.Texture.from('/astrometria/img/lineas2.png');
 
         function angleDegrees(ox, oy,dx,dy) {
             x=dx-ox;
@@ -359,9 +359,9 @@ class Line extends PIXI.Graphics {
 function botonA(texto){
 
 	// texturas para los botones
-	var textureButton = PIXI.Texture.from('img/botones/boton1.png');
-	var textureButtonDown = PIXI.Texture.from('img/botones/boton1.png');
-	var textureButtonOver = PIXI.Texture.from('img/botones/boton1.png');
+	var textureButton = PIXI.Texture.from('/astrometria/img/botones/boton1.png');
+	var textureButtonDown = PIXI.Texture.from('/astrometria/img/botones/boton1.png');
+	var textureButtonOver = PIXI.Texture.from('/astrometria/img/botones/boton1.png');
 
     // botA muestra el numero de flotas en el mapa
     //botA = barra1.addChild(new PIXI.Sprite(textureButton));
@@ -411,8 +411,8 @@ function actualizaTextos(){
 function botonF(){
 
     // texturas para los botones
-    var text_on = PIXI.Texture.from('img/botones/flotas2.png');
-    var text_off = PIXI.Texture.from('img/botones/flotas1.png');
+    var text_on = PIXI.Texture.from('/astrometria/img/botones/flotas2.png');
+    var text_off = PIXI.Texture.from('/astrometria/img/botones/flotas1.png');
 
     //estado del botón
     var estado = true;
@@ -554,8 +554,8 @@ function botonF(){
 function botonR(){
     
     // texturas para los botones
-    var text_on = PIXI.Texture.from('img/botones/radar2.png');
-    var text_off = PIXI.Texture.from('img/botones/radar1.png');
+    var text_on = PIXI.Texture.from('/astrometria/img/botones/radar2.png');
+    var text_off = PIXI.Texture.from('/astrometria/img/botones/radar1.png');
 
     //estado del botón
     var estado = true;
@@ -643,8 +643,8 @@ function botonR(){
 function botonE(){
     
     // texturas para los botones
-    var text_on = PIXI.Texture.from('img/botones/estrellas2.png');
-    var text_off = PIXI.Texture.from('img/botones/estrellas1.png');
+    var text_on = PIXI.Texture.from('/astrometria/img/botones/estrellas2.png');
+    var text_off = PIXI.Texture.from('/astrometria/img/botones/estrellas1.png');
 
     //estado del botón
     var estado = true;
@@ -732,8 +732,8 @@ function botonE(){
 function botonMarcar(){
     
     // texturas para los botones
-    var text_on = PIXI.Texture.from('img/botones/marcar1.png');
-    var text_off = PIXI.Texture.from('img/botones/marcar0.png');
+    var text_on = PIXI.Texture.from('/astrometria/img/botones/marcar1.png');
+    var text_off = PIXI.Texture.from('/astrometria/img/botones/marcar0.png');
 
     //estado del botón
     var estado = false;
@@ -819,8 +819,8 @@ function botonMarcar(){
 function botonRuta(){
    // buscar(home);
     // texturas para los botones
-    var text_on = PIXI.Texture.from('img/botones/rutas2.png');
-    var text_off = PIXI.Texture.from('img/botones/rutas1.png');
+    var text_on = PIXI.Texture.from('/astrometria/img/botones/rutas2.png');
+    var text_off = PIXI.Texture.from('/astrometria/img/botones/rutas1.png');
 
     //estado del botón
     var estado = false;

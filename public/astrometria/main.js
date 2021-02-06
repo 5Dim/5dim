@@ -32,10 +32,10 @@ var txt_fps="";
 var txt_num_flotas="";
 var txt_zoom="";
 var lineaprueba;
-const jsonUniverso ="data/universo.json";
-const jsonFlotas ="data/flotas.json";
-const jsonRadares ="data/radares.json";
-const jsonRutas ="data/rutas.json";
+const jsonUniverso ="/astrometria/data/universo.json";
+const jsonFlotas ="/astrometria/data/flotas.json";
+const jsonRadares ="/astrometria/data/radares.json";
+const jsonRutas ="/astrometria/data/rutas.json";
 let home, homex, homey;
 let creaRuta=false;
 var ruta = [];
@@ -116,7 +116,7 @@ function creabarra(){
 
 function creainfoflotas(){
   // se crea el panel de info de las flotas
-  panel = infoflotas.addChild(new PIXI.Sprite(PIXI.Texture.from('img/info-flota.png')));
+  panel = infoflotas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/info-flota.png')));
   panel.buttonMode = false;
   panel.interactive = true;  
 //  panel.alpha= 0.8;
@@ -148,10 +148,10 @@ function creainfoflotas(){
   txtpaneldestino.anchor.set(0.5);
   txtpaneldestino.position.set (0, 20);
 
-  var interceptar_on = PIXI.Texture.from('img/botones/interceptar1.png');
-  var interceptar_off = PIXI.Texture.from('img/botones/interceptar0.png');
-  var flotas_on = PIXI.Texture.from('img/botones/vflotas1.png');
-  var flotas_off = PIXI.Texture.from('img/botones/vflotas0.png');
+  var interceptar_on = PIXI.Texture.from('/astrometria/img/botones/interceptar1.png');
+  var interceptar_off = PIXI.Texture.from('/astrometria/img/botones/interceptar0.png');
+  var flotas_on = PIXI.Texture.from('/astrometria/img/botones/vflotas1.png');
+  var flotas_off = PIXI.Texture.from('/astrometria/img/botones/vflotas0.png');
 
   b_interceptar = new PIXI.Sprite(interceptar_on); // se inicia activo
   b_interceptar.anchor.set(0.5);
@@ -202,7 +202,7 @@ function creainfoflotas(){
 
 function creainfoRutas(){
   // se crea el panel de info de las flotas
-  panelRuta = infoflotas.addChild(new PIXI.Sprite(PIXI.Texture.from('img/info-flota.png')));
+  panelRuta = infoflotas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/info-flota.png')));
   panelRuta.buttonMode = false;
   panelRuta.interactive = true;  
 //  panelRuta.alpha= 0.8;
@@ -234,10 +234,10 @@ function creainfoRutas(){
   txtpanelp3txt.anchor.set(0.5);
   txtpanelp3txt.position.set (0, 20);
 
-  var borrar_on = PIXI.Texture.from('img/botones/borraruta1.png');
-  var borrar_off = PIXI.Texture.from('img/botones/borraruta0.png');
-  var aceptar_on = PIXI.Texture.from('img/botones/aceptar1.png');
-  var aceptar_off = PIXI.Texture.from('img/botones/aceptar0.png');
+  var borrar_on = PIXI.Texture.from('/astrometria/img/botones/borraruta1.png');
+  var borrar_off = PIXI.Texture.from('/astrometria/img/botones/borraruta0.png');
+  var aceptar_on = PIXI.Texture.from('/astrometria/img/botones/aceptar1.png');
+  var aceptar_off = PIXI.Texture.from('/astrometria/img/botones/aceptar0.png');
 
   b_aceptar = new PIXI.Sprite(aceptar_off); // se inicia activo
   b_aceptar.anchor.set(0.5);
@@ -522,7 +522,7 @@ log("SISTEMAS: "+ universo.sistemas.length);
 
     //centro el mapa
     viewport.snap(homex, homey, {topLeft: false,time: 2000,ease: "easeInOutSine", removeOnComplete: true, removeOnInterrupt: true});
-    let texturaflechaHome = PIXI.Texture.from('img/flechahome.png');
+    let texturaflechaHome = PIXI.Texture.from('/astrometria/img/flechahome.png');
     flechaHome = new PIXI.Sprite(texturaflechaHome); // se inicia activo
     flechaHome.anchor.set(0.5);
     flechaHome.position.set (window.innerWidth/2, window.innerHeight/2);

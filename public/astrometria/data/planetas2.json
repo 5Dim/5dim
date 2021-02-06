@@ -1,7 +1,7 @@
 {	"idioma":0,           
     "sistema":14443,                                        
-    "imgsol":"img/sistema/sol17.png",  
-    "imgfondo":"img/sistema/f1.png",         
+    "imgsol":"/astrometria/img/sistema/sol17.png",  
+    "imgfondo":"/astrometria/img/sistema/f1.png",         
     "planetas":[
         { "planeta":1, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0},
         { "planeta":2, "nom_pla":"Tourist info", "nom_jug": "VCODE", "alianza": "-LR-", "estado": 1, "mineral": 40, "cristal":40, "gas": 40, "plastico": 40, "ceramica": 40, "b_observar": 1, "b_atacar": 0, "b_colonizar": 1, "b_recolectar": 1, "b_conquistar": 1, "naves": 1, "img_planeta": "p4","bloqueo": 1},
