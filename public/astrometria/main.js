@@ -50,7 +50,7 @@ function carga_universo() {
     };
     log(xmlhttp);
     //xmlhttp.open("GET", "/astrometria/data/universo.json", true);
-    xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/universo", true);
+    xmlhttp.open("GET", "http://161.97.143.51/juego/astrometria/ajax/universo", true);
     xmlhttp.send();
 
 }
@@ -70,7 +70,7 @@ function carga_flotas() {
         }
     };
     //xmlhttp.open("GET", "/astrometria/data/flotas2.json", true);
-    xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/flotas", true);
+    xmlhttp.open("GET", "http://161.97.143.51/juego/astrometria/ajax/flotas", true);
     xmlhttp.send();
 
 }
@@ -93,7 +93,7 @@ function carga_radares() {
         }
     };
     //xmlhttp.open("GET", "/astrometria/data/radares.json", true);
-    xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/radares", true);
+    xmlhttp.open("GET", "http://161.97.143.51/juego/astrometria/ajax/radares", true);
     xmlhttp.send();
 }
 

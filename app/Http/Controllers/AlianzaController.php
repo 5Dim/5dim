@@ -185,6 +185,16 @@ class AlianzaController extends Controller
         return redirect('/juego/alianza');
     }
 
+    public function salirAlianza()
+    {
+        //Buscamos el jugador
+        $jugador = Jugadores::find(session()->get('planetas_id'));
+        $jugador->alianzas_id = null;
+        $jugador->save();
+
+        return redirect('/juego/alianza');
+    }
+
     public function rechazarSolicitud($idSolicitud)
     {
         //Buscamos la solicitud

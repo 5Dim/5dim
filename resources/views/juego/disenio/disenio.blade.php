@@ -134,19 +134,54 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="datosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+    <div class="modal fade" id="datosModal" tabindex="-1" aria-labelledby="datosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalTitulo"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header modal-header-dark cajita-success" style="margin: 0px">
+                    <h5 class="modal-title text-success" id="ModalTitulo">
+                        Nave de carga
+                    </h5>
+                    <button type="button" class="btn-close btn-light" style="background-color: white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="datosContenido">
-
-                </div>
-                <div class="modal-footer">
+                <div class="modal-body modal-body-dark cajita" id="datosContenido" style="margin: 0px">
+                        <table class="table table-borderless borderless table-sm text-center anchofijo">
+                            <tr>
+                                <td class="text-warning">Carga</td>
+                                <td class="text-warning">Recoleccion</td>
+                                <td class="text-warning">Extracción</td>
+                                <td class="text-warning">Hangar cazas</td>
+                                <td class="text-warning">Hangar ligeras</td>
+                                <td class="text-warning">Hangar medias</td>
+                                <td class="text-warning">Hangar pesadas</td>
+                            </tr>
+                            <tr>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-warning">Mantenimiento</td>
+                                <td class="text-warning">Munición</td>
+                                <td class="text-warning">Fuel</td>
+                                <td class="text-warning">Velocidad</td>
+                                <td class="text-warning">Maniobrabilidad</td>
+                                <td class="text-warning">Ataque</td>
+                                <td class="text-warning">Defensa</td>
+                            </tr>
+                            <tr>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                                <td class="text-light">0</td>
+                            </tr>
+                        </table>
                 </div>
             </div>
         </div>

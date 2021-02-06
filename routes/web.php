@@ -137,6 +137,7 @@ Route::middleware(
     Route::post('/juego/generarAlianza', [AlianzaController::class, 'generarAlianza']);
     Route::post('/juego/solicitudAlianza', [AlianzaController::class, 'solicitudAlianza']);
     Route::get('/juego/expulsarMiembro/{id}', [AlianzaController::class, 'expulsarMiembro']);
+    Route::get('/juego/salirAlianza', [AlianzaController::class, 'salirAlianza']);
     Route::get('/juego/rechazarSolicitud/{id}', [AlianzaController::class, 'rechazarSolicitud']);
     Route::get('/juego/aceptarSolicitud/{id}', [AlianzaController::class, 'aceptarSolicitud']);
 

@@ -315,8 +315,7 @@
                         </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12 " data-bs-toggle="modal"
-                            data-bs-target="#datosModal">
+                        <button type="button" class="btn btn-outline-primary col-12 " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>
