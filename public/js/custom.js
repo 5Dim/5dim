@@ -508,7 +508,6 @@ function recalculaCostos(id, coste) {
     );
 }
 
-
 function cuentaAtras(id, tiempos) {
     for (let i = 0; i < tiempos.length; i++) {
         timers[i] = new easytimer.Timer({
@@ -519,17 +518,16 @@ function cuentaAtras(id, tiempos) {
 
         timers[i].start();
 
-        $("#" + id[i]).html(timers[i].getTimeValues().toString());
+        $("#" + id[i]).html(
+            timers[i]
+                .getTimeValues()
+                .toString(["days", "hours", "minutes", "seconds"])
+        );
         timers[i].addEventListener("secondsUpdated", function () {
             $("#" + id[i]).html(
                 timers[i]
                     .getTimeValues()
-                    .toString([
-                        "days",
-                        "hours",
-                        "minutes",
-                        "seconds",
-                    ])
+                    .toString(["days", "hours", "minutes", "seconds"])
             );
         });
 

@@ -11,9 +11,8 @@
                                     <td class="text-warning">Disenio</td>
                                     <td class="text-warning">Accion</td>
                                     <td class="text-warning">Cantidad</td>
-                                    <td class="text-warning">Tiempo</td>
-                                    <td class="text-warning">Empeza a las</td>
                                     <td class="text-warning">Acaba a las</td>
+                                    <td class="text-warning">Tiempo restante</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 @for ($i = 0; $i < count($colaDisenios); $i++)
@@ -28,15 +27,10 @@
                                         <td class="text-light align-middle borderless">
                                             {{ $colaDisenios[$i]->cantidad }}
                                         </td>
-                                        <td class="text-light align-middle borderless">
-                                            {{ $colaDisenios[$i]->tiempo }}
-                                        </td>
-                                        <td class="text-light align-middle borderless">
-                                            {{ $colaDisenios[$i]->created_at }}
-                                        </td>
                                         <td id="fechaFin{{ $i }}" class="text-light align-middle borderless">
                                             {{ $colaDisenios[$i]->finished_at }}
                                         </td>
+                                        <td class="text-light align-middle borderless" id="{{ $colaDisenios[$i]->id }}"></td>
                                         <td class="text-light align-middle borderless">
                                             <button type="button" class="btn btn-outline-danger col-12 btn-sm"
                                                 onclick="sendCancelarDisenio('{{ $colaDisenios[$i]->id }}')">
@@ -49,6 +43,15 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    var id = [];
+                    var tiempos = [];
+                    @for ($i = 0; $i < count($colaDisenios); $i++)
+                        id[{{ $i }}] = {{ $colaDisenios[$i]->id }};
+                        tiempos[{{ $i }}] = {{ strtotime($colaDisenios[$i]->finished_at) - strtotime(date('Y-m-d H:i:s')) }};
+                    @endfor
+                    cuentaAtras(id, tiempos);
+                </script>
             @endif
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
@@ -83,40 +86,40 @@
                 <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                     @foreach ($cazas as $caza)
                         @include('juego.disenio.cajitaDisenios', [
-                            'disenio' => $caza,
-                            'tab' => $tab,
+                        'disenio' => $caza,
+                        'tab' => $tab,
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
                     @foreach ($ligeras as $ligera)
                         @include('juego.disenio.cajitaDisenios', [
-                            'disenio' => $ligera,
-                            'tab' => $tab,
+                        'disenio' => $ligera,
+                        'tab' => $tab,
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="medias" role="tabpanel" aria-labelledby="medias-tab">
                     @foreach ($medias as $media)
                         @include('juego.disenio.cajitaDisenios', [
-                            'disenio' => $media,
-                            'tab' => $tab,
+                        'disenio' => $media,
+                        'tab' => $tab,
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="pesadas" role="tabpanel" aria-labelledby="pesadas-tab">
                     @foreach ($pesadas as $pesada)
                         @include('juego.disenio.cajitaDisenios', [
-                            'disenio' => $pesada,
-                            'tab' => $tab,
+                        'disenio' => $pesada,
+                        'tab' => $tab,
                         ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="estaciones" role="tabpanel" aria-labelledby="estaciones-tab">
                     @foreach ($estaciones as $estacion)
                         @include('juego.disenio.cajitaDisenios', [
-                            'disenio' => $estacion,
-                            'tab' => $tab,
+                        'disenio' => $estacion,
+                        'tab' => $tab,
                         ])
                     @endforeach
                 </div>
@@ -132,12 +135,30 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="datosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitulo"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="datosContenido">
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         var disenios = @json($disenios);
         var investigaciones = @json($investigaciones);
         var constantes = @json($constantes);
         var mejoras = @json($mejoras);
         var PConstantes = @json($PConstantes);
-        calcularDisenios(disenios,mejoras, investigaciones, constantes);
+        calcularDisenios(disenios, mejoras, investigaciones, constantes);
+
     </script>
 @endsection
