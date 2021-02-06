@@ -54,7 +54,7 @@ function carga_universo(){
 		xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		        universo = JSON.parse(this.responseText);
-            home=universo.global;
+            home=universo.inicio;
             createViewport();
            // carga_texturas();
 		        createWorld();
@@ -75,8 +75,8 @@ function carga_universo(){
   
 		    }
 		};
-	xmlhttp.open("GET",jsonUniverso , true);
-  // xmlhttp.open("GET", "http://161.97.143.51/juego/astrometria/ajax/universo", true);
+//	xmlhttp.open("GET",jsonUniverso , true);
+  xmlhttp.open("GET", "/juego/astrometria/ajax/universo", true);
 		xmlhttp.send();
 		
 }
