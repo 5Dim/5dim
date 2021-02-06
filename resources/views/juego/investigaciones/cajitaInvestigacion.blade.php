@@ -373,22 +373,28 @@
                         </button>
                     </td>
                     <td>
-                        @if ($dependencia->nivelRequiere <= $nivel)
-                            @if ($investigacion->nivel >= 99 or $investigacion->coste->mineral > $recursos->mineral or $investigacion->coste->cristal > $recursos->cristal or $investigacion->coste->gas > $recursos->gas or $investigacion->coste->plastico > $recursos->plastico or $investigacion->coste->ceramica > $recursos->ceramica or $investigacion->coste->liquido > $recursos->liquido or $investigacion->coste->micros > $recursos->micros)
+                        @if ($nivelLaboratorio->nivel > 0)
+                            @if ($dependencia->nivelRequiere <= $nivel)
+                                @if ($investigacion->nivel >= 99 or $investigacion->coste->mineral > $recursos->mineral or $investigacion->coste->cristal > $recursos->cristal or $investigacion->coste->gas > $recursos->gas or $investigacion->coste->plastico > $recursos->plastico or $investigacion->coste->ceramica > $recursos->ceramica or $investigacion->coste->liquido > $recursos->liquido or $investigacion->coste->micros > $recursos->micros)
+                                    <button type="button" class="btn btn-outline-light col-12" disabled
+                                        onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
+                                        <i class="fa fa-arrow-alt-circle-up "></i> Investigar
+                                    </button>
+                                @else
+                                    <button type="button" class="btn btn-outline-success col-12"
+                                        onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
+                                        <i class="fa fa-arrow-alt-circle-up "></i> Investigar
+                                    </button>
+                                @endif
+                            @else
                                 <button type="button" class="btn btn-outline-light col-12" disabled
                                     onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
-                                    <i class="fa fa-arrow-alt-circle-up "></i> Construir
-                                </button>
-                            @else
-                                <button type="button" class="btn btn-outline-success col-12"
-                                    onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
-                                    <i class="fa fa-arrow-alt-circle-up "></i> Construir
+                                    <i class="fa fa-arrow-alt-circle-up "></i> Requiere {{ strtolower(trans('investigacion.' .  $dependencia->codigoRequiere)) }} nivel {{$dependencia->nivelRequiere }}
                                 </button>
                             @endif
                         @else
-                            <button type="button" class="btn btn-outline-light col-12" disabled
-                                onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
-                                <i class="fa fa-arrow-alt-circle-up "></i> Requiere {{ strtolower(trans('investigacion.' .  $dependencia->codigoRequiere)) }} nivel {{$dependencia->nivelRequiere }}
+                            <button type="button" class="btn btn-outline-light col-12" disabled>
+                                <i class="fa fa-arrow-alt-circle-up "></i> Requiere {{ strtolower(trans('construccion.laboratorio')) }} nivel 1
                             </button>
                         @endif
                     </td>

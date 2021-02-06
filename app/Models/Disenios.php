@@ -60,97 +60,64 @@ class Disenios extends Model
         return $this->hasOne(MejorasDisenios::class);
     }
 
-    public function calculaMejoras()
+    public static function calculaMejoras($disenios)
     {
-        $this->datos = new MejorasDisenios();
-        // dd($this->mejoras);
-        // Velocidades
-        $this->datos->invPropQuimico = $this->mejoras->invPropQuimico * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropQuimico')->first()->nivel * Constantes::where('codigo', 'mejorainvPropQuimico')->first()->valor));
-        $this->datos->invPropNuk = $this->mejoras->invPropNuk * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropNuk')->first()->nivel * Constantes::where('codigo', 'mejorainvPropNuk')->first()->valor));
-        $this->datos->invPropIon = $this->mejoras->invPropIon * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropIon')->first()->nivel * Constantes::where('codigo', 'mejorainvPropIon')->first()->valor));
-        $this->datos->invPropPlasma = $this->mejoras->invPropPlasma * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropPlasma')->first()->nivel * Constantes::where('codigo', 'mejorainvPropPlasma')->first()->valor));
-        $this->datos->invPropMa = $this->mejoras->invPropMa * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropMa')->first()->nivel * Constantes::where('codigo', 'mejorainvPropMa')->first()->valor));
+        $investigaciones = Jugadores::find(session()->get('jugadores_id'))->investigaciones;
+        $constantes = Constantes::where('tipo', 'investigacion')->get();
+        // dd($investigaciones);
+        foreach ($disenios as $disenio) {
+            $mejoras = $disenio->mejoras;
+            $disenio->datos = new MejorasDisenios();
+            // Velocidades
+            $disenio->datos->invPropQuimico = $mejoras->invPropQuimico * (1 + ($investigaciones->where('codigo', 'invPropQuimico')->first()->nivel * $constantes->where('codigo', 'mejorainvPropQuimico')->first()->valor));
+            $disenio->datos->invPropNuk = $mejoras->invPropNuk * (1 + ($investigaciones->where('codigo', 'invPropNuk')->first()->nivel * $constantes->where('codigo', 'mejorainvPropNuk')->first()->valor));
+            $disenio->datos->invPropIon = $mejoras->invPropIon * (1 + ($investigaciones->where('codigo', 'invPropIon')->first()->nivel * $constantes->where('codigo', 'mejorainvPropIon')->first()->valor));
+            $disenio->datos->invPropPlasma = $mejoras->invPropPlasma * (1 + ($investigaciones->where('codigo', 'invPropPlasma')->first()->nivel * $constantes->where('codigo', 'mejorainvPropPlasma')->first()->valor));
+            $disenio->datos->invPropMa = $mejoras->invPropMa * (1 + ($investigaciones->where('codigo', 'invPropMa')->first()->nivel * $constantes->where('codigo', 'mejorainvPropMa')->first()->valor));
 
-        $this->datos->velocidad = ($this->datos->invPropQuimico + $this->datos->invPropNuk + $this->datos->invPropIon + $this->datos->invPropPlasma + $this->datos->invPropMa) / $this->costes->masa;
+            $disenio->datos->velocidad = pow(($disenio->datos->invPropQuimico + $disenio->datos->invPropNuk + $disenio->datos->invPropIon + $disenio->datos->invPropPlasma + $disenio->datos->invPropMa), 1.33) / $mejoras->masa;
 
-        // Maniobra
-        $this->datos->invManiobraQuimico = $this->mejoras->invManiobraQuimico * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropQuimico')->first()->nivel * Constantes::where('codigo', 'mejorainvManiobraQuimico')->first()->valor));
-        $this->datos->invManiobraNuk = $this->mejoras->invManiobraNuk * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropNuk')->first()->nivel * Constantes::where('codigo', 'mejorainvManiobraNuk')->first()->valor));
-        $this->datos->invManiobraIon = $this->mejoras->invManiobraIon * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropIon')->first()->nivel * Constantes::where('codigo', 'mejorainvManiobraIon')->first()->valor));
-        $this->datos->invManiobraPlasma = $this->mejoras->invManiobraPlasma * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropPlasma')->first()->nivel * Constantes::where('codigo', 'mejorainvManiobraPlasma')->first()->valor));
-        $this->datos->invManiobraMa = $this->mejoras->invManiobraMa * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPropMa')->first()->nivel * Constantes::where('codigo', 'mejorainvManiobraMa')->first()->valor));
+            // Maniobra
+            $disenio->datos->invManiobraQuimico = $mejoras->invManiobraQuimico * (1 + ($investigaciones->where('codigo', 'invPropQuimico')->first()->nivel * $constantes->where('codigo', 'mejorainvManiobraQuimico')->first()->valor));
+            $disenio->datos->invManiobraNuk = $mejoras->invManiobraNuk * (1 + ($investigaciones->where('codigo', 'invPropNuk')->first()->nivel * $constantes->where('codigo', 'mejorainvManiobraNuk')->first()->valor));
+            $disenio->datos->invManiobraIon = $mejoras->invManiobraIon * (1 + ($investigaciones->where('codigo', 'invPropIon')->first()->nivel * $constantes->where('codigo', 'mejorainvManiobraIon')->first()->valor));
+            $disenio->datos->invManiobraPlasma = $mejoras->invManiobraPlasma * (1 + ($investigaciones->where('codigo', 'invPropPlasma')->first()->nivel * $constantes->where('codigo', 'mejorainvManiobraPlasma')->first()->valor));
+            $disenio->datos->invManiobraMa = $mejoras->invManiobraMa * (1 + ($investigaciones->where('codigo', 'invPropMa')->first()->nivel * $constantes->where('codigo', 'mejorainvManiobraMa')->first()->valor));
 
-        $this->datos->maniobra = ($this->datos->invManiobraQuimico + $this->datos->invManiobraNuk + $this->datos->invManiobraIon + $this->datos->invManiobraPlasma + $this->datos->invManiobraMa) / $this->costes->masa;
+            $disenio->datos->maniobra = pow(($disenio->datos->invManiobraQuimico + $disenio->datos->invManiobraNuk + $disenio->datos->invManiobraIon + $disenio->datos->invManiobraPlasma + $disenio->datos->invManiobraMa), 1.33) / $mejoras->masa;
 
-        // Blindajes
-        $this->datos->invTitanio = $this->mejoras->invTitanio * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invTitanio')->first()->nivel * Constantes::where('codigo', 'mejorainvTitanio')->first()->valor));
-        $this->datos->invReactivo = $this->mejoras->invReactivo * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invReactivo')->first()->nivel * Constantes::where('codigo', 'mejorainvReactivo')->first()->valor));
-        $this->datos->invResinas = $this->mejoras->invResinas * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invResinas')->first()->nivel * Constantes::where('codigo', 'mejorainvResinas')->first()->valor));
-        $this->datos->invPlacas = $this->mejoras->invPlacas * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invPlacas')->first()->nivel * Constantes::where('codigo', 'mejorainvPlacas')->first()->valor));
-        $this->datos->invCarbonadio = $this->mejoras->invCarbonadio * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invCarbonadio')->first()->nivel * Constantes::where('codigo', 'mejorainvCarbonadio')->first()->valor));
+            // Blindajes
+            $disenio->datos->invTitanio = $mejoras->invTitanio * (1 + ($investigaciones->where('codigo', 'invTitanio')->first()->nivel * $constantes->where('codigo', 'mejorainvTitanio')->first()->valor));
+            $disenio->datos->invReactivo = $mejoras->invReactivo * (1 + ($investigaciones->where('codigo', 'invReactivo')->first()->nivel * $constantes->where('codigo', 'mejorainvReactivo')->first()->valor));
+            $disenio->datos->invResinas = $mejoras->invResinas * (1 + ($investigaciones->where('codigo', 'invResinas')->first()->nivel * $constantes->where('codigo', 'mejorainvResinas')->first()->valor));
+            $disenio->datos->invPlacas = $mejoras->invPlacas * (1 + ($investigaciones->where('codigo', 'invPlacas')->first()->nivel * $constantes->where('codigo', 'mejorainvPlacas')->first()->valor));
+            $disenio->datos->invCarbonadio = $mejoras->invCarbonadio * (1 + ($investigaciones->where('codigo', 'invCarbonadio')->first()->nivel * $constantes->where('codigo', 'mejorainvCarbonadio')->first()->valor));
 
-        // Total Defensa
-        $this->datos->defensa =  $this->datos->invTitanio + $this->datos->invReactivo + $this->datos->invResinas + $this->datos->invPlacas + $this->datos->invCarbonadio;
+            // Total Defensa
+            $disenio->datos->defensa =  $disenio->datos->invTitanio + $disenio->datos->invReactivo + $disenio->datos->invResinas + $disenio->datos->invPlacas + $disenio->datos->invCarbonadio;
 
-        // Total ataque
-        $this->datos->ataque = 0;
-        if (!empty($this->viewDanios()->get())) {
-            foreach ($this->viewDanios()->get() as $fila) {
-                $this->datos->ataque += $fila->total;
+            // Total ataque
+            $disenio->datos->ataque = 0;
+            if (!empty($disenio->viewDanios()->get())) {
+                foreach ($disenio->viewDanios()->get() as $fila) {
+                    $disenio->datos->ataque += $fila->total;
+                }
             }
+
+            // Carga
+            $disenio->datos->carga = $mejoras->carga * (1 + ($investigaciones->where('codigo', 'invCarga')->first()->nivel * $constantes->where('codigo', 'mejorainvCarga')->first()->valor));
+            $disenio->datos->cargaPequenia = $mejoras->cargaPequenia * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor));
+            $disenio->datos->cargaMediana = $mejoras->cargaMediana * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor));
+            $disenio->datos->cargaGrande = $mejoras->cargaGrande * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor));
+            $disenio->datos->cargaEnorme = $mejoras->cargaEnorme * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor));
+            $disenio->datos->cargaMega = $mejoras->cargaMega * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor));
+            $disenio->datos->recoleccion = $mejoras->recoleccion * (1 + ($investigaciones->where('codigo', 'invRecoleccion')->first()->nivel * $constantes->where('codigo', 'mejorainvRecoleccion')->first()->valor));
+
+            // Varios
+            $disenio->datos->municion = $mejoras->municion;
+            $disenio->datos->fuel = $mejoras->fuel;
+            $disenio->datos->mantenimiento = $mejoras->mantenimiento;
+            $disenio->datos->tiempo = $mejoras->tiempo;
         }
-
-        // Carga
-        $this->datos->carga = $this->mejoras->carga * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invCarga')->first()->nivel * Constantes::where('codigo', 'mejorainvCarga')->first()->valor));
-        $this->datos->cargaPequenia = $this->mejoras->cargaPequenia * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invHangar')->first()->nivel * Constantes::where('codigo', 'mejorainvHangar')->first()->valor));
-        $this->datos->cargaMediana = $this->mejoras->cargaMediana * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invHangar')->first()->nivel * Constantes::where('codigo', 'mejorainvHangar')->first()->valor));
-        $this->datos->cargaGrande = $this->mejoras->cargaGrande * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invHangar')->first()->nivel * Constantes::where('codigo', 'mejorainvHangar')->first()->valor));
-        $this->datos->cargaEnorme = $this->mejoras->cargaEnorme * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invHangar')->first()->nivel * Constantes::where('codigo', 'mejorainvHangar')->first()->valor));
-        $this->datos->cargaMega = $this->mejoras->cargaMega * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invHangar')->first()->nivel * Constantes::where('codigo', 'mejorainvHangar')->first()->valor));
-        // $this->datos->recoleccion = $this->mejoras->recoleccion * (1 + (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invRecoleccion')->first()->nivel * Constantes::where('codigo', 'mejorainvRecoleccion')->first()->valor));
-
-        // Varios
-        $this->datos->municion = $this->mejoras->municion * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
-        $this->datos->fuel = $this->mejoras->fuel * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
-        $this->datos->mantenimiento = $this->mejoras->mantenimiento * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
-        $this->datos->tiempo = $this->mejoras->tiempo * 1 - (Jugadores::find(session()->get('jugadores_id'))->investigaciones->where('codigo', 'invIa')->first()->nivel * Constantes::where('codigo', 'mejorainvIa')->first()->valor);
-
-
-        // return $this->datos;
-    }
-
-    public function generarDatosDisenios()
-    {
-
-        // $disenios = [];
-        // $costesDisenios = [];
-
-        // $disenio = new Disenios();
-        // $disenio->nombre = 'Recolector';
-        // $disenio->posicion = 9;
-        // $disenio->descripcion = "Podemos dejar esta nave en órbita de asteroides para recolectar y otra nave que traiga los recursos.";
-        // $disenio->fuselajes_id = 69;
-        // $disenio->codigo = "RECOLECTOR";
-        // $disenio->skin = 1;
-        // $disenio->jugadores_id = 1;
-        // array_push($disenios, $disenio);
-
-        // $disenio = new Disenios();
-        // $disenio->nombre = 'Remolcador';
-        // $disenio->posicion = 9;
-        // $disenio->descripcion = "Esta nave está diseniada para remolcar estaciones o mover planetoides colonizados.";
-        // $disenio->fuselajes_id = 70;
-        // $disenio->codigo = "REMOLCADOR";
-        // $disenio->skin = 1;
-        // $disenio->jugadores_id = 1;
-        // array_push($disenios, $disenio);
-
-
-
-        // foreach ($disenios as $estedisenio) {
-        //     $estedisenio->save();
-        // }
-
-        //return $result;
     }
 }

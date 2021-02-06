@@ -4,17 +4,17 @@
             <table class="table table-borderless borderless table-sm text-center anchofijo"
                 style="margin-top: 5px !important">
                 <tr>
-                    <td colspan="4" class="text-success text-center borderless align-middle">
+                    <td colspan="2" class="text-success text-center borderless align-middle">
                         {{ __('construccion.' . $construccion->codigo) }} nivel {{ $construccion->nivel }} (de 90)
                         <span class="text-warning">
                             {{ count($construccion->enConstrucciones) > 0 ? 'En cola nivel: ' . $construccion->enConstrucciones[count($construccion->enConstrucciones) - 1]->nivel : '' }}
                         </span>
                     </td>
-                    <td colspan="3" class="text-success text-center borderless align-middle"
+                    <td colspan="2" class="text-success text-center borderless align-middle"
                         id="{{ 'termina' . $construccion->codigo }}">Termina:</td>
-                    <td colspan="3" class="text-success text-center borderless align-middle"
+                    <td colspan="2" class="text-success text-center borderless align-middle"
                         id="{{ 'tiempo' . $construccion->codigo }}">Tiempo:</td>
-                    <td colspan="2" class="text-success text-right borderless align-middle">
+                    <td colspan="2" class="text-success text-end borderless">
                         <div class="input-group mb-3 input-group-sm borderless">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light" style="padding: 0px">
@@ -35,7 +35,7 @@
                             src="{{ asset('img/juego/skin0/edificios/' . $construccion->codigo . '.jpg') }}" width="90"
                             height="90">
                     </td>
-                    <td colspan="11" class="borderless">&nbsp;</td>
+                    <td colspan="7" class="borderless"></td>
                 </tr>
                 <tr>
                     <td
@@ -65,18 +65,6 @@
                     <td
                         class="anchofijo {{ $construccion->coste->micros == 0 ? 'text-muted' : 'text-warning' }} borderless">
                         Micros
-                    </td>
-                    <td class="anchofijo text-muted borderless">
-                        Fuel
-                    </td>
-                    <td class="anchofijo text-muted borderless">
-                        M-A
-                    </td>
-                    <td class="anchofijo text-muted borderless">
-                        Munición
-                    </td>
-                    <td class="anchofijo text-muted borderless">
-                        Personal
                     </td>
                 </tr>
                 <tr>
@@ -169,10 +157,6 @@
                             <td class="anchofijo text-light borderless">
                             </td>
                     @endif
-                    <td class="anchofijo text-muted borderless"></td>
-                    <td class="anchofijo text-muted borderless"></td>
-                    <td class="anchofijo text-muted borderless"></td>
-                    <td class="anchofijo text-muted borderless"></td>
                 </tr>
                 <tr>
                     @if ($construccion->coste->mineral > 0 and $construccion->coste->mineral > $recursos->mineral)
@@ -264,14 +248,6 @@
                             <td class="anchofijo text-light borderless">
                             </td>
                     @endif
-                    <td class="borderless">
-                    </td>
-                    <td class="borderless">
-                    </td>
-                    <td class="borderless">
-                    </td>
-                    <td class="borderless">
-                    </td>
                 </tr>
             </table>
         </div>

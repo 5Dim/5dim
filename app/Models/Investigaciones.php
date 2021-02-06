@@ -168,9 +168,13 @@ class Investigaciones extends Model
         ])->first()->nivel;
         if ($personal > 0 && $nivelLaboratorio > 0) {
             $result = ($factinvest * ($nivel) * (($preciototal) / ($personal * $nivelLaboratorio)));
+            if ($result == 0) {
+                $result = 0.01;
+            }
         } else {
             $result = false;
         }
+        // dd($result);
         return $result;
     }
 }

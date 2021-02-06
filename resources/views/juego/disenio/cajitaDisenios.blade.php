@@ -4,13 +4,16 @@
             <table class="table table-borderless borderless table-sm text-center anchofijo"
                 style="margin-top: 5px !important">
                 <tr>
-                    <th colspan="2" class="text-success text-center borderless align-middle">
+                    <th colspan="3" class="text-success text-center borderless align-middle">
                         <big>Creador: {{ $disenio->creador->nombre }}<big>
                     </th>
-                    <th colspan="7" class="text-success text-center borderless align-middle">
-                        <big>Modelo: {{ $disenio->nombre }}<big>
+                    <th colspan="2" class="text-success text-center borderless align-middle">
+                        <big>Tamaño: {{ $disenio->fuselajes->tamanio }}<big>
                     </th>
                     <th colspan="2" class="text-success text-center borderless align-middle">
+                        <big>Modelo: {{ $disenio->nombre }}<big>
+                    </th>
+                    <th colspan="3" class="text-success text-center borderless align-middle">
                         <big>Cantidad:
                             {{ empty($disenio->estacionadas->cantidad) ? '0' : number_format($disenio->estacionadas->cantidad, 0, ',', '.') }}<big>
                     </th>
@@ -21,76 +24,7 @@
                             src="{{ asset('img/fotos naves/skin1/naveMT' . $disenio->fuselajes_id . '.jpg') }}"
                             width="180" height="119">
                     </td>
-                    <td class="anchofijo text-warning borderless">
-                        Ataque
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Defensa
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Velocidad
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Maniobra
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Consumo
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Municion
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Mantenimiento
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Carga
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Hangar cazas
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Hangar ligeras
-                    </td>
-                </tr>
-                <tr>
-                    {{ $disenio->calculaMejoras() }}
-                    {{-- {{ dd($disenio) }} --}}
-                    <td class="anchofijo text-{{ $disenio->datos->ataque > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->ataque, 0, ',', '.') }}
-                    </td>
-                    <td class="anchofijo text-{{ $disenio->datos->defensa > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->defensa, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->datos->velocidad > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->velocidad, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->datos->maniobra > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->maniobra, 0, ',', '.') }}
-                    </td>
-                    <td class="anchofijo text-{{ $disenio->datos->fuel > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->fuel, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->datos->municion > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->municion, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->datos->mantenimiento > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->mantenimiento, 0, ',', '.') }}
-                    </td>
-                    <td class="anchofijo text-{{ $disenio->datos->carga > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->carga, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->datos->cargaPequenia > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->cargaPequenia, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->datos->cargaMediana > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->cargaMediana, 0, ',', '.') }}
-                    </td>
+                    <td colspan="7" class="borderless"></td>
                 </tr>
                 <tr>
                     <td class="anchofijo text-warning borderless">
@@ -118,53 +52,217 @@
                         Personal
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        Hangar medias
-                    </td>
-                    <td class="anchofijo text-warning borderless">
-                        Hangar pesadas
+                        Tiempo
                     </td>
                 </tr>
                 <tr>
-                    <td id="mineral{{ $disenio->id }}"
-                        class="anchofijo text-{{ $disenio->costes->mineral > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->costes->mineral, 0, ',', '.') }}
+                    @if ($disenio->costes->mineral > 0 and $disenio->costes->mineral > $recursos->mineral)
+                        <td id="mineral{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->mineral == '' ? $disenio->costes->mineral : number_format($disenio->costes->mineral, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->mineral > 0 and $disenio->costes->mineral < $recursos->
+                            mineral)
+                            <td id="mineral{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->mineral == '' ? $disenio->costes->mineral : number_format($disenio->costes->mineral, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="mineral{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->cristal > 0 and $disenio->costes->cristal > $recursos->cristal)
+                        <td id="cristal{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->cristal == '' ? $disenio->costes->cristal : number_format($disenio->costes->cristal, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->cristal > 0 and $disenio->costes->cristal < $recursos->
+                            cristal)
+                            <td id="cristal{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->cristal == '' ? $disenio->costes->cristal : number_format($disenio->costes->cristal, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="cristal{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->gas > 0 and $disenio->costes->gas > $recursos->gas)
+                        <td id="gas{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->gas == '' ? $disenio->costes->gas : number_format($disenio->costes->gas, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->gas > 0 and $disenio->costes->gas < $recursos->gas)
+                            <td id="gas{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->gas == '' ? $disenio->costes->gas : number_format($disenio->costes->gas, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="gas{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->plastico > 0 and $disenio->costes->plastico > $recursos->plastico)
+                        <td id="plastico{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->plastico == '' ? $disenio->costes->plastico : number_format($disenio->costes->plastico, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->plastico > 0 and $disenio->costes->plastico < $recursos->
+                            plastico)
+                            <td id="plastico{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->plastico == '' ? $disenio->costes->plastico : number_format($disenio->costes->plastico, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="plastico{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->ceramica > 0 and $disenio->costes->ceramica > $recursos->ceramica)
+                        <td id="ceramica{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->ceramica == '' ? $disenio->costes->ceramica : number_format($disenio->costes->ceramica, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->ceramica > 0 and $disenio->costes->ceramica < $recursos->
+                            ceramica)
+                            <td id="ceramica{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->ceramica == '' ? $disenio->costes->ceramica : number_format($disenio->costes->ceramica, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="ceramica{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->liquido > 0 and $disenio->costes->liquido > $recursos->liquido)
+                        <td id="liquido{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->liquido == '' ? $disenio->costes->liquido : number_format($disenio->costes->liquido, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->liquido > 0 and $disenio->costes->liquido < $recursos->
+                            liquido)
+                            <td id="liquido{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->liquido == '' ? $disenio->costes->liquido : number_format($disenio->costes->liquido, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="liquido{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->micros > 0 and $disenio->costes->micros > $recursos->micros)
+                        <td id="micros{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->micros == '' ? $disenio->costes->micros : number_format($disenio->costes->micros, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->micros > 0 and $disenio->costes->micros < $recursos->micros)
+                            <td id="micros{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->micros == '' ? $disenio->costes->micros : number_format($disenio->costes->micros, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="micros{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->personal > 0 and $disenio->costes->personal > $recursos->personal)
+                        <td id="personal{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->personal == '' ? $disenio->costes->personal : number_format($disenio->costes->personal, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->personal > 0 and $disenio->costes->personal < $recursos->personal)
+                            <td id="personal{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->personal == '' ? $disenio->costes->personal : number_format($disenio->costes->personal, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="personal{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    <td id="tiempo{{ $disenio->id }}" class="anchofijo text-light borderless">
+                        24h 30m 10s
                     </td>
-                    <td id="cristal{{ $disenio->id }}"
-                        class="anchofijo text-{{ $disenio->costes->cristal > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->costes->cristal, 0, ',', '.') }}
-                    </td>
-                    <td id="gas{{ $disenio->id }}"
-                        class="anchofijo text-{{ $disenio->costes->gas > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->costes->gas, 0, ',', '.') }}
-                    </td>
-                    <td id="plastico{{ $disenio->id }}"
-                        class="anchofijo text-{{ $disenio->costes->plastico > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->costes->plastico, 0, ',', '.') }}
-                    </td>
-                    <td id="ceramica{{ $disenio->id }}"
-                        class="anchofijo text-{{ $disenio->costes->ceramica > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->costes->ceramica, 0, ',', '.') }}
-                    </td>
-                    <td id="liquido{{ $disenio->id }}"
-                        class="anchofijo text-{{ $disenio->costes->liquido > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->costes->liquido, 0, ',', '.') }}
-                    </td>
-                    <td id="micros{{ $disenio->id }}"
-                        class="anchofijo text-{{ $disenio->costes->micros > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->costes->micros, 0, ',', '.') }}
-                    </td>
-                    <td id="personal{{ $disenio->id }}"
-                        class="anchofijo text-{{ $disenio->costes->personal > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->costes->personal, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->datos->cargaGrande > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->cargaGrande, 0, ',', '.') }}
-                    </td>
-                    <td
-                        class="anchofijo text-{{ $disenio->datos->cargaEnorme > 0 ? 'light' : 'muted' }} borderless">
-                        {{ number_format($disenio->datos->cargaEnorme, 0, ',', '.') }}
-                    </td>
+                </tr>
+                <tr>
+                    @if ($disenio->costes->mineral > 0 and $disenio->costes->mineral > $recursos->mineral)
+                        <td id="restantemineral{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->mineral == '' ? $disenio->costes->mineral : number_format($recursos->mineral - $disenio->costes->mineral, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->mineral > 0 and $disenio->costes->mineral < $recursos->
+                            mineral)
+                            <td id="restantemineral{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->mineral == '' ? $disenio->costes->mineral : number_format($recursos->mineral - $disenio->costes->mineral, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="restantemineral{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->cristal > 0 and $disenio->costes->cristal > $recursos->cristal)
+                        <td id="restantecristal{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->cristal == '' ? $disenio->costes->cristal : number_format($recursos->cristal - $disenio->costes->cristal, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->cristal > 0 and $disenio->costes->cristal < $recursos->
+                            cristal)
+                            <td id="restantecristal{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->cristal == '' ? $disenio->costes->cristal : number_format($recursos->cristal - $disenio->costes->cristal, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="restantecristal{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->gas > 0 and $disenio->costes->gas > $recursos->gas)
+                        <td id="restantegas{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->gas == '' ? $disenio->costes->gas : number_format($recursos->gas - $disenio->costes->gas, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->gas > 0 and $disenio->costes->gas < $recursos->gas)
+                            <td id="restantegas{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->gas == '' ? $disenio->costes->gas : number_format($recursos->gas - $disenio->costes->gas, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="restantegas{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->plastico > 0 and $disenio->costes->plastico > $recursos->plastico)
+                        <td id="restanteplastico{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->plastico == '' ? $disenio->costes->plastico : number_format($recursos->plastico - $disenio->costes->plastico, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->plastico > 0 and $disenio->costes->plastico < $recursos->
+                            plastico)
+                            <td id="restanteplastico{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->plastico == '' ? $disenio->costes->plastico : number_format($recursos->plastico - $disenio->costes->plastico, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="restanteplastico{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->ceramica > 0 and $disenio->costes->ceramica > $recursos->ceramica)
+                        <td id="restanteceramica{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->ceramica == '' ? $disenio->costes->ceramica : number_format($recursos->ceramica - $disenio->costes->ceramica, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->ceramica > 0 and $disenio->costes->ceramica < $recursos->
+                            ceramica)
+                            <td id="restanteceramica{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->ceramica == '' ? $disenio->costes->ceramica : number_format($recursos->ceramica - $disenio->costes->ceramica, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="restanteceramica{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->liquido > 0 and $disenio->costes->liquido > $recursos->liquido)
+                        <td id="restanteliquido{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->liquido == '' ? $disenio->costes->liquido : number_format($recursos->liquido - $disenio->costes->liquido, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->liquido > 0 and $disenio->costes->liquido < $recursos->
+                            liquido)
+                            <td id="restanteliquido{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->liquido == '' ? $disenio->costes->liquido : number_format($recursos->liquido - $disenio->costes->liquido, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="restanteliquido{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->micros > 0 and $disenio->costes->micros > $recursos->micros)
+                        <td id="restantemicros{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->micros == '' ? $disenio->costes->micros : number_format($recursos->micros - $disenio->costes->micros, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->micros > 0 and $disenio->costes->micros < $recursos->micros)
+                            <td id="restantemicros{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->micros == '' ? $disenio->costes->micros : number_format($recursos->micros - $disenio->costes->micros, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="restantemicros{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
+                    @if ($disenio->costes->personal > 0 and $disenio->costes->personal > $recursos->personal)
+                        <td id="restantepersonal{{ $disenio->id }}" class="anchofijo text-danger borderless">
+                            {{ $disenio->costes->personal == '' ? $disenio->costes->personal : number_format($recursos->personal - $disenio->costes->personal, 0, ',', '.') }}
+                        </td>
+                    @elseif($disenio->costes->personal > 0 and $disenio->costes->personal < $recursos->personal)
+                            <td id="restantepersonal{{ $disenio->id }}" class="anchofijo text-light borderless">
+                                {{ $disenio->costes->personal == '' ? $disenio->costes->personal : number_format($recursos->personal - $disenio->costes->personal, 0, ',', '.') }}
+                            </td>
+                        @else
+                            <td id="restantepersonal{{ $disenio->id }}" class="anchofijo text-light borderless">
+                            </td>
+                    @endif
                 </tr>
             </table>
         </div>
@@ -183,32 +281,21 @@
                         <div class="input-group mb-3 input-group-sm borderless">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">
-                                    <button type="button" class="btn btn-dark text-warning">
-                                        0
+                                    <button type="button" class="btn btn-dark text-warning" onclick='resetCantidad(@json($disenio->id))'>
+                                        1
                                     </button>
                                 </span>
                             </div>
-                            <input type="text" class="form-control input" value="0" aria-label=""
+                            <input type="text" class="form-control input" value="1" aria-label=""
                                 aria-describedby="basic-addon2" id="disenio{{ $disenio->id }}"
-                                onkeyup="recalculaCostos({{ $disenio->id }})">
+                                onkeyup='recalculaCostos(@json($disenio->id), @json($disenio->costes))'>
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">
-                                    <button type="button" class="btn btn-dark text-warning">
+                                    <button type="button" class="btn btn-dark text-warning" onclick='calculaMaximo(@json($disenio->costes), @json($disenio->id))' >
                                         M
                                     </button>
                                 </span>
                             </div>
-                        </div>
-                    </td>
-                    <td class="anchofijo text-secondary borderless">
-                        <div class="input-group mb-3 borderless">
-                            <div class="input-group-append">
-                                <span class="input-group-text bg-dark text-light">
-                                    Tiempo
-                                </span>
-                            </div>
-                            <input type="text" class="form-control input" value="0" aria-label=""
-                                aria-describedby="basic-addon2" id="disenio{{ $disenio->id }}Tiempo">
                         </div>
                     </td>
                     <td>
@@ -228,8 +315,7 @@
                         </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12 " data-bs-toggle="modal"
-                            data-bs-target="#datosModal">
+                        <button type="button" class="btn btn-outline-primary col-12 " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosModal">
                             <i class="fa fa-info-circle"></i> Datos
                         </button>
                     </td>

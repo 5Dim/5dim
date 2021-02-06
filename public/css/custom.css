@@ -8,7 +8,7 @@ body.bg {
 }
 
 #menuCuenta {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #menuRecursos {
@@ -17,7 +17,7 @@ body.bg {
 }
 
 #menuIconos {
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.5); */
     padding-top: 15px !important;
 }
 
@@ -110,6 +110,125 @@ table.anchofijo {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #f7f7f7;
     margin-top: 5px;
+}
+
+.modal-header-primary {
+    background-color: #0275d8;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.modal-header-success {
+    background-color: #5cb85c;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.modal-header-info {
+    background-color: #5bc0de;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.modal-header-warning {
+    background-color: #f0ad4e;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.modal-header-danger {
+    background-color: #d9534f;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.modal-header-dark {
+    background-color: #292b2c;
+    color: white;
+    border-bottom: 1px solid black;
+}
+
+.modal-header-light {
+    background-color: #f7f7f7;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.modal-body-primary {
+    background-color: #0275d8;
+    color: black;
+}
+
+.modal-body-success {
+    background-color: #5cb85c;
+    color: black;
+}
+
+.modal-body-info {
+    background-color: #5bc0de;
+    color: black;
+}
+
+.modal-body-warning {
+    background-color: #f0ad4e;
+    color: black;
+}
+
+.modal-body-danger {
+    background-color: #d9534f;
+    color: black;
+}
+
+.modal-body-dark {
+    background-color: #292b2c;
+    color: white;
+}
+
+.modal-body-light {
+    background-color: #f7f7f7;
+    color: black;
+}
+
+.modal-footer-primary {
+    background-color: #0275d8;
+    color: black;
+    border-top: 1px solid black;
+}
+
+.modal-footer-success {
+    background-color: #5cb85c;
+    color: black;
+    border-top: 1px solid black;
+}
+
+.modal-footer-info {
+    background-color: #5bc0de;
+    color: black;
+    border-top: 1px solid black;
+}
+
+.modal-footer-warning {
+    background-color: #f0ad4e;
+    color: black;
+    border-top: 1px solid black;
+}
+
+.modal-footer-danger {
+    background-color: #d9534f;
+    color: black;
+    border-top: 1px solid black;
+}
+
+.modal-footer-dark {
+    background-color: #292b2c;
+    color: white;
+    border-top: 1px solid black;
+}
+
+.modal-footer-light {
+    background-color: #f7f7f7;
+    color: black;
+    border-top: 1px solid black;
 }
 
 textarea {

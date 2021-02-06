@@ -90,7 +90,7 @@ Route::middleware(
 
     //Investigacion
     Route::get('/juego/investigacion/{tab?}', [InvestigacionController::class, 'index']);
-    Route::get('/juego/investigacion/construir/{id}/{personal}/{tab}', [InvestigacionController::class, 'construir']);
+    Route::get('/juego/investigacion/construir/{id}/{personal}/{tab}', [InvestigacionController::class, 'investigar']);
     Route::get('/juego/investigacion/cancelar/{id}', [InvestigacionController::class, 'cancelar']);
     Route::get('/juego/investigacion/datos/{codigo}', [InvestigacionController::class, 'datos']);
 
@@ -104,7 +104,7 @@ Route::middleware(
     Route::get('/juego/fuselajes/datos/{codigo}', [FuselajesController::class, 'datos']);
 
     //Disenio
-    Route::get('/juego/disenio', [DisenioController::class, 'index']);
+    Route::get('/juego/disenio/{tab?}', [DisenioController::class, 'index']);
     Route::get('/juego/disenio/diseniar/{id}', [DisenioController::class, 'diseniar']);
     Route::post('/juego/disenio/crearDisenio/{id?}', [DisenioController::class, 'crearDisenio']);
     Route::get('/juego/disenio/borrarDisenio/{id}', [DisenioController::class, 'borrarDisenio']);
@@ -137,6 +137,7 @@ Route::middleware(
     Route::post('/juego/generarAlianza', [AlianzaController::class, 'generarAlianza']);
     Route::post('/juego/solicitudAlianza', [AlianzaController::class, 'solicitudAlianza']);
     Route::get('/juego/expulsarMiembro/{id}', [AlianzaController::class, 'expulsarMiembro']);
+    Route::get('/juego/salirAlianza', [AlianzaController::class, 'salirAlianza']);
     Route::get('/juego/rechazarSolicitud/{id}', [AlianzaController::class, 'rechazarSolicitud']);
     Route::get('/juego/aceptarSolicitud/{id}', [AlianzaController::class, 'aceptarSolicitud']);
 

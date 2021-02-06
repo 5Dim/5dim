@@ -13,8 +13,8 @@
                                     <td class=" text-warning">Accion</td>
                                     <td class=" text-warning">Nivel</td>
                                     <td class=" text-warning">Personal</td>
-                                    <td class=" text-warning">Empeza a las</td>
                                     <td class=" text-warning">Acaba a las</td>
+                                    <td class=" text-warning">Tiempo restante</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 @for ($i = 0; $i < count($colaInvestigacion); $i++)
@@ -31,12 +31,10 @@
                                         <td class=" text-light align-middle borderless">
                                             {{ number_format($colaInvestigacion[$i]->personal, 0, ',', '.') }}
                                         </td>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ $colaInvestigacion[$i]->created_at }}
-                                        </td>
                                         <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
                                             {{ $colaInvestigacion[$i]->finished_at }}
                                         </td>
+                                        <td class=" text-light align-middle borderless" id="{{ $colaInvestigacion[$i]->id }}"></td>
                                         <td class=" text-light align-middle borderless">
                                             <button type="button" class="btn btn-outline-danger col-12 btn-sm"
                                                 onclick="sendCancelarInvestigacion('{{ $colaInvestigacion[$i]->id }}')">
@@ -49,6 +47,17 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    var id = [];
+                    var tiempos = [];
+                    @for ($i = 0; $i < count($colaInvestigacion); $i++)
+                        id[{{ $i }}] = {{ $colaInvestigacion[$i]->id }};
+                        tiempos[{{ $i }}] = {{ strtotime($colaInvestigacion[$i]->finished_at) - strtotime(date('Y-m-d H:i:s')) }};
+                    @endfor
+                    // console.log(id);
+                    // console.log(tiempos);
+                    cuentaAtras(id, tiempos);
+                </script>
             @endif
 
             <nav>

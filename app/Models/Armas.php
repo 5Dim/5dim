@@ -202,7 +202,7 @@ class Armas extends Model
 
         $arma = new Armas();
         $arma->codigo = $niveltec + 69;
-        $arma->nombre = 'Salvas';
+        $arma->nombre = 'Prop. Hyper';
         $arma->descripcion = 'Mediante el antiguo sistema de disparar munición falsa para corregir errores en los disparos verdaderos, podemos ahorrar munición';
         $arma->ranura = "mejora";
         $arma->potencia = 10;
@@ -300,7 +300,7 @@ class Armas extends Model
 
         $arma = new Armas();
         $arma->codigo = $niveltec + 69;
-        $arma->nombre = 'F-pesadas/estaciones';
+        $arma->nombre = 'F-pesadas';
         $arma->descripcion = 'Causar más danio a pesadas no es sólo cuestión de potencia, esta mejora analiza sus puntos débiles.';
         $arma->ranura = "mejora";
         $arma->potencia = 8;
@@ -312,8 +312,8 @@ class Armas extends Model
 
         $arma = new Armas();
         $arma->codigo = $niveltec + 69;
-        $arma->nombre = 'F-defensas';
-        $arma->descripcion = 'Podemos mejorar el danio a las defensas.';
+        $arma->nombre = 'F-estaciones';
+        $arma->descripcion = 'Podemos mejorar el danio a las estaciones.';
         $arma->ranura = "mejora";
         $arma->potencia = 8;
         $arma->clase = 'invIa';

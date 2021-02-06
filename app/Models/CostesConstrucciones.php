@@ -43,6 +43,9 @@ class CostesConstrucciones extends Model
         foreach ($construcciones as $construccion) {
             $costesc = new CostesConstrucciones();
             $nivel = $construccion->nivel;
+            if (!empty($construccion->enConstrucciones[0])) {
+                $nivel = EnConstrucciones::where('construcciones_id', $construccion->id)->orderBy('id', 'desc')->first()->nivel;
+            }
             $codigo = $construccion->codigo;
 
             switch ($codigo) {
@@ -174,7 +177,7 @@ class CostesConstrucciones extends Model
     }
 
 
-    public function  generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion)
+    public static function generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion)
     {
         $avelprodminas = Constantes::where('codigo', 'avelprodminas')->first()->valor / 10;
         $costesc = new CostesConstrucciones();

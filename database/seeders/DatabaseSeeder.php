@@ -31,6 +31,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'odinspn@gmail.com',
             'password' => Hash::make('1234'),
         ]);
+        User::factory()->times(1)->create([
+            'name' => 'vcode',
+            'email' => 'vcode.es@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
         // Jugadores::factory()->times(100)->create();
         Planetas::factory()->times(1000)->create([
             'tipo' => 'planeta',

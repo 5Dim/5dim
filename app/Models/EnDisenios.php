@@ -65,54 +65,6 @@ class EnDisenios extends Model
         }
     }
 
-    public static function cadenaProduccion($cantidad, $tamanio)
-    {
-
-        $PConstantes = Constantes::where('tipo', 'produccion')->get();
-        $ahorroXCantidad = $PConstantes->where('codigo', 'ahorroXCantidad')->first()->valor;
-        $maximoAhorroXCantidad = $PConstantes->where('codigo', 'maximoAhorroXCantidad')->first()->valor;
-
-        $factorTamanio = 100;
-
-        switch ($tamanio) {
-            case 0:
-            case 8: //caza
-                $factorTamanio = $PConstantes->where('codigo', 'AhorroXcazas')->first()->valor / 100;
-                break;
-            case 1:
-            case 9:
-                $factorTamanio = $PConstantes->where('codigo', 'AhorroXligeras')->first()->valor / 100;
-                break;
-            case 2:
-            case 10:
-                $factorTamanio = $PConstantes->where('codigo', 'AhorroXmedias')->first()->valor / 100;
-                break;
-            case 3:
-            case 11:
-                $factorTamanio = $PConstantes->where('codigo', 'AhorroXpesadas')->first()->valor / 100;
-                break;
-            case 4:
-            case 5:
-                $factorTamanio = $PConstantes->where('codigo', 'AhorroXestacion')->first()->valor / 100;
-                break;
-            case 6:
-                $factorTamanio = $PConstantes->where('codigo', 'AhorroXdefensa')->first()->valor / 100;
-                break;
-        }
-
-        $factor = 1 - (pow($cantidad, 2) * 1 / ($ahorroXCantidad * 100000)) / $factorTamanio;
-        if ($factor < $maximoAhorroXCantidad) {
-            $factor = $maximoAhorroXCantidad;
-        }
-        if ($factor > 1) {
-            $factor = 1;
-        }
-        if ($cantidad == 1) {
-            $factor = 1;
-        }
-
-        return  $factor;
-    }
 
     public static function tiempoProduccion($cantidad, $nivelFabrica, $tiempoxunidad)
     {
@@ -126,7 +78,7 @@ class EnDisenios extends Model
         return $tiempocns;
     }
 
-
+/*
     public function distanciatiempo($origen, $destino)
     {
         // coordenadas
@@ -145,4 +97,5 @@ class EnDisenios extends Model
         $distancia = round($distancia * $luzdemallauniverso);
         $distancia = $distancia + $distp;
     }
+    */
 }

@@ -24,7 +24,8 @@ class EnConstrucciones extends Model
             //En caso de reciclaje debe devolver los recursos
             if ($cola->accion == "Reciclando") {
                 $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
-                $coste = $cola->construcciones->coste;
+                $coste = CostesConstrucciones::generarDatosCostesConstruccion($cola->construcciones->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
+                // $coste = $cola->construcciones->coste;
                 $recursos = $cola->construcciones->planetas->recursos;
 
                 //Restaurar beneficio por reciclaje

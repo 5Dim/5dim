@@ -121,7 +121,7 @@ class Fuselajes extends Model
             "ENLIL",
             "ESUS",
             "BAAL",
-/*
+            /*
             //DEFENSAS
             //Ligeras
             "YETI",
@@ -1094,7 +1094,7 @@ class Fuselajes extends Model
                     array_push($fuselajes, $fuselaje);
                     break;
 
-/*
+                    /*
 
                 //DEFENSAS ///////////////////////////////////////////////////////////////////////////
                 // Ligeras

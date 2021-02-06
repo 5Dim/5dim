@@ -207,7 +207,7 @@ $blindajes=[];
 for($n=0;$n<$cantidadblindajes;$n++){ array_push($blindajes,$arrayObjetos['blindaje'][$n]);}
 
 $mejoras=[];
-for($n=0;$n<$cantidadMejoras;$n++){ array_push($mejoras,$arrayObjetos['mejora'][$n]);}
+for($n=0;$n<$cantidadMejoras;$n++){ array_push($mejoras,1*$arrayObjetos['mejora'][$n]);}
 
 $cargaPequenias=[];
 for($n=0;$n<$cantidadCargaPequenia;$n++){  array_push($cargaPequenias,$arrayObjetos['cargaPequenia'][$n]);}
@@ -981,7 +981,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                         <tr>
                                             @for($codigo=70;$codigo<85;$codigo++)
                                             @if ($investNiveles["invIa"]>=$armas->where("codigo",$codigo)->first()->niveltec)
-                                            <td>
+                                            <td id="mejora{{$codigo}}" name="mejora{{$codigo}}">
                                                 <img onClick="encajar('mejora',{{$codigo}},'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}" src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
                                             </td>
                                             @endif
@@ -1096,15 +1096,18 @@ function limpiar(){
 }
 
 // pasar armas a huecos
+//Array [ 72, 81 ]   armas['mejora'].includes(72)
 
     function encajar(elemento,id,qhago){
         if (qhago=='aniade'){
-            for (n=0;n<armas[elemento].length;n++) {
-                if (armas[elemento][n]==0){ armas[elemento][n]=id; break;  }
-            };
+            if (!armas['mejora'].includes(id)){//una mejora igual
+                for (n=0;n<armas[elemento].length;n++) {
+                    if (armas[elemento][n]==0){ armas[elemento][n]=id; break;  }
+                };
+            }
+
         } else if (qhago=='quita'){
             armas[elemento][id]=0;
-
         }
 
         n=0;
@@ -1118,8 +1121,27 @@ function limpiar(){
             n++;
         });
 
+        MejorasVisibles();
         calculoTotalR();
     }
+
+    function MejorasVisibles(){
+        for (n=70;n<91;n++)
+        {
+            $("#mejora"+n).show();
+        };
+
+        armas['mejora'].forEach(function(e) {
+            if (e>69){
+                $("#mejora"+e).hide();
+            }
+
+        });
+
+    }
+
+
+
 
     function encajarTodo(){
 
@@ -1136,6 +1158,7 @@ function limpiar(){
             });
         });
 
+        MejorasVisibles();
         calculoTotalR();
     }
 
@@ -1650,13 +1673,16 @@ $.each( armas[elemento], function( key, e ) {
         hazlo++;
         cte=1;
             sumaCostos(sobreCostes,cte,costesMisBlindajes);
+            sumaCostos(sobreCostes,cte,costesMisMejoras);
+
             sumaCualidades(sobreCostes,cte,costesMisBlindajes);
+            sumaCualidades(sobreCostes,cte,costesMisMejoras);
         break;
-        case 75: //salvas
+        case 75: //prop hyper
         hazlo++;
         cte=1;
-            sumaCostos(sobreCostes,cte,costesMisArmas);
-            sumaCualidades(sobreCostes,cte,costesMisArmas);
+            sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCualidades(sobreCostes,cte,costesMisMotores);
         break;
         case 77: //standart
         hazlo++;
@@ -1672,12 +1698,6 @@ $.each( armas[elemento], function( key, e ) {
             sumaCualidades(sobreCostes,cte,costesMisArmas);
             sumaCualidades(sobreCostes,cte,costesMisCargas);
             sumaCualidades(sobreCostes,cte,costesMisMejoras);
-        break;
-        case 74:
-        hazlo++;
-        cte=1;
-            sumaCostos(sobreCostes,cte,costesMisArmas);
-            sumaCualidades(sobreCostes,cte,costesMisArmas);
         break;
         case 76: //aleaciones
         hazlo++;
@@ -1710,7 +1730,7 @@ $.each( armas[elemento], function( key, e ) {
         case 74: //nanos
         hazlo++;
         cte=1;
-        sumaCostos(sobreCostes,cte,costesMisMotores);
+            sumaCostos(sobreCostes,cte,costesMisMotores);
             sumaCostos(sobreCostes,cte,costesMisBlindajes);
             sumaCostos(sobreCostes,cte,costesMisArmas);
             sumaCostos(sobreCostes,cte,costesMisCargas);
@@ -1721,12 +1741,6 @@ $.each( armas[elemento], function( key, e ) {
             sumaCualidades(sobreCostes,cte,costesMisArmas);
             sumaCualidades(sobreCostes,cte,costesMisCargas);
             sumaCualidades(sobreCostes,cte,costesMisMejoras);
-        break;
-        case 73: //prop maniobra
-        hazlo++;
-        cte=1;
-            sumaCostos(sobreCostes,cte,costesMisCargas);
-            sumaCualidades(sobreCostes,cte,costesMisCargas);
         break;
         case 71: //ctrol punteria
             ctrlPunteria++;
@@ -1760,7 +1774,6 @@ $.each( armas[elemento], function( key, e ) {
         }
 
         if (hazlo>0){
-
             var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
             var miConstanteI=$.grep(constantesI, function(miConstanteI){return miConstanteI.codigo == 'mejora'+obj['clase'];})[0]['valor']; //la constante relacionada con cuanto sube popr el nivel de tecno que le coprresponde
             var nivelInv= $.grep(investigaciones, function(nivelInv){return nivelInv.codigo == obj['clase']})[0]['nivel']; //sacamos nivel de tecno que corresponde a este objeto
@@ -2014,12 +2027,47 @@ var velmaxTodas=$.grep(constantesF, function(obj){return obj.codigo == 'fuselaje
 var velmaxEsteTamano=$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidadMaxima'+tamanoEstaNave;})[0].valor;
 var factorVelocidadConstantes=Math.min($.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidadTodas';})[0].valor,$.grep(constantesF, function(obj){return obj.codigo == 'fuselajenaveVelocidad'+tamanoEstaNave;})[0].valor);
 
-cualidades['velocidad']=Math.min((Math.pow(empujeT,1.33)/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
+
+//// contando las mejoras que modifican velocidad y masa
+
+///// mejoras
+elemento='mejora';
+genera='ia';
+mejoraPeso=0;
+mejoraManiobra=0;
+mejoraVelocidad=0;
+
+$.each( armas[elemento], function( key, e ) {
+    hazlo=0;
+    if (e>0){
+        var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
+        var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
+
+        switch (obj['codigo']){
+            case 75: //prop hyper
+            mejoraVelocidad+=costeobj["velocidad"]/100;
+
+            break;
+            case 76: //aleaciones
+            mejoraPeso+=costeobj["masa"]/100;
+
+            break;
+            case 73: //prop maniobra
+            mejoraManiobra+=costeobj["maniobra"]/100;
+
+            break;
+        }
+    }
+});
+
+pesoTotal/=1+mejoraPeso;
+
+cualidades['velocidad']=Math.min((Math.pow(empujeT*(1+mejoraVelocidad),1.33)/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
 cualidades['velocidad']=( Math.round(cualidades['velocidad'])); //reondeo a 0
 
 //////  maniobra //
 
-cualidades['maniobra']=Math.min((Math.pow(maniobraT,1.33)/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
+cualidades['maniobra']=Math.min((Math.pow(maniobraT*(1+mejoraManiobra),1.33)/pesoTotal)*factorVelocidadConstantes,velmaxTodas,velmaxEsteTamano);
 cualidades['maniobra']=( Math.round(cualidades['maniobra'])); //reondeo a 0
 
 // efectos de politicas
@@ -2203,8 +2251,8 @@ function mostrarResultado(){
         $("#"+key+"D").text(valueF);
     })
 
-pesoTotalF=formatNumber (Math.round (pesoTotal/1000));
-//$("#pesoTotalD").text(pesoTotalF);  // pinta la masa
+//pesoTotalF=formatNumber (Math.round (pesoTotal/1000));
+//$("#pesoTotalD").text(pesoTotalF);  // pinta la masa masaT
 
 // velocidad que lleva decimales
 $("#velocidadD").text(cualidades['velocidad']);

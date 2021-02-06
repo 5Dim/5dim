@@ -83,7 +83,8 @@ class FabricasController extends Controller
         $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
         $disenio = Disenios::find($idDisenio);
         $costes = $disenio->costes;
-        $tiempo = $disenio->viewDisenios->tiempo;
+        // $disenio->calculaMejoras();
+        $tiempo = $disenio->mejoras->tiempo;
         $inicio = date("Y-m-d H:i:s");
         $error = false;
 
@@ -111,7 +112,7 @@ class FabricasController extends Controller
         }
 
         if (!$error) {
-            $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
+            $cadenaProduccion = 1; //factor de ahorro por cantidad de produccion
 
             //Restamos recursos
             $recursos->mineral -= (($costes->mineral * $cantidad) * $cadenaProduccion);
@@ -144,7 +145,8 @@ class FabricasController extends Controller
     public function reciclar($idDisenio, $cantidad)
     {
         $disenio = Disenios::find($idDisenio);
-        $tiempo = $disenio->viewDisenios->tiempo;
+        $disenio->calculaMejoras();
+        $tiempo = $disenio->datos->tiempo;
         $inicio = date("Y-m-d H:i:s");
         $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
         $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));

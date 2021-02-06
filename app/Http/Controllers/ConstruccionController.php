@@ -311,15 +311,6 @@ class ConstruccionController extends Controller
             $construyendo->accion = "Reciclando";
             $construyendo->finished_at = date('Y/m/d H:i:s', $fechaFin);
             $construyendo->save();
-
-            /*
-            //Generamos el coste del edificio
-            $costeConstrucciones = new CostesConstrucciones();
-            $costeAntiguo = CostesConstrucciones::where('construcciones_id', $construccion->id)->first();
-            $coste = $costeConstrucciones->generarDatosCostesConstruccion($nivel, $codigo, $idConstruccion);
-            $costeAntiguo = $coste->modificarCostes($costeAntiguo, $coste);
-            $costeAntiguo->save();
-            */
         }
 
         return redirect('/juego/construccion');
@@ -352,8 +343,7 @@ class ConstruccionController extends Controller
                 // $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
                 $recursos = $colita->construcciones->planetas->recursos;
 
-                $costeconstruccion = new CostesConstrucciones();
-                $costesConstrucciones = $costeconstruccion->generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
+                $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
 
                 //Restaurar beneficio por reciclaje
                 $recursos->mineral += ($costesConstrucciones->mineral * $reciclaje);
@@ -371,8 +361,7 @@ class ConstruccionController extends Controller
         if ($cola->accion == "Construyendo") {
             $recursos = $cola->construcciones->planetas->recursos;
 
-            $costeconstruccion = new CostesConstrucciones();
-            $costesConstrucciones = $costeconstruccion->generarDatosCostesConstruccion($cola->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
+            $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($cola->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
 
             //Restaurar beneficio por reciclaje
             $recursos->mineral += ($costesConstrucciones->mineral * $reciclaje);
