@@ -27,7 +27,7 @@ class PlanetasFactory extends Factory
         // $factory->define(Planetas::class, function (Faker $faker) {
         return [
             'jugadores_id' => null, //$this->faker->numberBetween($min = 1, $max = 100),
-            'estrella' => $this->faker->numberBetween($min = 1, $max = 9999),
+            'estrella' => $this->faker->numberBetween($min = 1, $max = 49999),
             'orbita' => $this->faker->numberBetween($min = 1, $max = 9),
             'nombre' => $this->faker->name(),
             'imagen' => $this->faker->numberBetween($min = 0, $max = 50),

@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('1234'),
         ]);
         // Jugadores::factory()->times(100)->create();
-        Planetas::factory()->times(1000)->create([
+        Planetas::factory()->times(5000)->create([
             'tipo' => 'planeta',
         ]);
         Planetas::factory()->times(3)->create([
