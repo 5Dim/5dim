@@ -32,10 +32,17 @@ var txt_fps="";
 var txt_num_flotas="";
 var txt_zoom="";
 var lineaprueba;
-const jsonUniverso ="/astrometria/data/universo.json";
+const jsonUniverso ="/juego/astrometria/ajax/universo";
+
 const jsonFlotas ="/astrometria/data/flotas.json";
+//const jsonFlotas ="/astrometria/data/flotas.json";
+
 const jsonRadares ="/astrometria/data/radares.json";
+//const jsonRadares ="/astrometria/data/radares.json";
+
 const jsonRutas ="/astrometria/data/rutas.json";
+//const jsonRutas ="/astrometria/data/rutas.json";
+
 let home, homex, homey;
 let creaRuta=false;
 var ruta = [];
@@ -66,18 +73,10 @@ function carga_universo(){
             botonRuta();
             botonMarcar();
             botones.position.set (window.innerWidth/2 - botones.width/2,0);
-            log(botones.width);
-            
-            
-
-
-            
-  
 		    }
 		};
-//	xmlhttp.open("GET",jsonUniverso , true);
-  xmlhttp.open("GET", "/juego/astrometria/ajax/universo", true);
-		xmlhttp.send();
+	xmlhttp.open("GET",jsonUniverso , true);
+  xmlhttp.send();
 		
 }
 
@@ -96,15 +95,45 @@ function carga_flotas(){
 		xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		        flotas = JSON.parse(this.responseText);
-           
-           // botonF();
-		      // log(flotas.flotas);
 		    }
 		};
 		xmlhttp.open("GET", jsonFlotas, true);
 		xmlhttp.send();
 		
 }
+function carga_radares(){
+
+  var xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          radares = JSON.parse(this.responseText);
+
+          crearadares();
+          botonA(flotas.flotas.length);
+          botonR();
+          resize();
+      }
+  };
+  xmlhttp.open("GET",jsonRadares, true);
+  xmlhttp.send();		
+}
+ 
+function carga_rutas(){
+
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        rutas = JSON.parse(this.responseText);
+        crearutas();
+    }
+};
+xmlhttp.open("GET",jsonRutas, true);
+xmlhttp.send();		
+
+}
+
 function creabarra(){
        fondobarra1 = barra1.addChild(new PIXI.Graphics())
        fondobarra1.beginFill(0x0f1217); 
@@ -293,47 +322,7 @@ function creainfoRutas(){
 
 }
 
-function carga_radares(){
 
-		var xmlhttp = new XMLHttpRequest();
-
-		xmlhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		        radares = JSON.parse(this.responseText);
-
-		        crearadares();
-            botonA(flotas.flotas.length);
-            botonR();
-           
-            resize();
-
-            //lineaprueba = new Line([0, 0, -window.innerWidth/2, -window.innerHeight/2],1.3, 0xFFFFFF);
-            //botones.addChild(lineaprueba);
-		    }
-		};
-		xmlhttp.open("GET",jsonRadares, true);
-		xmlhttp.send();		
-}
-   
-function carga_rutas(){
-
-  var xmlhttp = new XMLHttpRequest();
-
-  xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          rutas = JSON.parse(this.responseText);
-
-          crearutas();
-
-
-          //lineaprueba = new Line([0, 0, -window.innerWidth/2, -window.innerHeight/2],1.3, 0xFFFFFF);
-          //botones.addChild(lineaprueba);
-      }
-  };
-  xmlhttp.open("GET",jsonRutas, true);
-  xmlhttp.send();		
- 
-}
  
 
 function createViewport()
@@ -408,6 +397,7 @@ function createViewport()
 
 
         cargaTexturasGeneral();
+
         /*
         Shockwave_Filter = new PIXI.filters.ShockwaveFilter();
         Shockwave_Filter.center.x = 500;
@@ -528,6 +518,11 @@ log("SISTEMAS: "+ universo.sistemas.length);
     flechaHome.position.set (window.innerWidth/2, window.innerHeight/2);
     app.stage.addChild(flechaHome);
     flechaHome.visible=false;
+    flechaHome.interactive=true;
+    flechaHome.buttonMode = true;
+    flechaHome.on('click', (event) => {
+      buscar(home);
+ });
 }
 
 //se crean las flotas
