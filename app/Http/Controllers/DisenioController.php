@@ -1377,8 +1377,6 @@ class DisenioController extends Controller
             $costoFocoA = 1; //coste acumulado foco
 
 
-            //Log::alert("ANTES");
-            if ($cantidadCLigeras + $cantidadCMedias + $cantidadCPesadas + $cantidadCInsertadas + $cantidadCMisiles + $cantidadCBombas > 0) {
                 //// armas ///////
 
                 $energiaT = $costesMisMotores['energia'] + $costesMisBlindajes['energia'] + $costesMisCargas['energia'] + $cualidades['energia']; // energia para armas total
@@ -1789,8 +1787,7 @@ class DisenioController extends Controller
 
                 //$prueba=$armasCualidades;
                 //$prueba=$armasTengo;
-            }
-            //Log::alert("DESPUES");
+
         }
 
 
