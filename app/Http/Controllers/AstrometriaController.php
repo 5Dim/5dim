@@ -97,7 +97,7 @@ class AstrometriaController extends Controller
         $planetoide = new Planetas();
         $planetoide->idioma = 0;
         $planetoide->global = Planetas::max('estrella');
-        $planetoide->ancho = 500;
+        $planetoide->ancho = 400;
         $planetoide->fondo = "img/fondo.png";
         $planetoide->inicio = Planetas::where('id', session()->get('planetas_id'))->first()->estrella;
         $planetoide->sistemas = $universo;
