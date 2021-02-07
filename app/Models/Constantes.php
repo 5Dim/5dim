@@ -122,9 +122,9 @@ class Constantes extends Model
 
 
         $constante = new Constantes();
-        $constante->valor = 5;
-        $constante->minimo = 1;
-        $constante->maximo = 10;
+        $constante->valor = 100;
+        $constante->minimo = 50;
+        $constante->maximo = 200;
         $constante->codigo = 'velocidadHangar';
         $constante->descripcion = 'velocidad de fabricación de naves por nivel de edificio en tanto por ciento';
         $constante->tipo = 'construccion';
