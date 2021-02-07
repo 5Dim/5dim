@@ -158,7 +158,7 @@
                             </td>
                     @endif
                     <td id="tiempo{{ $disenio->id }}" class="anchofijo text-light borderless">
-                        {{ gmdate('H:i:s',round($disenio->mejoras->tiempo /(1+( $constanteVelocidad * $nivelHangar/100))) ) }}
+                        {{ gmdate('d:H:i:s',round($disenio->mejoras->tiempo /(1+($constanteVelocidad * $nivelHangar/100)))) }}
                     </td>
                 </tr>
                 <tr>
@@ -322,7 +322,7 @@
                                 <h2 class="accordion-header" id="flush-headingOne">
                                     <a class="btn btn-outline-primary col-12 text-primary" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#info{{ $disenio->id }}"
-                                        aria-expanded="false" aria-controls="info{{ $disenio->id }}">
+                                        aria-expanded="false" aria-controls="info{{ $disenio->id }}"  onclick="MostrarResultadoDisenio({{$disenio}})">
                                         Datos
                                     </a>
                                 </h2>

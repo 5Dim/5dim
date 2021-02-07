@@ -22,6 +22,7 @@ use App\Models\CostesDisenios;
 use App\Models\CualidadesDisenios;
 use App\Models\MejorasDisenios;
 use App\Models\EnDisenios;
+use App\Models\ViewDaniosDisenios;
 use Illuminate\Database\Eloquent\Builder;
 
 class DisenioController extends Controller
@@ -72,6 +73,12 @@ class DisenioController extends Controller
         $constantes = Constantes::where('tipo', 'investigacion')->get();
         $constanteVelocidad=Constantes::where('codigo', 'velocidadHangar')->first()->valor;
         $nivelHangar = $construcciones->where('codigo', 'hangar')->first()->nivel;
+
+        $idsDiseno=array();
+        foreach($disenios as $diseno){
+            array_push($idsDiseno,$diseno->id);
+        }
+        $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
         $mejoras = [];
         for ($i=0; $i < count($disenios); $i++) {
@@ -168,7 +175,8 @@ class DisenioController extends Controller
             'novas',
             'tab',
             'nivelHangar',
-            'constanteVelocidad'
+            'constanteVelocidad',
+            'ViewDaniosDisenios'
         ));
     }
 
