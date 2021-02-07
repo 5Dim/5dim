@@ -255,7 +255,7 @@ function calculaTiempo(costes, velocidadConst, codigo) {
         lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
 
         horaImprimible =
-            "Tiempo: " + lhora + "h " + lminuto + "m " + lsegundo + "s";
+            "Tiempo: " + lhora + ":" + lminuto + ":" + lsegundo + "";
 
         $("#tiempo" + codigo).html(horaImprimible);
         timeg(result, "termina" + codigo);
@@ -359,13 +359,21 @@ function timeDura(result, dndv) {
     if (result < 1) {
         result = 0;
     }
-    lhora = Math.floor(result / 3600);
-    lminuto = Math.floor((result - lhora * 3600) / 60);
-    lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
 
-    horaImprimible = lhora + "h " + lminuto + "m " + lsegundo + "s";
+    horaImprimible = formatHMS(result);
 
     $("#" + dndv).html(horaImprimible);
+}
+
+function formatHMS(secs){
+        var sec_num = parseInt(secs, 10)
+        var hours   = Math.floor(sec_num / 3600)
+        var minutes = Math.floor(sec_num / 60) % 60
+        var seconds = sec_num % 60
+
+        return [hours,minutes,seconds]
+            .map(v => v < 10 ? "0" + v : v)
+            .join(":")
 }
 
 function mostrarDatosConstruccion(codigo) {
@@ -506,6 +514,9 @@ function recalculaCostos(id, coste) {
             Math.round(recursos.personal - factor * cantidad * coste.personal)
         )
     );
+    tiempoBase=$.grep(mejoras, function (valorBase) {return id;})[0]["tiempo"];
+    timeDura(Math.round(tiempoBase * factor * cantidad /(1+( constanteVelocidad * nivelHangar/100))),"tiempo"+id);
+
 }
 
 function cuentaAtras(id, tiempos) {
@@ -563,7 +574,7 @@ function calcularDisenios(disenios, mejoras, investigaciones, constantes) {
 
     disenios.forEach((diseno) => {
         masa = $.grep(mejoras, function (valorBase) {
-            return valorBase.id == 1;
+            return  valorBase.id == diseno.id;
         })[0]["masa"];
 
         // Velocidades

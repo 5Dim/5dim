@@ -124,7 +124,12 @@ class FabricasController extends Controller
             $recursos->micros -= (($costes->micros * $cantidad) * $cadenaProduccion);
             $recursos->save();
 
-            $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
+            $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+            $construcciones = Construcciones::construcciones($planetaActual);
+            $constanteVelocidad=Constantes::where('codigo', 'velocidadHangar')->first()->valor;
+            $nivelHangar = $construcciones->where('codigo', 'hangar')->first()->nivel;
+
+            $final = (strtotime($inicio) + ((($tiempo * $cantidad) * $cadenaProduccion))/(1+($constanteVelocidad * $nivelHangar/100)));
 
             //Generamos la cola
             $cola = new EnDisenios();

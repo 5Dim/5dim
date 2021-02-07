@@ -70,6 +70,9 @@ class DisenioController extends Controller
         $disenios = $jugadorActual->disenios;
         $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
         $constantes = Constantes::where('tipo', 'investigacion')->get();
+        $constanteVelocidad=Constantes::where('codigo', 'velocidadHangar')->first()->valor;
+        $nivelHangar = $construcciones->where('codigo', 'hangar')->first()->nivel;
+
         $mejoras = [];
         for ($i=0; $i < count($disenios); $i++) {
             $mejoras[$i] = $disenios[$i]->mejoras;
@@ -164,6 +167,8 @@ class DisenioController extends Controller
             'estaciones',
             'novas',
             'tab',
+            'nivelHangar',
+            'constanteVelocidad'
         ));
     }
 

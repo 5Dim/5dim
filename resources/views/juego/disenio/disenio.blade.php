@@ -193,7 +193,10 @@
         var constantes = @json($constantes);
         var mejoras = @json($mejoras);
         var PConstantes = @json($PConstantes);
+        var constanteVelocidad=@json($constanteVelocidad);
+        var nivelHangar=@json($nivelHangar);
         calcularDisenios(disenios, mejoras, investigaciones, constantes);
+
 
     </script>
 @endsection

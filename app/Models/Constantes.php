@@ -121,6 +121,16 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
 
+        $constante = new Constantes();
+        $constante->valor = 5;
+        $constante->minimo = 1;
+        $constante->maximo = 10;
+        $constante->codigo = 'velocidadHangar';
+        $constante->descripcion = 'velocidad de fabricación de naves por nivel de edificio en tanto por ciento';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
+
 
         ////////  investigaciones  ////////////////////////////////////////////////////////////////
 
