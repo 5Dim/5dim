@@ -22,9 +22,6 @@ class CreateArmasTable extends Migration
             $table->integer('potencia');
             $table->string('clase');
             $table->integer('niveltec');
-           // $table->integer('malcance');
-           // $table->integer('dispersion');
-           // $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }

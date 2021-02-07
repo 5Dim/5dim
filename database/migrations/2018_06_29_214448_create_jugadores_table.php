@@ -15,7 +15,7 @@ class CreateJugadoresTable extends Migration
     {
         Schema::create('jugadores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('nombre')->index();
             $table->string('avatar')->default('http://5dim.es/imagenes/avatar.jpg');
             $table->integer('puntos_construccion')->default(0);
             $table->integer('puntos_investigacion')->default(0);

@@ -16,7 +16,7 @@ class CreateDiseniosTable extends Migration
         Schema::create('disenios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('descripcion')->default(" ");
+            $table->string('descripcion')->default("");
             $table->integer('posicion')->default(9);
             $table->string('codigo');
             $table->integer('skin')->default(1);

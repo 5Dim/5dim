@@ -15,13 +15,12 @@ class CreateConstantesTable extends Migration
     {
         Schema::create('constantes', function (Blueprint $table) {
             $table->increments('id');
-            // $table->integer('universo_id');
-            $table->string('codigo');
+            $table->string('codigo')->index();
             $table->double('valor');
             $table->double('minimo');
             $table->double('maximo');
             $table->string('descripcion');
-            $table->string('tipo');
+            $table->string('tipo')->index();
 
 
         });
