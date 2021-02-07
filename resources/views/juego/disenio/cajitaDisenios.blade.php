@@ -277,11 +277,12 @@
                             <i class="fa fa-info-circle"></i> Reciclar nave
                         </button>
                     </td>
-                    <td class="anchofijo text-secondary borderless">
+                    <td>
                         <div class="input-group mb-3 input-group-sm borderless">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">
-                                    <button type="button" class="btn btn-dark text-warning" onclick='resetCantidad(@json($disenio->id))'>
+                                    <button type="button" class="btn btn-dark text-warning"
+                                        onclick='resetCantidad(@json($disenio->id))'>
                                         1
                                     </button>
                                 </span>
@@ -291,7 +292,8 @@
                                 onkeyup='recalculaCostos(@json($disenio->id), @json($disenio->costes))'>
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">
-                                    <button type="button" class="btn btn-dark text-warning" onclick='calculaMaximo(@json($disenio->costes), @json($disenio->id))' >
+                                    <button type="button" class="btn btn-dark text-warning"
+                                        onclick='calculaMaximo(@json($disenio->costes), @json($disenio->id))'>
                                         M
                                     </button>
                                 </span>
@@ -315,9 +317,17 @@
                         </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12 " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosModal">
-                            <i class="fa fa-info-circle"></i> Datos
-                        </button>
+                        <div class="accordion accordion-flush" id="button{{ $disenio->id }}">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <a class="btn btn-outline-primary col-12 text-primary" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#info{{ $disenio->id }}"
+                                        aria-expanded="false" aria-controls="info{{ $disenio->id }}">
+                                        Datos
+                                    </a>
+                                </h2>
+                            </div>
+                        </div>
                     </td>
                     <td>
                         <a type="button" class="btn btn-outline-success col-12 text-success"
@@ -327,6 +337,51 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <div>
+            <div id="info{{ $disenio->id }}" class="accordion-collapse collapse"
+                aria-labelledby="info{{ $disenio->id }}" data-bs-parent="#button{{ $disenio->id }}">
+                <div class="">
+                    <table class="table table-sm table-borderless text-center anchofijo">
+                        <tr>
+                            <td class="text-warning">Carga</td>
+                            <td class="text-warning">Recoleccion</td>
+                            <td class="text-warning">Extracción</td>
+                            <td class="text-warning">Hangar cazas</td>
+                            <td class="text-warning">Hangar ligeras</td>
+                            <td class="text-warning">Hangar medias</td>
+                            <td class="text-warning">Hangar pesadas</td>
+                        </tr>
+                        <tr>
+                            <td class="text-light" id="carga{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="recoleccion{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="extraccion{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="hangarCazas{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="hangarLigeras{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="hangarMedias{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="hangarPesadas{{ $disenio->id }}">0</td>
+                        </tr>
+                        <tr>
+                            <td class="text-warning">Mantenimiento</td>
+                            <td class="text-warning">Munición</td>
+                            <td class="text-warning">Fuel</td>
+                            <td class="text-warning">Velocidad</td>
+                            <td class="text-warning">Maniobrabilidad</td>
+                            <td class="text-warning">Ataque</td>
+                            <td class="text-warning">Defensa</td>
+                        </tr>
+                        <tr>
+                            <td class="text-light" id="mantenimiento{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="municion{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="fuel{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="velocidad{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="maniobra{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="ataque{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="defensa{{ $disenio->id }}">0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
