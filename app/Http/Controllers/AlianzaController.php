@@ -158,6 +158,7 @@ class AlianzaController extends Controller
         foreach ($jugadorActual->investigaciones as $investigacion) {
             $investigaciones = new Investigaciones();
             $investigaciones->nivel = $investigacion->nivel;
+            $investigaciones->categoria = $investigacion->categoria;
             $investigaciones->codigo = $investigacion->codigo;
             $investigaciones->jugadores_id = $jugador->id;
             array_push($listaInvestigaciones, $investigaciones);
@@ -170,17 +171,21 @@ class AlianzaController extends Controller
         $jugadorActual->alianzas_id = $alianza->id;
         $jugadorActual->save();
 
-        dd($alianza->creador);
-
         return redirect('/juego/alianza');
     }
 
     public function expulsarMiembro($idJugador)
     {
         //Buscamos el jugador
-        $jugador = Jugadores::find($idJugador);
-        $jugador->alianzas_id = null;
-        $jugador->save();
+        $jugador = Jugadores::find($idJugador); // Jugador a expulsar
+        $alianza = $jugador->alianzas; // Alianza
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Jugador que soy
+
+        //Comprobamos si el usuario es el creador
+        if ($alianza->creador->id == $jugadorActual->id && $alianza->nombre != $jugador->nombre) {
+            $jugador->alianzas_id = null;
+            $jugador->save();
+        }
 
         return redirect('/juego/alianza');
     }
@@ -188,9 +193,31 @@ class AlianzaController extends Controller
     public function salirAlianza()
     {
         //Buscamos el jugador
-        $jugador = Jugadores::find(session()->get('planetas_id'));
-        $jugador->alianzas_id = null;
-        $jugador->save();
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Jugador que soy
+        $alianza = $jugadorActual->alianzas; // Alianza
+        if (count($jugadorActual->alianzas->miembros) > 2 && $alianza->creador->id != $jugadorActual->id) {
+            $jugadorActual->alianzas_id = null;
+            $jugadorActual->save();
+        }
+
+        return redirect('/juego/alianza');
+    }
+
+    public function disolverAlianza()
+    {
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Jugador que soy
+        $alianza = $jugadorActual->alianzas; // Alianza
+        if ($alianza->creador->id == $jugadorActual->id) {
+            $planetas = Jugadores::where('nombre', $alianza->nombre)->first()->planetas;
+            foreach ($planetas as $planeta) {
+                $planeta->jugadores_id = null;
+                $planeta->save();
+            }
+            foreach ($alianza->miembros as $miembro) {
+                $miembro->alianzas_id = null;
+                $miembro->save();
+            }
+        }
 
         return redirect('/juego/alianza');
     }
