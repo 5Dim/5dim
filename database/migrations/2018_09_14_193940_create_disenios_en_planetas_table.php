@@ -15,7 +15,7 @@ class CreateDiseniosEnPlanetasTable extends Migration
     {
         Schema::create('disenios_en_planetas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cantidad')->default(0);
+            $table->unsignedMediumInteger('cantidad')->default(0);
             $table->string('tipo');
             $table->timestamps();
         });

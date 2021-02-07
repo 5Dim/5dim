@@ -15,18 +15,18 @@ class CreateProduccionesTable extends Migration
     {
         Schema::create('producciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('nivel');
-            $table->integer('personal');
-            $table->integer('mineral');
-            $table->integer('cristal');
-            $table->integer('gas');
-            $table->integer('plastico');
-            $table->integer('ceramica');
-            $table->integer('liquido');
-            $table->integer('micros');
-            $table->integer('fuel');
-            $table->integer('ma');
-            $table->integer('municion');            
+            $table->unsignedTinyInteger('nivel');
+            $table->unsignedMediumInteger('personal');
+            $table->unsignedMediumInteger('mineral');
+            $table->unsignedMediumInteger('cristal');
+            $table->unsignedMediumInteger('gas');
+            $table->unsignedMediumInteger('plastico');
+            $table->unsignedMediumInteger('ceramica');
+            $table->unsignedMediumInteger('liquido');
+            $table->unsignedMediumInteger('micros');
+            $table->unsignedMediumInteger('fuel');
+            $table->unsignedMediumInteger('ma');
+            $table->unsignedMediumInteger('municion');
         });
     }
 

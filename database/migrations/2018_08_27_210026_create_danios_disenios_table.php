@@ -17,14 +17,14 @@ class CreateDaniosDiseniosTable extends Migration
             $table->increments('id');
             $table->string('investigacion');
             $table->string('fila');
-            $table->integer('distancia0')->default(0);
-            $table->integer('distancia1')->default(0);
-            $table->integer('distancia2')->default(0);
-            $table->integer('distancia3')->default(0);
-            $table->integer('distancia4')->default(0);
-            $table->integer('distancia5')->default(0);
-            $table->integer('distancia6')->default(0);
-            $table->integer('distancia7')->default(0);
+            $table->unsignedInteger('distancia0')->default(0);
+            $table->unsignedInteger('distancia1')->default(0);
+            $table->unsignedInteger('distancia2')->default(0);
+            $table->unsignedInteger('distancia3')->default(0);
+            $table->unsignedInteger('distancia4')->default(0);
+            $table->unsignedInteger('distancia5')->default(0);
+            $table->unsignedInteger('distancia6')->default(0);
+            $table->unsignedInteger('distancia7')->default(0);
 
         // $table->timestamps();
         });

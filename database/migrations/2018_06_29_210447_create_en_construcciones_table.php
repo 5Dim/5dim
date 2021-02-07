@@ -15,8 +15,8 @@ class CreateEnConstruccionesTable extends Migration
     {
         Schema::create('en_construcciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('personal', 14, 2);
-            $table->integer('nivel');
+            $table->decimal('personal', 13, 2);
+            $table->unsignedTinyInteger('nivel');
             $table->string('accion');
             $table->timestamps();
             $table->timestamp('finished_at')->nullable();

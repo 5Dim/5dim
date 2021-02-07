@@ -17,7 +17,7 @@ class CreateDependenciasTable extends Migration
             $table->increments('id');
             $table->string('codigo')->index();
             $table->string('codigoRequiere');
-            $table->integer('nivelRequiere');
+            $table->unsignedTinyInteger('nivelRequiere');
             $table->string('tipo');
 
            // $table->timestamps();

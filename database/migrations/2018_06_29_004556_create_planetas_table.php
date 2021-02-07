@@ -15,10 +15,10 @@ class CreatePlanetasTable extends Migration
     {
         Schema::create('planetas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('estrella')->index();
-            $table->integer('orbita');
+            $table->unsignedMediumInteger('estrella')->index();
+            $table->unsignedTinyInteger('orbita');
             $table->string('nombre')->index();
-            $table->integer('imagen');
+            $table->unsignedTinyInteger('imagen');
             $table->string('tipo');
             $table->timestamps();
         });

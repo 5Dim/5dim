@@ -17,7 +17,7 @@ class CreateInvestigacionesTable extends Migration
             $table->increments('id');
             $table->string('codigo')->index();
             $table->string('categoria')->nullable();
-            $table->integer('nivel')->default(0);
+            $table->unsignedTinyInteger('nivel')->default(0);
         });
     }
 

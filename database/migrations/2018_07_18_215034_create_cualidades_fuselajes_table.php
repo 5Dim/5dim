@@ -15,32 +15,32 @@ class CreateCualidadesFuselajesTable extends Migration
     {
         Schema::create('cualidades_fuselajes', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('masa', 20, 2);
-            $table->integer('energia');
-            $table->integer('tiempo');
-            $table->integer('mantenimiento');
-            $table->integer('defensa');
-            $table->decimal('velocidad', 8, 2);
-            $table->decimal('maniobra', 8, 2);
-            $table->integer('velocidadMax');
-            $table->integer('gastoFuel');
+            $table->unsignedInteger('masa');
+            $table->unsignedInteger('energia');
+            $table->unsignedInteger('tiempo');
+            $table->unsignedInteger('mantenimiento');
+            $table->unsignedInteger('defensa');
+            $table->unsignedSmallInteger('velocidad');
+            $table->unsignedSmallInteger('maniobra');
+            $table->unsignedInteger('velocidadMax');
+            $table->unsignedInteger('gastoFuel');
 
-            $table->integer('armasLigeras');
-            $table->integer('armasMedias');
-            $table->integer('armasPesadas');
-            $table->integer('armasInsertadas');
-            $table->integer('armasBombas');
-            $table->integer('armasMisiles');
+            $table->unsignedTinyInteger('armasLigeras');
+            $table->unsignedTinyInteger('armasMedias');
+            $table->unsignedTinyInteger('armasPesadas');
+            $table->unsignedTinyInteger('armasInsertadas');
+            $table->unsignedTinyInteger('armasBombas');
+            $table->unsignedTinyInteger('armasMisiles');
 
-            $table->integer('cargaPequenia');
-            $table->integer('cargaMedia');
-            $table->integer('cargaGrande');
-            $table->integer('cargaEnorme');
-            $table->integer('cargaMega');
+            $table->unsignedInteger('cargaPequenia');
+            $table->unsignedInteger('cargaMedia');
+            $table->unsignedInteger('cargaGrande');
+            $table->unsignedInteger('cargaEnorme');
+            $table->unsignedTinyInteger('cargaMega');
 
-            $table->integer('mejoras');
-            $table->integer('blindajes');
-            $table->integer('motores');
+            $table->unsignedTinyInteger('mejoras');
+            $table->unsignedSmallInteger('blindajes');
+            $table->unsignedSmallInteger('motores');
         });
     }
 

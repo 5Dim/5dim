@@ -17,8 +17,8 @@ class CreateEnDiseniosTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('accion');
-            $table->integer('cantidad');
-            $table->integer('tiempo');
+            $table->unsignedMediumInteger('cantidad');
+            $table->unsignedInteger('tiempo');
             $table->timestamps();
             $table->timestamp('finished_at')->nullable();
         });

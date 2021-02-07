@@ -17,10 +17,9 @@ class CreateJugadoresTable extends Migration
             $table->increments('id');
             $table->string('nombre')->index();
             $table->string('avatar')->default('http://5dim.es/imagenes/avatar.jpg');
-            $table->integer('puntos_construccion')->default(0);
-            $table->integer('puntos_investigacion')->default(0);
-            $table->integer('puntos_flotas')->default(0);
-            // $table->integer('universo_id');
+            $table->unsignedMediumInteger('puntos_construccion')->default(0);
+            $table->unsignedMediumInteger('puntos_investigacion')->default(0);
+            $table->unsignedMediumInteger('puntos_flotas')->default(0);
             $table->timestamp('premiun_at')->nullable();
             $table->timestamps();
         });

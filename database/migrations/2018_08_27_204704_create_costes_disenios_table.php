@@ -15,14 +15,14 @@ class CreateCostesDiseniosTable extends Migration
     {
         Schema::create('costes_disenios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('mineral')->default(0);
-            $table->integer('cristal')->default(0);
-            $table->integer('gas')->default(0);
-            $table->integer('plastico')->default(0);
-            $table->integer('ceramica')->default(0);
-            $table->integer('liquido')->default(0);
-            $table->integer('micros')->default(0);
-            $table->integer('personal')->default(0);
+            $table->decimal('mineral', 12, 0)->default(0);
+            $table->decimal('cristal', 12, 0)->default(0);
+            $table->unsignedInteger('gas')->default(0);
+            $table->unsignedInteger('plastico')->default(0);
+            $table->unsignedInteger('ceramica')->default(0);
+            $table->unsignedInteger('liquido')->default(0);
+            $table->unsignedInteger('micros')->default(0);
+            $table->unsignedInteger('personal')->default(0);
         });
     }
 

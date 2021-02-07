@@ -19,7 +19,7 @@ class CreateDiseniosTable extends Migration
             $table->string('descripcion')->default("");
             $table->integer('posicion')->default(9);
             $table->string('codigo');
-            $table->integer('skin')->default(1);
+            $table->unsignedTinyInteger('skin')->default(1);
             $table->timestamps();
         });
     }

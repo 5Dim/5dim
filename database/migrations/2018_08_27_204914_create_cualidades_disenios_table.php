@@ -16,7 +16,7 @@ class CreateCualidadesDiseniosTable extends Migration
         Schema::create('cualidades_disenios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo')->index();
-            $table->integer('cantidad');
+            $table->unsignedSmallInteger('cantidad');
             $table->string('categoria');
         });
     }

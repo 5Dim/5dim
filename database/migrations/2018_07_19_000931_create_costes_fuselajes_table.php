@@ -24,7 +24,6 @@ class CreateCostesFuselajesTable extends Migration
             $table->integer('micros');
             $table->integer('personal');
             $table->integer('puntos');
-
         });
     }
 

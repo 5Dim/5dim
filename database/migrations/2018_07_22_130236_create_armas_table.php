@@ -15,13 +15,13 @@ class CreateArmasTable extends Migration
     {
         Schema::create('armas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('codigo')->unique();
+            $table->unsignedTinyInteger('codigo')->unique();
             $table->string('nombre');
             $table->string('descripcion')->nullable();
             $table->string('ranura');
-            $table->integer('potencia');
+            $table->unsignedMediumInteger('potencia');
             $table->string('clase');
-            $table->integer('niveltec');
+            $table->unsignedTinyInteger('niveltec');
             $table->timestamps();
         });
     }

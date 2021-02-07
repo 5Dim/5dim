@@ -15,14 +15,14 @@ class CreateCualidadesPlanetasTable extends Migration
     {
         Schema::create('cualidades_planetas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('mineral');
-            $table->integer('cristal');
-            $table->integer('gas');
-            $table->integer('plastico');
-            $table->integer('ceramica');
-            $table->integer('eje_x');
-            $table->integer('eje_y');
-            $table->integer('enfriamiento');
+            $table->unsignedTinyInteger('mineral');
+            $table->unsignedTinyInteger('cristal');
+            $table->unsignedTinyInteger('gas');
+            $table->unsignedTinyInteger('plastico');
+            $table->unsignedTinyInteger('ceramica');
+            $table->unsignedMediumInteger('eje_x');
+            $table->unsignedMediumInteger('eje_y');
+            $table->unsignedTinyInteger('enfriamiento');
             $table->timestamps();
         });
     }

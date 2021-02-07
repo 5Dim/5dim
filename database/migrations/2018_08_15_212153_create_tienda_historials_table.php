@@ -16,7 +16,7 @@ class CreateTiendaHistorialsTable extends Migration
         Schema::create('tienda_historials', function (Blueprint $table) {
             $table->increments('id');
             $table->string('accion');
-            $table->integer('coste');
+            $table->unsignedMediumInteger('coste');
             $table->timestamps();
         });
     }
