@@ -17,7 +17,7 @@ class CreateMensajesTable extends Migration
             $table->increments('id');
             $table->string('asunto');
             $table->mediumText('mensaje');
-            $table->string('categoria');
+            $table->string('categoria')->index();
             $table->boolean('eliminado')->default(0);
             $table->timestamps();
         });

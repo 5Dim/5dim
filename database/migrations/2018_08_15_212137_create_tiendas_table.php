@@ -15,7 +15,7 @@ class CreateTiendasTable extends Migration
     {
         Schema::create('tiendas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo');
+            $table->string('codigo')->index();
             $table->integer('coste');
             $table->timestamps();
         });

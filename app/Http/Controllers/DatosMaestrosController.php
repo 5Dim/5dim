@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Constantes;
 use App\Models\Almacenes;
 use App\Models\Producciones;
-use App\Models\Variables;
 use App\Models\CostesConstrucciones;
 use App\Models\Dependencias;
 use App\Models\Fuselajes;
@@ -32,9 +31,6 @@ class DatosMaestrosController extends Controller
     {
         $constante = new Constantes();
         $constantes = $constante->generarDatosConstantes();
-
-        $variable = new Variables();
-        $variables = $variable->generarDatosVariables();
 
         $almacen = new Almacenes();
         $almacenes = $almacen->generarDatosAlmacenes();

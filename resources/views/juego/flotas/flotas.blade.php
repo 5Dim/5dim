@@ -281,20 +281,5 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#listaPlanetas').select2({
-                placeholder: "Nombre del planeta",
-                width: '100%',
-                language: "es"
-            });
-            $('#listaPlanetas2').select2({
-                placeholder: "Nombre del planeta",
-                width: '100%',
-                language: "es"
-            });
-        });
-
-    </script>
 
 @endsection

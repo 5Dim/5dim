@@ -23,23 +23,6 @@ class CreateCostesDiseniosTable extends Migration
             $table->integer('liquido')->default(0);
             $table->integer('micros')->default(0);
             $table->integer('personal')->default(0);
-           // $table->decimal( 'masa', 20, 2)->default(0);
-            //$table->integer('energia')->default(0);
-
-            // $table->integer('fuel')->default(0);
-            // $table->integer('ma')->default(0);
-            // $table->integer('municion')->default(0);
-            // $table->integer('mantenimiento');
-            // $table->integer('defensa');
-            // $table->integer('ataque');
-            // $table->integer('tiempo');
-            // $table->integer('velocidad');
-            // $table->integer('carga');
-            // $table->integer('cargaPequenia');
-            // $table->integer('cargaMediana');
-            // $table->integer('cargaGrande');
-            // $table->integer('cargaEnorme');
-            // $table->integer('cargaMega');
         });
     }
 

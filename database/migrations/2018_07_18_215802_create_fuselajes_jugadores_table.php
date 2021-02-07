@@ -15,7 +15,6 @@ class CreateFuselajesJugadoresTable extends Migration
     {
         Schema::create('fuselajes_jugadores', function (Blueprint $table) {
             $table->increments('id');
-            //$table->timestamps();
         });
     }
 

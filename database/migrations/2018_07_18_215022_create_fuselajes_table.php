@@ -15,12 +15,12 @@ class CreateFuselajesTable extends Migration
     {
         Schema::create('fuselajes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo');
+            $table->string('codigo')->index();
             $table->string('tamanio');
             $table->string('tipo');
             $table->integer('tnave');
             $table->integer('coste');
-            $table->string('categoria');
+            $table->string('categoria')->index();
         });
     }
 

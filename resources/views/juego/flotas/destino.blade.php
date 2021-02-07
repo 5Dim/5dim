@@ -41,7 +41,8 @@
             </tr>
             <tr>
                 <td class="text-light">
-                    <select name="listaPlanetas" id="listaPlanetas" class="form-control">
+                    <select name="listaPlanetas{{ $numero }}" id="listaPlanetas{{ $numero }}"
+                        class="form-control">
                         <option value="none">Selecciona un planeta</option>
                         <optgroup label="Propios">
                             @foreach (Auth::user()->jugador->planetas as $planeta)
@@ -242,3 +243,13 @@
         </table>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#listaPlanetas{{ $numero }}').select2({
+            placeholder: "Nombre del planeta",
+            width: '100%',
+            language: "es"
+        });
+    });
+
+</script>
