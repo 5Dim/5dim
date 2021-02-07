@@ -158,7 +158,7 @@
                             </td>
                     @endif
                     <td id="tiempo{{ $disenio->id }}" class="anchofijo text-light borderless">
-                        {{ gmdate('d:H:i:s',round($disenio->mejoras->tiempo /(1+($constanteVelocidad * $nivelHangar/100)))) }}
+                        {{round(($disenio->mejoras->tiempo /(1+($constanteVelocidad * $nivelHangar/100)))/3600)}}:{{gmdate('i:s',round($disenio->mejoras->tiempo /(1+($constanteVelocidad * $nivelHangar/100)))) }}
                     </td>
                 </tr>
                 <tr>
