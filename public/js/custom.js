@@ -795,9 +795,9 @@ function CalculoDisenio(diseno){
     var ataqueTotal=0;
 
     matrizataque.forEach(fila => {
-            ataqueTotal+=fila.total;
+            ataqueTotal+=1*fila.total;
     });
-    rdiseno.ataque=ataqueTotal;
+    rdiseno.ataque=Math.round(ataqueTotal,0);
 
     return rdiseno;
 }
