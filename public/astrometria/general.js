@@ -49,7 +49,7 @@ function flotasNuevas(){
 
 function Sistema(n, x, y, habitado) {
 
-   var estrella = capa_estrellas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/estrella-blanca.png')));
+   var estrella = capa_estrellas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/estrella-blanca-3.png')));
 
     // box.tint = Math.floor(Math.random() * 0xffffff)
     estrella.width = estrella.height = 70;
@@ -635,6 +635,70 @@ function botonR(){
         }
         this.texture = textureButton;
         */
+    }
+
+}
+
+function botonH(){
+    
+    // texturas para los botones
+    var text_on = PIXI.Texture.from('/astrometria/img/botones/home1.png');
+    var text_off = PIXI.Texture.from('/astrometria/img/botones/home0.png');
+
+    //estado del botón
+    var estado = false;
+
+    botH = new PIXI.Sprite(text_off); // se inicia activo
+
+    botH.anchor.set(0.5);
+    botH.scale.x = 1;
+    botH.scale.y = 1;
+    botH.position.set (350,20);
+
+    // hacer el botón interactivo
+    botH.interactive = true;
+    botH.buttonMode = true;
+
+    //acciones para el botón
+    botH
+        // Mouse & touch events are normalized into
+        // the pointer* events for handling different
+        // button events.
+        .on('pointerdown', onButtonDown)
+        .on('pointerup', onButtonUp)
+        .on('pointerupoutside', onButtonUp)
+        .on('pointerover', onButtonOver)
+        .on('pointerout', onButtonOut);
+
+    // add it to the stage
+    botones.addChild(botH);
+
+    var nueva_pos = window.innerWidth/2 - botones.width/2;
+    botones.x = nueva_pos;
+
+
+    function onButtonDown() {
+        /*
+        this.isdown = true;
+        this.texture = textureButtonDown;
+        this.alpha = 1;
+        */
+    }
+
+    function onButtonUp() {
+
+        buscar(home);
+
+        estado = ! estado;
+
+    }
+    function onButtonOver() {
+        this.texture = text_on;
+
+    }
+
+    function onButtonOut() {
+        this.texture = text_off;
     }
 
 }

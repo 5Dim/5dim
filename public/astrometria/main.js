@@ -1,12 +1,5 @@
 
 const log = console.log;
-/*
-setTimeout(function() {
-  console.log("Bunny => " + bunny.width + " | " + bunny.height);
-  console.log("Container => " + container.width + " | " + container.height);
-}
-, 1000);
-*/
 
 var universo = new Object();
 var flotas = new Object();
@@ -26,12 +19,15 @@ const WIDTH = 0;
 const HEIGHT = 0;
 var width = 0, height = 0;
 var cambios =0;
-var sis_posfinaly =window.innerHeight+100;
-var sis_posfinalx=(window.innerWidth/2) - 512;
+var sis_posfinaly =window.innerHeight+100;        //posición y de la vista planetaria
+var sis_posfinalx=(window.innerWidth/2) - 512;    //posición x de la vista planetaria
 var txt_fps="";
 var txt_num_flotas="";
 var txt_zoom="";
 var lineaprueba;
+
+//llamadas ajax para cargar los ficheros json
+
 const jsonUniverso ="/juego/astrometria/ajax/universo";
 
 const jsonFlotas ="/astrometria/data/flotas.json";
@@ -43,27 +39,20 @@ const jsonRadares ="/astrometria/data/radares.json";
 const jsonRutas ="/astrometria/data/rutas.json";
 //const jsonRutas ="/astrometria/data/rutas.json";
 
-let home, homex, homey;
+let home, homex, homey; //datos del sistema propio de inicio
 let creaRuta=false;
 var ruta = [];
 
 
-
-
-//flechasRuta = new PIXI.TilingSprite(texture,50000,8);
-
 Sistema.prototype = Object.create(PIXI.Sprite.prototype);
 
 function carga_universo(){
-
 		var xmlhttp = new XMLHttpRequest();
-
 		xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		        universo = JSON.parse(this.responseText);
             home=universo.inicio;
             createViewport();
-           // carga_texturas();
 		        createWorld();
 		        carga_flotas();
             carga_radares();
@@ -72,12 +61,12 @@ function carga_universo(){
             botonF();
             botonRuta();
             botonMarcar();
+            botonH();
             botones.position.set (window.innerWidth/2 - botones.width/2,0);
 		    }
 		};
 	xmlhttp.open("GET",jsonUniverso , true);
-  xmlhttp.send();
-		
+  xmlhttp.send();		
 }
 
 function tFlotas() {
@@ -89,22 +78,18 @@ function tFlotas() {
 }
 
 function carga_flotas(){
-
 		var xmlhttp = new XMLHttpRequest();
-
 		xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		        flotas = JSON.parse(this.responseText);
 		    }
 		};
 		xmlhttp.open("GET", jsonFlotas, true);
-		xmlhttp.send();
-		
+		xmlhttp.send();	
 }
+
 function carga_radares(){
-
   var xmlhttp = new XMLHttpRequest();
-
   xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           radares = JSON.parse(this.responseText);
@@ -120,24 +105,21 @@ function carga_radares(){
 }
  
 function carga_rutas(){
-
-var xmlhttp = new XMLHttpRequest();
-
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        rutas = JSON.parse(this.responseText);
-        crearutas();
-    }
-};
-xmlhttp.open("GET",jsonRutas, true);
-xmlhttp.send();		
-
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          rutas = JSON.parse(this.responseText);
+          crearutas();
+      }
+  };
+  xmlhttp.open("GET",jsonRutas, true);
+  xmlhttp.send();		
 }
 
 function creabarra(){
-       fondobarra1 = barra1.addChild(new PIXI.Graphics())
+       fondobarra1 = barra1.addChild(new PIXI.Graphics());
        fondobarra1.beginFill(0x0f1217); 
-       fondobarra1.drawRect  (0, 0, window.innerWidth,30)
+       fondobarra1.drawRect  (0, 0, window.innerWidth,30);
        fondobarra1.endFill();
       // barra1.anchor.set(0.5);
 }
@@ -148,7 +130,8 @@ function creainfoflotas(){
   panel = infoflotas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/info-flota.png')));
   panel.buttonMode = false;
   panel.interactive = true;  
-//  panel.alpha= 0.8;
+
+  //panel.alpha= 0.8;
   panel.anchor.set(0.5);
   panel.visible= false;
 
@@ -234,7 +217,8 @@ function creainfoRutas(){
   panelRuta = infoflotas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/info-flota.png')));
   panelRuta.buttonMode = false;
   panelRuta.interactive = true;  
-//  panelRuta.alpha= 0.8;
+
+  //panelRuta.alpha= 0.8;
   panelRuta.anchor.set(0.5);
   panelRuta.visible= false;
 
@@ -283,14 +267,12 @@ function creainfoRutas(){
   b_borrar.buttonMode = true;
 
   b_borrar
-  // Mouse & touch events are normalized into
-  // the pointer* events for handling different
-  // button events.
   .on('pointerdown', onButtonDownInt)
   .on('pointerup', onButtonUpInt)
   .on('pointerupoutside', onButtonUpInt)
   .on('pointerover', onButtonOverInt)
   .on('pointerout', onButtonOutInt);
+
   function onButtonDownInt() {
     ruta.length=0;
     txtpanelp1txt.text = "Selecciona flota o planeta";
@@ -302,17 +284,16 @@ function creainfoRutas(){
   function onButtonOutInt() {this.texture = borrar_off;} 
 
   b_aceptar
-  // Mouse & touch events are normalized into
-  // the pointer* events for handling different
-  // button events.
   .on('pointerdown', onButtonDown)
   .on('pointerup', onButtonUp)
   .on('pointerupoutside', onButtonUp)
   .on('pointerover', onButtonOver)
   .on('pointerout', onButtonOut);
+
   function onButtonDown() {
     panelRuta.visible=false;
   }
+
   function onButtonUp() {}
   function onButtonOver() {this.texture = aceptar_on;}
   function onButtonOut() {this.texture = aceptar_off;} 
@@ -322,11 +303,7 @@ function creainfoRutas(){
 
 }
 
-
- 
-
-function createViewport()
-{
+function createViewport(){
 
     viewport = app.stage.addChild(new PIXI.extras.Viewport({
         screenWidth: window.innerWidth,
@@ -334,6 +311,7 @@ function createViewport()
         worldWidth: universo.ancho*70,
         worldHeight: (universo.global/universo.ancho)*70
     }));
+
     viewport
         .drag({ direction: 'all',
         pressDrag: true,
@@ -362,10 +340,6 @@ function createViewport()
         })
         .on('moved', function()
         {
-          //diferenciax=-content_clip.inner_clip.ImageHolder.Content.flotas[_global.trackers[i]]._x-(content_clip.inner_clip.ImageHolder._x);
-         // diferenciax=-(window.innerWidth/2)-(content_clip.inner_clip.ImageHolder._x);
-         // lineaprueba.updatePoints([null, null, -viewport.corner.x+175, -viewport.corner.y+135 ]) //viewport.corner + coordx del tracker
-         // log(viewport.corner.x)
 
          //código para limpiar el panel de info de flotas.
          panel.visible=false;
@@ -393,10 +367,7 @@ function createViewport()
         barraCarga = app.stage.addChild(new PIXI.Graphics());
         barraCarga.position.set(0,0);
 
-   
-
-
-        cargaTexturasGeneral();
+        cargaTexturasGeneral();               // llamo a la carga de las animaciones
 
         /*
         Shockwave_Filter = new PIXI.filters.ShockwaveFilter();
@@ -415,7 +386,7 @@ function createViewport()
         txt_fps.anchor.set(0.5);
         txt_fps.position.set (30, window.innerHeight-20);
 
-       	//	resize()
+       		//resize();
         PIXI.Ticker.shared.add(function (dt) { 
         app.render(); 
 
@@ -427,112 +398,106 @@ function createViewport()
 
         txt_zoom.text  = ' ';
         txt_zoom.text  = Math.round(viewport.zlevel) + '%';    
-               
-      
-        //    log((homex - viewport.hitArea.x-(window.innerWidth/2))*(viewport.zlevel/100));
-            let diferenciax = Math.abs((homex - viewport.hitArea.x)*(viewport.zlevel/100));
-            let diferenciay = Math.abs((homey - viewport.hitArea.y)*(viewport.zlevel/100));
-            let posicionx=(homex - viewport.hitArea.x)*(viewport.zlevel/100);
-            let posiciony=(homey - viewport.hitArea.y)*(viewport.zlevel/100);
-            let origenx= viewport.hitArea.x + (window.innerWidth/2);
-            let origeny= viewport.hitArea.y + (window.innerHeight/2);
+        
+        //control de la posición del sistema home para mostrar el marcador verde
+        let posicionx=(homex - viewport.hitArea.x)*(viewport.zlevel/100);
+        let posiciony=(homey - viewport.hitArea.y)*(viewport.zlevel/100);
 
-            var anguloFlecha=0;
-            var posx, posy;
+        var anguloFlecha=0;
+        var posx, posy;
 
-           // control de la marca verde. lo primero ver si el sistema home sale de la pantalla
-            if ( posicionx+(35*(viewport.zlevel/100))<=0 || posicionx+ (35 * (viewport.zlevel/100)) >=window.innerWidth || posiciony+(35*(viewport.zlevel/100))<=0 || posiciony+ (35 * (viewport.zlevel/100)) >=window.innerHeight ){ 
-              
-              flechaHome.visible=true;
+        // control de la marcaHome. lo primero ver si el sistema home sale de la pantalla
+        if ( posicionx+(35*(viewport.zlevel/100))<=0 || posicionx+ (35 * (viewport.zlevel/100)) >=window.innerWidth || posiciony+(35*(viewport.zlevel/100))<=0 || posiciony+ (35 * (viewport.zlevel/100)) >=window.innerHeight ){           
+          marcaHome.visible=true;
 
-                //sale por la izquierda
-                if(posicionx+(35*(viewport.zlevel/100))<=0){
-                  posx=-5;
-                  posy=(homey+35 - viewport.hitArea.y)*(viewport.zlevel/100);
-                }
-                //sale por la derecha
-                if(posicionx+ (35 * (viewport.zlevel/100)) >=window.innerWidth ){
-                  posx=window.innerWidth-5;
-                  posy=(homey+35 - viewport.hitArea.y)*(viewport.zlevel/100);
-                }
-                //sale por arriba
-                if(posiciony+(35*(viewport.zlevel/100))<=0){
-                  posy=-5;
-                  posx=(homex+35 - viewport.hitArea.x)*(viewport.zlevel/100);
-                }
-                //sale por abajo
-                if(posiciony+ (35 * (viewport.zlevel/100)) >=window.innerHeight ){
-                  posy=window.innerHeight-5;
-                  posx=(homex+35 - viewport.hitArea.x)*(viewport.zlevel/100);
-                }
-
-                //se ajusta posx y posy para que no salgan de la pantalla
-                if (posy<=-5){posy=-5;}
-                if (posx<=-5){posx=-5;}
-                if (posx>=window.innerWidth-5){posx=window.innerWidth-5;}
-                if (posy>=window.innerHeight-5){posy=window.innerHeight-5;}
-
-                flechaHome.position.set (posx,posy);  
-
-            }else{
-              flechaHome.visible=false;
+            //sale por la izquierda
+            if(posicionx+(35*(viewport.zlevel/100))<=0){
+              posx=-5;
+              posy=(homey+35 - viewport.hitArea.y)*(viewport.zlevel/100);
             }
+
+            //sale por la derecha
+            if(posicionx+ (35 * (viewport.zlevel/100)) >=window.innerWidth ){
+              posx=window.innerWidth-5;
+              posy=(homey+35 - viewport.hitArea.y)*(viewport.zlevel/100);
+            }
+
+            //sale por arriba
+            if(posiciony+(35*(viewport.zlevel/100))<=0){
+              posy=-5;
+              posx=(homex+35 - viewport.hitArea.x)*(viewport.zlevel/100);
+            }
+
+            //sale por abajo
+            if(posiciony+ (35 * (viewport.zlevel/100)) >=window.innerHeight ){
+              posy=window.innerHeight-5;
+              posx=(homex+35 - viewport.hitArea.x)*(viewport.zlevel/100);
+            }
+
+            //se ajusta posx y posy para que no salgan de los margenes de la pantalla
+            if (posy<=-5){posy=-5;}
+            if (posx<=-5){posx=-5;}
+            if (posx>=window.innerWidth-5){posx=window.innerWidth-5;}
+            if (posy>=window.innerHeight-5){posy=window.innerHeight-5;}
+
+            marcaHome.position.set (posx,posy);  
+
+        }else{
+          marcaHome.visible=false;
+        }
           
         });
 
 }
 
-// se crean los sistemas en el universo
-function createWorld()
-{
-// borro el contenedor de las flotas para no duplicar elementos
-for (var i = capa_estrellas.children.length - 1; i >= 0; i--) {	capa_estrellas.removeChild(capa_estrellas.children[i]);}
-log("SISTEMAS: "+ universo.sistemas.length);
-    for (var i = 0; i < universo.sistemas.length; i++){
-      //  var box = viewport.addChild(new PIXI.Sprite(PIXI.Texture.fromImage('img/estrella-blanca.png')))
-      var y = Math.floor(universo.sistemas[i].estrella/universo.ancho)*70;
-    	var x = (universo.sistemas[i].estrella-(Math.floor(universo.sistemas[i].estrella/universo.ancho)*universo.ancho))*70;
-    	sistema  = new Sistema(universo.sistemas[i].estrella,x,y,universo.sistemas[i].habitado);
-    	if(universo.sistemas[i].estrella==home){
-        homex = x;
-        homey= y;
-      }
-        //box.tint = Math.floor(Math.random() * 0xffffff)
-        //box.width = box.height = 70
-       // box.position.set(x, y)
-       if (i < 50){
-           // line = new linea([x+35, y+35, ((universo.sistemas[i+1].estrella-(Math.floor(universo.sistemas[i+1].estrella/universo.ancho)*universo.ancho))*70)+35, (Math.floor(universo.sistemas[i+1].estrella/universo.ancho)*70)+35], 1, 0x666666, 1);
-        }
-        
-    }
-    creainfoflotas();
-    creainfoRutas();
-    botonE();
+// se crean los sistemas (las estrellas) en el universo
+function createWorld(){
+
+  // borro el contenedor de las flotas para no duplicar elementos
+  for (var i = capa_estrellas.children.length - 1; i >= 0; i--) {	capa_estrellas.removeChild(capa_estrellas.children[i]);}
+
+  for (var i = 0; i < universo.sistemas.length; i++){
+    var y = Math.floor(universo.sistemas[i].estrella/universo.ancho)*70;
+    var x = (universo.sistemas[i].estrella-(Math.floor(universo.sistemas[i].estrella/universo.ancho)*universo.ancho))*70;
+    sistema  = new Sistema(universo.sistemas[i].estrella,x,y,universo.sistemas[i].habitado);
+
+    //se establecen las coordenadas x e y del sistema home
+    if(universo.sistemas[i].estrella==home){
+      homex = x;
+      homey= y;
+    }     
+  }
+
+  creainfoflotas();
+  creainfoRutas();
+  botonE();
   
 
     //centro el mapa
     viewport.snap(homex, homey, {topLeft: false,time: 2000,ease: "easeInOutSine", removeOnComplete: true, removeOnInterrupt: true});
-    let texturaflechaHome = PIXI.Texture.from('/astrometria/img/flechahome.png');
-    flechaHome = new PIXI.Sprite(texturaflechaHome); // se inicia activo
-    flechaHome.anchor.set(0.5);
-    flechaHome.position.set (window.innerWidth/2, window.innerHeight/2);
-    app.stage.addChild(flechaHome);
-    flechaHome.visible=false;
-    flechaHome.interactive=true;
-    flechaHome.buttonMode = true;
-    flechaHome.on('click', (event) => {
+
+    //se crea la marcaHome, el punto verde que indica la posición del sistema de inicio
+    let texturamarcaHome = PIXI.Texture.from('/astrometria/img/flechahome.png');
+    marcaHome = new PIXI.Sprite(texturamarcaHome); // se inicia activo
+    marcaHome.anchor.set(0.5);
+    marcaHome.position.set (window.innerWidth/2, window.innerHeight/2);
+    app.stage.addChild(marcaHome);
+    marcaHome.visible=false;
+    marcaHome.interactive=true;
+    marcaHome.buttonMode = true;
+    marcaHome.on('click', (event) => {
       buscar(home);
- });
+    });
 }
 
 //se crean las flotas
-function creaflotas()
-{
+function creaflotas(){
  
   const lista=document.getElementById('contenedorFlotas');
   while (lista.firstChild) {
     lista.removeChild(lista.lastChild);
   }
+
   // borro el contenedor de las flotas para no duplicar elementos
   for (var i = capa_flotas.children.length - 1; i >= 0; i--) {	capa_flotas.removeChild(capa_flotas.children[i]);}
 
@@ -556,48 +521,36 @@ function creaflotas()
      anchor.onclick= function() {buscar(this.innerText);};
      list.appendChild(anchor);
 
- 
   }
  
 }
 
-// se crean los radares
-function crearutas()
-{
+// se crean las rutas
+function crearutas(){
 	var x, y; 
     for (var i = 0; i < rutas.rutas.length; i++){
-
-     rutamapa = new Ruta(rutas.rutas[i].p1x,rutas.rutas[i].p1y,rutas.rutas[i].p2x,rutas.rutas[i].p2y,rutas.rutas[i].p3x,rutas.rutas[i].p3y,rutas.rutas[i].tipolinea,rutas.rutas[i].velocidad);
-        
-    }
-
-   
+     rutamapa = new Ruta(rutas.rutas[i].p1x,rutas.rutas[i].p1y,rutas.rutas[i].p2x,rutas.rutas[i].p2y,rutas.rutas[i].p3x,rutas.rutas[i].p3y,rutas.rutas[i].tipolinea,rutas.rutas[i].velocidad);     
+    }   
 }
 
 // se crean los radares
-function crearadares()
-{
+function crearadares(){
 	var x, y; 
-    for (var i = 0; i < radares.radares.length; i++){
-
-     
+    for (var i = 0; i < radares.radares.length; i++){    
       let y = Math.floor(radares.radares[i].estrella/universo.ancho)*70;
       let x = (radares.radares[i].estrella-(Math.floor(radares.radares[i].estrella/universo.ancho)*universo.ancho))*70;
-      radar = new Radar(radares.radares[i].estrella,x,y,radares.radares[i].circulo,radares.radares[i].color);
-        
-    }
-
-   
+      radar = new Radar(radares.radares[i].estrella,x,y,radares.radares[i].circulo,radares.radares[i].color);       
+    }  
 }
 
 // Función para ajustar la pantalla cuando se cambia el tamaño
-function resize()
-{
+function resize(){
   cambios ++;
  // log (cambios + " " + window.innerWidth/2)
   //  renderer.renderer.resize(window.innerWidth, window.innerHeight)
   //  viewport.resize(window.innerWidth, window.innerHeight, mapa.width, mapa.height)
   // Resize the renderer
+
   var nueva_pos = window.innerWidth/2 - botones.width/2;
   app.renderer.resize(window.innerWidth, window.innerHeight);
   botones.position.set(nueva_pos,0);
@@ -612,8 +565,7 @@ function resize()
 
 var app, viewport;
 
-window.onload = function ()
-{
+window.onload = function (){
     app = new PIXI.Application({ transparent: true, width: window.innerWidth, height: window.innerHeight, resolution: window.devicePixelRatio, antialias: true,autoResize: true,
   resolution: devicePixelRatio });
     document.body.appendChild(app.view);
@@ -628,18 +580,12 @@ window.onload = function ()
     // y estamos seguros que todos los ficheros javascript están cargados y disponibles
     // empieza la magia...
     carga_universo();
-
 };
 
 var docu = document.documentElement;
 
-
-
-
 // Listen for window resize events
 	window.addEventListener('resize', resize);
-
   //window.addEventListener("mousemove", e => lineaprueba.updatePoints([e.clientX, e.clienty, null, null]), false);
-  
  // window.addEventListener("mousemove", e => lineaprueba.updatePoints([null, null, botones.x, botones.y]), false);
 
