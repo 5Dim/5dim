@@ -22,17 +22,17 @@ class CreateCostesArmasTable extends Migration
             $table->unsignedMediumInteger('ceramica');
             $table->unsignedMediumInteger('liquido');
             $table->unsignedMediumInteger('micros');
-            $table->unsignedMediumInteger('fuel');
+            $table->mediumInteger('fuel');
             $table->unsignedMediumInteger('ma');
-            $table->unsignedMediumInteger('municion');
+            $table->mediumInteger('municion');
             $table->unsignedMediumInteger('personal');
 
-            $table->unsignedMediumInteger('mantenimiento');
-            $table->unsignedMediumInteger('masa');
-            $table->mediumInteger('energia');
+            $table->mediumInteger('mantenimiento');
+            $table->integer('masa');
+            $table->integer('energia');
             $table->unsignedMediumInteger('defensa');
             $table->unsignedMediumInteger('ataque');
-            $table->unsignedMediumInteger('tiempo');
+            $table->mediumInteger('tiempo');
             $table->unsignedMediumInteger('velocidad');
             $table->unsignedMediumInteger('maniobra')->default(0);
             $table->unsignedMediumInteger('carga');

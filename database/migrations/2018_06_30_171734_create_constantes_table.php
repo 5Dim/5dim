@@ -16,9 +16,9 @@ class CreateConstantesTable extends Migration
         Schema::create('constantes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo')->index();
-            $table->decimal('valor', );
-            $table->decimal('minimo', );
-            $table->decimal('maximo', );
+            $table->decimal('valor', 12, 3);
+            $table->decimal('minimo', 12, 3);
+            $table->decimal('maximo', 12, 3);
             $table->string('descripcion');
             $table->string('tipo')->index();
 

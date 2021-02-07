@@ -452,7 +452,7 @@ class Armas extends Model
         $arma->ranura = "cargaMega";
         $arma->potencia = 1;
         $arma->clase = 'invHangar';
-        $arma->niveltec = 999;
+        $arma->niveltec = 250;
 
         array_push($armas, $arma);
 

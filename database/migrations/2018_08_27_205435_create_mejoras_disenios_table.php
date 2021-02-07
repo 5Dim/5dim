@@ -36,7 +36,7 @@ class CreateMejorasDiseniosTable extends Migration
             $table->unsignedInteger('invCarbonadio')->default(0);
             $table->unsignedInteger('mantenimiento')->default(0);
             $table->unsignedInteger('tiempo')->default(0);
-            $table->unsignedInteger('masa')->default(0);
+            $table->unsignedBigInteger('masa')->default(0);
             $table->unsignedInteger('energia')->default(0);
             $table->unsignedInteger('carga')->default(0);
             $table->unsignedInteger('cargaPequenia')->default(0);
