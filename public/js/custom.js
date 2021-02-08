@@ -849,21 +849,25 @@ function CoordenadasBySistema(nsistema){
 
 function DistanciaUniverso(origen,destino){
     var coordOrigen;
-    var coordDestino
+    var coordDestino;
+    var factordistancia=1;
 
     if (origen.sistema == destino.sistema && origen.planeta == destino.planeta){ //orbitar
+        factordistancia=$.grep(constantes, function (busca) {return busca.codigo == 'distanciaorbita';})[0].valor;
         coordOrigen=0;
         coordDestino=.5;
     }
     else if (origen.sistema == destino.sistema){  //mismo sistema
+        factordistancia=$.grep(constantes, function (busca) {return busca.codigo == 'distanciaentreplanetas';})[0].valor;
         coordOrigen=origen.planeta;
         coordDestino=destino.planeta;
     }
     else { //entre sistemas
+        factordistancia=$.grep(constantes, function (busca) {return busca.codigo == 'distanciaentresistemas';})[0].valor;
         coordOrigen=CoordenadasBySistema(origen.sistema);
         coordDestino=CoordenadasBySistema(destino.sistema);
     }
-    dist=Math.pow( ((coordDestino.x-coordOrigen.x) * (coordDestino.x-coordOrigen.x)) + ((coordDestino.y-coordOrigen.y) * (coordDestino.y-coordOrigen.y)),1/2);
+    dist=factordistancia * Math.pow( ((coordDestino.x-coordOrigen.x) * (coordDestino.x-coordOrigen.x)) + ((coordDestino.y-coordOrigen.y) * (coordDestino.y-coordOrigen.y)),1/2);
 
     return dist;
 }
@@ -874,9 +878,9 @@ function GastoFuel(distancia,fuelbase){
 }
 
 function TiempoLLegada(distancia,velocidad){
-    tiempoentresistemas=$.grep(constantes, function (busca) {return busca.codigo == 'tiempoentresistemas';})[0].valor
+    factortiempoviaje=$.grep(constantes, function (busca) {return busca.codigo == 'factortiempoviaje';})[0].valor
 
-    var tiempo=(distancia/velocidad) * tiempoentresistemas; //en segundos
+    var tiempo=(distancia/velocidad) * factortiempoviaje; //en segundos
 }
 
 

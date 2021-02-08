@@ -1080,12 +1080,44 @@ class Constantes extends Model
         $constante->valor = 36000;
         $constante->minimo = 20000;
         $constante->maximo = 60000;
-        $constante->codigo = 'tiempoentresistemas';
-        $constante->descripcion = 'factor de tiempo en recorer la distancia entre dos sistemas adyacentes (segundos)';
+        $constante->codigo = 'factortiempoviaje';
+        $constante->descripcion = 'factor de tiempo en recorer una distancia';
         $constante->tipo = 'universo';
-        $constante->votable=1;
+        $constante->votable=0;
         array_push($producciones, $constante);
 
+
+        $constante = new Constantes();
+        $constante->valor = 1;
+        $constante->minimo = .5;
+        $constante->maximo = 2;
+        $constante->codigo = 'distanciaentresistemas';
+        $constante->descripcion = 'factor de espacio entre dos sistemas adyacentes';
+        $constante->tipo = 'universo';
+        $constante->votable=0;
+        array_push($producciones, $constante);
+
+
+        $constante = new Constantes();
+        $constante->valor = 1;
+        $constante->minimo = .5;
+        $constante->maximo = 2;
+        $constante->codigo = 'distanciaentreplanetas';
+        $constante->descripcion = 'factor de espacio entre dos planetas adyacentes';
+        $constante->tipo = 'universo';
+        $constante->votable=0;
+        array_push($producciones, $constante);
+
+
+        $constante = new Constantes();
+        $constante->valor = 1;
+        $constante->minimo = .2;
+        $constante->maximo = 1.5;
+        $constante->codigo = 'distanciaorbita';
+        $constante->descripcion = 'factor distancia de la orbita';
+        $constante->tipo = 'universo';
+        $constante->votable=0;
+        array_push($producciones, $constante);
 
 
         foreach ($producciones as $estaproduccion) {

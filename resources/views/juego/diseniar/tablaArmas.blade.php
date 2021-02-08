@@ -852,33 +852,91 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                             <table class=" table-borderless borderless table-sm text-center anchofijo cajita" style="margin-top: 5px !important; ">
                                                 <tr>
                                                     @for($codigo=90;$codigo<104;$codigo++)
-                                                    @if ($investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
-                                                    @if ($cantidadCargaPequenia>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaPequenia")
-                                                    <td>
-                                                        <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    @endif
-                                                    @if ($cantidadCargaMedia>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaMediana")
-                                                    <td>
-                                                        <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    @endif
-                                                    @if ($cantidadCargaGrande>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaGrande")
-                                                    <td>
-                                                        <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    @endif
-                                                    @if ($cantidadCargaEnorme>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaEnorme")
-                                                    <td>
-                                                        <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    @endif
-                                                    @if ($cantidadCargaMega>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaMega")
-                                                    <td>
-                                                        <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
-                                                    </td>
-                                                    @endif
-                                                    @endif
+                                                        @if ($cantidadCargaPequenia>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaPequenia")
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invCarga" && $investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                                <td>
+                                                                    <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                                </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invHangar" && $investNiveles["invHangar"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invRecoleccion" && $investNiveles["invRecoleccion"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                        @endif
+                                                        @if ($cantidadCargaMedia>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaMediana")
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invCarga" && $investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invHangar" && $investNiveles["invHangar"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invRecoleccion" && $investNiveles["invRecoleccion"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                        @endif
+                                                        @if ($cantidadCargaGrande>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaGrande")
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invCarga" && $investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invHangar" && $investNiveles["invHangar"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invRecoleccion" && $investNiveles["invRecoleccion"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                        @endif
+                                                        @if ($cantidadCargaEnorme>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaEnorme")
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invCarga" && $investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invHangar" && $investNiveles["invHangar"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invRecoleccion" && $investNiveles["invRecoleccion"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                        @endif
+                                                        @if ($cantidadCargaMega>0 and $armas->where("codigo",$codigo)->first()->ranura=="cargaMega")
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invCarga" && $investNiveles["invCarga"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invHangar" && $investNiveles["invHangar"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                            @if ($armas->where("codigo",$codigo)->first()->clase=="invRecoleccion" && $investNiveles["invRecoleccion"]>=$armas->where("codigo",$codigo)->first()->niveltec)
+                                                            <td>
+                                                                <img onClick="encajar('{{$armas->where("codigo",$codigo)->first()->ranura}}',{{$codigo}},'aniade')"class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",$codigo)->first()->nombre}}"src="{{ asset('img/fotos armas/arma'.$codigo.'.jpg') }}" width="40" height="40">
+                                                            </td>
+                                                            @endif
+                                                        @endif
                                                     @endfor
                                                 </tr>
                                                 <tr>
