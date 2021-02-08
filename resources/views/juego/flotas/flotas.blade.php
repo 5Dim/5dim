@@ -284,6 +284,7 @@
 
     <script>
         var constantes = @json($constantesU);
+        var navesEstacionadas = @json($diseniosJugador);
 
 
     </script>

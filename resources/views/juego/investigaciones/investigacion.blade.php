@@ -32,7 +32,7 @@
                                             {{ number_format($colaInvestigacion[$i]->personal, 0, ',', '.') }}
                                         </td>
                                         <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
-                                            {{ $colaInvestigacion[$i]->finished_at }}
+                                            {{ (new DateTime($colaInvestigacion[$i]->finished_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone("Europe/Madrid"))->format("Y-m-d H:i:s") }}
                                         </td>
                                         <td class=" text-light align-middle borderless" id="{{ $colaInvestigacion[$i]->id }}"></td>
                                         <td class=" text-light align-middle borderless">
