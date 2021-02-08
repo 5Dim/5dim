@@ -246,17 +246,19 @@ function calculaTiempo(costes, velocidadConst, codigo) {
     horaImprimible = "";
     if (personal > 1) {
         result = (precioTotal * velocidadConst) / personal;
-        result = result - premiun * 5 * 60;
+        // result = result - premiun * 5 * 60;
         if (result < 1) {
             result = 0;
         }
-        lhora = Math.floor(result / 3600);
-        lminuto = Math.floor((result - lhora * 3600) / 60);
-        lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
+        // lhora = Math.floor(result / 3600);
+        // lminuto = Math.floor((result - lhora * 3600) / 60);
+        // lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
 
-        horaImprimible =
-            "Tiempo: " + lhora + ":" + lminuto + ":" + lsegundo + "";
+        // horaImprimible =
+        //     "Tiempo: " + lhora + ":" + lminuto + ":" + lsegundo + "";
 
+
+        timeDura(result, "tiempo" + codigo);
         $("#tiempo" + codigo).html(horaImprimible);
         timeg(result, "termina" + codigo);
     } else {
@@ -295,13 +297,14 @@ function calculaTiempoInvestigacion(
         if (result < 1) {
             result = 0;
         }
-        lhora = Math.floor(result / 3600);
-        lminuto = Math.floor((result - lhora * 3600) / 60);
-        lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
+        // lhora = Math.floor(result / 3600);
+        // lminuto = Math.floor((result - lhora * 3600) / 60);
+        // lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
 
-        horaImprimible =
-            "Tiempo: " + lhora + "h " + lminuto + "m " + lsegundo + "s";
-        $("#tiempo" + dnd).html(horaImprimible);
+        // horaImprimible =
+        //     "Tiempo: " + lhora + "h " + lminuto + "m " + lsegundo + "s";
+        timeDura(result, "tiempo" + dnd);
+        // $("#tiempo" + dnd).html(horaImprimible);
         timeg(result, "termina" + dnd);
         console.log(result);
     } else {
