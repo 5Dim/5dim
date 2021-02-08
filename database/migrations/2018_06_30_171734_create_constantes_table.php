@@ -21,8 +21,7 @@ class CreateConstantesTable extends Migration
             $table->decimal('maximo', 12, 3);
             $table->string('descripcion');
             $table->string('tipo')->index();
-
-
+            $table->boolean('votable')->default(1);
         });
     }
 

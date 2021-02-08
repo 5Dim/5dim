@@ -110,17 +110,6 @@ class Constantes extends Model
         $constante->tipo = 'construccion';
         array_push($producciones, $constante);
 
-
-        $constante = new Constantes();
-        $constante->valor = 40;
-        $constante->minimo = 30;
-        $constante->maximo = 50;
-        $constante->codigo = 'yacimientosIniciales';
-        $constante->descripcion = 'Yacimientos del planeta de inicio';
-        $constante->tipo = 'construccion';
-        array_push($producciones, $constante);
-
-
         $constante = new Constantes();
         $constante->valor = 100;
         $constante->minimo = 50;
@@ -129,7 +118,6 @@ class Constantes extends Model
         $constante->descripcion = 'velocidad de fabricación de naves por nivel de edificio en tanto por ciento';
         $constante->tipo = 'construccion';
         array_push($producciones, $constante);
-
 
 
         ////////  investigaciones  ////////////////////////////////////////////////////////////////
@@ -1036,30 +1024,66 @@ class Constantes extends Model
 
 
         $constante = new Constantes();
-        $constante->valor = 500;
-        $constante->minimo = 100;
-        $constante->maximo = 1000;
+        $constante->valor = 400;
+        $constante->minimo = 200;
+        $constante->maximo = 600;
         $constante->codigo = 'anchouniverso';
         $constante->descripcion = 'ancho del universo';
         $constante->tipo = 'universo';
+        $constante->votable=0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 2 * 365 * 24 * 3600;
-        $constante->minimo = 1 * 365 * 24 * 3600;
-        $constante->maximo = 5 * 365 * 24 * 3600;
+        $constante->valor = 10;
+        $constante->minimo = 5;
+        $constante->maximo = 20;
         $constante->codigo = 'luzdemallauniverso';
-        $constante->descripcion = 'distancia entre puntos de la malla en seg/luz';
+        $constante->descripcion = 'distancia entre dos sistemas adyacentes';
         $constante->tipo = 'universo';
+        $constante->votable=0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
         $constante->valor = 7500;
         $constante->minimo = 6000;
         $constante->maximo = 10000;
-        $constante->codigo = 'saltodelinea';
+        $constante->codigo = 'estrellasinicio';
         $constante->descripcion = 'cantidad sistemas que se general al inicio';
         $constante->tipo = 'universo';
+        $constante->votable=0;
+        array_push($producciones, $constante);
+
+
+        $constante = new Constantes();
+        $constante->valor = 40;
+        $constante->minimo = 30;
+        $constante->maximo = 50;
+        $constante->codigo = 'yacimientosIniciales';
+        $constante->descripcion = 'Yacimientos del planeta de inicio';
+        $constante->tipo = 'universo';
+        $constante->votable=0;
+        array_push($producciones, $constante);
+
+
+        $constante = new Constantes();
+        $constante->valor = 1;
+        $constante->minimo = .5;
+        $constante->maximo = 2;
+        $constante->codigo = 'fuelpordistancia';
+        $constante->descripcion = 'factor de gasto de fuel por unidad de distancia';
+        $constante->tipo = 'universo';
+        $constante->votable=1;
+        array_push($producciones, $constante);
+
+
+        $constante = new Constantes();
+        $constante->valor = 36000;
+        $constante->minimo = 20000;
+        $constante->maximo = 60000;
+        $constante->codigo = 'tiempoentresistemas';
+        $constante->descripcion = 'factor de tiempo en recorer la distancia entre dos sistemas adyacentes (segundos)';
+        $constante->tipo = 'universo';
+        $constante->votable=1;
         array_push($producciones, $constante);
 
 

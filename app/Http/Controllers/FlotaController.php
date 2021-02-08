@@ -59,6 +59,9 @@ class FlotaController extends Controller
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
 
+        //variables universo
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+
         return view('juego.flotas.flotas', compact(
             // Recursos
             'recursos',
@@ -72,6 +75,7 @@ class FlotaController extends Controller
             'nivelImperio',
             'nivelEnsamblajeFuselajes',
             'investigaciones',
+            'constantesU',
         ));
     }
 }

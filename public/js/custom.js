@@ -834,3 +834,49 @@ function MostrarResultadoDisenio(diseno){
     $("#defensa" + diseno.id).text(formatNumber(Math.round(result.defensa)));
 
 }
+
+
+//funciones de flotas
+
+function CoordenadasBySistema(nsistema){
+    anchoUniverso=$.grep(constantes, function (busca) {return busca.codigo == 'anchouniverso';})[0].valor
+    luzdemallauniverso=$.grep(constantes, function (busca) {return busca.codigo == 'luzdemallauniverso';})[0].valor
+
+    var cy = Math.floor(nsistema/anchoUniverso)*10;
+    var cx = (nsistema-(Math.floor(nsistema/anchoUniverso)*anchoUniverso))*luzdemallauniverso;
+    return {x:cx, y:cy};
+}
+
+function DistanciaUniverso(origen,destino){
+    var coordOrigen;
+    var coordDestino
+
+    if (origen.sistema == destino.sistema && origen.planeta == destino.planeta){ //orbitar
+        coordOrigen=0;
+        coordDestino=.5;
+    }
+    else if (origen.sistema == destino.sistema){  //mismo sistema
+        coordOrigen=origen.planeta;
+        coordDestino=destino.planeta;
+    }
+    else { //entre sistemas
+        coordOrigen=CoordenadasBySistema(origen.sistema);
+        coordDestino=CoordenadasBySistema(destino.sistema);
+    }
+    dist=Math.pow( ((coordDestino.x-coordOrigen.x) * (coordDestino.x-coordOrigen.x)) + ((coordDestino.y-coordOrigen.y) * (coordDestino.y-coordOrigen.y)),1/2);
+
+    return dist;
+}
+
+function GastoFuel(distancia,fuelbase){
+    fueldistancia=$.grep(constantes, function (busca) {return busca.codigo == 'fuelpordistancia';})[0].valor;
+    return Math.round(fueldistancia * distancia * fuelbase);
+}
+
+function TiempoLLegada(distancia,velocidad){
+    tiempoentresistemas=$.grep(constantes, function (busca) {return busca.codigo == 'tiempoentresistemas';})[0].valor
+
+    var tiempo=(distancia/velocidad) * tiempoentresistemas; //en segundos
+}
+
+

@@ -282,4 +282,9 @@
         </div>
     </div>
 
+    <script>
+        var constantes = @json($constantesU);
+
+
+    </script>
 @endsection
