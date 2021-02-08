@@ -15,6 +15,11 @@ class CreateDestinosTable extends Migration
     {
         Schema::create('destinos', function (Blueprint $table) {
             $table->increments('id');
+            $table->decimal('coordx', 8, 2, true);
+            $table->decimal('coordy', 8, 2, true);
+            $table->unsignedMediumInteger('estrella');
+            $table->unsignedTinyInteger('posicion');
+            $table->decimal('velocidad', 5, 2, true);
             $table->timestamps();
         });
     }

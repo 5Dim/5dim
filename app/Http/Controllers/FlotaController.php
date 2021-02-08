@@ -62,6 +62,14 @@ class FlotaController extends Controller
         //variables universo
         $constantesU = Constantes::where('tipo', 'universo')->get();
 
+        //Naves en el planeta
+        $navesEstacionadas = $planetaActual->estacionadas;
+        $diseniosJugador = $jugadorActual->disenios;
+        $mejoras = [];
+        for ($i = 0; $i < count($diseniosJugador); $i++) {
+            $mejoras[$i] = $diseniosJugador[$i]->mejoras;
+        }
+
         return view('juego.flotas.flotas', compact(
             // Recursos
             'recursos',
@@ -76,6 +84,9 @@ class FlotaController extends Controller
             'nivelEnsamblajeFuselajes',
             'investigaciones',
             'constantesU',
+            'navesEstacionadas',
+            'diseniosJugador',
+            'mejoras',
         ));
     }
 }
