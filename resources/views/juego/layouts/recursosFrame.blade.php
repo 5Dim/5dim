@@ -206,9 +206,7 @@
                                     @endif
                                 </td>
                             @endforeach
-                            <td class="text-danger borderless">
-                                3200 ud/d
-                            </td>
+                            <td class="text-danger borderless"></td>
                         </tr>
                         <tr>
                             <td id="personal" class="text-warning borderless">
