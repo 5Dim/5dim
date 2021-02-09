@@ -583,9 +583,7 @@ function calcularDisenios(disenios, mejoras, investigaciones, constantes) {
 }
 
 function CalculoDisenio(diseno){
-    masa = $.grep(mejoras, function (valorBase) {
-        return  valorBase.id == diseno.id;
-    })[0]["masa"];
+    masa = diseno.mejoras.masa;
     var rdiseno = [];
     // Velocidades
 
@@ -624,10 +622,7 @@ function CalculoDisenio(diseno){
     invest = "invManiobraQuimico";
     investr = "invPropQuimico";
     minves = "mejora" + invest;
-    EinvManiobraQuimico =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0][invest] *
+    EinvManiobraQuimico =diseno.mejoras[invest] *
         (1 +
             $.grep(investigaciones, function (nivelInv) {
                 return nivelInv.codigo == investr;
@@ -639,10 +634,7 @@ function CalculoDisenio(diseno){
     invest = "invManiobraNuk";
     investr = "invPropQuimico";
     minves = "mejora" + invest;
-    EinvManiobraNuk =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0][invest] *
+    EinvManiobraNuk =diseno.mejoras[invest] *
         (1 +
             $.grep(investigaciones, function (nivelInv) {
                 return nivelInv.codigo == investr;
@@ -654,10 +646,7 @@ function CalculoDisenio(diseno){
     invest = "invManiobraIon";
     investr = "invPropQuimico";
     minves = "mejora" + invest;
-    EinvManiobraIon =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0][invest] *
+    EinvManiobraIon =diseno.mejoras[invest]*
         (1 +
             $.grep(investigaciones, function (nivelInv) {
                 return nivelInv.codigo == investr;
@@ -669,10 +658,7 @@ function CalculoDisenio(diseno){
     invest = "invManiobraPlasma";
     investr = "invPropQuimico";
     minves = "mejora" + invest;
-    EinvManiobraPlasma =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0][invest] *
+    EinvManiobraPlasma =diseno.mejoras[invest] *
         (1 +
             $.grep(investigaciones, function (nivelInv) {
                 return nivelInv.codigo == investr;
@@ -684,10 +670,7 @@ function CalculoDisenio(diseno){
     invest = "invManiobraMa";
     investr = "invPropQuimico";
     minves = "mejora" + invest;
-    EinvManiobraMa =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0][invest] *
+    EinvManiobraMa =diseno.mejoras[invest] *
         (1 +
             $.grep(investigaciones, function (nivelInv) {
                 return nivelInv.codigo == investr;
@@ -747,22 +730,10 @@ function CalculoDisenio(diseno){
                 return nivelConst.codigo == minves;
             })[0]["valor"];
 
-    rdiseno.cargaPequenia =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0]["cargaPequenia"] * baseHangar;
-    rdiseno.cargaMediana =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0]["cargaMediana"] * baseHangar;
-    rdiseno.cargaGrande =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0]["cargaGrande"] * baseHangar;
-    rdiseno.cargaEnorme =
-        $.grep(mejoras, function (valorBase) {
-            return valorBase.id == diseno.id;
-        })[0]["cargaEnorme"] * baseHangar;
+    rdiseno.cargaPequenia = diseno.mejoras["cargaPequenia"] * baseHangar;
+    rdiseno.cargaMediana = diseno.mejoras["cargaMediana"] * baseHangar;
+    rdiseno.cargaGrande = diseno.mejoras["cargaGrande"] * baseHangar;
+    rdiseno.cargaEnorme = diseno.mejoras["cargaEnorme"] * baseHangar;
 
     rdiseno.carga = resultadoRealDiseno(
         diseno,
@@ -781,18 +752,10 @@ function CalculoDisenio(diseno){
     );
 
     // Varios
-    rdiseno.municion = $.grep(mejoras, function (valorBase) {
-        return valorBase.id == diseno.id;
-    })[0]["municion"];
-    rdiseno.fuel = $.grep(mejoras, function (valorBase) {
-        return valorBase.id == diseno.id;
-    })[0]["fuel"];
-    rdiseno.mantenimiento = $.grep(mejoras, function (valorBase) {
-        return valorBase.id == diseno.id;
-    })[0]["mantenimiento"];
-    rdiseno.tiempo = $.grep(mejoras, function (valorBase) {
-        return valorBase.id == diseno.id;
-    })[0]["tiempo"];
+    rdiseno.municion = diseno.mejoras["municion"];
+    rdiseno.fuel = diseno.mejoras["fuel"];
+    rdiseno.mantenimiento = diseno.mejoras["mantenimiento"];
+    rdiseno.tiempo = diseno.mejoras["tiempo"];
 
     var matrizataque = $.grep(ViewDaniosDisenios, function (disen) { return disen.disenios_id == diseno.id; });
     var ataqueTotal=0;
@@ -811,13 +774,14 @@ function resultadoRealDiseno(
     invstobj = invest
 ) {
     minves = "mejora" + invest;
-    return ($.grep(mejoras, function (valorBase) {return valorBase.id == diseno.id;})[0][invstobj] *
+    return (diseno.mejoras[invstobj] *
     (1 + $.grep(investigaciones, function (nivelInv) { return nivelInv.codigo == invest; })[0]["nivel"] *
     $.grep(constantes, function (nivelConst) { return nivelConst.codigo == minves;})[0]["valor"])
     );
 }
 
 function MostrarResultadoDisenio(diseno){
+
 
     var result=CalculoDisenio(diseno);
 
@@ -842,8 +806,8 @@ function MostrarResultadoDisenio(diseno){
 //funciones de flotas
 
 function CoordenadasBySistema(nsistema){
-    anchoUniverso=$.grep(constantes, function (busca) {return busca.codigo == 'anchouniverso';})[0].valor
-    luzdemallauniverso=$.grep(constantes, function (busca) {return busca.codigo == 'luzdemallauniverso';})[0].valor
+    anchoUniverso=$.grep(constantesU, function (busca) {return busca.codigo == 'anchouniverso';})[0].valor
+    luzdemallauniverso=$.grep(constantesU, function (busca) {return busca.codigo == 'luzdemallauniverso';})[0].valor
 
     var cy = Math.floor(nsistema/anchoUniverso)*10;
     var cx = (nsistema-(Math.floor(nsistema/anchoUniverso)*anchoUniverso))*luzdemallauniverso;
@@ -856,17 +820,17 @@ function DistanciaUniverso(origen,destino){
     var factordistancia=1;
 
     if (origen.sistema == destino.sistema && origen.planeta == destino.planeta){ //orbitar
-        factordistancia=$.grep(constantes, function (busca) {return busca.codigo == 'distanciaorbita';})[0].valor;
+        factordistancia=$.grep(constantesU, function (busca) {return busca.codigo == 'distanciaorbita';})[0].valor;
         coordOrigen=0;
         coordDestino=.5;
     }
     else if (origen.sistema == destino.sistema){  //mismo sistema
-        factordistancia=$.grep(constantes, function (busca) {return busca.codigo == 'distanciaentreplanetas';})[0].valor;
+        factordistancia=$.grep(constantesU, function (busca) {return busca.codigo == 'distanciaentreplanetas';})[0].valor;
         coordOrigen=origen.planeta;
         coordDestino=destino.planeta;
     }
     else { //entre sistemas
-        factordistancia=$.grep(constantes, function (busca) {return busca.codigo == 'distanciaentresistemas';})[0].valor;
+        factordistancia=$.grep(constantesU, function (busca) {return busca.codigo == 'distanciaentresistemas';})[0].valor;
         coordOrigen=CoordenadasBySistema(origen.sistema);
         coordDestino=CoordenadasBySistema(destino.sistema);
     }
@@ -876,12 +840,12 @@ function DistanciaUniverso(origen,destino){
 }
 
 function GastoFuel(distancia,fuelbase){
-    fueldistancia=$.grep(constantes, function (busca) {return busca.codigo == 'fuelpordistancia';})[0].valor;
+    fueldistancia=$.grep(constantesU, function (busca) {return busca.codigo == 'fuelpordistancia';})[0].valor;
     return Math.round(fueldistancia * distancia * fuelbase);
 }
 
 function TiempoLLegada(distancia,velocidad){
-    factortiempoviaje=$.grep(constantes, function (busca) {return busca.codigo == 'factortiempoviaje';})[0].valor
+    factortiempoviaje=$.grep(constantesU, function (busca) {return busca.codigo == 'factortiempoviaje';})[0].valor
 
     var tiempo=(distancia/velocidad) * factortiempoviaje; //en segundos
 }

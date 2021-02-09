@@ -18,6 +18,7 @@ use App\Models\CostesConstrucciones;
 use App\Models\Investigaciones;
 use App\Models\Alianzas;
 use App\Models\Jugadores;
+use App\Models\ViewDaniosDisenios;
 use Auth;
 
 class FlotaController extends Controller
@@ -62,6 +63,9 @@ class FlotaController extends Controller
         //variables universo
         $constantesU = Constantes::where('tipo', 'universo')->get();
 
+        //constantes invest
+        $constantes = Constantes::where('tipo', 'investigacion')->get();
+
         //Naves en el planeta
         $navesEstacionadas = $planetaActual->estacionadas;
         $diseniosJugador = $jugadorActual->disenios;
@@ -69,6 +73,12 @@ class FlotaController extends Controller
         for ($i = 0; $i < count($diseniosJugador); $i++) {
             $mejoras[$i] = $diseniosJugador[$i]->mejoras;
         }
+
+        $idsDiseno=array();
+        foreach($navesEstacionadas as $diseno){
+            array_push($idsDiseno,$diseno->id);
+        }
+        $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
         return view('juego.flotas.flotas', compact(
             // Recursos
@@ -87,6 +97,8 @@ class FlotaController extends Controller
             'navesEstacionadas',
             'diseniosJugador',
             'mejoras',
+            'constantes',
+            'ViewDaniosDisenios',
         ));
     }
 }

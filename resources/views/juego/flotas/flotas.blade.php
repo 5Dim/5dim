@@ -42,6 +42,9 @@
                                 Velocidad
                             </th>
                             <th class="anchofijo text-warning align-middle">
+                                Maniobra
+                            </th>
+                            <th class="anchofijo text-warning align-middle">
                                 Cantidad
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
@@ -55,78 +58,72 @@
                                 </button>
                             </th>
                         </tr>
-                        <tr>
-                            <td class="anchofijo text-light align-middle">
-                                Destructor 9.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                14.935.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                7.210.300
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                785.000
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                2
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                1
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                0
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                13.89
-                            </td>
-                            <td class="anchofijo text-light align-middle">
-                                32
-                            </td>
-                            <td class="anchofijo text-light" style="max-width: 180px">
-                                <div class="input-group mb-3 input-group-sm borderless">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light">
-                                            <button type="button" class="btn btn-dark btn-sm text-warning">
-                                                0
-                                            </button>
-                                        </span>
+                        @foreach($diseniosJugador as $nave)
+                            <tr>
+                                <td name="nombre{{$nave->id}}" id="nombre{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="ataque{{$nave->id}}" id="ataque{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="defensa{{$nave->id}}" id="defensa{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="carga{{$nave->id}}" id="carga{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="hangarCazas{{$nave->id}}" id="hangarCazas{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="hangarLigeras{{$nave->id}}" id="hangarLigeras{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="hangarMedias{{$nave->id}}" id="hangarMedias{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="hangarPesadas{{$nave->id}}" id="hangarPesadas{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="velocidad{{$nave->id}}" id="velocidad{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="maniobra{{$nave->id}}" id="maniobra{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="cantidad{{$nave->id}}" id="cantidad{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td class="anchofijo text-light" style="max-width: 180px">
+                                    <div class="input-group mb-3 input-group-sm borderless">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text bg-dark text-light">
+                                                <button type="button" class="btn btn-dark btn-sm text-warning">
+                                                    0
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control input" value="0" aria-label=""
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text bg-dark text-light">
+                                                <button type="button" class="btn btn-dark btn-sm text-warning">
+                                                    M
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control input" value="0" aria-label=""
-                                        aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light">
-                                            <button type="button" class="btn btn-dark btn-sm text-warning">
-                                                M
-                                            </button>
-                                        </span>
+                                </td>
+                                <td class="anchofijo text-light" style="max-width: 180px">
+                                    <div class="input-group mb-3 input-group-sm borderless">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text bg-dark text-light">
+                                                <button type="button" class="btn btn-dark btn-sm text-warning">
+                                                    0
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control input" value="0" aria-label=""
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text bg-dark text-light">
+                                                <button type="button" class="btn btn-dark btn-sm text-warning">
+                                                    Max
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="anchofijo text-light" style="max-width: 180px">
-                                <div class="input-group mb-3 input-group-sm borderless">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light">
-                                            <button type="button" class="btn btn-dark btn-sm text-warning">
-                                                0
-                                            </button>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control input" value="0" aria-label=""
-                                        aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light">
-                                            <button type="button" class="btn btn-dark btn-sm text-warning">
-                                                Max
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
                     </table>
                     <table class="table table-borderless borderless table-sm text-center anchofijo"
                         style="margin-top: 5px !important">
@@ -283,8 +280,19 @@
     </div>
 
     <script>
-        var constantes = @json($constantesU);
-        var navesEstacionadas = @json($diseniosJugador);
+        var constantes = @json($constantes);
+        var navesEstacionadas = @json($navesEstacionadas);
+        var diseniosJugador = @json($diseniosJugador);
+        var investigaciones = @json($investigaciones);
+        var constantesU = @json($constantesU);
+        var ViewDaniosDisenios = @json($ViewDaniosDisenios);
+
+        navesEstacionadas.forEach(nave => {
+            var diseno=$.grep(diseniosJugador, function (valorBase) {return valorBase.id == nave.id;})[0];
+            MostrarResultadoDisenio(diseno);
+            $("#nombre" + nave.id).text(diseno.nombre);
+            $("#cantidad" + nave.id).text(nave.cantidad);
+        });
 
 
     </script>
