@@ -38,6 +38,7 @@ class ConstruccionController extends Controller
 
         //Recursos
         $construcciones = Construcciones::construcciones($planetaActual);
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
@@ -56,7 +57,6 @@ class ConstruccionController extends Controller
             }
         }
 
-        $investigaciones = Investigaciones::investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
