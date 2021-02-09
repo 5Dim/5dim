@@ -101,10 +101,10 @@
                         Defensa
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        Velocidad
+                        Vel. Impulso
                     </td>
                     <td class="anchofijo text-warning borderless">
-                        Maniobrabilidad
+                        Hypervelocidad
                     </td>
                     <td class="anchofijo text-warning borderless">
                         Hangar cazas
@@ -138,10 +138,10 @@
                     <td id="defensaD" class="anchofijo text-light borderless">
                         0
                     </td>
-                    <td id="velocidadD" class="anchofijo text-light borderless">
+                    <td id="maniobraD" class="anchofijo text-light borderless">
                         {{ number_format($disenio->cualidades->velocidad, 0, ',', '.') }}
                     </td>
-                    <td id="maniobraD" class="anchofijo text-light borderless">
+                    <td id="velocidadD" class="anchofijo text-light borderless">
                         {{ number_format($disenio->cualidades->velocidad, 0, ',', '.') }}
                     </td>
                     <td id="cargaPequeniaD" class="anchofijo text-light borderless">

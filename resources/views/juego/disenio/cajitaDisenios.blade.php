@@ -365,8 +365,8 @@
                             <td class="text-warning">Mantenimiento</td>
                             <td class="text-warning">Munición</td>
                             <td class="text-warning">Fuel</td>
-                            <td class="text-warning">Velocidad</td>
-                            <td class="text-warning">Maniobrabilidad</td>
+                            <td class="text-warning">Vel. Impulso</td>
+                            <td class="text-warning">Hypervelocidad</td>
                             <td class="text-warning">Ataque</td>
                             <td class="text-warning">Defensa</td>
                         </tr>
@@ -374,8 +374,8 @@
                             <td class="text-light" id="mantenimiento{{ $disenio->id }}">0</td>
                             <td class="text-light" id="municion{{ $disenio->id }}">0</td>
                             <td class="text-light" id="fuel{{ $disenio->id }}">0</td>
-                            <td class="text-light" id="velocidad{{ $disenio->id }}">0</td>
                             <td class="text-light" id="maniobra{{ $disenio->id }}">0</td>
+                            <td class="text-light" id="velocidad{{ $disenio->id }}">0</td>
                             <td class="text-light" id="ataque{{ $disenio->id }}">0</td>
                             <td class="text-light" id="defensa{{ $disenio->id }}">0</td>
                         </tr>

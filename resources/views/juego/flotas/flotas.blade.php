@@ -39,10 +39,10 @@
                                 H. pesadas
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Velocidad
+                                Vel. Impulso
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Maniobra
+                                Hypervelocidad
                             </th>
                             <th class="anchofijo text-warning align-middle">
                                 Cantidad
@@ -58,7 +58,7 @@
                                 </button>
                             </th>
                         </tr>
-                        @foreach($diseniosJugador as $nave)
+                        @foreach($navesEstacionadas as $nave)
                             <tr>
                                 <td name="nombre{{$nave->id}}" id="nombre{{$nave->id}}" class="anchofijo text-light align-middle">
                                 </td>
@@ -76,9 +76,9 @@
                                 </td>
                                 <td name="hangarPesadas{{$nave->id}}" id="hangarPesadas{{$nave->id}}" class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="velocidad{{$nave->id}}" id="velocidad{{$nave->id}}" class="anchofijo text-light align-middle">
-                                </td>
                                 <td name="maniobra{{$nave->id}}" id="maniobra{{$nave->id}}" class="anchofijo text-light align-middle">
+                                </td>
+                                <td name="velocidad{{$nave->id}}" id="velocidad{{$nave->id}}" class="anchofijo text-light align-middle">
                                 </td>
                                 <td name="cantidad{{$nave->id}}" id="cantidad{{$nave->id}}" class="anchofijo text-light align-middle">
                                 </td>

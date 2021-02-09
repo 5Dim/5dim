@@ -167,8 +167,8 @@
                                 <td class="text-warning">Mantenimiento</td>
                                 <td class="text-warning">Munición</td>
                                 <td class="text-warning">Fuel</td>
-                                <td class="text-warning">Velocidad</td>
-                                <td class="text-warning">Maniobrabilidad</td>
+                                <td class="text-warning">Vel. Impulso</td>
+                                <td class="text-warning">Hypervelocidad</td>
                                 <td class="text-warning">Ataque</td>
                                 <td class="text-warning">Defensa</td>
                             </tr>
