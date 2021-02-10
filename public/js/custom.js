@@ -608,7 +608,7 @@ function CalculoDisenio(diseno){
         "invPropMa"
     );
 
-    rdiseno.velocidad =
+    rdiseno.velocidad = Math.round(
         Math.pow(
             EinvPropQuimico +
                 EinvPropNuk +
@@ -616,7 +616,7 @@ function CalculoDisenio(diseno){
                 EinvPropPlasma +
                 EinvPropMa,
             1.33
-        ) / masa;
+        ) / masa,0);
 
     /// maniobra
     invest = "invManiobraQuimico";
@@ -679,7 +679,7 @@ function CalculoDisenio(diseno){
                     return nivelConst.codigo == minves;
                 })[0]["valor"]);
 
-    rdiseno.maniobra =
+    rdiseno.maniobra = Math.round(
         Math.pow(
             EinvManiobraQuimico +
                 EinvManiobraNuk +
@@ -687,7 +687,7 @@ function CalculoDisenio(diseno){
                 EinvManiobraPlasma +
                 EinvManiobraMa,
             1.33
-        ) / masa;
+        ) / masa,0);
 
     // Blindajes
     EinvTitanio = resultadoRealDiseno(
@@ -780,8 +780,9 @@ function resultadoRealDiseno(
     );
 }
 
-function MostrarResultadoDisenio(diseno){
+valNaves = [];
 
+function MostrarResultadoDisenio(diseno){
 
     var result=CalculoDisenio(diseno);
 
@@ -800,10 +801,12 @@ function MostrarResultadoDisenio(diseno){
     $("#ataque" + diseno.id).text(formatNumber(Math.round(result.ataque)));
     $("#defensa" + diseno.id).text(formatNumber(Math.round(result.defensa)));
 
+    valNaves[diseno.id]=result;
+
 }
 
 
-//funciones de flotas
+//funciones de distancias
 
 function CoordenadasBySistema(nsistema){
     anchoUniverso=$.grep(constantesU, function (busca) {return busca.codigo == 'anchouniverso';})[0].valor
