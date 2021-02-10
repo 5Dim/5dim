@@ -26,11 +26,11 @@ class PlanetasFactory extends Factory
     {
         // $factory->define(Planetas::class, function (Faker $faker) {
         return [
-            'jugadores_id' => null, //$this->faker->numberBetween($min = 1, $max = 100),
-            'estrella' => $this->faker->numberBetween($min = 1, $max = 99999),
-            'orbita' => $this->faker->numberBetween($min = 1, $max = 9),
-            'nombre' => $this->faker->name(),
-            'imagen' => $this->faker->numberBetween($min = 0, $max = 50),
+            'jugadores_id' => null,
+            'estrella' => $this->faker->numberBetween(1, 99999),
+            'orbita' => $this->faker->numberBetween(1, 9),
+            // 'nombre' => $this->faker->name(),
+            'imagen' => $this->faker->numberBetween(0, 50),
             'tipo' => $this->faker->randomElement(['planeta', 'nodriza', 'anubis', 'dyson', 'canon']),
         ];
         // });

@@ -36,9 +36,10 @@ class PlanetaController extends Controller
         }
 
         //Recursos
+        $investigaciones = Investigaciones::investigaciones();
+        $construcciones = Construcciones::construcciones($planetaActual);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $construcciones = Construcciones::construcciones($planetaActual);
         $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
         $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
 
@@ -55,7 +56,6 @@ class PlanetaController extends Controller
             }
         }
 
-        $investigaciones = Investigaciones::investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
@@ -84,7 +84,8 @@ class PlanetaController extends Controller
         $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
         array_push($factoresIndustrias, $factorMunicion);
 
-        // dd($produccionesSinCalcular);
+        //Todos los jugadores para la cesiones
+        $jugadores = Jugadores::all();
 
         return view('juego.planeta', compact(
             // Recursos
@@ -103,6 +104,37 @@ class PlanetaController extends Controller
             'constantes',
             'produccionesSinCalcular',
             'capacidadRefugio',
+            'jugadores',
         ));
+    }
+
+    public function renombrarPlaneta($nombre)
+    {
+        $planeta = Planetas::find(session()->get('planetas_id'));
+        $planeta->nombre = $nombre;
+        $planeta->save();
+
+        return redirect('/juego/planeta');
+    }
+
+    public function cederColonia($idJugador)
+    {
+        $planeta = Planetas::find(session()->get('planetas_id'));
+        $planeta->jugadores_id = $idJugador;
+        $planeta->save();
+
+        return redirect('/juego/planeta');
+    }
+
+    public function destruirColonia()
+    {
+        $planeta = Planetas::find(session()->get('planetas_id'));
+        $planeta->jugadores_id = null;
+        foreach ($planeta->construcciones as $edificio) {
+            $edificio->delete();
+        }
+        $planeta->save();
+
+        return redirect('/juego/planeta');
     }
 }

@@ -36,9 +36,10 @@ class FlotaController extends Controller
         }
 
         //Recursos
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $construcciones = Construcciones::construcciones($planetaActual);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $construcciones = Construcciones::construcciones($planetaActual);
         $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
         $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
 
@@ -55,7 +56,6 @@ class FlotaController extends Controller
             }
         }
 
-        $investigaciones = Investigaciones::investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
@@ -69,9 +69,14 @@ class FlotaController extends Controller
         //Naves en el planeta
         $navesEstacionadas = $planetaActual->estacionadas;
         $diseniosJugador = $jugadorActual->disenios;
+
+        foreach ($diseniosJugador as $disenio) {
+            $disenio->tamanio = $disenio->fuselajes->tamanio;
+        }
+
         $mejoras = [];
         for ($i = 0; $i < count($diseniosJugador); $i++) {
-            $mejoras[$i] = $diseniosJugador[$i]->mejoras;
+            $diseniosJugador[$i]->mejoras;
         }
 
         $idsDiseno=array();

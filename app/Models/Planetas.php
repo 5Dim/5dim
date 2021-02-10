@@ -9,43 +9,56 @@ class Planetas extends Model
 {
     use HasFactory;
 
-    public function jugadores ()
+    public function jugadores()
     {
         return $this->belongsTo(Jugadores::class);
     }
 
-    public function recursos ()
+    public function recursos()
     {
         return $this->hasOne(Recursos::class);
     }
 
-    public function construcciones ()
+    public function construcciones()
     {
         return $this->hasMany(Construcciones::class);
     }
 
-    public function industrias ()
+    public function industrias()
     {
         return $this->hasOne(Construcciones::class);
     }
 
-    public function enInvestigaciones ()
+    public function enInvestigaciones()
     {
         return $this->hasMany(EnInvestigaciones::class);
     }
 
-    public function cualidades ()
+    public function cualidades()
     {
         return $this->hasOne(CualidadesPlanetas::class);
     }
 
-    public function estacionadas ()
+    public function estacionadas()
     {
         return $this->hasMany(DiseniosEnPlaneta::class);
     }
 
-    public function enDisenios ()
+    public function enDisenios()
     {
         return $this->hasMany(EnDisenios::class);
+    }
+
+    public static function nuevoPlaneta($jugador)
+    {
+        $planetaElegido = Planetas::inRandomOrder()->first();
+        $planetaElegido->jugadores_id = $jugador->id;
+        if ($planetaElegido->nombre == '' || $planetaElegido->nombre == null) {
+            $planetaElegido->nombre = 'Colonia';
+        }
+        $planetaElegido->save();
+        CualidadesPlanetas::agregarCualidades($planetaElegido->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);
+
+        return $planetaElegido;
     }
 }

@@ -40,11 +40,12 @@ class EnInvestigaciones extends Model
         }
     }
 
-    public static function colaInvestigaciones($planetaActual)
+    public static function colaInvestigaciones()
     {
         $colaInvestigaciones = [];
         $colaInvestigaciones2 = [];
-        foreach ($planetaActual->jugadores->investigaciones as $investigacion) {
+        $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
+        foreach ($investigaciones as $investigacion) {
             if (!empty($investigacion->enInvestigaciones[0])) {
                 array_push($colaInvestigaciones2, $investigacion->enInvestigaciones);
             }

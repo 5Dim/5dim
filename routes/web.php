@@ -57,9 +57,6 @@ Route::middleware(
         Route::post('/update', [PrincipalController::class, 'update']);
     }
 );
-Route::get('/juego/astrometria/ajax/universo', [AstrometriaController::class, 'generarUniverso']);
-Route::get('/juego/astrometria/ajax/radares', [AstrometriaController::class, 'generarRadares']);
-Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'generarFlotas']);
 
 //Middleware de auth
 Route::middleware(
@@ -96,6 +93,9 @@ Route::middleware(
 
     //Planeta
     Route::get('/juego/planeta', [PlanetaController::class, 'index']);
+    Route::get('/juego/renombrarPlaneta/{nombre}', [PlanetaController::class, 'renombrarPlaneta']);
+    Route::get('/juego/cederColonia/{nombre}', [PlanetaController::class, 'cederColonia']);
+    Route::get('/juego/destruirColonia', [PlanetaController::class, 'destruirColonia']);
 
     //Fuselajes
     Route::get('/juego/fuselajes/{tab?}', [FuselajesController::class, 'index']);
@@ -118,6 +118,9 @@ Route::middleware(
 
     //Astrometria
     Route::get('/juego/astrometria', [AstrometriaController::class, 'index']);
+    Route::get('/juego/astrometria/ajax/universo', [AstrometriaController::class, 'generarUniverso']);
+    Route::get('/juego/astrometria/ajax/radares', [AstrometriaController::class, 'generarRadares']);
+    Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'generarFlotas']);
 
     //Flota
     Route::get('/juego/flotas', [FlotaController::class, 'index']);

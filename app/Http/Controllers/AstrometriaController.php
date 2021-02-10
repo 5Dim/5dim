@@ -37,9 +37,10 @@ class AstrometriaController extends Controller
         }
 
         //Recursos
+        $investigaciones = Investigaciones::investigaciones($planetaActual);
+        $construcciones = Construcciones::construcciones($planetaActual);
         Recursos::calcularRecursos($planetaActual->id);
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $construcciones = Construcciones::construcciones($planetaActual);
         $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
         $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
 
@@ -56,7 +57,6 @@ class AstrometriaController extends Controller
             }
         }
 
-        $investigaciones = Investigaciones::investigaciones($planetaActual);
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
         // Fin obligatorio por recursos
@@ -105,6 +105,22 @@ class AstrometriaController extends Controller
     }
 
     public function generarRadares()
+    {
+
+        $radares = [];
+
+        for ($n = 0; $n < 30; $n++) {
+            $radar = new Radares();
+            $radar->estrella = random_int(1, 10000);
+            $radar->circulo = random_int(1, 10);
+            $radar->color = random_int(1, 4);
+            array_push($radares, $radar);
+        }
+
+        return compact('radares');
+    }
+
+    public function generarInfluencias()
     {
 
         $radares = [];

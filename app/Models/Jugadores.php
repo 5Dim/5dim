@@ -99,14 +99,15 @@ class Jugadores extends Model
 
     public static function nuevoJugador()
     {
-        $jugador = new Jugadores();
-        $jugador->nombre = Auth::user()->name;
-        $jugador->avatar = "/img/avatar.jpg";
-        $jugador->user_id = Auth::user()->id;
-        $jugador->save();
-        $planetaElegido = Planetas::inRandomOrder()->first();
-        $planetaElegido->jugadores_id = $jugador->id;
-        $planetaElegido->save();
-        CualidadesPlanetas::agregarCualidades($planetaElegido->id, 40);
+        if (empty(Auth::user()->jugador)) {
+            $jugador = new Jugadores();
+            $jugador->nombre = Auth::user()->name;
+            $jugador->avatar = "/img/avatar.jpg";
+            $jugador->user_id = Auth::user()->id;
+            $jugador->save();
+        } else {
+            $jugador = Auth::user()->jugador;
+        }
+        Recursos::nuevoPlaneta($jugador);
     }
 }

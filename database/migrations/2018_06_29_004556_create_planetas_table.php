@@ -17,7 +17,7 @@ class CreatePlanetasTable extends Migration
             $table->increments('id');
             $table->unsignedMediumInteger('estrella')->index();
             $table->unsignedTinyInteger('orbita');
-            $table->string('nombre')->index();
+            $table->string('nombre')->nullable()->index();
             $table->unsignedTinyInteger('imagen');
             $table->string('tipo');
             $table->timestamps();

@@ -57,7 +57,7 @@ class Recursos extends Model
             $recursos = Recursos::recursosInicio();
         }
 
-        $investigaciones = $recursos->planetas->jugadores->investigaciones;
+        $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
 
         //Calculamos producciones
         for ($i = 0; $i < count($construcciones); $i++) {

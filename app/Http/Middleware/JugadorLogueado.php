@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Constantes;
+use App\Models\CualidadesPlanetas;
 use App\Models\Jugadores;
 use App\Models\Planetas;
 use Closure;
@@ -28,7 +29,6 @@ class JugadorLogueado
         //Comprobamos si el usuario tiene un jugador en el mundo
         if (empty(Auth::user()->jugador)) {
             Jugadores::nuevoJugador();
-            return redirect('/juego/construccion'); //Se redirige para que coja los cambios
         }
         // Añadimos el jugador
         if (!session()->has('jugadores_id')) {
@@ -46,24 +46,46 @@ class JugadorLogueado
 
         // Comprobamos si tiene planeta valido o asignamos su primer planeta
         if (!session()->has('planetas_id')) {
-            session()->put('planetas_id', Auth::user()->jugador->planetas[0]->id);
-        } else {
-            $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+            //Si no tiene planetas generamos un planeta para el
+            if (empty(Auth::user()->jugador->planetas)) {
+                Planetas::nuevoPlaneta(Auth::user()->jugador);
+            } else { // Si tiene planetas asignamos el primero de la lista
+                session()->put('planetas_id', Auth::user()->jugador->planetas[0]->id);
+            }
+        } else { // En caso de tener un id de planeta, comprobamos que el planeta asignado es valido
+            $jugadorActual = Auth::user()->jugador;
             if (session()->get('alianza_id') != "nulo") {
-                $idAlianza = Jugadores::find(session()->get('alianza_id'))->id;
+                $idAlianza = Auth::user()->jugador->alianza_id;
             } else {
                 $idAlianza = session()->get('alianza_id');
             }
             $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
 
             // Comrpobamos que el planeta sea un lugar valido y si no lo es asignamos su primer planeta
-            if (
-                $planetaActual->jugadores->id != $jugadorActual->id and
-                $planetaActual->jugadores->id != $idAlianza
-            ) {
-                session()->put('planetas_id', Auth::user()->jugador->planetas[0]->id);
+            if (!empty($planetaActual->jugadores)) {
+                if (
+                    $planetaActual->jugadores->id != $jugadorActual->id and
+                    $planetaActual->jugadores->id != $idAlianza
+                ) { //Si el planeta coincide con la alianza o el jugador
+                    session()->put('planetas_id', Auth::user()->jugador->planetas[0]->id);
+                }else{
+                    if (!empty(Auth::user()->jugador->planetas[0])) {
+                        session()->put('planetas_id', Auth::user()->jugador->planetas[0]->id);
+                    } else {
+                        $planetaElegido = Planetas::nuevoPlaneta(Auth::user()->jugador);
+                        session()->put('planetas_id', $planetaElegido->id);
+                    }
+                }
+            } else {
+                if (!empty(Auth::user()->jugador->planetas[0])) {
+                    session()->put('planetas_id', Auth::user()->jugador->planetas[0]->id);
+                } else {
+                    $planetaElegido = Planetas::nuevoPlaneta(Auth::user()->jugador);
+                    session()->put('planetas_id', $planetaElegido->id);
+                }
             }
         }
+
         return $next($request);
     }
 }
