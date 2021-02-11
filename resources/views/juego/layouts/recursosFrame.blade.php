@@ -74,7 +74,7 @@
                                 data-trigger="focus" title="Puntos de imperio"
                                 data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
                                 PI <span
-                                    class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count(Auth::user()->jugador->planetas) * 10 }}</span>
+                                    class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count($planetasJugador) * 10 }}</span>
                             </button>
                         </th>
                         {{-- <th class="text-warning borderless">

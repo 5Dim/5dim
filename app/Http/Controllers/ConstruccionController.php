@@ -27,7 +27,7 @@ class ConstruccionController extends Controller
     public function index($tab = "mina-tab")
     {
         // Planeta, jugador y alianza
-        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+        $planetaActual = Planetas::find(session()->get('planetas_id'));
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
         $planetasAlianza = null;
@@ -101,6 +101,7 @@ class ConstruccionController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'planetaActual',
 
             // Categorias
             'construcciones',
@@ -120,7 +121,6 @@ class ConstruccionController extends Controller
             'tipoPlaneta',
             'dependencias',
             'tab',
-            'planetaActual',
             'nivelImperio',
             'nivelEnsamblajeFuselajes',
         ));

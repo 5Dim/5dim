@@ -108,6 +108,8 @@ class Jugadores extends Model
         } else {
             $jugador = Auth::user()->jugador;
         }
-        Recursos::nuevoPlaneta($jugador);
+        Planetas::nuevoPlaneta($jugador->id);
+
+        return $jugador;
     }
 }

@@ -49,16 +49,16 @@ class Planetas extends Model
         return $this->hasMany(EnDisenios::class);
     }
 
-    public static function nuevoPlaneta($jugador)
+    public static function nuevoPlaneta($idJugador)
     {
         $planetaElegido = Planetas::inRandomOrder()->first();
-        $planetaElegido->jugadores_id = $jugador->id;
+        $planetaElegido->jugadores_id = $idJugador;
         if ($planetaElegido->nombre == '' || $planetaElegido->nombre == null) {
             $planetaElegido->nombre = 'Colonia';
         }
         $planetaElegido->save();
         CualidadesPlanetas::agregarCualidades($planetaElegido->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);
 
-        return $planetaElegido;
+        return $planetaElegido->id;
     }
 }
