@@ -721,10 +721,10 @@ function CalculoDisenio(diseno) {
                 return nivelConst.codigo == minves;
             })[0]["valor"];
 
-    rdiseno.cargaPequenia = diseno.mejoras["cargaPequenia"] * baseHangar;
-    rdiseno.cargaMediana = diseno.mejoras["cargaMediana"] * baseHangar;
-    rdiseno.cargaGrande = diseno.mejoras["cargaGrande"] * baseHangar;
-    rdiseno.cargaEnorme = diseno.mejoras["cargaEnorme"] * baseHangar;
+    rdiseno.cargaPequenia = Math.round(diseno.mejoras["cargaPequenia"] * baseHangar);
+    rdiseno.cargaMediana = Math.round(diseno.mejoras["cargaMediana"] * baseHangar);
+    rdiseno.cargaGrande = Math.round(diseno.mejoras["cargaGrande"] * baseHangar);
+    rdiseno.cargaEnorme = Math.round(diseno.mejoras["cargaEnorme"] * baseHangar);
 
     rdiseno.carga = resultadoRealDiseno(diseno, "invCarga", "carga");
     rdiseno.recoleccion = resultadoRealDiseno(
@@ -772,6 +772,8 @@ function resultadoRealDiseno(diseno, invest, invstobj = invest) {
 }
 
 valNaves = [];
+tamaniosArray = ['cargaPequenia','cargaMediana','cargaGrande','cargaEnorme','cargaMega'];
+tamaniosNaveAcarga = {'caza':'cargaPequenia','ligera':'cargaMediana','media':'cargaGrande','pesada':'cargaEnorme','estacion':'cargaMega'};
 
 function MostrarResultadoDisenio(diseno) {
     var result = CalculoDisenio(diseno);
@@ -784,16 +786,16 @@ function MostrarResultadoDisenio(diseno) {
         formatNumber(Math.round(result.extraccion))
     );
     $("#hangarCazas" + diseno.id).text(
-        formatNumber(Math.round(result.cargaPequenia))
+        formatNumber(result.cargaPequenia)
     );
     $("#hangarLigeras" + diseno.id).text(
-        formatNumber(Math.round(result.cargaMediana))
+        formatNumber(result.cargaMediana)
     );
     $("#hangarMedias" + diseno.id).text(
-        formatNumber(Math.round(result.cargaGrande))
+        formatNumber(result.cargaGrande)
     );
     $("#hangarPesadas" + diseno.id).text(
-        formatNumber(Math.round(result.cargaEnorme))
+        formatNumber(result.cargaEnorme)
     );
     $("#mantenimiento" + diseno.id).text(
         formatNumber(Math.round(result.mantenimiento))

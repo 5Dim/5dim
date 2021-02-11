@@ -82,7 +82,7 @@
                                 </td>
                                 <td name="cantidad{{$nave->id}}" id="cantidad{{$nave->id}}" class="anchofijo text-light align-middle">
                                 </td>
-                                <td class="anchofijo text-light" style="max-width: 180px">
+                                <td id="selectaflota{{$nave->id}}"  class="anchofijo text-light" style="max-width: 180px">
                                     <div class="input-group mb-3 input-group-sm borderless">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
@@ -102,7 +102,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="anchofijo text-light" style="max-width: 180px">
+                                <td id="selectahangar{{$nave->id}}"  class="anchofijo text-light" style="max-width: 180px">
                                     <div class="input-group mb-3 input-group-sm borderless">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
@@ -214,62 +214,62 @@
                             </th>
                         </tr>
                         <tr>
-                            <th class="text-warning align-middle">
+                            <th id="fueraH" class="text-warning align-middle">
                                 Fuera de hangar
                             </th>
-                            <td class="text-light align-middle">
-                                2
-                            </td>
-                            <td class="text-light align-middle">
+                            <td id="fueraHcargaPequenia" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="fueraHcargaMediana" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="fueraHcargaGrande" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="fueraHcargaEnorme" class="text-light align-middle">
+                                0
+                            </td>
+                            <td id="fueraHcargaMega" class="text-light align-middle">
                                 0
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-warning align-middle">
+                            <th id="dentroH" class="text-warning align-middle">
                                 En hangares
                             </th>
-                            <td class="text-light align-middle">
+                            <td id="dentroHcargaPequenia" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="dentroHcargaMediana" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="dentroHcargaGrande" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="dentroHcargaEnorme" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="dentroHcargaMega" class="text-light align-middle">
                                 0
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-warning align-middle">
+                            <th id="capacidadH" class="text-warning align-middle">
                                 Capacidad hangares
                             </th>
-                            <td class="text-light align-middle">
+                            <td id="capacidadHcargaPequenia" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="capacidadHcargaMediana" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="capacidadHcargaGrande" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="capacidadHcargaEnorme" class="text-light align-middle">
                                 0
                             </td>
-                            <td class="text-light align-middle">
+                            <td id="capacidadHcargaMega" class="text-light align-middle">
                                 0
                             </td>
                         </tr>
@@ -300,6 +300,8 @@
         tablaHangares.dentroH=dentroH;
         tablaHangares.capacidadH=capacidadH;
 
+
+
         CargarValoresPlaneta();
 
 
@@ -314,6 +316,7 @@
                 valNaves[nave.id].cantidadT=nave.cantidad; //es constante
                 valNaves[nave.id].enflota=0;
                 valNaves[nave.id].enhangar=0;
+                valNaves[nave.id].tamanio=diseno.tamanio;
 
                 $("#nombre" + nave.id).text(diseno.nombre);
             });
@@ -322,6 +325,8 @@
         }
 
         function RecalculoTotal(){
+
+            //reinicio valores
             valFlotaT.carga=0;
             valFlotaT.municion=0;
             valFlotaT.fuel=0;
@@ -331,7 +336,13 @@
             valFlotaT.defensaR=0;
             valFlotaT.ataqueV=0;
             valFlotaT.defensaV=0;
+            tamaniosArray.forEach(tamanio => {
+                    tablaHangares.capacidadH[tamanio]=0;
+                    tablaHangares.fueraH[tamanio]=0;
+                    tablaHangares.dentroH[tamanio]=0;
+                });
 
+            ///CALCULO
             // naves
             navesEstacionadas.forEach(nave => {
                 cantidad=valNaves[nave.id].cantidad;
@@ -339,24 +350,60 @@
                 ahangar=valNaves[nave.id].enhangar;
                 atotal=aflota+ahangar;
 
-                valFlotaT.carga+=valNaves[nave.id].carga * atotal;
-                valFlotaT.municion+=valNaves[nave.id].municion * atotal;
-                valFlotaT.fuel+=valNaves[nave.id].fuel * aflota;
-                if (aflota>0){
-                    valFlotaT.velocidad=Math.min(valNaves[nave.id].velocidad , valFlotaT.velocidad);
-                }
-                if (aflota>0){
-                    valFlotaT.maniobra=Math.min(valNaves[nave.id].maniobra,valFlotaT.maniobra);
-                }
-                valFlotaT.ataqueR+=valNaves[nave.id].ataque * atotal;
-                valFlotaT.defensaR+=valNaves[nave.id].defensa * atotal;
-                valFlotaT.ataqueV+=valNaves[nave.id].ataque * aflota;
-                valFlotaT.defensaV+=valNaves[nave.id].defensa * aflota;
+                if (atotal>0){
 
+                    valFlotaT.carga+=valNaves[nave.id].carga * atotal;
+                    valFlotaT.municion+=valNaves[nave.id].municion * atotal;
+                    valFlotaT.fuel+=valNaves[nave.id].fuel * aflota;
+                    if (aflota>0){
+                        valFlotaT.velocidad=Math.min(valNaves[nave.id].velocidad , valFlotaT.velocidad);
+                    }
+                    if (aflota>0){
+                        valFlotaT.maniobra=Math.min(valNaves[nave.id].maniobra,valFlotaT.maniobra);
+                    }
+                    valFlotaT.ataqueR+=valNaves[nave.id].ataque * atotal;
+                    valFlotaT.defensaR+=valNaves[nave.id].defensa * atotal;
+                    valFlotaT.ataqueV+=valNaves[nave.id].ataque * aflota;
+                    valFlotaT.defensaV+=valNaves[nave.id].defensa * aflota;
 
-                $("#cantidad" + nave.id).text(formatNumber(cantidad));
-                $("#enflota" + nave.id).val(aflota);
-                $("#enhangar" + nave.id).val(ahangar);
+                    //hangares
+
+                    tamaniosArray.forEach(tamaniod => {
+                       tablaHangares.capacidadH[tamaniod]+=atotal * valNaves[nave.id][tamaniod];
+                    });
+
+                    switch (valNaves[nave.id].tamanio){
+
+                        case 'caza':
+                            tablaHangares.dentroH['cargaPequenia']+=ahangar;
+                            tablaHangares.fueraH['cargaPequenia']+=aflota;
+                        break;
+                        case 'ligera':
+                            tablaHangares.dentroH['cargaMediana']+=ahangar;
+                            tablaHangares.fueraH['cargaMediana']+=aflota;
+                        break;
+                        case 'media':
+                            tablaHangares.dentroH['cargaGrande']+=ahangar;
+                            tablaHangares.fueraH['cargaGrande']+=aflota;
+                        break;
+                        case 'pesada':
+                            tablaHangares.dentroH['cargaEnorme']+=ahangar;
+                            tablaHangares.fueraH['cargaEnorme']+=aflota;
+                        break;
+                        case 'estacion':
+                            tablaHangares.dentroH['cargaMega']+=ahangar;
+                            tablaHangares.fueraH['cargaMega']+=aflota;
+                        break;
+                    }
+
+                }
+                tablaHangares.capacidadH.cargaMega=0; //siempre
+
+                    // pimtado esta nave
+
+                    $("#cantidad" + nave.id).text(formatNumber(cantidad));
+                    $("#enflota" + nave.id).val(aflota);
+                    $("#enhangar" + nave.id).val(ahangar);
 
             });
 
@@ -366,6 +413,9 @@
             if(valFlotaT.maniobra>999){
                 valFlotaT.maniobra=0;
             }
+
+
+            //impresion
 
             $("#totalcarga").text(formatNumber(valFlotaT.carga));
             $("#totalmunicion").text(formatNumber(valFlotaT.municion));
@@ -377,8 +427,52 @@
             $("#totalataqueV").text(formatNumber(valFlotaT.ataqueV));
             $("#totaldefensaV").text(formatNumber(valFlotaT.defensaV));
 
+
+            //pintando tabla hangares
+
+            tamaniosArray.forEach(tamanio => {
+                $("#capacidadH" + tamanio).text(formatNumber(tablaHangares.capacidadH[tamanio]));
+                $("#dentroH" + tamanio).text(formatNumber(tablaHangares.dentroH[tamanio]));
+                $("#fueraH" + tamanio).text(formatNumber(tablaHangares.fueraH[tamanio]));
+            });
+            Avisos();
         }
 
+        var  errores="";
+        function Avisos(){
+            var errorHangares=false;
+            errores="";
+
+            tamaniosArray.forEach(tamanio => {
+                if (tablaHangares.dentroH[tamanio] > tablaHangares.capacidadH[tamanio]){
+                    errorHangares=true;
+                    $("#capacidadH"+ tamanio).addClass('text-danger').removeClass('text-light');
+                } else {
+                    $("#capacidadH"+ tamanio).removeClass('text-danger').addClass('text-light');
+                }
+            });
+
+            if (errorHangares){
+                errores+=" Capacidad de hangar insuficiente";
+                $("#capacidadH").addClass('text-danger').removeClass('text-warning');
+
+                //pintando caja ahangar por nave
+                navesEstacionadas.forEach(nave => {
+                    var tcarga=tamaniosNaveAcarga[valNaves[nave.id].tamanio];
+                    if (valNaves[nave.id].enhangar>0 &&  tablaHangares.dentroH[tcarga]>0){
+                        $("#selectahangar"+ nave.id).addClass('bg-danger');
+                    } else {
+                        $("#selectahangar"+ nave.id).removeClass('bg-danger');
+                    }
+                });
+            } else {
+                $("#capacidadH").removeClass('text-danger').addClass('text-warning');
+                navesEstacionadas.forEach(nave => {
+                    $("#selectahangar"+ nave.id).removeClass('bg-danger');
+                });
+            }
+
+        }
 
 
         function NaveAflota(id,canti=0){

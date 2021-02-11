@@ -1236,6 +1236,27 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
 
+        $constante = new Constantes();
+        $constante->valor = 10;
+        $constante->minimo = 5;
+        $constante->maximo = 20;
+        $constante->codigo = 'factorexpansionradar';
+        $constante->descripcion = 'factor para multiplicar el area del radar';
+        $constante->tipo = 'universo';
+        $constante->votable=1;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 5;
+        $constante->minimo = 1;
+        $constante->maximo = 10;
+        $constante->codigo = 'factorexpansionzonainfluencia';
+        $constante->descripcion = 'factor para multiplicar el area de zona influencia';
+        $constante->tipo = 'universo';
+        $constante->votable=1;
+        array_push($producciones, $constante);
+
+
         foreach ($producciones as $estaproduccion) {
             $estaproduccion->save();
         }
