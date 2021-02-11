@@ -17,10 +17,12 @@ use App\Models\EnInvestigaciones;
 use App\Models\CostesConstrucciones;
 use App\Models\Investigaciones;
 use App\Models\Alianzas;
+use App\Models\Astrometria;
 use App\Models\Jugadores;
 use Auth;
 use App\Models\Radares;
 use App\Models\Flotas;
+use Illuminate\Support\Facades\Log;
 
 class AstrometriaController extends Controller
 {
@@ -77,7 +79,7 @@ class AstrometriaController extends Controller
         ));
     }
 
-    public function generarUniverso()
+    public function generarUniverso() // http://homestead.test/juego/astrometria/ajax/universo
     {
         $universo = [];
         $planetas = Planetas::select('estrella', 'jugadores_id')->orderBy('jugadores_id', 'desc')->distinct()->get(['estrella']);
@@ -104,52 +106,82 @@ class AstrometriaController extends Controller
         return $planetoide;
     }
 
-    public function generarRadares()
+    public function generarRadares() // http://homestead.test/juego/astrometria/ajax/radares
     {
-
         $radares = [];
-
-        for ($n = 0; $n < 30; $n++) {
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        $constanteRadar = Constantes::where('codigo', 'factorexpansionradar')->first()->valor;
+        foreach ($jugadorActual->planetas as $planeta) {
+            $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
+            $nivelObservacion = $jugadorActual->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
             $radar = new Radares();
-            $radar->estrella = random_int(1, 10000);
-            $radar->circulo = random_int(1, 10);
-            $radar->color = random_int(1, 4);
+            $radar->estrella = $planeta->estrella;
+            $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
+            $radar->color = 1;
             array_push($radares, $radar);
+        }
+        if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
+            foreach ($jugadorActual->alianzas->miembros as $miembro) {
+                foreach ($miembro->planetas as $planeta) {
+                    $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
+                    $nivelObservacion = $miembro->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
+                    $radar = new Radares();
+                    $radar->estrella = $planeta->estrella;
+                    $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
+                    $radar->color = 2;
+                    array_push($radares, $radar);
+                }
+            }
         }
 
         return compact('radares');
     }
 
-    public function generarInfluencias()
+    public function generarInfluencias() // http://homestead.test/juego/astrometria/ajax/influencia
     {
-
-        $radares = [];
-
-        for ($n = 0; $n < 30; $n++) {
+        $influencia = [];
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        foreach ($jugadorActual->planetas as $planeta) {
+            $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
+            $nivelObservacion = $jugadorActual->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
             $radar = new Radares();
-            $radar->estrella = random_int(1, 10000);
-            $radar->circulo = random_int(1, 10);
-            $radar->color = random_int(1, 4);
-            array_push($radares, $radar);
+            $radar->estrella = $planeta->estrella;
+            $radar->circulo = Astrometria::radioInfluencia((((time() - $planeta->creacion)) / (3600 * 24 * 30)));
+            Log::alert((time() - $planeta->creacion) / 3600 * 24 * 30);
+            $radar->color = 1;
+            array_push($influencia, $radar);
+        }
+        if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
+            foreach ($jugadorActual->alianzas->miembros as $miembro) {
+                foreach ($miembro->planetas as $planeta) {
+                    $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
+                    $nivelObservacion = $miembro->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
+                    $radar = new Radares();
+                    $radar->estrella = $planeta->estrella;
+                    $radar->circulo = Astrometria::radioInfluencia(((time() - $planeta->creacion) / (3600 * 24 * 30)));
+                    $radar->color = 2;
+                    array_push($influencia, $radar);
+                }
+            }
         }
 
-        return compact('radares');
+        return compact('influencia');
     }
 
 
-    public function generarFlotas()
+    public function generarFlotas() // http://homestead.test/juego/astrometria/ajax/flotas
     {
 
         $flotas = [];
 
         for ($n = 0; $n < 30; $n++) {
             $flota = new Flotas();
-            $flota->numeroflota = random_int(1, 10000);
+            $flota->numeroflota = random_int(1, 100000);
             $flota->nick = random_int(1, 100) . "-" . random_int(1, 10000);
             $flota->ataque = random_int(1, 1000000);
             $flota->defensa = random_int(1, 1000000);
-            $flota->origen = random_int(1, 10000) . "x" . random_int(1, 9);
-            $flota->destino = random_int(1, 10000) . "x" . random_int(1, 9);
+            $flota->origen = random_int(1, 100000) . "x" . random_int(1, 9);
+            $flota->destino = random_int(1, 100000) . "x" . random_int(1, 9);
             $flota->angulo = random_int(1, 400); //para cuando no se sabe la linea
             $flota->color = random_int(1, 5);
             $flota->fecha = random_int(0, 23) . "h " . random_int(0, 59) . "m " . random_int(0, 59) . "s";

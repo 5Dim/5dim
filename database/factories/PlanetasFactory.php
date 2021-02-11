@@ -31,6 +31,7 @@ class PlanetasFactory extends Factory
             'orbita' => $this->faker->numberBetween(1, 9),
             // 'nombre' => $this->faker->name(),
             'imagen' => $this->faker->numberBetween(0, 50),
+            'creacion' => time(),
             'tipo' => $this->faker->randomElement(['planeta', 'nodriza', 'anubis', 'dyson', 'canon']),
         ];
         // });

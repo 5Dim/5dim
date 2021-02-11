@@ -20,6 +20,7 @@ class CreatePlanetasTable extends Migration
             $table->string('nombre')->nullable()->index();
             $table->unsignedTinyInteger('imagen');
             $table->string('tipo');
+            $table->unsignedInteger('creacion')->nullable();
             $table->timestamps();
         });
     }
