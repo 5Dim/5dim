@@ -171,10 +171,4 @@ class AstrometriaController extends Controller
 
         return compact('flotas');
     }
-
-
-    public function RadioByvalue($value){  // multiplicar por las constantes factorexpansionradar y factorexpansionzonainfluencia $value para obtener valores adecuados a cada uso
-        return  round((pow($value/(2*pi()),2)),2);
-    }
-
 }
