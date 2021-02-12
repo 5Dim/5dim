@@ -283,12 +283,19 @@
     </div>
 
     <script>
-        var constantes = @json($constantes);
-        var navesEstacionadas = @json($navesEstacionadas);
-        var diseniosJugador = @json($diseniosJugador);
-        var investigaciones = @json($investigaciones);
-        var constantesU = @json($constantesU);
-        var ViewDaniosDisenios = @json($ViewDaniosDisenios);
+        let constantes = @json($constantes);
+        let navesEstacionadas = @json($navesEstacionadas);
+        let diseniosJugador = @json($diseniosJugador);
+        let investigaciones = @json($investigaciones);
+        let constantesU = @json($constantesU);
+        let ViewDaniosDisenios = @json($ViewDaniosDisenios);
+
+
+        destinos =[];
+        destinos[0] = []; destinos[0]['sistema']='1234';destinos[0]['planeta']='5';
+        destinos[1] = []; destinos[1]['sistema']='0';destinos[1]['planeta']='0';
+        destinos[2] = []; destinos[2]['sistema']='0';destinos[2]['planeta']='0';
+        destinos[3] = []; destinos[3]['sistema']='0';destinos[3]['planeta']='0';
 
         valFlotaT = [];
 
@@ -357,8 +364,6 @@
                     valFlotaT.fuel+=valNaves[nave.id].fuel * aflota;
                     if (aflota>0){
                         valFlotaT.velocidad=Math.min(valNaves[nave.id].velocidad , valFlotaT.velocidad);
-                    }
-                    if (aflota>0){
                         valFlotaT.maniobra=Math.min(valNaves[nave.id].maniobra,valFlotaT.maniobra);
                     }
                     valFlotaT.ataqueR+=valNaves[nave.id].ataque * atotal;
@@ -372,30 +377,9 @@
                        tablaHangares.capacidadH[tamaniod]+=atotal * valNaves[nave.id][tamaniod];
                     });
 
-                    switch (valNaves[nave.id].tamanio){
-
-                        case 'caza':
-                            tablaHangares.dentroH['cargaPequenia']+=ahangar;
-                            tablaHangares.fueraH['cargaPequenia']+=aflota;
-                        break;
-                        case 'ligera':
-                            tablaHangares.dentroH['cargaMediana']+=ahangar;
-                            tablaHangares.fueraH['cargaMediana']+=aflota;
-                        break;
-                        case 'media':
-                            tablaHangares.dentroH['cargaGrande']+=ahangar;
-                            tablaHangares.fueraH['cargaGrande']+=aflota;
-                        break;
-                        case 'pesada':
-                            tablaHangares.dentroH['cargaEnorme']+=ahangar;
-                            tablaHangares.fueraH['cargaEnorme']+=aflota;
-                        break;
-                        case 'estacion':
-                            tablaHangares.dentroH['cargaMega']+=ahangar;
-                            tablaHangares.fueraH['cargaMega']+=aflota;
-                        break;
-                    }
-
+                    var tcarga=tamaniosNaveAcarga[valNaves[nave.id].tamanio];
+                    tablaHangares.dentroH[tcarga]+=ahangar;
+                    tablaHangares.fueraH[tcarga]+=aflota;
                 }
                 tablaHangares.capacidadH.cargaMega=0; //siempre
 
@@ -435,6 +419,15 @@
                 $("#dentroH" + tamanio).text(formatNumber(tablaHangares.dentroH[tamanio]));
                 $("#fueraH" + tamanio).text(formatNumber(tablaHangares.fueraH[tamanio]));
             });
+
+            if (valFlotaT.velocidad>0 || valFlotaT.maniobra>0 ){
+                var idd;
+                for(idd=0; idd<destinos.length-1;idd++){
+                    Calculoespacitiempo(idd);
+                };
+            }
+
+
             Avisos();
         }
 
@@ -477,7 +470,7 @@
 
         function NaveAflota(id,canti=0){
             if (canti=='x'){
-                valNaves[id].enflota=$("#enflota" + id).val();
+                valNaves[id].enflota=1*$("#enflota" + id).val();
             } else if (canti=='m') {
                 valNaves[id].enflota=valNaves[id].cantidad;
             } else {
@@ -493,7 +486,7 @@
 
         function NaveAhangar(id,canti=0){
             if (canti=='x'){
-                valNaves[id].enhangar=$("#enhangar" + id).val();
+                valNaves[id].enhangar=1*$("#enhangar" + id).val();
             } else if (canti=='m') {
                 valNaves[id].enhangar=valNaves[id].cantidad;
             } else {
@@ -505,6 +498,20 @@
             }
             valNaves[id].cantidad=valNaves[id].cantidadT-valNaves[id].enflota-valNaves[id].enhangar;
             RecalculoTotal();
+        }
+
+
+        function Calculoespacitiempo(dest){
+
+
+            var distancia= DistanciaUniverso(destinos[dest-1],destinos[dest]);
+            var fuelDest=GastoFuel(distancia, valFlotaT.fuel);
+            var tiempoDest=TiempoLLegada(distancia, valFlotaT.velocidad);
+
+            $("#velocidadDest"+dest).text(formatNumber(valFlotaT.velocidad));
+            $("#fuelDest"+dest).text(formatNumber(fuelDest));
+            $("#tiempoDest"+dest).text(formatTimestamp(tiempoDest));
+
         }
 
     </script>

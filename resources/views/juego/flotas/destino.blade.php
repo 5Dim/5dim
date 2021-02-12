@@ -55,13 +55,13 @@
                     </select>
                 </td>
                 <td class="text-light">
-                    <input type="text" class="form-control input" placeholder="Numero de sistema">
+                    <input id="sistemaDest{{$numero}}" type="text" class="form-control input" placeholder="Numero de sistema">
                 </td>
                 <td class="text-light">
-                    <input type="text" class="form-control input" placeholder="Numero de orbita">
+                    <input id="planetaDest{{$numero}}" type="text" class="form-control input" placeholder="Numero de orbita">
                 </td>
                 <td class="text-light">
-                    <select name="orden" id="orden" class="select form-control">
+                    <select name="orden" id="ordenDest{{$numero}}" class="select form-control">
                         <option value="" selected>-- Selecciona una orden --</option>
                         <option value="transportar">Transportar</option>
                         <option value="transferir">Transferir</option>
@@ -73,21 +73,21 @@
                 <td class="text-light">
                     <div class="input-group mb-3 borderless"
                         style="padding-left: 10px !important; padding-right: 5px !important">
-                        <input type="text" class="form-control input" value="100" aria-label="Recipient's username"
+                        <input id = "porcentVDest{{$numero}}" type="text" class="form-control input" value="100" aria-label="Recipient's username"
                             aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <span class="input-group-text bg-dark text-light">%</span>
                         </div>
                     </div>
                 </td>
-                <td class="text-light">
-                    6.24
+                <td id="velocidadDest{{$numero}}" class="text-light">
+                    -
                 </td>
-                <td class="text-light">
-                    1.390
+                <td id="fuelDest{{$numero}}"class="text-light">
+                    -
                 </td>
-                <td class="text-light">
-                    12:01:12
+                <td id="tiempoDest{{$numero}}"class="text-light">
+                    --
                 </td>
             </tr>
         </table>
@@ -251,5 +251,18 @@
             language: "es"
         });
     });
+
+    $('#sistemaDest{{$numero}}').focusout(function() {
+        destinos[{{$numero}}].sistema=$('#sistemaDest{{$numero}}').val();
+        destinos[{{$numero}}].planeta=$('#planetaDest{{$numero}}').val();
+        Calculoespacitiempo({{$numero}});
+    });
+
+    $('#planetaDest{{$numero}}').focusout(function() {
+        destinos[{{$numero}}].sistema=$('#sistemaDest{{$numero}}').val();
+        destinos[{{$numero}}].planeta=$('#planetaDest{{$numero}}').val();
+        Calculoespacitiempo({{$numero}});
+    });
+
 
 </script>

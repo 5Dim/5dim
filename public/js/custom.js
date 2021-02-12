@@ -833,43 +833,45 @@ function DistanciaUniverso(origen, destino) {
     var coordOrigen;
     var coordDestino;
     var factordistancia = 1;
+    var dist=undefined;
 
-    if (
-        origen.sistema == destino.sistema &&
-        origen.planeta == destino.planeta
-    ) {
-        //orbitar
-        factordistancia = $.grep(constantesU, function (busca) {
-            return busca.codigo == "distanciaorbita";
-        })[0].valor;
-        coordOrigen = 0;
-        coordDestino = 0.5;
-    } else if (origen.sistema == destino.sistema) {
-        //mismo sistema
-        factordistancia = $.grep(constantesU, function (busca) {
-            return busca.codigo == "distanciaentreplanetas";
-        })[0].valor;
-        coordOrigen = origen.planeta;
-        coordDestino = destino.planeta;
-    } else {
-        //entre sistemas
-        factordistancia = $.grep(constantesU, function (busca) {
-            return busca.codigo == "distanciaentresistemas";
-        })[0].valor;
-        coordOrigen = CoordenadasBySistema(origen.sistema);
-        coordDestino = CoordenadasBySistema(destino.sistema);
-    }
-    dist =
-        factordistancia *
-        Math.pow(
-            (coordDestino.x - coordOrigen.x) *
-                (coordDestino.x - coordOrigen.x) +
-                (coordDestino.y - coordOrigen.y) *
-                    (coordDestino.y - coordOrigen.y),
-            1 / 2
-        );
-
-    return dist;
+    if(origen.sistema != '0' && destino.sistema!='0' && origen.planeta != '0' && destino.planeta!='0'){
+        if (
+            origen.sistema == destino.sistema &&
+            origen.planeta == destino.planeta
+        ) {
+            //orbitar
+            factordistancia = $.grep(constantesU, function (busca) {
+                return busca.codigo == "distanciaorbita";
+            })[0].valor;
+            coordOrigen = 0;
+            coordDestino = 0.5;
+        } else if (origen.sistema == destino.sistema) {
+            //mismo sistema
+            factordistancia = $.grep(constantesU, function (busca) {
+                return busca.codigo == "distanciaentreplanetas";
+            })[0].valor;
+            coordOrigen = origen.planeta;
+            coordDestino = destino.planeta;
+        } else {
+            //entre sistemas
+            factordistancia = $.grep(constantesU, function (busca) {
+                return busca.codigo == "distanciaentresistemas";
+            })[0].valor;
+            coordOrigen = CoordenadasBySistema(origen.sistema);
+            coordDestino = CoordenadasBySistema(destino.sistema);
+        }
+        dist =
+            factordistancia *
+            Math.pow(
+                (coordDestino.x - coordOrigen.x) *
+                    (coordDestino.x - coordOrigen.x) +
+                    (coordDestino.y - coordOrigen.y) *
+                        (coordDestino.y - coordOrigen.y),
+                1 / 2
+            );
+        }
+    return Math.round(dist,2);
 }
 
 function GastoFuel(distancia, fuelbase) {
@@ -884,5 +886,5 @@ function TiempoLLegada(distancia, velocidad) {
         return busca.codigo == "factortiempoviaje";
     })[0].valor;
 
-    var tiempo = (distancia / velocidad) * factortiempoviaje; //en segundos
+    return tiempo = Math.round((distancia / velocidad) * factortiempoviaje,0); //en segundos
 }
