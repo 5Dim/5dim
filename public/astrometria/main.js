@@ -78,7 +78,7 @@ function tFlotas() {
   var d = new Date();
   //document.getElementById("demo").innerHTML = d.toLocaleTimeString();
  // alert("prueba");
-  flotasNuevas();
+ // flotasNuevas();
 
 }
 
