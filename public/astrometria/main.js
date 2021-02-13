@@ -62,12 +62,14 @@ function carga_universo(){
             carga_radares();
             carga_influencias();
             carga_rutas();
-            timerFlotas = setInterval(tFlotas, 5000);
             botonF();
             botonRuta();
             botonMarcar();
             botonH();
             botones.position.set (window.innerWidth/2 - botones.width/2,0);
+
+            // lanzar timer para actualizar las flotas
+            // timerFlotas = setInterval(tFlotas, 5000);
 		    }
 		};
 	xmlhttp.open("GET",jsonUniverso , true);
@@ -76,10 +78,7 @@ function carga_universo(){
 
 function tFlotas() {
   var d = new Date();
-  //document.getElementById("demo").innerHTML = d.toLocaleTimeString();
- // alert("prueba");
- // flotasNuevas();
-
+  flotasNuevas();
 }
 
 function carga_flotas(){
@@ -160,6 +159,7 @@ function creainfoflotas(){
   txtpaneldefensa = panel.addChild(new PIXI.Text(' ',{fontFamily : 'roboto',fontSize: 12,fill : "orange",align: "left"}));
   txtpanelorigen = panel.addChild(new PIXI.Text(' ',{fontFamily : 'roboto',fontSize: 12,fill : 0x50a2be,align: "left"}));
   txtpaneldestino = panel.addChild(new PIXI.Text(' ',{fontFamily : 'roboto',fontSize: 12,fill : "orange",align: "left"}));
+  txtpaneltimer = panel.addChild(new PIXI.Text(' ',{fontFamily : 'roboto',fontSize: 10,fill : "orange",align: "left"}));
 
   txtpanelid.anchor.set(0.5);
   txtpanelid.position.set (0, -70);
@@ -178,6 +178,9 @@ function creainfoflotas(){
 
   txtpaneldestino.anchor.set(0.5);
   txtpaneldestino.position.set (0, 20);
+
+  txtpaneltimer.anchor.set(0.5);
+  txtpaneltimer.position.set (70, 30);
 
   var interceptar_on = PIXI.Texture.from('/astrometria/img/botones/interceptar1.png');
   var interceptar_off = PIXI.Texture.from('/astrometria/img/botones/interceptar0.png');
@@ -360,11 +363,12 @@ function createViewport(){
         .on('moved', function()
         {
 
+        
          //código para limpiar el panel de info de flotas.
          panel.visible=false;
          for (var i = auxImg.children.length - 1; i >= 0; i--) {	auxImg.removeChild(auxImg.children[i]);}
          /////////////////////////////////////////////////
-
+        
         });
 
         
