@@ -127,11 +127,9 @@ function RecalculoTotal() {
         );
     });
 
-    var idd;
-    for (idd = 1; idd < destinos.length; idd++) {
-        Calculoespacitiempo(idd);
-    }
 
+
+    Calculoespacitiempo();
     Avisos();
 }
 
@@ -184,7 +182,7 @@ function NaveAflota(id, canti = 0) {
     if (canti == "x") {
         valNaves[id].enflota = 1 * $("#enflota" + id).val();
     } else if (canti == "m") {
-        valNaves[id].enflota = valNaves[id].cantidad;
+        valNaves[id].enflota = valNaves[id].cantidad+valNaves[id].enflota;
     } else {
         valNaves[id].enflota = canti;
     }
@@ -201,7 +199,7 @@ function NaveAhangar(id, canti = 0) {
     if (canti == "x") {
         valNaves[id].enhangar = 1 * $("#enhangar" + id).val();
     } else if (canti == "m") {
-        valNaves[id].enhangar = valNaves[id].cantidad;
+        valNaves[id].enhangar = valNaves[id].cantidad+valNaves[id].enhangar;
     } else {
         valNaves[id].enhangar = canti;
     }
@@ -214,52 +212,58 @@ function NaveAhangar(id, canti = 0) {
     RecalculoTotal();
 }
 
-function Calculoespacitiempo(dest) {
+function Calculoespacitiempo() {
     if (valFlotaT.fuel > 0) {
-        destAnt = dest - 1;
+        var dest;
+        for (dest = 1; dest < destinos.length; dest++) {
 
-        if (dest > 1) {
-            destinos[destAnt].sistema = $("#sistemaDest" + destAnt).val();
-            destinos[destAnt].planeta = $("#planetaDest" + destAnt).val();
-        }
+            $("#municion" + dest).val(valFlotaT.municion);
 
-        destinos[dest].sistema = $("#sistemaDest" + dest).val();
-        destinos[dest].planeta = $("#planetaDest" + dest).val();
+            destAnt = dest - 1;
 
-        var distancia = DistanciaUniverso(destinos[destAnt], destinos[dest]);
-        if (isNaN(distancia)) {
-            NoSeMueve(dest);
-        } else {
-            var porcentVel = $("#porcentVDest" + dest).val() / 100;
-            var fuelDest = GastoFuel(distancia, valFlotaT.fuel);
+            if (dest > 1) {
+                destinos[destAnt].sistema = $("#sistemaDest" + destAnt).val();
+                destinos[destAnt].planeta = $("#planetaDest" + destAnt).val();
+            }
 
-            if (distancia < 10) {
-                $("#tipovelocidad" + dest).text("Vel. Impulso");
-                $("#velocidadDest" + dest).text(
-                    formatNumber(Math.round(valFlotaT.maniobra * porcentVel))
-                );
-                if (valFlotaT.maniobra < 1) {
-                    NoSeMueve(dest);
-                } else {
-                    var tiempoDest = TiempoLLegada(
-                        distancia,
-                        valFlotaT.maniobra * porcentVel
-                    );
-                    SiSeMueve(dest, fuelDest, tiempoDest);
-                }
+            destinos[dest].sistema = $("#sistemaDest" + dest).val();
+            destinos[dest].planeta = $("#planetaDest" + dest).val();
+
+            var distancia = DistanciaUniverso(destinos[destAnt], destinos[dest]);
+            if (isNaN(distancia) || destinos[dest].sistema=="") {
+                NoSeMueve(dest);
             } else {
-                $("#tipovelocidad" + dest).text("Hypervelocidad");
-                $("#velocidadDest" + dest).text(
-                    formatNumber(Math.round(valFlotaT.velocidad * porcentVel))
-                );
-                if (valFlotaT.velocidad < 1) {
-                    NoSeMueve(dest);
-                } else {
-                    var tiempoDest = TiempoLLegada(
-                        distancia,
-                        valFlotaT.velocidad * porcentVel
+                var porcentVel = $("#porcentVDest" + dest).val() / 100;
+                var fuelDest = GastoFuel(distancia, valFlotaT.fuel);
+
+                if (distancia < 10) {
+                    $("#tipovelocidad" + dest).text("Vel. Impulso");
+                    $("#velocidadDest" + dest).text(
+                        formatNumber(Math.round(valFlotaT.maniobra * porcentVel))
                     );
-                    SiSeMueve(dest, fuelDest, tiempoDest);
+                    if (valFlotaT.maniobra < 1) {
+                        NoSeMueve(dest);
+                    } else {
+                        var tiempoDest = TiempoLLegada(
+                            distancia,
+                            valFlotaT.maniobra * porcentVel
+                        );
+                        SiSeMueve(dest, fuelDest, tiempoDest);
+                    }
+                } else {
+                    $("#tipovelocidad" + dest).text("Hypervelocidad");
+                    $("#velocidadDest" + dest).text(
+                        formatNumber(Math.round(valFlotaT.velocidad * porcentVel))
+                    );
+                    if (valFlotaT.velocidad < 1) {
+                        NoSeMueve(dest);
+                    } else {
+                        var tiempoDest = TiempoLLegada(
+                            distancia,
+                            valFlotaT.velocidad * porcentVel
+                        );
+                        SiSeMueve(dest, fuelDest, tiempoDest);
+                    }
                 }
             }
         }
@@ -268,12 +272,38 @@ function Calculoespacitiempo(dest) {
     }
 }
 
-function NoSeMueve(dest) {
+function NoSeMueve(dest) { //si la flota se no mueve coloca -
     $("#fuelDest" + dest).text("-");
     $("#tiempoDest" + dest).text("-");
 }
 
-function SiSeMueve(dest, fuelDest, tiempoDest) {
+function SiSeMueve(dest, fuelDest, tiempoDest) {  //si la flota se mueve coloca valores
     $("#fuelDest" + dest).text(formatNumber(fuelDest));
     $("#tiempoDest" + dest).text(formatTimestamp(tiempoDest));
 }
+
+function SelectorDestinos(dest){  // el selector coloca sistema y planeta
+    input=$('#listaPlanetas'+dest).val().split('x');
+    $('#sistemaDest'+dest).val(input[0]);
+    $('#planetaDest'+dest).val(input[1]);
+}
+
+RecursosInicio();
+function RecursosInicio(){
+    var dest;
+    for (dest = 1; dest < destinos.length; dest++) {
+        destAnt = dest - 1;
+        if (recursosDest[destAnt]!=undefined){
+            recursosArray.forEach(res => {
+                $("#boton"+res + dest).text(formatNumber(1*recursosDest[destAnt][res]));
+            });
+        }
+    }
+}
+
+function CargarRecurso(dest,res){
+    destAnt = dest - 1;
+    $("#"+ res + dest).val(formatNumber(1*recursosDest[destAnt][res]));
+}
+
+

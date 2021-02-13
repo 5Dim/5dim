@@ -309,19 +309,25 @@
         let constantesU = @json($constantesU);
         let ViewDaniosDisenios = @json($ViewDaniosDisenios);
 
+
+        recursosDest = [];
+
+        recursosDest[0] = @json($recursos);
+
         destinos = [];
         destinos[0] = [];
         destinos[0]['sistema'] = '1234';
         destinos[0]['planeta'] = '5';
         destinos[1] = [];
-        destinos[1]['sistema'] = '0';
-        destinos[1]['planeta'] = '0';
+        destinos[1]['sistema'] = '-1';
+        destinos[1]['planeta'] = '-1';
         destinos[2] = [];
-        destinos[2]['sistema'] = '0';
-        destinos[2]['planeta'] = '0';
+        destinos[2]['sistema'] = '-1';
+        destinos[2]['planeta'] = '-1';
         destinos[3] = [];
-        destinos[3]['sistema'] = '0';
-        destinos[3]['planeta'] = '0';
+        destinos[3]['sistema'] = '-1';
+        destinos[3]['planeta'] = '-1';
+
 
     </script>
 

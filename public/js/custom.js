@@ -774,6 +774,7 @@ function resultadoRealDiseno(diseno, invest, invstobj = invest) {
 valNaves = [];
 tamaniosArray = ['cargaPequenia','cargaMediana','cargaGrande','cargaEnorme','cargaMega'];
 tamaniosNaveAcarga = {'caza':'cargaPequenia','ligera':'cargaMediana','media':'cargaGrande','pesada':'cargaEnorme','estacion':'cargaMega'};
+recursosArray=['personal','mineral','cristal','gas','plastico','ceramica','liquido','micros','fuel','ma','municion','creditos'];
 
 function MostrarResultadoDisenio(diseno) {
     var result = CalculoDisenio(diseno);
