@@ -46,7 +46,7 @@
                         <option value="none">Selecciona un planeta</option>
                         <optgroup label="Propios">
                             @foreach (Auth::user()->jugador->planetas as $planeta)
-                                <option value="{{ $planeta->id }}">
+                                <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
                                     {{ $planeta->estrella }}x{{ $planeta->orbita }}
                                     {{ $planeta->nombre }}
                                 </option>
