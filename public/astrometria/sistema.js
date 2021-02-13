@@ -97,17 +97,8 @@ function mueve_sis( posfinalx,posfinaly){
 }
 
 function creasistemasolar(texto){
-
-
-
   efTransicion = new PIXI.AnimatedSprite(ef_transicion.animations["transicion"]);
   
-
-  
-
- 
-        
-
   //this.energia.scale.set(1);
 
   //efEnergia.visible =false; 

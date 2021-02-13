@@ -117,6 +117,89 @@ function Radar(n, x, y, t, c) {
 	this.py = y; //posicion y
 	//log(this.n);
 }
+function Influencia(n, x, y, t, c) {
+/*
+    circulo = capa_influencias.addChild(new PIXI.Graphics());
+    circulo.beginFill(0xFFFFFF); 
+    circulo.drawCircle(x+35, y+35, 70*t); 
+    circulo.endFill();
+    circulo.alpha = 0.5; 
+
+    if (c==1){circulo.tint = 0xE7AD00;} // naranja
+    if (c==2){circulo.tint = 0xE70000;} // rojo
+    if (c==3){circulo.tint = 0x0083e7;} // azul
+    if (c==4){circulo.tint = 0x00e73e;} // verde
+         
+    this.n = n; //numero de sistema
+    this.px = x; //posicion x
+    this.py = y; //posicion y  
+*/
+    var cuadroA = new PIXI.Container();
+    var cuadroB = new PIXI.Container();
+    var cuadroC = new PIXI.Container();
+    var cuadroD = new PIXI.Container();    
+    var textura = PIXI.Texture.from('/astrometria/img/influencia.png');
+    
+   // cuadroA.rotation=(45*3.1416)/180;
+    valorAlpha=100/t;
+    
+    for (var j = 0; j < t+1; j++){    
+        for (var i = 0; i < t+1; i++){          
+            const cuadro = new PIXI.Sprite(textura);   
+            cuadro.position.set((70*j), (70*i));
+            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
+            cuadroA.addChild(cuadro);
+        }  
+    }
+    cuadroA.x = x+35;
+    cuadroA.y = y+35;
+    capa_influencias.addChild(cuadroA);
+
+    for (var j = 0; j < t+1; j++){    
+        for (var i = 0; i < t+1; i++){          
+            const cuadro = new PIXI.Sprite(textura);   
+            cuadro.position.set((70*j), (70*i));
+            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
+            cuadroB.addChild(cuadro);
+        }  
+    }
+    cuadroB.x = x+35;
+    cuadroB.y = y+35;
+    cuadroB.rotation=(90*3.1416)/180;
+    capa_influencias.addChild(cuadroB);
+
+    for (var j = 0; j < t+1; j++){    
+        for (var i = 0; i < t+1; i++){          
+            const cuadro = new PIXI.Sprite(textura);   
+            cuadro.position.set((70*j), (70*i));
+            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
+            cuadroC.addChild(cuadro);
+        }  
+    }
+    cuadroC.x = x+35;
+    cuadroC.y = y+35;
+    cuadroC.rotation=(180*3.1416)/180;
+    capa_influencias.addChild(cuadroC);
+
+    for (var j = 0; j < t+1; j++){    
+        for (var i = 0; i < t+1; i++){          
+            const cuadro = new PIXI.Sprite(textura);   
+            cuadro.position.set((70*j), (70*i));
+            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
+            cuadroD.addChild(cuadro);
+        }  
+    }
+    cuadroD.x = x+35;
+    cuadroD.y = y+35;
+    cuadroD.rotation=(270*3.1416)/180;
+    capa_influencias.addChild(cuadroD);
+//
+//capa_influencias.addChild(cuadroB);
+
+    
+
+   // cuadroA.rotation=(90*3.1416)/180;
+ }
 
 function angleDegrees(ox, oy,dx,dy) {
     x=dx-ox;
@@ -1057,3 +1140,13 @@ function ajusta_zoom(nivel){
        viewport.zoomPercent(- (dif/20),true);
     }
 }
+
+
+/*
+colores oreintativos
+habitado==0 //SIN OCUPAR blanco
+habitado==1 //SIN OCUPADO amarillo
+habitado==2 //SIN PROPIO (HOME) verde
+habitado==3 //SIN ALIADO azul
+habitado==4 //SIN ENEMIGO rojo
+*/
