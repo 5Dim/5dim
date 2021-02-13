@@ -3,7 +3,7 @@
         <table class="table table-borderless borderless table-sm text-center anchofijo"
             style="margin-top: 5px !important">
             <tr>
-                <th colspan="7" class="text-success">
+                <th colspan="9" class="text-success">
                     <big>
                         Destino {{ $numero }}
                     </big>
@@ -29,7 +29,7 @@
                 <th class="text-warning align-middle">
                     Porcentaje de velocidad
                 </th>
-                <th id="tipovelocidad{{$numero}}" class="text-warning align-middle">
+                <th id="tipovelocidad{{ $numero }}" class="text-warning align-middle">
                     Hypervelocidad
                 </th>
                 <th class="text-warning align-middle">
@@ -55,13 +55,15 @@
                     </select>
                 </td>
                 <td class="text-light">
-                    <input id="sistemaDest{{$numero}}" type="text" class="form-control input" placeholder="Numero de sistema">
+                    <input id="sistemaDest{{ $numero }}" type="text" class="form-control input"
+                        placeholder="Numero de sistema">
                 </td>
                 <td class="text-light">
-                    <input id="planetaDest{{$numero}}" type="text" class="form-control input" placeholder="Numero de orbita">
+                    <input id="planetaDest{{ $numero }}" type="text" class="form-control input"
+                        placeholder="Numero de orbita">
                 </td>
                 <td class="text-light">
-                    <select name="orden" id="ordenDest{{$numero}}" class="select form-control">
+                    <select name="orden" id="ordenDest{{ $numero }}" class="select form-control">
                         <option value="" selected>-- Selecciona una orden --</option>
                         <option value="transportar">Transportar</option>
                         <option value="transferir">Transferir</option>
@@ -73,20 +75,20 @@
                 <td class="text-light">
                     <div class="input-group mb-3 borderless"
                         style="padding-left: 10px !important; padding-right: 5px !important">
-                        <input id = "porcentVDest{{$numero}}" type="text" class="form-control input" value="100" aria-label="Recipient's username"
-                            aria-describedby="basic-addon2">
+                        <input id="porcentVDest{{ $numero }}" type="text" class="form-control input" value="100"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <span class="input-group-text bg-dark text-light">%</span>
                         </div>
                     </div>
                 </td>
-                <td id="velocidadDest{{$numero}}" class="text-light">
+                <td id="velocidadDest{{ $numero }}" class="text-light">
                     -
                 </td>
-                <td id="fuelDest{{$numero}}"class="text-light">
+                <td id="fuelDest{{ $numero }}" class="text-light">
                     -
                 </td>
-                <td id="tiempoDest{{$numero}}"class="text-light">
+                <td id="tiempoDest{{ $numero }}" class="text-light">
                     --
                 </td>
             </tr>
@@ -239,6 +241,9 @@
                 <td class="anchofijo text-light">
                     <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
+                <td class="anchofijo text-light">
+                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                </td>
             </tr>
         </table>
     </div>
@@ -252,20 +257,19 @@
         });
     });
 
-    $('#sistemaDest{{$numero}}').focusout(function() {
-        Calculoespacitiempo({{$numero}});
+    $('#sistemaDest{{ $numero }}').focusout(function() {
+        Calculoespacitiempo({{ $numero }});
     });
 
-    $('#planetaDest{{$numero}}').focusout(function() {
-        Calculoespacitiempo({{$numero}});
+    $('#planetaDest{{ $numero }}').focusout(function() {
+        Calculoespacitiempo({{ $numero }});
     });
 
-    $('#porcentVDest{{$numero}}').focusout(function() {
-        if ($('#porcentVDest{{$numero}}').val() * 1 > 100){
-            $('#porcentVDest{{$numero}}').val("100");
+    $('#porcentVDest{{ $numero }}').focusout(function() {
+        if ($('#porcentVDest{{ $numero }}').val() * 1 > 100) {
+            $('#porcentVDest{{ $numero }}').val("100");
         }
-        Calculoespacitiempo({{$numero}});
+        Calculoespacitiempo({{ $numero }});
     });
-
 
 </script>

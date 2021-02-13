@@ -58,64 +58,83 @@
                                 </button>
                             </th>
                         </tr>
-                        @foreach($navesEstacionadas as $nave)
+                        @foreach ($navesEstacionadas as $nave)
                             <tr>
-                                <td name="nombre{{$nave->id}}" id="nombre{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="nombre{{ $nave->id }}" id="nombre{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="ataque{{$nave->id}}" id="ataque{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="ataque{{ $nave->id }}" id="ataque{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="defensa{{$nave->id}}" id="defensa{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="defensa{{ $nave->id }}" id="defensa{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="carga{{$nave->id}}" id="carga{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="carga{{ $nave->id }}" id="carga{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="hangarCazas{{$nave->id}}" id="hangarCazas{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="hangarCazas{{ $nave->id }}" id="hangarCazas{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="hangarLigeras{{$nave->id}}" id="hangarLigeras{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="hangarLigeras{{ $nave->id }}" id="hangarLigeras{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="hangarMedias{{$nave->id}}" id="hangarMedias{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="hangarMedias{{ $nave->id }}" id="hangarMedias{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="hangarPesadas{{$nave->id}}" id="hangarPesadas{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="hangarPesadas{{ $nave->id }}" id="hangarPesadas{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="maniobra{{$nave->id}}" id="maniobra{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="maniobra{{ $nave->id }}" id="maniobra{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="velocidad{{$nave->id}}" id="velocidad{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="velocidad{{ $nave->id }}" id="velocidad{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="cantidad{{$nave->id}}" id="cantidad{{$nave->id}}" class="anchofijo text-light align-middle">
+                                <td name="cantidad{{ $nave->id }}" id="cantidad{{ $nave->id }}"
+                                    class="anchofijo text-light align-middle">
                                 </td>
-                                <td id="selectaflota{{$nave->id}}"  class="anchofijo text-light" style="max-width: 180px">
+                                <td id="selectaflota{{ $nave->id }}" class="anchofijo text-light"
+                                    style="max-width: 180px">
                                     <div class="input-group mb-3 input-group-sm borderless">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
-                                                <button type="button" class="btn btn-dark btn-sm text-warning" onclick="NaveAflota({{$nave->id}},0)">
+                                                <button type="button" class="btn btn-dark btn-sm text-warning"
+                                                    onclick="NaveAflota({{ $nave->id }},0)">
                                                     0
                                                 </button>
                                             </span>
                                         </div>
-                                        <input id="enflota{{$nave->id}}"  type="text" class="form-control input" value="0" aria-label="" onKeyUp="NaveAflota({{$nave->id}},'x')"
+                                        <input id="enflota{{ $nave->id }}" type="text" class="form-control input"
+                                            value="0" aria-label="" onKeyUp="NaveAflota({{ $nave->id }},'x')"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
-                                                <button type="button" class="btn btn-dark btn-sm text-warning"  onclick="NaveAflota({{$nave->id}},'m')">
+                                                <button type="button" class="btn btn-dark btn-sm text-warning"
+                                                    onclick="NaveAflota({{ $nave->id }},'m')">
                                                     M
                                                 </button>
                                             </span>
                                         </div>
                                     </div>
                                 </td>
-                                <td id="selectahangar{{$nave->id}}"  class="anchofijo text-light" style="max-width: 180px">
+                                <td id="selectahangar{{ $nave->id }}" class="anchofijo text-light"
+                                    style="max-width: 180px">
                                     <div class="input-group mb-3 input-group-sm borderless">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
-                                                <button type="button" class="btn btn-dark btn-sm text-warning"  onclick="NaveAhangar({{$nave->id}},0)">
+                                                <button type="button" class="btn btn-dark btn-sm text-warning"
+                                                    onclick="NaveAhangar({{ $nave->id }},0)">
                                                     0
                                                 </button>
                                             </span>
                                         </div>
-                                        <input id="enhangar{{$nave->id}}"  type="text" class="form-control input" value="0" aria-label="" onKeyUp="NaveAhangar({{$nave->id}},'x')"
+                                        <input id="enhangar{{ $nave->id }}" type="text" class="form-control input"
+                                            value="0" aria-label="" onKeyUp="NaveAhangar({{ $nave->id }},'x')"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
-                                                <button type="button" class="btn btn-dark btn-sm text-warning" onclick="NaveAhangar({{$nave->id}},'m')">
+                                                <button type="button" class="btn btn-dark btn-sm text-warning"
+                                                    onclick="NaveAhangar({{ $nave->id }},'m')">
                                                     M
                                                 </button>
                                             </span>
@@ -275,10 +294,10 @@
                         </tr>
                     </table>
                 </div>
-                @include('juego.flotas.destino', [ 'destino' => 'destino1', 'numero' => '1'])
-                @include('juego.flotas.destino', [ 'destino' => 'destino2', 'numero' => '2'])
-                @include('juego.flotas.destino', [ 'destino' => 'destino3', 'numero' => '3'])
             </div>
+            @include('juego.flotas.destino', [ 'destino' => 'destino1', 'numero' => '1'])
+            @include('juego.flotas.destino', [ 'destino' => 'destino2', 'numero' => '2'])
+            @include('juego.flotas.destino', [ 'destino' => 'destino3', 'numero' => '3'])
         </div>
     </div>
 
@@ -291,21 +310,29 @@
         let ViewDaniosDisenios = @json($ViewDaniosDisenios);
 
 
-        destinos =[];
-        destinos[0] = []; destinos[0]['sistema']='1234';destinos[0]['planeta']='5';
-        destinos[1] = []; destinos[1]['sistema']='0';destinos[1]['planeta']='0';
-        destinos[2] = []; destinos[2]['sistema']='0';destinos[2]['planeta']='0';
-        destinos[3] = []; destinos[3]['sistema']='0';destinos[3]['planeta']='0';
+        destinos = [];
+        destinos[0] = [];
+        destinos[0]['sistema'] = '1234';
+        destinos[0]['planeta'] = '5';
+        destinos[1] = [];
+        destinos[1]['sistema'] = '0';
+        destinos[1]['planeta'] = '0';
+        destinos[2] = [];
+        destinos[2]['sistema'] = '0';
+        destinos[2]['planeta'] = '0';
+        destinos[3] = [];
+        destinos[3]['sistema'] = '0';
+        destinos[3]['planeta'] = '0';
 
         valFlotaT = [];
 
-            fueraH =[];
-            dentroH =[];
-            capacidadH =[];
+        fueraH = [];
+        dentroH = [];
+        capacidadH = [];
         tablaHangares = [];
-        tablaHangares.fueraH=fueraH;
-        tablaHangares.dentroH=dentroH;
-        tablaHangares.capacidadH=capacidadH;
+        tablaHangares.fueraH = fueraH;
+        tablaHangares.dentroH = dentroH;
+        tablaHangares.capacidadH = capacidadH;
 
 
 
@@ -313,17 +340,19 @@
 
 
         // carga de valores
-        function CargarValoresPlaneta(){
+        function CargarValoresPlaneta() {
 
             navesEstacionadas.forEach(nave => {
-                var diseno=$.grep(diseniosJugador, function (valorBase) {return valorBase.id == nave.id;})[0];
+                var diseno = $.grep(diseniosJugador, function(valorBase) {
+                    return valorBase.id == nave.id;
+                })[0];
                 MostrarResultadoDisenio(diseno);
-                valNaves[nave.id].nombre=diseno.nombre;
-                valNaves[nave.id].cantidad=nave.cantidad;
-                valNaves[nave.id].cantidadT=nave.cantidad; //es constante
-                valNaves[nave.id].enflota=0;
-                valNaves[nave.id].enhangar=0;
-                valNaves[nave.id].tamanio=diseno.tamanio;
+                valNaves[nave.id].nombre = diseno.nombre;
+                valNaves[nave.id].cantidad = nave.cantidad;
+                valNaves[nave.id].cantidadT = nave.cantidad; //es constante
+                valNaves[nave.id].enflota = 0;
+                valNaves[nave.id].enhangar = 0;
+                valNaves[nave.id].tamanio = diseno.tamanio;
 
                 $("#nombre" + nave.id).text(diseno.nombre);
             });
@@ -331,71 +360,71 @@
             RecalculoTotal();
         }
 
-        function RecalculoTotal(){
+        function RecalculoTotal() {
 
             //reinicio valores
-            valFlotaT.carga=0;
-            valFlotaT.municion=0;
-            valFlotaT.fuel=0;
-            valFlotaT.velocidad=1000;
-            valFlotaT.maniobra=1000;
-            valFlotaT.ataqueR=0;
-            valFlotaT.defensaR=0;
-            valFlotaT.ataqueV=0;
-            valFlotaT.defensaV=0;
+            valFlotaT.carga = 0;
+            valFlotaT.municion = 0;
+            valFlotaT.fuel = 0;
+            valFlotaT.velocidad = 1000;
+            valFlotaT.maniobra = 1000;
+            valFlotaT.ataqueR = 0;
+            valFlotaT.defensaR = 0;
+            valFlotaT.ataqueV = 0;
+            valFlotaT.defensaV = 0;
             tamaniosArray.forEach(tamanio => {
-                    tablaHangares.capacidadH[tamanio]=0;
-                    tablaHangares.fueraH[tamanio]=0;
-                    tablaHangares.dentroH[tamanio]=0;
-                });
+                tablaHangares.capacidadH[tamanio] = 0;
+                tablaHangares.fueraH[tamanio] = 0;
+                tablaHangares.dentroH[tamanio] = 0;
+            });
 
             ///CALCULO
             // naves
             navesEstacionadas.forEach(nave => {
-                cantidad=valNaves[nave.id].cantidad;
-                aflota=valNaves[nave.id].enflota;
-                ahangar=valNaves[nave.id].enhangar;
-                atotal=aflota+ahangar;
+                cantidad = valNaves[nave.id].cantidad;
+                aflota = valNaves[nave.id].enflota;
+                ahangar = valNaves[nave.id].enhangar;
+                atotal = aflota + ahangar;
 
-                if (atotal>0){
+                if (atotal > 0) {
 
-                    valFlotaT.carga+=valNaves[nave.id].carga * atotal;
-                    valFlotaT.municion+=valNaves[nave.id].municion * atotal;
-                    valFlotaT.fuel+=valNaves[nave.id].fuel * aflota;
-                    if (aflota>0){
-                        valFlotaT.velocidad=Math.min(valNaves[nave.id].velocidad , valFlotaT.velocidad);
-                        valFlotaT.maniobra=Math.min(valNaves[nave.id].maniobra,valFlotaT.maniobra);
+                    valFlotaT.carga += valNaves[nave.id].carga * atotal;
+                    valFlotaT.municion += valNaves[nave.id].municion * atotal;
+                    valFlotaT.fuel += valNaves[nave.id].fuel * aflota;
+                    if (aflota > 0) {
+                        valFlotaT.velocidad = Math.min(valNaves[nave.id].velocidad, valFlotaT.velocidad);
+                        valFlotaT.maniobra = Math.min(valNaves[nave.id].maniobra, valFlotaT.maniobra);
                     }
-                    valFlotaT.ataqueR+=valNaves[nave.id].ataque * atotal;
-                    valFlotaT.defensaR+=valNaves[nave.id].defensa * atotal;
-                    valFlotaT.ataqueV+=valNaves[nave.id].ataque * aflota;
-                    valFlotaT.defensaV+=valNaves[nave.id].defensa * aflota;
+                    valFlotaT.ataqueR += valNaves[nave.id].ataque * atotal;
+                    valFlotaT.defensaR += valNaves[nave.id].defensa * atotal;
+                    valFlotaT.ataqueV += valNaves[nave.id].ataque * aflota;
+                    valFlotaT.defensaV += valNaves[nave.id].defensa * aflota;
 
                     //hangares
 
                     tamaniosArray.forEach(tamaniod => {
-                       tablaHangares.capacidadH[tamaniod]+=atotal * valNaves[nave.id][tamaniod];
+                        tablaHangares.capacidadH[tamaniod] += atotal * valNaves[nave.id][tamaniod];
                     });
 
-                    var tcarga=tamaniosNaveAcarga[valNaves[nave.id].tamanio];
-                    tablaHangares.dentroH[tcarga]+=ahangar;
-                    tablaHangares.fueraH[tcarga]+=aflota;
+                    var tcarga = tamaniosNaveAcarga[valNaves[nave.id].tamanio];
+                    tablaHangares.dentroH[tcarga] += ahangar;
+                    tablaHangares.fueraH[tcarga] += aflota;
                 }
-                tablaHangares.capacidadH.cargaMega=0; //siempre
+                tablaHangares.capacidadH.cargaMega = 0; //siempre
 
-                    // pimtado esta nave
+                // pimtado esta nave
 
-                    $("#cantidad" + nave.id).text(formatNumber(cantidad));
-                    $("#enflota" + nave.id).val(aflota);
-                    $("#enhangar" + nave.id).val(ahangar);
+                $("#cantidad" + nave.id).text(formatNumber(cantidad));
+                $("#enflota" + nave.id).val(aflota);
+                $("#enhangar" + nave.id).val(ahangar);
 
             });
 
-            if(valFlotaT.velocidad>999){
-                valFlotaT.velocidad=0;
+            if (valFlotaT.velocidad > 999) {
+                valFlotaT.velocidad = 0;
             }
-            if(valFlotaT.maniobra>999){
-                valFlotaT.maniobra=0;
+            if (valFlotaT.maniobra > 999) {
+                valFlotaT.maniobra = 0;
             }
 
 
@@ -420,122 +449,123 @@
                 $("#fueraH" + tamanio).text(formatNumber(tablaHangares.fueraH[tamanio]));
             });
 
-                var idd;
-                for(idd=1; idd<destinos.length;idd++){
-                    Calculoespacitiempo(idd);
-                };
+            var idd;
+            for (idd = 1; idd < destinos.length; idd++) {
+                Calculoespacitiempo(idd);
+            };
 
             Avisos();
         }
 
-        var  errores="";
-        function Avisos(){
-            var errorHangares=false;
-            errores="";
+        var errores = "";
+
+        function Avisos() {
+            var errorHangares = false;
+            errores = "";
 
             tamaniosArray.forEach(tamanio => {
-                if (tablaHangares.dentroH[tamanio] > tablaHangares.capacidadH[tamanio]){
-                    errorHangares=true;
-                    $("#capacidadH"+ tamanio).addClass('text-danger').removeClass('text-light');
+                if (tablaHangares.dentroH[tamanio] > tablaHangares.capacidadH[tamanio]) {
+                    errorHangares = true;
+                    $("#capacidadH" + tamanio).addClass('text-danger').removeClass('text-light');
                 } else {
-                    $("#capacidadH"+ tamanio).removeClass('text-danger').addClass('text-light');
+                    $("#capacidadH" + tamanio).removeClass('text-danger').addClass('text-light');
                 }
             });
 
-            if (errorHangares){
-                errores+=" Capacidad de hangar insuficiente";
+            if (errorHangares) {
+                errores += " Capacidad de hangar insuficiente";
                 $("#capacidadH").addClass('text-danger').removeClass('text-warning');
 
                 //pintando caja ahangar por nave
                 navesEstacionadas.forEach(nave => {
-                    var tcarga=tamaniosNaveAcarga[valNaves[nave.id].tamanio];
-                    if (valNaves[nave.id].enhangar>0 &&  tablaHangares.dentroH[tcarga]>0){
-                        $("#selectahangar"+ nave.id).addClass('bg-danger');
+                    var tcarga = tamaniosNaveAcarga[valNaves[nave.id].tamanio];
+                    if (valNaves[nave.id].enhangar > 0 && tablaHangares.dentroH[tcarga] > 0) {
+                        $("#selectahangar" + nave.id).addClass('bg-danger');
                     } else {
-                        $("#selectahangar"+ nave.id).removeClass('bg-danger');
+                        $("#selectahangar" + nave.id).removeClass('bg-danger');
                     }
                 });
             } else {
                 $("#capacidadH").removeClass('text-danger').addClass('text-warning');
                 navesEstacionadas.forEach(nave => {
-                    $("#selectahangar"+ nave.id).removeClass('bg-danger');
+                    $("#selectahangar" + nave.id).removeClass('bg-danger');
                 });
             }
 
         }
 
 
-        function NaveAflota(id,canti=0){
-            if (canti=='x'){
-                valNaves[id].enflota=1*$("#enflota" + id).val();
-            } else if (canti=='m') {
-                valNaves[id].enflota=valNaves[id].cantidad;
+        function NaveAflota(id, canti = 0) {
+            if (canti == 'x') {
+                valNaves[id].enflota = 1 * $("#enflota" + id).val();
+            } else if (canti == 'm') {
+                valNaves[id].enflota = valNaves[id].cantidad;
             } else {
-                valNaves[id].enflota=canti;
+                valNaves[id].enflota = canti;
             }
 
-            if (valNaves[id].enhangar+valNaves[id].enflota > valNaves[id].cantidadT) {
-                valNaves[id].enflota=valNaves[id].cantidadT-valNaves[id].enhangar;
+            if (valNaves[id].enhangar + valNaves[id].enflota > valNaves[id].cantidadT) {
+                valNaves[id].enflota = valNaves[id].cantidadT - valNaves[id].enhangar;
             }
-            valNaves[id].cantidad=valNaves[id].cantidadT-valNaves[id].enflota-valNaves[id].enhangar;
+            valNaves[id].cantidad = valNaves[id].cantidadT - valNaves[id].enflota - valNaves[id].enhangar;
             RecalculoTotal();
         }
 
-        function NaveAhangar(id,canti=0){
-            if (canti=='x'){
-                valNaves[id].enhangar=1*$("#enhangar" + id).val();
-            } else if (canti=='m') {
-                valNaves[id].enhangar=valNaves[id].cantidad;
+        function NaveAhangar(id, canti = 0) {
+            if (canti == 'x') {
+                valNaves[id].enhangar = 1 * $("#enhangar" + id).val();
+            } else if (canti == 'm') {
+                valNaves[id].enhangar = valNaves[id].cantidad;
             } else {
-                valNaves[id].enhangar=canti;
+                valNaves[id].enhangar = canti;
             }
 
-            if (valNaves[id].enhangar+valNaves[id].enflota > valNaves[id].cantidadT) {
-                valNaves[id].enhangar=valNaves[id].cantidadT-valNaves[id].enflota;
+            if (valNaves[id].enhangar + valNaves[id].enflota > valNaves[id].cantidadT) {
+                valNaves[id].enhangar = valNaves[id].cantidadT - valNaves[id].enflota;
             }
-            valNaves[id].cantidad=valNaves[id].cantidadT-valNaves[id].enflota-valNaves[id].enhangar;
+            valNaves[id].cantidad = valNaves[id].cantidadT - valNaves[id].enflota - valNaves[id].enhangar;
             RecalculoTotal();
         }
 
 
-        function Calculoespacitiempo(dest){
+        function Calculoespacitiempo(dest) {
 
-            if (valFlotaT.fuel>0){
-                destAnt=dest-1;
+            if (valFlotaT.fuel > 0) {
+                destAnt = dest - 1;
 
-                if (dest>1){
-                    destinos[destAnt].sistema=$('#sistemaDest'+destAnt).val();
-                    destinos[destAnt].planeta=$('#planetaDest'+destAnt).val();
+                if (dest > 1) {
+                    destinos[destAnt].sistema = $('#sistemaDest' + destAnt).val();
+                    destinos[destAnt].planeta = $('#planetaDest' + destAnt).val();
                 }
 
-                destinos[dest].sistema=$('#sistemaDest'+dest).val();
-                destinos[dest].planeta=$('#planetaDest'+dest).val();
+                destinos[dest].sistema = $('#sistemaDest' + dest).val();
+                destinos[dest].planeta = $('#planetaDest' + dest).val();
 
-                var distancia= DistanciaUniverso(destinos[destAnt],destinos[dest]);
-                if (isNaN(distancia)){
+                var distancia = DistanciaUniverso(destinos[destAnt], destinos[dest]);
+                if (isNaN(distancia)) {
                     NoSeMueve(dest);
                 } else {
-                    var porcentVel=($('#porcentVDest'+dest).val())/100;
-                    var fuelDest=GastoFuel(distancia, valFlotaT.fuel);
+                    var porcentVel = ($('#porcentVDest' + dest).val()) / 100;
+                    var fuelDest = GastoFuel(distancia, valFlotaT.fuel);
 
-                    if (distancia<10){
-                            $("#tipovelocidad"+dest).text("Vel. Impulso");
-                            $("#velocidadDest"+dest).text(formatNumber(Math.round(valFlotaT.maniobra *porcentVel)));
-                        if (valFlotaT.maniobra<1){
+                    if (distancia < 10) {
+                        $("#tipovelocidad" + dest).text("Vel. Impulso");
+                        $("#velocidadDest" + dest).text(formatNumber(Math.round(valFlotaT.maniobra * porcentVel)));
+                        if (valFlotaT.maniobra < 1) {
                             NoSeMueve(dest);
                         } else {
-                            var tiempoDest=TiempoLLegada(distancia, valFlotaT.maniobra * porcentVel);
-                            SiSeMueve(dest,fuelDest,tiempoDest);
+                            var tiempoDest = TiempoLLegada(distancia, valFlotaT.maniobra * porcentVel);
+                            SiSeMueve(dest, fuelDest, tiempoDest);
                         }
 
                     } else {
-                            $("#tipovelocidad"+dest).text("Hypervelocidad");
-                            $("#velocidadDest"+dest).text(formatNumber(Math.round(valFlotaT.velocidad * porcentVel)));
-                        if (valFlotaT.velocidad<1){
+                        $("#tipovelocidad" + dest).text("Hypervelocidad");
+                        $("#velocidadDest" + dest).text(formatNumber(Math.round(valFlotaT.velocidad * porcentVel)));
+                        if (valFlotaT.velocidad < 1) {
                             NoSeMueve(dest);
                         } else {
-                            var tiempoDest=TiempoLLegada(distancia, valFlotaT.velocidad * porcentVel);
-                            SiSeMueve(dest,fuelDest,tiempoDest);
+                            var tiempoDest = TiempoLLegada(distancia, valFlotaT.velocidad * porcentVel);
+                            SiSeMueve(dest, fuelDest, tiempoDest);
                         }
                     }
 
@@ -547,14 +577,14 @@
 
         }
 
-        function NoSeMueve(dest){
-            $("#fuelDest"+dest).text("-");
-            $("#tiempoDest"+dest).text("-");
+        function NoSeMueve(dest) {
+            $("#fuelDest" + dest).text("-");
+            $("#tiempoDest" + dest).text("-");
         }
 
-        function SiSeMueve(dest,fuelDest,tiempoDest){
-            $("#fuelDest"+dest).text(formatNumber(fuelDest));
-            $("#tiempoDest"+dest).text(formatTimestamp(tiempoDest));
+        function SiSeMueve(dest, fuelDest, tiempoDest) {
+            $("#fuelDest" + dest).text(formatNumber(fuelDest));
+            $("#tiempoDest" + dest).text(formatTimestamp(tiempoDest));
         }
 
     </script>
