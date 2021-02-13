@@ -752,7 +752,7 @@ function CalculoDisenio(diseno) {
     matrizataque.forEach((fila) => {
         ataqueTotal += 1 * fila.total;
     });
-    rdiseno.ataque = Math.round(ataqueTotal, 0);
+    rdiseno.ataque = Math.round(ataqueTotal);
 
     return rdiseno;
 }
@@ -830,8 +830,8 @@ function CoordenadasBySistema(nsistema) {
 }
 
 function DistanciaUniverso(origen, destino) {
-    var coordOrigen;
-    var coordDestino;
+    var coordOrigen={ x: 0, y: 0 };
+    var coordDestino={ x: 0, y: 0 };
     var factordistancia = 1;
     var dist=undefined;
 
@@ -844,15 +844,14 @@ function DistanciaUniverso(origen, destino) {
             factordistancia = $.grep(constantesU, function (busca) {
                 return busca.codigo == "distanciaorbita";
             })[0].valor;
-            coordOrigen = 0;
-            coordDestino = 0.5;
+            coordDestino.x = 0.5;
         } else if (origen.sistema == destino.sistema) {
             //mismo sistema
             factordistancia = $.grep(constantesU, function (busca) {
                 return busca.codigo == "distanciaentreplanetas";
             })[0].valor;
-            coordOrigen = origen.planeta;
-            coordDestino = destino.planeta;
+            coordOrigen.x = origen.planeta;
+            coordDestino.x = destino.planeta;
         } else {
             //entre sistemas
             factordistancia = $.grep(constantesU, function (busca) {
@@ -861,17 +860,13 @@ function DistanciaUniverso(origen, destino) {
             coordOrigen = CoordenadasBySistema(origen.sistema);
             coordDestino = CoordenadasBySistema(destino.sistema);
         }
-        dist =
-            factordistancia *
-            Math.pow(
+        dist =  factordistancia * Math.pow(
                 (coordDestino.x - coordOrigen.x) *
                     (coordDestino.x - coordOrigen.x) +
                     (coordDestino.y - coordOrigen.y) *
-                        (coordDestino.y - coordOrigen.y),
-                1 / 2
-            );
+                        (coordDestino.y - coordOrigen.y),  1 / 2 );
         }
-    return Math.round(dist,2);
+    return Math.round(dist*100)/100;
 }
 
 function GastoFuel(distancia, fuelbase) {
@@ -886,5 +881,5 @@ function TiempoLLegada(distancia, velocidad) {
         return busca.codigo == "factortiempoviaje";
     })[0].valor;
 
-    return tiempo = Math.round((distancia / velocidad) * factortiempoviaje,0); //en segundos
+    return tiempo = Math.round((distancia / velocidad) * factortiempoviaje); //en segundos
 }

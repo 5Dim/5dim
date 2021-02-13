@@ -29,8 +29,8 @@
                 <th class="text-warning align-middle">
                     Porcentaje de velocidad
                 </th>
-                <th class="text-warning align-middle">
-                    Velocidad actual
+                <th id="tipovelocidad{{$numero}}" class="text-warning align-middle">
+                    Hypervelocidad
                 </th>
                 <th class="text-warning align-middle">
                     Consumo de fuel
@@ -253,14 +253,17 @@
     });
 
     $('#sistemaDest{{$numero}}').focusout(function() {
-        destinos[{{$numero}}].sistema=$('#sistemaDest{{$numero}}').val();
-        destinos[{{$numero}}].planeta=$('#planetaDest{{$numero}}').val();
         Calculoespacitiempo({{$numero}});
     });
 
     $('#planetaDest{{$numero}}').focusout(function() {
-        destinos[{{$numero}}].sistema=$('#sistemaDest{{$numero}}').val();
-        destinos[{{$numero}}].planeta=$('#planetaDest{{$numero}}').val();
+        Calculoespacitiempo({{$numero}});
+    });
+
+    $('#porcentVDest{{$numero}}').focusout(function() {
+        if ($('#porcentVDest{{$numero}}').val() * 1 > 100){
+            $('#porcentVDest{{$numero}}').val("100");
+        }
         Calculoespacitiempo({{$numero}});
     });
 

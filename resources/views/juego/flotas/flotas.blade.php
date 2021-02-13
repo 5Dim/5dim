@@ -420,13 +420,10 @@
                 $("#fueraH" + tamanio).text(formatNumber(tablaHangares.fueraH[tamanio]));
             });
 
-            if (valFlotaT.velocidad>0 || valFlotaT.maniobra>0 ){
                 var idd;
-                for(idd=0; idd<destinos.length-1;idd++){
+                for(idd=1; idd<destinos.length;idd++){
                     Calculoespacitiempo(idd);
                 };
-            }
-
 
             Avisos();
         }
@@ -503,15 +500,61 @@
 
         function Calculoespacitiempo(dest){
 
+            if (valFlotaT.fuel>0){
+                destAnt=dest-1;
 
-            var distancia= DistanciaUniverso(destinos[dest-1],destinos[dest]);
-            var fuelDest=GastoFuel(distancia, valFlotaT.fuel);
-            var tiempoDest=TiempoLLegada(distancia, valFlotaT.velocidad);
+                if (dest>1){
+                    destinos[destAnt].sistema=$('#sistemaDest'+destAnt).val();
+                    destinos[destAnt].planeta=$('#planetaDest'+destAnt).val();
+                }
 
-            $("#velocidadDest"+dest).text(formatNumber(valFlotaT.velocidad));
+                destinos[dest].sistema=$('#sistemaDest'+dest).val();
+                destinos[dest].planeta=$('#planetaDest'+dest).val();
+
+                var distancia= DistanciaUniverso(destinos[destAnt],destinos[dest]);
+                if (isNaN(distancia)){
+                    NoSeMueve(dest);
+                } else {
+                    var porcentVel=($('#porcentVDest'+dest).val())/100;
+                    var fuelDest=GastoFuel(distancia, valFlotaT.fuel);
+
+                    if (distancia<10){
+                            $("#tipovelocidad"+dest).text("Vel. Impulso");
+                            $("#velocidadDest"+dest).text(formatNumber(Math.round(valFlotaT.maniobra *porcentVel)));
+                        if (valFlotaT.maniobra<1){
+                            NoSeMueve(dest);
+                        } else {
+                            var tiempoDest=TiempoLLegada(distancia, valFlotaT.maniobra * porcentVel);
+                            SiSeMueve(dest,fuelDest,tiempoDest);
+                        }
+
+                    } else {
+                            $("#tipovelocidad"+dest).text("Hypervelocidad");
+                            $("#velocidadDest"+dest).text(formatNumber(Math.round(valFlotaT.velocidad * porcentVel)));
+                        if (valFlotaT.velocidad<1){
+                            NoSeMueve(dest);
+                        } else {
+                            var tiempoDest=TiempoLLegada(distancia, valFlotaT.velocidad * porcentVel);
+                            SiSeMueve(dest,fuelDest,tiempoDest);
+                        }
+                    }
+
+                }
+
+            } else {
+                NoSeMueve(dest)
+            }
+
+        }
+
+        function NoSeMueve(dest){
+            $("#fuelDest"+dest).text("-");
+            $("#tiempoDest"+dest).text("-");
+        }
+
+        function SiSeMueve(dest,fuelDest,tiempoDest){
             $("#fuelDest"+dest).text(formatNumber(fuelDest));
             $("#tiempoDest"+dest).text(formatTimestamp(tiempoDest));
-
         }
 
     </script>
