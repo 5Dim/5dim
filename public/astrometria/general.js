@@ -16,6 +16,7 @@ function startTimer(duration, display) {
            timer = 0;
            clearInterval(crono);
         }
+        txtpaneltimer.text=seconds;
         log(minutes + ":" + seconds);
     }, 1000);
 }
@@ -317,6 +318,7 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
 
                          //display = document.querySelector('#time');
                          //startTimer(2,display);
+                         txtpaneltimer.text="04";
                          startTimer(3);
             }
 
