@@ -42,7 +42,7 @@ function flotasNuevas(){
 
         }
     };
-    xmlhttp.open("GET", "/astrometria/data/flotas2.json", true);
+    xmlhttp.open("GET", jsonFlotas, true);
     xmlhttp.send();
 
 }
