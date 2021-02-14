@@ -67,7 +67,7 @@ function carga_universo(){
             botonRuta();
             botonMarcar();
             botonH();
-            
+            botonI();
             botonR();
            // resize();
             botones.position.set (window.innerWidth/2 - botones.width/2,0);
