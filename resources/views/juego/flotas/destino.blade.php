@@ -21,7 +21,7 @@
                     Sistema solar
                 </th>
                 <th class="text-warning align-middle">
-                    Estrella
+                    Planeta
                 </th>
                 <th class="text-warning align-middle">
                     Orden
@@ -59,7 +59,7 @@
                         placeholder="Numero de sistema">
                 </td>
                 <td class="text-light">
-                    <input id="planetaDest{{ $numero }}" type="text" class="form-control input"
+                    <input id="planetaDest{{ $numero }}" type="text" class="form-control input" type="number"  pattern="[0-9]{1}"
                         placeholder="Numero de orbita">
                 </td>
                 <td class="text-light">
@@ -261,7 +261,7 @@
         Calculoespacitiempo();
     });
 
-    $('#planetaDest{{ $numero }}').focusout(function() {
+    $('#planetaDest{{ $numero }}').keyup(function() {
         Calculoespacitiempo();
     });
 
@@ -279,5 +279,59 @@
         SelectorDestinos({{ $numero }});
         Calculoespacitiempo();
     });
+
+    $('#personal{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'personal');
+    });
+
+    $('#mineral{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'mineral');
+    });
+
+    $('#cristal{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'cristal');
+    });
+
+    $('#gas{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'gas');
+    });
+
+    $('#plastico{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'plastico');
+    });
+
+    $('#ceramica{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'ceramica');
+    });
+
+    $('#liquido{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'liquido');
+    });
+
+    $('#micros{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'micros');
+    });
+
+    $('#fuel{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'fuel');
+    });
+
+    $('#ma{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'ma');
+    });
+
+    $('#municion{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'municion');
+    });
+
+    $('#creditos{{ $numero }}').keyup(function() {
+        ModificandoRecurso({{ $numero }},'creditos');
+    });
+
+
+
+
+
+
 
 </script>

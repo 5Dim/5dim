@@ -8,7 +8,10 @@ tablaHangares.fueraH = fueraH;
 tablaHangares.dentroH = dentroH;
 tablaHangares.capacidadH = capacidadH;
 
+
+
 CargarValoresPlaneta();
+RecursosInicio();
 
 // carga de valores
 function CargarValoresPlaneta() {
@@ -28,6 +31,26 @@ function CargarValoresPlaneta() {
     });
 
     RecalculoTotal();
+}
+
+
+
+function RecursosInicio(){
+    var dest;
+    for (dest = 1; dest < destinos.length; dest++) {
+        destAnt = dest - 1;
+        if (recursosDest[destAnt]!=undefined){
+            MostrarRecursos(dest);
+        }
+
+        if (cargaDest[dest]==undefined){
+            recursosArray.forEach(res => {
+                cargaDest[dest] = [];
+                cargaDest[dest][res]=0
+            });
+        }
+
+    }
 }
 
 function RecalculoTotal() {
@@ -126,9 +149,6 @@ function RecalculoTotal() {
             formatNumber(tablaHangares.fueraH[tamanio])
         );
     });
-
-
-
     Calculoespacitiempo();
     Avisos();
 }
@@ -268,6 +288,9 @@ function Calculoespacitiempo() {
             }
         }
         CargarMunicion();
+        for (dest = 1; dest < destinos.length; dest++) {
+            CargaActual(dest);
+        }
     } else {
         NoSeMueve(dest);
     }
@@ -290,16 +313,6 @@ function SelectorDestinos(dest){  // el selector coloca sistema y planeta
     TraerRecursos(input[0],input[1],dest);
 }
 
-RecursosInicio();
-function RecursosInicio(){
-    var dest;
-    for (dest = 1; dest < destinos.length; dest++) {
-        destAnt = dest - 1;
-        if (recursosDest[destAnt]!=undefined){
-            MostrarRecursos(dest);
-        }
-    }
-}
 
 function MostrarRecursos(dest){
     var destAnt = dest - 1;
@@ -315,8 +328,8 @@ function CargarRecurso(dest,res){
     if (dest>0){
         $("#"+ res + dest).val(formatNumber(Math.round(1*recursosDest[destAnt][res])));
     }
-
 }
+
 
 function TraerRecursos(sistema,planeta,dest){
     $.ajax({
@@ -353,12 +366,28 @@ function CargarMunicion(){
         var destAnt = dest - 1;
         if (recursosDest[destAnt]!=undefined){
             recur=$("#"+ res + dest).val();
-            muniTotal=valFlotaT[res]+1* recur.replace('.','');
+            muniTotal=valFlotaT[res]+1* recur.replace(/\./g,'');
             if (muniTotal>recursosDest[destAnt][res]){
                 muniTotal=recursosDest[destAnt][res];
             }
             $("#"+ res + dest).val(formatNumber(muniTotal));
         }
+    }
+}
 
+
+function CargaActual(dest){
+    recursosArray.forEach(res => {
+        cargaDest[dest][res]=$("#"+ res + dest).val();
+    });
+}
+
+function ModificandoRecurso(dest,res){
+    result= $('#'+res+dest).val().replace(/\./g,'');
+    if ( $.isNumeric(result)){
+        $('#'+res+dest).val(1*result);
+        CargaActual(dest);
+    } else {
+        $('#'+res+dest).val(0);
     }
 }

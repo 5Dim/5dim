@@ -310,9 +310,10 @@
         let ViewDaniosDisenios = @json($ViewDaniosDisenios);
 
 
-        recursosDest = [];
-
+        recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
         recursosDest[0] = @json($recursos);
+
+        cargaDest =[]; //cargado para cada destino
 
         destinos = [];
         destinos[0] = [];
