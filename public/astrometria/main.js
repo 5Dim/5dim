@@ -38,8 +38,8 @@ const jsonFlotas ="/juego/astrometria/ajax/flotas";
 //const jsonRadares ="/astrometria/data/radares.json";
 const jsonRadares ="/juego/astrometria/ajax/radares";
 
-//const jsonInfluencia ="/astrometria/data/influencia.json";
-const jsonInfluencia ="/juego/astrometria/ajax/influencia";
+const jsonInfluencia ="/astrometria/data/influencia.json";
+//const jsonInfluencia ="/juego/astrometria/ajax/influencia";
 
 const jsonRutas ="/astrometria/data/rutas.json";
 //const jsonRutas ="/astrometria/data/rutas.json";
