@@ -1165,9 +1165,9 @@ function ajusta_zoom(nivel){
         dif =Math.floor(nivel - 150);
        viewport.zoomPercent(- (dif/150),true);
     }
-    if (nivel < 20){
-        dif = Math.floor(nivel - 20);
-       viewport.zoomPercent(- (dif/20),true);
+    if (nivel < 5){
+        dif = Math.floor(nivel - 5);
+       viewport.zoomPercent(- (dif/5),true);
     }
 }
 
