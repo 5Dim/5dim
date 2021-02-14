@@ -23,6 +23,8 @@ var loader = PIXI.loader.add('cloudstars',"img/botones/atacar0.png")
                             //var ready = setTimeout(accountSetup,3000);    
                         })
 */
+const jsonSistema ="/astrometria/data/planetas.json";
+//const jsonSistema ="/juego/astrometria/ajax/planetas";
 
 function versistema(texto){
   
@@ -44,27 +46,13 @@ function versistema(texto){
   xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           sistema_solar = JSON.parse(this.responseText);
-
-
-          creaplanetas()
-          
-         // log(sistema_solar)
-
-
+          creaplanetas();
       }
   };
-  var numero = Math.floor(Math.random() * (3-1) + 1);
-  if (numero % 2 == 0)
-  {
-    xmlhttp.open("GET", "/astrometria/data/planetas2.json", true);
-    // xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/universo", true);
-      xmlhttp.send();
-  }else 
-  {
-    xmlhttp.open("GET", "/astrometria/data/planetas.json", true);
-// xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/universo", true);
-  xmlhttp.send();
-}
+
+    xmlhttp.open("GET", jsonSistema, true);
+    xmlhttp.send();
+
 /*
 xmlhttp.open("GET", "data/planetas.json", true);
 // xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/universo", true);
@@ -190,7 +178,6 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
 
 
       this.n = n; //numero de sistema
-      this.estado = estado;
       this.nompla = nompla; //posicion x
       this.nomjug = nomjug; //posicion x
       this.alianza = alianza; //posicion x

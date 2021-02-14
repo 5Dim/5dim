@@ -61,7 +61,7 @@ function Sistema(n, x, y, habitado) {
     //acciones para el botón
     estrella.on('pointerdown', (event) => {
         versistema(this);  
-        log(x + " " + y);                         // llamada para ver el sistema solar seleccionado;
+      //  log(x + " " + y);                         // llamada para ver el sistema solar seleccionado;
     });
 
     if (habitado==0){estrella.tint = 0xFFFFFF;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "white"}));}     //SIN OCUPAR blanco
@@ -135,71 +135,38 @@ function Influencia(n, x, y, t, c) {
     this.px = x; //posicion x
     this.py = y; //posicion y  
 */
-    var cuadroA = new PIXI.Container();
-    var cuadroB = new PIXI.Container();
-    var cuadroC = new PIXI.Container();
-    var cuadroD = new PIXI.Container();    
-    var textura = PIXI.Texture.from('/astrometria/img/influencia.png');
-    
-   // cuadroA.rotation=(45*3.1416)/180;
-    valorAlpha=100/t;
-    
-    for (var j = 0; j < t+1; j++){    
-        for (var i = 0; i < t+1; i++){          
-            const cuadro = new PIXI.Sprite(textura);   
-            cuadro.position.set((70*j), (70*i));
-            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
-            cuadroA.addChild(cuadro);
+
+
+    const graphics = new PIXI.Graphics();
+
+    d=0;
+    influencia=0;
+    alpha=1;
+    max=t*70;
+
+    for (var j = 0; j < t+1; j++){                                       
+        for (var i = 0; i < t+1; i++){                            
+
+            d=(Math.sqrt( ((i*70)*(i*70))+((j*70)*(j*70)) ));  
+            influencia=max-(max*(d/max));
+            alpha=((influencia*100)/max)/100;    
+
+            if (c==1){graphics.beginFill(0xDE3249,alpha);} //rosa
+            if (c==2){graphics.beginFill(0x2980B9,alpha);} //azul
+            if (c==3){graphics.beginFill(0x51AF61,alpha);} //verde
+            if (c==4){graphics.beginFill(0xE74C3C,alpha);} //naranja
+            
+            graphics.drawRect(x+35+(70*j), y+35+(70*i), 70, 70);
+            graphics.drawRect(x-(70*j)-35, y+35+(70*i), 70, 70);
+            graphics.drawRect(x+35+(70*j), y-(70*i)-35, 70, 70);
+            graphics.drawRect(x-(70*j)-35, y-(70*i)-35, 70, 70);
+            graphics.endFill();
         }  
     }
-    cuadroA.x = x+35;
-    cuadroA.y = y+35;
-    capa_influencias.addChild(cuadroA);
+ 
 
-    for (var j = 0; j < t+1; j++){    
-        for (var i = 0; i < t+1; i++){          
-            const cuadro = new PIXI.Sprite(textura);   
-            cuadro.position.set((70*j), (70*i));
-            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
-            cuadroB.addChild(cuadro);
-        }  
-    }
-    cuadroB.x = x+35;
-    cuadroB.y = y+35;
-    cuadroB.rotation=(90*3.1416)/180;
-    capa_influencias.addChild(cuadroB);
+    capa_influencias.addChild(graphics);
 
-    for (var j = 0; j < t+1; j++){    
-        for (var i = 0; i < t+1; i++){          
-            const cuadro = new PIXI.Sprite(textura);   
-            cuadro.position.set((70*j), (70*i));
-            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
-            cuadroC.addChild(cuadro);
-        }  
-    }
-    cuadroC.x = x+35;
-    cuadroC.y = y+35;
-    cuadroC.rotation=(180*3.1416)/180;
-    capa_influencias.addChild(cuadroC);
-
-    for (var j = 0; j < t+1; j++){    
-        for (var i = 0; i < t+1; i++){          
-            const cuadro = new PIXI.Sprite(textura);   
-            cuadro.position.set((70*j), (70*i));
-            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
-            cuadroD.addChild(cuadro);
-        }  
-    }
-    cuadroD.x = x+35;
-    cuadroD.y = y+35;
-    cuadroD.rotation=(270*3.1416)/180;
-    capa_influencias.addChild(cuadroD);
-//
-//capa_influencias.addChild(cuadroB);
-
-    
-
-   // cuadroA.rotation=(90*3.1416)/180;
  }
 
 function angleDegrees(ox, oy,dx,dy) {
@@ -475,19 +442,24 @@ function botonA(texto){
     txt.anchor.set(0.5);
     txt.position.set (botA.x, botA.y - 14);
 	
+    if(texto!=0){
+        txt_num_flotas = botones.addChild(new PIXI.Text(flotas.flotas.length,{fontFamily : 'Roboto',fontSize: 18,fill : "orange"}));
+        txt_num_flotas.anchor.set(0.5);
+        txt_num_flotas.position.set (botA.x, botA.y+5 );
+    }
 
-    txt_num_flotas = botones.addChild(new PIXI.Text(flotas.flotas.length,{fontFamily : 'Roboto',fontSize: 18,fill : "orange"}));
-    txt_num_flotas.anchor.set(0.5);
-    txt_num_flotas.position.set (botA.x, botA.y+5 );
+    
+    
 
     var txt = botones.addChild(new PIXI.Text("ZOOM",{fontFamily : 'Roboto',fontSize: 10,fill : "white"}));
     txt.anchor.set(0.5);
-    txt.position.set (botZ.x, botZ.y - 14);    
+    txt.position.set (botZ.x, botZ.y - 14);   
 
-    txt_zoom = botones.addChild(new PIXI.Text(viewport.zlevel,{fontFamily : 'Roboto',fontSize: 16,fill : "orange"}));
-    txt_zoom.anchor.set(0.5);
-    txt_zoom.position.set (botZ.x, botZ.y+5 );
-    
+
+        txt_zoom = botones.addChild(new PIXI.Text("",{fontFamily : 'Roboto',fontSize: 16,fill : "orange"}));
+        txt_zoom.anchor.set(0.5);
+        txt_zoom.position.set (botZ.x, botZ.y+5 );
+  
 }
 function actualizaTextos(){
    
@@ -1068,6 +1040,66 @@ function botonRuta(){
 
 }
 
+// boton activa la funcion de influencia
+function botonI(){
+    // buscar(home);
+     // texturas para los botones
+     var text_on = PIXI.Texture.from('/astrometria/img/botones/influencia1.png');
+     var text_off = PIXI.Texture.from('/astrometria/img/botones/influencia0.png');
+ 
+     //estado del botón
+     var estado = true;
+ 
+     botInflu = new PIXI.Sprite(text_on); // se inicia activo
+ 
+     botInflu.anchor.set(0.5);
+     botInflu.scale.x = 1;
+     botInflu.scale.y = 1;
+     botInflu.position.set (400,20);
+ 
+     // hacer el botón interactivo
+     botInflu.interactive = true;
+     botInflu.buttonMode = true;
+ 
+     //acciones para el botón
+     botInflu
+         // Mouse & touch events are normalized into
+         // the pointer* events for handling different
+         // button events.
+         .on('pointerdown', onButtonDown)
+         .on('pointerup', onButtonUp)
+         .on('pointerupoutside', onButtonUp)
+         .on('pointerover', onButtonOver)
+         .on('pointerout', onButtonOut);
+ 
+     // add it to the stage
+     botones.addChild(botInflu);
+ 
+     var nueva_pos = window.innerWidth/2;
+     botones.x = nueva_pos;
+ 
+ 
+     function onButtonDown() {}
+ 
+     function onButtonUp() {
+ 
+         estado = ! estado;
+         
+         if (estado==true){
+            this.texture = text_on;
+            capa_influencias.visible=true;
+
+         } else{ 
+            this.texture = text_off;
+            capa_influencias.visible=false;
+        }
+     }
+ 
+     function onButtonOver() {}
+     function onButtonOut() {}
+ 
+ }
+
 function listaFlotas(){
     
 }
@@ -1130,16 +1162,16 @@ function alerta(texto){
 }
 
 
-//funcion para ajustar el zoom y que no pase del 100%
+//funcion para ajustar el zoom y que no pase del 150%
 function ajusta_zoom(nivel){
     var dif = 0;
     if (nivel > 150){
         dif =Math.floor(nivel - 150);
        viewport.zoomPercent(- (dif/150),true);
     }
-    if (nivel < 20){
-        dif = Math.floor(nivel - 20);
-       viewport.zoomPercent(- (dif/20),true);
+    if (nivel < 5){
+        dif = Math.floor(nivel - 5);
+       viewport.zoomPercent(- (dif/5),true);
     }
 }
 
