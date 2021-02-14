@@ -139,33 +139,46 @@ class AstrometriaController extends Controller
 
     public function generarInfluencias() // http://homestead.test/juego/astrometria/ajax/influencia
     {
+        $miInfluencia = [];
         $influencia = [];
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         foreach ($jugadorActual->planetas as $planeta) {
-            $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
-            $nivelObservacion = $jugadorActual->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
             $radar = new Radares();
             $radar->estrella = $planeta->estrella;
             $radar->circulo = Astrometria::radioInfluencia((((time() - $planeta->creacion)) / (3600 * 24 * 30)));
             Log::alert((time() - $planeta->creacion) / 3600 * 24 * 30);
             $radar->color = 1;
-            array_push($influencia, $radar);
+            array_push($miInfluencia, $radar);
         }
         if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
             foreach ($jugadorActual->alianzas->miembros as $miembro) {
                 foreach ($miembro->planetas as $planeta) {
-                    $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
-                    $nivelObservacion = $miembro->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
                     $radar = new Radares();
                     $radar->estrella = $planeta->estrella;
                     $radar->circulo = Astrometria::radioInfluencia(((time() - $planeta->creacion) / (3600 * 24 * 30)));
                     $radar->color = 2;
-                    array_push($influencia, $radar);
+                    array_push($miInfluencia, $radar);
                 }
             }
         }
+        if (empty($jugadorActual->alianzas)) {
+            $restoJugadores = Jugadores::where('nombre', "!=", $jugadorActual->nombre)->get();
+        } else {
+            $restoJugadores = Jugadores::wher('alianzas_id', "!=", $jugadorActual->alianzas->id)->get();
+        }
+        // dd(Jugadores::all());
+        // dd($restoJugadores);
+        foreach ($restoJugadores as $jugador) {
+            foreach ($jugador->planetas as $planeta) {
+                $radar = new Radares();
+                $radar->estrella = $planeta->estrella;
+                $radar->circulo = Astrometria::radioInfluencia(((time() - $planeta->creacion) / (3600 * 24 * 30)));
+                $radar->color = 2;
+                array_push($influencia, $radar);
+            }
+        }
 
-        return compact('influencia');
+        return compact('miInfluencia', 'influencia');
     }
 
     public function generarFlotas() // http://homestead.test/juego/astrometria/ajax/flotas

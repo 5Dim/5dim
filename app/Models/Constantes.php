@@ -1247,9 +1247,9 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 5000;
-        $constante->minimo = 1000;
-        $constante->maximo = 10000;
+        $constante->valor = 14;
+        $constante->minimo = 10;
+        $constante->maximo = 20;
         $constante->codigo = 'factorexpansionzonainfluencia';
         $constante->descripcion = 'factor para multiplicar el area de zona influencia';
         $constante->tipo = 'universo';
