@@ -137,112 +137,112 @@
             </tr>
             <tr>
                 <td class="anchofijo">
-                    <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
+                    <button id="botontienes{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning">
                         Tienes
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
+                    <button id="botonpersonal{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'personal')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->mineral, 0, ',', '.') }}
+                    <button id="botonmineral{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'mineral')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->cristal, 0, ',', '.') }}
+                    <button id="botoncristal{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'cristal')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->gas, 0, ',', '.') }}
+                    <button id="botongas{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'gas')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->plastico, 0, ',', '.') }}
+                    <button id="botonplastico{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'plastico')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->ceramica, 0, ',', '.') }}
+                    <button id="botonceramica{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'ceramica')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->liquido, 0, ',', '.') }}
+                    <button id="botonliquido{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'liquido')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->micros, 0, ',', '.') }}
+                    <button id="botonmicros{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'micros')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->fuel, 0, ',', '.') }}
+                    <button id="botonfuel{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'fuel')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->ma, 0, ',', '.') }}
+                    <button id="botonma{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'ma')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
-                        {{ number_format($recursos->municion, 0, ',', '.') }}
+                    <button id="botonmunicion{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'municion')">
+                        0
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <button type="button" class="btn btn-dark col-12 btn-sm">
+                    <button id="botoncreditos{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'creditos')">
                         {{ number_format($recursos->creditos, 0, ',', '.') }}
                     </button>
                 </td>
             </tr>
             <tr>
                 <td class="anchofijo">
-                    <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
+                    <button id="botonenvias{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning">
                         Envias
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="personal{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="mineral{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="cristal{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="gas{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="plastico{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="ceramica{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="liquido{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="micros{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="fuel{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="ma{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="municion{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="creditos{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
             </tr>
         </table>
@@ -258,18 +258,26 @@
     });
 
     $('#sistemaDest{{ $numero }}').focusout(function() {
-        Calculoespacitiempo({{ $numero }});
+        Calculoespacitiempo();
     });
 
     $('#planetaDest{{ $numero }}').focusout(function() {
-        Calculoespacitiempo({{ $numero }});
+        Calculoespacitiempo();
     });
 
-    $('#porcentVDest{{ $numero }}').focusout(function() {
+    $('#porcentVDest{{ $numero }}').keyup(function() {
         if ($('#porcentVDest{{ $numero }}').val() * 1 > 100) {
             $('#porcentVDest{{ $numero }}').val("100");
         }
-        Calculoespacitiempo({{ $numero }});
+        if ($('#porcentVDest{{ $numero }}').val() * 1 < 0) {
+            $('#porcentVDest{{ $numero }}').val("1");
+        }
+        Calculoespacitiempo();
+    });
+
+    $('#listaPlanetas{{ $numero }}').change(function() {
+        SelectorDestinos({{ $numero }});
+        Calculoespacitiempo();
     });
 
 </script>
