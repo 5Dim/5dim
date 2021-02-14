@@ -122,6 +122,7 @@ Route::middleware(
     Route::get('/juego/astrometria/ajax/radares', [AstrometriaController::class, 'generarRadares']);
     Route::get('/juego/astrometria/ajax/influencia', [AstrometriaController::class, 'generarInfluencias']);
     Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'generarFlotas']);
+    Route::get('/juego/astrometria/ajax/sistema/{numeroSistema}', [AstrometriaController::class, 'sistema']);
 
     //Flota
     Route::get('/juego/flotas', [FlotaController::class, 'index']);
