@@ -217,7 +217,7 @@ function Calculoespacitiempo() {
         var dest;
         for (dest = 1; dest < destinos.length; dest++) {
 
-            $("#municion" + dest).val(valFlotaT.municion);
+            //$("#municion" + dest).val(valFlotaT.municion);
 
             destAnt = dest - 1;
 
@@ -267,6 +267,7 @@ function Calculoespacitiempo() {
                 }
             }
         }
+        CargarMunicion();
     } else {
         NoSeMueve(dest);
     }
@@ -286,6 +287,7 @@ function SelectorDestinos(dest){  // el selector coloca sistema y planeta
     input=$('#listaPlanetas'+dest).val().split('x');
     $('#sistemaDest'+dest).val(input[0]);
     $('#planetaDest'+dest).val(input[1]);
+    TraerRecursos(input[0],input[1],dest);
 }
 
 RecursosInicio();
@@ -294,16 +296,69 @@ function RecursosInicio(){
     for (dest = 1; dest < destinos.length; dest++) {
         destAnt = dest - 1;
         if (recursosDest[destAnt]!=undefined){
-            recursosArray.forEach(res => {
-                $("#boton"+res + dest).text(formatNumber(1*recursosDest[destAnt][res]));
-            });
+            MostrarRecursos(dest);
         }
+    }
+}
+
+function MostrarRecursos(dest){
+    var destAnt = dest - 1;
+    if (dest>0){
+        recursosArray.forEach(res => {
+            $("#boton"+res + dest).text(formatNumber(Math.round(1*recursosDest[destAnt][res])));
+        });
     }
 }
 
 function CargarRecurso(dest,res){
     destAnt = dest - 1;
-    $("#"+ res + dest).val(formatNumber(1*recursosDest[destAnt][res]));
+    if (dest>0){
+        $("#"+ res + dest).val(formatNumber(Math.round(1*recursosDest[destAnt][res])));
+    }
+
 }
 
+function TraerRecursos(sistema,planeta,dest){
+    $.ajax({
+        method: 'GET',
+        url: "/juego/flotas/traerRecursos/"+sistema+"/"+planeta,
+        success: function (data) {
+            destPost = dest + 1;
+            recursosDest[dest]=data.recursos;
+            MostrarRecursos(destPost);
+        },
+        error: function (xhr, textStatus, thrownError) {
+            console.log("status", xhr.status);
+            console.log("error", thrownError);
+            //alert(textStatus);
+        }
+    });
+}
 
+function Tienes(dest){
+    recursosArray.forEach(res => {
+        CargarRecurso(dest,res);
+    });
+}
+
+function Vaciar(dest){
+    recursosArray.forEach(res => {
+        $("#"+ res + dest).val(0);
+    });
+}
+
+function CargarMunicion(){
+    res='municion';
+    for (dest = 1; dest < destinos.length; dest++) {
+        var destAnt = dest - 1;
+        if (recursosDest[destAnt]!=undefined){
+            recur=$("#"+ res + dest).val();
+            muniTotal=valFlotaT[res]+1* recur.replace('.','');
+            if (muniTotal>recursosDest[destAnt][res]){
+                muniTotal=recursosDest[destAnt][res];
+            }
+            $("#"+ res + dest).val(formatNumber(muniTotal));
+        }
+
+    }
+}

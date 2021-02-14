@@ -19,6 +19,7 @@ use App\Models\Investigaciones;
 use App\Models\Alianzas;
 use App\Models\Jugadores;
 use App\Models\ViewDaniosDisenios;
+use Illuminate\Database\Eloquent\Builder;
 use Auth;
 
 class FlotaController extends Controller
@@ -106,4 +107,20 @@ class FlotaController extends Controller
             'ViewDaniosDisenios',
         ));
     }
+
+    public function traerRecursos($estrella,$orbita){
+
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+        $recursos = Planetas::where([ ['estrella', $estrella],['orbita', $orbita],['jugadores_id', $jugadorActual->id] ])->first()->recursos;
+        return compact('recursos');
+    }
+
+    public function enviarFlota(){
+
+
+
+    }
+
+
 }

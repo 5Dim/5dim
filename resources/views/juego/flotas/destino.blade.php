@@ -137,7 +137,7 @@
             </tr>
             <tr>
                 <td class="anchofijo">
-                    <button id="botontienes{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning">
+                    <button id="botontienes{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="Tienes({{$numero}})">
                         Tienes
                     </button>
                 </td>
@@ -198,13 +198,13 @@
                 </td>
                 <td class="anchofijo text-light">
                     <button id="botoncreditos{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm" onclick="CargarRecurso({{$numero}},'creditos')">
-                        {{ number_format($recursos->creditos, 0, ',', '.') }}
+                        0
                     </button>
                 </td>
             </tr>
             <tr>
                 <td class="anchofijo">
-                    <button id="botonenvias{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning">
+                    <button id="botonenvias{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="Vaciar({{$numero}})">
                         Envias
                     </button>
                 </td>
