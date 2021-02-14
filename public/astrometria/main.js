@@ -29,6 +29,7 @@ var lineaprueba;
 
 //llamadas ajax para cargar los ficheros json
 
+//const jsonUniverso ="/astrometria/data/universo";
 const jsonUniverso ="/juego/astrometria/ajax/universo";
 
 //const jsonFlotas ="/astrometria/data/flotas.json";
@@ -66,6 +67,9 @@ function carga_universo(){
             botonRuta();
             botonMarcar();
             botonH();
+            
+            botonR();
+           // resize();
             botones.position.set (window.innerWidth/2 - botones.width/2,0);
 
             // lanzar timer para actualizar las flotas
@@ -86,7 +90,10 @@ function carga_flotas(){
 		xmlhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		        flotas = JSON.parse(this.responseText);
-		    }
+            botonA(flotas.flotas.length);
+		    }else{
+          botonA(0);
+        }
 		};
 		xmlhttp.open("GET", jsonFlotas, true);
 		xmlhttp.send();	
@@ -97,12 +104,12 @@ function carga_radares(){
   xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           radares = JSON.parse(this.responseText);
+      crearadares();
 
-          crearadares();
-          botonA(flotas.flotas.length);
-          botonR();
-          resize();
+      
+        
       }
+
   };
   xmlhttp.open("GET",jsonRadares, true);
   xmlhttp.send();		

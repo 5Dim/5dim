@@ -138,17 +138,30 @@ function Influencia(n, x, y, t, c) {
     var cuadroA = new PIXI.Container();
     var cuadroB = new PIXI.Container();
     var cuadroC = new PIXI.Container();
-    var cuadroD = new PIXI.Container();    
-    var textura = PIXI.Texture.from('/astrometria/img/influencia.png');
-    
-   // cuadroA.rotation=(45*3.1416)/180;
-    valorAlpha=100/t;
-    
-    for (var j = 0; j < t+1; j++){    
-        for (var i = 0; i < t+1; i++){          
-            const cuadro = new PIXI.Sprite(textura);   
+    var cuadroD = new PIXI.Container();
+
+    if (c==1) {
+        var textura = PIXI.Texture.from('/astrometria/img/influencia.png');
+    }else{
+        var textura = PIXI.Texture.from('/astrometria/img/influencia2.png');
+        
+    }
+
+    d=0;
+    influencia=0;
+    alpha=1;
+    max=t*70;
+
+    for (var j = 0; j < t+1; j++){                                       
+        for (var i = 0; i < t+1; i++){                            
+            const cuadro = new PIXI.Sprite(textura);  
+
             cuadro.position.set((70*j), (70*i));
-            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
+            d=(Math.sqrt( ((i*70)*(i*70))+((j*70)*(j*70)) ));  
+            influencia=max-(max*(d/max));
+            alpha=((influencia*100)/max)/100;              
+           // log ("x:" + i+ " y:" + j+" d1:"+d+ " a:"+alpha+" i:"+influencia);
+            cuadro.alpha= alpha;
             cuadroA.addChild(cuadro);
         }  
     }
@@ -156,11 +169,16 @@ function Influencia(n, x, y, t, c) {
     cuadroA.y = y+35;
     capa_influencias.addChild(cuadroA);
 
-    for (var j = 0; j < t+1; j++){    
-        for (var i = 0; i < t+1; i++){          
+    for (var j = 0; j < t+1; j++){                                       
+        for (var i = 0; i < t+1; i++){                            
             const cuadro = new PIXI.Sprite(textura);   
+
             cuadro.position.set((70*j), (70*i));
-            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
+            d=(Math.sqrt( ((i*70)*(i*70))+((j*70)*(j*70)) ));  
+            influencia=max-(max*(d/max));
+            alpha=((influencia*100)/max)/100;              
+           // log ("x:" + i+ " y:" + j+" d1:"+d+ " a:"+alpha+" i:"+influencia);
+            cuadro.alpha= alpha;
             cuadroB.addChild(cuadro);
         }  
     }
@@ -169,11 +187,16 @@ function Influencia(n, x, y, t, c) {
     cuadroB.rotation=(90*3.1416)/180;
     capa_influencias.addChild(cuadroB);
 
-    for (var j = 0; j < t+1; j++){    
-        for (var i = 0; i < t+1; i++){          
+    for (var j = 0; j < t+1; j++){                                       
+        for (var i = 0; i < t+1; i++){                            
             const cuadro = new PIXI.Sprite(textura);   
+
             cuadro.position.set((70*j), (70*i));
-            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
+            d=(Math.sqrt( ((i*70)*(i*70))+((j*70)*(j*70)) ));  
+            influencia=max-(max*(d/max));
+            alpha=((influencia*100)/max)/100;              
+           // log ("x:" + i+ " y:" + j+" d1:"+d+ " a:"+alpha+" i:"+influencia);
+            cuadro.alpha= alpha;
             cuadroC.addChild(cuadro);
         }  
     }
@@ -182,11 +205,16 @@ function Influencia(n, x, y, t, c) {
     cuadroC.rotation=(180*3.1416)/180;
     capa_influencias.addChild(cuadroC);
 
-    for (var j = 0; j < t+1; j++){    
-        for (var i = 0; i < t+1; i++){          
+    for (var j = 0; j < t+1; j++){                                       
+        for (var i = 0; i < t+1; i++){                            
             const cuadro = new PIXI.Sprite(textura);   
+ 
             cuadro.position.set((70*j), (70*i));
-            cuadro.alpha= (100-(valorAlpha*i)-(valorAlpha*j))/100;      
+            d=(Math.sqrt( ((i*70)*(i*70))+((j*70)*(j*70)) ));  
+            influencia=max-(max*(d/max));
+            alpha=((influencia*100)/max)/100;              
+           // log ("x:" + i+ " y:" + j+" d1:"+d+ " a:"+alpha+" i:"+influencia);
+            cuadro.alpha= alpha;
             cuadroD.addChild(cuadro);
         }  
     }
@@ -194,12 +222,7 @@ function Influencia(n, x, y, t, c) {
     cuadroD.y = y+35;
     cuadroD.rotation=(270*3.1416)/180;
     capa_influencias.addChild(cuadroD);
-//
-//capa_influencias.addChild(cuadroB);
 
-    
-
-   // cuadroA.rotation=(90*3.1416)/180;
  }
 
 function angleDegrees(ox, oy,dx,dy) {
@@ -475,19 +498,24 @@ function botonA(texto){
     txt.anchor.set(0.5);
     txt.position.set (botA.x, botA.y - 14);
 	
+    if(texto!=0){
+        txt_num_flotas = botones.addChild(new PIXI.Text(flotas.flotas.length,{fontFamily : 'Roboto',fontSize: 18,fill : "orange"}));
+        txt_num_flotas.anchor.set(0.5);
+        txt_num_flotas.position.set (botA.x, botA.y+5 );
+    }
 
-    txt_num_flotas = botones.addChild(new PIXI.Text(flotas.flotas.length,{fontFamily : 'Roboto',fontSize: 18,fill : "orange"}));
-    txt_num_flotas.anchor.set(0.5);
-    txt_num_flotas.position.set (botA.x, botA.y+5 );
+    
+    
 
     var txt = botones.addChild(new PIXI.Text("ZOOM",{fontFamily : 'Roboto',fontSize: 10,fill : "white"}));
     txt.anchor.set(0.5);
-    txt.position.set (botZ.x, botZ.y - 14);    
+    txt.position.set (botZ.x, botZ.y - 14);   
 
-    txt_zoom = botones.addChild(new PIXI.Text(viewport.zlevel,{fontFamily : 'Roboto',fontSize: 16,fill : "orange"}));
-    txt_zoom.anchor.set(0.5);
-    txt_zoom.position.set (botZ.x, botZ.y+5 );
-    
+
+        txt_zoom = botones.addChild(new PIXI.Text("",{fontFamily : 'Roboto',fontSize: 16,fill : "orange"}));
+        txt_zoom.anchor.set(0.5);
+        txt_zoom.position.set (botZ.x, botZ.y+5 );
+  
 }
 function actualizaTextos(){
    
@@ -1130,7 +1158,7 @@ function alerta(texto){
 }
 
 
-//funcion para ajustar el zoom y que no pase del 100%
+//funcion para ajustar el zoom y que no pase del 150%
 function ajusta_zoom(nivel){
     var dif = 0;
     if (nivel > 150){
