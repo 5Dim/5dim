@@ -168,12 +168,9 @@ class AstrometriaController extends Controller
         return compact('influencia');
     }
 
-
     public function generarFlotas() // http://homestead.test/juego/astrometria/ajax/flotas
     {
-
         $flotas = [];
-
         for ($n = 0; $n < 30; $n++) {
             $flota = new Flotas();
             $flota->numeroflota = random_int(1, 100000);
@@ -202,5 +199,10 @@ class AstrometriaController extends Controller
         }
 
         return compact('flotas');
+    }
+
+    public function sistema($numeroSistema)
+    {
+        // $sistema =
     }
 }
