@@ -166,8 +166,6 @@ class AstrometriaController extends Controller
         } else {
             $restoJugadores = Jugadores::wher('alianzas_id', "!=", $jugadorActual->alianzas->id)->get();
         }
-        // dd(Jugadores::all());
-        // dd($restoJugadores);
         foreach ($restoJugadores as $jugador) {
             foreach ($jugador->planetas as $planeta) {
                 $radar = new Radares();
