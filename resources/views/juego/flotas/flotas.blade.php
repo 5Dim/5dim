@@ -296,7 +296,7 @@
                 </div>
             </div>
             <div class="col-12 cajita-info rounded">
-                <button type="button" class="btn btn-success col-12">
+                <button id="botonEnviar" type="button" class="btn btn-success col-12">
                     Enviar flota
                 </button>
             </div>

@@ -1,4 +1,4 @@
-<div class="col-12 cajita-success rounded">
+<div id="cajitaDestino{{ $numero }}" class="col-12 cajita-success rounded">
     <div id="cuadro1" class="table-responsive">
         <table class="table table-borderless borderless table-sm text-center anchofijo"
             style="margin-top: 5px !important">
@@ -67,9 +67,10 @@
                         <option value="" selected>-- Selecciona una orden --</option>
                         <option value="transportar">Transportar</option>
                         <option value="transferir">Transferir</option>
-                        <option value="bloquear">Bloquear</option>
-                        <option value="atacar">Atacar</option>
+                        <option value="orbitar">Orbitar</option>
                         <option value="recolectar">Recolectar</option>
+                        <option value="colonizar">Colonizar</option>
+                        <option class="text-danger"value="atacar">Atacar</option>
                     </select>
                 </td>
                 <td class="text-light">
@@ -329,6 +330,9 @@
     });
 
 
+    $('#ordenDest{{ $numero }}').change(function() {
+        Avisos();
+    });
 
 
 

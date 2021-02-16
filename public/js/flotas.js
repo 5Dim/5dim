@@ -159,6 +159,7 @@ var errores = "";
 function Avisos() {
     var errorHangares = false;
     errores = "";
+    var sePuedeEnviar=true;
 
     tamaniosArray.forEach((tamanio) => {
         if (
@@ -177,6 +178,7 @@ function Avisos() {
 
     if (errorHangares) {
         errores += " Capacidad de hangar insuficiente";
+        sePuedeEnviar=false;
         $("#capacidadH").addClass("text-danger").removeClass("text-warning");
 
         //pintando caja ahangar por nave
@@ -215,14 +217,94 @@ function Avisos() {
         } else {
             $("#botonenvias" + dest).text("Enviar");
         }
+        destAnt = dest - 1;
+        recursosArray.forEach(res => {
+            if (cargaDest[dest]!=undefined && recursosDest[destAnt]!=undefined && cargaDest[dest][res]>recursosDest[destAnt][res]){
+                $("#boton"+res+dest).removeClass("btn-dark").addClass("btn-danger");
+            } else {
+                $("#boton"+res+dest).addClass("btn-dark").removeClass("btn-danger");
+            }
+        });
+
     }
 
     if (excesocarga){
         $("#totalcarga").addClass("bg-danger");
+        sePuedeEnviar=false;
+        errores += " Capacidad de carga insuficiente";
     } else {
         $("#totalcarga").removeClass("bg-danger");
     }
 
+
+    var cantidadRealDestinos=0;
+        //las misiones son viables
+        for (dest = 1; dest < destinos.length; dest++) {
+
+            var destAnt = dest - 1;
+            var destPost= dest + 1;
+
+            var orden=$("#ordenDest"+dest).val();
+            var hayErrorMision=false;
+
+            if (orden!=""){
+                cantidadRealDestinos++;
+
+                var ordenAnt=$("#ordenDest"+destAnt).val();
+                var ordenPost=$("#ordenDest"+destPost).val();
+                // no se puede llegar
+                if (ordenAnt=="" || ordenAnt=="transferir" || ordenAnt=="recolectar"  || ordenAnt=="orbitar"){
+                    errores += " No se alcanzará destino "+dest;
+                    hayErrorMision=true;
+                }
+
+                // soy la ultima y debe ser de cierre
+                if (ordenPost!=undefined){
+                    if (ordenPost.length<1 && orden!="transferir" && orden!="recolectar"  && orden!="orbitar"){
+                        errores += " la misión del último destino no es transferir, orbitar o recolectar";
+                        hayErrorMision=true;
+                    }
+                }
+                if (destinos.length==destPost){
+                    if (orden!="transferir" && orden!="recolectar"  && orden!="orbitar"){
+                        errores += " la misión del último destino no es transferir, orbitar o recolectar";
+                        hayErrorMision=true;
+                    }
+                }
+
+                if (orden=="atacar" && !hayErrorMision){
+                    $("#cajitaDestino"+dest).removeClass("cajita-success").addClass("cajita-light");
+                } else {
+                    $("#cajitaDestino"+dest).addClass("cajita-success").removeClass("cajita-light");
+                }
+
+            } else {
+
+            }
+
+            if (hayErrorMision){
+                sePuedeEnviar=false;
+                $("#cajitaDestino"+dest).removeClass("cajita-success").addClass("cajita-danger");
+            }
+            else {
+                $("#cajitaDestino"+dest).addClass("cajita-success").removeClass("cajita-danger");
+            }
+        }
+
+        //falta fuel
+
+        //falta velcidad
+
+
+
+        /// se puede enviar o no
+    if (!sePuedeEnviar){
+        $("#botonEnviar").addClass("bg-danger").removeClass("btn-success");
+        $('#botonEnviar').prop('disabled', true);
+    } else {
+        $("#botonEnviar").removeClass("bg-danger").addClass("btn-success");
+        $('#botonEnviar').prop('disabled', false);
+    }
 
 }
 
@@ -268,7 +350,6 @@ function Calculoespacitiempo() {
             //$("#municion" + dest).val(valFlotaT.municion);
 
             destAnt = dest - 1;
-
             if (dest > 1) {
                 destinos[destAnt].sistema = $("#sistemaDest" + destAnt).val();
                 destinos[destAnt].planeta = $("#planetaDest" + destAnt).val();
