@@ -295,6 +295,11 @@
                     </table>
                 </div>
             </div>
+            <div class="col-12 cajita-info rounded">
+                <button type="button" class="btn btn-success col-12">
+                    Enviar flota
+                </button>
+            </div>
             @include('juego.flotas.destino', [ 'destino' => 'destino1', 'numero' => '1'])
             @include('juego.flotas.destino', [ 'destino' => 'destino2', 'numero' => '2'])
             @include('juego.flotas.destino', [ 'destino' => 'destino3', 'numero' => '3'])
