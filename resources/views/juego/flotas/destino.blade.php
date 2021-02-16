@@ -137,7 +137,7 @@
             </tr>
             <tr>
                 <td class="anchofijo">
-                    <button id="botontienes{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="Tienes({{$numero}})">
+                    <button id="botontienes{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="TodoDeOrigen({{$numero}})">
                         Tienes
                     </button>
                 </td>
@@ -205,7 +205,7 @@
             <tr>
                 <td class="anchofijo">
                     <button id="botonenvias{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="Vaciar({{$numero}})">
-                        Envias
+                        Enviar
                     </button>
                 </td>
                 <td class="anchofijo text-light">

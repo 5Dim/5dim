@@ -48,6 +48,7 @@ function RecursosInicio(){
                 cargaDest[dest] = [];
                 cargaDest[dest][res]=0
             });
+            cargaDest[dest].total=0;
         }
 
     }
@@ -196,6 +197,33 @@ function Avisos() {
             $("#selectahangar" + nave.id).removeClass("bg-danger");
         });
     }
+
+    ///exceso de carga
+
+    var excesocarga=false;
+    var dest;
+    for (dest = 1; dest < destinos.length; dest++) {
+        if (cargaDest[dest]!=undefined && cargaDest[dest].total>valFlotaT.carga){
+            excesocarga=true;
+            $("#botonenvias"+dest).addClass("bg-danger");
+        } else {
+            $("#botonenvias"+dest).removeClass("bg-danger");
+        }
+
+        if (cargaDest[dest]!=undefined && cargaDest[dest].total>0){
+            $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
+        } else {
+            $("#botonenvias" + dest).text("Enviar");
+        }
+    }
+
+    if (excesocarga){
+        $("#totalcarga").addClass("bg-danger");
+    } else {
+        $("#totalcarga").removeClass("bg-danger");
+    }
+
+
 }
 
 function NaveAflota(id, canti = 0) {
@@ -287,13 +315,14 @@ function Calculoespacitiempo() {
                 }
             }
         }
-        CargarMunicion();
+
         for (dest = 1; dest < destinos.length; dest++) {
             CargaActual(dest);
         }
     } else {
         NoSeMueve(dest);
     }
+    CargarMunicion();
 }
 
 function NoSeMueve(dest) { //si la flota se no mueve coloca -
@@ -326,8 +355,21 @@ function MostrarRecursos(dest){
 function CargarRecurso(dest,res){
     destAnt = dest - 1;
     if (dest>0){
-        $("#"+ res + dest).val(formatNumber(Math.round(1*recursosDest[destAnt][res])));
+        var acargar=0;
+        var hueco=0;
+        var recur=$("#boton"+ res + dest).text();
+        recur=1* recur.replace(/\./g,'');
+
+        CargaActual(dest);
+        hueco=Math.max(0,valFlotaT.carga - cargaDest[dest].total);
+        if (recur<hueco){
+            acargar=recur;
+        } else {
+            acargar=hueco+cargaDest[dest][res];
+        }
+        $("#"+ res + dest).val(formatNumber(acargar));
     }
+    CargaActual(dest);
 }
 
 
@@ -339,16 +381,23 @@ function TraerRecursos(sistema,planeta,dest){
             destPost = dest + 1;
             recursosDest[dest]=data.recursos;
             MostrarRecursos(destPost);
+            $("#botontienes"+ destPost).text(sistema+"x"+planeta);
         },
         error: function (xhr, textStatus, thrownError) {
             console.log("status", xhr.status);
             console.log("error", thrownError);
+            $("#botontienes"+ destPost).text("Tienes");
+            recursosArray.forEach(res => {
+                recursosDest[dest][res]=0;
+            });
+            recursosDest[dest].total=0;
+            MostrarRecursos(destPost);
             //alert(textStatus);
         }
     });
 }
 
-function Tienes(dest){
+function TodoDeOrigen(dest){
     recursosArray.forEach(res => {
         CargarRecurso(dest,res);
     });
@@ -357,7 +406,10 @@ function Tienes(dest){
 function Vaciar(dest){
     recursosArray.forEach(res => {
         $("#"+ res + dest).val(0);
+        cargaDest[dest][res]=0;
+        cargaDest[dest].total=0;
     });
+    Avisos();
 }
 
 function CargarMunicion(){
@@ -365,8 +417,8 @@ function CargarMunicion(){
     for (dest = 1; dest < destinos.length; dest++) {
         var destAnt = dest - 1;
         if (recursosDest[destAnt]!=undefined){
-            recur=$("#"+ res + dest).val();
-            muniTotal=valFlotaT[res]+1* recur.replace(/\./g,'');
+            //var recur=$("#"+ res + dest).val();
+            var muniTotal=valFlotaT[res];//+1* recur.replace(/\./g,'');
             if (muniTotal>recursosDest[destAnt][res]){
                 muniTotal=recursosDest[destAnt][res];
             }
@@ -377,13 +429,25 @@ function CargarMunicion(){
 
 
 function CargaActual(dest){
+    cargatotal=0;
     recursosArray.forEach(res => {
-        cargaDest[dest][res]=$("#"+ res + dest).val();
+        var recur=$("#"+ res + dest).val();
+        if (recur!="NaN"){
+            recur=1* recur.replace(/\./g,'');
+        } else {
+            recur=0;
+            $("#"+ res + dest).val(0);
+        }
+
+        cargatotal+=recur;
+        cargaDest[dest][res]=recur;
     });
+    cargaDest[dest].total=cargatotal;
+    Avisos();
 }
 
 function ModificandoRecurso(dest,res){
-    result= $('#'+res+dest).val().replace(/\./g,'');
+    var result= $('#'+res+dest).val().replace(/\./g,'');
     if ( $.isNumeric(result)){
         $('#'+res+dest).val(1*result);
         CargaActual(dest);
@@ -391,3 +455,4 @@ function ModificandoRecurso(dest,res){
         $('#'+res+dest).val(0);
     }
 }
+
