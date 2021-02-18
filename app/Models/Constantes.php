@@ -12,7 +12,7 @@ class Constantes extends Model
 
     public $timestamps = false;
 
-    public function  generarDatosConstantes($universo = 0)
+    public static function generarDatosConstantes($universo = 0)
     {
 
         $producciones = [];

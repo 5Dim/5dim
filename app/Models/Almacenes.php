@@ -11,7 +11,7 @@ class Almacenes extends Model
 
     public $timestamps = false;
 
-    public function  generarDatosAlmacenes()
+    public static function  generarDatosAlmacenes()
     {
         /*
         33 almacen mineral  $cantalmainir1 = 10000;  $potalmar1= 7;

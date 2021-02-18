@@ -14,7 +14,7 @@ class Tiendas extends Model
         return $this->hasMany(TiendasHistorial::class);
     }
 
-    public function generarDatosTiendas ()
+    public static function generarDatosTiendas ()
     {
         $tiendas=[];
 

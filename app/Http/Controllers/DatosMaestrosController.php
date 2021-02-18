@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Constantes;
 use App\Models\Almacenes;
 use App\Models\Producciones;
-use App\Models\CostesConstrucciones;
 use App\Models\Dependencias;
 use App\Models\Fuselajes;
 use App\Models\Armas;
 use App\Models\CostesArmas;
 use App\Models\Tiendas;
-use App\Models\Disenios;
 use App\Models\CostesDisenios;
-use App\Models\MejorasDisenios;
+use App\Models\Planetas;
 
 class DatosMaestrosController extends Controller
 {
@@ -29,14 +26,15 @@ class DatosMaestrosController extends Controller
 
     public function DatosMaestros()
     {
-        $constante = new Constantes();
-        $constantes = $constante->generarDatosConstantes();
-
-        $almacen = new Almacenes();
-        $almacenes = $almacen->generarDatosAlmacenes();
-
-        $produccion = new Producciones();
-        $producciones = $produccion->generarDatosProducciones(); //esta en seed
+        Constantes::generarDatosConstantes();
+        Almacenes::generarDatosAlmacenes();
+        Producciones::generarDatosProducciones();
+        Dependencias::generarDatosDependencias();
+        Fuselajes::generarDatosFuselajes();
+        Armas::generarDatosArmas();
+        CostesArmas::generarDatosCostesArmas();
+        Tiendas::generarDatosTiendas();
+        CostesDisenios::generarDatosCostesDisenios();
 
         // $construccion = new CostesBasicosConstruccion();
         // $construcciones = $construccion->generarDatosCostesBasicosConstruccion();
@@ -44,28 +42,15 @@ class DatosMaestrosController extends Controller
         // $investigacion = new CostesBasicosInvestigacion();
         // $investigaciones = $investigacion->generarDatosCostesBasicosInvestigacion();
 
-        $dependencia = new Dependencias();
-        $dependencias = $dependencia->generarDatosDependencias();
-
-        $fuselaje = new Fuselajes();
-        $fuselajes = $fuselaje->generarDatosFuselajes();
-
-        $arma = new Armas();
-        $armas = $arma->generarDatosArmas();
-
-        $costesArmas = new CostesArmas();
-        $costesArmas = $costesArmas->generarDatosCostesArmas();
-
-        $tiendas = new Tiendas();
-        $tiendas = $tiendas->generarDatosTiendas();
-
         // $disenios=new Disenios();
         // $disenios=$disenios->generarDatosDisenios();
 
-        $costesDisenios=new CostesDisenios();
-        $costesDisenios=$costesDisenios->generarDatosCostesDisenios();
-
         // $mejorasDisenios = new MejorasDisenios();
         // $mejorasDisenios = $mejorasDisenios->generarDatosMejorasDisenios();
+
+        $planetas = Planetas::all();
+        foreach ($planetas as $planeta) {
+            Planetas::coordenadasBySistema($planeta);
+        }
     }
 }

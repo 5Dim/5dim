@@ -13,7 +13,7 @@ class Producciones extends Model
 
     public $timestamps = false;
 
-    public function  generarDatosProducciones()
+    public static function generarDatosProducciones()
     {
         //$Avelprodminas=1.6;  // produccion de recursos en minas
 

@@ -16,7 +16,7 @@ class CostesDisenios extends Model
         return $this->belongsTo(Disenios::class);
     }
 
-    public function  generarDatosCostesDisenios(){
+    public static function generarDatosCostesDisenios(){
 
 
         // $costesDisenios=[];

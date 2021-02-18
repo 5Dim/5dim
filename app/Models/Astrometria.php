@@ -9,6 +9,90 @@ class Astrometria extends Model
 {
     use HasFactory;
 
+    // Generar radares para el usuario
+    public static function radares()
+    {
+        $radares = [];
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        $constanteRadar = Constantes::where('codigo', 'factorexpansionradar')->first()->valor;
+        if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
+            foreach ($jugadorActual->alianzas->miembros as $miembro) {
+                foreach ($miembro->planetas as $planeta) {
+                    $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
+                    $nivelObservacion = $miembro->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
+                    $radar = new Radares();
+                    $radar->estrella = $planeta->estrella;
+                    $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
+                    $radar->color = 2;
+                    array_push($radares, $radar);
+                }
+            }
+        } else {
+            foreach ($jugadorActual->planetas as $planeta) {
+                $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
+                $nivelObservacion = $jugadorActual->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
+                $radar = new Radares();
+                $radar->estrella = $planeta->estrella;
+                $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
+                $radar->color = 1;
+                array_push($radares, $radar);
+            }
+        }
+
+        return $radares;
+    }
+
+    // Generar influencia propia
+    public static function miInfluencia()
+    {
+        $miInfluencia = [];
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
+            foreach ($jugadorActual->alianzas->miembros as $miembro) {
+                foreach ($miembro->planetas as $planeta) {
+                    $radar = new Radares();
+                    $radar->estrella = $planeta->estrella;
+                    $radar->circulo = Astrometria::radioInfluencia(((time() - $planeta->creacion) / (3600 * 24 * 30)));
+                    $radar->color = 2;
+                    array_push($miInfluencia, $radar);
+                }
+            }
+        } else {
+            foreach ($jugadorActual->planetas as $planeta) {
+                $radar = new Radares();
+                $radar->estrella = $planeta->estrella;
+                $radar->circulo = Astrometria::radioInfluencia((((time() - $planeta->creacion)) / (3600 * 24 * 30)));
+                $radar->color = 1;
+                array_push($miInfluencia, $radar);
+            }
+        }
+
+        return $miInfluencia;
+    }
+
+    // Generar influencia general
+    public static function influenciaGeneral()
+    {
+        $influencia = [];
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        if (empty($jugadorActual->alianzas)) {
+            $restoJugadores = Jugadores::where('nombre', "!=", $jugadorActual->nombre)->get();
+        } else {
+            $restoJugadores = Jugadores::wher('alianzas_id', "!=", $jugadorActual->alianzas->id)->get();
+        }
+        foreach ($restoJugadores as $jugador) {
+            foreach ($jugador->planetas as $planeta) {
+                $radar = new Radares();
+                $radar->estrella = $planeta->estrella;
+                $radar->circulo = Astrometria::radioInfluencia(((time() - $planeta->creacion) / (3600 * 24 * 30)));
+                $radar->color = 2;
+                array_push($influencia, $radar);
+            }
+        }
+
+        return $influencia;
+    }
+
     // multiplicar por las constantes factorexpansionradar y factorexpansionzonainfluencia $value para obtener valores adecuados a cada uso
     public static function radioRadar($value)
     {
@@ -22,29 +106,14 @@ class Astrometria extends Model
         return round($constanteInfluencia * $value * (pow(1 / $value, 0.5)), 2);
     }
 
-    // dado un planeta de sistema se obtienen las coordenadas x e y
-    public function coordenadasBySistema($planeta) {
-        $nsistema=$planeta->estrella;
-        $anchouniverso=Constantes::where('codigo', 'anchouniverso')->first()->valor;
-        $luzdemallauniverso=Constantes::where('codigo', 'luzdemallauniverso')->first()->valor;
-
-        $cy = floor($nsistema / $anchouniverso) * 10;
-        $cx =($nsistema - floor($nsistema / $anchouniverso) * $anchouniverso) * $luzdemallauniverso;
-        $planeta->coordx=$cx;
-        $planeta->coordy=$cy;
-        $planeta->save();
-    }
-
     // dado un sistema te determina si esta en observacion
     // array radares   astrometiacontroller
     // break al primero q lo vea
-    public function sistemaEnRadares($sistema, $radares){
+    public static function sistemaEnRadares($sistema)
+    {
+        $radares = Astrometria::radares();
 
-    $seve=false;
-
-    return $seve;
-
+        $seve = true;
+        return $seve;
     }
-
-
 }

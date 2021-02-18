@@ -185,7 +185,7 @@ class Fuselajes extends Model
         return $listaNombres;
     }
 
-    public function  generarDatosFuselajes()
+    public static function generarDatosFuselajes()
     {
 
         $costesFuselaje = new CostesFuselajes();

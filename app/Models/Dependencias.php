@@ -11,7 +11,7 @@ class Dependencias extends Model
 
     public $timestamps = false;
 
-    public function  generarDatosDependencias()
+    public static function generarDatosDependencias()
     {
         $dependencias = [];
 

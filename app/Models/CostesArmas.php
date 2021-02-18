@@ -11,7 +11,7 @@ class CostesArmas extends Model
 
     public $timestamps = false;
 
-    public function  generarDatosCostesArmas(){
+    public static function generarDatosCostesArmas(){
 
         $costes=[];
 

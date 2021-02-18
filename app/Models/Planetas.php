@@ -49,6 +49,7 @@ class Planetas extends Model
         return $this->hasMany(EnDisenios::class);
     }
 
+    // Nuevo planeta de inicio.
     public static function nuevoPlaneta($idJugador)
     {
         $planetaElegido = Planetas::inRandomOrder()->first();
@@ -60,5 +61,19 @@ class Planetas extends Model
         CualidadesPlanetas::agregarCualidades($planetaElegido->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);
 
         return $planetaElegido->id;
+    }
+
+    // dado un planeta de sistema se obtienen las coordenadas x e y
+    public static function coordenadasBySistema($planeta)
+    {
+        $nsistema = $planeta->estrella;
+        $anchouniverso = Constantes::where('codigo', 'anchouniverso')->first()->valor;
+        $luzdemallauniverso = Constantes::where('codigo', 'luzdemallauniverso')->first()->valor;
+
+        $cy = floor($nsistema / $anchouniverso) * 10;
+        $cx = ($nsistema - floor($nsistema / $anchouniverso) * $anchouniverso) * $luzdemallauniverso;
+        $planeta->coordx = $cx;
+        $planeta->coordy = $cy;
+        $planeta->save();
     }
 }

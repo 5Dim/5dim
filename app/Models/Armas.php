@@ -11,7 +11,7 @@ class Armas extends Model
 
     //public $timestamps = false;
 
-    public function  generarDatosArmas()
+    public static function generarDatosArmas()
     {
 
         $armas = [];
