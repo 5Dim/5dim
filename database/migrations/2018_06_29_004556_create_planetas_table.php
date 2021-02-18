@@ -21,6 +21,8 @@ class CreatePlanetasTable extends Migration
             $table->unsignedTinyInteger('imagen');
             $table->string('tipo');
             $table->unsignedInteger('creacion')->nullable();
+            $table->unsignedMediumInteger('coordx')->nullable();
+            $table->unsignedMediumInteger('coordy')->nullable();
             $table->timestamps();
         });
     }
