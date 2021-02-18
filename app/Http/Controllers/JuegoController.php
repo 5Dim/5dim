@@ -2,28 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Recursos;
 use App\Models\Almacenes;
 use App\Models\Planetas;
-use App\Models\Industrias;
-use App\Models\Constantes;
-use App\Models\Dependencias;
 use App\Models\Producciones;
 use App\Models\Construcciones;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
-use App\Models\CostesConstrucciones;
 use App\Models\Investigaciones;
 use App\Models\Alianzas;
 use App\Models\Jugadores;
 use App\Models\Tiendas;
-use App\Models\Disenios;
 
 class JuegoController extends Controller
 {

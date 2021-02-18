@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
 use App\Models\Planetas;
-use App\Models\Industrias;
 use App\Models\Constantes;
-use App\Models\Dependencias;
 use App\Models\Producciones;
 use App\Models\Construcciones;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
-use App\Models\CostesConstrucciones;
 use App\Models\Investigaciones;
-use App\Models\Alianzas;
 use App\Models\Jugadores;
-use Auth;
 
 class PlanetaController extends Controller
 {
@@ -119,21 +113,27 @@ class PlanetaController extends Controller
 
     public function cederColonia($idJugador)
     {
-        $planeta = Planetas::find(session()->get('planetas_id'));
-        $planeta->jugadores_id = $idJugador;
-        $planeta->save();
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        if (count($jugadorActual->planetas) > 1) {
+            $planeta = Planetas::find(session()->get('planetas_id'));
+            $planeta->jugadores_id = $idJugador;
+            $planeta->save();
+        }
 
         return redirect('/juego/planeta');
     }
 
     public function destruirColonia()
     {
-        $planeta = Planetas::find(session()->get('planetas_id'));
-        $planeta->jugadores_id = null;
-        foreach ($planeta->construcciones as $edificio) {
-            $edificio->delete();
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        if (count($jugadorActual->planetas) > 1) {
+            $planeta = Planetas::find(session()->get('planetas_id'));
+            $planeta->jugadores_id = null;
+            foreach ($planeta->construcciones as $edificio) {
+                $edificio->delete();
+            }
+            $planeta->save();
         }
-        $planeta->save();
 
         return redirect('/juego/planeta');
     }

@@ -2,27 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
 use App\Models\Planetas;
-use App\Models\Industrias;
-use App\Models\Constantes;
-use App\Models\Dependencias;
 use App\Models\Producciones;
 use App\Models\Construcciones;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
-use App\Models\CostesConstrucciones;
 use App\Models\Investigaciones;
-use App\Models\Alianzas;
 use App\Models\Astrometria;
 use App\Models\Jugadores;
-use Auth;
-use App\Models\Radares;
 use App\Models\Flotas;
-use Illuminate\Support\Facades\Log;
 
 class AstrometriaController extends Controller
 {
@@ -108,74 +99,15 @@ class AstrometriaController extends Controller
 
     public function generarRadares() // http://homestead.test/juego/astrometria/ajax/radares
     {
-        $radares = [];
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $constanteRadar = Constantes::where('codigo', 'factorexpansionradar')->first()->valor;
-        foreach ($jugadorActual->planetas as $planeta) {
-            $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
-            $nivelObservacion = $jugadorActual->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
-            $radar = new Radares();
-            $radar->estrella = $planeta->estrella;
-            $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
-            $radar->color = 1;
-            array_push($radares, $radar);
-        }
-        if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
-            foreach ($jugadorActual->alianzas->miembros as $miembro) {
-                foreach ($miembro->planetas as $planeta) {
-                    $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
-                    $nivelObservacion = $miembro->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
-                    $radar = new Radares();
-                    $radar->estrella = $planeta->estrella;
-                    $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
-                    $radar->color = 2;
-                    array_push($radares, $radar);
-                }
-            }
-        }
+        $radares = Astrometria::radares();
 
         return compact('radares');
     }
 
     public function generarInfluencias() // http://homestead.test/juego/astrometria/ajax/influencia
     {
-        $miInfluencia = [];
-        $influencia = [];
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        foreach ($jugadorActual->planetas as $planeta) {
-            $radar = new Radares();
-            $radar->estrella = $planeta->estrella;
-            $radar->circulo = Astrometria::radioInfluencia((((time() - $planeta->creacion)) / (3600 * 24 * 30)));
-            Log::alert((time() - $planeta->creacion) / 3600 * 24 * 30);
-            $radar->color = 1;
-            array_push($miInfluencia, $radar);
-        }
-        if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
-            foreach ($jugadorActual->alianzas->miembros as $miembro) {
-                foreach ($miembro->planetas as $planeta) {
-                    $radar = new Radares();
-                    $radar->estrella = $planeta->estrella;
-                    $radar->circulo = Astrometria::radioInfluencia(((time() - $planeta->creacion) / (3600 * 24 * 30)));
-                    $radar->color = 2;
-                    array_push($miInfluencia, $radar);
-                }
-            }
-        }
-        if (empty($jugadorActual->alianzas)) {
-            $restoJugadores = Jugadores::where('nombre', "!=", $jugadorActual->nombre)->get();
-        } else {
-            $restoJugadores = Jugadores::wher('alianzas_id', "!=", $jugadorActual->alianzas->id)->get();
-        }
-        foreach ($restoJugadores as $jugador) {
-            foreach ($jugador->planetas as $planeta) {
-                $radar = new Radares();
-                $radar->estrella = $planeta->estrella;
-                $radar->circulo = Astrometria::radioInfluencia(((time() - $planeta->creacion) / (3600 * 24 * 30)));
-                $radar->color = 2;
-                array_push($influencia, $radar);
-            }
-        }
-
+        $miInfluencia = Astrometria::miInfluencia();
+        $influencia = Astrometria::influenciaGeneral();
         return compact('miInfluencia', 'influencia');
     }
 
@@ -215,8 +147,63 @@ class AstrometriaController extends Controller
 
 
 
-    public function sistema($numeroSistema)
+    public function sistema($numeroSistema) // http://homestead.test/juego/astrometria/ajax/sistema/123
     {
-        // $sistema =
+        $seVe = Astrometria::sistemaEnRadares($numeroSistema);
+        $sistema = new \stdClass();
+        $sistema->idioma = 0;
+        $sistema->sistema = (int)$numeroSistema;
+        $sistema->imgsol = '/astrometria/img/sistema/sol1.png';
+        $sistema->imgfondo = '/astrometria/img/sistema/f1.png';
+        $planetas = [];
+        if ($seVe) { // Si se ve mandamos los datos reales
+            for ($i = 1; $i < 10; $i++) {
+                $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
+                $orbita = new \stdClass();
+                $orbita->planeta = $i;
+                $orbita->nom_pla = !empty($planetaActual->nombre) ? $planetaActual->nombre : "";
+                $orbita->nom_jug = !empty($planetaActual->jugadores->nombre) ? $planetaActual->jugadores->nombre : "";
+                $orbita->alianza = !empty($planetaActual->jugadores->alianzas->nombre) ? $planetaActual->jugadores->alianzas->nombre : "";
+                $orbita->img_planeta = !empty($planetaActual->imagen) ? $planetaActual->imagen : "";
+
+                $orbita->mineral = !empty($planetaActual->cualidades->mineral) ? $planetaActual->cualidades->mineral : "";
+                $orbita->cristal = !empty($planetaActual->cualidades->cristal) ? $planetaActual->cualidades->cristal : "";
+                $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : "";
+                $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : "";
+                $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : "";
+                $orbita->b_observar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : ""; // Posibilidad de incluirlo dentro del mapa
+                $orbita->b_atacar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : "";
+                $orbita->b_colonizar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar" : "";
+                $orbita->b_recolectar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/recolectar" : "";
+                $orbita->b_extraer = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/extraer" : "";
+                $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
+                array_push($planetas, $orbita);
+            }
+        } else { // Si no se ve mandamos los datos ocultos
+            for ($i = 1; $i < 10; $i++) {
+                $orbita = new \stdClass();
+                $orbita->planeta = $i;
+                $orbita->nom_pla = "";
+                $orbita->nom_jug = "";
+                $orbita->alianza = "";
+                $orbita->img_planeta = "";
+
+                $orbita->mineral = "";
+                $orbita->cristal = "";
+                $orbita->gas = "";
+                $orbita->plastico = "";
+                $orbita->ceramica = "";
+                $orbita->b_observar = "";
+                $orbita->b_atacar = "";
+                $orbita->b_colonizar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar";
+                $orbita->b_recolectar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/recolectar";
+                $orbita->b_extraer = "/juego/flotas/" . $numeroSistema . "/" . $i . "/extraer";
+                $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
+                array_push($planetas, $orbita);
+            }
+        }
+        $sistema->planetas = $planetas;
+
+        return compact('sistema');
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
@@ -16,10 +15,7 @@ use App\Models\Investigaciones;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\CostesConstrucciones;
-use App\Models\Alianzas;
 use App\Models\Jugadores;
-use Auth;
-use Illuminate\Support\Facades\Log;
 
 class ConstruccionController extends Controller
 {

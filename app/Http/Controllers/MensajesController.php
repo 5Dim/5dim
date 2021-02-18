@@ -6,18 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Recursos;
 use App\Models\Almacenes;
 use App\Models\Planetas;
-use App\Models\Industrias;
-use App\Models\Constantes;
-use App\Models\Dependencias;
 use App\Models\Producciones;
 use App\Models\Construcciones;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
-use App\Models\CostesConstrucciones;
 use App\Models\Investigaciones;
-use App\Models\Alianzas;
 use App\Models\Jugadores;
-use Auth;
 use App\Models\Mensajes;
 use App\Models\MensajesIntervinientes;
 
