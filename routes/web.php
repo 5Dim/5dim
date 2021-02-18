@@ -32,15 +32,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', [PrincipalController::class, 'index'])->name('root')->withoutMiddleware([JugadorLogueado::class]);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home')->withoutMiddleware([JugadorLogueado::class]);
-
-// Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Rutas para administrador
 Route::get('/admin/DatosMaestros', [DatosMaestrosController::class, 'index']);
