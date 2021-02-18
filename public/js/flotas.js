@@ -12,6 +12,13 @@ tablaHangares.capacidadH = capacidadH;
 
 CargarValoresPlaneta();
 RecursosInicio();
+CrearOrigen(0);
+
+function CrearOrigen(dest){
+    $("#titulo0").text("Origen "+destinos[dest]['sistema']+"x"+destinos[dest]['planeta']);
+    $(".ocultarenorigen"+dest).text("")
+
+}
 
 // carga de valores
 function CargarValoresPlaneta() {
@@ -37,9 +44,9 @@ function CargarValoresPlaneta() {
 
 function RecursosInicio(){
     var dest;
-    for (dest = 1; dest < destinos.length; dest++) {
+    for (dest = 0; dest < destinos.length; dest++) {
         destAnt = dest - 1;
-        if (recursosDest[destAnt]!=undefined){
+        if (recursosDest[dest]!=undefined){
             MostrarRecursos(dest);
         }
 
@@ -245,9 +252,11 @@ function Avisos() {
             var destPost= dest + 1;
 
             var orden=$("#ordenDest"+dest).val();
+
             var hayErrorMision=false;
 
             if (orden!=""){
+                var img=origenImagenes+"/flotas/"+orden+".jpg";
                 cantidadRealDestinos++;
 
                 var ordenAnt=$("#ordenDest"+destAnt).val();
@@ -279,8 +288,10 @@ function Avisos() {
                 }
 
             } else {
-
+                var img=origenImagenes+"/flotas/nada.jpg";
             }
+
+            $("#imagen"+dest).attr('src',img);
 
             if (hayErrorMision){
                 sePuedeEnviar=false;
@@ -425,31 +436,26 @@ function SelectorDestinos(dest){  // el selector coloca sistema y planeta
 
 
 function MostrarRecursos(dest){
-    var destAnt = dest - 1;
-    if (dest>0){
-        recursosArray.forEach(res => {
-            $("#boton"+res + dest).text(formatNumber(Math.round(1*recursosDest[destAnt][res])));
-        });
-    }
+    recursosArray.forEach(res => {
+        $("#boton"+res + dest).text(formatNumber(Math.round(1*recursosDest[dest][res])));
+    });
 }
 
 function CargarRecurso(dest,res){
-    destAnt = dest - 1;
-    if (dest>0){
-        var acargar=0;
-        var hueco=0;
-        var recur=$("#boton"+ res + dest).text();
-        recur=1* recur.replace(/\./g,'');
+    var acargar=0;
+    var hueco=0;
+    var recur=$("#boton"+ res + dest).text();
+    recur=1* recur.replace(/\./g,'');
 
-        CargaActual(dest);
-        hueco=Math.max(0,valFlotaT.carga - cargaDest[dest].total);
-        if (recur<hueco){
-            acargar=recur;
-        } else {
-            acargar=hueco+cargaDest[dest][res];
-        }
-        $("#"+ res + dest).val(formatNumber(acargar));
+    CargaActual(dest);
+    hueco=Math.max(0,valFlotaT.carga - cargaDest[dest].total);
+    if (recur<hueco){
+        acargar=recur;
+    } else {
+        acargar=hueco+cargaDest[dest][res];
     }
+    $("#"+ res + dest).val(formatNumber(acargar));
+
     CargaActual(dest);
 }
 
@@ -459,20 +465,19 @@ function TraerRecursos(sistema,planeta,dest){
         method: 'GET',
         url: "/juego/flotas/traerRecursos/"+sistema+"/"+planeta,
         success: function (data) {
-            destPost = dest + 1;
             recursosDest[dest]=data.recursos;
-            MostrarRecursos(destPost);
-            $("#botontienes"+ destPost).text(sistema+"x"+planeta);
+            MostrarRecursos(dest);
+            //$("#botontienes"+ dest).text(sistema+"x"+planeta);
         },
         error: function (xhr, textStatus, thrownError) {
             console.log("status", xhr.status);
             console.log("error", thrownError);
-            $("#botontienes"+ destPost).text("Tienes");
+            //$("#botontienes"+ dest).text("Tienes");
             recursosArray.forEach(res => {
                 recursosDest[dest][res]=0;
             });
             recursosDest[dest].total=0;
-            MostrarRecursos(destPost);
+            MostrarRecursos(dest);
             //alert(textStatus);
         }
     });

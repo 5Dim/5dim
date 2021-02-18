@@ -300,6 +300,7 @@
                     Enviar flota
                 </button>
             </div>
+            @include('juego.flotas.destino', [ 'destino' => 'destino0', 'numero' => '0'])
             @include('juego.flotas.destino', [ 'destino' => 'destino1', 'numero' => '1'])
             @include('juego.flotas.destino', [ 'destino' => 'destino2', 'numero' => '2'])
             @include('juego.flotas.destino', [ 'destino' => 'destino3', 'numero' => '3'])
@@ -313,6 +314,7 @@
         let investigaciones = @json($investigaciones);
         let constantesU = @json($constantesU);
         let ViewDaniosDisenios = @json($ViewDaniosDisenios);
+        let origenImagenes="{{ asset('img/juego/skin0/')}}";
 
 
         recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
@@ -333,6 +335,9 @@
         destinos[3] = [];
         destinos[3]['sistema'] = '-1';
         destinos[3]['planeta'] = '-1';
+
+
+
 
 
     </script>

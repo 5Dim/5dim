@@ -34,4 +34,17 @@ class Astrometria extends Model
         $planeta->coordy=$cy;
         $planeta->save();
     }
+
+    // dado un sistema te determina si esta en observacion
+    // array radares   astrometiacontroller
+    // break al primero q lo vea
+    public function sistemaEnRadares($sistema, $radares){
+
+    $seve=false;
+
+    return $seve;
+
+    }
+
+
 }

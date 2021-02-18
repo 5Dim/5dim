@@ -4,17 +4,17 @@
             style="margin-top: 5px !important">
             <tr>
                 <th colspan="9" class="text-success">
-                    <big>
+                    <big id="titulo{{ $numero }}">
                         Destino {{ $numero }}
                     </big>
                 </th>
             </tr>
-            <tr>
+            <tr class="ocultarenorigen{{ $numero }}">
                 <th rowspan="2" class="align-middle">
-                    <img class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="120"
+                    <img id="imagen{{ $numero }}" class="rounded" src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="120"
                         height="120">
                 </th>
-                <th class="text-warning align-middle">
+                <th  class="text-warning align-middle ">
                     Planetas
                 </th>
                 <th class="text-warning align-middle">
@@ -23,36 +23,38 @@
                 <th class="text-warning align-middle">
                     Planeta
                 </th>
-                <th class="text-warning align-middle">
+                <th  class="text-warning align-middle ">
                     Orden
                 </th>
-                <th class="text-warning align-middle">
+                <th class="text-warning align-middle ">
                     Porcentaje de velocidad
                 </th>
-                <th id="tipovelocidad{{ $numero }}" class="text-warning align-middle">
+                <th id="tipovelocidad{{ $numero }}" class="text-warning align-middle  ">
                     Hypervelocidad
                 </th>
-                <th class="text-warning align-middle">
+                <th class="text-warning align-middle  ">
                     Consumo de fuel
                 </th>
-                <th class="text-warning align-middle">
+                <th class="text-warning align-middle  ">
                     Tiempo de viaje
                 </th>
             </tr>
-            <tr>
+            <tr class="ocultarenorigen{{ $numero }}">
                 <td class="text-light">
-                    <select name="listaPlanetas{{ $numero }}" id="listaPlanetas{{ $numero }}"
-                        class="form-control">
-                        <option value="none">Selecciona un planeta</option>
-                        <optgroup label="Propios">
-                            @foreach (Auth::user()->jugador->planetas as $planeta)
-                                <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
-                                    {{ $planeta->estrella }}x{{ $planeta->orbita }}
-                                    {{ $planeta->nombre }}
-                                </option>
-                            @endforeach
-                        </optgroup>
-                    </select>
+                    <div id="selectorPlaneta{{ $numero }}">
+                        <select  id="listaPlanetas{{ $numero }}"
+                            class="form-control">
+                            <option value="none">Selecciona un planeta</option>
+                            <optgroup label="Propios">
+                                @foreach (Auth::user()->jugador->planetas as $planeta)
+                                    <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
+                                        {{ $planeta->estrella }}x{{ $planeta->orbita }}
+                                        {{ $planeta->nombre }}
+                                    </option>
+                                @endforeach
+                            </optgroup>
+                        </select>
+                    </div>
                 </td>
                 <td class="text-light">
                     <input id="sistemaDest{{ $numero }}" type="text" class="form-control input"
@@ -63,18 +65,20 @@
                         placeholder="Numero de orbita">
                 </td>
                 <td class="text-light">
-                    <select name="orden" id="ordenDest{{ $numero }}" class="select form-control">
-                        <option value="" selected>-- Selecciona una orden --</option>
-                        <option value="transportar">Transportar</option>
-                        <option value="transferir">Transferir</option>
-                        <option value="orbitar">Orbitar</option>
-                        <option value="recolectar">Recolectar</option>
-                        <option value="colonizar">Colonizar</option>
-                        <option class="text-danger"value="atacar">Atacar</option>
-                    </select>
+                    <div id="selectorordenDest{{ $numero }}">
+                        <select name="orden" id="ordenDest{{ $numero }}" class="select form-control">
+                            <option value="" selected>-- Selecciona una orden --</option>
+                            <option value="transportar">Transportar</option>
+                            <option value="transferir">Transferir</option>
+                            <option value="orbitar">Orbitar</option>
+                            <option value="recolectar">Recolectar</option>
+                            <option value="colonizar">Colonizar</option>
+                            <option class="text-danger"value="atacar">Atacar</option>
+                        </select>
+                    </div>
                 </td>
                 <td class="text-light">
-                    <div class="input-group mb-3 borderless"
+                    <div id="selectorporcentVDest{{ $numero }}" class="input-group mb-3 borderless"
                         style="padding-left: 10px !important; padding-right: 5px !important">
                         <input id="porcentVDest{{ $numero }}" type="text" class="form-control input" value="100"
                             aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -83,13 +87,13 @@
                         </div>
                     </div>
                 </td>
-                <td id="velocidadDest{{ $numero }}" class="text-light">
+                <td id="velocidadDest{{ $numero }}" class="text-light ocultarenorigen{{ $numero }}">
                     -
                 </td>
-                <td id="fuelDest{{ $numero }}" class="text-light">
+                <td id="fuelDest{{ $numero }}" class="text-light ocultarenorigen{{ $numero }}">
                     -
                 </td>
-                <td id="tiempoDest{{ $numero }}" class="text-light">
+                <td id="tiempoDest{{ $numero }}" class="text-light ocultarenorigen{{ $numero }}">
                     --
                 </td>
             </tr>
@@ -331,6 +335,8 @@
 
 
     $('#ordenDest{{ $numero }}').change(function() {
+        var orden=$("#ordenDest{{ $numero }}").val();
+
         Avisos();
     });
 
