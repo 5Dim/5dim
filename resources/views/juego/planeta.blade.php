@@ -54,10 +54,16 @@
                                     style="padding-left: 5px !important; padding-right: 5px !important">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light" style="padding: 0px">
-                                            <button type="button" class="btn btn-dark text-light"
-                                                onclick="sendCederColonia()">
-                                                Ceder colonia
-                                            </button>
+                                            @if(count(Auth::user()->jugador->planetas) > 1)
+                                                <button type="button" class="btn btn-dark text-light"
+                                                    onclick="sendCederColonia()">
+                                                    Ceder colonia
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-dark text-light" disabled>
+                                                    Ceder colonia
+                                                </button>
+                                            @endif
                                         </span>
                                     </div>
                                     <select name="listaJugadores" id="listaJugadores" class="form-control"></select>
@@ -79,10 +85,15 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-danger col-12" data-bs-toggle="modal"
-                                    data-bs-target="#datosModal" onclick="window.location.href = '/juego/destruirColonia'">
+                                @if(count(Auth::user()->jugador->planetas) > 1)
+                                <button type="button" class="btn btn-outline-danger col-12" onclick="window.location.href = '/juego/destruirColonia'">
                                     <i class="fa fa-times-circle"></i> Destruir colonia
                                 </button>
+                                @else
+                                    <button type="button" class="btn btn-outline-light col-12" disabled>
+                                        <i class="fa fa-times-circle"></i> No puedes destruir tu último planeta
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                     </table>
