@@ -337,6 +337,13 @@
         destinos[3]['planeta'] = '-1';
 
 
+        prioridades = [];
+        //prioridades por defecto
+        var n=0;
+        recursosArray.forEach(res => {
+            n++;
+            prioridades[res]=n;
+        });
 
 
 

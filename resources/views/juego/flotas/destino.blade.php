@@ -250,6 +250,50 @@
                     <input id="creditos{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
                 </td>
             </tr>
+
+            <tr>
+                <td class="anchofijo">
+                    <button id="botonprioridades{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="VaciarPrioridades({{$numero}})">
+                        Prioridades
+                    </button>
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadpersonal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadmineral{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadcristal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadgas{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadplastico{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadceramica{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadliquido{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadmicros{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadfuel{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadma{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadmunicion{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+                <td class="anchofijo text-light">
+                    <input id="prioridadcreditos{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                </td>
+            </tr>
         </table>
     </div>
 </div>
@@ -336,7 +380,6 @@
 
     $('#ordenDest{{ $numero }}').change(function() {
         var orden=$("#ordenDest{{ $numero }}").val();
-
         Avisos();
     });
 
