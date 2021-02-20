@@ -208,7 +208,7 @@
                         <tr>
                             <th colspan="6" class="text-success">
                                 <big>
-                                    Estado de los hangares <i class="fa fa-arrow-alt-circle-down"></i>
+                                    Estado de los hangares
                                 </big>
                             </th>
                         </tr>

@@ -8,8 +8,10 @@ tablaHangares.fueraH = fueraH;
 tablaHangares.dentroH = dentroH;
 tablaHangares.capacidadH = capacidadH;
 
-CargarValoresPlaneta();
+fuelDestT=0; //fuel total a todos los destinos
+
 RecursosInicio();
+CargarValoresPlaneta();
 CrearOrigen(0);
 
 for (dest = 1; dest < destinos.length; dest++) {
@@ -45,14 +47,14 @@ function CargarValoresPlaneta() {
 function RecursosInicio() {
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
-        destAnt = dest - 1;
+
         if (recursosDest[dest] != undefined) {
             MostrarRecursos(dest);
         }
 
         if (cargaDest[dest] == undefined) {
+            cargaDest[dest] = [];
             recursosArray.forEach(res => {
-                cargaDest[dest] = [];
                 cargaDest[dest][res] = 0;
             });
             cargaDest[dest].total = 0;
@@ -218,6 +220,7 @@ function Avisos() {
                 cargaDest[dest] != undefined &&
                 recursosDest[dest] != undefined &&
                 cargaDest[dest][res] > Math.round(recursosDest[dest][res])
+
             ) {
                 $("#boton" + res + dest)
                     .removeClass("btn-dark")
@@ -240,6 +243,19 @@ function Avisos() {
     }
 
     var cantidadRealDestinos = 0;
+
+
+    //falta fuel
+
+    var faltaFuel=false;
+
+    if (recursosDest[0]!=undefined){
+        if (recursosDest[0]['fuel']-cargaDest[0]['fuel']<fuelDestT){
+            faltaFuel=true;
+        }
+    }
+
+
     //las misiones son viables
     for (dest = 1; dest < destinos.length; dest++) {
         var destAnt = dest - 1;
@@ -300,9 +316,23 @@ function Avisos() {
                 .addClass("cajita-success")
                 .removeClass("cajita-danger");
         }
+
+
+        if (faltaFuel){
+            $("#fuelDest" + dest)
+            .addClass("text-danger")
+            .removeClass("text-light");
+        } else {
+        $("#fuelDest" + dest)
+            .removeClass("text-danger")
+            .addClass("text-light");
+        }
+
     }
 
-    //falta fuel
+
+
+
 
     //falta velcidad
 
@@ -352,17 +382,14 @@ function NaveAhangar(id, canti = 0) {
     RecalculoTotal();
 }
 
+
 function Calculoespacitiempo() {
     if (valFlotaT.fuel > 0) {
         var dest;
+        fuelDestT=0;
         for (dest = 1; dest < destinos.length; dest++) {
             //$("#municion" + dest).val(valFlotaT.municion);
-
             destAnt = dest - 1;
-            if (dest > 1) {
-                destinos[destAnt].sistema = $("#sistemaDest" + destAnt).val();
-                destinos[destAnt].planeta = $("#planetaDest" + destAnt).val();
-            }
 
             destinos[dest].sistema = $("#sistemaDest" + dest).val();
             destinos[dest].planeta = $("#planetaDest" + dest).val();
@@ -394,6 +421,7 @@ function Calculoespacitiempo() {
                     }
                 }
             }
+            fuelDestT+=fuelDest;
         }
 
         for (dest = 1; dest < destinos.length; dest++) {
