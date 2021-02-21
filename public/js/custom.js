@@ -3,18 +3,14 @@ var recursos, produccion, almacenes, invProduccion;
 var timers = [];
 
 // Popover
-var popoverTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="popover"]')
-);
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
     return new bootstrap.Popover(popoverTriggerEl);
 });
 
 // Tooltip
-var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-);
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
 });
 
@@ -23,14 +19,12 @@ $.fn.select2.defaults.set("theme", "bootstrap4");
 
 function sendConstruir(id, codigo, modal) {
     var personal = $("#personal" + codigo).val();
-    window.location.href =
-        "/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
+    window.location.href = "/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
 }
 
 function sendReciclar(id, codigo) {
     var personal = $("#personal" + codigo).val();
-    window.location.href =
-        "/juego/construccion/reciclar/" + id + "/" + personal;
+    window.location.href = "/juego/construccion/reciclar/" + id + "/" + personal;
 }
 
 function sendCancelar(id) {
@@ -43,8 +37,7 @@ function sendIndustria(industria) {
 
 function sendInvestigar(id, codigo, tab) {
     var personal = $("#personal" + codigo).val();
-    window.location.href =
-        "/juego/investigacion/construir/" + id + "/" + personal + "/" + tab;
+    window.location.href = "/juego/investigacion/construir/" + id + "/" + personal + "/" + tab;
 }
 
 function sendCancelarInvestigacion(id) {
@@ -131,9 +124,7 @@ function calcularRecursos() {
     var counter = 0;
     if (recursos.gas >= almacenes[counter].capacidad) {
         $("#gas").addClass("text-danger");
-        $("#gas").text(
-            Math.trunc(almacenes[counter].capacidad).toLocaleString("es")
-        );
+        $("#gas").text(Math.trunc(almacenes[counter].capacidad).toLocaleString("es"));
     } else if (recursos.gas <= 0) {
         $("#gas").addClass("text-info");
         $("#gas").text(0);
@@ -143,9 +134,7 @@ function calcularRecursos() {
     counter++;
     if (recursos.plastico >= almacenes[counter].capacidad) {
         $("#plastico").addClass("text-danger");
-        $("#plastico").text(
-            Math.trunc(almacenes[counter].capacidad).toLocaleString("es")
-        );
+        $("#plastico").text(Math.trunc(almacenes[counter].capacidad).toLocaleString("es"));
     } else if (recursos.plastico <= 0) {
         $("#plastico").addClass("text-info");
         $("#plastico").text(0);
@@ -155,9 +144,7 @@ function calcularRecursos() {
     counter++;
     if (recursos.ceramica >= almacenes[counter].capacidad) {
         $("#ceramica").addClass("text-danger");
-        $("#ceramica").text(
-            Math.trunc(almacenes[counter].capacidad).toLocaleString("es")
-        );
+        $("#ceramica").text(Math.trunc(almacenes[counter].capacidad).toLocaleString("es"));
     } else if (recursos.ceramica <= 0) {
         $("#ceramica").addClass("text-info");
         $("#ceramica").text(0);
@@ -167,9 +154,7 @@ function calcularRecursos() {
     counter++;
     if (recursos.liquido >= almacenes[counter].capacidad) {
         $("#liquido").addClass("text-danger");
-        $("#liquido").text(
-            Math.trunc(almacenes[counter].capacidad).toLocaleString("es")
-        );
+        $("#liquido").text(Math.trunc(almacenes[counter].capacidad).toLocaleString("es"));
     } else if (recursos.liquido <= 0) {
         $("#liquido").addClass("text-info");
         $("#liquido").text(0);
@@ -179,9 +164,7 @@ function calcularRecursos() {
     counter++;
     if (recursos.micros >= almacenes[counter].capacidad) {
         $("#micros").addClass("text-danger");
-        $("#micros").text(
-            Math.trunc(almacenes[counter].capacidad).toLocaleString("es")
-        );
+        $("#micros").text(Math.trunc(almacenes[counter].capacidad).toLocaleString("es"));
     } else if (recursos.micros <= 0) {
         $("#micros").addClass("text-info");
         $("#micros").text(0);
@@ -191,9 +174,7 @@ function calcularRecursos() {
     counter++;
     if (recursos.fuel >= almacenes[counter].capacidad) {
         $("#fuel").addClass("text-danger");
-        $("#fuel").text(
-            Math.trunc(almacenes[counter].capacidad).toLocaleString("es")
-        );
+        $("#fuel").text(Math.trunc(almacenes[counter].capacidad).toLocaleString("es"));
     } else if (recursos.fuel <= 0) {
         $("#fuel").addClass("text-info");
         $("#fuel").text(0);
@@ -203,9 +184,7 @@ function calcularRecursos() {
     counter++;
     if (recursos.ma >= almacenes[counter].capacidad) {
         $("#ma").addClass("text-danger");
-        $("#ma").text(
-            Math.trunc(almacenes[counter].capacidad).toLocaleString("es")
-        );
+        $("#ma").text(Math.trunc(almacenes[counter].capacidad).toLocaleString("es"));
     } else if (recursos.ma <= 0) {
         $("#ma").addClass("text-info");
         $("#ma").text(0);
@@ -215,9 +194,7 @@ function calcularRecursos() {
     counter++;
     if (recursos.municion >= almacenes[counter].capacidad) {
         $("#municion").addClass("text-danger");
-        $("#municion").text(
-            Math.trunc(almacenes[counter].capacidad).toLocaleString("es")
-        );
+        $("#municion").text(Math.trunc(almacenes[counter].capacidad).toLocaleString("es"));
     } else if (recursos.municion <= 0) {
         $("#municion").addClass("text-info");
         $("#municion").text(0);
@@ -255,7 +232,7 @@ function calculaTiempo(costes, velocidadConst, codigo) {
     personal = $("#personal" + codigo).val();
     horaImprimible = "";
     if (personal > 1) {
-        result = (precioTotal * velocidadConst) / personal;
+        result = precioTotal * velocidadConst / personal;
         // result = result - premiun * 5 * 60;
         if (result < 1) {
             result = 0;
@@ -284,13 +261,7 @@ function mostrarTab(tab) {
     }
 }
 
-function calculaTiempoInvestigacion(
-    costes,
-    velocidadInvest,
-    dnd,
-    nivel,
-    nivelLaboratorio
-) {
+function calculaTiempoInvestigacion(costes, velocidadInvest, dnd, nivel, nivelLaboratorio) {
     var precioTotal = calculaCosteTotal(costes);
     premiun = 0;
     personal = $("#personal" + dnd).val();
@@ -298,10 +269,7 @@ function calculaTiempoInvestigacion(
     nivel++;
     velocidadInvest *= 100;
     if (personal > 0 && nivelLaboratorio > 0) {
-        result =
-            velocidadInvest *
-            nivel *
-            (precioTotal / (personal * nivelLaboratorio));
+        result = velocidadInvest * nivel * (precioTotal / (personal * nivelLaboratorio));
         // result = result - premiun * 5 * 60;
         if (result < 1) {
             result = 0;
@@ -383,16 +351,14 @@ function formatHMS(secs) {
     var minutes = Math.floor(sec_num / 60) % 60;
     var seconds = sec_num % 60;
 
-    return [hours, minutes, seconds]
-        .map((v) => (v < 10 ? "0" + v : v))
-        .join(":");
+    return [hours, minutes, seconds].map(v => (v < 10 ? "0" + v : v)).join(":");
 }
 
 function mostrarDatosConstruccion(codigo) {
     $.ajax({
         method: "GET",
         url: "/juego/construccion/datos/" + codigo,
-        success: function (data) {
+        success: function(data) {
             $("#datosContenido").html(data.descripcionConstruccion);
             $("#ModalTitulo").html(data.nombreConstruccion);
         },
@@ -403,7 +369,7 @@ function mostrarDatosInvestigacion(codigo) {
     $.ajax({
         method: "GET",
         url: "/juego/investigacion/datos/" + codigo,
-        success: function (data) {
+        success: function(data) {
             $("#datosContenido").html(data.descripcionInvestigacion);
             $("#ModalTitulo").html(data.nombreInvestigacion);
         },
@@ -414,7 +380,7 @@ function mostrarDatosFuselaje(codigo) {
     $.ajax({
         method: "GET",
         url: "/juego/fuselajes/datos/" + codigo,
-        success: function (data) {
+        success: function(data) {
             $("#datosContenido").html(data.descripcionInvestigacion);
             $("#ModalTitulo").html(data.nombreInvestigacion);
         },
@@ -431,12 +397,7 @@ function changeSkin(id) {
         sumask = 1;
     }
     imagen.dataset.skin = sumask;
-    img =
-        "background: url('/img/fotos naves/skin" +
-        sumask +
-        "/nave" +
-        id +
-        ".jpg') no-repeat center !important;";
+    img = "background: url('/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;";
     // $('#imagen' + id).attr("src", img);
     $("#tablaArmas").prop("style", img);
 }
@@ -456,86 +417,34 @@ function formatNumber(num, prefix) {
 
 function recalculaCostos(id, coste) {
     var cantidad = Math.round($("#disenio" + id).val());
-    disenio = $.grep(disenios, function (obj) {
+    disenio = $.grep(disenios, function(obj) {
         return obj.id == id;
     })[0];
     factor = 1; // factor por cantidad producida
 
     // Recursos
-    $("#mineral" + id).text(
-        formatNumber(Math.round(factor * cantidad * coste.mineral))
-    );
-    $("#cristal" + id).text(
-        formatNumber(Math.round(factor * cantidad * coste.cristal))
-    );
-    $("#gas" + id).text(
-        formatNumber(Math.round(factor * cantidad * coste.gas))
-    );
-    $("#plastico" + id).text(
-        formatNumber(Math.round(factor * cantidad * coste.plastico))
-    );
-    $("#ceramica" + id).text(
-        formatNumber(Math.round(factor * cantidad * coste.ceramica))
-    );
-    $("#liquido" + id).text(
-        formatNumber(Math.round(factor * cantidad * coste.liquido))
-    );
-    $("#micros" + id).text(
-        formatNumber(Math.round(factor * cantidad * coste.micros))
-    );
-    $("#personal" + id).text(
-        formatNumber(Math.round(factor * cantidad * coste.personal))
-    );
+    $("#mineral" + id).text(formatNumber(Math.round(factor * cantidad * coste.mineral)));
+    $("#cristal" + id).text(formatNumber(Math.round(factor * cantidad * coste.cristal)));
+    $("#gas" + id).text(formatNumber(Math.round(factor * cantidad * coste.gas)));
+    $("#plastico" + id).text(formatNumber(Math.round(factor * cantidad * coste.plastico)));
+    $("#ceramica" + id).text(formatNumber(Math.round(factor * cantidad * coste.ceramica)));
+    $("#liquido" + id).text(formatNumber(Math.round(factor * cantidad * coste.liquido)));
+    $("#micros" + id).text(formatNumber(Math.round(factor * cantidad * coste.micros)));
+    $("#personal" + id).text(formatNumber(Math.round(factor * cantidad * coste.personal)));
 
     // Restantres
-    $("#restantemineral" + id).text(
-        formatNumber(
-            Math.round(recursos.mineral - factor * cantidad * coste.mineral)
-        )
-    );
-    $("#restantecristal" + id).text(
-        formatNumber(
-            Math.round(recursos.cristal - factor * cantidad * coste.cristal)
-        )
-    );
-    $("#restantegas" + id).text(
-        formatNumber(Math.round(recursos.gas - factor * cantidad * coste.gas))
-    );
-    $("#restanteplastico" + id).text(
-        formatNumber(
-            Math.round(recursos.plastico - factor * cantidad * coste.plastico)
-        )
-    );
-    $("#restanteceramica" + id).text(
-        formatNumber(
-            Math.round(recursos.ceramica - factor * cantidad * coste.ceramica)
-        )
-    );
-    $("#restanteliquido" + id).text(
-        formatNumber(
-            Math.round(recursos.liquido - factor * cantidad * coste.liquido)
-        )
-    );
-    $("#restantemicros" + id).text(
-        formatNumber(
-            Math.round(recursos.micros - factor * cantidad * coste.micros)
-        )
-    );
-    $("#restantepersonal" + id).text(
-        formatNumber(
-            Math.round(recursos.personal - factor * cantidad * coste.personal)
-        )
-    );
-    tiempoBase = $.grep(mejoras, function (valorBase) {
+    $("#restantemineral" + id).text(formatNumber(Math.round(recursos.mineral - factor * cantidad * coste.mineral)));
+    $("#restantecristal" + id).text(formatNumber(Math.round(recursos.cristal - factor * cantidad * coste.cristal)));
+    $("#restantegas" + id).text(formatNumber(Math.round(recursos.gas - factor * cantidad * coste.gas)));
+    $("#restanteplastico" + id).text(formatNumber(Math.round(recursos.plastico - factor * cantidad * coste.plastico)));
+    $("#restanteceramica" + id).text(formatNumber(Math.round(recursos.ceramica - factor * cantidad * coste.ceramica)));
+    $("#restanteliquido" + id).text(formatNumber(Math.round(recursos.liquido - factor * cantidad * coste.liquido)));
+    $("#restantemicros" + id).text(formatNumber(Math.round(recursos.micros - factor * cantidad * coste.micros)));
+    $("#restantepersonal" + id).text(formatNumber(Math.round(recursos.personal - factor * cantidad * coste.personal)));
+    tiempoBase = $.grep(mejoras, function(valorBase) {
         return valorBase.id == id;
     })[0]["tiempo"];
-    timeDura(
-        Math.round(
-            (tiempoBase * factor * cantidad) /
-                (1 + (constanteVelocidad * nivelHangar) / 100)
-        ),
-        "tiempo" + id
-    );
+    timeDura(Math.round(tiempoBase * factor * cantidad / (1 + constanteVelocidad * nivelHangar / 100)), "tiempo" + id);
 }
 
 function cuentaAtras(id, tiempos) {
@@ -548,20 +457,12 @@ function cuentaAtras(id, tiempos) {
 
         timers[i].start();
 
-        $("#" + id[i]).html(
-            timers[i]
-                .getTimeValues()
-                .toString(["days", "hours", "minutes", "seconds"])
-        );
-        timers[i].addEventListener("secondsUpdated", function () {
-            $("#" + id[i]).html(
-                timers[i]
-                    .getTimeValues()
-                    .toString(["days", "hours", "minutes", "seconds"])
-            );
+        $("#" + id[i]).html(timers[i].getTimeValues().toString(["days", "hours", "minutes", "seconds"]));
+        timers[i].addEventListener("secondsUpdated", function() {
+            $("#" + id[i]).html(timers[i].getTimeValues().toString(["days", "hours", "minutes", "seconds"]));
         });
 
-        timers[i].addEventListener("targetAchieved", function () {
+        timers[i].addEventListener("targetAchieved", function() {
             location.reload();
         });
     }
@@ -576,7 +477,7 @@ function calculaMaximo(costes, id) {
         recursos.ceramica / costes.ceramica,
         recursos.liquido / costes.liquido,
         recursos.micros / costes.micros,
-        recursos.personal / costes.personal
+        recursos.personal / costes.personal,
     );
     minimo = Math.floor(minimo);
     $("#disenio" + id).val(minimo);
@@ -591,7 +492,7 @@ function calcularDisenios(disenios, mejoras, investigaciones, constantes) {
     var rdiseno = [];
     var resultado = [rdiseno];
 
-    disenios.forEach((diseno) => {
+    disenios.forEach(diseno => {
         resultado[diseno.id] = CalculoDisenio(diseno);
     });
     MostrarResultadoDisenio(resultado);
@@ -609,17 +510,7 @@ function CalculoDisenio(diseno) {
     EinvPropPlasma = resultadoRealDiseno(diseno, "invPropPlasma");
     EinvPropMa = resultadoRealDiseno(diseno, "invPropMa");
 
-    rdiseno.velocidad = Math.round(
-        Math.pow(
-            EinvPropQuimico +
-                EinvPropNuk +
-                EinvPropIon +
-                EinvPropPlasma +
-                EinvPropMa,
-            1.33
-        ) / masa,
-        0
-    );
+    rdiseno.velocidad = Math.round(Math.pow(EinvPropQuimico + EinvPropNuk + EinvPropIon + EinvPropPlasma + EinvPropMa, 1.33) / masa, 0);
 
     /// maniobra
     invest = "invManiobraQuimico";
@@ -628,10 +519,10 @@ function CalculoDisenio(diseno) {
     EinvManiobraQuimico =
         diseno.mejoras[invest] *
         (1 +
-            $.grep(investigaciones, function (nivelInv) {
+            $.grep(investigaciones, function(nivelInv) {
                 return nivelInv.codigo == investr;
             })[0]["nivel"] *
-                $.grep(constantes, function (nivelConst) {
+                $.grep(constantes, function(nivelConst) {
                     return nivelConst.codigo == minves;
                 })[0]["valor"]);
 
@@ -641,10 +532,10 @@ function CalculoDisenio(diseno) {
     EinvManiobraNuk =
         diseno.mejoras[invest] *
         (1 +
-            $.grep(investigaciones, function (nivelInv) {
+            $.grep(investigaciones, function(nivelInv) {
                 return nivelInv.codigo == investr;
             })[0]["nivel"] *
-                $.grep(constantes, function (nivelConst) {
+                $.grep(constantes, function(nivelConst) {
                     return nivelConst.codigo == minves;
                 })[0]["valor"]);
 
@@ -654,10 +545,10 @@ function CalculoDisenio(diseno) {
     EinvManiobraIon =
         diseno.mejoras[invest] *
         (1 +
-            $.grep(investigaciones, function (nivelInv) {
+            $.grep(investigaciones, function(nivelInv) {
                 return nivelInv.codigo == investr;
             })[0]["nivel"] *
-                $.grep(constantes, function (nivelConst) {
+                $.grep(constantes, function(nivelConst) {
                     return nivelConst.codigo == minves;
                 })[0]["valor"]);
 
@@ -667,10 +558,10 @@ function CalculoDisenio(diseno) {
     EinvManiobraPlasma =
         diseno.mejoras[invest] *
         (1 +
-            $.grep(investigaciones, function (nivelInv) {
+            $.grep(investigaciones, function(nivelInv) {
                 return nivelInv.codigo == investr;
             })[0]["nivel"] *
-                $.grep(constantes, function (nivelConst) {
+                $.grep(constantes, function(nivelConst) {
                     return nivelConst.codigo == minves;
                 })[0]["valor"]);
 
@@ -680,24 +571,14 @@ function CalculoDisenio(diseno) {
     EinvManiobraMa =
         diseno.mejoras[invest] *
         (1 +
-            $.grep(investigaciones, function (nivelInv) {
+            $.grep(investigaciones, function(nivelInv) {
                 return nivelInv.codigo == investr;
             })[0]["nivel"] *
-                $.grep(constantes, function (nivelConst) {
+                $.grep(constantes, function(nivelConst) {
                     return nivelConst.codigo == minves;
                 })[0]["valor"]);
 
-    rdiseno.maniobra = Math.round(
-        Math.pow(
-            EinvManiobraQuimico +
-                EinvManiobraNuk +
-                EinvManiobraIon +
-                EinvManiobraPlasma +
-                EinvManiobraMa,
-            1.33
-        ) / masa,
-        0
-    );
+    rdiseno.maniobra = Math.round(Math.pow(EinvManiobraQuimico + EinvManiobraNuk + EinvManiobraIon + EinvManiobraPlasma + EinvManiobraMa, 1.33) / masa, 0);
 
     // Blindajes
     EinvTitanio = resultadoRealDiseno(diseno, "invTitanio");
@@ -706,18 +587,17 @@ function CalculoDisenio(diseno) {
     EinvPlacas = resultadoRealDiseno(diseno, "invPlacas");
     EinvCarbonadio = resultadoRealDiseno(diseno, "invCarbonadio");
 
-    rdiseno.defensa =
-        EinvTitanio + EinvReactivo + EinvResinas + EinvPlacas + EinvCarbonadio;
+    rdiseno.defensa = EinvTitanio + EinvReactivo + EinvResinas + EinvPlacas + EinvCarbonadio;
 
     //Carga
     invest = "invHangar";
     minves = "mejora" + invest;
     baseHangar =
         1 +
-        $.grep(investigaciones, function (nivelInv) {
+        $.grep(investigaciones, function(nivelInv) {
             return nivelInv.codigo == invest;
         })[0]["nivel"] *
-            $.grep(constantes, function (nivelConst) {
+            $.grep(constantes, function(nivelConst) {
                 return nivelConst.codigo == minves;
             })[0]["valor"];
 
@@ -727,16 +607,8 @@ function CalculoDisenio(diseno) {
     rdiseno.cargaEnorme = Math.round(diseno.mejoras["cargaEnorme"] * baseHangar);
 
     rdiseno.carga = resultadoRealDiseno(diseno, "invCarga", "carga");
-    rdiseno.recoleccion = resultadoRealDiseno(
-        diseno,
-        "invRecoleccion",
-        "recolector"
-    );
-    rdiseno.extraccion = resultadoRealDiseno(
-        diseno,
-        "invRecoleccion",
-        "extractor"
-    );
+    rdiseno.recoleccion = resultadoRealDiseno(diseno, "invRecoleccion", "recolector");
+    rdiseno.extraccion = resultadoRealDiseno(diseno, "invRecoleccion", "extractor");
 
     // Varios
     rdiseno.municion = diseno.mejoras["municion"];
@@ -744,12 +616,12 @@ function CalculoDisenio(diseno) {
     rdiseno.mantenimiento = diseno.mejoras["mantenimiento"];
     rdiseno.tiempo = diseno.mejoras["tiempo"];
 
-    var matrizataque = $.grep(ViewDaniosDisenios, function (disen) {
+    var matrizataque = $.grep(ViewDaniosDisenios, function(disen) {
         return disen.disenios_id == diseno.id;
     });
     var ataqueTotal = 0;
 
-    matrizataque.forEach((fila) => {
+    matrizataque.forEach(fila => {
         ataqueTotal += 1 * fila.total;
     });
     rdiseno.ataque = Math.round(ataqueTotal);
@@ -762,50 +634,34 @@ function resultadoRealDiseno(diseno, invest, invstobj = invest) {
     return (
         diseno.mejoras[invstobj] *
         (1 +
-            $.grep(investigaciones, function (nivelInv) {
+            $.grep(investigaciones, function(nivelInv) {
                 return nivelInv.codigo == invest;
             })[0]["nivel"] *
-                $.grep(constantes, function (nivelConst) {
+                $.grep(constantes, function(nivelConst) {
                     return nivelConst.codigo == minves;
                 })[0]["valor"])
     );
 }
 
 valNaves = [];
-tamaniosArray = ['cargaPequenia','cargaMediana','cargaGrande','cargaEnorme','cargaMega'];
-tamaniosNaveAcarga = {'caza':'cargaPequenia','ligera':'cargaMediana','media':'cargaGrande','pesada':'cargaEnorme','estacion':'cargaMega'};
-recursosArray=['personal','mineral','cristal','gas','plastico','ceramica','liquido','micros','fuel','ma','municion','creditos'];
+tamaniosArray = ["cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega"];
+tamaniosNaveAcarga = { caza: "cargaPequenia", ligera: "cargaMediana", media: "cargaGrande", pesada: "cargaEnorme", estacion: "cargaMega" };
+recursosArray = ["personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos"];
 
 function MostrarResultadoDisenio(diseno) {
     var result = CalculoDisenio(diseno);
 
     $("#carga" + diseno.id).text(formatNumber(Math.round(result.carga)));
-    $("#recoleccion" + diseno.id).text(
-        formatNumber(Math.round(result.recoleccion))
-    );
-    $("#extraccion" + diseno.id).text(
-        formatNumber(Math.round(result.extraccion))
-    );
-    $("#hangarCazas" + diseno.id).text(
-        formatNumber(result.cargaPequenia)
-    );
-    $("#hangarLigeras" + diseno.id).text(
-        formatNumber(result.cargaMediana)
-    );
-    $("#hangarMedias" + diseno.id).text(
-        formatNumber(result.cargaGrande)
-    );
-    $("#hangarPesadas" + diseno.id).text(
-        formatNumber(result.cargaEnorme)
-    );
-    $("#mantenimiento" + diseno.id).text(
-        formatNumber(Math.round(result.mantenimiento))
-    );
+    $("#recoleccion" + diseno.id).text(formatNumber(Math.round(result.recoleccion)));
+    $("#extraccion" + diseno.id).text(formatNumber(Math.round(result.extraccion)));
+    $("#hangarCazas" + diseno.id).text(formatNumber(result.cargaPequenia));
+    $("#hangarLigeras" + diseno.id).text(formatNumber(result.cargaMediana));
+    $("#hangarMedias" + diseno.id).text(formatNumber(result.cargaGrande));
+    $("#hangarPesadas" + diseno.id).text(formatNumber(result.cargaEnorme));
+    $("#mantenimiento" + diseno.id).text(formatNumber(Math.round(result.mantenimiento)));
     $("#municion" + diseno.id).text(formatNumber(Math.round(result.municion)));
     $("#fuel" + diseno.id).text(formatNumber(Math.round(result.fuel)));
-    $("#velocidad" + diseno.id).text(
-        formatNumber(Math.round(result.velocidad))
-    );
+    $("#velocidad" + diseno.id).text(formatNumber(Math.round(result.velocidad)));
     $("#maniobra" + diseno.id).text(formatNumber(Math.round(result.maniobra)));
     $("#ataque" + diseno.id).text(formatNumber(Math.round(result.ataque)));
     $("#defensa" + diseno.id).text(formatNumber(Math.round(result.defensa)));
@@ -816,71 +672,62 @@ function MostrarResultadoDisenio(diseno) {
 //funciones de distancias
 
 function CoordenadasBySistema(nsistema) {
-    anchoUniverso = $.grep(constantesU, function (busca) {
+    anchoUniverso = $.grep(constantesU, function(busca) {
         return busca.codigo == "anchouniverso";
     })[0].valor;
-    luzdemallauniverso = $.grep(constantesU, function (busca) {
+    luzdemallauniverso = $.grep(constantesU, function(busca) {
         return busca.codigo == "luzdemallauniverso";
     })[0].valor;
 
     var cy = Math.floor(nsistema / anchoUniverso) * 10;
-    var cx =
-        (nsistema - Math.floor(nsistema / anchoUniverso) * anchoUniverso) *
-        luzdemallauniverso;
+    var cx = (nsistema - Math.floor(nsistema / anchoUniverso) * anchoUniverso) * luzdemallauniverso;
     return { x: cx, y: cy };
 }
 
 function DistanciaUniverso(origen, destino) {
-    var coordOrigen={ x: 0, y: 0 };
-    var coordDestino={ x: 0, y: 0 };
+    var coordOrigen = { x: 0, y: 0 };
+    var coordDestino = { x: 0, y: 0 };
     var factordistancia = 1;
-    var dist=undefined;
+    var dist = undefined;
 
-    if(origen.sistema != '0' && destino.sistema!='0' && origen.planeta != '0' && destino.planeta!='0'){
-        if (
-            origen.sistema == destino.sistema &&
-            origen.planeta == destino.planeta
-        ) {
+    if (origen.sistema != "0" && destino.sistema != "0" && origen.planeta != "0" && destino.planeta != "0") {
+        if (origen.sistema == destino.sistema && origen.planeta == destino.planeta) {
             //orbitar
-            factordistancia = $.grep(constantesU, function (busca) {
+            factordistancia = $.grep(constantesU, function(busca) {
                 return busca.codigo == "distanciaorbita";
             })[0].valor;
             coordDestino.x = 0.5;
         } else if (origen.sistema == destino.sistema) {
             //mismo sistema
-            factordistancia = $.grep(constantesU, function (busca) {
+            factordistancia = $.grep(constantesU, function(busca) {
                 return busca.codigo == "distanciaentreplanetas";
             })[0].valor;
             coordOrigen.x = origen.planeta;
             coordDestino.x = destino.planeta;
         } else {
             //entre sistemas
-            factordistancia = $.grep(constantesU, function (busca) {
+            factordistancia = $.grep(constantesU, function(busca) {
                 return busca.codigo == "distanciaentresistemas";
             })[0].valor;
             coordOrigen = CoordenadasBySistema(origen.sistema);
             coordDestino = CoordenadasBySistema(destino.sistema);
         }
-        dist =  factordistancia * Math.pow(
-                (coordDestino.x - coordOrigen.x) *
-                    (coordDestino.x - coordOrigen.x) +
-                    (coordDestino.y - coordOrigen.y) *
-                        (coordDestino.y - coordOrigen.y),  1 / 2 );
-        }
-    return Math.round(dist*100)/100;
+        dist = factordistancia * Math.pow((coordDestino.x - coordOrigen.x) * (coordDestino.x - coordOrigen.x) + (coordDestino.y - coordOrigen.y) * (coordDestino.y - coordOrigen.y), 1 / 2);
+    }
+    return Math.round(dist * 100) / 100;
 }
 
 function GastoFuel(distancia, fuelbase) {
-    fueldistancia = $.grep(constantesU, function (busca) {
+    fueldistancia = $.grep(constantesU, function(busca) {
         return busca.codigo == "fuelpordistancia";
     })[0].valor;
     return Math.round(fueldistancia * distancia * fuelbase);
 }
 
 function TiempoLLegada(distancia, velocidad) {
-    factortiempoviaje = $.grep(constantesU, function (busca) {
+    factortiempoviaje = $.grep(constantesU, function(busca) {
         return busca.codigo == "factortiempoviaje";
     })[0].valor;
 
-    return tiempo = Math.round((distancia / velocidad) * factortiempoviaje); //en segundos
+    return (tiempo = Math.round(distancia / velocidad * factortiempoviaje)); //en segundos
 }
