@@ -1030,7 +1030,7 @@ class Constantes extends Model
         $constante->codigo = 'anchouniverso';
         $constante->descripcion = 'ancho del universo';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -1040,7 +1040,7 @@ class Constantes extends Model
         $constante->codigo = 'luzdemallauniverso';
         $constante->descripcion = 'distancia entre dos sistemas adyacentes';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -1050,9 +1050,8 @@ class Constantes extends Model
         $constante->codigo = 'estrellasinicio';
         $constante->descripcion = 'cantidad sistemas que se general al inicio';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
-
 
         $constante = new Constantes();
         $constante->valor = 40;
@@ -1061,9 +1060,28 @@ class Constantes extends Model
         $constante->codigo = 'yacimientosIniciales';
         $constante->descripcion = 'Yacimientos del planeta de inicio';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
+        $constante = new Constantes();
+        $constante->valor = 30;
+        $constante->minimo = 25;
+        $constante->maximo = 35;
+        $constante->codigo = 'yacimientosMaximos';
+        $constante->descripcion = 'Yacimientos maximos de un planeta';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 99;
+        $constante->minimo = 90;
+        $constante->maximo = 99;
+        $constante->codigo = 'yacimientosMinimos';
+        $constante->descripcion = 'Yacimientos minimos de un planeta';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
 
         $constante = new Constantes();
         $constante->valor = 1;
@@ -1072,7 +1090,7 @@ class Constantes extends Model
         $constante->codigo = 'fuelpordistancia';
         $constante->descripcion = 'factor de gasto de fuel por unidad de distancia';
         $constante->tipo = 'universo';
-        $constante->votable=1;
+        $constante->votable = 1;
         array_push($producciones, $constante);
 
 
@@ -1083,7 +1101,7 @@ class Constantes extends Model
         $constante->codigo = 'factortiempoviaje';
         $constante->descripcion = 'factor de tiempo en recorer una distancia';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1094,7 +1112,7 @@ class Constantes extends Model
         $constante->codigo = 'distanciaentresistemas';
         $constante->descripcion = 'factor de espacio entre dos sistemas adyacentes';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1105,7 +1123,7 @@ class Constantes extends Model
         $constante->codigo = 'distanciaentreplanetas';
         $constante->descripcion = 'factor de espacio entre dos planetas adyacentes';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1116,7 +1134,7 @@ class Constantes extends Model
         $constante->codigo = 'distanciaorbita';
         $constante->descripcion = 'factor distancia de la orbita';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1127,7 +1145,7 @@ class Constantes extends Model
         $constante->codigo = 'valoresbaseplanetasminimo';
         $constante->descripcion = 'valor inicial minimo de los planetas vacios';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -1137,7 +1155,7 @@ class Constantes extends Model
         $constante->codigo = 'valoresbaseplanetasmaximo';
         $constante->descripcion = 'valor inicial maximo de los planetas vacios';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1148,7 +1166,7 @@ class Constantes extends Model
         $constante->codigo = 'valoresbaseasteroidesminimo';
         $constante->descripcion = 'valor inicial minimo de los asteroides vacios';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -1158,7 +1176,7 @@ class Constantes extends Model
         $constante->codigo = 'valoresbaseasteroidesmaximo';
         $constante->descripcion = 'valor inicial maximo de los asteroides vacios';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1169,7 +1187,7 @@ class Constantes extends Model
         $constante->codigo = 'cantidadporplanetagusanos';
         $constante->descripcion = 'cantidad 1/x inicial de puertas de agujero de gusano';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -1179,7 +1197,7 @@ class Constantes extends Model
         $constante->codigo = 'cantidadgruposgusanos';
         $constante->descripcion = 'cantidad de grupos de aguajeros de gusano';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1190,7 +1208,7 @@ class Constantes extends Model
         $constante->codigo = 'cantidadporplanetaasteroides';
         $constante->descripcion = 'cantidad 1/x de asteroides por planeta';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1201,7 +1219,7 @@ class Constantes extends Model
         $constante->codigo = 'cantidadporplanetasoles';
         $constante->descripcion = 'cantidad 1/x de asteroides por planeta';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -1211,7 +1229,7 @@ class Constantes extends Model
         $constante->codigo = 'cantidadporplanetaruinas';
         $constante->descripcion = 'cantidad 1/x de ruinas por planeta';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -1221,7 +1239,7 @@ class Constantes extends Model
         $constante->codigo = 'cantidadplanetas';
         $constante->descripcion = 'cantidad planetas de inicio';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1232,7 +1250,7 @@ class Constantes extends Model
         $constante->codigo = 'cantidadrecursosinicio';
         $constante->descripcion = 'cantidad recurso mineral de planeta de inicio';
         $constante->tipo = 'universo';
-        $constante->votable=0;
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
@@ -1243,7 +1261,7 @@ class Constantes extends Model
         $constante->codigo = 'factorexpansionradar';
         $constante->descripcion = 'factor para multiplicar el area del radar';
         $constante->tipo = 'universo';
-        $constante->votable=1;
+        $constante->votable = 1;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -1253,7 +1271,7 @@ class Constantes extends Model
         $constante->codigo = 'factorexpansionzonainfluencia';
         $constante->descripcion = 'factor para multiplicar el area de zona influencia';
         $constante->tipo = 'universo';
-        $constante->votable=1;
+        $constante->votable = 1;
         array_push($producciones, $constante);
 
 

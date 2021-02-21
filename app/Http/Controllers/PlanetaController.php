@@ -129,6 +129,7 @@ class PlanetaController extends Controller
         if (count($jugadorActual->planetas) > 1) {
             $planeta = Planetas::find(session()->get('planetas_id'));
             $planeta->jugadores_id = null;
+            $planeta->nombre = null;
             foreach ($planeta->construcciones as $edificio) {
                 $edificio->delete();
             }

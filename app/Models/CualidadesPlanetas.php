@@ -21,13 +21,15 @@ class CualidadesPlanetas extends Model
         $cualidades->eje_x = 0;
         $cualidades->eje_y = 0;
         $cualidades->enfriamiento = 0;
+        $max = Constantes::where('codigo', 'yacimientosMaximos')->first()->valor;
+        $min = Constantes::where('codigo', 'yacimientosMinimos')->first()->valor;
 
-        if (empty($yacimientos)) {
-            $cualidades->mineral = rand(0, 99);
-            $cualidades->cristal = rand(0, 99);
-            $cualidades->gas = rand(0, 99);
-            $cualidades->plastico = rand(0, 99);
-            $cualidades->ceramica = rand(0, 99);
+        if ($yacimientos == 0) {
+            $cualidades->mineral = rand($min, $max);
+            $cualidades->cristal = rand($min, $max);
+            $cualidades->gas = rand($min, $max);
+            $cualidades->plastico = rand($min, $max);
+            $cualidades->ceramica = rand($min, $max);
         }else {
             $cualidades->mineral = $yacimientos;
             $cualidades->cristal = $yacimientos;
