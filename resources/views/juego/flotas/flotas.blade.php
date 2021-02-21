@@ -149,13 +149,16 @@
                         <tr>
                             <th colspan="9" class="text-success">
                                 <big>
-                                    Resumen de naves
+                                    Resumen de la flota
                                 </big>
                             </th>
                         </tr>
                         <tr>
                             <th class="text-warning align-middle">
-                                Capacidad de carga total
+                                Nombre privado
+                            </th>
+                            <th class="text-warning align-middle">
+                                Capacidad de carga
                             </th>
                             <th class="text-warning align-middle">
                                 Municion
@@ -183,6 +186,10 @@
                             </th>
                         </tr>
                         <tr>
+                            <td>
+                                <input type="text" id="nombreFlota" class="form-control input" placeholder="Nombre privado
+                                aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            </td>
                             <td id="totalcarga" class="text-light align-middle">
                             </td>
                             <td id="totalmunicion" class="text-light align-middle">
@@ -296,7 +303,7 @@
                 </div>
             </div>
             <div class="col-12 cajita-info rounded">
-                <button id="botonEnviar" type="button" class="btn btn-success col-12">
+                <button id="botonEnviar" type="button" class="btn btn-success col-12"  onclick="enviarFlota()">
                     Enviar flota
                 </button>
             </div>
@@ -324,8 +331,8 @@
 
         destinos = [];
         destinos[0] = [];
-        destinos[0]['sistema'] = '1234';
-        destinos[0]['planeta'] = '5';
+        destinos[0]['sistema'] = '{{ $planetaActual->estrella }}';
+        destinos[0]['planeta'] = '{{ $planetaActual->orbita }}';
         destinos[1] = [];
         destinos[1]['sistema'] = '-1';
         destinos[1]['planeta'] = '-1';
@@ -344,6 +351,7 @@
             n++;
             prioridades[res]=n;
         });
+
 
 
 

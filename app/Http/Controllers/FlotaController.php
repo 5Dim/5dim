@@ -9,11 +9,14 @@ use App\Models\Planetas;
 use App\Models\Constantes;
 use App\Models\Producciones;
 use App\Models\Construcciones;
+use App\Models\Disenios;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\ViewDaniosDisenios;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FlotaController extends Controller
 {
@@ -109,10 +112,42 @@ class FlotaController extends Controller
         return compact('recursos');
     }
 
-    public function enviarFlota(){
+    public function enviarFlota(Request $request, $id = false){ //$id es de la flota en orbita de la que salimos
+
+        $valNaves = $request->input('valNaves');
+        $cargaDest = $request->input('cargaDest');
+        $prioridades = $request->input('prioridades');
+        $datosBasicos = $request->input('datosBasicos');
+        $destinos = $request->input('destinos');
+        Log::error($_POST['valNaves']);
+        $errores="";
+
+        //// valores de las naves en planeta
+        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+        $navesEstacionadas = $planetaActual->estacionadas;
+
+        $disenios = [];
+        foreach ($navesEstacionadas as $nave) {
+
+            //$coleccion=collect($valNaves);
+
+           // $navejs=$coleccion->where("iddisenio",$nave->disenios_id)->first();
+            isset($valNaves[$nave->disenios_id]) ? $navejs=$valNaves[$nave->disenios_id] : $navejs=null;
+
+
+            if(!empty($navejs) && $navejs->enflota>0 && $navejs->enhangar){
+                array_push($disenios,$nave->disenios);
+            }
+
+        }
+
+        Disenios::calculaMejoras($disenios);
+
+        Log::error($disenios);
 
 
 
+        return compact('errores');
     }
 
 

@@ -121,7 +121,7 @@ Route::middleware(
     //Flota
     Route::get('/juego/flotas', [FlotaController::class, 'index']);
     Route::get('/juego/flotas/traerRecursos/{estrella}/{orbita}', [FlotaController::class, 'traerRecursos']);
-    Route::get('/juego/flotas/enviarFlota', [FlotaController::class, 'enviarFlota']);
+    Route::post('/juego/flotas/enviarFlota/{id?}', [FlotaController::class, 'enviarFlota']);
 
     //Banco
     Route::get('/juego/banco', [BancoController::class, 'index']);

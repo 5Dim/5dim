@@ -32,7 +32,7 @@
                 <th id="tipovelocidad{{ $numero }}" class="text-warning align-middle  ">
                     Hypervelocidad
                 </th>
-                <th class="text-warning align-middle  ">
+                <th id="consumofuel{{ $numero }}"  class="text-warning align-middle  ">
                     Consumo de fuel
                 </th>
                 <th class="text-warning align-middle  ">

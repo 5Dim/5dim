@@ -1,5 +1,6 @@
 valFlotaT = [];
 
+
 fueraH = [];
 dentroH = [];
 capacidadH = [];
@@ -37,6 +38,7 @@ function CargarValoresPlaneta() {
         valNaves[nave.id].enflota = 0;
         valNaves[nave.id].enhangar = 0;
         valNaves[nave.id].tamanio = diseno.tamanio;
+        valNaves[nave.id].iddisenio=nave.id;
 
         $("#nombre" + nave.id).text(diseno.nombre);
     });
@@ -262,6 +264,7 @@ function Avisos() {
         var destPost = dest + 1;
 
         var orden = $("#ordenDest" + dest).val();
+        destinos[dest].mision=orden;
 
         var hayErrorMision = false;
 
@@ -322,32 +325,47 @@ function Avisos() {
             $("#fuelDest" + dest)
             .addClass("text-danger")
             .removeClass("text-light");
+            sePuedeEnviar = false;
         } else {
         $("#fuelDest" + dest)
             .removeClass("text-danger")
             .addClass("text-light");
         }
-
     }
 
-
-
-
+    if (faltaFuel){
+        errores += " Fuel insuficiente en origen";}
 
     //falta velcidad
 
     /// se puede enviar o no
+    $("#botonEnviar").text("Enviar Flota");
     if (!sePuedeEnviar) {
+        $("#botonEnviar").text(errores);
         $("#botonEnviar")
             .addClass("bg-danger")
             .removeClass("btn-success");
+
+            $("#consumofuel1")
+            .addClass("bg-danger")
+            .removeClass("btn-warning");
+
+
         $("#botonEnviar").prop("disabled", true);
     } else {
+
         $("#botonEnviar")
             .removeClass("bg-danger")
             .addClass("btn-success");
+
+            $("#consumofuel1")
+            .removeClass("bg-danger")
+            .addClass("btn-warning");
         $("#botonEnviar").prop("disabled", false);
+
     }
+
+
 }
 
 function NaveAflota(id, canti = 0) {
@@ -400,6 +418,7 @@ function Calculoespacitiempo() {
             } else {
                 var porcentVel = $("#porcentVDest" + dest).val() / 100;
                 var fuelDest = GastoFuel(distancia, valFlotaT.fuel);
+                destinos[dest].porcentVel=porcentVel;
 
                 if (distancia < 10) {
                     $("#tipovelocidad" + dest).text("Vel. Impulso");
@@ -580,3 +599,44 @@ function VaciarPrioridades (dest) {
         $("#prioridad" + res + dest).val(prioridades[res]);
     });
 }
+
+
+
+function enviarFlota() {
+
+    if (errores.length>0){
+        alert(errores)
+    } else {
+
+        datosBasicos={
+            "nombre":$("#nombreFlota").val(),
+        }
+
+
+        $.ajax({
+            method: "POST",
+            dataType: 'json',
+            url: "/juego/flotas/enviarFlota",
+            data: {"valNaves": valNaves,"destinos":destinos,"cargaDest":cargaDest,"prioridades":prioridades},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function () {
+                console.log('bloqueo botones');
+            },
+            success: function(response) {
+
+            },
+            error: function(xhr, textStatus, thrownError) {
+                console.log("status", xhr.status);
+                console.log("error", thrownError);
+
+            },
+        });
+    }
+    }
+
+function formSuccess(){
+    $( "#msgSubmit" ).removeClass( "hidden" );
+}
+
