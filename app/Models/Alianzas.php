@@ -22,4 +22,21 @@ class Alianzas extends Model
     public function creador() {
         return $this->hasOne(Jugadores::class, 'id', "jugadores_id");
     }
+
+    public static function idMiembros($alianza) {
+        $alianza = Alianzas::find($alianza);
+        $idMiembros = [];
+        foreach ($alianza->miembros as $miembro) {
+            array_push($idMiembros, $miembro->id);
+        }
+
+        return $idMiembros;
+    }
+
+    public function jugadorAlianza($alianza) {
+        $alianza = Alianzas::find($alianza)->nombre;
+        $jugadorAlianza = Jugadores::where('nombre', $alianza)->first();
+
+        return $jugadorAlianza;
+    }
 }

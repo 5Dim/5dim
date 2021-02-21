@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alianzas;
 use Illuminate\Routing\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
@@ -74,21 +75,46 @@ class AstrometriaController extends Controller
     public function generarUniverso() // http://homestead.test/juego/astrometria/ajax/universo
     {
         $universo = [];
-        $planetas = Planetas::select('estrella', 'jugadores_id')->orderBy('jugadores_id', 'desc')->distinct()->get(['estrella']);
-        foreach ($planetas as $planeta) {
-            if ($planeta->jugadores_id > 0) {
-                $planetita = new Planetas();
+        $planetas = Planetas::all();
+        for ($i = 0; $i < Planetas::max('estrella'); $i++) {
+            //Variables de control
+            $propio = false;
+            $aliado = false;
+            $ocupado = false;
+
+            // Planetas del sistema
+            $sistema = $planetas->where('estrella', $i);
+            foreach ($sistema as $planeta) {
+                if ($planeta->jugadores_id != null) {
+                    $alianza = $planeta->jugadores->alianzas_id;
+                    $idMiembros = Alianzas::idMiembros($alianza);
+                    if ($planeta->jugadores_id == session()->get('jugadores_id')) {
+                        $propio = true;
+                    }
+                    foreach ($idMiembros as $id) {
+                        if ($planeta->jugadores_id == $id) {
+                            $aliado = true;
+                        }
+                    }
+                    if ($planeta->jugadores_id > 0) {
+                        $ocupado = true;
+                    }
+                }
+            }
+            $planetita = new \stdClass();
+            $planetita->estrella = $i;
+            if ($propio) {
+                $planetita->habitado = 2;
+            } elseif ($aliado) {
+                $planetita->habitado = 3;
+            } elseif ($ocupado) {
                 $planetita->habitado = 1;
-                $planetita->estrella = $planeta->estrella;
-                array_push($universo, $planetita);
             } else {
-                $planetita = new Planetas();
                 $planetita->habitado = 0;
-                $planetita->estrella = $planeta->estrella;
-                array_push($universo, $planetita);
             }
         }
-        $planetoide = new Planetas();
+        array_push($universo, $planetita);
+        $planetoide = new \stdClass();
         $planetoide->idioma = 0;
         $planetoide->global = Planetas::max('estrella');
         $planetoide->ancho = 400;
