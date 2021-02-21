@@ -12,6 +12,7 @@ use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Astrometria;
+use App\Models\CualidadesPlanetas;
 use App\Models\Jugadores;
 use App\Models\Flotas;
 
@@ -160,34 +161,57 @@ class AstrometriaController extends Controller
             for ($i = 1; $i < 10; $i++) {
                 $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
                 $orbita = new \stdClass();
-                $orbita->planeta = $i;
-                $orbita->nom_pla = !empty($planetaActual->nombre) ? $planetaActual->nombre : "";
-                $orbita->nom_jug = !empty($planetaActual->jugadores->nombre) ? $planetaActual->jugadores->nombre : "";
-                $orbita->alianza = !empty($planetaActual->jugadores->alianzas->nombre) ? $planetaActual->jugadores->alianzas->nombre : "";
-                $orbita->img_planeta = !empty($planetaActual->imagen) ? $planetaActual->imagen : "";
-
-                $orbita->mineral = !empty($planetaActual->cualidades->mineral) ? $planetaActual->cualidades->mineral : "";
-                $orbita->cristal = !empty($planetaActual->cualidades->cristal) ? $planetaActual->cualidades->cristal : "";
-                $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : "";
-                $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : "";
-                $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : "";
-                $orbita->b_observar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : ""; // Posibilidad de incluirlo dentro del mapa
-                $orbita->b_atacar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : "";
-                $orbita->b_colonizar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar" : "";
-                $orbita->b_recolectar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/recolectar" : "";
-                $orbita->b_extraer = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/extraer" : "";
-                $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
+                if (!empty($planetaActual)) {
+                    if (empty($planetaActual->cualidades)) {
+                        CualidadesPlanetas::agregarCualidades($planetaActual->id, 0);
+                        $planetaActual->cualidades = CualidadesPlanetas::where('planetas_id', $planetaActual->id)->first();
+                    }
+                    $orbita->planeta = $i;
+                    $orbita->nom_pla = !empty($planetaActual->nombre) ? $planetaActual->nombre : "";
+                    $orbita->nom_jug = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->nombre) ? $planetaActual->jugadores->nombre : "";
+                    $orbita->alianza = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->alianzas) && !empty($planetaActual->jugadores->alianzas->nombre) ? $planetaActual->jugadores->alianzas->nombre : "";
+                    $orbita->img_planeta = !empty($planetaActual->imagen) ? $planetaActual->imagen : "";
+                    $orbita->mineral = !empty($planetaActual->cualidades->mineral) ? $planetaActual->cualidades->mineral : "";
+                    $orbita->cristal = !empty($planetaActual->cualidades->cristal) ? $planetaActual->cualidades->cristal : "";
+                    $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : "";
+                    $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : "";
+                    $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : "";
+                    $orbita->b_observar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : ""; // Posibilidad de incluirlo dentro del mapa
+                    $orbita->b_atacar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : "";
+                    $orbita->b_colonizar = empty($planetaActual->jugadores_id) && $planetaActual->tipo == "planeta" ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar" : "";
+                    $orbita->b_recolectar = $planetaActual->tipo == "asteroide" ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/recolectar" : "";
+                    $orbita->b_extraer = $planetaActual->tipo == "planeta" && empty($planetaActual->jugadores_id) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/extraer" : "";
+                    $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
+                } else {
+                    $orbita = new \stdClass();
+                    $orbita->planeta = $i;
+                    $orbita->nom_pla = "";
+                    $orbita->nom_jug = "";
+                    $orbita->alianza = "";
+                    $orbita->img_planeta = "";
+                    $orbita->mineral = "";
+                    $orbita->cristal = "";
+                    $orbita->gas = "";
+                    $orbita->plastico = "";
+                    $orbita->ceramica = "";
+                    $orbita->b_observar = "";
+                    $orbita->b_atacar = "";
+                    $orbita->b_colonizar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar";
+                    $orbita->b_recolectar = "";
+                    $orbita->b_extraer = "/juego/flotas/" . $numeroSistema . "/" . $i . "/extraer";
+                    $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
+                }
                 array_push($planetas, $orbita);
             }
         } else { // Si no se ve mandamos los datos ocultos
             for ($i = 1; $i < 10; $i++) {
+                $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
                 $orbita = new \stdClass();
                 $orbita->planeta = $i;
                 $orbita->nom_pla = "";
                 $orbita->nom_jug = "";
                 $orbita->alianza = "";
                 $orbita->img_planeta = "";
-
                 $orbita->mineral = "";
                 $orbita->cristal = "";
                 $orbita->gas = "";
@@ -195,9 +219,9 @@ class AstrometriaController extends Controller
                 $orbita->ceramica = "";
                 $orbita->b_observar = "";
                 $orbita->b_atacar = "";
-                $orbita->b_colonizar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar";
-                $orbita->b_recolectar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/recolectar";
-                $orbita->b_extraer = "/juego/flotas/" . $numeroSistema . "/" . $i . "/extraer";
+                $orbita->b_colonizar = "";
+                $orbita->b_recolectar = "";
+                $orbita->b_extraer = "";
                 $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
                 array_push($planetas, $orbita);
             }

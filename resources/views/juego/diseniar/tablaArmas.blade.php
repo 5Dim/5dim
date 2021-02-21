@@ -246,7 +246,6 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
 
 
 @endphp
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="row rounded">
     <div class="col-12 borderless">
         <div id="cuadro1" class="" style="background-color: #000000 !important;">

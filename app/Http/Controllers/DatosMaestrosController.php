@@ -34,7 +34,7 @@ class DatosMaestrosController extends Controller
         Armas::generarDatosArmas();
         CostesArmas::generarDatosCostesArmas();
         Tiendas::generarDatosTiendas();
-        CostesDisenios::generarDatosCostesDisenios();
+        // CostesDisenios::generarDatosCostesDisenios();
 
         // $construccion = new CostesBasicosConstruccion();
         // $construcciones = $construccion->generarDatosCostesBasicosConstruccion();

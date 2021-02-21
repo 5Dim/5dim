@@ -55,7 +55,7 @@ class Planetas extends Model
         $planetaElegido = Planetas::inRandomOrder()->first();
         $planetaElegido->jugadores_id = $idJugador;
         if ($planetaElegido->nombre == '' || $planetaElegido->nombre == null) {
-            $planetaElegido->nombre = 'Colonia';
+            $planetaElegido->nombre = 'Planeta principal';
         }
         $planetaElegido->save();
         CualidadesPlanetas::agregarCualidades($planetaElegido->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);

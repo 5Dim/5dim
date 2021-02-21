@@ -10,7 +10,7 @@ class DaniosDisenios extends Model
     use HasFactory;
 
     public $timestamps = false;
-    public function disenios ()
+    public function disenios()
     {
         return $this->belongsTo(Disenios::class);
     }
