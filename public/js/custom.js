@@ -625,6 +625,7 @@ function CalculoDisenio(diseno) {
         ataqueTotal += 1 * fila.total;
     });
     rdiseno.ataque = Math.round(ataqueTotal);
+    rdiseno.iddisenio=diseno.id;
 
     return rdiseno;
 }
@@ -666,7 +667,7 @@ function MostrarResultadoDisenio(diseno) {
     $("#ataque" + diseno.id).text(formatNumber(Math.round(result.ataque)));
     $("#defensa" + diseno.id).text(formatNumber(Math.round(result.defensa)));
 
-    valNaves[diseno.id] = result;
+    valNaves.push(result);
 }
 
 //funciones de distancias

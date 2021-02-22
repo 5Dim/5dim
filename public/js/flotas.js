@@ -31,13 +31,14 @@ function CargarValoresPlaneta() {
             return valorBase.id == nave.id;
         })[0];
         MostrarResultadoDisenio(diseno);
-        valNaves[nave.id].nombre = diseno.nombre;
-        valNaves[nave.id].cantidad = nave.cantidad;
-        valNaves[nave.id].cantidadT = nave.cantidad; //es constante
-        valNaves[nave.id].enflota = 0;
-        valNaves[nave.id].enhangar = 0;
-        valNaves[nave.id].tamanio = diseno.tamanio;
-        valNaves[nave.id].iddisenio = nave.id;
+
+        var este=valNaves.length-1;
+        valNaves[este].nombre = diseno.nombre;
+        valNaves[este].cantidad = nave.cantidad;
+        valNaves[este].cantidadT = nave.cantidad; //es constante
+        valNaves[este].enflota = 0;
+        valNaves[este].enhangar = 0;
+        valNaves[este].tamanio = diseno.tamanio;
 
         $("#nombre" + nave.id).text(diseno.nombre);
     });
@@ -82,31 +83,36 @@ function RecalculoTotal() {
     ///CALCULO
     // naves
     navesEstacionadas.forEach(nave => {
-        cantidad = valNaves[nave.id].cantidad;
-        aflota = valNaves[nave.id].enflota;
-        ahangar = valNaves[nave.id].enhangar;
+
+        var valnave= $.grep(valNaves, function(valor) {
+            return valor.iddisenio == nave.disenios_id;
+        })[0];
+
+        cantidad = valnave.cantidad;
+        aflota = valnave.enflota;
+        ahangar = valnave.enhangar;
         atotal = aflota + ahangar;
 
         if (atotal > 0) {
-            valFlotaT.carga += valNaves[nave.id].carga * atotal;
-            valFlotaT.municion += valNaves[nave.id].municion * atotal;
-            valFlotaT.fuel += valNaves[nave.id].fuel * aflota;
+            valFlotaT.carga += valnave.carga * atotal;
+            valFlotaT.municion += valnave.municion * atotal;
+            valFlotaT.fuel += valnave.fuel * aflota;
             if (aflota > 0) {
-                valFlotaT.velocidad = Math.min(valNaves[nave.id].velocidad, valFlotaT.velocidad);
-                valFlotaT.maniobra = Math.min(valNaves[nave.id].maniobra, valFlotaT.maniobra);
+                valFlotaT.velocidad = Math.min(valnave.velocidad, valFlotaT.velocidad);
+                valFlotaT.maniobra = Math.min(valnave.maniobra, valFlotaT.maniobra);
             }
-            valFlotaT.ataqueR += valNaves[nave.id].ataque * atotal;
-            valFlotaT.defensaR += valNaves[nave.id].defensa * atotal;
-            valFlotaT.ataqueV += valNaves[nave.id].ataque * aflota;
-            valFlotaT.defensaV += valNaves[nave.id].defensa * aflota;
+            valFlotaT.ataqueR += valnave.ataque * atotal;
+            valFlotaT.defensaR += valnave.defensa * atotal;
+            valFlotaT.ataqueV += valnave.ataque * aflota;
+            valFlotaT.defensaV += valnave.defensa * aflota;
 
             //hangares
 
             tamaniosArray.forEach(tamaniod => {
-                tablaHangares.capacidadH[tamaniod] += atotal * valNaves[nave.id][tamaniod];
+                tablaHangares.capacidadH[tamaniod] += atotal * valnave[tamaniod];
             });
 
-            var tcarga = tamaniosNaveAcarga[valNaves[nave.id].tamanio];
+            var tcarga = tamaniosNaveAcarga[valnave.tamanio];
             tablaHangares.dentroH[tcarga] += ahangar;
             tablaHangares.fueraH[tcarga] += aflota;
         }
@@ -178,8 +184,13 @@ function Avisos() {
 
         //pintando caja ahangar por nave
         navesEstacionadas.forEach(nave => {
-            var tcarga = tamaniosNaveAcarga[valNaves[nave.id].tamanio];
-            if (valNaves[nave.id].enhangar > 0 && tablaHangares.dentroH[tcarga] > 0) {
+            var valnave= $.grep(valNaves, function(valor) {
+                return valor.iddisenio == nave.disenios_id;
+            })[0];
+
+            var tcarga = tamaniosNaveAcarga[valnave.tamanio];
+
+            if (valnave.enhangar > 0 && tablaHangares.dentroH[tcarga] > 0) {
                 $("#selectahangar" + nave.id).addClass("bg-danger");
             } else {
                 $("#selectahangar" + nave.id).removeClass("bg-danger");
@@ -353,35 +364,40 @@ function Avisos() {
     }
 }
 
-function NaveAflota(id, canti = 0) {
+function NaveAflota(iddisenio, canti = 0) {
+
+    var valnave= $.grep(valNaves, function(valor) {
+        return valor.iddisenio == iddisenio;
+    })[0];
+
     if (canti == "x") {
-        valNaves[id].enflota = 1 * $("#enflota" + id).val();
+        valnave.enflota = 1 * $("#enflota" + id).val();
     } else if (canti == "m") {
-        valNaves[id].enflota = valNaves[id].cantidad + valNaves[id].enflota;
+        valnave.enflota = valnave.cantidad + valnave.enflota;
     } else {
-        valNaves[id].enflota = canti;
+        valnave.enflota = canti;
     }
 
-    if (valNaves[id].enhangar + valNaves[id].enflota > valNaves[id].cantidadT) {
-        valNaves[id].enflota = valNaves[id].cantidadT - valNaves[id].enhangar;
+    if (valnave.enhangar + valnave.enflota > valnave.cantidadT) {
+        valnave.enflota = valnave.cantidadT - valnave.enhangar;
     }
-    valNaves[id].cantidad = valNaves[id].cantidadT - valNaves[id].enflota - valNaves[id].enhangar;
+    valnave.cantidad = valnave.cantidadT - valnave.enflota - valnave.enhangar;
     RecalculoTotal();
 }
 
 function NaveAhangar(id, canti = 0) {
     if (canti == "x") {
-        valNaves[id].enhangar = 1 * $("#enhangar" + id).val();
+        valnave.enhangar = 1 * $("#enhangar" + id).val();
     } else if (canti == "m") {
-        valNaves[id].enhangar = valNaves[id].cantidad + valNaves[id].enhangar;
+        valnave.enhangar = valnave.cantidad + valnave.enhangar;
     } else {
-        valNaves[id].enhangar = canti;
+        valnave.enhangar = canti;
     }
 
-    if (valNaves[id].enhangar + valNaves[id].enflota > valNaves[id].cantidadT) {
-        valNaves[id].enhangar = valNaves[id].cantidadT - valNaves[id].enflota;
+    if (valnave.enhangar + valnave.enflota > valnave.cantidadT) {
+        valnave.enhangar = valnave.cantidadT - valnave.enflota;
     }
-    valNaves[id].cantidad = valNaves[id].cantidadT - valNaves[id].enflota - valNaves[id].enhangar;
+    valnave.cantidad = valnave.cantidadT - valnave.enflota - valnave.enhangar;
     RecalculoTotal();
 }
 
@@ -594,12 +610,8 @@ function enviarFlota() {
             "nombre":$("#nombreFlota").val(),
         }
 
-        var valoresNaves=[];
-        valNaves.forEach(nave => {
-            valoresNaves.push(nave);
-        });
 
-        var Ovalnaves= Object.assign({}, valoresNaves);
+        var Ovalnaves= Object.assign({}, valNaves);
         var Odestinos= Object.assign({}, destinos);
         var OcargaDest= Object.assign({}, cargaDest);
         var Oprioridades= Object.assign({}, prioridades);
