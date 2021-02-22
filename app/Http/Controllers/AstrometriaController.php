@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alianzas;
 use Illuminate\Routing\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
@@ -15,6 +16,7 @@ use App\Models\Astrometria;
 use App\Models\CualidadesPlanetas;
 use App\Models\Jugadores;
 use App\Models\Flotas;
+use Illuminate\Support\Facades\Log;
 
 class AstrometriaController extends Controller
 {
@@ -73,18 +75,52 @@ class AstrometriaController extends Controller
 
     public function generarUniverso() // http://homestead.test/juego/astrometria/ajax/universo
     {
+        Log::info('INICIO');
         $universo = [];
-        $planetas = Planetas::select('estrella', 'jugadores_id')->orderBy('jugadores_id', 'desc')->distinct()->get(['estrella']);
-        foreach ($planetas as $planeta) {
-            if ($planeta->jugadores_id > 0) {
-                $planetita = new Planetas();
-                $planetita->habitado = 1;
-                $planetita->estrella = $planeta->estrella;
-                array_push($universo, $planetita);
-            } else {
-                $planetita = new Planetas();
-                $planetita->habitado = 0;
-                $planetita->estrella = $planeta->estrella;
+        // $planetas = Planetas::all();
+        $estrellas = Planetas::select('estrella', 'jugadores_id')->orderBy('estrella', 'asc')->distinct()->get(['estrella']);
+        for ($i = 0; $i < count($estrellas); $i++) {
+            //Variables de control
+            $propio = false;
+            $aliado = false;
+            $ocupado = false;
+
+            // Planetas del sistema
+            $sistema = Planetas::where('estrella', $estrellas[$i]->estrella)->get();
+            if (count($sistema) > 0) {
+                foreach ($sistema as $planeta) {
+                    if ($planeta->jugadores_id != null) {
+                        $alianza = $planeta->jugadores->alianzas_id;
+                        $idMiembros = [];
+                        if ($planeta->jugadores->alianzas_id != null) {
+                            $idMiembros = Alianzas::idMiembros($alianza);
+                        }
+                        if ($planeta->jugadores_id == session()->get('jugadores_id')) {
+                            $propio = true;
+                            Log::alert('PROPIO');
+                        }
+                        foreach ($idMiembros as $id) {
+                            if ($planeta->jugadores_id == $id) {
+                                $aliado = true;
+                            }
+                        }
+                        if ($planeta->jugadores_id > 0) {
+                            $ocupado = true;
+                        }
+                    }
+                }
+                $planetita = new \stdClass();
+                $planetita->estrella = $estrellas[$i]->estrella;
+                if ($propio) {
+                    $planetita->habitado = 2;
+                    Log::alert('PROPIO');
+                } elseif ($aliado) {
+                    $planetita->habitado = 3;
+                } elseif ($ocupado) {
+                    $planetita->habitado = 1;
+                } else {
+                    $planetita->habitado = 0;
+                }
                 array_push($universo, $planetita);
             }
         }
@@ -95,6 +131,8 @@ class AstrometriaController extends Controller
         $planetoide->fondo = "img/fondo.png";
         $planetoide->inicio = Planetas::where('id', session()->get('planetas_id'))->first()->estrella;
         $planetoide->sistemas = $universo;
+
+        Log::info('FIN');
         return $planetoide;
     }
 
