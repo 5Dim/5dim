@@ -606,7 +606,6 @@ function enviarFlota() {
 
 
 
-
         $.ajax({
             type: 'post',
             dataType: 'json',
