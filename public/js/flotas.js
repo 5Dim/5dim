@@ -612,12 +612,25 @@ function enviarFlota() {
             "nombre":$("#nombreFlota").val(),
         }
 
+        var valoresNaves=[];
+        valNaves.forEach(nave => {
+            valoresNaves.push(nave);
+        });
+
+        var Ovalnaves= Object.assign({}, valoresNaves);
+        var Odestinos= Object.assign({}, destinos);
+        var OcargaDest= Object.assign({}, cargaDest);
+        var Oprioridades= Object.assign({}, prioridades);
+
+
+
 
         $.ajax({
-            method: "POST",
+            type: 'post',
             dataType: 'json',
             url: "/juego/flotas/enviarFlota",
-            data: {"valNaves": valNaves,"destinos":destinos,"cargaDest":cargaDest,"prioridades":prioridades},
+            //contentType: 'application/json; charset=utf-8',
+            data: {"valnaves": navesEstacionadas},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

@@ -82,6 +82,7 @@ class FlotaController extends Controller
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
+
         return view('juego.flotas.flotas', compact(
             // Recursos
             'recursos',
@@ -112,14 +113,26 @@ class FlotaController extends Controller
         return compact('recursos');
     }
 
+
+
+
+
     public function enviarFlota(Request $request, $id = false){ //$id es de la flota en orbita de la que salimos
+
+
+       Log::info($_POST);
+       Log::info($request);
+
+       //$valNaves = ($_POST['valnaves']);
 
         $valNaves = $request->input('valNaves');
         $cargaDest = $request->input('cargaDest');
         $prioridades = $request->input('prioridades');
         $datosBasicos = $request->input('datosBasicos');
         $destinos = $request->input('destinos');
-        Log::error($_POST['valNaves']);
+
+        //$valNaves = ($_POST['valNaves']);
+        Log::info($valNaves);
         $errores="";
 
         //// valores de las naves en planeta
@@ -143,7 +156,7 @@ class FlotaController extends Controller
 
         Disenios::calculaMejoras($disenios);
 
-        Log::error($disenios);
+        //Log::error($disenios);
 
 
 
