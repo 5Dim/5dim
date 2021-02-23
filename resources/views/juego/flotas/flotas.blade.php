@@ -322,27 +322,13 @@
         let constantesU = @json($constantesU);
         let ViewDaniosDisenios = @json($ViewDaniosDisenios);
         let origenImagenes="{{ asset('img/juego/skin0/')}}";
+        let destinos = @json($destinos);
 
 
         recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
         recursosDest[0] = @json($recursos);
 
         cargaDest =[]; //cargado para cada destino
-
-        destinos = [];
-        destinos[0] = [];
-        destinos[0]['sistema'] = '{{ $planetaActual->estrella }}';
-        destinos[0]['planeta'] = '{{ $planetaActual->orbita }}';
-        destinos[1] = [];
-        destinos[1]['sistema'] = '-1';
-        destinos[1]['planeta'] = '-1';
-        destinos[2] = [];
-        destinos[2]['sistema'] = '-1';
-        destinos[2]['planeta'] = '-1';
-        destinos[3] = [];
-        destinos[3]['sistema'] = '-1';
-        destinos[3]['planeta'] = '-1';
-
 
         prioridades = [];
         //prioridades por defecto
