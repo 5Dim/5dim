@@ -20,7 +20,7 @@ for (dest = 1; dest < destinos.length; dest++) {
 Avisos();
 
 function CrearOrigen(dest) {
-    $("#titulo0").text("Origen " + destinos[dest]["sistema"] + "x" + destinos[dest]["planeta"]);
+    $("#titulo0").text("Origen " + destinos[dest]['estrella'] + "x" + destinos[dest]['orbita']);
     $(".ocultarenorigen" + dest).text("");
 }
 
@@ -371,7 +371,7 @@ function NaveAflota(iddisenio, canti = 0) {
     })[0];
 
     if (canti == "x") {
-        valnave.enflota = 1 * $("#enflota" + id).val();
+        valnave.enflota = 1 * $("#enflota" + iddisenio).val();
     } else if (canti == "m") {
         valnave.enflota = valnave.cantidad + valnave.enflota;
     } else {
@@ -409,11 +409,11 @@ function Calculoespacitiempo() {
             //$("#municion" + dest).val(valFlotaT.municion);
             destAnt = dest - 1;
 
-            destinos[dest].sistema = $("#sistemaDest" + dest).val();
-            destinos[dest].planeta = $("#planetaDest" + dest).val();
+            destinos[dest].estrella = $("#sistemaDest" + dest).val();
+            destinos[dest].orbita = $("#planetaDest" + dest).val();
 
             var distancia = DistanciaUniverso(destinos[destAnt], destinos[dest]);
-            if (isNaN(distancia) || destinos[dest].sistema == "") {
+            if (isNaN(distancia) || destinos[dest].estrella == "") {
                 NoSeMueve(dest);
             } else {
                 var porcentVel = $("#porcentVDest" + dest).val() / 100;
@@ -611,10 +611,20 @@ function enviarFlota() {
         }
 
 
-        var Ovalnaves= Object.assign({}, valNaves);
-        var Odestinos= Object.assign({}, destinos);
-        var OcargaDest= Object.assign({}, cargaDest);
-        var Oprioridades= Object.assign({}, prioridades);
+        navesEstacionadas.forEach(nave => {
+            var valnave= $.grep(valNaves, function(valor) {
+                return valor.iddisenio == nave.disenios_id;
+            })[0];
+
+            nave.enhangar=valnave.enhangar;
+            nave.enflota=valnave.enflota;
+
+        });
+
+
+        //var Odestinos= Object.assign({}, destinos);
+       // var OcargaDest= Object.assign({}, cargaDest);
+      //  var Oprioridades= Object.assign({}, prioridades);
 
 
 
@@ -623,7 +633,7 @@ function enviarFlota() {
             dataType: 'json',
             url: "/juego/flotas/enviarFlota",
             //contentType: 'application/json; charset=utf-8',
-            data: {"valnaves": navesEstacionadas},
+            data: {"navesEstacionadas": navesEstacionadas,"destinos":destinos},
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },

@@ -9,6 +9,7 @@ use App\Models\Planetas;
 use App\Models\Constantes;
 use App\Models\Producciones;
 use App\Models\Construcciones;
+use App\Models\Destinos;
 use App\Models\Disenios;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
@@ -79,8 +80,25 @@ class FlotaController extends Controller
         $idsDiseno=array();
         foreach($navesEstacionadas as $diseno){
             array_push($idsDiseno,$diseno->id);
+            $diseno->enflota=0;
+            $diseno->enhangar=0;
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
+
+
+        // destinos
+        $destinos=[];
+        $origen=new Destinos();
+        $origen->estrella=$planetaActual->estrella;
+        $origen->orbita=$planetaActual->orbita;
+        array_push($destinos,$origen);
+
+        $origen=new Destinos();
+        $origen->estrella=-1;
+        $origen->orbita=-1;
+        array_push($destinos,$origen);
+        array_push($destinos,$origen);
+        array_push($destinos,$origen);
 
 
         return view('juego.flotas.flotas', compact(
@@ -102,6 +120,7 @@ class FlotaController extends Controller
             'mejoras',
             'constantes',
             'ViewDaniosDisenios',
+            'destinos',
         ));
     }
 
@@ -120,19 +139,18 @@ class FlotaController extends Controller
     public function enviarFlota(Request $request, $id = false){ //$id es de la flota en orbita de la que salimos
 
 
-       Log::info($_POST);
-       Log::info($request);
 
        //$valNaves = ($_POST['valnaves']);
 
-        $valNaves = $request->input('valNaves');
+        $navesEstacionadas = $request->input('navesEstacionadas');
         $cargaDest = $request->input('cargaDest');
         $prioridades = $request->input('prioridades');
         $datosBasicos = $request->input('datosBasicos');
         $destinos = $request->input('destinos');
 
         //$valNaves = ($_POST['valNaves']);
-        Log::info($valNaves);
+        Log::info($navesEstacionadas);
+        Log::info($destinos);
         $errores="";
 
         //// valores de las naves en planeta
