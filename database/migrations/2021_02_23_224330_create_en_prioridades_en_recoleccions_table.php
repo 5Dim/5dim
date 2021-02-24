@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreatePrioridadesTable extends Migration
+class CreateEnPrioridadesEnRecoleccionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreatePrioridadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prioridades', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('en_prioridades_en_recoleccions', function (Blueprint $table) {
+            $table->id();
             $table->unsignedTinyInteger('personal');
             $table->unsignedTinyInteger('mineral');
             $table->unsignedTinyInteger('cristal');
@@ -38,6 +38,6 @@ class CreatePrioridadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prioridades');
+        Schema::dropIfExists('en_prioridades_en_recoleccions');
     }
 }

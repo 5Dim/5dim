@@ -13,14 +13,14 @@ class CreateDestinosTable extends Migration
      */
     public function up()
     {
-        Schema::create('destinos', function (Blueprint $table) {
+        Schema::create('destinos', function (Blueprint $table) { // Relacionado con planeta y flotas
             $table->increments('id');
+            $table->decimal('porcentVel', 5, 2, true);
+            $table->string('mision');
             $table->decimal('coordx', 8, 2, true);
             $table->decimal('coordy', 8, 2, true);
             $table->unsignedMediumInteger('estrella');
             $table->unsignedTinyInteger('orbita');
-            $table->decimal('porcentVel', 5, 2, true);
-            $table->string('mision');
             $table->timestamps();
         });
     }

@@ -75,10 +75,8 @@ class AstrometriaController extends Controller
 
     public function generarUniverso() // http://homestead.test/juego/astrometria/ajax/universo
     {
-        Log::info('INICIO');
         $universo = [];
-        // $planetas = Planetas::all();
-        $estrellas = Planetas::select('estrella', 'jugadores_id')->orderBy('estrella', 'asc')->distinct()->get(['estrella']);
+        $estrellas = Planetas::select('estrella')->orderBy('estrella', 'asc')->distinct()->get(['estrella']);
         for ($i = 0; $i < count($estrellas); $i++) {
             //Variables de control
             $propio = false;
@@ -97,7 +95,6 @@ class AstrometriaController extends Controller
                         }
                         if ($planeta->jugadores_id == session()->get('jugadores_id')) {
                             $propio = true;
-                            Log::alert('PROPIO');
                         }
                         foreach ($idMiembros as $id) {
                             if ($planeta->jugadores_id == $id) {
@@ -113,7 +110,6 @@ class AstrometriaController extends Controller
                 $planetita->estrella = $estrellas[$i]->estrella;
                 if ($propio) {
                     $planetita->habitado = 2;
-                    Log::alert('PROPIO');
                 } elseif ($aliado) {
                     $planetita->habitado = 3;
                 } elseif ($ocupado) {
@@ -131,10 +127,9 @@ class AstrometriaController extends Controller
         $planetoide->fondo = "img/fondo.png";
         $planetoide->inicio = Planetas::where('id', session()->get('planetas_id'))->first()->estrella;
         $planetoide->sistemas = $universo;
-
-        Log::info('FIN');
         return $planetoide;
     }
+
 
     public function generarRadares() // http://homestead.test/juego/astrometria/ajax/radares
     {
@@ -154,7 +149,7 @@ class AstrometriaController extends Controller
     {
         $flotas = [];
         for ($n = 0; $n < 30; $n++) {
-            $flota = new Flotas();
+            $flota = new \stdClass();
             $flota->numeroflota = random_int(1, 100000);
             $flota->nick = random_int(1, 100) . "-" . random_int(1, 10000);
             $flota->ataque = random_int(1, 1000000);
