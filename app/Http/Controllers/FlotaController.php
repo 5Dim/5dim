@@ -15,6 +15,7 @@ use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Jugadores;
+use App\Models\Prioridades;
 use App\Models\ViewDaniosDisenios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -85,20 +86,38 @@ class FlotaController extends Controller
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
+        //prioridades
+
+        $prioridadesXDefecto=new Prioridades();
+        $prioridadesXDefecto->personal=1;
+        $prioridadesXDefecto->mineral=1;
+        $prioridadesXDefecto->cristal=1;
+        $prioridadesXDefecto->gas=1;
+        $prioridadesXDefecto->plastico=1;
+        $prioridadesXDefecto->ceramica=1;
+        $prioridadesXDefecto->liquido=1;
+        $prioridadesXDefecto->micros=1;
+        $prioridadesXDefecto->fuel=1;
+        $prioridadesXDefecto->ma=1;
+        $prioridadesXDefecto->municion=1;
+        $prioridadesXDefecto->creditos=1;
 
         // destinos
         $destinos=[];
         $origen=new Destinos();
         $origen->estrella=$planetaActual->estrella;
         $origen->orbita=$planetaActual->orbita;
+        $origen->porcentVel=100;
         array_push($destinos,$origen);
 
-        $origen=new Destinos();
-        $origen->estrella=-1;
-        $origen->orbita=-1;
-        array_push($destinos,$origen);
-        array_push($destinos,$origen);
-        array_push($destinos,$origen);
+        $dest=new Destinos();
+        $dest->estrella=-1;
+        $dest->orbita=-1;
+        $dest->porcentVel=100;
+        /// prioridades por defecto
+        array_push($destinos,$dest);
+        array_push($destinos,$dest);
+        array_push($destinos,$dest);
 
 
         return view('juego.flotas.flotas', compact(
@@ -121,6 +140,7 @@ class FlotaController extends Controller
             'constantes',
             'ViewDaniosDisenios',
             'destinos',
+
         ));
     }
 
@@ -139,18 +159,15 @@ class FlotaController extends Controller
     public function enviarFlota(Request $request, $id = false){ //$id es de la flota en orbita de la que salimos
 
 
-
-       //$valNaves = ($_POST['valnaves']);
-
         $navesEstacionadas = $request->input('navesEstacionadas');
-        $cargaDest = $request->input('cargaDest');
-        $prioridades = $request->input('prioridades');
+       // $cargaDest = $request->input('cargaDest');
+        //$prioridades = $request->input('prioridades');
         $datosBasicos = $request->input('datosBasicos');
-        $destinos = $request->input('destinos');
+        $destinos = $request->input('destinos'); //lleva las prioridades y cargas
 
         //$valNaves = ($_POST['valNaves']);
-        Log::info($navesEstacionadas);
-        Log::info($destinos);
+        //Log::info($navesEstacionadas);
+        //Log::info($destinos);
         $errores="";
 
         //// valores de las naves en planeta
@@ -160,13 +177,7 @@ class FlotaController extends Controller
         $disenios = [];
         foreach ($navesEstacionadas as $nave) {
 
-            //$coleccion=collect($valNaves);
-
-           // $navejs=$coleccion->where("iddisenio",$nave->disenios_id)->first();
-            isset($valNaves[$nave->disenios_id]) ? $navejs=$valNaves[$nave->disenios_id] : $navejs=null;
-
-
-            if(!empty($navejs) && $navejs->enflota>0 && $navejs->enhangar){
+            if($nave->enflota>0 || $nave->enhangar){
                 array_push($disenios,$nave->disenios);
             }
 
@@ -174,7 +185,7 @@ class FlotaController extends Controller
 
         Disenios::calculaMejoras($disenios);
 
-        //Log::error($disenios);
+        Log::info($disenios);
 
 
 

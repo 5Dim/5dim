@@ -72,6 +72,8 @@
                             <option value="transferir">Transferir</option>
                             <option value="orbitar">Orbitar</option>
                             <option value="recolectar">Recolectar</option>
+                            <option value="extraccion">Extracción</option>
+                            <option value="reciclar">Reciclar</option>
                             <option value="colonizar">Colonizar</option>
                             <option class="text-danger"value="atacar">Atacar</option>
                         </select>

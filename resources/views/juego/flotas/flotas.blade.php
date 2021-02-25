@@ -60,81 +60,81 @@
                         </tr>
                         @foreach ($navesEstacionadas as $nave)
                             <tr>
-                                <td name="nombre{{ $nave->id }}" id="nombre{{ $nave->id }}"
+                                <td name="nombre{{ $nave->disenios_id }}" id="nombre{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="ataque{{ $nave->id }}" id="ataque{{ $nave->id }}"
+                                <td name="ataque{{ $nave->disenios_id }}" id="ataque{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="defensa{{ $nave->id }}" id="defensa{{ $nave->id }}"
+                                <td name="defensa{{ $nave->disenios_id }}" id="defensa{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="carga{{ $nave->id }}" id="carga{{ $nave->id }}"
+                                <td name="carga{{ $nave->disenios_id }}" id="carga{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="hangarCazas{{ $nave->id }}" id="hangarCazas{{ $nave->id }}"
+                                <td name="hangarCazas{{ $nave->disenios_id }}" id="hangarCazas{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="hangarLigeras{{ $nave->id }}" id="hangarLigeras{{ $nave->id }}"
+                                <td name="hangarLigeras{{ $nave->disenios_id }}" id="hangarLigeras{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="hangarMedias{{ $nave->id }}" id="hangarMedias{{ $nave->id }}"
+                                <td name="hangarMedias{{ $nave->disenios_id }}" id="hangarMedias{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="hangarPesadas{{ $nave->id }}" id="hangarPesadas{{ $nave->id }}"
+                                <td name="hangarPesadas{{ $nave->disenios_id }}" id="hangarPesadas{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="maniobra{{ $nave->id }}" id="maniobra{{ $nave->id }}"
+                                <td name="maniobra{{ $nave->disenios_id }}" id="maniobra{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="velocidad{{ $nave->id }}" id="velocidad{{ $nave->id }}"
+                                <td name="velocidad{{ $nave->disenios_id }}" id="velocidad{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td name="cantidad{{ $nave->id }}" id="cantidad{{ $nave->id }}"
+                                <td name="cantidad{{ $nave->disenios_id }}" id="cantidad{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>
-                                <td id="selectaflota{{ $nave->id }}" class="anchofijo text-light"
+                                <td id="selectaflota{{ $nave->disenios_id }}" class="anchofijo text-light"
                                     style="max-width: 180px">
                                     <div class="input-group mb-3 input-group-sm borderless">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
                                                 <button type="button" class="btn btn-dark btn-sm text-warning"
-                                                    onclick="NaveAflota({{ $nave->id }},0)">
+                                                    onclick="NaveAflota({{ $nave->disenios_id }},0)">
                                                     0
                                                 </button>
                                             </span>
                                         </div>
-                                        <input id="enflota{{ $nave->id }}" type="text" class="form-control input"
-                                            value="0" aria-label="" onKeyUp="NaveAflota({{ $nave->id }},'x')"
+                                        <input id="enflota{{ $nave->disenios_id}}" type="text" class="form-control input"
+                                            value="0" aria-label="" onKeyUp="NaveAflota({{ $nave->disenios_id }},'x')"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
                                                 <button type="button" class="btn btn-dark btn-sm text-warning"
-                                                    onclick="NaveAflota({{ $nave->id }},'m')">
+                                                    onclick="NaveAflota({{ $nave->disenios_id }},'m')">
                                                     M
                                                 </button>
                                             </span>
                                         </div>
                                     </div>
                                 </td>
-                                <td id="selectahangar{{ $nave->id }}" class="anchofijo text-light"
+                                <td id="selectahangar{{ $nave->disenios_id }}" class="anchofijo text-light"
                                     style="max-width: 180px">
                                     <div class="input-group mb-3 input-group-sm borderless">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
                                                 <button type="button" class="btn btn-dark btn-sm text-warning"
-                                                    onclick="NaveAhangar({{ $nave->id }},0)">
+                                                    onclick="NaveAhangar({{ $nave->disenios_id }},0)">
                                                     0
                                                 </button>
                                             </span>
                                         </div>
-                                        <input id="enhangar{{ $nave->id }}" type="text" class="form-control input"
-                                            value="0" aria-label="" onKeyUp="NaveAhangar({{ $nave->id }},'x')"
+                                        <input id="enhangar{{ $nave->disenios_id }}" type="text" class="form-control input"
+                                            value="0" aria-label="" onKeyUp="NaveAhangar({{ $nave->disenios_id }},'x')"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
                                                 <button type="button" class="btn btn-dark btn-sm text-warning"
-                                                    onclick="NaveAhangar({{ $nave->id }},'m')">
+                                                    onclick="NaveAhangar({{ $nave->disenios_id }},'m')">
                                                     M
                                                 </button>
                                             </span>
@@ -158,7 +158,7 @@
                                 Nombre privado
                             </th>
                             <th class="text-warning align-middle">
-                                Capacidad de carga
+                                Carga
                             </th>
                             <th class="text-warning align-middle">
                                 Municion
@@ -184,6 +184,12 @@
                             <th class="text-warning align-middle">
                                 Defensa visible
                             </th>
+                            <th class="text-warning align-middle">
+                                Recolección
+                            </th>
+                            <th class="text-warning align-middle">
+                                Extracción
+                            </th>
                         </tr>
                         <tr>
                             <td>
@@ -207,6 +213,10 @@
                             <td id="totalataqueV" class="text-light align-middle">
                             </td>
                             <td id="totaldefensaV" class="text-light align-middle">
+                            </td>
+                            <td id="totalrecoleccionV" class="text-light align-middle">
+                            </td>
+                            <td id="totalextraccionV" class="text-light align-middle">
                             </td>
                         </tr>
                     </table>

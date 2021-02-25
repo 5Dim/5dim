@@ -28,7 +28,7 @@ function CrearOrigen(dest) {
 function CargarValoresPlaneta() {
     navesEstacionadas.forEach(nave => {
         var diseno = $.grep(diseniosJugador, function(valorBase) {
-            return valorBase.id == nave.id;
+            return valorBase.id == nave.disenios_id;
         })[0];
         MostrarResultadoDisenio(diseno);
 
@@ -40,7 +40,7 @@ function CargarValoresPlaneta() {
         valNaves[este].enhangar = 0;
         valNaves[este].tamanio = diseno.tamanio;
 
-        $("#nombre" + nave.id).text(diseno.nombre);
+        $("#nombre" + diseno.id).text(diseno.nombre);
     });
 
     RecalculoTotal();
@@ -79,6 +79,9 @@ function RecalculoTotal() {
         tablaHangares.fueraH[tamanio] = 0;
         tablaHangares.dentroH[tamanio] = 0;
     });
+    valFlotaT.extraccion = 0;
+    valFlotaT.recoleccion = 0;
+    valFlotaT.atotal =0;
 
     ///CALCULO
     // naves
@@ -92,6 +95,16 @@ function RecalculoTotal() {
         aflota = valnave.enflota;
         ahangar = valnave.enhangar;
         atotal = aflota + ahangar;
+
+        var estacionada= $.grep(navesEstacionadas, function(valor) {
+            return valor.disenios_id == nave.disenios_id;
+        })[0];
+
+        estacionada.enflota=aflota;
+        estacionada.enhangar=ahangar;
+
+        valFlotaT.extraccion += valnave.extraccion*atotal;
+        valFlotaT.recoleccion += valnave.recoleccion*atotal;
 
         if (atotal > 0) {
             valFlotaT.carga += valnave.carga * atotal;
@@ -118,11 +131,12 @@ function RecalculoTotal() {
         }
         tablaHangares.capacidadH.cargaMega = 0; //siempre
 
+        valFlotaT.atotal+=atotal;
         // pimtado esta nave
 
-        $("#cantidad" + nave.id).text(formatNumber(cantidad));
-        $("#enflota" + nave.id).val(aflota);
-        $("#enhangar" + nave.id).val(ahangar);
+        $("#cantidad" + nave.disenios_id).text(formatNumber(cantidad));
+        $("#enflota" + nave.disenios_id).val(aflota);
+        $("#enhangar" + nave.disenios_id).val(ahangar);
     });
 
     if (valFlotaT.velocidad > 999) {
@@ -143,6 +157,8 @@ function RecalculoTotal() {
     $("#totaldefensaR").text(formatNumber(valFlotaT.defensaR));
     $("#totalataqueV").text(formatNumber(valFlotaT.ataqueV));
     $("#totaldefensaV").text(formatNumber(valFlotaT.defensaV));
+    $("#totalextraccionV").text(formatNumber(valFlotaT.extraccion));
+    $("#totalrecoleccionV").text(formatNumber(valFlotaT.recoleccion));
 
     //pintando tabla hangares
 
@@ -161,6 +177,11 @@ function Avisos() {
     var errorHangares = false;
     errores = "";
     var sePuedeEnviar = true;
+
+    if (valFlotaT.atotal<1){
+        sePuedeEnviar = false;
+        errores += " Ninguna nave seleccionada";
+    }
 
     tamaniosArray.forEach(tamanio => {
         if (tablaHangares.dentroH[tamanio] > tablaHangares.capacidadH[tamanio]) {
@@ -191,9 +212,9 @@ function Avisos() {
             var tcarga = tamaniosNaveAcarga[valnave.tamanio];
 
             if (valnave.enhangar > 0 && tablaHangares.dentroH[tcarga] > 0) {
-                $("#selectahangar" + nave.id).addClass("bg-danger");
+                $("#selectahangar" + nave.disenios_id).addClass("bg-danger");
             } else {
-                $("#selectahangar" + nave.id).removeClass("bg-danger");
+                $("#selectahangar" + nave.disenios_id).removeClass("bg-danger");
             }
         });
     } else {
@@ -201,7 +222,7 @@ function Avisos() {
             .removeClass("text-danger")
             .addClass("text-warning");
         navesEstacionadas.forEach(nave => {
-            $("#selectahangar" + nave.id).removeClass("bg-danger");
+            $("#selectahangar" + nave.disenios_id).removeClass("bg-danger");
         });
     }
 
@@ -247,7 +268,6 @@ function Avisos() {
         $("#totalcarga").removeClass("bg-danger");
     }
 
-    var cantidadRealDestinos = 0;
 
     //falta fuel
 
@@ -258,6 +278,8 @@ function Avisos() {
             faltaFuel = true;
         }
     }
+
+    var cantidadRealDestinos=0;
 
     //las misiones son viables
     for (dest = 1; dest < destinos.length; dest++) {
@@ -276,21 +298,21 @@ function Avisos() {
             var ordenAnt = $("#ordenDest" + destAnt).val();
             var ordenPost = $("#ordenDest" + destPost).val();
             // no se puede llegar
-            if (ordenAnt == "" || ordenAnt == "transferir" || ordenAnt == "recolectar" || ordenAnt == "orbitar") {
+            if (ordenAnt == "" || ordenAnt == "transferir" || ordenAnt == "recolectar" || ordenAnt == "orbitar" || ordenAnt == "extraer") {
                 errores += " No se alcanzará destino " + dest;
                 hayErrorMision = true;
             }
 
             // soy la ultima y debe ser de cierre
             if (ordenPost != undefined) {
-                if (ordenPost.length < 1 && orden != "transferir" && orden != "recolectar" && orden != "orbitar") {
-                    errores += " la misión del último destino no es transferir, orbitar o recolectar";
+                if (ordenPost.length < 1 && orden != "transferir" && orden != "recolectar" && orden != "orbitar" || ordenAnt == "extraer") {
+                    errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
                     hayErrorMision = true;
                 }
             }
             if (destinos.length == destPost) {
-                if (orden != "transferir" && orden != "recolectar" && orden != "orbitar") {
-                    errores += " la misión del último destino no es transferir, orbitar o recolectar";
+                if (orden != "transferir" && orden != "recolectar" && orden != "orbitar" || ordenAnt == "extraer") {
+                    errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
                     hayErrorMision = true;
                 }
             }
@@ -348,8 +370,8 @@ function Avisos() {
             .removeClass("btn-success");
 
         $("#consumofuel1")
-            .addClass("bg-danger")
-            .removeClass("btn-warning");
+            .addClass("txt-danger")
+            .removeClass("txt-warning");
 
         $("#botonEnviar").prop("disabled", true);
     } else {
@@ -358,8 +380,8 @@ function Avisos() {
             .addClass("btn-success");
 
         $("#consumofuel1")
-            .removeClass("bg-danger")
-            .addClass("btn-warning");
+            .removeClass("txt-danger")
+            .addClass("txt-warning");
         $("#botonEnviar").prop("disabled", false);
     }
 }
@@ -385,9 +407,14 @@ function NaveAflota(iddisenio, canti = 0) {
     RecalculoTotal();
 }
 
-function NaveAhangar(id, canti = 0) {
+function NaveAhangar(iddisenio, canti = 0) {
+
+    var valnave= $.grep(valNaves, function(valor) {
+        return valor.iddisenio == iddisenio;
+    })[0];
+
     if (canti == "x") {
-        valnave.enhangar = 1 * $("#enhangar" + id).val();
+        valnave.enhangar = 1 * $("#enhangar" + iddisenio).val();
     } else if (canti == "m") {
         valnave.enhangar = valnave.cantidad + valnave.enhangar;
     } else {
@@ -418,7 +445,7 @@ function Calculoespacitiempo() {
             } else {
                 var porcentVel = $("#porcentVDest" + dest).val() / 100;
                 var fuelDest = GastoFuel(distancia, valFlotaT.fuel);
-                destinos[dest].porcentVel = porcentVel;
+                destinos[dest].porcentVel = porcentVel*100;
 
                 if (distancia < 10) {
                     $("#tipovelocidad" + dest).text("Vel. Impulso");
@@ -611,22 +638,6 @@ function enviarFlota() {
         }
 
 
-        navesEstacionadas.forEach(nave => {
-            var valnave= $.grep(valNaves, function(valor) {
-                return valor.iddisenio == nave.disenios_id;
-            })[0];
-
-            nave.enhangar=valnave.enhangar;
-            nave.enflota=valnave.enflota;
-
-        });
-
-
-        //var Odestinos= Object.assign({}, destinos);
-       // var OcargaDest= Object.assign({}, cargaDest);
-      //  var Oprioridades= Object.assign({}, prioridades);
-
-
 
         $.ajax({
             type: 'post',
@@ -638,10 +649,14 @@ function enviarFlota() {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             beforeSend: function() {
-                console.log("bloqueo botones");
+                $("#botonEnviar").prop("disabled", true);
+                var spinner='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....'
+                $("#botonEnviar").html(spinner);
             },
             success: function(response) {},
             error: function(xhr, textStatus, thrownError) {
+                $("#botonEnviar").text("Enviar Flota");
+                $("#botonEnviar").prop("disabled", false);
                 console.log("status", xhr.status);
                 console.log("error", thrownError);
             },

@@ -492,8 +492,9 @@ function calcularDisenios(disenios, mejoras, investigaciones, constantes) {
     var rdiseno = [];
     var resultado = [rdiseno];
 
+
     disenios.forEach(diseno => {
-        resultado[diseno.id] = CalculoDisenio(diseno);
+        resultado.push(CalculoDisenio(diseno));
     });
     MostrarResultadoDisenio(resultado);
     //console.log(resultado);
