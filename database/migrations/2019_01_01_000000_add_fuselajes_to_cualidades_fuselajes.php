@@ -14,7 +14,7 @@ class AddFuselajesToCualidadesFuselajes extends Migration
     public function up()
     {
         Schema::table('cualidades_fuselajes', function (Blueprint $table) {
-            $table->integer('fuselajes_id')->unsigned();
+            $table->unsignedBigInteger('fuselajes_id')->unsigned();
             $table->foreign('fuselajes_id')->references('id')->on('fuselajes');
         });
     }

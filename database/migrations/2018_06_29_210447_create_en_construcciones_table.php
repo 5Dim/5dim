@@ -14,7 +14,7 @@ class CreateEnConstruccionesTable extends Migration
     public function up()
     {
         Schema::create('en_construcciones', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->decimal('personal', 13, 2);
             $table->unsignedTinyInteger('nivel');
             $table->string('accion');

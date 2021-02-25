@@ -14,7 +14,7 @@ class CreateDependenciasTable extends Migration
     public function up()
     {
         Schema::create('dependencias', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('codigo')->index();
             $table->string('codigoRequiere');
             $table->unsignedTinyInteger('nivelRequiere');

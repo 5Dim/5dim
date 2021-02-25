@@ -27,6 +27,8 @@ class CreateRecursosEnOrbitasTable extends Migration
             $table->decimal('ma', 11, 2);
             $table->decimal('municion', 11, 2);
             $table->decimal('creditos', 13, 2);
+            $table->unsignedBigInteger('enorbitas_id')->unsigned();
+            $table->foreign('enorbitas_id')->references('id')->on('en_orbitas');
             $table->timestamps();
         });
     }

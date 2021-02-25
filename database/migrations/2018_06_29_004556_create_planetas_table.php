@@ -14,7 +14,7 @@ class CreatePlanetasTable extends Migration
     public function up()
     {
         Schema::create('planetas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedMediumInteger('estrella')->index();
             $table->unsignedTinyInteger('orbita');
             $table->string('nombre')->nullable()->index();

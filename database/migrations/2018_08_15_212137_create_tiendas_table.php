@@ -14,7 +14,7 @@ class CreateTiendasTable extends Migration
     public function up()
     {
         Schema::create('tiendas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('codigo')->index();
             $table->unsignedMediumInteger('coste');
             $table->timestamps();

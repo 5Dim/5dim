@@ -14,7 +14,7 @@ class CreateInvestigacionesTable extends Migration
     public function up()
     {
         Schema::create('investigaciones', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('codigo')->index();
             $table->string('categoria')->nullable();
             $table->unsignedTinyInteger('nivel')->default(0);

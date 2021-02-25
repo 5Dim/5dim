@@ -14,7 +14,7 @@ class CreateCostesDiseniosTable extends Migration
     public function up()
     {
         Schema::create('costes_disenios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->decimal('mineral', 12, 0)->default(0);
             $table->decimal('cristal', 12, 0)->default(0);
             $table->unsignedInteger('gas')->default(0);

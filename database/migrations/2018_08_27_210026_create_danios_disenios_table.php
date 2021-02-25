@@ -14,7 +14,7 @@ class CreateDaniosDiseniosTable extends Migration
     public function up()
     {
         Schema::create('danios_disenios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('investigacion');
             $table->string('fila');
             $table->unsignedInteger('distancia0')->default(0);

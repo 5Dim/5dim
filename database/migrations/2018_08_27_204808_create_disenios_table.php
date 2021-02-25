@@ -14,7 +14,7 @@ class CreateDiseniosTable extends Migration
     public function up()
     {
         Schema::create('disenios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('nombre');
             $table->string('descripcion')->default("");
             $table->integer('posicion')->default(9);

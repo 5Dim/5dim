@@ -14,7 +14,7 @@ class AddJugadorIdToMensaje extends Migration
     public function up()
     {
         Schema::table('mensajes', function (Blueprint $table) {
-            $table->integer('emisor')->unsigned();
+            $table->unsignedBigInteger('emisor')->unsigned();
             $table->foreign('emisor')->references('id')->on('jugadores');
         });
     }

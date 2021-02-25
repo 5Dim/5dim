@@ -14,7 +14,7 @@ class CreateEnDiseniosTable extends Migration
     public function up()
     {
         Schema::create('en_disenios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('nombre');
             $table->string('accion');
             $table->unsignedMediumInteger('cantidad');

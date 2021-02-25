@@ -14,7 +14,7 @@ class CreateFuselajesTable extends Migration
     public function up()
     {
         Schema::create('fuselajes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('codigo')->index();
             $table->string('tamanio');
             $table->string('tipo');

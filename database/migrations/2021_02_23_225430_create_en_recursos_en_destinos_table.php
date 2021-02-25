@@ -27,6 +27,8 @@ class CreateEnRecursosEnDestinosTable extends Migration
             $table->decimal('ma', 11, 2);
             $table->decimal('municion', 11, 2);
             $table->decimal('creditos', 13, 2);
+            $table->unsignedBigInteger('destinos_id')->unsigned();
+            $table->foreign('destinos_id')->references('id')->on('destinos');
             $table->timestamps();
         });
     }

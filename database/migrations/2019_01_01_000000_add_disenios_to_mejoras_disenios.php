@@ -14,7 +14,7 @@ class AddDiseniosToMejorasDisenios extends Migration
     public function up()
     {
         Schema::table('mejoras_disenios', function (Blueprint $table) {
-            $table->integer('disenios_id')->unsigned();
+            $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
         });
     }

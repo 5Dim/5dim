@@ -14,7 +14,7 @@ class CreateConstantesTable extends Migration
     public function up()
     {
         Schema::create('constantes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('codigo')->index();
             $table->decimal('valor', 12, 3);
             $table->decimal('minimo', 12, 3);

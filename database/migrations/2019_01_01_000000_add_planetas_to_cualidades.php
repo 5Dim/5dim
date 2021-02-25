@@ -14,7 +14,7 @@ class AddPlanetasToCualidades extends Migration
     public function up()
     {
         Schema::table('cualidades_planetas', function (Blueprint $table) {
-            $table->integer('planetas_id')->unsigned();
+            $table->unsignedBigInteger('planetas_id')->unsigned();
             $table->foreign('planetas_id')->references('id')->on('planetas');
         });
     }

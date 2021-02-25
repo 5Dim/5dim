@@ -14,7 +14,7 @@ class CreateCualidadesFuselajesTable extends Migration
     public function up()
     {
         Schema::create('cualidades_fuselajes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedInteger('masa');
             $table->unsignedInteger('energia');
             $table->unsignedInteger('tiempo');

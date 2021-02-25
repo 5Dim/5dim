@@ -14,7 +14,7 @@ class AddDiseniosToEnDisenioEnPlanetas extends Migration
     public function up()
     {
         Schema::table('disenios_en_planetas', function (Blueprint $table) {
-            $table->integer('disenios_id')->unsigned();
+            $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
         });
     }

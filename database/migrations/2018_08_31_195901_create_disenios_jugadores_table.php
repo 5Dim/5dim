@@ -14,7 +14,7 @@ class CreateDiseniosJugadoresTable extends Migration
     public function up()
     {
         Schema::create('disenios_jugadores', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
         });
     }
 

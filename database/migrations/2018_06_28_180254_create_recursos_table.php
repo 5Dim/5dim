@@ -14,7 +14,7 @@ class CreateRecursosTable extends Migration
     public function up()
     {
         Schema::create('recursos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->decimal('personal', 13, 2); //99.999.999.999
             $table->decimal('mineral', 13, 2);
             $table->decimal('cristal', 13, 2);

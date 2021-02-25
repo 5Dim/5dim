@@ -14,7 +14,7 @@ class CreateCostesFuselajesTable extends Migration
     public function up()
     {
         Schema::create('costes_fuselajes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('mineral');
             $table->integer('cristal');
             $table->integer('gas');

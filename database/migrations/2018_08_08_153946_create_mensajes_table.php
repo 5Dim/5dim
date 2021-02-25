@@ -14,7 +14,7 @@ class CreateMensajesTable extends Migration
     public function up()
     {
         Schema::create('mensajes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('asunto');
             $table->mediumText('mensaje');
             $table->string('categoria')->index();

@@ -14,7 +14,7 @@ class CreateCostesArmasTable extends Migration
     public function up()
     {
         Schema::create('costes_armas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedMediumInteger('mineral');
             $table->unsignedMediumInteger('cristal');
             $table->unsignedMediumInteger('gas');

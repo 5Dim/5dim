@@ -14,7 +14,7 @@ class CreateMensajesIntervinientesTable extends Migration
     public function up()
     {
         Schema::create('mensajes_intervinientes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->boolean('leido');
             $table->timestamps();
         });

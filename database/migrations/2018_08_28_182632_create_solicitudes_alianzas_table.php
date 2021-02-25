@@ -14,7 +14,7 @@ class CreateSolicitudesAlianzasTable extends Migration
     public function up()
     {
         Schema::create('solicitudes_alianzas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->text('solicitud');
             $table->timestamps();
         });

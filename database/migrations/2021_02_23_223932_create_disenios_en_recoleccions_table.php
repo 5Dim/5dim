@@ -17,9 +17,11 @@ class CreateDiseniosEnRecoleccionsTable extends Migration
             $table->id();
             $table->unsignedMediumInteger('enFlota')->default(0);
             $table->unsignedMediumInteger('enHangar')->default(0);
+            $table->timestamps();
             $table->integer('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
-            $table->timestamps();
+            $table->unsignedBigInteger('enrecoleccions_id')->unsigned();
+            $table->foreign('enrecoleccions_id')->references('id')->on('en_recoleccions');
         });
     }
 

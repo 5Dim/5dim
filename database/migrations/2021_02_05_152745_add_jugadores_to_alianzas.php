@@ -14,7 +14,7 @@ class AddJugadoresToAlianzas extends Migration
     public function up()
     {
         Schema::table('alianzas', function (Blueprint $table) {
-            $table->integer('jugadores_id')->unsigned();
+            $table->unsignedBigInteger('jugadores_id')->unsigned();
         });
     }
 

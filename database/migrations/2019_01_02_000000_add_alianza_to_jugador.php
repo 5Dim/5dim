@@ -14,7 +14,7 @@ class AddAlianzaToJugador extends Migration
     public function up()
     {
         Schema::table('jugadores', function (Blueprint $table) {
-            $table->integer('alianzas_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('alianzas_id')->unsigned()->nullable();
             $table->foreign('alianzas_id')->references('id')->on('alianzas');
         });
     }

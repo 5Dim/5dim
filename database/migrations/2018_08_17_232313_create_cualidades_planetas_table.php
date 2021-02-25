@@ -14,7 +14,7 @@ class CreateCualidadesPlanetasTable extends Migration
     public function up()
     {
         Schema::create('cualidades_planetas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedTinyInteger('mineral');
             $table->unsignedTinyInteger('cristal');
             $table->unsignedTinyInteger('gas');

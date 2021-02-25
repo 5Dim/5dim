@@ -14,10 +14,9 @@ class AddInvestigacionesIdToEninvestigaciones extends Migration
     public function up()
     {
         Schema::table('en_investigaciones', function (Blueprint $table) {
-            $table->integer('investigaciones_id')->unsigned();
+            $table->unsignedBigInteger('investigaciones_id')->unsigned();
             $table->foreign('investigaciones_id')->references('id')->on('investigaciones');
-
-            $table->integer('planetas_id')->unsigned();
+            $table->unsignedBigInteger('planetas_id')->unsigned();
             $table->foreign('planetas_id')->references('id')->on('planetas');
         });
     }

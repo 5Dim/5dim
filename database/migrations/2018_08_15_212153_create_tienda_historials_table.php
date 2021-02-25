@@ -14,7 +14,7 @@ class CreateTiendaHistorialsTable extends Migration
     public function up()
     {
         Schema::create('tienda_historials', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('accion');
             $table->unsignedMediumInteger('coste');
             $table->timestamps();

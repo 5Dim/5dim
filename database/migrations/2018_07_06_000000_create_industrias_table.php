@@ -14,7 +14,7 @@ class CreateIndustriasTable extends Migration
     public function up()
     {
         Schema::create('industrias', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->boolean('liquido'); // si esta activa la industria
             $table->boolean('micros');
             $table->boolean('fuel');

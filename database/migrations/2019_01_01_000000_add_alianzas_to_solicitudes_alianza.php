@@ -14,7 +14,7 @@ class AddAlianzasToSolicitudesAlianza extends Migration
     public function up()
     {
         Schema::table('solicitudes_alianzas', function (Blueprint $table) {
-            $table->integer('alianzas_id')->unsigned();
+            $table->unsignedBigInteger('alianzas_id')->unsigned();
             $table->foreign('alianzas_id')->references('id')->on('alianzas');
         });
     }

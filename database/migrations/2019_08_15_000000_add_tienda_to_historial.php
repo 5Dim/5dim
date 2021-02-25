@@ -14,7 +14,7 @@ class AddTiendaToHistorial extends Migration
     public function up()
     {
         Schema::table('tienda_historials', function (Blueprint $table) {
-            $table->integer('tiendas_id')->unsigned();
+            $table->unsignedBigInteger('tiendas_id')->unsigned();
             $table->foreign('tiendas_id')->references('id')->on('tiendas');
         });
     }

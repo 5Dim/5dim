@@ -14,7 +14,7 @@ class CreateDestinosTable extends Migration
     public function up()
     {
         Schema::create('destinos', function (Blueprint $table) { // Relacionado con planeta y flotas
-            $table->increments('id');
+            $table->id();
             $table->decimal('porcentVel', 5, 2, true);
             $table->string('mision');
             $table->decimal('coordx', 8, 2, true);
@@ -22,6 +22,8 @@ class CreateDestinosTable extends Migration
             $table->unsignedMediumInteger('estrella');
             $table->unsignedTinyInteger('orbita');
             $table->timestamps();
+            $table->unsignedBigInteger('envuelos_id')->unsigned();
+            $table->foreign('envuelos_id')->references('id')->on('en_vuelos');
         });
     }
 

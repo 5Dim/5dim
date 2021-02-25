@@ -14,9 +14,9 @@ class AddMensajeIdToIntervinientes extends Migration
     public function up()
     {
         Schema::table('mensajes_intervinientes', function (Blueprint $table) {
-            $table->integer('mensajes_id')->unsigned();
+            $table->unsignedBigInteger('mensajes_id')->unsigned();
             $table->foreign('mensajes_id')->references('id')->on('mensajes');
-            $table->integer('receptor')->unsigned();
+            $table->unsignedBigInteger('receptor')->unsigned();
             $table->foreign('receptor')->references('id')->on('jugadores');
         });
     }

@@ -14,7 +14,7 @@ class CreatePrioridadesTable extends Migration
     public function up()
     {
         Schema::create('prioridades', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedTinyInteger('personal');
             $table->unsignedTinyInteger('mineral');
             $table->unsignedTinyInteger('cristal');

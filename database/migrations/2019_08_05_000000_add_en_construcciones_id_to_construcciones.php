@@ -14,7 +14,7 @@ class AddEnConstruccionesIdToConstrucciones extends Migration
     public function up()
     {
         Schema::table('en_construcciones', function (Blueprint $table) {
-            $table->integer('construcciones_id')->unsigned();
+            $table->unsignedBigInteger('construcciones_id')->unsigned();
             $table->foreign('construcciones_id')->references('id')->on('construcciones');
         });
     }

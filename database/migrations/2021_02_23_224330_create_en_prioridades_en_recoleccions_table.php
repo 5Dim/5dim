@@ -27,6 +27,8 @@ class CreateEnPrioridadesEnRecoleccionsTable extends Migration
             $table->unsignedTinyInteger('ma');
             $table->unsignedTinyInteger('municion');
             $table->unsignedTinyInteger('creditos');
+            $table->unsignedBigInteger('enreoleccions_id')->unsigned();
+            $table->foreign('enreoleccions_id')->references('id')->on('en_reoleccions');
             $table->timestamps();
         });
     }

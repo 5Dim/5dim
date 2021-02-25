@@ -14,7 +14,7 @@ class CreateProduccionesTable extends Migration
     public function up()
     {
         Schema::create('producciones', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedTinyInteger('nivel');
             $table->unsignedMediumInteger('personal');
             $table->unsignedMediumInteger('mineral');

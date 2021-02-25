@@ -27,6 +27,8 @@ class CreateRecursosEnRecoleccionsTable extends Migration
             $table->decimal('ma', 11, 2);
             $table->decimal('municion', 11, 2);
             $table->decimal('creditos', 13, 2);
+            $table->unsignedBigInteger('enrecoleccions_id')->unsigned();
+            $table->foreign('enrecoleccions_id')->references('id')->on('en_recoleccions');
             $table->timestamps();
         });
     }

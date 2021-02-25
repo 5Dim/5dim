@@ -14,7 +14,7 @@ class CreateAlianzasTable extends Migration
     public function up()
     {
         Schema::create('alianzas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('nombre')->unique();
             $table->string('tag')->unique();
             $table->string('estandarte');

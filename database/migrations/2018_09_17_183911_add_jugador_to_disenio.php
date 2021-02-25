@@ -14,7 +14,7 @@ class AddJugadorToDisenio extends Migration
     public function up()
     {
         Schema::table('disenios', function (Blueprint $table) {
-            $table->integer('jugadores_id')->unsigned();
+            $table->unsignedBigInteger('jugadores_id')->unsigned();
             $table->foreign('jugadores_id')->references('id')->on('jugadores');
         });
     }

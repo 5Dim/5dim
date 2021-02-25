@@ -14,9 +14,9 @@ class AddFuselajesToFuselajesJugadores extends Migration
     public function up()
     {
         Schema::table('fuselajes_jugadores', function (Blueprint $table) {
-            $table->integer('fuselajes_id')->unsigned();
+            $table->unsignedBigInteger('fuselajes_id')->unsigned();
             $table->foreign('fuselajes_id')->references('id')->on('fuselajes');
-            $table->integer('jugadores_id')->unsigned();
+            $table->unsignedBigInteger('jugadores_id')->unsigned();
             $table->foreign('jugadores_id')->references('id')->on('jugadores');
         });
     }

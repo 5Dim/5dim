@@ -14,7 +14,7 @@ class CreateArmasTable extends Migration
     public function up()
     {
         Schema::create('armas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedTinyInteger('codigo')->unique();
             $table->string('nombre');
             $table->string('descripcion')->nullable();

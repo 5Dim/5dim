@@ -14,7 +14,7 @@ class CreateFuselajesJugadoresTable extends Migration
     public function up()
     {
         Schema::create('fuselajes_jugadores', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
         });
     }
 

@@ -14,7 +14,7 @@ class CreateMejorasDiseniosTable extends Migration
     public function up()
     {
         Schema::create('mejoras_disenios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedInteger('invPropQuimico')->default(0);
             $table->unsignedInteger('invPropNuk')->default(0);
             $table->unsignedInteger('invPropIon')->default(0);

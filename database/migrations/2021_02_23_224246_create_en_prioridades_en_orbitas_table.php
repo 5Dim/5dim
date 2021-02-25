@@ -27,6 +27,8 @@ class CreateEnPrioridadesEnOrbitasTable extends Migration
             $table->unsignedTinyInteger('ma');
             $table->unsignedTinyInteger('municion');
             $table->unsignedTinyInteger('creditos');
+            $table->unsignedBigInteger('enorbitas_id')->unsigned();
+            $table->foreign('enorbitas_id')->references('id')->on('en_orbitas');
             $table->timestamps();
         });
     }
