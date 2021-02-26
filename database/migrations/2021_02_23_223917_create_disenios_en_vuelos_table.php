@@ -18,7 +18,7 @@ class CreateDiseniosEnVuelosTable extends Migration
             $table->unsignedMediumInteger('enFlota')->default(0);
             $table->unsignedMediumInteger('enHangar')->default(0);
             $table->timestamps();
-            $table->integer('disenios_id')->unsigned();
+            $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
             $table->unsignedBigInteger('envuelos_id')->unsigned();
             $table->foreign('envuelos_id')->references('id')->on('en_vuelos');

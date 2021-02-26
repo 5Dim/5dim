@@ -18,7 +18,7 @@ class CreateDiseniosEnOrbitasTable extends Migration
             $table->unsignedMediumInteger('enFlota')->default(0);
             $table->unsignedMediumInteger('enHangar')->default(0);
             $table->timestamps();
-            $table->integer('disenios_id')->unsigned();
+            $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
             $table->unsignedBigInteger('enorbita_id')->unsigned();
             $table->foreign('enorbita_id')->references('id')->on('en_orbitas');
