@@ -16,6 +16,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\Prioridades;
+use App\Models\Flotas;
 use App\Models\ViewDaniosDisenios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -162,35 +163,118 @@ class FlotaController extends Controller
         $navesEstacionadas = $request->input('navesEstacionadas');
        // $cargaDest = $request->input('cargaDest');
         //$prioridades = $request->input('prioridades');
-        $datosBasicos = $request->input('datosBasicos');
+        //$datosBasicos = $request->input('datosBasicos');
         $destinos = $request->input('destinos'); //lleva las prioridades y cargas
 
-        //$valNaves = ($_POST['valNaves']);
-        //Log::info($navesEstacionadas);
-        //Log::info($destinos);
         $errores="";
 
         //// valores de las naves en planeta
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        $navesEstacionadas = $planetaActual->estacionadas;
+        $navesEnPlaneta = $planetaActual->estacionadas;
 
+
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        $diseniosJugador = $jugadorActual->disenios;
+
+        Log::info($navesEnPlaneta);
         $disenios = [];
-        foreach ($navesEstacionadas as $nave) {
+        $araycolumn=array_column($navesEstacionadas, 'disenios_id');
 
-            if($nave->enflota>0 || $nave->enhangar){
-                array_push($disenios,$nave->disenios);
+        foreach ($diseniosJugador as $disenio) {
+
+            $key = array_search($disenio->id, $araycolumn );  //de los diseños
+            if (false !== $key)
+            {
+                $nave=$navesEstacionadas[$key]; // enviar
+
+                $enhangar=$nave['enhangar'];
+                $enflota=$nave['enflota'];
+
+                if($enflota>0 || $enhangar>0){
+
+                    $naveP=$navesEnPlaneta->firstWhere('disenios_id',$nave['disenios_id']);
+
+                    $cantidad=$naveP['cantidad'];
+
+                    if ($cantidad<$enflota+$enhangar){
+                        $errores="Mas naves a enviar de las que hay (".$nave['disenios_id'].")".$cantidad." ".$enflota." ".$enhangar;
+                        Log::info($errores);
+                        break;
+                    }
+
+                    $disenio['enflota']=$enflota;
+                    $disenio['enhangar']=$enhangar;
+                    $disenio['cantidad']=$cantidad;
+
+                    array_push($disenios,$disenio);
+
+                }
             }
-
         }
 
+        //Log::info($disenios);
+    if (strlen($errores)<1){
+
+        $tamaniosArray = array("cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega");
+        $tamaniosNaveAcarga = array( 'caza'=> "cargaPequenia", 'ligera'=> "cargaMediana", 'media'=> "cargaGrande", 'pesada'=> "cargaEnorme", 'estacion'=> "cargaMega" );
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+
+        $fueraH = [];
+        $dentroH = [];
+        $capacidadH = [];
+        $tablaHangares = [];
+        $tablaHangares['fueraH'] = $fueraH;
+        $tablaHangares['dentroH'] = $dentroH;
+        $tablaHangares['capacidadH'] = $capacidadH;
+
+            foreach ($tamaniosArray as $tamanio) {
+                $tablaHangares['capacidadH'][$tamanio] = 0;
+                $tablaHangares['fueraH'][$tamanio] = 0;
+                $tablaHangares['dentroH'][$tamanio] = 0;
+            };
+
+
+            $valFlotaT=[];
+            //reinicio valores
+            $valFlotaT['carga']=0;
+            $valFlotaT['municion']=0;
+            $valFlotaT['fuel']=0;
+            $valFlotaT['velocidad']=0;
+            $valFlotaT['maniobra']=0;
+            $valFlotaT['ataqueR']=0;
+            $valFlotaT['defensaR']=0;
+            $valFlotaT['ataqueV']=0;
+            $valFlotaT['defensaV']=0;
+            $valFlotaT['extraccion']=0;
+            $valFlotaT['recoleccion']=0;
+            $valFlotaT['atota']=0;
+            $valFlotaT['fuelDestT']=0;
+
+
         Disenios::calculaMejoras($disenios);
+            //formatear misiones
 
-        Log::info($disenios);
+        Flotas::calculoFlota($disenios,$valFlotaT,$destinos,$tablaHangares);
 
+        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
+        Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos);
+
+    }
+
+    //se envia la flota
+    if (strlen($errores)<1){
+        //$destinos = new destinos();
+
+    }
+
+       // var_dump($disenios);
+       // Log::info($disenios[0]);
+       // FlotaController::calculoFlota($disenios);
 
 
         return compact('errores');
     }
+
 
 
 }
