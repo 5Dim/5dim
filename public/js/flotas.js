@@ -279,7 +279,6 @@ function Avisos() {
         }
     }
 
-    var cantidadRealDestinos=0;
 
     //las misiones son viables
     for (dest = 1; dest < destinos.length; dest++) {
@@ -293,7 +292,6 @@ function Avisos() {
 
         if (orden != "") {
             var img = origenImagenes + "/flotas/" + orden + ".jpg";
-            cantidadRealDestinos++;
 
             var ordenAnt = $("#ordenDest" + destAnt).val();
             var ordenPost = $("#ordenDest" + destPost).val();
