@@ -17,11 +17,18 @@ class CreateDestinosTable extends Migration
             $table->increments('id');
             $table->decimal('porcentVel', 5, 2, true);
             $table->string('mision');
-            $table->decimal('coordx', 8, 2, true);
-            $table->decimal('coordy', 8, 2, true);
             $table->unsignedMediumInteger('estrella');
             $table->unsignedTinyInteger('orbita');
-            $table->timestamps();
+
+            $table->unsigneddecimal('initcoordx', 8, 2, true);
+            $table->unsigneddecimal('initcoordy', 8, 2, true);
+            $table->unsigneddecimal('fincoordx', 8, 2, true);
+            $table->unsigneddecimal('fincoordy', 8, 2, true);
+            $table->decimal('vectorx', 8, 2);
+            $table->decimal('vectory', 8, 2);
+
+            $table->timestamp('init');
+            $table->timestamp('fin');
         });
     }
 

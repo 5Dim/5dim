@@ -17,12 +17,6 @@ class CreateEnVuelosTable extends Migration
             $table->id();
             $table->string('nombre')->index(); // nombre privado, para ti unicamente
             $table->string('publico')->index(); // nombre publico, la que ven todos
-            $table->unsignedMediumInteger('coordxinit')->nullable();
-            $table->unsignedMediumInteger('coordyinit')->nullable();
-            $table->unsignedMediumInteger('coordx')->nullable();
-            $table->unsignedMediumInteger('coordy')->nullable();
-            $table->decimal('vectorx', 8, 2);
-            $table->decimal('vectory', 8, 2);
             $table->unsignedBigInteger('ataqueReal')->nullable();
             $table->unsignedBigInteger('defensaReal')->nullable();
             $table->unsignedBigInteger('ataqueVisible')->nullable();
