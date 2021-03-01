@@ -75,7 +75,7 @@ class Disenios extends Model
             $disenio->datos->invPropPlasma = $mejoras->invPropPlasma * (1 + ($investigaciones->where('codigo', 'invPropPlasma')->first()->nivel * $constantes->where('codigo', 'mejorainvPropPlasma')->first()->valor));
             $disenio->datos->invPropMa = $mejoras->invPropMa * (1 + ($investigaciones->where('codigo', 'invPropMa')->first()->nivel * $constantes->where('codigo', 'mejorainvPropMa')->first()->valor));
 
-            $disenio->datos->velocidad = pow(($disenio->datos->invPropQuimico + $disenio->datos->invPropNuk + $disenio->datos->invPropIon + $disenio->datos->invPropPlasma + $disenio->datos->invPropMa), 1.33) / $mejoras->masa;
+            $disenio->datos->velocidad =round( pow(($disenio->datos->invPropQuimico + $disenio->datos->invPropNuk + $disenio->datos->invPropIon + $disenio->datos->invPropPlasma + $disenio->datos->invPropMa), 1.33) / $mejoras->masa);
 
             // Maniobra
             $disenio->datos->invManiobraQuimico = $mejoras->invManiobraQuimico * (1 + ($investigaciones->where('codigo', 'invPropQuimico')->first()->nivel * $constantes->where('codigo', 'mejorainvManiobraQuimico')->first()->valor));
@@ -84,7 +84,7 @@ class Disenios extends Model
             $disenio->datos->invManiobraPlasma = $mejoras->invManiobraPlasma * (1 + ($investigaciones->where('codigo', 'invPropPlasma')->first()->nivel * $constantes->where('codigo', 'mejorainvManiobraPlasma')->first()->valor));
             $disenio->datos->invManiobraMa = $mejoras->invManiobraMa * (1 + ($investigaciones->where('codigo', 'invPropMa')->first()->nivel * $constantes->where('codigo', 'mejorainvManiobraMa')->first()->valor));
 
-            $disenio->datos->maniobra = pow(($disenio->datos->invManiobraQuimico + $disenio->datos->invManiobraNuk + $disenio->datos->invManiobraIon + $disenio->datos->invManiobraPlasma + $disenio->datos->invManiobraMa), 1.33) / $mejoras->masa;
+            $disenio->datos->maniobra =round( pow(($disenio->datos->invManiobraQuimico + $disenio->datos->invManiobraNuk + $disenio->datos->invManiobraIon + $disenio->datos->invManiobraPlasma + $disenio->datos->invManiobraMa), 1.33) / $mejoras->masa);
 
             // Blindajes
             $disenio->datos->invTitanio = $mejoras->invTitanio * (1 + ($investigaciones->where('codigo', 'invTitanio')->first()->nivel * $constantes->where('codigo', 'mejorainvTitanio')->first()->valor));
