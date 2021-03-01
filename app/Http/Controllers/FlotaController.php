@@ -239,31 +239,49 @@ class FlotaController extends Controller
             $valFlotaT['carga']=0;
             $valFlotaT['municion']=0;
             $valFlotaT['fuel']=0;
-            $valFlotaT['velocidad']=0;
-            $valFlotaT['maniobra']=0;
+            $valFlotaT['velocidad']=999;
+            $valFlotaT['maniobra']=999;
             $valFlotaT['ataqueR']=0;
             $valFlotaT['defensaR']=0;
             $valFlotaT['ataqueV']=0;
             $valFlotaT['defensaV']=0;
             $valFlotaT['extraccion']=0;
             $valFlotaT['recoleccion']=0;
-            $valFlotaT['atota']=0;
             $valFlotaT['fuelDestT']=0;
-
+            $valFlotaT['atotal']=0;
 
         Disenios::calculaMejoras($disenios);
+        //Log::info($disenios[0]);
             //formatear misiones
 
-        Flotas::calculoFlota($disenios,$valFlotaT,$destinos,$tablaHangares);
+        //añado tamaños
+        foreach ($disenios as $disenio) {
+            $disenio->tamanio = $disenio->fuselajes->tamanio;
+        }
+
+        $result=Flotas::calculoFlota($disenios,$valFlotaT,$destinos,$tablaHangares);
+        $valFlotaT=$result[0];
+        $destinos=$result[1];
+        $tablaHangares=$result[2];
+
+
+        Log::info($valFlotaT);
 
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos);
+        $resultValidar=Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos);
 
+        $errores=$resultValidar[0];
     }
 
     //se envia la flota
     if (strlen($errores)<1){
-        //$destinos = new destinos();
+        //construyendo destinos
+        for ($dest = 1; $dest < count($destinos); $dest++) {
+            $destino = new destinos();
+
+
+        }
+        /
 
     }
 

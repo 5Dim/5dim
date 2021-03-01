@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Flotas extends Model
 {
@@ -19,23 +19,27 @@ class Flotas extends Model
 
             //bucle por nave
             foreach($disenios as $disenio){
+                //Log::info($disenio);
 
                 $aflota = $disenio['enflota'];
                 $ahangar = $disenio['enhangar'];
                 $atotal = $aflota + $ahangar;
                // $valFlotaT['extraccion'] += $disenios['extraccion']* $atotal;
                // $valFlotaT['recoleccion'] += $disenios['recoleccion']* $atotal;
+                //Log::info("a total ".$atotal);
 
-               $valFlotaT['carga'] += $disenio['carga'] * $atotal;
-               $valFlotaT['fuel'] += $disenio['fuel'] * $aflota;
-               $valFlotaT['ataqueR'] += $disenio['ataque'] * $atotal;
-               $valFlotaT['defensaR'] += $disenio['defensa'] * $atotal;
-               $valFlotaT['ataqueV'] += $disenio['ataque'] * $aflota;
-               $valFlotaT['defensaV'] += $disenio['defensa'] * $aflota;
+               $valFlotaT['carga'] += $disenio['datos']['carga'] * $atotal;
+               $valFlotaT['fuel'] += $disenio['datos']['fuel'] * $aflota;
+               $valFlotaT['ataqueR'] += $disenio['datos']['ataque'] * $atotal;
+               $valFlotaT['defensaR'] += $disenio['datos']['defensa'] * $atotal;
+               $valFlotaT['ataqueV'] += $disenio['datos']['ataque'] * $aflota;
+               $valFlotaT['defensaV'] += $disenio['datos']['defensa'] * $aflota;
+
+                //Log::info($valFlotaT['carga'] ."+=". $disenio['carga'] ."*". $atotal);
 
                 if ($aflota > 0) {
-                    $valFlotaT['velocidad'] = min($disenio['velocidad'], $valFlotaT['velocidad']);
-                    $valFlotaT['maniobra'] = min($disenio['maniobra'], $valFlotaT['maniobra']);
+                    $valFlotaT['velocidad'] = min($disenio['datos']['velocidad'], $valFlotaT['velocidad']);
+                    $valFlotaT['maniobra'] = min($disenio['datos']['maniobra'], $valFlotaT['maniobra']);
                 }
 
                 //hangares
@@ -43,7 +47,7 @@ class Flotas extends Model
                 forEach($tamaniosArray as $tamaniod){
                     $tablaHangares['capacidadH'][$tamaniod] += $atotal * $disenio[$tamaniod];
                 };
-
+                //Log::info($disenio);
                 $tcarga = $tamaniosNaveAcarga[$disenio['tamanio']];
                 $tablaHangares['dentroH'][$tcarga] += $ahangar;
                 $tablaHangares['fueraH'][$tcarga] += $aflota;
@@ -53,7 +57,11 @@ class Flotas extends Model
                 $valFlotaT['atotal']+=$atotal;
             }
 
-            Flotas::calculoespaciotiempo($destinos,$valFlotaT);
+            //Log::info("calculo flota");
+            //Log::info($valFlotaT);
+            $result=Flotas::calculoespaciotiempo($destinos,$valFlotaT);
+
+            return [$result[1],$result[0],$tablaHangares];
     }
 
     public static function validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos){ // calcula los valores de una flota
@@ -159,8 +167,6 @@ class Flotas extends Model
                 }
 
             }
-
-
         }
 
 
@@ -174,12 +180,14 @@ class Flotas extends Model
             };
         }
 
+        return $errores;
+
     }
 
     public static function calculoespaciotiempo($destinos,$valFlotaT) {
         $fuelDestT = 0;
-        $constantesU = Constantes::where('tipo', 'universo')->get();
-        $fueldistancia = $constantesU->where('codigo', 'fueldistancia')->first()->valor;
+        $constantesU = Constantes::where('tipo', 'universo')->get(); //Log::info($constantesU);
+        $fueldistancia = $constantesU->where('codigo', 'fuelpordistancia')->first()->valor;
         $factortiempoviaje=$constantesU->where('codigo', 'factortiempoviaje')->first()->valor;
 
         for ($dest = 1; $dest < count($destinos); $dest++) {
@@ -189,7 +197,10 @@ class Flotas extends Model
             $tiempoDest =0;
             $fuelDest=0;
             if ($destinos[$dest]['mision']!=""){
-                $distancia = Flotas::distanciaUniverso($destinos[$destAnt], $destinos[$dest],$constantesU);
+                $result = Flotas::distanciaUniverso($destinos[$destAnt], $destinos[$dest],$constantesU);
+                $distancia=$result[0];
+                $destinos[$dest]=$result[1];
+
                 if ($distancia==0 || $destinos[$dest]['estrella'] == "") {
                     $destinos[$dest]['viable']=false;
                 } else {
@@ -216,6 +227,7 @@ class Flotas extends Model
             $fuelDestT += $fuelDest;
         }
         $valFlotaT['fuelDestT']=$fuelDestT;
+        return [$destinos,$valFlotaT];
     }
 
 
@@ -229,7 +241,7 @@ class Flotas extends Model
         $coordDestino['y'] = 0;
         $factordistancia = 1;
 
-        $anchoUniverso= $constantesU->where('codigo', 'anchoUniverso')->first()->valor;
+        $anchoUniverso= $constantesU->where('codigo', 'anchouniverso')->first()->valor;
         $luzdemallauniverso= $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
 
         $dist = 0;
@@ -255,10 +267,11 @@ class Flotas extends Model
             $dist = $factordistancia * pow(($coordDestino['x'] - $coordOrigen['x']) * ($coordDestino['x'] - $coordOrigen['x']) + ($coordDestino['y'] - $coordOrigen['y']) * ($coordDestino['y'] - $coordOrigen['y']), 1 / 2);
         }
         //guardando coord para representar
+
         $coordDestino = Flotas::coordenadasBySistema($destino['estrella'],$anchoUniverso,$luzdemallauniverso);
-        $destino->coordx=$coordDestino['x'];
-        $destino->coordy=$coordDestino['y'];
-        return round($dist * 100) / 100;
+        $destino->fincoordx=$coordDestino['x'];
+        $destino->fincoordy=$coordDestino['y'];
+        return [round($dist * 100) / 100,$destino];
     }
 
 
@@ -279,6 +292,7 @@ class Flotas extends Model
     }
 
     public static function calculoVector(){
+
 
     }
 
