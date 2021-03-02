@@ -19,16 +19,14 @@ class CreateDestinosTable extends Migration
             $table->string('mision');
             $table->unsignedMediumInteger('estrella');
             $table->unsignedTinyInteger('orbita');
-
-            $table->unsigneddecimal('initcoordx', 8, 2, true);
-            $table->unsigneddecimal('initcoordy', 8, 2, true);
-            $table->unsigneddecimal('fincoordx', 8, 2, true);
-            $table->unsigneddecimal('fincoordy', 8, 2, true);
+            $table->unsignedDecimal('initcoordx', 8, 2, true);
+            $table->unsignedDecimal('initcoordy', 8, 2, true);
+            $table->unsignedDecimal('fincoordx', 8, 2, true);
+            $table->unsignedDecimal('fincoordy', 8, 2, true);
             $table->decimal('vectorx', 8, 2);
             $table->decimal('vectory', 8, 2);
-
-            $table->timestamp('init');
-            $table->timestamp('fin');
+            $table->timestamp('created_at');
+            $table->timestamp('finished_at')->nullable();
             $table->unsignedBigInteger('envuelos_id')->unsigned();
             $table->foreign('envuelos_id')->references('id')->on('en_vuelos');
         });
