@@ -25,8 +25,8 @@ class CreateDestinosTable extends Migration
             $table->unsignedDecimal('fincoordy', 8, 2, true);
             $table->decimal('vectorx', 8, 2);
             $table->decimal('vectory', 8, 2);
-            $table->timestamp('created_at');
-            $table->timestamp('finished_at')->nullable();
+            $table->timestamp('init');
+            $table->timestamp('fin')->nullable();
             $table->unsignedBigInteger('envuelos_id')->unsigned();
             $table->foreign('envuelos_id')->references('id')->on('en_vuelos');
         });
