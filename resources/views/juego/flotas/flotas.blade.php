@@ -317,10 +317,10 @@
                     Enviar flota
                 </button>
             </div>
-            @include('juego.flotas.destino', [ 'destino' => 'destino0', 'numero' => '0'])
-            @include('juego.flotas.destino', [ 'destino' => 'destino1', 'numero' => '1'])
-            @include('juego.flotas.destino', [ 'destino' => 'destino2', 'numero' => '2'])
-            @include('juego.flotas.destino', [ 'destino' => 'destino3', 'numero' => '3'])
+            @for ($dest=0;$dest <$cantidadDestinos+1;$dest++)
+                @include('juego.flotas.destino', [ 'destino' => 'destino'.$dest, 'numero' => $dest])
+            @endfor
+
         </div>
     </div>
 
@@ -333,22 +333,15 @@
         let ViewDaniosDisenios = @json($ViewDaniosDisenios);
         let origenImagenes="{{ asset('img/juego/skin0/')}}";
         let destinos = @json($destinos);
+        let recursosDest = @json($recursosDestinos);
+        let prioridades =@json($prioridades);
+        let flota =@json($flota);
 
 
-        recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
+       // recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
         recursosDest[0] = @json($recursos);
 
         cargaDest =[]; //cargado para cada destino
-
-        prioridades = [];
-        //prioridades por defecto
-        var n=0;
-        recursosArray.forEach(res => {
-            n++;
-            prioridades[res]=n;
-        });
-
-
 
 
     </script>

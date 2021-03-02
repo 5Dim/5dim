@@ -18,6 +18,8 @@ use App\Models\Jugadores;
 use App\Models\Prioridades;
 use App\Models\Flotas;
 use App\Models\ViewDaniosDisenios;
+use App\Models\EnRecursosEnDestino;
+use App\Models\EnVuelo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -25,6 +27,8 @@ class FlotaController extends Controller
 {
     public function index()
     {
+        $cantidadDestinos=3;
+
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
@@ -87,8 +91,18 @@ class FlotaController extends Controller
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
-        //prioridades
 
+
+        //$flotaP= EnVuelo::where('id', 1)->first();
+        //$destinosP=Destinos::where('envuelos_id', $flotaP->id)->get();
+        //Log::info($destinosP);
+
+        // datosFlota
+        $flota=new EnVuelo;
+        $flota->nombre="";
+
+        //prioridades
+        $prioridades = [];
         $prioridadesXDefecto=new Prioridades();
         $prioridadesXDefecto->personal=1;
         $prioridadesXDefecto->mineral=1;
@@ -102,6 +116,24 @@ class FlotaController extends Controller
         $prioridadesXDefecto->ma=1;
         $prioridadesXDefecto->municion=1;
         $prioridadesXDefecto->creditos=1;
+        array_push($prioridades,$prioridadesXDefecto);
+
+        // recursos en destinos
+        $recursosDestinos = [];
+        $recursosDestino=new EnRecursosEnDestino;
+            $recursosDestino->personal=0;
+            $recursosDestino->mineral=0;
+            $recursosDestino->cristal=0;
+            $recursosDestino->gas=0;
+            $recursosDestino->plastico=0;
+            $recursosDestino->ceramica=0;
+            $recursosDestino->liquido=0;
+            $recursosDestino->micros=0;
+            $recursosDestino->fuel=0;
+            $recursosDestino->ma=0;
+            $recursosDestino->municion=0;
+            $recursosDestino->creditos=0;
+            array_push($recursosDestinos,$recursosDestino);
 
         // destinos
         $destinos=[];
@@ -111,14 +143,18 @@ class FlotaController extends Controller
         $origen->porcentVel=100;
         array_push($destinos,$origen);
 
-        $dest=new Destinos();
-        $dest->estrella=-1;
-        $dest->orbita=-1;
-        $dest->porcentVel=100;
+        $destino=new Destinos();
+        $destino->estrella=-1;
+        $destino->orbita=-1;
+        $destino->porcentVel=100;
         /// prioridades por defecto
-        array_push($destinos,$dest);
-        array_push($destinos,$dest);
-        array_push($destinos,$dest);
+
+        for ($dest=1;$dest<$cantidadDestinos+1;$dest++ ){
+            array_push($destinos,$destino);
+            array_push($recursosDestinos,$recursosDestino);
+            array_push($prioridades,$prioridadesXDefecto);
+        }
+
 
 
         return view('juego.flotas.flotas', compact(
@@ -130,6 +166,7 @@ class FlotaController extends Controller
             'planetasJugador',
             'planetasAlianza',
 
+            'cantidadDestinos',
             'planetaActual',
             'nivelImperio',
             'nivelEnsamblajeFuselajes',
@@ -141,6 +178,9 @@ class FlotaController extends Controller
             'constantes',
             'ViewDaniosDisenios',
             'destinos',
+            'recursosDestinos',
+            'prioridades',
+            'flota',
 
         ));
     }
@@ -155,16 +195,21 @@ class FlotaController extends Controller
 
 
 
-
-
     public function enviarFlota(Request $request, $id = false){ //$id es de la flota en orbita de la que salimos
 
 
         $navesEstacionadas = $request->input('navesEstacionadas');
-       // $cargaDest = $request->input('cargaDest');
-        //$prioridades = $request->input('prioridades');
-        //$datosBasicos = $request->input('datosBasicos');
-        $destinos = $request->input('destinos'); //lleva las prioridades y cargas
+        $cargaDest = $request->input('recursosDest');
+        $prioridades = $request->input('prioridades');
+        $flota = $request->input('flota');
+        $destinos = $request->input('destinos');
+        /*
+        Log::info("navesEstacionadas");Log::info($navesEstacionadas);
+        Log::info("cargaDest");Log::info($cargaDest);
+        Log::info("prioridades");Log::info($prioridades);
+        Log::info("flota");Log::info($flota);
+        Log::info("destinos");Log::info($destinos);
+        */
 
         $errores="";
 
@@ -176,7 +221,7 @@ class FlotaController extends Controller
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $diseniosJugador = $jugadorActual->disenios;
 
-        Log::info($navesEnPlaneta);
+
         $disenios = [];
         $araycolumn=array_column($navesEstacionadas, 'disenios_id');
 
@@ -216,8 +261,8 @@ class FlotaController extends Controller
     if (strlen($errores)<1){
 
         $tamaniosArray = array("cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega");
-        $tamaniosNaveAcarga = array( 'caza'=> "cargaPequenia", 'ligera'=> "cargaMediana", 'media'=> "cargaGrande", 'pesada'=> "cargaEnorme", 'estacion'=> "cargaMega" );
-        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+        //$tamaniosNaveAcarga = array( 'caza'=> "cargaPequenia", 'ligera'=> "cargaMediana", 'media'=> "cargaGrande", 'pesada'=> "cargaEnorme", 'estacion'=> "cargaMega" );
+        //$recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
 
         $fueraH = [];
         $dentroH = [];
@@ -268,7 +313,7 @@ class FlotaController extends Controller
         Log::info($valFlotaT);
 
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $resultValidar=Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos);
+        $resultValidar=Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest);
 
         $errores=$resultValidar[0];
     }
@@ -281,7 +326,7 @@ class FlotaController extends Controller
 
 
         }
-        /
+
 
     }
 

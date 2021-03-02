@@ -625,16 +625,14 @@ function enviarFlota() {
     if (errores.length > 0) {
         alert(errores);
     } else {
-        datosBasicos = {
-            nombre: $("#nombreFlota").val(),
-        };
+        flota.nombre= $("#nombreFlota").val();
 
         $.ajax({
             type: "post",
             dataType: "json",
             url: "/juego/flotas/enviarFlota",
             //contentType: 'application/json; charset=utf-8',
-            data: { navesEstacionadas: navesEstacionadas, destinos: destinos },
+            data: { navesEstacionadas: navesEstacionadas, destinos: destinos,recursosDest: recursosDest,prioridades: prioridades,flota: flota },
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },

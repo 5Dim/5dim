@@ -1275,6 +1275,17 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
 
+        $constante = new Constantes();
+        $constante->valor = 3;
+        $constante->minimo = 2;
+        $constante->maximo = 5;
+        $constante->codigo = 'cantidadDestinosFlotas';
+        $constante->descripcion = 'cantidad de destinos para flotas';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+
         foreach ($producciones as $estaproduccion) {
             $estaproduccion->save();
         }

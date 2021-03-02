@@ -64,7 +64,7 @@ class Flotas extends Model
             return [$result[1],$result[0],$tablaHangares];
     }
 
-    public static function validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos){ // calcula los valores de una flota
+    public static function validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest){ // calcula los valores de una flota
         // destinos
         for ($dest = 1; $dest < count($destinos); $dest++) {
             //destino viable
@@ -103,7 +103,6 @@ class Flotas extends Model
                 }
             }
 
-            $cargaDest=$destinos[$dest]->recursos->get();
             $cargaDestT=0;
             foreach ($cargaDest as $recurso) {
                 $cargaDestT+=$recurso;
@@ -114,6 +113,9 @@ class Flotas extends Model
                 $errores += " Seleccionada mas carga de la capacidad";
                 break;
             }
+
+            Log::info($recursos);
+            Log::info($cargaDest);
 
             /// Carga en origen
             if ($dest==1){
