@@ -20,7 +20,7 @@ for (dest = 1; dest < destinos.length; dest++) {
 Avisos();
 
 function CrearOrigen(dest) {
-    $("#titulo0").text("Origen " + destinos[dest]['estrella'] + "x" + destinos[dest]['orbita']);
+    $("#titulo0").text("Origen " + destinos[dest]["estrella"] + "x" + destinos[dest]["orbita"]);
     $(".ocultarenorigen" + dest).text("");
 }
 
@@ -32,7 +32,7 @@ function CargarValoresPlaneta() {
         })[0];
         MostrarResultadoDisenio(diseno);
 
-        var este=valNaves.length-1;
+        var este = valNaves.length - 1;
         valNaves[este].nombre = diseno.nombre;
         valNaves[este].cantidad = nave.cantidad;
         valNaves[este].cantidadT = nave.cantidad; //es constante
@@ -81,13 +81,12 @@ function RecalculoTotal() {
     });
     valFlotaT.extraccion = 0;
     valFlotaT.recoleccion = 0;
-    valFlotaT.atotal =0;
+    valFlotaT.atotal = 0;
 
     ///CALCULO
     // naves
     navesEstacionadas.forEach(nave => {
-
-        var valnave= $.grep(valNaves, function(valor) {
+        var valnave = $.grep(valNaves, function(valor) {
             return valor.iddisenio == nave.disenios_id;
         })[0];
 
@@ -96,15 +95,15 @@ function RecalculoTotal() {
         ahangar = valnave.enhangar;
         atotal = aflota + ahangar;
 
-        var estacionada= $.grep(navesEstacionadas, function(valor) {
+        var estacionada = $.grep(navesEstacionadas, function(valor) {
             return valor.disenios_id == nave.disenios_id;
         })[0];
 
-        estacionada.enflota=aflota;
-        estacionada.enhangar=ahangar;
+        estacionada.enflota = aflota;
+        estacionada.enhangar = ahangar;
 
-        valFlotaT.extraccion += valnave.extraccion*atotal;
-        valFlotaT.recoleccion += valnave.recoleccion*atotal;
+        valFlotaT.extraccion += valnave.extraccion * atotal;
+        valFlotaT.recoleccion += valnave.recoleccion * atotal;
 
         if (atotal > 0) {
             valFlotaT.carga += valnave.carga * atotal;
@@ -131,7 +130,7 @@ function RecalculoTotal() {
         }
         tablaHangares.capacidadH.cargaMega = 0; //siempre
 
-        valFlotaT.atotal+=atotal;
+        valFlotaT.atotal += atotal;
         // pimtado esta nave
 
         $("#cantidad" + nave.disenios_id).text(formatNumber(cantidad));
@@ -178,7 +177,7 @@ function Avisos() {
     errores = "";
     var sePuedeEnviar = true;
 
-    if (valFlotaT.atotal<1){
+    if (valFlotaT.atotal < 1) {
         sePuedeEnviar = false;
         errores += " Ninguna nave seleccionada";
     }
@@ -205,7 +204,7 @@ function Avisos() {
 
         //pintando caja ahangar por nave
         navesEstacionadas.forEach(nave => {
-            var valnave= $.grep(valNaves, function(valor) {
+            var valnave = $.grep(valNaves, function(valor) {
                 return valor.iddisenio == nave.disenios_id;
             })[0];
 
@@ -268,7 +267,6 @@ function Avisos() {
         $("#totalcarga").removeClass("bg-danger");
     }
 
-
     //falta fuel
 
     var faltaFuel = false;
@@ -278,7 +276,6 @@ function Avisos() {
             faltaFuel = true;
         }
     }
-
 
     //las misiones son viables
     for (dest = 1; dest < destinos.length; dest++) {
@@ -303,13 +300,13 @@ function Avisos() {
 
             // soy la ultima y debe ser de cierre
             if (ordenPost != undefined) {
-                if (ordenPost.length < 1 && orden != "transferir" && orden != "recolectar" && orden != "orbitar" || ordenAnt == "extraer") {
+                if ((ordenPost.length < 1 && orden != "transferir" && orden != "recolectar" && orden != "orbitar") || ordenAnt == "extraer") {
                     errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
                     hayErrorMision = true;
                 }
             }
             if (destinos.length == destPost) {
-                if (orden != "transferir" && orden != "recolectar" && orden != "orbitar" || ordenAnt == "extraer") {
+                if ((orden != "transferir" && orden != "recolectar" && orden != "orbitar") || ordenAnt == "extraer") {
                     errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
                     hayErrorMision = true;
                 }
@@ -385,8 +382,7 @@ function Avisos() {
 }
 
 function NaveAflota(iddisenio, canti = 0) {
-
-    var valnave= $.grep(valNaves, function(valor) {
+    var valnave = $.grep(valNaves, function(valor) {
         return valor.iddisenio == iddisenio;
     })[0];
 
@@ -406,8 +402,7 @@ function NaveAflota(iddisenio, canti = 0) {
 }
 
 function NaveAhangar(iddisenio, canti = 0) {
-
-    var valnave= $.grep(valNaves, function(valor) {
+    var valnave = $.grep(valNaves, function(valor) {
         return valor.iddisenio == iddisenio;
     })[0];
 
@@ -443,7 +438,7 @@ function Calculoespacitiempo() {
             } else {
                 var porcentVel = $("#porcentVDest" + dest).val() / 100;
                 var fuelDest = GastoFuel(distancia, valFlotaT.fuel);
-                destinos[dest].porcentVel = porcentVel*100;
+                destinos[dest].porcentVel = porcentVel * 100;
 
                 if (distancia < 10) {
                     $("#tipovelocidad" + dest).text("Vel. Impulso");
@@ -630,25 +625,22 @@ function enviarFlota() {
     if (errores.length > 0) {
         alert(errores);
     } else {
-
-        datosBasicos={
-            "nombre":$("#nombreFlota").val(),
-        }
-
-
+        datosBasicos = {
+            nombre: $("#nombreFlota").val(),
+        };
 
         $.ajax({
-            type: 'post',
-            dataType: 'json',
+            type: "post",
+            dataType: "json",
             url: "/juego/flotas/enviarFlota",
             //contentType: 'application/json; charset=utf-8',
-            data: {"navesEstacionadas": navesEstacionadas,"destinos":destinos},
+            data: { navesEstacionadas: navesEstacionadas, destinos: destinos },
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             beforeSend: function() {
                 $("#botonEnviar").prop("disabled", true);
-                var spinner='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....'
+                var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....';
                 $("#botonEnviar").html(spinner);
             },
             success: function(response) {},
