@@ -65,12 +65,12 @@ class Flotas extends Model
     }
 
     public static function validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest){ // calcula los valores de una flota
+
         // destinos
         for ($dest = 1; $dest < count($destinos); $dest++) {
             //destino viable
             if (!$destinos[$dest]['viable']){
                 $errores=" Destino no viable= ".$dest;
-                break;
             }
             //misiones
             $destAnt = $dest - 1;
@@ -84,88 +84,73 @@ class Flotas extends Model
                 $ordenPost = $destinos[$destPost]['mision'];
                 // no se puede llegar
                 if ($ordenAnt == "" || $ordenAnt == "transferir" || $ordenAnt == "recolectar" || $ordenAnt == "orbitar" || $ordenAnt == "extraer") {
-                    $errores += " No se alcanzará destino " + $dest;
-                    break;
+                    $errores = " No se alcanzará destino " + $dest;
                 }
 
                 // soy la ultima y debe ser de cierre
                 if ($ordenPost != "") {
                     if ($ordenPost="" && $orden != "transferir" && $orden != "recolectar" && $orden != "orbitar" || $ordenAnt == "extraer") {
-                        $errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
-                        break;
+                        $errores = " la misión del último destino no es transferir, orbitar,extraer o recolectar";
                     }
                 }
                 if (count($destinos) == $destPost) {
                     if ($orden != "transferir" && $orden != "recolectar" && $orden != "orbitar" || $ordenAnt == "extraer") {
-                        $errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
-                        break;
+                        $errores = " la misión del último destino no es transferir, orbitar,extraer o recolectar";
                     }
                 }
             }
-
+            $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
             $cargaDestT=0;
-            foreach ($cargaDest as $recurso) {
-                $cargaDestT+=$recurso;
+            //Log::info($cargaDest[$dest]);
+            foreach ($recursosArray as $recurso) {
+                $cargaDestT+=1 * $cargaDest[$dest]->$recurso;
+                Log::info($cargaDest[$dest][$recurso]);
             }
 
+            Log::info('cargaDestT');Log::info($cargaDestT);
+            Log::info('valFlotaT');Log::info(1* $valFlotaT['carga']);
             // Carga total
-            if ($cargaDestT > $valFlotaT['carga']) {
-                $errores += " Seleccionada mas carga de la capacidad";
-                break;
+            if ($cargaDestT > 1* $valFlotaT['carga']) {
+                $errores = " Seleccionada mas carga de la capacidad";
             }
-
-            Log::info($recursos);
-            Log::info($cargaDest);
 
             /// Carga en origen
             if ($dest==1){
-                if ($recursos->personal < $cargaDest->personal){
-                    $errores += " No hay tanta carga: personal";
-                    break;
+                if ($recursos->personal < $cargaDest[$dest]['personal']){
+                    $errores = " No hay tanta carga: personal destino ".[$dest];
                 }
-                if ($recursos->personal < $cargaDest->personal){
-                    $errores += " No hay tanta carga: personal";
-                    break;
+                if ($recursos->mineral < $cargaDest[$dest]['mineral']){
+                    $errores = " No hay tanta carga: mineral destino ".[$dest];
                 }
-                if ($recursos->mineral < $cargaDest->mineral){
-                    $errores += " No hay tanta carga: mineral";
-                    break;
+                if ($recursos->cristal < $cargaDest[$dest]['cristal']){
+                    $errores = " No hay tanta carga: cristal destino ".[$dest];
                 }
-                if ($recursos->cristal < $cargaDest->cristal){
-                    $errores += " No hay tanta carga: cristal";
-                    break;
+                if ($recursos->gas < $cargaDest[$dest]['gas']){
+                    $errores = " No hay tanta carga: gas destino ".[$dest];
                 }
-                if ($recursos->gas < $cargaDest->gas){
-                    $errores += " No hay tanta carga: gas";
-                    break;
+                if ($recursos->plastico < $cargaDest[$dest]['plastico']){
+                    $errores = " No hay tanta carga: plastico destino ".[$dest];
                 }
-                if ($recursos->plastico < $cargaDest->plastico){
-                    $errores += " No hay tanta carga: plastico";
-                    break;
+                if ($recursos->ceramica < $cargaDest[$dest]['ceramica']){
+                    $errores = " No hay tanta carga: ceramica destino ".[$dest];
                 }
-                if ($recursos->ceramica < $cargaDest->ceramica){
-                    $errores += " No hay tanta carga: ceramica";
-                    break;
+                if ($recursos->liquido < $cargaDest[$dest]['liquido']){
+                    $errores = " No hay tanta carga: liquido destino ".[$dest];
                 }
-                if ($recursos->liquido < $cargaDest->liquido){
-                    $errores += " No hay tanta carga: liquido";
-                    break;
+                if ($recursos->micros < $cargaDest[$dest]['micros']){
+                    $errores = " No hay tanta carga: micros destino ".[$dest];
                 }
-                if ($recursos->fuel < $cargaDest->fuel + $valFlotaT['fuel']){
-                    $errores += " No hay tanto fuel";
-                    break;
+                if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuel']){
+                    $errores = " No hay tanto fuel destino ".[$dest];
                 }
-                if ($recursos->ma < $cargaDest->ma){
-                    $errores += " No hay tanta carga: ma";
-                    break;
+                if ($recursos->ma < $cargaDest[$dest]['ma']){
+                    $errores = " No hay tanta carga: ma destino ".[$dest];
                 }
-                if ($recursos->municion < $cargaDest->municion){
-                    $errores += " No hay tanta carga: municion";
-                    break;
+                if ($recursos->municion < $cargaDest[$dest]['municion']){
+                    $errores = " No hay tanta carga: municion";
                 }
-                if ($recursos->creditos < $cargaDest->creditos){
-                    $errores += " No hay tanta carga: creditos";
-                    break;
+                if ($recursos->creditos < $cargaDest[$dest]['creditos']){
+                    $errores = " No hay tanta carga: creditos";
                 }
 
             }
@@ -177,10 +162,11 @@ class Flotas extends Model
 
         foreach ($tamaniosArray as $tamanio) {
             if ($tablaHangares['dentroH'][$tamanio] > $tablaHangares['capacidadH'][$tamanio]) {
-                $errores += "  Capacidad de hangar insuficiente";
-                break;
+                $errores = "  Capacidad de hangar insuficiente";
             };
         }
+
+        Log::info($errores);
 
         return $errores;
 

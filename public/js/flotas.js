@@ -172,7 +172,7 @@ function RecalculoTotal() {
 
 var errores = "";
 
-function Avisos() {
+function Avisos() {  //////////////////////////////  VALIDACION
     var errorHangares = false;
     errores = "";
     var sePuedeEnviar = true;
@@ -230,33 +230,33 @@ function Avisos() {
     var excesocarga = false;
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
-        if (cargaDest[dest] != undefined && cargaDest[dest].total > valFlotaT.carga) {
-            excesocarga = true;
-            $("#botonenvias" + dest).addClass("bg-danger");
-        } else {
-            $("#botonenvias" + dest).removeClass("bg-danger");
-        }
+        if (!destinos[dest].estrella.length === 0 ){
 
-        if (cargaDest[dest] != undefined && cargaDest[dest].total > 0) {
-            $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
-        } else {
-            $("#botonenvias" + dest).text("Enviar");
-        }
-
-        recursosArray.forEach(res => {
-            //$("#boton" + res + dest).text(formatNumber(resto));
-            //recur = 1 * recur.replace(/\./g, "");
-
-            if (cargaDest[dest] != undefined && recursosDest[dest] != undefined && cargaDest[dest][res] > Math.round(recursosDest[dest][res])) {
-                $("#boton" + res + dest)
-                    .removeClass("btn-dark")
-                    .addClass("btn-danger");
+            if (cargaDest[dest] != undefined && cargaDest[dest].total > valFlotaT.carga) {
+                excesocarga = true;
+                $("#botonenvias" + dest).addClass("bg-danger");
             } else {
-                $("#boton" + res + dest)
-                    .addClass("btn-dark")
-                    .removeClass("btn-danger");
+                $("#botonenvias" + dest).removeClass("bg-danger");
             }
-        });
+
+            if (cargaDest[dest] != undefined && cargaDest[dest].total > 0) {
+                $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
+            } else {
+                $("#botonenvias" + dest).text("Enviar");
+            }
+
+            recursosArray.forEach(res => {
+                if (cargaDest[dest] != undefined && recursosDest[dest] != undefined && cargaDest[dest][res] > Math.round(recursosDest[dest][res])) {
+                    $("#boton" + res + dest)
+                        .removeClass("btn-dark")
+                        .addClass("btn-danger");
+                } else {
+                    $("#boton" + res + dest)
+                        .addClass("btn-dark")
+                        .removeClass("btn-danger");
+                }
+            });
+        }
     }
 
     if (excesocarga) {
@@ -278,6 +278,7 @@ function Avisos() {
     }
 
     //las misiones son viables
+    // añadir que no se puede transferir a una flota (solo atacar)
     for (dest = 1; dest < destinos.length; dest++) {
         var destAnt = dest - 1;
         var destPost = dest + 1;
@@ -361,7 +362,7 @@ function Avisos() {
     if (!sePuedeEnviar) {
         $("#botonEnviar").text(errores);
         $("#botonEnviar")
-            .addClass("bg-danger")
+            .addClass("btn-danger")
             .removeClass("btn-success");
 
         $("#consumofuel1")
@@ -371,7 +372,7 @@ function Avisos() {
         $("#botonEnviar").prop("disabled", true);
     } else {
         $("#botonEnviar")
-            .removeClass("bg-danger")
+            .removeClass("btn-danger")
             .addClass("btn-success");
 
         $("#consumofuel1")
@@ -621,6 +622,30 @@ function VaciarPrioridades(dest) {
     });
 }
 
+function NaveGeneralAFlota(canti){
+    if (canti>0){
+        navesEstacionadas.forEach(nave => {
+            NaveAflota(nave.disenios_id,'m');
+        });
+    } else {
+        navesEstacionadas.forEach(nave => {
+            NaveAflota(nave.disenios_id,0);
+        });
+    }
+}
+
+function NaveGeneralAHangar(canti){
+    if (canti>0){
+        navesEstacionadas.forEach(nave => {
+            NaveAhangar(nave.disenios_id,'m');
+        });
+    } else {
+        navesEstacionadas.forEach(nave => {
+            NaveAhangar(nave.disenios_id,0);
+        });
+    }
+}
+
 function enviarFlota() {
     if (errores.length > 0) {
         alert(errores);
@@ -632,7 +657,7 @@ function enviarFlota() {
             dataType: "json",
             url: "/juego/flotas/enviarFlota",
             //contentType: 'application/json; charset=utf-8',
-            data: { navesEstacionadas: navesEstacionadas, destinos: destinos,recursosDest: recursosDest,prioridades: prioridades,flota: flota },
+            data: { navesEstacionadas: navesEstacionadas, destinos: destinos,cargaDest: cargaDest,prioridades: prioridades,flota: flota },
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },

@@ -119,7 +119,7 @@ class FlotaController extends Controller
         array_push($prioridades,$prioridadesXDefecto);
 
         // recursos en destinos
-        $recursosDestinos = [];
+        $cargaDest = [];
         $recursosDestino=new EnRecursosEnDestino;
             $recursosDestino->personal=0;
             $recursosDestino->mineral=0;
@@ -133,7 +133,7 @@ class FlotaController extends Controller
             $recursosDestino->ma=0;
             $recursosDestino->municion=0;
             $recursosDestino->creditos=0;
-            array_push($recursosDestinos,$recursosDestino);
+            array_push($cargaDest,$recursosDestino);
 
         // destinos
         $destinos=[];
@@ -151,7 +151,7 @@ class FlotaController extends Controller
 
         for ($dest=1;$dest<$cantidadDestinos+1;$dest++ ){
             array_push($destinos,$destino);
-            array_push($recursosDestinos,$recursosDestino);
+            array_push($cargaDest,$recursosDestino);
             array_push($prioridades,$prioridadesXDefecto);
         }
 
@@ -178,7 +178,7 @@ class FlotaController extends Controller
             'constantes',
             'ViewDaniosDisenios',
             'destinos',
-            'recursosDestinos',
+            'cargaDest',
             'prioridades',
             'flota',
 
@@ -199,7 +199,7 @@ class FlotaController extends Controller
 
 
         $navesEstacionadas = $request->input('navesEstacionadas');
-        $cargaDest = $request->input('recursosDest');
+        $cargaDest = $request->input('cargaDest');
         $prioridades = $request->input('prioridades');
         $flota = $request->input('flota');
         $destinos = $request->input('destinos');
@@ -315,7 +315,11 @@ class FlotaController extends Controller
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $resultValidar=Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest);
 
-        $errores=$resultValidar[0];
+
+        if (!empty($resultValidar)){
+            $errores=$resultValidar[0];
+        }
+
     }
 
     //se envia la flota
@@ -328,6 +332,8 @@ class FlotaController extends Controller
         }
 
 
+    } else {
+        Log::info($errores);
     }
 
        // var_dump($disenios);

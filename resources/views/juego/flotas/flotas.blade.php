@@ -48,14 +48,42 @@
                                 Cantidad
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
-                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
-                                    En la flota
-                                </button>
+                                <div class="input-group mb-3 input-group-sm borderless">
+                                    <span class="input-group-text bg-dark text-light">
+                                        <button type="button" class="btn btn-dark btn-sm text-warning"
+                                            onclick="NaveGeneralAFlota(0)">
+                                            0
+                                        </button>
+                                    </span>
+                                    <span class="text-warning form-control input">
+                                        En flota
+                                    </span>
+                                    <span class="input-group-text bg-dark text-light">
+                                        <button type="button" class="btn btn-dark btn-sm text-warning"
+                                            onclick="NaveGeneralAFlota(1)">
+                                            M
+                                        </button>
+                                    </span>
+                                </div>
                             </th>
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
-                                <button type="button" class="btn btn-dark col-12 btn-sm text-warning">
-                                    En hangar
-                                </button>
+                                <div class="input-group mb-3 input-group-sm borderless">
+                                    <span class="input-group-text bg-dark text-light">
+                                        <button type="button" class="btn btn-dark btn-sm text-warning"
+                                            onclick="NaveGeneralAHangar(0)">
+                                            0
+                                        </button>
+                                    </span>
+                                    <span class="text-warning form-control input">
+                                        En hangar
+                                    </span>
+                                    <span class="input-group-text bg-dark text-light">
+                                        <button type="button" class="btn btn-dark btn-sm text-warning"
+                                            onclick="NaveGeneralAHangar(1)">
+                                            M
+                                        </button>
+                                    </span>
+                                </div>
                             </th>
                         </tr>
                         @foreach ($navesEstacionadas as $nave)
@@ -333,15 +361,13 @@
         let ViewDaniosDisenios = @json($ViewDaniosDisenios);
         let origenImagenes="{{ asset('img/juego/skin0/')}}";
         let destinos = @json($destinos);
-        let recursosDest = @json($recursosDestinos);
+        let cargaDest = @json($cargaDest); //cargado para cada destino
         let prioridades =@json($prioridades);
         let flota =@json($flota);
 
 
-       // recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
+        recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
         recursosDest[0] = @json($recursos);
-
-        cargaDest =[]; //cargado para cada destino
 
 
     </script>
