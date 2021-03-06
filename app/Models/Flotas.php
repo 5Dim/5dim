@@ -36,6 +36,7 @@ class Flotas extends Model
                $valFlotaT['defensaV'] += $disenio['datos']['defensa'] * $aflota;
 
                $valFlotaT['municion'] += $disenio['datos']['municion'] * $atotal;
+               $valFlotaT['mantenimiento'] += $disenio['datos']['mantenimiento'] * $atotal;
 
                 //Log::info($valFlotaT['carga'] ."+=". $disenio['carga'] ."*". $atotal);
 
@@ -66,6 +67,33 @@ class Flotas extends Model
             return [$result[1],$result[0],$tablaHangares];
     }
 
+
+    public static function valoresValidos($cantidadDestinos,$cargaDest,$prioridades){
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+
+        for ($dest = 1; $dest < $cantidadDestinos; $dest++) {
+            foreach ($recursosArray as $recurso) {
+
+                if (!is_numeric($cargaDest[$dest][$recurso])){
+                    $cargaDest[$dest][$recurso]=0;
+                }
+
+                $prioridad=$prioridades[$dest][$recurso];
+                if (is_numeric($prioridad)){
+                    if ($prioridad <0){
+                        $prioridades[$dest][$recurso]=0;
+                    } else if ($prioridad >20){
+                        $prioridades[$dest][$recurso]=20;
+                    }
+                } else {
+                    $prioridades[$dest][$recurso]=0;
+                }
+            }
+        }
+
+        return [$cargaDest,$prioridades];
+    }
+
     public static function validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest,$cantidadDestinos){ // calcula los valores de una flota
 
         // destinos
@@ -82,6 +110,7 @@ class Flotas extends Model
             $destAnt = $dest - 1;
             $destPost = $dest + 1;
 
+            //Log::info($destinos[$dest]);
             if (isset ($destinos[$dest]['mision']) && strlen($errores)<1){
 
                 $destinosViables++;
@@ -109,8 +138,7 @@ class Flotas extends Model
                     }
 
                     foreach ($recursosArray as $recurso) {
-                        $cargaDestT+=1 * $cargaDest[$dest][$recurso];
-                       // Log::info($recurso."Cargadest=".$cargaDestT);
+                       $cargaDestT+=1 * $cargaDest[$dest][$recurso];
                     }
 
                     if ($destinos[$dest]['tiempoDest']<1 || $destinos[$dest]['fuelDest']<1){
@@ -167,8 +195,8 @@ class Flotas extends Model
                 if ($recursos->creditos < $cargaDest[$dest]['creditos']){
                     $errores = " No hay tanta carga: creditos";
                 }
-
             }
+
         }
 
         if (strlen($errores)<1 && $destinosViables<1){

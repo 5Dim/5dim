@@ -1577,7 +1577,7 @@ class DisenioController extends Controller
                 $pesoTotal = ($cualidades['masa'] + $pesoInicial);
                 $pesoTotal /= 1 + $mejoraPeso;
 
-                //guardando disenio
+                //guardando disenio ////////////////////////////////  añadir transaction
 
                 $disenioS = new Disenios();
                 $disenioS->nombre = $datosBasicos['nombre'];

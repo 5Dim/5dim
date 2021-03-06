@@ -287,8 +287,8 @@ function Avisos() {  //////////////////////////////  VALIDACION
         var destAnt = dest - 1;
         var destPost = dest + 1;
 
-        //var orden = $("#ordenDest" + dest).val();
-        //destinos[dest].mision = orden;
+        var orden = $("#ordenDest" + dest).val();
+        destinos[dest].mision = orden;
 
         var hayErrorMision = false;
 
