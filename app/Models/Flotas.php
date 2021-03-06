@@ -35,6 +35,8 @@ class Flotas extends Model
                $valFlotaT['ataqueV'] += $disenio['datos']['ataque'] * $aflota;
                $valFlotaT['defensaV'] += $disenio['datos']['defensa'] * $aflota;
 
+               $valFlotaT['municion'] += $disenio['datos']['municion'] * $atotal;
+
                 //Log::info($valFlotaT['carga'] ."+=". $disenio['carga'] ."*". $atotal);
 
                 if ($aflota > 0) {
@@ -64,10 +66,14 @@ class Flotas extends Model
             return [$result[1],$result[0],$tablaHangares];
     }
 
-    public static function validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest){ // calcula los valores de una flota
+    public static function validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest,$cantidadDestinos){ // calcula los valores de una flota
 
         // destinos
-        for ($dest = 1; $dest < count($destinos); $dest++) {
+        $destinosViables=0;
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+        $cargaDestT=0;
+
+        for ($dest = 1; $dest < $cantidadDestinos; $dest++) {
             //destino viable
             if (!$destinos[$dest]['viable']){
                 $errores=" Destino no viable= ".$dest;
@@ -76,46 +82,55 @@ class Flotas extends Model
             $destAnt = $dest - 1;
             $destPost = $dest + 1;
 
-            $orden = $destinos[$dest]['mision'];
+            if (isset ($destinos[$dest]['mision']) && strlen($errores)<1){
 
-            if ($orden != "") {
+                $destinosViables++;
+                $orden = $destinos[$dest]['mision'];
 
-                $ordenAnt = $destinos[$destAnt]['mision'];
-                $ordenPost = $destinos[$destPost]['mision'];
-                // no se puede llegar
-                if ($ordenAnt == "" || $ordenAnt == "transferir" || $ordenAnt == "recolectar" || $ordenAnt == "orbitar" || $ordenAnt == "extraer") {
-                    $errores = " No se alcanzará destino " + $dest;
-                }
+                if ($orden != "") {
 
-                // soy la ultima y debe ser de cierre
-                if ($ordenPost != "") {
-                    if ($ordenPost="" && $orden != "transferir" && $orden != "recolectar" && $orden != "orbitar" || $ordenAnt == "extraer") {
+                    $ordenAnt = $destinos[$destAnt]['mision'];
+                    $ordenPost = $destinos[$destPost]['mision'];
+                    // no se puede llegar
+
+                    if ($ordenAnt == "" || $ordenAnt == "transferir" || $ordenAnt == "recolectar" || $ordenAnt == "orbitar" || $ordenAnt == "extraer") {
+                        $errores = " No se alcanzará destino " . $dest;
+                    }
+
+                    // soy la ultima y debe ser de cierre
+                    if ($ordenPost=="" && $orden != "transferir" && $orden != "recolectar" && $orden != "orbitar" || $ordenAnt == "extraer") {
                         $errores = " la misión del último destino no es transferir, orbitar,extraer o recolectar";
                     }
-                }
-                if (count($destinos) == $destPost) {
-                    if ($orden != "transferir" && $orden != "recolectar" && $orden != "orbitar" || $ordenAnt == "extraer") {
-                        $errores = " la misión del último destino no es transferir, orbitar,extraer o recolectar";
+
+                    if ($cantidadDestinos == $destPost) {
+                        if ($orden != "transferir" && $orden != "recolectar" && $orden != "orbitar" || $ordenAnt == "extraer") {
+                            $errores = " la misión del último destino no es transferir, orbitar,extraer o recolectar";
+                        }
+                    }
+
+                    foreach ($recursosArray as $recurso) {
+                        $cargaDestT+=1 * $cargaDest[$dest][$recurso];
+                       // Log::info($recurso."Cargadest=".$cargaDestT);
+                    }
+
+                    if ($destinos[$dest]['tiempoDest']<1 || $destinos[$dest]['fuelDest']<1){
+                        $errores = " tiempo o fuel no puede ser 0 a destino ".$dest;
+                    }
+
+                    if ($destinos[$dest]['porcentVel'] <0 ||  $destinos[$dest]['porcentVel']>100 ){
+                        $errores = " porcentaje de velocidad fuera de rango en destino ".$dest;
                     }
                 }
             }
-            $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
-            $cargaDestT=0;
-            //Log::info($cargaDest[$dest]);
-            foreach ($recursosArray as $recurso) {
-                $cargaDestT+=1 * $cargaDest[$dest]->$recurso;
-                Log::info($cargaDest[$dest][$recurso]);
-            }
 
-            Log::info('cargaDestT');Log::info($cargaDestT);
-            Log::info('valFlotaT');Log::info(1* $valFlotaT['carga']);
+
             // Carga total
-            if ($cargaDestT > 1* $valFlotaT['carga']) {
+            if (strlen($errores)<1 && $cargaDestT > 1* $valFlotaT['carga']) {
                 $errores = " Seleccionada mas carga de la capacidad";
             }
 
             /// Carga en origen
-            if ($dest==1){
+            if (strlen($errores)<1 &&  $dest==1){
                 if ($recursos->personal < $cargaDest[$dest]['personal']){
                     $errores = " No hay tanta carga: personal destino ".[$dest];
                 }
@@ -156,6 +171,10 @@ class Flotas extends Model
             }
         }
 
+        if (strlen($errores)<1 && $destinosViables<1){
+            $errores = " No hay destinos con misiones viables";
+        }
+
 
         /// hangares
         $tamaniosArray = array("cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega");
@@ -184,7 +203,8 @@ class Flotas extends Model
             $destinos[$dest]['viable']=true;
             $tiempoDest =0;
             $fuelDest=0;
-            if ($destinos[$dest]['mision']!=""){
+
+            if (isset ($destinos[$dest]['mision']) &&  $destinos[$dest]['mision']!=""){
                 $result = Flotas::distanciaUniverso($destinos[$destAnt], $destinos[$dest],$constantesU);
                 $distancia=$result[0];
                 $destinos[$dest]=$result[1];
@@ -194,7 +214,6 @@ class Flotas extends Model
                 } else {
                     $porcentVel = $destinos[$dest]['porcentVel']/100;
                     $fuelDest = Flotas::gastoFuel($distancia, $valFlotaT['fuel'],$fueldistancia);
-
                     if ($distancia < 10) {
                         if ($valFlotaT['maniobra'] < 1) {
                             $destinos[$dest]['viable']=false;
@@ -213,8 +232,10 @@ class Flotas extends Model
             $destinos[$dest]['tiempoDest']=$tiempoDest;
             $destinos[$dest]['fuelDest']=$fuelDest;
             $fuelDestT += $fuelDest;
+
         }
         $valFlotaT['fuelDestT']=$fuelDestT;
+
         return [$destinos,$valFlotaT];
     }
 
@@ -257,8 +278,8 @@ class Flotas extends Model
         //guardando coord para representar
 
         $coordDestino = Flotas::coordenadasBySistema($destino['estrella'],$anchoUniverso,$luzdemallauniverso);
-        $destino->fincoordx=$coordDestino['x'];
-        $destino->fincoordy=$coordDestino['y'];
+        $destino['fincoordx']=$coordDestino['x'];
+        $destino['fincoordy']=$coordDestino['y'];
         return [round($dist * 100) / 100,$destino];
     }
 
@@ -268,7 +289,10 @@ class Flotas extends Model
     }
 
     public static function tiempoLLegada($distancia, $velocidad,$factortiempoviaje) {
-        return ($tiempo = round($distancia / $velocidad * $factortiempoviaje)); //en segundos
+        if ($velocidad>0){
+            return ($tiempo = round($distancia / $velocidad * $factortiempoviaje)); //en segundos
+        }
+        return 0;
     }
 
     public static function coordenadasBySistema($nsistema,$anchoUniverso,$luzdemallauniverso) {

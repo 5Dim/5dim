@@ -382,6 +382,7 @@
 
     $('#ordenDest{{ $numero }}').change(function() {
         var orden=$("#ordenDest{{ $numero }}").val();
+        destinos[{{ $numero }}].mision = orden;
         Avisos();
     });
 

@@ -211,23 +211,22 @@ class FlotaController extends Controller
         Log::info("destinos");Log::info($destinos);
         */
 
+        $cantidadDestinos=3;
         $errores="";
 
         //// valores de las naves en planeta
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $navesEnPlaneta = $planetaActual->estacionadas;
 
-
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $diseniosJugador = $jugadorActual->disenios;
 
-
         $disenios = [];
-        $araycolumn=array_column($navesEstacionadas, 'disenios_id');
+        $arraycolumn=array_column($navesEstacionadas, 'disenios_id');
 
         foreach ($diseniosJugador as $disenio) {
 
-            $key = array_search($disenio->id, $araycolumn );  //de los diseños
+            $key = array_search($disenio->id, $arraycolumn );  //de los diseños
             if (false !== $key)
             {
                 $nave=$navesEstacionadas[$key]; // enviar
@@ -252,7 +251,6 @@ class FlotaController extends Controller
                     $disenio['cantidad']=$cantidad;
 
                     array_push($disenios,$disenio);
-
                 }
             }
         }
@@ -313,22 +311,40 @@ class FlotaController extends Controller
         Log::info($valFlotaT);
 
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $resultValidar=Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest);
+        $resultValidar=Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest,$cantidadDestinos);
 
 
         if (!empty($resultValidar)){
             $errores=$resultValidar[0];
         }
-
     }
 
-    //se envia la flota
+    //se envia la flota  ////////////////////
     if (strlen($errores)<1){
+
         //construyendo destinos
+        $Tinit=date("Y-m-d H:i:s");
         for ($dest = 1; $dest < count($destinos); $dest++) {
-            $destino = new destinos();
+            $Tfin=$Tinit+$destinos[$dest]['tiempoDest'];
 
+            if($destinos[$dest]['viable']==true){
+                $destino = new destinos();
+                $destino->porcentVel=$destinos[$dest]['porcentVel'];
+                $destino->mision=$destinos[$dest]['mision'];
+                $destino->estrella=$destinos[$dest]['estrella'];
+                $destino->orbita=$destinos[$dest]['orbita'];
+                $destino->initcoordx=$destinos[$dest]['initcoordx'];
+                $destino->initcoordy=$destinos[$dest]['initcoordy'];
+                $destino->fincoordx=$destinos[$dest]['fincoordx'];
+                $destino->fincoordy=$destinos[$dest]['fincoordy'];
+                $destino->vectorx=$destinos[$dest]['fincoordx']-$destinos[$dest]['initcoordx'];
+                $destino->vectory=$destinos[$dest]['fincoordy']-$destinos[$dest]['initcoordy'];
+                $destino->init=$Tinit;
+                $destino->fin=$Tfin;
+                $destino->save();
 
+                $Tinit=$Tfin;
+            }
         }
 
 
@@ -336,12 +352,11 @@ class FlotaController extends Controller
         Log::info($errores);
     }
 
-       // var_dump($disenios);
        // Log::info($disenios[0]);
        // FlotaController::calculoFlota($disenios);
 
 
-        return compact('errores');
+        //return compact('errores');
     }
 
 

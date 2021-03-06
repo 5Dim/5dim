@@ -60,7 +60,9 @@ function RecursosInicio() {
             });
             cargaDest[dest].total = 0;
         }
+        destinos[dest].mision = $("#ordenDest" + dest).val();
     }
+    destinos[0].mision = "transportar";
 }
 
 function RecalculoTotal() {
@@ -173,6 +175,8 @@ function RecalculoTotal() {
 var errores = "";
 
 function Avisos() {  //////////////////////////////  VALIDACION
+
+
     var errorHangares = false;
     errores = "";
     var sePuedeEnviar = true;
@@ -283,8 +287,8 @@ function Avisos() {  //////////////////////////////  VALIDACION
         var destAnt = dest - 1;
         var destPost = dest + 1;
 
-        var orden = $("#ordenDest" + dest).val();
-        destinos[dest].mision = orden;
+        //var orden = $("#ordenDest" + dest).val();
+        //destinos[dest].mision = orden;
 
         var hayErrorMision = false;
 
@@ -355,7 +359,7 @@ function Avisos() {  //////////////////////////////  VALIDACION
         errores += " Fuel insuficiente en origen";
     }
 
-    //falta velcidad
+    //falta velocidad
 
     /// se puede enviar o no
     $("#botonEnviar").text("Enviar Flota");
@@ -380,6 +384,8 @@ function Avisos() {  //////////////////////////////  VALIDACION
             .addClass("txt-warning");
         $("#botonEnviar").prop("disabled", false);
     }
+
+
 }
 
 function NaveAflota(iddisenio, canti = 0) {
@@ -519,24 +525,27 @@ function CargarRecurso(dest, res) {
 }
 
 function TraerRecursos(sistema, planeta, dest) {
-    $.ajax({
-        method: "GET",
-        url: "/juego/flotas/traerRecursos/" + sistema + "/" + planeta,
-        success: function(data) {
-            recursosDest[dest] = data.recursos;
-            MostrarRecursos(dest);
-        },
-        error: function(xhr, textStatus, thrownError) {
-            console.log("status", xhr.status);
-            console.log("error", thrownError);
-            //$("#botontienes"+ dest).text("Tienes");
-            recursosArray.forEach(res => {
-                recursosDest[dest][res] = 0;
-            });
-            recursosDest[dest].total = 0;
-            MostrarRecursos(dest);
-        },
-    });
+
+    if (sistema!="none"){
+        $.ajax({
+            method: "GET",
+            url: "/juego/flotas/traerRecursos/" + sistema + "/" + planeta,
+            success: function(data) {
+                recursosDest[dest] = data.recursos;
+                MostrarRecursos(dest);
+            },
+            error: function(xhr, textStatus, thrownError) {
+                console.log("status", xhr.status);
+                console.log("error", thrownError);
+                //$("#botontienes"+ dest).text("Tienes");
+                recursosArray.forEach(res => {
+                    recursosDest[dest][res] = 0;
+                });
+                recursosDest[dest].total = 0;
+                MostrarRecursos(dest);
+            },
+        });
+    }
 }
 
 function TodoDeOrigen(dest) {
