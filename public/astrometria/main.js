@@ -383,11 +383,12 @@ function createViewport(){
         auxImg = app.stage.addChild(new PIXI.Container());        // contenedor para dibujos temporales
         botones = app.stage.addChild(new PIXI.Container());            // crea la capa botones
         textos = app.stage.addChild(new PIXI.Container());             // crea la capa textos
-        capa_influencias = viewport.addChild(new PIXI.Container());        // crea la capa radares
+        
         capa_estrellas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
         capa_flotas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
         capa_radares = viewport.addChild(new PIXI.Container());        // crea la capa radares
         capa_rutas = viewport.addChild(new PIXI.Container());        // crea la capa radares
+        capa_influencias = viewport.addChild(new PIXI.Container());        // crea la capa radares
         
         
         sistemas = app.stage.addChild(new PIXI.Container());           // crea la capa sistemas

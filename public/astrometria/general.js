@@ -65,10 +65,10 @@ function Sistema(n, x, y, habitado) {
     });
 
     if (habitado==0){estrella.tint = 0xFFFFFF;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "white"}));}     //SIN OCUPAR blanco
-    if (habitado==1){estrella.tint = 0xFFF700;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "0xFFF700"}));}     //SIN OCUPADO amarillo
-    if (habitado==2){estrella.tint = 0x00FF36;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "0x00FF36"}));}     //SIN PROPIO (HOME) verde
-    if (habitado==3){estrella.tint = 0x00CCE7;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "0x00CCE7"}));}     //SIN ALIADO azul
-    if (habitado==4){estrella.tint = 0xFF0000;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "0xFF0000"}));}     //SIN ENEMIGO rojo
+    if (habitado==1){estrella.tint = 0xFFF700;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "0xFFF700"}));}  //OCUPADO amarillo
+    if (habitado==2){estrella.tint = 0x00CCE7;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "0x00CCE7"}));}  //PROPIO (home) azul
+    if (habitado==3){estrella.tint = 0x00FF36;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "0x00FF36"}));}  //ALIADO verde
+    if (habitado==4){estrella.tint = 0xFF0000;var txt = capa_estrellas.addChild(new PIXI.Text(n,{fontFamily : 'Arial',fontSize: 12,fill : "0xFF0000"}));}  //ENEMIGO rojo
 
 	this.n = n; //numero de sistema
 	this.px = x; //posicion x
