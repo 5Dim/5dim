@@ -23,8 +23,6 @@ var loader = PIXI.loader.add('cloudstars',"img/botones/atacar0.png")
                             //var ready = setTimeout(accountSetup,3000);    
                         })
 */
-const jsonSistema ="/astrometria/data/planetas.json";
-//const jsonSistema ="/juego/astrometria/ajax/planetas";
 
 function versistema(texto){
   
@@ -50,14 +48,12 @@ function versistema(texto){
       }
   };
 
-    xmlhttp.open("GET", jsonSistema, true);
-    xmlhttp.send();
 
-/*
-xmlhttp.open("GET", "data/planetas.json", true);
-// xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/universo", true);
+  //const jsonSistema ="/astrometria/data/planetas.json";
+  //xmlhttp.open("GET", "jsonSistema", true);
+  xmlhttp.open("GET", "/juego/astrometria/ajax/sistema/" + texto.n, true);
   xmlhttp.send();
-*/
+
 }
 function creaplanetas(){
   
@@ -201,11 +197,11 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       this.efe_energia.position.set((n*100)+44, 100);
 
 
-
+/*  
       var str = imagen_planeta;
       var res = str.substr(12, 2);
 
-
+      // efecto planeta girando
 
       this.efPlanetas1 = new PIXI.AnimatedSprite(ef_planetas1.animations[imagen_planeta]);
       
@@ -222,7 +218,21 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       planet.position.set( (n*100)+44 , 50);
       planet.interactive=true;
       planet.buttonMode = true;
+*/
+
+      // texturas para los botones
+      this.texturaPlaneta = PIXI.Texture.from('/astrometria/img/sistema/planeta'+imagen_planeta+'.png');
       
+      planet = new PIXI.Sprite(this.texturaPlaneta);
+      planet.interactive=true;
+      planet.buttonMode = true;
+
+      planet.anchor.set(0.5);
+      planet.position.set ((n*100)+44 , 50);
+
+      //planet = cont_sistema.addChild(this.texturaPlaneta);
+      cont_sistema.addChild(planet);
+
       this.capa_botones = cont_sistema.addChild(new PIXI.Container());  
       this.capa_botones.visible=false;
       this.capa_botones.interactive=false;
