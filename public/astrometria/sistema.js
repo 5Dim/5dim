@@ -351,17 +351,6 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
           b_observar = new PIXI.Sprite(observar_on);
           b_observar.interactive = true;
           b_observar.buttonMode = true;
-
-          /*
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.onreadystatechange = function() {
-              if (this.readyState == 4 && this.status == 200) {
-
-              }
-          };
-          xmlhttp.open("GET",jsonUniverso , true);
-          xmlhttp.send();
-          */
         }else{
           b_observar = new PIXI.Sprite(observar_off);
           b_observar.interactive = false;
