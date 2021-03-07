@@ -23,8 +23,6 @@ var loader = PIXI.loader.add('cloudstars',"img/botones/atacar0.png")
                             //var ready = setTimeout(accountSetup,3000);    
                         })
 */
-const jsonSistema ="/astrometria/data/planetas.json";
-//const jsonSistema ="/juego/astrometria/ajax/planetas";
 
 function versistema(texto){
   
@@ -50,14 +48,12 @@ function versistema(texto){
       }
   };
 
-    xmlhttp.open("GET", jsonSistema, true);
-    xmlhttp.send();
 
-/*
-xmlhttp.open("GET", "data/planetas.json", true);
-// xmlhttp.open("GET", "http://79.143.185.11/juego/astrometria/ajax/universo", true);
+  //const jsonSistema ="/astrometria/data/planetas.json";
+  //xmlhttp.open("GET", "jsonSistema", true);
+  xmlhttp.open("GET", "/juego/astrometria/ajax/sistema/" + texto.n, true);
   xmlhttp.send();
-*/
+
 }
 function creaplanetas(){
   
@@ -153,7 +149,7 @@ function creasistemasolar(texto){
   sistemas.addChild(b_cerrar);
 }
 
-function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico, ceramica, b_obs, b_at, b_col, b_recol,b_con, naves,imagen_planeta,bloqueo) {
+function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico, ceramica, b_obs, b_at, b_col, b_recol,b_ext, naves,imagen_planeta,bloqueo) {
   
   efEnergia = new PIXI.AnimatedSprite(ef_general.animations["energia"]);   
   efEnergia.width = 60;
@@ -178,20 +174,20 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
 
 
       this.n = n; //numero de sistema
-      this.nompla = nompla; //posicion x
-      this.nomjug = nomjug; //posicion x
-      this.alianza = alianza; //posicion x
-      this.estado = estado; //posicion x
-      this.mineral = mineral; //posicion x
-      this.cristal = cristal; //posicion x
-      this.gas = gas; //posicion x
-      this.plastico = plastico; //posicion x
-      this.bot_observar = b_obs; //posicion y
-      this.bot_atacar = b_at; //posicion y
-      this.bot_colonizar = b_col; //posicion y
-      this.bot_recolectar = b_recol; //posicion y
-      this.bot_conquistar = b_con; //posicion y
-      this.naves_orbitando = naves; //posicion y
+      this.nompla = nompla; 
+      this.nomjug = nomjug; 
+      this.alianza = alianza; 
+      this.estado = estado; 
+      this.mineral = mineral; 
+      this.cristal = cristal; 
+      this.gas = gas; 
+      this.plastico = plastico; 
+      this.bot_observar = b_obs; 
+      this.bot_atacar = b_at; 
+      this.bot_colonizar = b_col; 
+      this.bot_recolectar = b_recol; 
+      this.bot_extraer = b_ext; 
+      this.naves_orbitando = naves; 
       this.img_planet =imagen_planeta;
       this.bloqueado=bloqueo; // 0=sin bloqueo, 1=defendiendo, 2=bloqueado
      
@@ -201,11 +197,11 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       this.efe_energia.position.set((n*100)+44, 100);
 
 
-
+/*  
       var str = imagen_planeta;
       var res = str.substr(12, 2);
 
-
+      // efecto planeta girando
 
       this.efPlanetas1 = new PIXI.AnimatedSprite(ef_planetas1.animations[imagen_planeta]);
       
@@ -222,7 +218,21 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       planet.position.set( (n*100)+44 , 50);
       planet.interactive=true;
       planet.buttonMode = true;
+*/
+
+      // texturas para los botones
+      this.texturaPlaneta = PIXI.Texture.from('/astrometria/img/sistema/planeta'+imagen_planeta+'.png');
       
+      planet = new PIXI.Sprite(this.texturaPlaneta);
+      planet.interactive=true;
+      planet.buttonMode = true;
+
+      planet.anchor.set(0.5);
+      planet.position.set ((n*100)+44 , 50);
+
+      //planet = cont_sistema.addChild(this.texturaPlaneta);
+      cont_sistema.addChild(planet);
+
       this.capa_botones = cont_sistema.addChild(new PIXI.Container());  
       this.capa_botones.visible=false;
       this.capa_botones.interactive=false;
@@ -326,8 +336,8 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
 
         var atacar_on = PIXI.Texture.from('/astrometria/img/botones/atacar1.png');
         var atacar_off = PIXI.Texture.from('/astrometria/img/botones/atacar0.png');
-        var conquistar_on = PIXI.Texture.from('/astrometria/img/botones/conquistar1.png');
-        var conquistar_off = PIXI.Texture.from('/astrometria/img/botones/conquistar0.png');
+        var extraer_on = PIXI.Texture.from('/astrometria/img/botones/extraer1.png');
+        var extraer_off = PIXI.Texture.from('/astrometria/img/botones/extraer0.png');
         var recolectar_on = PIXI.Texture.from('/astrometria/img/botones/recolectar1.png');
         var recolectar_off = PIXI.Texture.from('/astrometria/img/botones/recolectar0.png');
         var observar_on = PIXI.Texture.from('/astrometria/img/botones/observar1.png');
@@ -337,7 +347,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
         var flotas_on = PIXI.Texture.from('/astrometria/img/botones/vflotas1.png');
         var flotas_off = PIXI.Texture.from('/astrometria/img/botones/vflotas0.png');
 
-        if (b_obs==1){
+        if (b_obs!=""){
           b_observar = new PIXI.Sprite(observar_on);
           b_observar.interactive = true;
           b_observar.buttonMode = true;
@@ -346,7 +356,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
           b_observar.interactive = false;
           b_observar.buttonMode = false;
         }
-        if (b_at==1){
+        if (b_at!=""){
           b_atacar = new PIXI.Sprite(atacar_on);
           b_atacar.interactive = true;
           b_atacar.buttonMode = true;
@@ -355,7 +365,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
           b_atacar.interactive = false;
           b_atacar.buttonMode = false;
         }
-        if (b_col==1){
+        if (b_col!=""){
           b_colonizar = new PIXI.Sprite(colonizar_on);
           b_colonizar.interactive = true;
           b_colonizar.buttonMode = true;
@@ -364,7 +374,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
           b_colonizar.interactive = false;
           b_colonizar.buttonMode = false;
         }
-        if (b_recol==1){
+        if (b_recol!=""){
           b_recolectar = new PIXI.Sprite(recolectar_on);
           b_recolectar.interactive = true;
           b_recolectar.buttonMode = true;
@@ -373,16 +383,16 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
           b_recolectar.interactive = false;
           b_recolectar.buttonMode = false;
         }
-        if (b_con==1){
-          b_conquistar = new PIXI.Sprite(conquistar_on);
-          b_conquistar.interactive = true;
-          b_conquistar.buttonMode = true;
+        if (b_ext!=""){
+          b_extraer = new PIXI.Sprite(extraer_on);
+          b_extraer.interactive = true;
+          b_extraer.buttonMode = true;
         }else{
-          b_conquistar = new PIXI.Sprite(conquistar_off);
-          b_conquistar.interactive = false;
-          b_conquistar.buttonMode = false;
+          b_extraer = new PIXI.Sprite(extraer_off);
+          b_extraer.interactive = false;
+          b_extraer.buttonMode = false;
         }
-        if (naves==1){
+        if (naves!=""){
           b_flotas = new PIXI.Sprite(flotas_on);
           b_flotas.interactive = true;
           b_flotas.buttonMode = true;
@@ -396,7 +406,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
         //se establece el punto de ancla para las coordenadas en el centro
 
         b_atacar.anchor.set(0.5)
-        b_conquistar.anchor.set(0.5)
+        b_extraer.anchor.set(0.5)
         b_recolectar.anchor.set(0.5)
         b_observar.anchor.set(0.5)
         b_colonizar.anchor.set(0.5)
@@ -404,22 +414,61 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
 
         //se establece la posición de inicio de cada botón
         b_atacar.position.set (55,0)
-        b_conquistar.position.set (135,0)
+        b_extraer.position.set (135,0)
         b_recolectar.position.set (215,0)
         b_observar.position.set (295,0)
         b_colonizar.position.set (375,0)
         b_flotas.position.set (455,0)
 
         b_atacar.on('click', (event) => {
-          log(this.n);
+          log(b_at);
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.open("GET",b_at, true);
+          xmlhttp.send();
         });
+
+        b_extraer.on('click', (event) => {
+          log(b_ext);
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.open("GET",b_ext, true);
+          xmlhttp.send();          
+         });
+        
+        b_recolectar.on('click', (event) => {
+          log(b_recol);
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.open("GET",b_recol, true);
+          xmlhttp.send();
+        });
+ 
+        b_observar.on('click', (event) => {
+          log(b_obs);
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.open("GET",b_obs, true);
+          xmlhttp.send();
+        });
+
+        b_colonizar.on('click', (event) => {
+          log(b_col);
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.open("GET",b_col, true);
+          xmlhttp.send();
+          });
+   
+        b_flotas.on('click', (event) => {
+            log(naves);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET",naves, true);
+            xmlhttp.send();
+        });                   
+
 
        this.capa_botones.addChild(b_flotas);
        this.capa_botones.addChild(b_observar);
        this.capa_botones.addChild(b_atacar);
        this.capa_botones.addChild(b_colonizar);
        this.capa_botones.addChild(b_recolectar);
-       this.capa_botones.addChild(b_conquistar);
+       this.capa_botones.addChild(b_extraer);
       
         //acciones para el botón
         planet.on('pointerdown', (event) => {
