@@ -20,6 +20,8 @@ use App\Models\Flotas;
 use App\Models\ViewDaniosDisenios;
 use App\Models\EnRecursosEnDestino;
 use App\Models\EnVuelo;
+use App\Models\EnPrioridadesEnDestino;
+use App\Models\DiseniosEnVuelo;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -29,8 +31,6 @@ class FlotaController extends Controller
 {
     public function index()
     {
-        $cantidadDestinos=3;
-
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
@@ -68,6 +68,7 @@ class FlotaController extends Controller
 
         //variables universo
         $constantesU = Constantes::where('tipo', 'universo')->get();
+        $cantidadDestinos=$constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
 
         //constantes invest
         $constantes = Constantes::where('tipo', 'investigacion')->get();
@@ -213,7 +214,7 @@ class FlotaController extends Controller
         Log::info("destinos");Log::info($destinos);
         */
 
-        $cantidadDestinos=3;
+
         $errores="";
 
         //// valores de las naves en planeta
@@ -312,6 +313,8 @@ class FlotaController extends Controller
 
 
         //Log::info($valFlotaT);
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+        $cantidadDestinos=$constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
 
         $valoresValidos=Flotas::valoresValidos($cantidadDestinos,$cargaDest,$prioridades);
         $cargaDest=$valoresValidos[0];
@@ -326,37 +329,46 @@ class FlotaController extends Controller
     }
 
     //se envia la flota  ////////////////////
-    if (strlen($errores)<1){
+    if (strlen($errores)<3){
 
         DB::beginTransaction();
         try {
             //construyendo flota
 
-            $nombreJugon=$jugadorActual = Jugadores::find(session()->get('nombre'));
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+            $nombreJugon= "ggg";
             $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
-            $publico=substr($nombreJugon, 0, 3).$timestamp;
+            $publico=substr($nombreJugon, 0, 3).substr($timestamp, 5);
             if (strlen($flota['nombre'])<1){
                 $flota['nombre']=$publico;
             }
 
-            Log::info($nombreJugon);
-            Log::info($publico);
-            Log::info($flota['nombre']);
+            $flotax=new EnVuelo;
+            $flotax->nombre=$flota['nombre'];;
+            $flotax->publico=$publico;
+            $flotax->ataqueReal= $valFlotaT['ataqueR'];
+            $flotax->defensaReal= $valFlotaT['defensaR'];
+            $flotax->ataqueVisible= $valFlotaT['ataqueV'];
+            $flotax->defensaVisible= $valFlotaT['defensaV'];
+            $flotax->creditos= $valFlotaT['mantenimiento'];
+            $flotax->save();
 
-            $flota=new EnVuelo;
-            $flota->nombre=$flota['nombre'];
-            $flota->publico=$publico;
-            $flota->ataqueReal= $valFlotaT['ataqueR'];
-            $flota->defensaReal= $valFlotaT['defensaR'];
-            $flota->ataqueVisible= $valFlotaT['ataqueV'];
-            $flota->defensaVisible= $valFlotaT['defensaV'];
-            $flota->creditos= $valFlotaT['mantenimiento'];
-            $flota->save();
+            //Log::info($flota);
 
             //construyendo destinos
             $Tinit=date("Y-m-d H:i:s");
             for ($dest = 1; $dest < count($destinos); $dest++) {
-                $Tfin=$Tinit+$destinos[$dest]['tiempoDest'];
+
+                //Log::info($Tinit);
+
+                $destAnt=$dest-1;
+                $add_time=strtotime($Tinit)+1*$destinos[$dest]['tiempoDest'];
+                $Tfin=date('Y-m-d H:i:s',$add_time);
+
+                //Log::info($Tfin);
+
+                //Log::info($destinos[$destAnt]);
+                //Log::info($destinos[$dest]);
 
                 if($destinos[$dest]['viable']==true){
                     $destino = new destinos();
@@ -364,18 +376,21 @@ class FlotaController extends Controller
                     $destino->mision=$destinos[$dest]['mision'];
                     $destino->estrella=$destinos[$dest]['estrella'];
                     $destino->orbita=$destinos[$dest]['orbita'];
-                    $destino->initcoordx=$destinos[$dest]['initcoordx'];
-                    $destino->initcoordy=$destinos[$dest]['initcoordy'];
+                    $destino->initcoordx=$destinos[$destAnt]['fincoordx'];
+                    $destino->initcoordy=$destinos[$destAnt]['fincoordy'];
                     $destino->fincoordx=$destinos[$dest]['fincoordx'];
                     $destino->fincoordy=$destinos[$dest]['fincoordy'];
-                    $destino->vectorx=$destinos[$dest]['fincoordx']-$destinos[$dest]['initcoordx'];
-                    $destino->vectory=$destinos[$dest]['fincoordy']-$destinos[$dest]['initcoordy'];
+                    //$destino->vectorx=$destinos[$dest]['fincoordx']-$destinos[$dest]['initcoordx']; //entre segundos
+                    //$destino->vectory=$destinos[$dest]['fincoordy']-$destinos[$dest]['initcoordy'];
                     $destino->init=$Tinit;
                     $destino->fin=$Tfin;
-                    $destino->envuelos_id=$flota->id;
+                    $destino->envuelos_id=$flotax->id;
                     $destino->save();
 
+                    //Log::info($destino);
                     $Tinit=$Tfin;
+
+                    //Log::info($cargaDest[$dest]);
 
                     $recursosDestino=new EnRecursosEnDestino;
                     $recursosDestino->personal=$cargaDest[$dest]['personal'];
@@ -393,39 +408,60 @@ class FlotaController extends Controller
                     $recursosDestino->destinos_id=$destino->id;
                     $recursosDestino->save();
 
-                    $prioridades=new Prioridades();
-                    $prioridades->personal=$prioridades[$dest]['personal'];
-                    $prioridades->mineral=$prioridades[$dest]['mineral'];
-                    $prioridades->cristal=$prioridades[$dest]['cristal'];
-                    $prioridades->gas=$prioridades[$dest]['gas'];
-                    $prioridades->plastico=$prioridades[$dest]['plastico'];
-                    $prioridades->ceramica=$prioridades[$dest]['ceramica'];
-                    $prioridades->liquido=$prioridades[$dest]['liquido'];
-                    $prioridades->micros=$prioridades[$dest]['micros'];
-                    $prioridades->fuel=$prioridades[$dest]['fuel'];
-                    $prioridades->ma=$prioridades[$dest]['ma'];
-                    $prioridades->municion=$prioridades[$dest]['municion'];
-                    $prioridades->creditos=$prioridades[$dest]['creditos'];
-                    $prioridades->destinos_id=$destino->id;
-                    $prioridades->save();
+
+                    $prioridadex=new EnPrioridadesEnDestino();
+                    $prioridadex->personal=$prioridades[$dest]['personal'];
+                    $prioridadex->mineral=$prioridades[$dest]['mineral'];
+                    $prioridadex->cristal=$prioridades[$dest]['cristal'];
+                    $prioridadex->gas=$prioridades[$dest]['gas'];
+                    $prioridadex->plastico=$prioridades[$dest]['plastico'];
+                    $prioridadex->ceramica=$prioridades[$dest]['ceramica'];
+                    $prioridadex->liquido=$prioridades[$dest]['liquido'];
+                    $prioridadex->micros=$prioridades[$dest]['micros'];
+                    $prioridadex->fuel=$prioridades[$dest]['fuel'];
+                    $prioridadex->ma=$prioridades[$dest]['ma'];
+                    $prioridadex->municion=$prioridades[$dest]['municion'];
+                    $prioridadex->creditos=$prioridades[$dest]['creditos'];
+                    $prioridadex->destinos_id=$destino->id;
+                    $prioridadex->save();
+
+                   // Log::info("hecho destino ".$dest );
 
                 }
             }
 
+
+           // Log::info("todos los destinos done");
+
             // naves a flota
 
+            foreach ($disenios as $navex) {
+
+                //Log::info($navex);
+
+                $naveSale=new DiseniosEnVuelo();
+                $naveSale->enFlota=$navex['enflota'];
+                $naveSale->enHangar=$navex['enhangar'];
+                $naveSale->disenios_id=$navex['id'];
+                $naveSale->envuelos_id=$flotax->id;
+                $naveSale->save();
+
+                $naveP=$navesEnPlaneta->firstWhere('disenios_id',$navex['id']);
+                $naveP->cantidad-=$navex['enflota']+$navex['enhangar'];
+
+                $naveP->save();
+            }
 
 
-
-
-
+        DB::commit();
+        //Log::info("Enviada");
 
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e);
         }
     } else {
-        Log::info($errores);
+        Log::info("errores al enviar: ".$errores);
     }
 
        // Log::info($disenios[0]);

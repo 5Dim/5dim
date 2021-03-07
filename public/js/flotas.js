@@ -16,6 +16,7 @@ CrearOrigen(0);
 
 for (dest = 1; dest < destinos.length; dest++) {
     CargaActual(dest);
+    VaciarPrioridades(dest);
 }
 Avisos();
 
@@ -627,7 +628,7 @@ $(".prioridad").keyup(function() {
 
 function VaciarPrioridades(dest) {
     recursosArray.forEach(res => {
-        $("#prioridad" + res + dest).val(prioridades[res]);
+        $("#prioridad" + res + dest).val(prioridades[dest][res]);
     });
 }
 

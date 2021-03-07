@@ -213,8 +213,7 @@ class Flotas extends Model
             };
         }
 
-        Log::info($errores);
-
+        //Log::info($errores);
         return $errores;
 
     }
@@ -224,15 +223,23 @@ class Flotas extends Model
         $constantesU = Constantes::where('tipo', 'universo')->get(); //Log::info($constantesU);
         $fueldistancia = $constantesU->where('codigo', 'fuelpordistancia')->first()->valor;
         $factortiempoviaje=$constantesU->where('codigo', 'factortiempoviaje')->first()->valor;
+        $anchoUniverso= $constantesU->where('codigo', 'anchouniverso')->first()->valor;
+        $luzdemallauniverso= $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
+
+        $dest=0;
+        $coordDestino = Flotas::coordenadasBySistema($destinos[$dest]['estrella'],$anchoUniverso,$luzdemallauniverso);
+        $destinos[$dest]['fincoordx']=$coordDestino['x'];
+        $destinos[$dest]['fincoordy']=$coordDestino['y'];
 
         for ($dest = 1; $dest < count($destinos); $dest++) {
             //$("#municion" + dest).val(valFlotaT.municion);
             $destAnt = $dest - 1;
-            $destinos[$dest]['viable']=true;
+            $destinos[$dest]['viable']=false;
             $tiempoDest =0;
             $fuelDest=0;
 
             if (isset ($destinos[$dest]['mision']) &&  $destinos[$dest]['mision']!=""){
+                $destinos[$dest]['viable']=true;
                 $result = Flotas::distanciaUniverso($destinos[$destAnt], $destinos[$dest],$constantesU);
                 $distancia=$result[0];
                 $destinos[$dest]=$result[1];
