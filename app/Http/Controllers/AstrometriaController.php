@@ -178,13 +178,10 @@ class AstrometriaController extends Controller
         return compact('flotas');
     }
 
-
-
-
     public function sistema($numeroSistema) // http://homestead.test/juego/astrometria/ajax/sistema/123
     {
         $seVe = Astrometria::sistemaEnRadares($numeroSistema);
-        $sistema = new \stdClass();
+        $sistema = new Planetas();
         $sistema->idioma = 0;
         $sistema->sistema = (int)$numeroSistema;
         $sistema->imgsol = '/astrometria/img/sistema/sol1.png';
@@ -261,6 +258,6 @@ class AstrometriaController extends Controller
         }
         $sistema->planetas = $planetas;
 
-        return compact('sistema');
+        return $sistema;
     }
 }
