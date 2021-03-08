@@ -327,7 +327,11 @@ function Avisos() {  //////////////////////////////  VALIDACION
                     .addClass("cajita-success")
                     .removeClass("cajita-light");
             }
-        } else {
+        } else if  (dest==1 && orden == ""){
+            errores += " ,sin misión";
+            hayErrorMision = true;
+        }
+        else {
             var img = origenImagenes + "/flotas/nada.jpg";
         }
 

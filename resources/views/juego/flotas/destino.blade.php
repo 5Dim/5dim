@@ -24,7 +24,7 @@
                     Planeta
                 </th>
                 <th  class="text-warning align-middle ">
-                    Orden
+                    Misión
                 </th>
                 <th class="text-warning align-middle ">
                     Porcentaje de velocidad
@@ -67,7 +67,7 @@
                 <td class="text-light">
                     <div id="selectorordenDest{{ $numero }}">
                         <select name="orden" id="ordenDest{{ $numero }}" class="select form-control">
-                            <option value="" selected>-- Selecciona una orden --</option>
+                            <option value="" selected>Selección de misión</option>
                             <option value="transportar">Transportar</option>
                             <option value="transferir">Transferir</option>
                             <option value="orbitar">Orbitar</option>

@@ -323,8 +323,10 @@ class FlotaController extends Controller
         $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         $resultValidar=Flotas::validacionesFlota($destinos,$valFlotaT,$errores,$tablaHangares,$recursos,$cargaDest,$cantidadDestinos);
 
+        //Log::info($resultValidar);
+
         if (!empty($resultValidar)){
-            $errores=$resultValidar[0];
+            $errores=$resultValidar;
         }
     }
 
@@ -426,10 +428,8 @@ class FlotaController extends Controller
                     $prioridadex->save();
 
                    // Log::info("hecho destino ".$dest );
-
                 }
             }
-
 
            // Log::info("todos los destinos done");
 
@@ -448,12 +448,11 @@ class FlotaController extends Controller
 
                 $naveP=$navesEnPlaneta->firstWhere('disenios_id',$navex['id']);
                 $naveP->cantidad-=$navex['enflota']+$navex['enhangar'];
-
                 $naveP->save();
             }
 
 
-        DB::commit();
+        //DB::commit();
         //Log::info("Enviada");
 
         } catch (Exception $e) {
@@ -464,11 +463,7 @@ class FlotaController extends Controller
         Log::info("errores al enviar: ".$errores);
     }
 
-       // Log::info($disenios[0]);
-       // FlotaController::calculoFlota($disenios);
-
-
-        //return compact('errores');
+        return compact('errores');
     }
 
 

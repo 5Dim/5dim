@@ -203,6 +203,7 @@ class Flotas extends Model
             $errores = " No hay destinos con misiones viables";
         }
 
+        //log::info($errores);
 
         /// hangares
         $tamaniosArray = array("cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega");
@@ -290,11 +291,13 @@ class Flotas extends Model
 
         $dist = 0;
 
+        // calculos
         if ($origen['estrella'] != "0" && $destino['estrella'] != "0" && $origen['orbita'] != "0" && $destino['orbita'] != "0") {
             if ($origen['estrella'] == $destino['estrella'] && $origen['orbita'] == $destino['orbita']) {
                 //orbitar
                 $factordistancia = $constantesU->where('codigo', 'distanciaorbita')->first()->valor;
                 $coordDestino['x'] = 0.5;
+                $destino['fincoordy']+=5;
             } else if ($origen['estrella'] == $destino['estrella']) {
                 //mismo sistema
                 $factordistancia = $constantesU->where('codigo', 'distanciaentreplanetas')->first()->valor;
@@ -310,11 +313,12 @@ class Flotas extends Model
             //calculo coords para distancia
             $dist = $factordistancia * pow(($coordDestino['x'] - $coordOrigen['x']) * ($coordDestino['x'] - $coordOrigen['x']) + ($coordDestino['y'] - $coordOrigen['y']) * ($coordDestino['y'] - $coordOrigen['y']), 1 / 2);
         }
-        //guardando coord para representar
 
+        //guardando coord para representar
         $coordDestino = Flotas::coordenadasBySistema($destino['estrella'],$anchoUniverso,$luzdemallauniverso);
         $destino['fincoordx']=$coordDestino['x'];
         $destino['fincoordy']=$coordDestino['y'];
+
         return [round($dist * 100) / 100,$destino];
     }
 
@@ -325,7 +329,7 @@ class Flotas extends Model
 
     public static function tiempoLLegada($distancia, $velocidad,$factortiempoviaje) {
         if ($velocidad>0){
-            return ($tiempo = round($distancia / $velocidad * $factortiempoviaje)); //en segundos
+            return (round($distancia / $velocidad * $factortiempoviaje)); //en segundos
         }
         return 0;
     }
