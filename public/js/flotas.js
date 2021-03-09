@@ -527,6 +527,7 @@ function CargarRecurso(dest, res) {
     $("#" + res + dest).val(formatNumber(acargar));
     var resto = Math.max(0, recur - acargar);
     $("#boton" + res + dest).text(formatNumber(resto));
+    CargaActual(dest);//al final recapitula
 }
 
 function TraerRecursos(sistema, planeta, dest) {

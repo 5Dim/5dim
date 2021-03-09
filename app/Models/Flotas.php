@@ -103,9 +103,10 @@ class Flotas extends Model
 
         for ($dest = 1; $dest < $cantidadDestinos; $dest++) {
             //destino viable
-            if (!$destinos[$dest]['viable']){
-                $errores=" Destino no viable= ".$dest;
-            }
+            //Log::info($destinos[$dest]['viable']);
+           // if (!$destinos[$dest]['viable']){
+           //     $errores=" Destino no viable= ".$dest;
+           // }
             //misiones
             $destAnt = $dest - 1;
             $destPost = $dest + 1;
@@ -271,6 +272,7 @@ class Flotas extends Model
 
         }
         $valFlotaT['fuelDestT']=$fuelDestT;
+        //Log::info($destinos[1]['viable']);
 
         return [$destinos,$valFlotaT];
     }
@@ -297,7 +299,6 @@ class Flotas extends Model
                 //orbitar
                 $factordistancia = $constantesU->where('codigo', 'distanciaorbita')->first()->valor;
                 $coordDestino['x'] = 0.5;
-                $destino['fincoordy']+=5;
             } else if ($origen['estrella'] == $destino['estrella']) {
                 //mismo sistema
                 $factordistancia = $constantesU->where('codigo', 'distanciaentreplanetas')->first()->valor;
@@ -318,6 +319,7 @@ class Flotas extends Model
         $coordDestino = Flotas::coordenadasBySistema($destino['estrella'],$anchoUniverso,$luzdemallauniverso);
         $destino['fincoordx']=$coordDestino['x'];
         $destino['fincoordy']=$coordDestino['y'];
+
 
         return [round($dist * 100) / 100,$destino];
     }

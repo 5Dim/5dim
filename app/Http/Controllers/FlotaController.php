@@ -22,6 +22,7 @@ use App\Models\EnRecursosEnDestino;
 use App\Models\EnVuelo;
 use App\Models\EnPrioridadesEnDestino;
 use App\Models\DiseniosEnVuelo;
+use App\Models\RecursosEnFlota;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -214,7 +215,6 @@ class FlotaController extends Controller
         Log::info("destinos");Log::info($destinos);
         */
 
-
         $errores="";
 
         //// valores de las naves en planeta
@@ -311,11 +311,11 @@ class FlotaController extends Controller
         $destinos=$result[1];
         $tablaHangares=$result[2];
 
-
         //Log::info($valFlotaT);
+        //Log::info($cargaDest);
+
         $constantesU = Constantes::where('tipo', 'universo')->get();
         $cantidadDestinos=$constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
-
         $valoresValidos=Flotas::valoresValidos($cantidadDestinos,$cargaDest,$prioridades);
         $cargaDest=$valoresValidos[0];
         $prioridades=$valoresValidos[1];
@@ -451,8 +451,43 @@ class FlotaController extends Controller
                 $naveP->save();
             }
 
+            // restando recursos de origen
+            //origen es un planeta:
+            $dest=0;
+            Log::info($cargaDest);
+            $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
+            $recursos->personal -= $cargaDest[$dest]['personal'];
+            $recursos->mineral -= $cargaDest[$dest]['mineral'];
+            $recursos->cristal -= $cargaDest[$dest]['cristal'];
+            $recursos->gas -= $cargaDest[$dest]['gas'];
+            $recursos->plastico -= $cargaDest[$dest]['plastico'];
+            $recursos->ceramica -= $cargaDest[$dest]['ceramica'];
+            $recursos->liquido -= $cargaDest[$dest]['liquido'];
+            $recursos->micros -= $cargaDest[$dest]['micros'];
+            $recursos->fuel -= $cargaDest[$dest]['fuel'];
+            $recursos->ma -= $cargaDest[$dest]['ma'];
+            $recursos->municion -= $cargaDest[$dest]['municion'];
+            $recursos->creditos -= $cargaDest[$dest]['creditos'];
+            $recursos->save();
 
-        //DB::commit();
+            //a la flota
+            $recursosEnFlota=new RecursosEnFlota();
+            $recursosEnFlota->personal = $cargaDest[$dest]['personal'];
+            $recursosEnFlota->mineral = $cargaDest[$dest]['mineral'];
+            $recursosEnFlota->cristal = $cargaDest[$dest]['cristal'];
+            $recursosEnFlota->gas = $cargaDest[$dest]['gas'];
+            $recursosEnFlota->plastico = $cargaDest[$dest]['plastico'];
+            $recursosEnFlota->ceramica = $cargaDest[$dest]['ceramica'];
+            $recursosEnFlota->liquido = $cargaDest[$dest]['liquido'];
+            $recursosEnFlota->micros = $cargaDest[$dest]['micros'];
+            $recursosEnFlota->fuel = $cargaDest[$dest]['fuel'];
+            $recursosEnFlota->ma = $cargaDest[$dest]['ma'];
+            $recursosEnFlota->municion = $cargaDest[$dest]['municion'];
+            $recursosEnFlota->creditos = $cargaDest[$dest]['creditos'];
+            $recursosEnFlota->envuelos_id=$flotax->id;
+            $recursosEnFlota->save();
+
+        DB::commit();
         //Log::info("Enviada");
 
         } catch (Exception $e) {
@@ -462,10 +497,6 @@ class FlotaController extends Controller
     } else {
         Log::info("errores al enviar: ".$errores);
     }
-
         return compact('errores');
     }
-
-
-
 }
