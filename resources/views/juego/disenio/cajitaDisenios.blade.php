@@ -20,8 +20,8 @@
                 </tr>
                 <tr>
                     <td rowspan="4" class="anchofijo text-warning borderless">
-                        <img class="rounded" data-skin="1"
-                            src="{{ asset('img/fotos naves/skin1/naveMT' . $disenio->fuselajes_id . '.jpg') }}"
+                        <img class="rounded"
+                            src="{{ asset('img/fotos naves/skin'.$disenio->skin.'/naveMT' . $disenio->fuselajes_id . '.jpg') }}"
                             width="180" height="119">
                     </td>
                     <td colspan="7" class="borderless"></td>

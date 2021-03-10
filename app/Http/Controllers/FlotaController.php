@@ -78,6 +78,7 @@ class FlotaController extends Controller
         $navesEstacionadas = $planetaActual->estacionadas;
         $diseniosJugador = $jugadorActual->disenios;
 
+
         foreach ($diseniosJugador as $disenio) {
             $disenio->tamanio = $disenio->fuselajes->tamanio;
         }
@@ -92,10 +93,12 @@ class FlotaController extends Controller
             array_push($idsDiseno,$diseno->id);
             $diseno->enflota=0;
             $diseno->enhangar=0;
+            $diseno->fuselajes_id =$diseniosJugador->where('id', $diseno->id)->first()->fuselajes_id;
+            $diseno->skin =$diseniosJugador->where('id', $diseno->id)->first()->skin;
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
-
+        Log::info($navesEstacionadas );
 
         //$flotaP= EnVuelo::where('id', 1)->first();
         //$destinosP=Destinos::where('envuelos_id', $flotaP->id)->get();

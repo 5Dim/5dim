@@ -15,7 +15,10 @@
                         </tr>
                         <tr>
                             <th class="anchofijo text-warning align-middle">
-                                Nombre del disenio
+
+                            </th>
+                            <th class="anchofijo text-warning align-middle">
+                                Nombre
                             </th>
                             <th class="anchofijo text-warning align-middle">
                                 Ataque
@@ -27,19 +30,19 @@
                                 Carga
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. cazas
+                                H.cazas
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. ligeras
+                                H.ligeras
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. medias
+                                H.medias
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                H. pesadas
+                                H.pesadas
                             </th>
                             <th class="anchofijo text-warning align-middle">
-                                Vel. Impulso
+                                Vel.Impulso
                             </th>
                             <th class="anchofijo text-warning align-middle">
                                 Hypervelocidad
@@ -88,6 +91,12 @@
                         </tr>
                         @foreach ($navesEstacionadas as $nave)
                             <tr>
+                                <td name="imagen{{ $nave->disenios_id }}" id="imagen{{ $nave->disenios_id }}"
+                                    class="anchofijo text-light align-middle">
+                                    <img class="rounded"
+                                    src="{{ asset('img/fotos naves/skin'.$nave->skin.'/naveLTH' . $nave->fuselajes_id . '.png') }}"
+                                    width="45" height="28">
+                                </td>
                                 <td name="nombre{{ $nave->disenios_id }}" id="nombre{{ $nave->disenios_id }}"
                                     class="anchofijo text-light align-middle">
                                 </td>

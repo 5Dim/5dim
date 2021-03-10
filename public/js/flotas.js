@@ -41,7 +41,31 @@ function CargarValoresPlaneta() {
         valNaves[este].enhangar = 0;
         valNaves[este].tamanio = diseno.tamanio;
 
+        //ayuda visual esconde los 0
         $("#nombre" + diseno.id).text(diseno.nombre);
+        if (valNaves[este]['carga']==0){
+            $("#carga"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        }
+        if (valNaves[este]['cargaPequenia']==0){
+            $("#hangarCazas"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        }
+        if (valNaves[este]['cargaMediana']==0){
+            $("#hangarLigeras"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        }
+        if (valNaves[este]['cargaGrande']==0){
+            $("#hangarMedias"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        }
+        if (valNaves[este]['cargaEnorme']==0){
+            $("#hangarPesadas"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        }
+        if (valNaves[este]['maniobra']==0){
+            $("#maniobra"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        }
+        if (valNaves[este]['velocidad']==0){
+            $("#velocidad"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        }
+
+
     });
 
     RecalculoTotal();
