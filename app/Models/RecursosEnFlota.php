@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RecursosEnFlota extends Model
 {
+    protected $table = 'recursos_en_flota';
     use HasFactory;
+
 }

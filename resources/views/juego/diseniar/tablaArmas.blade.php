@@ -318,11 +318,11 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                         </table>
                     </td>
                     <td rowspan="5">
-                        <button type="button" class="btn btn-outline-success col-12 btn-sm" onclick="changeSkin('{{$disenio->id}}')">
+                        <button type="button" class="btn btn-primary col-12 btn-sm" onclick="changeSkin('{{$disenio->id}}')">
                         <i class="fa fa-arrows-alt-h" id="imagen{{$disenio->id}}" data-skin="1"> Cambiar aspecto</i>
                         </button>
-                        <button type="button" class="btn btn-outline-success col-12 btn-sm" onclick="limpiar()">
-                        <i class="fa fa-recycle" data-skin="1"> Limpiar disenio</i>
+                        <button type="button" class="btn btn-primary col-12 btn-sm" onclick="limpiar()">
+                        <i class="fa fa-recycle" data-skin="1"> Limpiar diseño</i>
                         </button>
                     </td>
                     <td colspan="2">
@@ -2416,18 +2416,22 @@ function crearDisenio() {
         },
         url: "/juego/disenio/crearDisenio",
         data: {"armas": armas,"energiaArmas":energiaArmas,"armasAlcance":armasAlcance,"armasDispersion":armasDispersion,"datosBasicos":datosBasicos},
+        beforeSend: function() {
+                $("#crearDisenio").prop("disabled", true);
+                var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....';
+                $("#crearDisenio").html(spinner);
+            },
         success: function (data) {
             console.log(data);
-
-            /*
-            if (data.success) {
-                // notice that we are expecting a json array with success = true and a payload
-                $('.modal').empty().append(data.payload).modal();
+            $("#crearDisenio").prop("disabled", false);
+            $("#crearDisenio").text("Crear Diseño");
+            if (data.razonCorrecto=="") {
+                $('.modal').empty().append("Diseño creado").modal(); //data.payload
+                alert("Diseño creado");
             } else {
-                // for debugging
-                alert(data);
+                alert(data.razonCorrecto);
             }
-            */
+
         },
         error: function (xhr, textStatus, thrownError) {
             console.log("status", xhr.status);

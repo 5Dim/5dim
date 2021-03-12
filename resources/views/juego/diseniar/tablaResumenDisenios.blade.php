@@ -214,18 +214,18 @@
                     </td>
                     @php
                         $texto = 'Se requiere el diseño';
-                        $clase = 'light';
+                        $clase = 'btn-secondar';
                         $deshabilitado = 'disabled';
                         if (!empty(Auth::user()->jugador->fuselajes->where('id', $disenio->id)->first())) {
                             if ($disenio->id == Auth::user()->jugador->fuselajes->where('id', $disenio->id)->first()->id) {
-                                $texto = 'Diseniar';
-                                $clase = 'primary';
+                                $texto = 'Crear diseño';
+                                $clase = 'btn-success';
                                 $deshabilitado = '';
                             }
                         }
                     @endphp
                     <td>
-                        <button type="button" class="btn btn-outline-{{ $clase }} col-12" onclick="crearDisenio()" {{ $deshabilitado }}>
+                        <button id="crearDisenio" type="button" class="btn {{ $clase }} col-12" onclick="crearDisenio()" {{ $deshabilitado }}>
                             <i class="fa fa-cogs"></i> {{ $texto }}
                         </button>
                     </td>

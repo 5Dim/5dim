@@ -256,10 +256,11 @@ function Avisos() {  //////////////////////////////  VALIDACION
 
     ///exceso de carga
 
+    CargaActual(0);
     var excesocarga = false;
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
-        if (!destinos[dest].estrella.length === 0 ){
+        if (destinos[dest].estrella.toString.length !== 0 ){
 
             if (cargaDest[dest] != undefined && cargaDest[dest].total > valFlotaT.carga) {
                 excesocarga = true;
@@ -552,6 +553,7 @@ function CargarRecurso(dest, res) {
     var resto = Math.max(0, recur - acargar);
     $("#boton" + res + dest).text(formatNumber(resto));
     CargaActual(dest);//al final recapitula
+    $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
 }
 
 function TraerRecursos(sistema, planeta, dest) {
@@ -623,7 +625,7 @@ function CargaActual(dest) {
         $("#boton" + res + dest).text(formatNumber(resto));
     });
     cargaDest[dest].total = cargatotal;
-    Avisos();
+    //Avisos(); da error recursivo al llamarlo desde avisos
 }
 
 function ModificandoRecurso(dest, res) {
@@ -705,12 +707,22 @@ function enviarFlota() {
                 var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....';
                 $("#botonEnviar").html(spinner);
             },
-            success: function(response) {},
+            success: function(response) {
+                $("#botonEnviar").text("Enviar Flota");
+                $("#botonEnviar").prop("disabled", false);
+                if (response.errores==""){
+                    alert("Flota enviada");
+                } else {
+                    alert(response.errores);
+                }
+
+            },
             error: function(xhr, textStatus, thrownError) {
                 $("#botonEnviar").text("Enviar Flota");
                 $("#botonEnviar").prop("disabled", false);
                 console.log("status", xhr.status);
                 console.log("error", thrownError);
+                //alert(data.errores);
             },
         });
     }
