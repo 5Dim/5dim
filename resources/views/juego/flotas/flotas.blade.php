@@ -10,20 +10,17 @@
                     </a>
                     <a class="nav-item nav-link" id="Propias-tab" data-bs-toggle="tab" href="#Propias" role="tab"
                         aria-controls="Propias" aria-selected="false">
-                        Propias en vuelo
+                        En vuelo
                     </a>
                     <a class="nav-item nav-link" id="orbita-tab" data-bs-toggle="tab" href="#orbita" role="tab"
                         aria-controls="orbita" aria-selected="false">
-                        Propias en órbita
+                        En órbita
                     </a>
                     <a class="nav-item nav-link" id="recoleccion-tab" data-bs-toggle="tab" href="#recoleccion" role="tab"
                         aria-controls="recoleccion" aria-selected="false">
-                        Propias en recolección
+                        En recolección
                     </a>
-                    <a class="nav-item nav-link" id="extrangeras-tab" data-bs-toggle="tab" href="#extrangeras" role="tab"
-                        aria-controls="extrangeras" aria-selected="false">
-                        Extrangeras
-                    </a>
+
                     {{-- <a class="nav-item nav-link" id="novas-tab" data-bs-toggle="tab" href="#novas" role="tab"
                         aria-controls="novas" aria-selected="false">
                         Novas
@@ -43,9 +40,7 @@
                 <div class="tab-pane fade" id="recoleccion" role="tabpanel" aria-labelledby="recoleccion-tab">
 
                 </div>
-                <div class="tab-pane fade" id="extrangeras" role="tabpanel" aria-labelledby="extrangeras-tab">
 
-                </div>
 
             </div>
         </div>

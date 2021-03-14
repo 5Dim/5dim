@@ -163,7 +163,6 @@ class FlotaController extends Controller
         }
 
 
-
         return view('juego.flotas.flotas', compact(
             // Recursos
             'recursos',
@@ -498,7 +497,7 @@ class FlotaController extends Controller
 
             } catch (Exception $e) {
                 DB::rollBack();
-            // Log::info($e);
+                Log::info("Error en Commit de envio de flotas ".$e);
             }
             //return redirect('/juego/flota');
         } else {
@@ -507,4 +506,10 @@ class FlotaController extends Controller
         //Log::info($errores);
         return compact('errores');
     }
+
+
+    ///jugador->enVuelo
+    // array de alianza = Alianzas::idMiembros
+    // EnVuelo::whereIn("jugadores_id",array de id de alianza)
+    // EnVuelo::whereIn("jugadores_id",array de id de alianza)
 }

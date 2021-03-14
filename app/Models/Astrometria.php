@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Astrometria extends Model
 {
@@ -107,13 +108,29 @@ class Astrometria extends Model
     }
 
     // dado un sistema te determina si esta en observacion
-    // array radares   astrometiacontroller
-    // break al primero q lo vea
     public static function sistemaEnRadares($sistema)
     {
         $radares = Astrometria::radares();
+        $seve = false;
 
-        $seve = true;
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+        $anchoUniverso= $constantesU->where('codigo', 'anchouniverso')->first()->valor;
+        $luzdemallauniverso= $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
+
+        $coordOrigen=Flotas::coordenadasBySistema($sistema,$anchoUniverso,$luzdemallauniverso);
+
+        foreach ($radares as $radar) {
+            //Log::info($radar);
+            $coordDestino=Flotas::coordenadasBySistema($radar['estrella'],$anchoUniverso,$luzdemallauniverso);
+            $dist =  (pow(($coordDestino['x'] - $coordOrigen['x']) * ($coordDestino['x'] - $coordOrigen['x']) + ($coordDestino['y'] - $coordOrigen['y']) * ($coordDestino['y'] - $coordOrigen['y']), 1 / 2))/$luzdemallauniverso;
+
+            //Log::info($dist);
+            if ($dist<$radar['circulo']){
+                $seve = true;
+                break;
+            }
+        }
+
         return $seve;
     }
 }
