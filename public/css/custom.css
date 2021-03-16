@@ -64,6 +64,14 @@ table.anchofijo {
     display: contents;
 }
 
+table > tbody > .accordion-collapse {
+    border: inherit !important;
+}
+
+table > .accordion-collapse {
+    border: inherit !important;
+}
+
 .cajita {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid orange;
