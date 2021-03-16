@@ -313,7 +313,7 @@
                     <td>
                         <a type="button" class="btn btn-outline-danger col-12 text-danger"
                             href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
-                            <i class="fa fa-times "></i> Borrar disenio
+                            <i class="fa fa-times "></i> Borrar diseño
                         </a>
                     </td>
                     <td>
