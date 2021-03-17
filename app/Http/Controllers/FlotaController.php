@@ -22,6 +22,7 @@ use App\Models\EnRecursosEnDestino;
 use App\Models\EnVuelo;
 use App\Models\EnPrioridadesEnDestino;
 use App\Models\DiseniosEnVuelo;
+use App\Models\PuntosEnFlota;
 use App\Models\RecursosEnFlota;
 use Exception;
 use Illuminate\Http\Request;
@@ -319,6 +320,8 @@ class FlotaController extends Controller
 
             $constantesU = Constantes::where('tipo', 'universo')->get();
             $cantidadDestinos=$constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
+            $tiempoPuntosFlotas=$constantesU->where('codigo', 'tiempoPuntosFlotas')->first()->valor;
+
             $valoresValidos=Flotas::valoresValidos($cantidadDestinos,$cargaDest,$prioridades);
             $cargaDest=$valoresValidos[0];
             $prioridades=$valoresValidos[1];
@@ -356,6 +359,7 @@ class FlotaController extends Controller
                 $flotax->ataqueVisible= $valFlotaT['ataqueV'];
                 $flotax->defensaVisible= $valFlotaT['defensaV'];
                 $flotax->creditos= $valFlotaT['mantenimiento'];
+                $flotax->jugadores_id=$jugadorActual->id;
                 $flotax->save();
 
                 //Log::info($flota);
@@ -367,7 +371,8 @@ class FlotaController extends Controller
                     //Log::info($Tinit);
 
                     $destAnt=$dest-1;
-                    $add_time=strtotime($Tinit)+1*$destinos[$dest]['tiempoDest'];
+                    $duracion=1*$destinos[$dest]['tiempoDest'];
+                    $add_time=strtotime($Tinit)+$duracion;
                     $Tfin=date('Y-m-d H:i:s',$add_time);
 
                     //Log::info($Tfin);
@@ -392,6 +397,30 @@ class FlotaController extends Controller
                         $destino->envuelos_id=$flotax->id;
                         $destino->save();
 
+                        $vectorx=(1 * $destinos[$dest]['fincoordx']-1 * $destinos[$destAnt]['fincoordx'])/$duracion;
+                        $vectory=(1 * $destinos[$dest]['fincoordy']-1 * $destinos[$destAnt]['fincoordy'])/$duracion;
+
+                        for ($tiempoPto = 0; $tiempoPto < $duracion/$tiempoPuntosFlotas; $tiempoPto++) {
+
+                            $add_time=strtotime($Tinit)+($tiempoPto * $tiempoPuntosFlotas);
+                            $TfinPto=date('Y-m-d H:i:s',$add_time);
+
+                            $puntoFlota=new PuntosEnFlota();
+                            $puntoFlota->coordx= $destinos[$destAnt]['fincoordx'] + $vectorx * ($tiempoPto * $tiempoPuntosFlotas);
+                            $puntoFlota->coordy= $destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas);
+                            $puntoFlota->fin= $TfinPto;
+                            $puntoFlota->envuelos_id=$flotax->id;
+                            //Log::info($puntoFlota);
+                            $puntoFlota->save();
+                        }
+                        //ultimo punto siempre va
+                        $puntoFlota=new PuntosEnFlota();
+                        $puntoFlota->coordx= $destinos[$destAnt]['fincoordx'];;
+                        $puntoFlota->coordy= $destinos[$destAnt]['fincoordy'];
+                        $puntoFlota->fin= $Tfin;
+                        $puntoFlota->envuelos_id=$flotax->id;
+                        $puntoFlota->save();
+
                         //Log::info($destino);
                         $Tinit=$Tfin;
 
@@ -412,7 +441,6 @@ class FlotaController extends Controller
                         $recursosDestino->creditos=$cargaDest[$dest]['creditos'];
                         $recursosDestino->destinos_id=$destino->id;
                         $recursosDestino->save();
-
 
                         $prioridadex=new EnPrioridadesEnDestino();
                         $prioridadex->personal=$prioridades[$dest]['personal'];

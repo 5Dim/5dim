@@ -1274,13 +1274,22 @@ class Constantes extends Model
         $constante->votable = 1;
         array_push($producciones, $constante);
 
-
         $constante = new Constantes();
         $constante->valor = 3;
         $constante->minimo = 2;
         $constante->maximo = 5;
         $constante->codigo = 'cantidadDestinosFlotas';
         $constante->descripcion = 'cantidad de destinos para flotas';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 60*10;
+        $constante->minimo = 60*5;
+        $constante->maximo = 60*15;
+        $constante->codigo = 'tiempoPuntosFlotas';
+        $constante->descripcion = 'cada cuanto tiempo del viaje hay un punto de flota';
         $constante->tipo = 'universo';
         $constante->votable = 0;
         array_push($producciones, $constante);

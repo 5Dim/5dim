@@ -20,15 +20,15 @@
                 <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info1" aria-expanded="false"
                     aria-controls="info1">
                     <div id="cuadro1" class="">
-                        <th colspan="4" class="text-success text-center borderless align-middle">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </th>
                         <th colspan="2" class="text-success text-center borderless align-middle">
                             <big>Origen<big>
                         </th>
                         <th colspan="2" class="text-success text-center borderless align-middle">
                             <big>nombre<big>
+                        </th>
+                        <th colspan="4" class="text-success text-center borderless align-middle">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">10%</div>
                         </th>
                         <th colspan="2" class="text-success text-center borderless align-middle">
                             <big>misión<big>
@@ -72,15 +72,15 @@
                 <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info2" aria-expanded="false"
                     aria-controls="info2">
                     <div id="cuadro2" class="">
-                        <th colspan="4" class="text-success text-center borderless align-middle">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </th>
                         <th colspan="2" class="text-success text-center borderless align-middle">
                             <big>Origen<big>
                         </th>
                         <th colspan="2" class="text-success text-center borderless align-middle">
                             <big>nombre<big>
+                        </th>
+                        <th colspan="4" class="text-success text-center borderless align-middle">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">10%</div>
                         </th>
                         <th colspan="2" class="text-success text-center borderless align-middle">
                             <big>misión<big>
@@ -144,7 +144,7 @@
         date: "10/17/2019",
         name: "john doe2"
     }, ];
-
+/*
     function loadTableData(items) {
         const table = document.getElementById("tablaFlotasPropias");
         items.forEach(item => {
@@ -155,8 +155,12 @@
             name.innerHTML = item.name;
         });
     }
-    //loadTableData(items1);
-    //loadTableData(items2);
-    //loadTableData([]);
+    loadTableData(items1);
+    loadTableData(items2);
+    loadTableData([]);
+    */
+
+    $("#tablaFlotasPropias").append("coco");
+    //$("#tablaFlotasPropias").empty();
 
 </script>
