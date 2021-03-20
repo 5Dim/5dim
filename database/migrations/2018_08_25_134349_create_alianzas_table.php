@@ -17,8 +17,8 @@ class CreateAlianzasTable extends Migration
             $table->id();
             $table->string('nombre')->unique();
             $table->string('tag')->unique();
-            $table->string('estandarte');
-            $table->string('logo');
+            $table->string('estandarte')->default("");
+            $table->string('logo')->default("");
             $table->text('interno');
             $table->text('portada');
             $table->timestamps();

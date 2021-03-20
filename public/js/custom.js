@@ -692,27 +692,27 @@ function DistanciaUniverso(origen, destino) {
     var factordistancia = 1;
     var dist = undefined;
 
-    if (origen.sistema != "0" && destino.sistema != "0" && origen.planeta != "0" && destino.planeta != "0") {
-        if (origen.sistema == destino.sistema && origen.planeta == destino.planeta) {
+    if (origen.estrella != "0" && destino.estrella != "0" && origen.orbita != "0" && destino.orbita != "0") {
+        if (origen.estrella == destino.estrella && origen.planeta == destino.planeta) {
             //orbitar
             factordistancia = $.grep(constantesU, function(busca) {
                 return busca.codigo == "distanciaorbita";
             })[0].valor;
             coordDestino.x = 0.5;
-        } else if (origen.sistema == destino.sistema) {
+        } else if (origen.estrella == destino.estrella) {
             //mismo sistema
             factordistancia = $.grep(constantesU, function(busca) {
                 return busca.codigo == "distanciaentreplanetas";
             })[0].valor;
-            coordOrigen.x = origen.planeta;
-            coordDestino.x = destino.planeta;
+            coordOrigen.x = origen.orbita;
+            coordDestino.x = destino.orbita;
         } else {
             //entre sistemas
             factordistancia = $.grep(constantesU, function(busca) {
                 return busca.codigo == "distanciaentresistemas";
             })[0].valor;
-            coordOrigen = CoordenadasBySistema(origen.sistema);
-            coordDestino = CoordenadasBySistema(destino.sistema);
+            coordOrigen = CoordenadasBySistema(origen.estrella);
+            coordDestino = CoordenadasBySistema(destino.estrella);
         }
         dist = factordistancia * Math.pow((coordDestino.x - coordOrigen.x) * (coordDestino.x - coordOrigen.x) + (coordDestino.y - coordOrigen.y) * (coordDestino.y - coordOrigen.y), 1 / 2);
     }

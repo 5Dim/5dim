@@ -21,6 +21,7 @@ class CreateEnPuntosEnFlotaTable extends Migration
             $table->timestamp('fin')->nullable();
             $table->unsignedBigInteger('envuelos_id')->unsigned();
             $table->foreign('envuelos_id')->references('id')->on('en_vuelos');
+            $table->unsignedBigInteger('jugadores_id');
         });
     }
 

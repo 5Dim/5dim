@@ -24,6 +24,7 @@ use App\Models\EnPrioridadesEnDestino;
 use App\Models\DiseniosEnVuelo;
 use App\Models\PuntosEnFlota;
 use App\Models\RecursosEnFlota;
+use App\Models\Astrometria;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -99,7 +100,7 @@ class FlotaController extends Controller
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
-        Log::info($navesEstacionadas );
+        //Log::info($navesEstacionadas );
 
         //$flotaP= EnVuelo::where('id', 1)->first();
         //$destinosP=Destinos::where('envuelos_id', $flotaP->id)->get();
@@ -163,6 +164,7 @@ class FlotaController extends Controller
             array_push($prioridades,$prioridadesXDefecto);
         }
 
+        Astrometria::flotasVisibles();
 
         return view('juego.flotas.flotas', compact(
             // Recursos
@@ -351,6 +353,7 @@ class FlotaController extends Controller
                     $flota['nombre']=$publico;
                 }
 
+                //Log::info("Jugador ID= ".$jugadorActual->id);
                 $flotax=new EnVuelo;
                 $flotax->nombre=$flota['nombre'];;
                 $flotax->publico=$publico;
@@ -360,6 +363,7 @@ class FlotaController extends Controller
                 $flotax->defensaVisible= $valFlotaT['defensaV'];
                 $flotax->creditos= $valFlotaT['mantenimiento'];
                 $flotax->jugadores_id=$jugadorActual->id;
+                //Log::info($flotax);
                 $flotax->save();
 
                 //Log::info($flota);
@@ -410,6 +414,7 @@ class FlotaController extends Controller
                             $puntoFlota->coordy= $destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas);
                             $puntoFlota->fin= $TfinPto;
                             $puntoFlota->envuelos_id=$flotax->id;
+                            $puntoFlota->jugadores_id=$jugadorActual->id;
                             //Log::info($puntoFlota);
                             $puntoFlota->save();
                         }
@@ -419,6 +424,7 @@ class FlotaController extends Controller
                         $puntoFlota->coordy= $destinos[$destAnt]['fincoordy'];
                         $puntoFlota->fin= $Tfin;
                         $puntoFlota->envuelos_id=$flotax->id;
+                        $puntoFlota->jugadores_id=$jugadorActual->id;
                         $puntoFlota->save();
 
                         //Log::info($destino);
