@@ -29,7 +29,6 @@ class Alianzas extends Model
         foreach ($alianza->miembros as $miembro) {
             array_push($idMiembros, $miembro->id);
         }
-
         return $idMiembros;
     }
 
@@ -38,5 +37,17 @@ class Alianzas extends Model
         $jugadorAlianza = Jugadores::where('nombre', $alianza)->first();
 
         return $jugadorAlianza;
+    }
+
+    public static function idMiembrosSinMi($alianza,$miId) {
+        $alianza = Alianzas::find($alianza);
+        $idMiembros = [];
+        foreach ($alianza->miembros as $miembro) {
+            if ($miembro->id !=$miId){
+                array_push($idMiembros, $miembro->id);
+            }
+
+        }
+        return $idMiembros;
     }
 }

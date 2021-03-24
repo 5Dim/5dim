@@ -164,7 +164,7 @@ class FlotaController extends Controller
             array_push($prioridades,$prioridadesXDefecto);
         }
 
-        Astrometria::flotasVisibles();
+        //$flotasVisibles=Astrometria::flotasVisibles();
 
         return view('juego.flotas.flotas', compact(
             // Recursos
@@ -388,6 +388,8 @@ class FlotaController extends Controller
                         $destino = new destinos();
                         $destino->porcentVel=$destinos[$dest]['porcentVel'];
                         $destino->mision=$destinos[$dest]['mision'];
+                        $destino->initestrella=$destinos[$destAnt]['estrella'];
+                        $destino->initorbita=$destinos[$destAnt]['orbita'];
                         $destino->estrella=$destinos[$dest]['estrella'];
                         $destino->orbita=$destinos[$dest]['orbita'];
                         $destino->initcoordx=$destinos[$destAnt]['fincoordx'];
@@ -420,8 +422,8 @@ class FlotaController extends Controller
                         }
                         //ultimo punto siempre va
                         $puntoFlota=new PuntosEnFlota();
-                        $puntoFlota->coordx= $destinos[$destAnt]['fincoordx'];;
-                        $puntoFlota->coordy= $destinos[$destAnt]['fincoordy'];
+                        $puntoFlota->coordx= $destinos[$dest]['fincoordx'];
+                        $puntoFlota->coordy= $destinos[$dest]['fincoordy'];
                         $puntoFlota->fin= $Tfin;
                         $puntoFlota->envuelos_id=$flotax->id;
                         $puntoFlota->jugadores_id=$jugadorActual->id;
@@ -541,6 +543,18 @@ class FlotaController extends Controller
         return compact('errores');
     }
 
+
+    public function verFlotasEnVuelo(){
+
+        //evitamos peticiones sin sentido:
+        if(session()->get('jugadores_id')==null){
+            return compact(null);
+        }
+
+        $flotasVisibles=Astrometria::flotasVisibles();
+        return $flotasVisibles;
+
+    }
 
     ///jugador->enVuelo
     // array de alianza = Alianzas::idMiembros

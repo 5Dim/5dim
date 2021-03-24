@@ -160,7 +160,7 @@
     loadTableData([]);
     */
 
-    $("#tablaFlotasPropias").append("coco");
+    //$("#tablaFlotasPropias").append("coco");
     //$("#tablaFlotasPropias").empty();
 
 </script>

@@ -9,7 +9,7 @@
                         Enviar
                     </a>
                     <a class="nav-item nav-link" id="propias-tab" data-bs-toggle="tab" href="#propias" role="tab"
-                        aria-controls="propias" aria-selected="false">
+                        aria-controls="propias" aria-selected="false" onclick="verFlotasEnVuelo()">
                         En vuelo
                     </a>
                     <a class="nav-item nav-link" id="orbita-tab" data-bs-toggle="tab" href="#orbita" role="tab"

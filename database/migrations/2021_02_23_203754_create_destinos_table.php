@@ -17,6 +17,8 @@ class CreateDestinosTable extends Migration
             $table->id();
             $table->decimal('porcentVel', 5, 2, true);
             $table->string('mision');
+            $table->unsignedMediumInteger('initestrella');
+            $table->unsignedTinyInteger('initorbita');
             $table->unsignedMediumInteger('estrella');
             $table->unsignedTinyInteger('orbita');
             $table->unsignedDecimal('initcoordx', 8, 2, true);

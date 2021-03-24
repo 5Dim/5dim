@@ -731,3 +731,39 @@ function enviarFlota() {
 function formSuccess() {
     $("#msgSubmit").removeClass("hidden");
 }
+
+
+
+
+/////////////////////////////////////******************* FLOTAS EN VUELO ********************************** //////////////////////////////////
+
+
+
+function verFlotasEnVuelo() {
+
+    $.ajax({
+        type: "GET",
+        //dataType: "json",
+        url: "/juego/flotas/verFlotasEnVuelo",
+        //contentType: 'application/json; charset=utf-8',
+        //data: { },
+        //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
+        beforeSend: function() {
+
+        },
+        success: function(data) {
+            alert(data);
+            if (data.errores==""){
+                alert("Flota enviada");
+            } else {
+                alert(data.errores);
+            }
+        },
+        error: function(xhr, textStatus, thrownError) {
+            console.log("status", xhr.status);
+            console.log("error", thrownError);
+            //alert(data.errores);
+        },
+    });
+
+}

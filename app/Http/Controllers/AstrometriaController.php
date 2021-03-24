@@ -157,7 +157,7 @@ class AstrometriaController extends Controller
             $flota->origen = random_int(1, 100000) . "x" . random_int(1, 9);
             $flota->destino = random_int(1, 100000) . "x" . random_int(1, 9);
             $flota->angulo = random_int(1, 400); //para cuando no se sabe la linea
-            $flota->color = random_int(1, 5);
+            $flota->color = random_int(1, 5); //
             $flota->fecha = random_int(0, 23) . "h " . random_int(0, 59) . "m " . random_int(0, 59) . "s";
 
             $flota->coordix = random_int(1, 10000);
