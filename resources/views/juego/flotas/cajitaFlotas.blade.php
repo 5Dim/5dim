@@ -136,6 +136,7 @@
 </div>
 
 <script>
+    /*
     const items1 = [{
         date: "10/17/2018",
         name: "john doe"
@@ -144,6 +145,7 @@
         date: "10/17/2019",
         name: "john doe2"
     }, ];
+    *
 /*
     function loadTableData(items) {
         const table = document.getElementById("tablaFlotasPropias");

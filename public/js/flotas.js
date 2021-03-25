@@ -752,12 +752,8 @@ function verFlotasEnVuelo() {
 
         },
         success: function(data) {
-            alert(data);
-            if (data.errores==""){
-                alert("Flota enviada");
-            } else {
-                alert(data.errores);
-            }
+            //alert(data);
+            RellenarFlotasEnVUelo(data);
         },
         error: function(xhr, textStatus, thrownError) {
             console.log("status", xhr.status);
@@ -765,5 +761,76 @@ function verFlotasEnVuelo() {
             //alert(data.errores);
         },
     });
+
+}
+
+function RellenarFlotasEnVUelo(data){
+
+    $("#tablaFlotasPropias").empty();
+    //$("#tablaFlotasPropias").append("coco");
+
+    var flotasVisiblesPropias= data["flotasVisiblesPropias"];
+
+    var fila=0;
+    flotasVisiblesPropias.forEach(flota => {
+        fila++;
+
+            var tablaFlotasPropias = `
+
+            <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
+                style="margin-top: 5px !important">
+                <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info`+fila+`" aria-expanded="false"
+                    aria-controls="info`+fila+`">
+                    <div id="cuadro`+fila+`" class="">
+                        <th colspan="2" class="text-success text-center borderless align-middle">
+                            <big>Origen<big>
+                        </th>
+                        <th colspan="2" class="text-success text-center borderless align-middle">
+                            <big>nombre<big>
+                        </th>
+                        <th colspan="4" class="text-success text-center borderless align-middle">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">10%</div>
+                        </th>
+                        <th colspan="2" class="text-success text-center borderless align-middle">
+                            <big>misión<big>
+                        </th>
+                        <th colspan="2" class="text-success text-center borderless align-middle">
+                            <big>destino<big>
+                        </th>
+                    </div>
+                </tr>
+                <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                    <td colspan="3" class="text-warning">tiempo restante: </td>
+                    <td colspan="3" class="text-warning">tiempo regreso:</td>
+                    <td colspan="3" class="text-warning">ataque:</td>
+                    <td colspan="3" class="text-warning">defensa</td>
+                </tr>
+                <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                    <td colspan="3" class="text-light">01:55:33</td>
+                    <td colspan="3" class="text-light">01:55:33</td>
+                    <td colspan="3" class="text-light">212K</td>
+                    <td colspan="3" class="text-light">212K</td>
+                </tr>
+                <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                    <td colspan="6">
+                        <a type="button" class="btn btn-outline-danger col-12 text-danger"
+                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <i class="fa fa-times "></i> Cancelar
+                        </a>
+                    </td>
+                    <td colspan="6">
+                        <a type="button" class="btn btn-outline-success col-12 text-success"
+                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <i class="fa fa-eye "></i> Ver
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+            `;
+            $("#tablaFlotasPropias").append(tablaFlotasPropias);
+    });
+
 
 }
