@@ -136,14 +136,8 @@ class Astrometria extends Model
     }
 
 
-    public static function coordenadasVisibles($coordx,$coordy,$radar)
-    {
 
-
-        return false;
-    }
-
-    //determina que flotas extrangeras son visibles
+    //determina que flotas son visibles
     public static function flotasVisibles(){
 
         //Log::info("flotas visibles");
@@ -187,9 +181,10 @@ class Astrometria extends Model
         }
 
             // arrays de flotas con formato de astrometría
-            $flotasVisiblesAjenasF = [];
-            $flotasVisiblesPropiasF = [];
-            $flotasVisiblesAliadasF = [];
+           // $flotasVisiblesAjenasF = [];
+            //$flotasVisiblesPropiasF = [];
+           // $flotasVisiblesAliadasF = [];
+            $flotas=[];
 
             //Log::info('busca ptos floa: ');
             $puntosFlota=PuntosEnFlota::
@@ -222,7 +217,7 @@ class Astrometria extends Model
                         //Log::info($ptoFlota);
                         $flotasVisiblesAjena=EnVuelo::where('id',$ptoFlota['envuelos_id'])->first();
                         //Log::info($flotasVisiblesAjena);
-                        array_push($flotasVisiblesAjenasF, Astrometria::flotaValoresVisibles($radares,$flotasVisiblesAjena,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"ajeno"));
+                        array_push($flotas, Astrometria::flotaValoresVisibles($radares,$flotasVisiblesAjena,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"ajeno"));
                         break;
                     }
                 }
@@ -235,7 +230,7 @@ class Astrometria extends Model
                     where('envuelos_id',$flotaV->id)
                     ->orderBy('fin', 'asc')
                     ->first();
-                    array_push($flotasVisiblesAliadasF, Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"aliada"));
+                    array_push($flotas, Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"aliada"));
                 }
             }
 
@@ -248,15 +243,13 @@ class Astrometria extends Model
                 where('envuelos_id',$flotaV->id)
                 ->orderBy('fin', 'asc')
                 ->first();
-                array_push($flotasVisiblesPropiasF, Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"propia"));
+                array_push($flotas, Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"propia"));
             }
 
             //Log::info($flotasVisiblesPropias);
 
             $data=[
-            'flotasVisiblesAjenas'=>$flotasVisiblesAjenasF,
-            'flotasVisiblesPropias'=>$flotasVisiblesPropiasF,
-            'flotasVisiblesAliadas'=>$flotasVisiblesAliadasF
+            'flotas'=>$flotas
             ];
 
             return $data;
@@ -264,7 +257,7 @@ class Astrometria extends Model
     }
 
 
-    public static function flotaValoresVisibles($radares,$flotaVisible,$ptoFlota,$anchoUniverso,$luzdemallauniverso,$dueno){
+    public static function flotaValoresVisibles($radares,$flotaVisible,$ptoFlota,$anchoUniverso,$luzdemallauniverso,$tipo){
 
         $ahora=date("Y-m-d H:i:s");
 
@@ -296,8 +289,9 @@ class Astrometria extends Model
             $flota->trestante = null;
             $flota->tregreso = null;
             $flota->mision = null;
+            $flota->tipo = $tipo;
 
-        if ($dueno=="ajeno"){
+        if ($tipo=="ajeno"){
             //calculo de si veo origen y destino
             $seveOrigen=false;
             $seveDestino=false;
@@ -327,7 +321,7 @@ class Astrometria extends Model
             }
             $flota->color = 3;
             $flota->fecha = 1;
-        } else if ($dueno=="aliado") {
+        } else if ($tipo=="aliado") {
             $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
             $flota->coordix = $destinoActual->initcoordx;
             $flota->coordiy = $destinoActual->initcoordy;

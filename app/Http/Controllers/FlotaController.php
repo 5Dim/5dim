@@ -387,7 +387,7 @@ class FlotaController extends Controller
                     if($destinos[$dest]['viable']==true){
                         $destino = new destinos();
                         $destino->porcentVel=$destinos[$dest]['porcentVel'];
-                        $destino->mision=$destinos[$dest]['mision'];
+                        $destino->mision=ucfirst($destinos[$dest]['mision']);
                         $destino->initestrella=$destinos[$destAnt]['estrella'];
                         $destino->initorbita=$destinos[$destAnt]['orbita'];
                         $destino->estrella=$destinos[$dest]['estrella'];
@@ -551,8 +551,8 @@ class FlotaController extends Controller
             return compact(null);
         }
 
-        $flotasVisibles=Astrometria::flotasVisibles();
-        return $flotasVisibles;
+        $flotas=Astrometria::flotasVisibles();
+        return $flotas;
 
     }
 

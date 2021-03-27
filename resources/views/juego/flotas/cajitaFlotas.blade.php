@@ -14,6 +14,36 @@
 
 <div id="fpropias" aria-labelledby="fpropias" data-bs-parent="#propias" class="col-12 accordion-collapse show">
     <table id="tablaFlotasPropias">
+
+    </table>
+</div>
+
+<div class="col-12">
+    <div id="aliadas" class="table-responsive">
+        <table class="table table-borderless borderless table-sm text-center anchofijo"
+            style="margin-top: 5px !important">
+            <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#faliadas" aria-expanded="false"
+                aria-controls="faliadas">
+                <th colspan="12" class="text-success text-center borderless align-middle">
+                    Flotas Aliadas
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="col-12">
+    <div id="extrangeras" class="table-responsive">
+        <table class="table table-borderless borderless table-sm text-center anchofijo"
+            style="margin-top: 5px !important">
+            <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#fextrangeras" aria-expanded="false"
+                aria-controls="fextrangeras">
+                <th colspan="12" class="text-success text-center borderless align-middle">
+                    Flotas Extrangeras
+                </th>
+            </tr>
+        </table>
         <tr>
             <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
                 style="margin-top: 5px !important">
@@ -118,51 +148,10 @@
                 </tr>
             </table>
         </tr>
-    </table>
-</div>
-
-<div class="col-12">
-    <div id="aliadas" class="table-responsive">
-        <table class="table table-borderless borderless table-sm text-center anchofijo"
-            style="margin-top: 5px !important">
-            <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#faliadas" aria-expanded="false"
-                aria-controls="faliadas">
-                <th colspan="12" class="text-success text-center borderless align-middle">
-                    Flotas Aliadas
-                </th>
-            </tr>
-        </table>
     </div>
 </div>
 
 <script>
-    /*
-    const items1 = [{
-        date: "10/17/2018",
-        name: "john doe"
-    }, ];
-    const items2 = [{
-        date: "10/17/2019",
-        name: "john doe2"
-    }, ];
-    *
-/*
-    function loadTableData(items) {
-        const table = document.getElementById("tablaFlotasPropias");
-        items.forEach(item => {
-            let row = table.insertRow();
-            let date = row.insertCell(0);
-            date.innerHTML = item.date;
-            let name = row.insertCell(1);
-            name.innerHTML = item.name;
-        });
-    }
-    loadTableData(items1);
-    loadTableData(items2);
-    loadTableData([]);
-    */
 
-    //$("#tablaFlotasPropias").append("coco");
-    //$("#tablaFlotasPropias").empty();
 
 </script>

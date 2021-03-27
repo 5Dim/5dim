@@ -8,8 +8,8 @@
                         aria-controls="Enviar" aria-selected="true">
                         Enviar
                     </a>
-                    <a class="nav-item nav-link" id="propias-tab" data-bs-toggle="tab" href="#propias" role="tab"
-                        aria-controls="propias" aria-selected="false" onclick="verFlotasEnVuelo()">
+                    <a class="nav-item nav-link" id="envuelo-tab" data-bs-toggle="tab" href="#envuelo" role="tab"
+                        aria-controls="envuelo" aria-selected="false" onclick="verFlotasEnVuelo()">
                         En vuelo
                     </a>
                     <a class="nav-item nav-link" id="orbita-tab" data-bs-toggle="tab" href="#orbita" role="tab"
@@ -31,7 +31,7 @@
                 <div class="tab-pane fade show active" id="enviar" role="tabpanel" aria-labelledby="enviar-tab">
                     @include('juego.flotas.enviar')
                 </div>
-                <div class="tab-pane fade" id="propias" role="tabpanel" aria-labelledby="propias-tab">
+                <div class="tab-pane fade" id="envuelo" role="tabpanel" aria-labelledby="envuelo-tab">
                     @include('juego.flotas.cajitaFlotas', [
                         'envuelo' => true
                         ])
