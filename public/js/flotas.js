@@ -804,7 +804,7 @@ function RellenarFlotasEnVUelo(data){
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>
-                            <th colspan="2" class="text-success text-center borderless align-middle">
+                            <th colspan="3" class="text-success text-center borderless align-middle">
                                 <big>`+flota['destino']+`<big>
                             </th>
                         </div>
@@ -822,18 +822,123 @@ function RellenarFlotasEnVUelo(data){
                         <td colspan="3" class="text-light">`+defensa+`</td>
                     </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="6">
+                        <td colspan="4">
                             <a type="button" class="btn btn-outline-danger col-12 text-danger"
                                 href="{{ url('juego/disenio/borrarDisenio/x') }}">
                                 <i class="fa fa-times "></i> Regresar
                             </a>
                         </td>
-                        <td colspan="6">
-                            <a type="button" class="btn btn-outline-success col-12 text-success"
-                                href="{{ url('juego/disenio/borrarDisenio/x') }}">
-                                <i class="fa fa-eye "></i> Ver
+                        <td colspan="5">
+                            <a class="btn btn-outline-primary col-12 text-primary" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#datos`+fila+`"
+                            aria-expanded="false" aria-controls="datos`+fila+`"  onclick="MostrarResultadoFlota('`+flota['numeroflota']+`',`+fila+`)">
+                            Datos
                             </a>
                         </td>
+                        <td colspan="4">
+                        <a type="button" class="btn btn-outline-success col-12 text-success"
+                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <i class="fa fa-eye "></i> Ver
+                        </a>
+                        </td>
+                    </tr>
+                    <tr id="datos`+fila+`" class=" accordion-collapse collapse" aria-labelledby="datos`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <th colspan="2" class="text-warning">
+                            Capacidad carga
+                        </th>
+                        <th colspan="2" class="text-warning">
+                            Carga actual
+                        </th>
+                        <th colspan="2" class="text-warning">
+                            Municion
+                        </th>
+                        <th colspan="2" class="text-warning">
+                            Ataque Real
+                        </th>
+                        <th colspan="2" class="text-warning">
+                            Defensa Real
+                        </th>
+                        <th colspan="1" class="text-warning">
+                            Recolección
+                        </th>
+                        <th colspan="1" class="text-warning">
+                            Extracción
+                        </th>
+                        </tr>
+                    <tr id="datos`+fila+`" name="generales`+fila+`" class=" accordion-collapse collapse" aria-labelledby="datos`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                    </tr>
+                    <tr id="datos`+fila+`" class=" accordion-collapse collapse" aria-labelledby="datos`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <th colspan="2" class="text-warning">
+                        </th>
+                        <th colspan="2" class="text-warning">
+                            Nombre
+                        </th>
+                        <th colspan="2" class="text-warning">
+                            Ataque
+                        </th>
+                        <th colspan="2" class="text-warning">
+                            Defensa
+                        </th>
+                        <th colspan="2" class="text-warning">
+                            Carga
+                        </th>
+                        <th colspan="1" class="text-warning">
+                            En flota
+                        </th>
+                        <th colspan="1" class="text-warning">
+                            En hangar
+                        </th>
+                    </tr>
+                        <tr id="datos`+fila+`" name="naves`+fila+`" class=" accordion-collapse collapse" aria-labelledby="datos`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                    </tr>
+                    <tr id="datos`+fila+`" class=" accordion-collapse collapse" aria-labelledby="datos`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <th class="anchofijo text-warning">
+
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Personal
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Mineral
+                        </th>
+                        <th class="anchofijo text-warning">
+                            cristal
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Gas
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Plástico
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Cerámica
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Liquido
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Micros
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Fuel
+                        </th>
+                        <th class="anchofijo text-warning">
+                            M-A
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Munición
+                        </th>
+                        <th class="anchofijo text-warning">
+                            Creditos
+                        </th>
+                    </tr>
+                        <tr id="datos`+fila+`" name="cargadest0`+fila+`" class=" accordion-collapse collapse" aria-labelledby="datos`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                    </tr>
+                    </tr>
+                        <tr id="datos`+fila+`" name="cargadest1`+fila+`" class=" accordion-collapse collapse" aria-labelledby="datos`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                    </tr>
+                    </tr>
+                        <tr id="datos`+fila+`" name="cargadest2`+fila+`" class=" accordion-collapse collapse" aria-labelledby="datos`+fila+`" data-bs-parent="#cuadro`+fila+`">
                     </tr>
                 </table>
 
@@ -845,4 +950,108 @@ function RellenarFlotasEnVUelo(data){
     });
 
 
+
+}
+
+
+
+
+
+function MostrarResultadoFlota(numeroflota,fila){
+
+    ///datos generales
+    datosFlota=`
+        <th colspan="2" class="anchofijo text-light align-middle">
+            cosa
+        </th>
+        <th colspan="2" class="anchofijo text-light align-middle">
+            Nombre
+        </th>
+        <th colspan="2" class="anchofijo text-light align-middle">
+            Ataque
+        </th>
+        <th colspan="2" class="anchofijo text-light align-middle">
+            Defensa
+        </th>
+        <th colspan="2" class="anchofijo text-light align-middle">
+            Carga
+        </th>
+        <th colspan="1" class="anchofijo text-light align-middle">
+            En flota
+        </th>
+        <th colspan="1" class="anchofijo text-light align-middle">
+            En hangar
+        </th>
+    `;
+        $('[name="generales'+fila+'"]').html(datosFlota);
+
+    /// datos de las naves
+        datosFlota=`
+        <th colspan="2" class="anchofijo text-light align-middle">
+            imagen
+        </th>
+        <th colspan="2" class="anchofijo text-light align-middle">
+            Nombre
+        </th>
+        <th colspan="2" class="anchofijo text-light align-middle">
+            Ataque
+        </th>
+        <th colspan="2" class="anchofijo text-light align-middle">
+            Defensa
+        </th>
+        <th colspan="2" class="anchofijo text-light align-middle">
+            Carga
+        </th>
+        <th colspan="1" class="anchofijo text-light align-middle">
+            En flota
+        </th>
+        <th colspan="1" class="anchofijo text-light align-middle">
+            En hangar
+        </th>
+    `;
+    $('[name="naves'+fila+'"]').html(datosFlota);
+
+        /// datos de las destinos
+        datosFlota=`
+        <th class="anchofijo text-light">
+        Actual
+        </th>
+        <th class="anchofijo text-light">
+            2222.222(1)
+        </th>
+        <th class="anchofijo text-light">
+            11111.111(9)
+        </th>
+        <th class="anchofijo text-light">
+            cristal
+        </th>
+        <th class="anchofijo text-light">
+            Gas
+        </th>
+        <th class="anchofijo text-light">
+            Plástico
+        </th>
+        <th class="anchofijo text-light">
+            Cerámica
+        </th>
+        <th class="anchofijo text-light">
+            Liquido
+        </th>
+        <th class="anchofijo text-light">
+            Micros
+        </th>
+        <th class="anchofijo text-light">
+            Fuel
+        </th>
+        <th class="anchofijo text-light">
+            M-A
+        </th>
+        <th class="anchofijo text-light">
+            Munición
+        </th>
+        <th class="anchofijo text-light">
+            Creditos
+        </th>
+    `;
+    $('[name="cargadest0'+fila+'"]').html(datosFlota);
 }

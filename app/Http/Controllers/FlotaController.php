@@ -346,7 +346,7 @@ class FlotaController extends Controller
                 //construyendo flota
 
                 $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-                $nombreJugon= "ggg";
+                $nombreJugon= substr($jugadorActual['nombre'],4);
                 $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
                 $publico=substr($nombreJugon, 0, 3).substr($timestamp, 5);
                 if (strlen($flota['nombre'])<1){
@@ -556,8 +556,21 @@ class FlotaController extends Controller
 
     }
 
-    ///jugador->enVuelo
-    // array de alianza = Alianzas::idMiembros
-    // EnVuelo::whereIn("jugadores_id",array de id de alianza)
-    // EnVuelo::whereIn("jugadores_id",array de id de alianza)
+
+
+    public function verDatosFlota(Request $request){
+
+        //evitamos peticiones sin sentido:
+        if(session()->get('jugadores_id')==null){
+            return compact(null);
+        }
+
+        $nombreflota = $request->input('nombreflota');
+
+        return null;
+
+    }
+
+
+
 }

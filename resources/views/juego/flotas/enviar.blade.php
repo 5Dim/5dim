@@ -15,7 +15,6 @@
                         </tr>
                         <tr>
                             <th class="anchofijo text-warning align-middle">
-
                             </th>
                             <th class="anchofijo text-warning align-middle">
                                 Nombre

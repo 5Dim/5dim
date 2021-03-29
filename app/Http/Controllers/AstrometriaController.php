@@ -147,7 +147,9 @@ class AstrometriaController extends Controller
 
     public function generarFlotas() // http://homestead.test/juego/astrometria/ajax/flotas
     {
+
         $flotas = [];
+        /*
         for ($n = 0; $n < 30; $n++) {
             $flota = new \stdClass();
             $flota->numeroflota = random_int(1, 100000);
@@ -173,9 +175,14 @@ class AstrometriaController extends Controller
 
 
             array_push($flotas, $flota);
+            return compact('flotas');
         }
+        */
 
-        return compact('flotas');
+        $flotas=Astrometria::flotasVisibles();
+        return $flotas;
+
+
     }
 
     public function sistema($numeroSistema) // http://homestead.test/juego/astrometria/ajax/sistema/123

@@ -344,9 +344,5 @@ class Flotas extends Model
         return $coord;
     }
 
-    public static function calculoVector(){
-
-
-    }
 
 }

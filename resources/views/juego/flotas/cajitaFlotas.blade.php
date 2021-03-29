@@ -81,18 +81,47 @@
                     <td colspan="3" class="text-light">212K</td>
                 </tr>
                 <tr id="info1" class="accordion-collapse collapse" aria-labelledby="info1" data-bs-parent="#cuadro1">
-                    <td colspan="6">
+                    <td colspan="4">
                         <a type="button" class="btn btn-outline-danger col-12 text-danger"
                             href="{{ url('juego/disenio/borrarDisenio/x') }}">
                             <i class="fa fa-times "></i> Cancelar
                         </a>
                     </td>
-                    <td colspan="6">
+                    <td colspan="4">
+                        <a class="btn btn-outline-primary col-12 text-primary" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#datos5"
+                        aria-expanded="false" aria-controls="datos5"  onclick="MostrarResultadoFlota(1)">
+                        Datos
+                        </a>
+                    </td>
+                    <td colspan="4">
                         <a type="button" class="btn btn-outline-success col-12 text-success"
                             href="{{ url('juego/disenio/borrarDisenio/x') }}">
                             <i class="fa fa-eye "></i> Ver
                         </a>
                     </td>
+                </tr>
+                <tr id="datos5" class=" accordion-collapse collapse" aria-labelledby="datos5" data-bs-parent="#cuadro1">
+                    <th class="anchofijo text-warning align-middle">
+                    </th>
+                    <th class="anchofijo text-warning align-middle">
+                        Nombre
+                    </th>
+                    <th class="anchofijo text-warning align-middle">
+                        Ataque
+                    </th>
+                    <th class="anchofijo text-warning align-middle">
+                        Defensa
+                    </th>
+                    <th class="anchofijo text-warning align-middle">
+                        Carga
+                    </th>
+                    <th class="anchofijo text-warning align-middle">
+                        En flota
+                    </th>
+                    <th class="anchofijo text-warning align-middle">
+                        En hangar
+                    </th>
                 </tr>
             </table>
         </tr>
