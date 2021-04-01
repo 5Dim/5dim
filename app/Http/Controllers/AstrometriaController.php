@@ -149,40 +149,8 @@ class AstrometriaController extends Controller
     {
 
         $flotas = [];
-        /*
-        for ($n = 0; $n < 30; $n++) {
-            $flota = new \stdClass();
-            $flota->numeroflota = random_int(1, 100000);
-            $flota->nick = random_int(1, 100) . "-" . random_int(1, 10000);
-            $flota->ataque = random_int(1, 1000000);
-            $flota->defensa = random_int(1, 1000000);
-            $flota->origen = random_int(1, 100000) . "x" . random_int(1, 9);
-            $flota->destino = random_int(1, 100000) . "x" . random_int(1, 9);
-            $flota->angulo = random_int(1, 400); //para cuando no se sabe la linea
-            $flota->color = random_int(1, 5); //
-            $flota->fecha = random_int(0, 23) . "h " . random_int(0, 59) . "m " . random_int(0, 59) . "s";
-
-            $flota->coordix = random_int(1, 10000);
-            $flota->coordiy = random_int(1, 10000);
-
-            $flota->coordfx = random_int(1, 10000);
-            $flota->coordfy = random_int(1, 10000);
-
-            $flota->coordx = round(((($flota->coordix - $flota->coordfx) / random_int(1, 100)) + $flota->coordix), 2);
-            $flota->coordy = round((($flota->coordiy - $flota->coordfy) / random_int(1, 100)) + $flota->coordiy, 2);
-
-            $flota->abreen = "ppal";
-
-
-            array_push($flotas, $flota);
-            return compact('flotas');
-        }
-        */
-
-        $flotas=Astrometria::flotasVisibles();
+        $flotas = Astrometria::flotasVisibles();
         return $flotas;
-
-
     }
 
     public function sistema($numeroSistema) // http://homestead.test/juego/astrometria/ajax/sistema/123
@@ -207,7 +175,7 @@ class AstrometriaController extends Controller
                     $orbita->nom_pla = !empty($planetaActual->nombre) ? $planetaActual->nombre : "";
                     $orbita->nom_jug = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->nombre) ? $planetaActual->jugadores->nombre : "";
                     $orbita->alianza = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->alianzas) && !empty($planetaActual->jugadores->alianzas->nombre) ? $planetaActual->jugadores->alianzas->nombre : "";
-                    $orbita->img_planeta = !empty($planetaActual->imagen) ? $planetaActual->imagen : "";
+                    $orbita->img_planeta = !empty($planetaActual->imagen) ? "planeta" . $planetaActual->imagen . ".png" : "";
                     $orbita->mineral = !empty($planetaActual->cualidades->mineral) ? $planetaActual->cualidades->mineral : "";
                     $orbita->cristal = !empty($planetaActual->cualidades->cristal) ? $planetaActual->cualidades->cristal : "";
                     $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : "";
@@ -225,7 +193,7 @@ class AstrometriaController extends Controller
                     $orbita->nom_pla = "";
                     $orbita->nom_jug = "";
                     $orbita->alianza = "";
-                    $orbita->img_planeta = "";
+                    $orbita->img_planeta = "planeta0.png";
                     $orbita->mineral = "";
                     $orbita->cristal = "";
                     $orbita->gas = "";
@@ -242,13 +210,12 @@ class AstrometriaController extends Controller
             }
         } else { // Si no se ve mandamos los datos ocultos
             for ($i = 1; $i < 10; $i++) {
-                $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
                 $orbita = new \stdClass();
                 $orbita->planeta = $i;
                 $orbita->nom_pla = "";
                 $orbita->nom_jug = "";
                 $orbita->alianza = "";
-                $orbita->img_planeta = "";
+                $orbita->img_planeta = "planeta0.png";
                 $orbita->mineral = "";
                 $orbita->cristal = "";
                 $orbita->gas = "";
