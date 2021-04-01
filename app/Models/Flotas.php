@@ -227,6 +227,7 @@ class Flotas extends Model
         $factortiempoviaje=$constantesU->where('codigo', 'factortiempoviaje')->first()->valor;
         $anchoUniverso= $constantesU->where('codigo', 'anchouniverso')->first()->valor;
         $luzdemallauniverso= $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
+        $fuelfactorreduccionpordistancia= $constantesU->where('codigo', 'fuelfactorreduccionpordistancia')->first()->valor;
 
         $dest=0;
         $coordDestino = Flotas::coordenadasBySistema($destinos[$dest]['estrella'],$anchoUniverso,$luzdemallauniverso);
@@ -250,7 +251,7 @@ class Flotas extends Model
                     $destinos[$dest]['viable']=false;
                 } else {
                     $porcentVel = $destinos[$dest]['porcentVel']/100;
-                    $fuelDest = Flotas::gastoFuel($distancia, $valFlotaT['fuel'],$fueldistancia);
+                    $fuelDest = Flotas::gastoFuel($distancia, $valFlotaT['fuel'],$fueldistancia,$porcentVel,$fuelfactorreduccionpordistancia);
                     if ($distancia < 10) {
                         if ($valFlotaT['maniobra'] < 1) {
                             $destinos[$dest]['viable']=false;
@@ -325,8 +326,8 @@ class Flotas extends Model
     }
 
 
-    public static function gastoFuel($distancia, $fuelbase,$fueldistancia) {
-        return round($fueldistancia * $distancia * $fuelbase);
+    public static function gastoFuel($distancia, $fuelbase,$fueldistancia,$porcentVel,$fuelfactorreduccionpordistancia) {
+        return round($fueldistancia * $distancia * $fuelbase * pow($porcentVel,$fuelfactorreduccionpordistancia));
     }
 
     public static function tiempoLLegada($distancia, $velocidad,$factortiempoviaje) {

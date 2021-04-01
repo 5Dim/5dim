@@ -719,11 +719,14 @@ function DistanciaUniverso(origen, destino) {
     return Math.round(dist * 100) / 100;
 }
 
-function GastoFuel(distancia, fuelbase) {
+function GastoFuel(distancia, fuelbase, porcentVel) {
     fueldistancia = $.grep(constantesU, function(busca) {
         return busca.codigo == "fuelpordistancia";
     })[0].valor;
-    return Math.round(fueldistancia * distancia * fuelbase);
+    fuelfactorreduccionpordistancia = $.grep(constantesU, function(busca) {
+        return busca.codigo == "fuelfactorreduccionpordistancia";
+    })[0].valor;
+    return Math.round(fueldistancia * distancia * fuelbase * Math.pow(porcentVel, fuelfactorreduccionpordistancia));
 }
 
 function TiempoLLegada(distancia, velocidad) {

@@ -1093,6 +1093,16 @@ class Constantes extends Model
         $constante->votable = 1;
         array_push($producciones, $constante);
 
+        $constante = new Constantes();
+        $constante->valor = 0.4;
+        $constante->minimo = 0;
+        $constante->maximo = .7;
+        $constante->codigo = 'fuelfactorreduccionpordistancia';
+        $constante->descripcion = 'cuanto se rebaja el gasto de fuel al reducir la velocidad del vuelo';
+        $constante->tipo = 'universo';
+        $constante->votable = 1;
+        array_push($producciones, $constante);
+
 
         $constante = new Constantes();
         $constante->valor = 36000;

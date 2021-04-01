@@ -474,7 +474,7 @@ function Calculoespacitiempo() {
                 NoSeMueve(dest);
             } else {
                 var porcentVel = $("#porcentVDest" + dest).val() / 100;
-                var fuelDest = GastoFuel(distancia, valFlotaT.fuel);
+                var fuelDest = GastoFuel(distancia, valFlotaT.fuel,porcentVel);
                 destinos[dest].porcentVel = porcentVel * 100;
 
                 if (distancia < 10) {
