@@ -45,6 +45,8 @@ function versistema(texto){
       if (this.readyState == 4 && this.status == 200) {
           sistema_solar = JSON.parse(this.responseText);
           creaplanetas();
+      }else{
+
       }
   };
 
@@ -221,7 +223,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
 */
 
       // texturas para los botones
-      this.texturaPlaneta = PIXI.Texture.from('/astrometria/img/sistema/planeta'+imagen_planeta+'.png');
+      this.texturaPlaneta = PIXI.Texture.from('/astrometria/img/sistema/'+imagen_planeta);
       
       planet = new PIXI.Sprite(this.texturaPlaneta);
       planet.interactive=true;

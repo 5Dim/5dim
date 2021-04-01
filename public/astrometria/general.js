@@ -231,7 +231,7 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
        this.nave.pivot.set (0.5);
        this.nave.anchor.set (0.5);
        this.nave.position.set(x, y);
-       this.nave.rotation = (rotacion*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes
+       this.nave.rotation = (rotacion*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes      
        this.nave.interactive=true;
        this.nave.buttonMode = true;
        this.nave.on('touchend', (event) => {
