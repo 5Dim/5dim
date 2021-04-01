@@ -225,6 +225,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       // texturas para los botones
       this.texturaPlaneta = PIXI.Texture.from('/astrometria/img/sistema/'+imagen_planeta);
       
+      
       planet = new PIXI.Sprite(this.texturaPlaneta);
       planet.interactive=true;
       planet.buttonMode = true;
