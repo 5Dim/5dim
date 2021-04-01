@@ -193,7 +193,7 @@ class AstrometriaController extends Controller
                     $orbita->nom_pla = "";
                     $orbita->nom_jug = "";
                     $orbita->alianza = "";
-                    $orbita->img_planeta = "planeta0.png";
+                    $orbita->img_planeta = "";
                     $orbita->mineral = "";
                     $orbita->cristal = "";
                     $orbita->gas = "";
