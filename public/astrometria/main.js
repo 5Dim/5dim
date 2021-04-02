@@ -42,7 +42,7 @@ const jsonInfluencia ="/astrometria/data/influencia.json";
 //const jsonInfluencia ="/juego/astrometria/ajax/influencia";
 
 const jsonRutas ="/astrometria/data/rutas.json";
-//const jsonRutas ="/astrometria/data/rutas.json";
+//const jsonRutas ="/juego/astrometria/ajax/rutas";
 
 let home, homex, homey; //datos del sistema propio de inicio
 let creaRuta=false;
@@ -59,32 +59,34 @@ function carga_universo(){
             home=universo.inicio;
             createViewport();
 		        createWorld();
-		        carga_flotas();
-            carga_radares();
-            carga_influencias();
-            carga_rutas();
-            botonF();
-            botonRuta();
-            botonMarcar();
-            botonH();
-            botonI();
-            botonR();
+		        carga_flotas();  // carga las flotas
+            carga_radares(); // carga los radares
+            carga_influencias(); // carga las influencias
+            // carga_rutas(); //dibuja unas rutas de prueba si no se cambia el valor de jsonRutas 
+            botonF(); // crea el botón de flotas en la parte superior
+            botonRuta(); // crea el botón de rutas en la parte superior
+            // botonMarcar(); //desactivado en versión de lanzamiento
+            botonH(); //crea el botón HOME
+            botonI(); // crea el botçon de influencias en la parte superior
+            botonR(); // crea el botçon de los radares
            // resize();
             botones.position.set (window.innerWidth/2 - botones.width/2,0);
 
             // lanzar timer para actualizar las flotas
-            // timerFlotas = setInterval(tFlotas, 5000);
-		    }
-		};
-	xmlhttp.open("GET",jsonUniverso , true);
-  xmlhttp.send();		
-}
-
+            // timerFlotas = setInterval(tFlotas, 5000);    <-----------------------------
+		    }                                                                        //      |
+		};                                                                           //      |     
+	xmlhttp.open("GET",jsonUniverso , true);                                       //      |
+  xmlhttp.send();		                                                             //      |
+}                                                                                //      |
+                                                                                 //      |
+//función para cargar las flotas nuevas. hacer un timer y que llame a esta funcion  ------
 function tFlotas() {
   var d = new Date();
   flotasNuevas();
 }
 
+//lee los datos json de las flotas y crea el arreglo flotas
 function carga_flotas(){
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
@@ -99,6 +101,7 @@ function carga_flotas(){
 		xmlhttp.send();	
 }
 
+//lee los datos json de los radares y crea el arreglo radares
 function carga_radares(){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
@@ -115,6 +118,7 @@ function carga_radares(){
   xmlhttp.send();		
 }
 
+//lee los datos json de las influencias y crea el arreglo influencias
 function carga_influencias(){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
@@ -129,6 +133,10 @@ function carga_influencias(){
   xmlhttp.send();		
 }
  
+//lee los datos json de las rutas y crea el arreglo rutas
+// desactivado por defecto. Si se activa tal cual dibujará las 3 rutas de prueba en la esquina superior izquierda
+// hay que cambiar el valor de la variable jsonRutas al principio de main.js
+// activar en carga_universo()
 function carga_rutas(){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
@@ -385,9 +393,10 @@ function createViewport(){
         textos = app.stage.addChild(new PIXI.Container());             // crea la capa textos
         
         capa_estrellas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
+        capa_rutas = viewport.addChild(new PIXI.Container());        // crea la capa radares
         capa_flotas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
         capa_radares = viewport.addChild(new PIXI.Container());        // crea la capa radares
-        capa_rutas = viewport.addChild(new PIXI.Container());        // crea la capa radares
+        
         capa_influencias = viewport.addChild(new PIXI.Container());        // crea la capa radares
         
         

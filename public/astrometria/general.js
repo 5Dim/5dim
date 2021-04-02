@@ -1,4 +1,5 @@
 
+// este timer es para la cuenta atrás del panel de info de flotas
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     var crono = setInterval(function () {
@@ -21,6 +22,8 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
+//llamar a esta función cada x minutos para actualizar las flotas en vuelo (desactivado por defecto).
+//llamada desde tFlotas() en main.js
 function flotasNuevas(){
     
     var flotasAux = new Object();
@@ -48,6 +51,7 @@ function flotasNuevas(){
 
 }
 
+//Crea una estrella. Se llama a esta función desde main para crear las estrellas
 function Sistema(n, x, y, habitado) {
 
    var estrella = capa_estrellas.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/estrella-blanca-3.png')));
@@ -90,7 +94,7 @@ function Sistema(n, x, y, habitado) {
    
 }
 
-
+//Crea un radar. Se llama a esta función desde main para crear los radares
 function Radar(n, x, y, t, c) {
 
    var circulo = capa_radares.addChild(new PIXI.Graphics());
@@ -118,24 +122,9 @@ function Radar(n, x, y, t, c) {
 	this.py = y; //posicion y
 	//log(this.n);
 }
+
+//crea cada zona de influencia
 function Influencia(n, x, y, t, c) {
-/*
-    circulo = capa_influencias.addChild(new PIXI.Graphics());
-    circulo.beginFill(0xFFFFFF); 
-    circulo.drawCircle(x+35, y+35, 70*t); 
-    circulo.endFill();
-    circulo.alpha = 0.5; 
-
-    if (c==1){circulo.tint = 0xE7AD00;} // naranja
-    if (c==2){circulo.tint = 0xE70000;} // rojo
-    if (c==3){circulo.tint = 0x0083e7;} // azul
-    if (c==4){circulo.tint = 0x00e73e;} // verde
-         
-    this.n = n; //numero de sistema
-    this.px = x; //posicion x
-    this.py = y; //posicion y  
-*/
-
 
     const graphics = new PIXI.Graphics();
 
@@ -169,6 +158,7 @@ function Influencia(n, x, y, t, c) {
 
  }
 
+
 function angleDegrees(ox, oy,dx,dy) {
     x=dx-ox;
     y=dy-oy;
@@ -177,7 +167,8 @@ function angleDegrees(ox, oy,dx,dy) {
      // return (360 + Math.round(degrees)) % 360;
      return(angle);
     }
-    
+
+//esta función es para dibujar rutas de prueba, no activa en lanzamiento    
 function Ruta(x1, y1, x2, y2, x3, y3, tipo,velocidad) {
     
     if(tipo==1){
@@ -215,6 +206,7 @@ function Ruta(x1, y1, x2, y2, x3, y3, tipo,velocidad) {
 
  }
 
+ //esta función crea las flotas y también dibuja la ruta que sigue la flota
 function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo,numero) {
 
    //var box = capa_flotas.addChild(new PIXI.Sprite(PIXI.Texture.fromImage('img/flota.png')))
@@ -231,7 +223,8 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
        this.nave.pivot.set (0.5);
        this.nave.anchor.set (0.5);
        this.nave.position.set(x, y);
-       this.nave.rotation = (rotacion*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes      
+      // this.nave.rotation = (rotacion*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes      
+      this.nave.rotation = rotacion;
        this.nave.interactive=true;
        this.nave.buttonMode = true;
        this.nave.on('touchend', (event) => {
@@ -319,7 +312,7 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
 
 function linea(points,lineSize, lineColor, alpha,conte,num){
    
- texture = PIXI.Texture.from('/astrometria/img/lineas2.png');
+ texture = PIXI.Texture.from('/astrometria/img/flechas-peq2.png');
 
         function angleDegrees(ox, oy,dx,dy) {
             x=dx-ox;
@@ -407,7 +400,7 @@ class Line extends PIXI.Graphics {
 }
 
 
-
+// boton info flotas en parte superior
 function botonA(texto){
 
 	// texturas para los botones
