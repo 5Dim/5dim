@@ -308,7 +308,7 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
 
 }
 
-
+//dibuja la ruta que sigue la flota
 function linea(points,lineSize, lineColor, alpha,conte,num){
    
     log(lineColor);
@@ -344,14 +344,16 @@ function linea(points,lineSize, lineColor, alpha,conte,num){
 
         this.flechasRuta = new PIXI.TilingSprite(texture,distancia,8);
         this.flecha = conte.addChild(this.flechasRuta);
-      // this.flecha.pivot.set (1.5);
-      this.flecha.anchor.set (0,0.5);
-      this.flecha.tint = 0xFFFFFF;
+
+        this.flecha.anchor.set (0,0.5);
+        this.flecha.tint = 0xFFFFFF;
         this.flecha.position.set(points[0], points[1]);
         //this.flecha.rotation = (angulo*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes
         this.flecha.rotation = angulo;
-
-      PIXI.Ticker.shared.add(() => {this.flechasRuta.tilePosition.x += 0.5;});
+        
+        // este ticker es el que hace que se muevan las rutas
+        // variando el valor entre 0 y 1 se modifica la velocidad a la que se mueven las flechas
+        PIXI.Ticker.shared.add(() => {this.flechasRuta.tilePosition.x += 0.5;});
 
 
 }
@@ -473,6 +475,7 @@ function actualizaTextos(){
 
 }
 
+// boton en la parte superior para ver/ocultar las flotas
 function botonF(){
 
     // texturas para los botones
@@ -616,6 +619,7 @@ function botonF(){
 
 }
 
+// boton en la parte superior para ver/ocultar los radares
 function botonR(){
 
     // texturas para los botones
@@ -630,7 +634,7 @@ function botonR(){
     botR.anchor.set(0.5);
     botR.scale.x = 1;
     botR.scale.y = 1;
-    botR.position.set (150,20);
+    botR.position.set (200,20);
 
     // hacer el botón interactivo
     botR.interactive = true;
@@ -704,6 +708,7 @@ function botonR(){
 
 }
 
+// boton en la parte superior para ir rápido a nuestro sistema de inicio
 function botonH(){
 
     // texturas para los botones
@@ -718,7 +723,7 @@ function botonH(){
     botH.anchor.set(0.5);
     botH.scale.x = 1;
     botH.scale.y = 1;
-    botH.position.set (350,20);
+    botH.position.set (300,20);
 
     // hacer el botón interactivo
     botH.interactive = true;
@@ -768,7 +773,7 @@ function botonH(){
 
 }
 
-// boton activa la capa de estrellas
+// boton para ver/ocultar la capa de estrellas
 function botonE(){
 
     // texturas para los botones
@@ -783,7 +788,7 @@ function botonE(){
     botE.anchor.set(0.5);
     botE.scale.x = 1;
     botE.scale.y = 1;
-    botE.position.set (200,20);
+    botE.position.set (150,20);
 
     // hacer el botón interactivo
     botE.interactive = true;
@@ -858,6 +863,7 @@ function botonE(){
 
 }
 
+// botón para marcar jugadores. desactivado en lanzamiento
 function botonMarcar(){
 
     // texturas para los botones
@@ -872,7 +878,7 @@ function botonMarcar(){
     botM.anchor.set(0.5);
     botM.scale.x = 1;
     botM.scale.y = 1;
-    botM.position.set (300,20);
+    botM.position.set (400,20);
 
     // hacer el botón interactivo
     botM.interactive = true;
@@ -944,7 +950,7 @@ function botonMarcar(){
 
 }
 
-// boton activa la funcion de rutas
+// boton activa la funcion de definir los destinos para crear una ruta. desactivado en lanzamiento
 function botonRuta(){
    // buscar(home);
     // texturas para los botones
@@ -959,7 +965,7 @@ function botonRuta(){
     botRutas.anchor.set(0.5);
     botRutas.scale.x = 1;
     botRutas.scale.y = 1;
-    botRutas.position.set (250,20);
+    botRutas.position.set (450,20);
 
     // hacer el botón interactivo
     botRutas.interactive = true;
@@ -1063,7 +1069,7 @@ function botonI(){
      botInflu.anchor.set(0.5);
      botInflu.scale.x = 1;
      botInflu.scale.y = 1;
-     botInflu.position.set (400,20);
+     botInflu.position.set (250,20);
 
      // hacer el botón interactivo
      botInflu.interactive = true;

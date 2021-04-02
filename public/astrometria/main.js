@@ -63,9 +63,9 @@ function carga_universo(){
             carga_radares(); // carga los radares
             carga_influencias(); // carga las influencias
             // carga_rutas(); //dibuja unas rutas de prueba si no se cambia el valor de jsonRutas 
-            botonF(); // crea el botón de flotas en la parte superior
-            botonRuta(); // crea el botón de rutas en la parte superior
-            // botonMarcar(); //desactivado en versión de lanzamiento
+            botonF(); // crea el botón de flotas en la parte superior. desactivado en lanzamiento
+            //botonRuta(); // crea el botón de marcar destinos y crear rutas en la parte superior
+            //botonMarcar(); //desactivado en versión de lanzamiento
             botonH(); //crea el botón HOME
             botonI(); // crea el botçon de influencias en la parte superior
             botonR(); // crea el botçon de los radares
