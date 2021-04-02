@@ -90,13 +90,16 @@ class FlotaController extends Controller
             $diseniosJugador[$i]->mejoras;
         }
 
+
         $idsDiseno=array();
         foreach($navesEstacionadas as $diseno){
+            $estedisenioj=$diseniosJugador->where('id', $diseno->disenios_id)->first();
+
             array_push($idsDiseno,$diseno->id);
             $diseno->enflota=0;
             $diseno->enhangar=0;
-            $diseno->fuselajes_id =$diseniosJugador->where('id', $diseno->id)->first()->fuselajes_id;
-            $diseno->skin =$diseniosJugador->where('id', $diseno->id)->first()->skin;
+            $diseno->fuselajes_id =$estedisenioj->fuselajes_id;
+            $diseno->skin =$estedisenioj->skin;
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
@@ -303,8 +306,8 @@ class FlotaController extends Controller
                 $valFlotaT['atotal']=0;
                 $valFlotaT['mantenimiento']=0;
 
-            Disenios::calculaMejoras($disenios);
-            //Log::info($disenios[0]);
+                $disenios= Disenios::calculaMejoras($disenios);
+                //Log::info(" a flota llega ".$disenios[1]->datos->cargaPequenia);
                 //formatear misiones
 
             //añado tamaños
@@ -527,6 +530,8 @@ class FlotaController extends Controller
                 $recursosEnFlota->envuelos_id=$flotax->id;
                 $recursosEnFlota->save();
                 //Log::info($recursosEnFlota);
+
+
 
             DB::commit();
             //Log::info("Enviada");

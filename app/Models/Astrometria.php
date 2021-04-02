@@ -359,7 +359,7 @@ class Astrometria extends Model
             $flota->coordfx =7* $destinoActual->fincoordx+$ajuste;
             $flota->coordfy =7* $destinoActual->fincoordy+$ajuste;
             $flota->destino =$destinoActual['estrella']."x".$destinoActual['orbita'];
-            $flota->color =3;
+            $flota->color =1;
 
             $tiempovuelo=strtotime($destinoActual['fin'])-strtotime($destinoActual['init']);
             $trestante=strtotime($destinoActual['fin'])-strtotime($ahora);
@@ -375,16 +375,33 @@ class Astrometria extends Model
             $flota->coordy =7* $ptoFlota->coordy+$ajuste;
             $flota->abreen = "ppal";
 
-            $vectorx=$destinoActual->fincoordx-$destinoActual->initcoordx;
-            $vectory=$destinoActual->fincoordy-$destinoActual->initcoordy;
-            $angle=atan2($vectorx, $vectory);
-            $degrees = 180*$angle/3.141579;
+            //$vectorx=$destinoActual->fincoordx-$destinoActual->initcoordx;
+            //$vectory=$destinoActual->fincoordy-$destinoActual->initcoordy;
+            $vectorx=$flota->coordfx-$flota->coordix;
+            $vectory=$flota->coordfy-$flota->coordiy;
+            $angle=atan2($vectory, $vectorx)+3.141579/2;
+            //$degrees = 180*$angle/3.141579;
+            //$degrees=$angle;
 
-            $flota->angulo = (360+round($degrees))%360;
-            //Log::info($vectorx." ".$vectory." = ".atan2($vectory, $vectorx));
+            $flota->angulo = $angle;//(360+round($degrees))%360;
+            //Log::info($flotaVisible->nombre." ".$flota->coordfx." ".$flota->coordix." ademas ".$flota->coordfy." ".$flota->coordiy);
+            //Log::info($vectorx."  ".$vectory." = ".$angle.", grados= ".(180*$angle/3.141579));
 
         return $flota;
 
     }
 
 }
+
+/*
+https://paiza.io/projects/kMVLKwrlHqzGuSlA4PbKaQ
+
+            $vectorx=18865-17255;
+            $vectory=2695-3185;
+            $angle=atan2($vectorx, $vectory);
+            $degrees = 180*$angle/3.141579;
+            echo($vectorx." ");
+            echo($vectory." ");
+            echo($degrees);
+
+           */

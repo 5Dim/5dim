@@ -48,7 +48,8 @@ class Flotas extends Model
                 //hangares
 
                 forEach($tamaniosArray as $tamaniod){
-                    $tablaHangares['capacidadH'][$tamaniod] += $atotal * $disenio[$tamaniod];
+                    //Log::info($disenio['datos'][$tamaniod]. " de ".$tamaniod." del diseño ".$disenio);
+                    $tablaHangares['capacidadH'][$tamaniod] += $atotal * $disenio['datos'][$tamaniod];
                 };
                 //Log::info($disenio);
                 $tcarga = $tamaniosNaveAcarga[$disenio['tamanio']];
@@ -62,6 +63,7 @@ class Flotas extends Model
 
             //Log::info("calculo flota");
             //Log::info($valFlotaT);
+            //Log::info($tablaHangares);
             $result=Flotas::calculoespaciotiempo($destinos,$valFlotaT);
 
             return [$result[1],$result[0],$tablaHangares];
@@ -210,6 +212,7 @@ class Flotas extends Model
         $tamaniosArray = array("cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega");
 
         foreach ($tamaniosArray as $tamanio) {
+            //Log::info($tablaHangares['dentroH'][$tamanio] .' > '.$tablaHangares['capacidadH'][$tamanio]);
             if ($tablaHangares['dentroH'][$tamanio] > $tablaHangares['capacidadH'][$tamanio]) {
                 $errores = "  Capacidad de hangar insuficiente";
             };

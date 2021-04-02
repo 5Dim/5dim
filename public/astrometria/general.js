@@ -22,24 +22,24 @@ function startTimer(duration, display) {
 }
 
 function flotasNuevas(){
-    
+
     var flotasAux = new Object();
     var flotasNuevas=0;
 
     flotasAux=flotas;
-   
+
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             flotas = JSON.parse(this.responseText);
-       
+
         //botonF();
         // log(flotas.flotas);
         creaflotas();
 
         //actualizar el txt del numero de flotas
         txt_num_flotas.text  = ' ';
-        txt_num_flotas.text  = flotas.flotas.length; 
+        txt_num_flotas.text  = flotas.flotas.length;
 
         }
     };
@@ -57,10 +57,10 @@ function Sistema(n, x, y, habitado) {
     estrella.position.set(x, y);
     estrella.interactive=true;
     estrella.buttonMode = true;
-    
+
     //acciones para el botón
     estrella.on('pointerdown', (event) => {
-        versistema(this);  
+        versistema(this);
       //  log(x + " " + y);                         // llamada para ver el sistema solar seleccionado;
     });
 
@@ -74,7 +74,7 @@ function Sistema(n, x, y, habitado) {
 	this.px = x; //posicion x
 	this.py = y; //posicion y
     this.hab = habitado;
-	
+
 	//mapa.addChild(this);
 	//log(mapa.width)
 	// var box = viewport.addChild(new PIXI.Sprite(PIXI.Texture.WHITE))
@@ -87,7 +87,7 @@ function Sistema(n, x, y, habitado) {
     txt.pivot.set(a.width/2,a.height/2);
     txt.x= x+35;
     txt.y= y+50;
-   
+
 }
 
 
@@ -96,8 +96,8 @@ function Radar(n, x, y, t, c) {
    var circulo = capa_radares.addChild(new PIXI.Graphics());
        // box.tint = Math.floor(Math.random() * 0xffffff)
 
-        circulo.beginFill(0xFFFFFF); 
-        circulo.drawCircle(x+35, y+35, 70*t); 
+        circulo.beginFill(0xFFFFFF);
+        circulo.drawCircle(x+35, y+35, 70*t);
         circulo.endFill();
 
 
@@ -107,7 +107,7 @@ function Radar(n, x, y, t, c) {
         if (c==2){circulo.tint = 0xE70000;} // rojo
         if (c==3){circulo.tint = 0x0083e7;} // azul
         if (c==4){circulo.tint = 0x00e73e;} // verde
-        
+
 
         //circulo.tint = Math.floor(Math.random() * 0xffffff)
        // log(this);
@@ -121,19 +121,19 @@ function Radar(n, x, y, t, c) {
 function Influencia(n, x, y, t, c) {
 /*
     circulo = capa_influencias.addChild(new PIXI.Graphics());
-    circulo.beginFill(0xFFFFFF); 
-    circulo.drawCircle(x+35, y+35, 70*t); 
+    circulo.beginFill(0xFFFFFF);
+    circulo.drawCircle(x+35, y+35, 70*t);
     circulo.endFill();
-    circulo.alpha = 0.5; 
+    circulo.alpha = 0.5;
 
     if (c==1){circulo.tint = 0xE7AD00;} // naranja
     if (c==2){circulo.tint = 0xE70000;} // rojo
     if (c==3){circulo.tint = 0x0083e7;} // azul
     if (c==4){circulo.tint = 0x00e73e;} // verde
-         
+
     this.n = n; //numero de sistema
     this.px = x; //posicion x
-    this.py = y; //posicion y  
+    this.py = y; //posicion y
 */
 
 
@@ -144,26 +144,26 @@ function Influencia(n, x, y, t, c) {
     alpha=1;
     max=t*70;
 
-    for (var j = 0; j < t+1; j++){                                       
-        for (var i = 0; i < t+1; i++){                            
+    for (var j = 0; j < t+1; j++){
+        for (var i = 0; i < t+1; i++){
 
-            d=(Math.sqrt( ((i*70)*(i*70))+((j*70)*(j*70)) ));  
+            d=(Math.sqrt( ((i*70)*(i*70))+((j*70)*(j*70)) ));
             influencia=max-(max*(d/max));
-            alpha=((influencia*100)/max)/100;    
+            alpha=((influencia*100)/max)/100;
 
             if (c==1){graphics.beginFill(0xDE3249,alpha);} //rosa
             if (c==2){graphics.beginFill(0x2980B9,alpha);} //azul
             if (c==3){graphics.beginFill(0x51AF61,alpha);} //verde
             if (c==4){graphics.beginFill(0xE74C3C,alpha);} //naranja
-            
+
             graphics.drawRect(x+35+(70*j), y+35+(70*i), 70, 70);
             graphics.drawRect(x-(70*j)-35, y+35+(70*i), 70, 70);
             graphics.drawRect(x+35+(70*j), y-(70*i)-35, 70, 70);
             graphics.drawRect(x-(70*j)-35, y-(70*i)-35, 70, 70);
             graphics.endFill();
-        }  
+        }
     }
- 
+
 
     capa_influencias.addChild(graphics);
 
@@ -177,9 +177,9 @@ function angleDegrees(ox, oy,dx,dy) {
      // return (360 + Math.round(degrees)) % 360;
      return(angle);
     }
-    
+
 function Ruta(x1, y1, x2, y2, x3, y3, tipo,velocidad) {
-    
+
     if(tipo==1){
         texture = PIXI.Texture.from('/astrometria/img/flechas-peq2.png');
     }
@@ -188,29 +188,29 @@ function Ruta(x1, y1, x2, y2, x3, y3, tipo,velocidad) {
     }
 
 
-    
+
 
     var angulo1=angleDegrees(x1,y1,x2,y2);
     var angulo2=angleDegrees(x2,y2,x3,y3);
 
     //Distancia=raiz cuadrada de {(destino.x-origen.x) * (destino.x-origen.x)+(destino.y-origen.y)*(destino.y-origen.y)}
-    var distancia1=Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));  
-    var distancia2=Math.sqrt((x3-x2)*(x3-x2) + (y3-y2)*(y3-y2));  
-    
+    var distancia1=Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+    var distancia2=Math.sqrt((x3-x2)*(x3-x2) + (y3-y2)*(y3-y2));
+
     this.flechasRuta1 = new PIXI.TilingSprite(texture,distancia1,8);
-    this.flecha = capa_rutas.addChild(this.flechasRuta1); 
+    this.flecha = capa_rutas.addChild(this.flechasRuta1);
     this.flecha.anchor.set (0,0.5);
     this.flecha.position.set(x1, y1);
-    this.flecha.rotation = angulo1; 
-  
+    this.flecha.rotation = angulo1;
+
     PIXI.Ticker.shared.add(() => {this.flechasRuta1.tilePosition.x += (0.1 * velocidad);});
 
     this.flechasRuta2 = new PIXI.TilingSprite(texture,distancia2,8);
     this.flecha2 = capa_rutas.addChild(this.flechasRuta2);
     this.flecha2.anchor.set (0,0.5);
     this.flecha2.position.set(x2, y2);
-    this.flecha2.rotation = angulo2; 
-  
+    this.flecha2.rotation = angulo2;
+
     PIXI.Ticker.shared.add(() => {this.flechasRuta2.tilePosition.x += (0.1 * velocidad);});
 
  }
@@ -223,15 +223,15 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
    //log(n+ ":" +x + " " + y);
    efNaves = new PIXI.AnimatedSprite(ef_circulo.animations["ef_circulo"]);
    this.nave = capa_flotas.addChild(efNaves);
-   
+
        // box.tint = Math.floor(Math.random() * 0xffffff)
        // box.width = box.height = 70
        this.nave.play();
-       this.nave.animationSpeed = 0.5;      
+       this.nave.animationSpeed = 0.5;
        this.nave.pivot.set (0.5);
        this.nave.anchor.set (0.5);
        this.nave.position.set(x, y);
-       this.nave.rotation = (rotacion*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes      
+       this.nave.rotation = rotacion; //(rotacion*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes
        this.nave.interactive=true;
        this.nave.buttonMode = true;
        this.nave.on('touchend', (event) => {
@@ -261,7 +261,7 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
                         panel.y = posy-150;
                         posiciony=2;
                     }
-                    
+
                         txtpanelid.text = this.n;
                         txtpanelnick.text = this.nick;
                         txtpanelataque.text = "Ataque - Defensa";
@@ -269,16 +269,16 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
                         txtpanelorigen.text = "Origen - Destino";
                         txtpaneldestino.text = this.origen + " - "+this.destino;
 
-                    
+
                         panel.visible =true;
-                    
+
                         // borro el contenedor del sistema solar
                         for (var i = auxImg.children.length - 1; i >= 0; i--) {	auxImg.removeChild(auxImg.children[i]);}
 
                         //linea que une la flota con el panel
-                        line = new linea2([(this.nave.x - viewport.hitArea.x)*(viewport.zlevel/100), (this.nave.y - viewport.hitArea.y)*(viewport.zlevel/100), panel.x, panel.y], 2, 0x234e50, 1,auxImg, posicionx, posiciony); 
+                        line = new linea2([(this.nave.x - viewport.hitArea.x)*(viewport.zlevel/100), (this.nave.y - viewport.hitArea.y)*(viewport.zlevel/100), panel.x, panel.y], 2, 0x234e50, 1,auxImg, posicionx, posiciony);
 
-                        setTimeout(function(){ 
+                        setTimeout(function(){
                             panel.visible=false;
                             for (var i = auxImg.children.length - 1; i >= 0; i--) {	auxImg.removeChild(auxImg.children[i]);}
                          },4000);
@@ -290,7 +290,7 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
             }
 
 
-          
+
             //compruebo si se esta creando una ruta y añado la flota
             puntoRuta=n;
             if (creaRuta){
@@ -298,11 +298,11 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
                     if(ruta.length==0){txtpanelp1txt.text = puntoRuta;}
                     if(ruta.length==1){txtpanelp2txt.text = puntoRuta;}
                     if(ruta.length==2){txtpanelp3txt.text = puntoRuta;}
-                ruta.push(puntoRuta);              
+                ruta.push(puntoRuta);
                 }log(ruta);
             }
 		});
-	
+
 		this.n = n; //numero de sistema
 		this.px = x; //posicion x
         this.py = y; //posicion y
@@ -312,13 +312,13 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
         this.origen = origen;
         this.destino = destino;
         this.tiempo = tiempo;
-       
-	   
+
+
 }
 
 
 function linea(points,lineSize, lineColor, alpha,conte,num){
-   
+
  texture = PIXI.Texture.from('/astrometria/img/lineas2.png');
 
         function angleDegrees(ox, oy,dx,dy) {
@@ -329,7 +329,7 @@ function linea(points,lineSize, lineColor, alpha,conte,num){
              // return (360 + Math.round(degrees)) % 360;
              return(angle);
             }
-        
+
 
         var angulo=angleDegrees(points[0], points[1],points[2], points[3]);
 
@@ -343,8 +343,8 @@ function linea(points,lineSize, lineColor, alpha,conte,num){
       this.flecha.tint = 0xFFFFFF;
         this.flecha.position.set(points[0], points[1]);
         //this.flecha.rotation = (angulo*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes
-        this.flecha.rotation = angulo; 
-      
+        this.flecha.rotation = angulo;
+
       PIXI.Ticker.shared.add(() => {this.flechasRuta.tilePosition.x += 0.5;});
 
 
@@ -373,14 +373,14 @@ function linea2(points,lineSize, lineColor, alpha,conte,x,y){
     }
     line.lineTo(points[2]+sumax, points[3]+sumay);
     log(points);
-    
+
 }
 
 
 class Line extends PIXI.Graphics {
     constructor(points, lineSize, lineColor, alpha) {
         super();
-        
+
         var s = this.lineWidth = lineSize || 5;
         var c = this.lineColor = lineColor || "0xFFFFFF";
         var a = this.alpha = alpha || 1;
@@ -392,13 +392,13 @@ class Line extends PIXI.Graphics {
         this.moveTo(points[0], points[1]);
         this.lineTo(points[2], points[3]);
     }
-    
+
     updatePoints(p) {
-        
+
         var points = this.points = p.map((val, index) => val || this.points[index]);
-        
+
         var s = this.lineWidth, c = this.lineColor;
-        
+
         this.clear();
         this.lineStyle(s, c);
         this.moveTo(points[0], points[1]);
@@ -441,28 +441,28 @@ function botonA(texto){
  	var txt = botones.addChild(new PIXI.Text("FLOTAS",{fontFamily : 'Roboto',fontSize: 10,fill : "white"}));
     txt.anchor.set(0.5);
     txt.position.set (botA.x, botA.y - 14);
-	
+
     if(texto!=0){
         txt_num_flotas = botones.addChild(new PIXI.Text(flotas.flotas.length,{fontFamily : 'Roboto',fontSize: 18,fill : "orange"}));
         txt_num_flotas.anchor.set(0.5);
         txt_num_flotas.position.set (botA.x, botA.y+5 );
     }
 
-    
-    
+
+
 
     var txt = botones.addChild(new PIXI.Text("ZOOM",{fontFamily : 'Roboto',fontSize: 10,fill : "white"}));
     txt.anchor.set(0.5);
-    txt.position.set (botZ.x, botZ.y - 14);   
+    txt.position.set (botZ.x, botZ.y - 14);
 
 
         txt_zoom = botones.addChild(new PIXI.Text("",{fontFamily : 'Roboto',fontSize: 16,fill : "orange"}));
         txt_zoom.anchor.set(0.5);
         txt_zoom.position.set (botZ.x, botZ.y+5 );
-  
+
 }
 function actualizaTextos(){
-   
+
 }
 
 function botonF(){
@@ -511,13 +511,13 @@ function botonF(){
     function onButtonUp() {
     // this.isdown = false;
         estado = ! estado;
-        
+
         if (estado==true){
                 this.texture = text_on;
                 capa_flotas.visible=true;
                 elem = document.getElementById('dragFlotas');
                 elem.style.visibility = 'visible';
-        } else{ 
+        } else{
                 this.texture = text_off;
                 capa_flotas.visible=false;
                 elem = document.getElementById('dragFlotas');
@@ -567,7 +567,7 @@ function botonF(){
 
     /* Close fullscreen */
     function closeFullscreen() {
-        
+
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) { /* Firefox */
@@ -584,7 +584,7 @@ function botonF(){
         node.appendChild(textnode)
         document.getElementByClassName("dg main a")[0].appendChild(node)
         //document.getElementById("uno").appendChild(node)
-    */   
+    */
 
     function onButtonOver() {
         /*
@@ -609,7 +609,7 @@ function botonF(){
 }
 
 function botonR(){
-    
+
     // texturas para los botones
     var text_on = PIXI.Texture.from('/astrometria/img/botones/radar2.png');
     var text_off = PIXI.Texture.from('/astrometria/img/botones/radar1.png');
@@ -657,12 +657,12 @@ function botonR(){
     function onButtonUp() {
 
         estado = ! estado;
-        
+
         if (estado==true){
                 this.texture = text_on;
                 capa_radares.visible=true;
 
-        } else{ 
+        } else{
                 this.texture = text_off;
                 capa_radares.visible=false;
         }
@@ -697,7 +697,7 @@ function botonR(){
 }
 
 function botonH(){
-    
+
     // texturas para los botones
     var text_on = PIXI.Texture.from('/astrometria/img/botones/home1.png');
     var text_off = PIXI.Texture.from('/astrometria/img/botones/home0.png');
@@ -762,7 +762,7 @@ function botonH(){
 
 // boton activa la capa de estrellas
 function botonE(){
-    
+
     // texturas para los botones
     var text_on = PIXI.Texture.from('/astrometria/img/botones/estrellas2.png');
     var text_off = PIXI.Texture.from('/astrometria/img/botones/estrellas1.png');
@@ -810,15 +810,15 @@ function botonE(){
     function onButtonUp() {
 
         estado = ! estado;
-        
+
         if (estado==true){
                 this.texture = text_on;
                 capa_estrellas.visible=true;
 
-        } else{ 
+        } else{
                 this.texture = text_off;
                 capa_estrellas.visible=false;
-             
+
         }
 
     }
@@ -851,7 +851,7 @@ function botonE(){
 }
 
 function botonMarcar(){
-    
+
     // texturas para los botones
     var text_on = PIXI.Texture.from('/astrometria/img/botones/marcar1.png');
     var text_off = PIXI.Texture.from('/astrometria/img/botones/marcar0.png');
@@ -886,7 +886,7 @@ function botonMarcar(){
 
     var nueva_pos = window.innerWidth/2;
     botones.x = nueva_pos;
-    
+
 
 
     function onButtonDown() {
@@ -900,16 +900,16 @@ function botonMarcar(){
     function onButtonUp() {
 
         estado = ! estado;
-        
+
         if (estado==true){
             this.texture = text_on;
             elem = document.getElementById('marcar');
             elem.style.visibility = 'visible';
 
-        } else{ 
+        } else{
             this.texture = text_off;
             elem = document.getElementById('marcar');
-            elem.style.visibility = 'hidden';             
+            elem.style.visibility = 'hidden';
         }
 
     }
@@ -986,7 +986,7 @@ function botonRuta(){
     function onButtonUp() {
 
         estado = ! estado;
-        
+
         if (estado==true){
                 this.texture = text_on;
                 creaRuta=true;
@@ -999,21 +999,21 @@ function botonRuta(){
                 txtpanelp2txt.text = "Selecciona flota o planeta";
                 txtpanelp3.text = "Punto #3";
                 txtpanelp3txt.text = "Selecciona flota o planeta";
-           
+
                 panelRuta.visible =true;
 
-            
+
                 // borro el contenedor del sistema solar
                 for (var i = auxImg.children.length - 1; i >= 0; i--) {	auxImg.removeChild(auxImg.children[i]);}
 
 
-        } else{ 
+        } else{
                 this.texture = text_off;
                 creaRuta=false;
                 ruta.length=0;
                 panelRuta.visible =false;
              //   capa_estrellas.visible=false;
-             
+
         }
 
     }
@@ -1046,21 +1046,21 @@ function botonI(){
      // texturas para los botones
      var text_on = PIXI.Texture.from('/astrometria/img/botones/influencia1.png');
      var text_off = PIXI.Texture.from('/astrometria/img/botones/influencia0.png');
- 
+
      //estado del botón
      var estado = true;
- 
+
      botInflu = new PIXI.Sprite(text_on); // se inicia activo
- 
+
      botInflu.anchor.set(0.5);
      botInflu.scale.x = 1;
      botInflu.scale.y = 1;
      botInflu.position.set (400,20);
- 
+
      // hacer el botón interactivo
      botInflu.interactive = true;
      botInflu.buttonMode = true;
- 
+
      //acciones para el botón
      botInflu
          // Mouse & touch events are normalized into
@@ -1071,37 +1071,37 @@ function botonI(){
          .on('pointerupoutside', onButtonUp)
          .on('pointerover', onButtonOver)
          .on('pointerout', onButtonOut);
- 
+
      // add it to the stage
      botones.addChild(botInflu);
- 
+
      var nueva_pos = window.innerWidth/2;
      botones.x = nueva_pos;
- 
- 
+
+
      function onButtonDown() {}
- 
+
      function onButtonUp() {
- 
+
          estado = ! estado;
-         
+
          if (estado==true){
             this.texture = text_on;
             capa_influencias.visible=true;
 
-         } else{ 
+         } else{
             this.texture = text_off;
             capa_influencias.visible=false;
         }
      }
- 
+
      function onButtonOver() {}
      function onButtonOut() {}
- 
+
  }
 
 function listaFlotas(){
-    
+
 }
 function buscar(value){
 
@@ -1124,8 +1124,8 @@ function buscar(value){
               var y = flotas.flotas[i].coordy;
               var x = flotas.flotas[i].coordx;
               viewport.snap(x, y, {topLeft: false,time: 1500,ease: "easeInOutSine", removeOnComplete: true, removeOnInterrupt: true});
-              flo=true;         
-            
+              flo=true;
+
             }
         }
 
@@ -1138,7 +1138,7 @@ function buscar(value){
     if (!flo){
         // log("No se encuentra la flota " + value), alert("No se encuentra la flota " + value)
         $("input").css({"color": '00ff00'});
-    }      
+    }
 
     if (!sis && !flo){
       //  $("#alerta").show(2000);
@@ -1150,7 +1150,7 @@ function buscar(value){
 }
 
 function alerta(texto){
-   /* 
+   /*
     var node = document.createElement("span");
     var textnode = document.createTextNode("Water");
 
