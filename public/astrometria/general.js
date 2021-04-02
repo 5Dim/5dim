@@ -154,7 +154,7 @@ function Influencia(n, x, y, t, c) {
     }
 
 
-    capa_influencias.addChild(graphics);
+    capa_influencias2.addChild(graphics);
 
  }
 
@@ -723,7 +723,7 @@ function botonH(){
     botH.anchor.set(0.5);
     botH.scale.x = 1;
     botH.scale.y = 1;
-    botH.position.set (300,20);
+    botH.position.set (350,20);
 
     // hacer el botón interactivo
     botH.interactive = true;
@@ -1106,6 +1106,66 @@ function botonI(){
          } else{
             this.texture = text_off;
             capa_influencias.visible=false;
+        }
+     }
+
+     function onButtonOver() {}
+     function onButtonOut() {}
+
+ }
+
+ // boton activa la funcion de influencia
+function botonI2(){
+    // buscar(home);
+     // texturas para los botones
+     var text_on = PIXI.Texture.from('/astrometria/img/botones/influencia21.png');
+     var text_off = PIXI.Texture.from('/astrometria/img/botones/influencia20.png');
+
+     //estado del botón
+     var estado = true;
+
+     botInflu2 = new PIXI.Sprite(text_on); // se inicia activo
+
+     botInflu2.anchor.set(0.5);
+     botInflu2.scale.x = 1;
+     botInflu2.scale.y = 1;
+     botInflu2.position.set (300,20);
+
+     // hacer el botón interactivo
+     botInflu2.interactive = true;
+     botInflu2.buttonMode = true;
+
+     //acciones para el botón
+     botInflu2
+         // Mouse & touch events are normalized into
+         // the pointer* events for handling different
+         // button events.
+         .on('pointerdown', onButtonDown)
+         .on('pointerup', onButtonUp)
+         .on('pointerupoutside', onButtonUp)
+         .on('pointerover', onButtonOver)
+         .on('pointerout', onButtonOut);
+
+     // add it to the stage
+     botones.addChild(botInflu2);
+
+     var nueva_pos = window.innerWidth/2;
+     botones.x = nueva_pos;
+
+
+     function onButtonDown() {}
+
+     function onButtonUp() {
+
+         estado = ! estado;
+
+         if (estado==true){
+            this.texture = text_on;
+            capa_influencias2.visible=true;
+
+         } else{
+            this.texture = text_off;
+            capa_influencias2.visible=false;
         }
      }
 
