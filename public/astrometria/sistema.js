@@ -57,6 +57,7 @@ function versistema(texto){
   xmlhttp.send();
 
 }
+
 function creaplanetas(){
   
   transicion.play();
@@ -65,7 +66,8 @@ function creaplanetas(){
     
       if(sistema_solar.planetas[i].nom_jug.length != 0){
        planetas[i] = new Planeta(sistema_solar.planetas[i].planeta,sistema_solar.planetas[i].nom_pla,sistema_solar.planetas[i].nom_jug,sistema_solar.planetas[i].alianza,sistema_solar.planetas[i].estado,sistema_solar.planetas[i].mineral,sistema_solar.planetas[i].cristal,sistema_solar.planetas[i].gas,sistema_solar.planetas[i].plastico,sistema_solar.planetas[i].ceramica,sistema_solar.planetas[i].b_observar,sistema_solar.planetas[i].b_atacar, sistema_solar.planetas[i].b_colonizar,sistema_solar.planetas[i].b_recolectar,sistema_solar.planetas[i].b_conquistar,sistema_solar.planetas[i].naves,sistema_solar.planetas[i].img_planeta,sistema_solar.planetas[i].bloqueo);   
-       }
+       
+      }
     }
     transicion.stop();
   };
@@ -82,6 +84,7 @@ function mueve_sis( posfinalx,posfinaly){
 
 }
 
+// crea la zona de la visión planetaria, solo se llama una vez desde cargador.js. crea la estructura principal y contenedor para los planetas
 function creasistemasolar(texto){
   efTransicion = new PIXI.AnimatedSprite(ef_transicion.animations["transicion"]);
   
