@@ -311,7 +311,21 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
 
 function linea(points,lineSize, lineColor, alpha,conte,num){
    
- texture = PIXI.Texture.from('/astrometria/img/flechas-peq2.png');
+    log(lineColor);
+    if(lineColor==1){
+        texture = PIXI.Texture.from('/astrometria/img/flechasruta-azul.png'); // propia
+    }
+    if(lineColor==2){
+        texture = PIXI.Texture.from('/astrometria/img/flechasruta-verde.png'); //aliado
+    }
+    if(lineColor==3){
+        texture = PIXI.Texture.from('/astrometria/img/flechasruta-blanco.png'); // otros
+    }
+    if(lineColor==4){
+        texture = PIXI.Texture.from('/astrometria/img/flechasruta-rojo.png'); //enemigo
+    }
+
+ 
 
         function angleDegrees(ox, oy,dx,dy) {
             x=dx-ox;
@@ -341,6 +355,8 @@ function linea(points,lineSize, lineColor, alpha,conte,num){
 
 
 }
+
+// esta función dibuja una linea, por ejemplo para unir el dibujo de una flota con su panel de informacion
 function linea2(points,lineSize, lineColor, alpha,conte,x,y){
     // el panel mide 168x164
 

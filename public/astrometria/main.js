@@ -531,7 +531,7 @@ function createWorld(){
     });
 }
 
-//se crean las flotas
+//se crean las flotas y las lineas de cada flota
 function creaflotas(){
  
   const lista=document.getElementById('contenedorFlotas');
@@ -547,8 +547,9 @@ function creaflotas(){
       var y = flotas.flotas[i].coordy;
       var x = flotas.flotas[i].coordx;
       
-    	flota = new Flota(flotas.flotas[i].numeroflota,x,y,flotas.flotas[i].angulo,flotas.flotas[i].nick,flotas.flotas[i].ataque,flotas.flotas[i].defensa,flotas.flotas[i].origen,flotas.flotas[i].destino,flotas.flotas[i].fecha,i);
-      line = new linea([flotas.flotas[i].coordix, flotas.flotas[i].coordiy, flotas.flotas[i].coordfx, flotas.flotas[i].coordfy], 2, 0x666666, 1,capa_flotas,i); 
+    	line = new linea([flotas.flotas[i].coordix, flotas.flotas[i].coordiy, flotas.flotas[i].coordfx, flotas.flotas[i].coordfy], 2, flotas.flotas[i].color, 1,capa_flotas,i); 
+      flota = new Flota(flotas.flotas[i].numeroflota,x,y,flotas.flotas[i].angulo,flotas.flotas[i].nick,flotas.flotas[i].ataque,flotas.flotas[i].defensa,flotas.flotas[i].origen,flotas.flotas[i].destino,flotas.flotas[i].fecha,i);
+      
 
 
     // se crea el panel de flotas y se inyecta en la estructura DOM 
