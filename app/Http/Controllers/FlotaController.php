@@ -205,6 +205,9 @@ class FlotaController extends Controller
         return compact('recursos');
     }
 
+    public static function existeSistema($estrella){
+        return Flotas::existeSistema($estrella);
+    }
 
 
     public function enviarFlota(Request $request, $id = false){ //$id es de la flota en orbita de la que salimos
@@ -225,43 +228,46 @@ class FlotaController extends Controller
 
         $errores="";
 
-        //// valores de las naves en planeta
-        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        $navesEnPlaneta = $planetaActual->estacionadas;
 
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $diseniosJugador = $jugadorActual->disenios;
+        if (strlen($errores)<1){
+            //// valores de las naves en planeta
+            $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+            $navesEnPlaneta = $planetaActual->estacionadas;
 
-        $disenios = [];
-        $arraycolumn=array_column($navesEstacionadas, 'disenios_id');
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+            $diseniosJugador = $jugadorActual->disenios;
 
-        foreach ($diseniosJugador as $disenio) {
+            $disenios = [];
+            $arraycolumn=array_column($navesEstacionadas, 'disenios_id');
 
-            $key = array_search($disenio->id, $arraycolumn );  //de los diseños
-            if (false !== $key)
-            {
-                $nave=$navesEstacionadas[$key]; // enviar
+            foreach ($diseniosJugador as $disenio) {
 
-                $enhangar=$nave['enhangar'];
-                $enflota=$nave['enflota'];
+                $key = array_search($disenio->id, $arraycolumn );  //de los diseños
+                if (false !== $key)
+                {
+                    $nave=$navesEstacionadas[$key]; // enviar
 
-                if($enflota>0 || $enhangar>0){
+                    $enhangar=$nave['enhangar'];
+                    $enflota=$nave['enflota'];
 
-                    $naveP=$navesEnPlaneta->firstWhere('disenios_id',$nave['disenios_id']);
+                    if($enflota>0 || $enhangar>0){
 
-                    $cantidad=$naveP['cantidad'];
+                        $naveP=$navesEnPlaneta->firstWhere('disenios_id',$nave['disenios_id']);
 
-                    if ($cantidad<$enflota+$enhangar){
-                        $errores="Mas naves a enviar de las que hay (".$nave['disenios_id'].")".$cantidad." ".$enflota." ".$enhangar;
-                        //Log::info($errores);
-                        break;
+                        $cantidad=$naveP['cantidad'];
+
+                        if ($cantidad<$enflota+$enhangar){
+                            $errores="Mas naves a enviar de las que hay (".$nave['disenios_id'].")".$cantidad." ".$enflota." ".$enhangar;
+                            //Log::info($errores);
+                            break;
+                        }
+
+                        $disenio['enflota']=$enflota;
+                        $disenio['enhangar']=$enhangar;
+                        $disenio['cantidad']=$cantidad;
+
+                        array_push($disenios,$disenio);
                     }
-
-                    $disenio['enflota']=$enflota;
-                    $disenio['enhangar']=$enhangar;
-                    $disenio['cantidad']=$cantidad;
-
-                    array_push($disenios,$disenio);
                 }
             }
         }

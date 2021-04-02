@@ -301,6 +301,7 @@ class Astrometria extends Model
             $flota->mision = null;
             $flota->tipo = $tipo;
             $flota->fecha = null;
+            $flota->cargaActual="?";
 
         if ($tipo=="ajeno"){
             //calculo de si veo origen y destino
@@ -369,21 +370,19 @@ class Astrometria extends Model
             $flota->tregreso = $tregreso;
             $flota->mision = $destinoActual['mision'];
             $flota->fecha = $destinoActual['fin'];
+
+            $flota->recursos=RecursosEnFlota::where('envuelos_id',$flotaVisible['id'])->first();
         }
 
             $flota->coordx =7* $ptoFlota->coordx+$ajuste;
             $flota->coordy =7* $ptoFlota->coordy+$ajuste;
             $flota->abreen = "ppal";
 
-            //$vectorx=$destinoActual->fincoordx-$destinoActual->initcoordx;
-            //$vectory=$destinoActual->fincoordy-$destinoActual->initcoordy;
-            $vectorx=$flota->coordfx-$flota->coordix;
-            $vectory=$flota->coordfy-$flota->coordiy;
+            $vectorx=$destinoActual->fincoordx-$destinoActual->initcoordx;
+            $vectory=$destinoActual->fincoordy-$destinoActual->initcoordy;
             $angle=atan2($vectory, $vectorx)+3.141579/2;
-            //$degrees = 180*$angle/3.141579;
-            //$degrees=$angle;
 
-            $flota->angulo = $angle;//(360+round($degrees))%360;
+            $flota->angulo = $angle;
             //Log::info($flotaVisible->nombre." ".$flota->coordfx." ".$flota->coordix." ademas ".$flota->coordfy." ".$flota->coordiy);
             //Log::info($vectorx."  ".$vectory." = ".$angle.", grados= ".(180*$angle/3.141579));
 

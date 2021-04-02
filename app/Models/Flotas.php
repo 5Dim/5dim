@@ -151,6 +151,13 @@ class Flotas extends Model
                     if ($destinos[$dest]['porcentVel'] <0 ||  $destinos[$dest]['porcentVel']>100 ){
                         $errores = " porcentaje de velocidad fuera de rango en destino ".$dest;
                     }
+
+                    //los destinos existen
+                    //sistemas
+                    if(Flotas::existeSistema($destinos[$dest]['estrella'])==false){
+                        $errores.=" Sistema ".$destinos[$dest]['estrella']." no existe ";
+                    }
+                    //flotas
                 }
             }
 
@@ -217,6 +224,7 @@ class Flotas extends Model
                 $errores = "  Capacidad de hangar insuficiente";
             };
         }
+
 
         //Log::info($errores);
         return $errores;
@@ -346,6 +354,14 @@ class Flotas extends Model
         $coord['x'] = ($nsistema - floor($nsistema / $anchoUniverso) * $anchoUniverso) * $luzdemallauniverso;
 
         return $coord;
+    }
+
+    public static function existeSistema($estrella){
+        $planeta=Planetas::where([ ['estrella', $estrella]])->first();
+        if ($planeta==null){
+            return false;
+        }
+        return true;
     }
 
 
