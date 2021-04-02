@@ -193,7 +193,7 @@ class AstrometriaController extends Controller
                     $orbita->nom_pla = "";
                     $orbita->nom_jug = "";
                     $orbita->alianza = "";
-                    $orbita->img_planeta = "planeta0.png";
+                    $orbita->img_planeta = "";
                     $orbita->mineral = "";
                     $orbita->cristal = "";
                     $orbita->gas = "";
@@ -210,12 +210,17 @@ class AstrometriaController extends Controller
             }
         } else { // Si no se ve mandamos los datos ocultos
             for ($i = 1; $i < 10; $i++) {
+                $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
                 $orbita = new \stdClass();
                 $orbita->planeta = $i;
                 $orbita->nom_pla = "";
                 $orbita->nom_jug = "";
                 $orbita->alianza = "";
-                $orbita->img_planeta = "planeta0.png";
+                if (!empty($planetaActual)) {
+                    $orbita->img_planeta = "";
+                } else {
+                    $orbita->img_planeta = "planeta0.png";
+                }
                 $orbita->mineral = "";
                 $orbita->cristal = "";
                 $orbita->gas = "";
