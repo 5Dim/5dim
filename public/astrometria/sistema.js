@@ -64,7 +64,7 @@ function creaplanetas(){
   transicion.onLoop = function () {
     for (var i = 0; i < sistema_solar.planetas.length; i++){
     
-      if(sistema_solar.planetas[i].nom_jug.length != 0){
+      if(sistema_solar.planetas[i].img_planeta.length != 0){
        planetas[i] = new Planeta(sistema_solar.planetas[i].planeta,sistema_solar.planetas[i].nom_pla,sistema_solar.planetas[i].nom_jug,sistema_solar.planetas[i].alianza,sistema_solar.planetas[i].estado,sistema_solar.planetas[i].mineral,sistema_solar.planetas[i].cristal,sistema_solar.planetas[i].gas,sistema_solar.planetas[i].plastico,sistema_solar.planetas[i].ceramica,sistema_solar.planetas[i].b_observar,sistema_solar.planetas[i].b_atacar, sistema_solar.planetas[i].b_colonizar,sistema_solar.planetas[i].b_recolectar,sistema_solar.planetas[i].b_conquistar,sistema_solar.planetas[i].naves,sistema_solar.planetas[i].img_planeta,sistema_solar.planetas[i].bloqueo);   
        
       }
@@ -289,10 +289,13 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       nom_planet.text=nompla.toUpperCase();
       nom_planet.anchor.set (0.5);
       nom_planet.position.set((n*100)+44 , 100);
-
-      var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/marca-nombre-planeta.png')));
-      marca_planet.anchor.set (0.5,0.5);
-      marca_planet.position.set( (n*100)+44 , 100);
+      
+      // si no hay nombre de planeta no muestra las marcas azules
+      if (this.nompla!=0) {
+        var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from('/astrometria/img/marca-nombre-planeta.png')));
+        marca_planet.anchor.set (0.5,0.5);
+        marca_planet.position.set( (n*100)+44 , 100);
+      }
 
 
 
