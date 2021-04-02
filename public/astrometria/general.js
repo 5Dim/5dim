@@ -122,26 +122,6 @@ function Radar(n, x, y, t, c) {
 	this.py = y; //posicion y
 	//log(this.n);
 }
-<<<<<<< HEAD
-=======
-function Influencia(n, x, y, t, c) {
-/*
-    circulo = capa_influencias.addChild(new PIXI.Graphics());
-    circulo.beginFill(0xFFFFFF);
-    circulo.drawCircle(x+35, y+35, 70*t);
-    circulo.endFill();
-    circulo.alpha = 0.5;
-
-    if (c==1){circulo.tint = 0xE7AD00;} // naranja
-    if (c==2){circulo.tint = 0xE70000;} // rojo
-    if (c==3){circulo.tint = 0x0083e7;} // azul
-    if (c==4){circulo.tint = 0x00e73e;} // verde
-
-    this.n = n; //numero de sistema
-    this.px = x; //posicion x
-    this.py = y; //posicion y
-*/
->>>>>>> d0b5a6c04be98a3d933eabbced1d88396732f3eb
 
 //crea cada zona de influencia
 function Influencia(n, x, y, t, c) {
@@ -188,10 +168,7 @@ function angleDegrees(ox, oy,dx,dy) {
      return(angle);
     }
 
-<<<<<<< HEAD
 //esta función es para dibujar rutas de prueba, no activa en lanzamiento    
-=======
->>>>>>> d0b5a6c04be98a3d933eabbced1d88396732f3eb
 function Ruta(x1, y1, x2, y2, x3, y3, tipo,velocidad) {
 
     if(tipo==1){
@@ -246,12 +223,7 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
        this.nave.pivot.set (0.5);
        this.nave.anchor.set (0.5);
        this.nave.position.set(x, y);
-<<<<<<< HEAD
-      // this.nave.rotation = (rotacion*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes      
-      this.nave.rotation = rotacion;
-=======
-       this.nave.rotation = rotacion; //(rotacion*3.1416)/180; // rotation funciona en radianes por lo que hay que convertir de grados a radianes
->>>>>>> d0b5a6c04be98a3d933eabbced1d88396732f3eb
+       this.nave.rotation = rotacion;
        this.nave.interactive=true;
        this.nave.buttonMode = true;
        this.nave.on('touchend', (event) => {
@@ -338,13 +310,8 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
 
 
 function linea(points,lineSize, lineColor, alpha,conte,num){
-<<<<<<< HEAD
    
  texture = PIXI.Texture.from('/astrometria/img/flechas-peq2.png');
-=======
-
- texture = PIXI.Texture.from('/astrometria/img/lineas2.png');
->>>>>>> d0b5a6c04be98a3d933eabbced1d88396732f3eb
 
         function angleDegrees(ox, oy,dx,dy) {
             x=dx-ox;
