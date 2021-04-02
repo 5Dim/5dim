@@ -11,5 +11,5 @@
         { "planeta":6, "nom_pla":"Novaluz", "nom_jug": "VCODE", "alianza": "-LR-", "estado": 1, "mineral": 40, "cristal":40, "gas": 40, "plastico": 40, "ceramica": 40, "b_observar": 1, "b_atacar": 1, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p3","bloqueo": 2},
         { "planeta":7, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0},
         { "planeta":8, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0},
-		{ "planeta":9, "nom_pla":"", "nom_jug": "", "alianza": "", "estado": 0, "mineral": 0, "cristal":0, "gas": 0, "plastico": 0, "ceramica": 0, "b_observar": 0, "b_atacar": 0, "b_colonizar": 0, "b_recolectar": 0, "b_conquistar": 0, "naves": 0, "img_planeta": "p1","bloqueo": 0}
+		{ "planeta":9, "nom_pla":"", "nom_jug": "", "alianza": "", "img_planeta":"planeta0.png", "mineral":"", "cristal":"", "gas":"", "plastico":"", "ceramica":"", "b_observar":"", "b_enviar":"", "b_verorbita":"","naves": 0}
     ]}
