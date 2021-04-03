@@ -9,5 +9,18 @@ class Destinos extends Model
 {
     use HasFactory;
 
-    //
+    public function envuelo()
+    {
+        return $this->hasOne(EnVuelo::class);
+    }
+
+    public function recursos()
+    {
+        return $this->hasOne(EnRecursosEnDestino::class);
+    }
+
+    public function prioridades()
+    {
+        return $this->hasOne(EnPrioridadesEnDestino::class);
+    }
 }

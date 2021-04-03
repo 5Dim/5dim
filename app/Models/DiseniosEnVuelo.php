@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DiseniosEnVuelo extends Model
 {
     use HasFactory;
+
+    public function envuelo()
+    {
+        return $this->hasOne(EnVuelo::class);
+    }
 }

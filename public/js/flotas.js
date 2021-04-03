@@ -796,7 +796,7 @@ function RellenarFlotasEnVUelo(data){
                                 <big>`+flota['origen']+`<big>
                             </th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
-                                <big>`+flota['numeroflota']+`<big>
+                                <big>`+flota['nombre']+`<big>
                             </th>
                             <th colspan="4" class="text-success text-center borderless align-middle">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
@@ -907,8 +907,7 @@ function RellenarFlotasEnVUelo(data){
                         </td>
                         <td colspan="5">
                             <a class="btn btn-outline-primary col-12 text-primary" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#datos`+fila+`"
-                            aria-expanded="false" aria-controls="datos`+fila+`"  >
+                            href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+`">
                             Editar
                             </a>
                         </td>

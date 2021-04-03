@@ -27,8 +27,8 @@ class CreateRecursosEnFlotaTable extends Migration
             $table->unsignedBigInteger('ma')->default(0);
             $table->unsignedBigInteger('municion')->default(0);
             $table->unsignedBigInteger('creditos')->default(0);
-            $table->unsignedBigInteger('envuelos_id')->unsigned();
-            $table->foreign('envuelos_id')->references('id')->on('en_vuelos');
+            $table->unsignedBigInteger('en_vuelo_id')->unsigned();
+            $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos');
             $table->timestamps();
         });
     }

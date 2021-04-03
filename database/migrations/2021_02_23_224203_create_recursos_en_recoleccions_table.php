@@ -27,8 +27,8 @@ class CreateRecursosEnRecoleccionsTable extends Migration
             $table->unsignedBigInteger('ma')->default(0);
             $table->unsignedBigInteger('municion')->default(0);
             $table->unsignedBigInteger('creditos')->default(0);
-            $table->unsignedBigInteger('enrecoleccions_id')->unsigned();
-            $table->foreign('enrecoleccions_id')->references('id')->on('en_recoleccions');
+            $table->unsignedBigInteger('en_recoleccions_id')->unsigned();
+            $table->foreign('en_recoleccions_id')->references('id')->on('en_recoleccions');
             $table->timestamps();
         });
     }

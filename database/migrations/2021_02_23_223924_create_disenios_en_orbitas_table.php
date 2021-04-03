@@ -20,8 +20,8 @@ class CreateDiseniosEnOrbitasTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
-            $table->unsignedBigInteger('enorbita_id')->unsigned();
-            $table->foreign('enorbita_id')->references('id')->on('en_orbitas');
+            $table->unsignedBigInteger('en_orbita_id')->unsigned();
+            $table->foreign('en_orbita_id')->references('id')->on('en_orbitas');
         });
     }
 

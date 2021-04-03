@@ -372,6 +372,7 @@
         let cargaDest = @json($cargaDest); //cargado para cada destino
         let prioridades =@json($prioridades);
         let flota =@json($flota);
+        let linkFlota="{{ url('/juego/flotas') }}";
 
 
         recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)

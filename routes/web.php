@@ -119,10 +119,10 @@ Route::middleware(
     Route::get('/juego/astrometria/ajax/sistema/{numeroSistema}', [AstrometriaController::class, 'sistema']);
 
     //Flota
-    Route::get('/juego/flotas', [FlotaController::class, 'index']);
+    Route::get('/juego/flotas/verFlotasEnVuelo/', [FlotaController::class, 'verFlotasEnVuelo']);
+    Route::get('/juego/flotas/{estrella?}/{orbita?}/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'index']);
     Route::get('/juego/flotas/traerRecursos/{estrella}/{orbita}', [FlotaController::class, 'traerRecursos']);
     Route::post('/juego/flotas/enviarFlota/{id?}', [FlotaController::class, 'enviarFlota']);
-    Route::get('/juego/flotas/verFlotasEnVuelo/', [FlotaController::class, 'verFlotasEnVuelo']);
     Route::post('/juego/flotas/verDatosFlota/', [FlotaController::class, 'verDatosFlota']);
 
     //Banco

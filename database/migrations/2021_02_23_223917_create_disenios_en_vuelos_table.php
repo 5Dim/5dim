@@ -20,8 +20,8 @@ class CreateDiseniosEnVuelosTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
-            $table->unsignedBigInteger('envuelos_id')->unsigned();
-            $table->foreign('envuelos_id')->references('id')->on('en_vuelos');
+            $table->unsignedBigInteger('en_vuelo_id')->unsigned();
+            $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos');
         });
     }
 
