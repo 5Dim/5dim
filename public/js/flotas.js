@@ -8,11 +8,15 @@ tablaHangares.fueraH = fueraH;
 tablaHangares.dentroH = dentroH;
 tablaHangares.capacidadH = capacidadH;
 
+puedoCargarRecurso=[];
+
 fuelDestT = 0; //fuel total a todos los destinos
 
+
 RecursosInicio();
+CargarFlotaEditada();
 CargarValoresPlaneta();
-CrearOrigen(0);
+
 
 for (dest = 1; dest < destinos.length; dest++) {
     CargaActual(dest);
@@ -20,9 +24,27 @@ for (dest = 1; dest < destinos.length; dest++) {
 }
 Avisos();
 
-function CrearOrigen(dest) {
-    $("#titulo0").text("Origen " + destinos[dest]["estrella"] + "x" + destinos[dest]["orbita"]);
-    $(".ocultarenorigen" + dest).text("");
+
+function CargarFlotaEditada(){
+
+
+    EsconderPorId("listaPrioridades0");
+    if (flota.id==undefined){
+        nombreorigen="Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
+
+    } else {
+        nombreorigen="Carga actual en la flota";
+        puedoCargarRecurso[0]=false;
+        EsconderPorId("envias0");
+    }
+
+    $(".ocultarenorigen" + 0).text("");
+    CrearOrigen(nombreorigen);
+}
+
+function CrearOrigen(nombreorigen) {
+    $("#titulo0").text(nombreorigen);
+
 }
 
 // carga de valores
@@ -35,11 +57,15 @@ function CargarValoresPlaneta() {
 
         var este = valNaves.length - 1;
         valNaves[este].nombre = diseno.nombre;
-        valNaves[este].cantidad = nave.cantidad;
-        valNaves[este].cantidadT = nave.cantidad; //es constante
-        valNaves[este].enflota = 0;
-        valNaves[este].enhangar = 0;
+        valNaves[este].enflota = nave.enFlota ? nave.enFlota : 0;
+        valNaves[este].enhangar = nave.enHangar ? nave.enHangar : 0;
         valNaves[este].tamanio = diseno.tamanio;
+        if(valNaves[este].enflota+valNaves[este].enhangar>0){
+            valNaves[este].cantidad=0;
+        } else {
+            valNaves[este].cantidad=nave.cantidad;
+        }
+        valNaves[este].cantidadT = valNaves[este].cantidad +valNaves[este].enflota+valNaves[este].enhangar;; //es constante
 
         //ayuda visual esconde los 0
         $("#nombre" + diseno.id).text(diseno.nombre);
@@ -74,8 +100,11 @@ function CargarValoresPlaneta() {
 function RecursosInicio() {
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
+        puedoCargarRecurso[dest]=true;
         if (recursosDest[dest] != undefined) {
             MostrarRecursos(dest);
+        }else {
+            recursosDest[dest]=[];
         }
 
         if (cargaDest[dest] == undefined) {
@@ -84,6 +113,10 @@ function RecursosInicio() {
                 cargaDest[dest][res] = 0;
             });
             cargaDest[dest].total = 0;
+        } else {
+            recursosArray.forEach(res => {
+                cargaDest[dest].total +=cargaDest[dest][res];
+            });
         }
         destinos[dest].mision = $("#ordenDest" + dest).val();
     }
@@ -540,20 +573,22 @@ function MostrarRecursos(dest) {
 function CargarRecurso(dest, res) {
     var acargar = 0;
     var hueco = 0;
-    var recur = Math.round(recursosDest[dest][res] - cargaDest[dest][res]); //$("#boton" + res + dest).text();
+    if(puedoCargarRecurso[dest]){
+        var recur = Math.round(recursosDest[dest][res] - cargaDest[dest][res]);
 
-    CargaActual(dest);
-    hueco = Math.max(0, valFlotaT.carga - cargaDest[dest].total);
-    if (recur < hueco) {
-        acargar = recur;
-    } else {
-        acargar = hueco + cargaDest[dest][res];
+        CargaActual(dest);
+        hueco = Math.max(0, valFlotaT.carga - cargaDest[dest].total);
+        if (recur < hueco) {
+            acargar = recur;
+        } else {
+            acargar = hueco + cargaDest[dest][res];
+        }
+        $("#" + res + dest).val(formatNumber(acargar));
+        var resto = Math.max(0, recur - acargar);
+        $("#boton" + res + dest).text(formatNumber(resto));
+        CargaActual(dest);//al final recapitula
+        $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
     }
-    $("#" + res + dest).val(formatNumber(acargar));
-    var resto = Math.max(0, recur - acargar);
-    $("#boton" + res + dest).text(formatNumber(resto));
-    CargaActual(dest);//al final recapitula
-    $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
 }
 
 function TraerRecursos(sistema, planeta, dest) {

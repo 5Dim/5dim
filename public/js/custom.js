@@ -736,3 +736,15 @@ function TiempoLLegada(distancia, velocidad) {
 
     return (tiempo = Math.round(distancia / velocidad * factortiempoviaje)); //en segundos
 }
+
+function EsconderPorClase(clase){
+    document.querySelectorAll('.'+clase).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}
+
+function EsconderPorId(id){
+    document.querySelectorAll('#'+id).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}

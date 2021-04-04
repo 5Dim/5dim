@@ -83,24 +83,38 @@ class FlotaController extends Controller
         if (!empty($nombreflota) && !empty($tipoflota)){
 
             if ($tipoflota=="envuelo"){
-                $flotaPropia=EnVuelo::
+                $flota=EnVuelo::
                 where('jugadores_id',$jugadorActual->id)
                 ->where('publico',$nombreflota)
                 ->first();
 
 
 
-                if(!empty($flotaPropia)){ //editando flota en vuelo
-                    $navesEstacionadas=$flotaPropia->diseniosenvuelo;
-                    $destinos=$flotaPropia->destinos;
-                    $recursosActual=$flotaPropia->recursosenflota;
-                    $recursosDestino=$destinos[0]->recursos;
-                    $prioridadDestino=$destinos[0]->prioridades;
+                if(!empty($flota)){ //editando flota en vuelo
+                    $navesEstacionadas=$flota->diseniosenvuelo;
+                    $destinos=$flota->destinos;
+                    $recursos=$flota->recursosenflota;
+                    $cargaDest = [];
+                    $prioridades = [];
 
-                    Log::info("flotaPropia: ".$flotaPropia);
-                    Log::info("destinos: ".$destinos);
-                    Log::info("recursosDestino: ".$recursosDestino);
-                    Log::info("prioridadDestino: ".$prioridadDestino);
+                    foreach($destinos as $destino){
+                        $recursosDestino=$destino->recursos;
+                        array_push($cargaDest,$recursosDestino);
+
+                        $prioridad=$destino->prioridades;
+                        array_push($prioridades,$prioridad);
+
+                        //Log::info("recursosDestino: ".$recursosDestino);
+
+                    }
+
+                    //$cargaDest=$destinos[0]->recursos;
+                    //$prioridades=$destinos[0]->prioridades;
+
+                    //Log::info("flota: ".$flota);
+                    //Log::info("destinos: ".$destinos);
+                    //Log::info("recursosDestino: ".$cargaDest);
+                    //Log::info("prioridadDestino: ".$prioridades);
                 }
             }
 
@@ -108,9 +122,67 @@ class FlotaController extends Controller
         } else {
             //Naves en el planeta
             $navesEstacionadas = $planetaActual->estacionadas;
+
+                // datosFlota
+            $flota=new EnVuelo;
+            $flota->nombre="";
+
+            //prioridades
+            $prioridades = [];
+            $prioridadesXDefecto=new Prioridades();
+            $prioridadesXDefecto->personal=1;
+            $prioridadesXDefecto->mineral=1;
+            $prioridadesXDefecto->cristal=1;
+            $prioridadesXDefecto->gas=1;
+            $prioridadesXDefecto->plastico=1;
+            $prioridadesXDefecto->ceramica=1;
+            $prioridadesXDefecto->liquido=1;
+            $prioridadesXDefecto->micros=1;
+            $prioridadesXDefecto->fuel=1;
+            $prioridadesXDefecto->ma=1;
+            $prioridadesXDefecto->municion=1;
+            $prioridadesXDefecto->creditos=1;
+            array_push($prioridades,$prioridadesXDefecto);
+
+            // recursos en destinos
+            $cargaDest = [];
+            $recursosDestino=new EnRecursosEnDestino;
+                $recursosDestino->personal=0;
+                $recursosDestino->mineral=0;
+                $recursosDestino->cristal=0;
+                $recursosDestino->gas=0;
+                $recursosDestino->plastico=0;
+                $recursosDestino->ceramica=0;
+                $recursosDestino->liquido=0;
+                $recursosDestino->micros=0;
+                $recursosDestino->fuel=0;
+                $recursosDestino->ma=0;
+                $recursosDestino->municion=0;
+                $recursosDestino->creditos=0;
+                array_push($cargaDest,$recursosDestino);
+
+            // destinos
+            $destinos=[];
+            $origen=new Destinos();
+            $origen->estrella=$planetaActual->estrella;
+            $origen->orbita=$planetaActual->orbita;
+            $origen->porcentVel=100;
+            array_push($destinos,$origen);
+
+            $destino=new Destinos();
+            $destino->estrella=-1;
+            $destino->orbita=-1;
+            $destino->porcentVel=100;
+            /// prioridades por defecto
+
+            for ($dest=1;$dest<$cantidadDestinos+1;$dest++ ){
+                array_push($destinos,$destino);
+                array_push($cargaDest,$recursosDestino);
+                array_push($prioridades,$prioridadesXDefecto);
+            }
         }
 
-        Log::info("naves estacionadas: ".$navesEstacionadas);
+        //Log::info("naves estacionadas: ".$navesEstacionadas);
 
         $diseniosJugador = $jugadorActual->disenios;
 
@@ -140,63 +212,7 @@ class FlotaController extends Controller
         //Log::info($navesEstacionadas );
         //Log::info($destinosP);
 
-        // datosFlota
-        $flota=new EnVuelo;
-        $flota->nombre="";
 
-        //prioridades
-        $prioridades = [];
-        $prioridadesXDefecto=new Prioridades();
-        $prioridadesXDefecto->personal=1;
-        $prioridadesXDefecto->mineral=1;
-        $prioridadesXDefecto->cristal=1;
-        $prioridadesXDefecto->gas=1;
-        $prioridadesXDefecto->plastico=1;
-        $prioridadesXDefecto->ceramica=1;
-        $prioridadesXDefecto->liquido=1;
-        $prioridadesXDefecto->micros=1;
-        $prioridadesXDefecto->fuel=1;
-        $prioridadesXDefecto->ma=1;
-        $prioridadesXDefecto->municion=1;
-        $prioridadesXDefecto->creditos=1;
-        array_push($prioridades,$prioridadesXDefecto);
-
-        // recursos en destinos
-        $cargaDest = [];
-        $recursosDestino=new EnRecursosEnDestino;
-            $recursosDestino->personal=0;
-            $recursosDestino->mineral=0;
-            $recursosDestino->cristal=0;
-            $recursosDestino->gas=0;
-            $recursosDestino->plastico=0;
-            $recursosDestino->ceramica=0;
-            $recursosDestino->liquido=0;
-            $recursosDestino->micros=0;
-            $recursosDestino->fuel=0;
-            $recursosDestino->ma=0;
-            $recursosDestino->municion=0;
-            $recursosDestino->creditos=0;
-            array_push($cargaDest,$recursosDestino);
-
-        // destinos
-        $destinos=[];
-        $origen=new Destinos();
-        $origen->estrella=$planetaActual->estrella;
-        $origen->orbita=$planetaActual->orbita;
-        $origen->porcentVel=100;
-        array_push($destinos,$origen);
-
-        $destino=new Destinos();
-        $destino->estrella=-1;
-        $destino->orbita=-1;
-        $destino->porcentVel=100;
-        /// prioridades por defecto
-
-        for ($dest=1;$dest<$cantidadDestinos+1;$dest++ ){
-            array_push($destinos,$destino);
-            array_push($cargaDest,$recursosDestino);
-            array_push($prioridades,$prioridadesXDefecto);
-        }
 
         //$flotasVisibles=Astrometria::flotasVisibles();
 
@@ -231,6 +247,7 @@ class FlotaController extends Controller
 
 
     public function traerRecursos($estrella,$orbita){
+        //Log::info('trear de: '.$estrella."x".$orbita);
 
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 

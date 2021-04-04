@@ -120,8 +120,8 @@ Route::middleware(
 
     //Flota
     Route::get('/juego/flotas/verFlotasEnVuelo/', [FlotaController::class, 'verFlotasEnVuelo']);
-    Route::get('/juego/flotas/{estrella?}/{orbita?}/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'index']);
     Route::get('/juego/flotas/traerRecursos/{estrella}/{orbita}', [FlotaController::class, 'traerRecursos']);
+    Route::get('/juego/flotas/{estrella?}/{orbita?}/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'index']);
     Route::post('/juego/flotas/enviarFlota/{id?}', [FlotaController::class, 'enviarFlota']);
     Route::post('/juego/flotas/verDatosFlota/', [FlotaController::class, 'verDatosFlota']);
 

@@ -209,7 +209,7 @@
                     </button>
                 </td>
             </tr>
-            <tr>
+            <tr id="envias{{ $numero }}" class="">
                 <td class="anchofijo">
                     <button id="botonenvias{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="Vaciar({{$numero}})">
                         Enviar
@@ -253,7 +253,7 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr id="listaPrioridades{{ $numero }}" class="">
                 <td class="anchofijo">
                     <button id="botonprioridades{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="VaciarPrioridades({{$numero}})">
                         Prioridades
