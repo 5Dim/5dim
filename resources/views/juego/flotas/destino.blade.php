@@ -42,8 +42,7 @@
             <tr class="ocultarenorigen{{ $numero }}">
                 <td class="text-light">
                     <div id="selectorPlaneta{{ $numero }}">
-                        <select  id="listaPlanetas{{ $numero }}"
-                            class="form-control">
+                        <select  id="listaPlanetas{{ $numero }}"  class="form-control ediciondestino">
                             <option value="none">Selecciona un planeta</option>
                             <optgroup label="Propios">
                                 @foreach (Auth::user()->jugador->planetas as $planeta)
@@ -57,16 +56,16 @@
                     </div>
                 </td>
                 <td class="text-light">
-                    <input id="sistemaDest{{ $numero }}" type="text" class="form-control input"
+                    <input id="sistemaDest{{ $numero }}" type="text" class="form-control input ediciondestino"
                         placeholder="Numero de sistema">
                 </td>
                 <td class="text-light">
-                    <input id="planetaDest{{ $numero }}" type="text" class="form-control input" type="number"  pattern="[0-9]{1}"
+                    <input id="planetaDest{{ $numero }}" type="text" class="form-control input ediciondestino" type="number"  pattern="[0-9]{1}"
                         placeholder="Numero de orbita">
                 </td>
                 <td class="text-light">
                     <div id="selectorordenDest{{ $numero }}">
-                        <select name="orden" id="ordenDest{{ $numero }}" class="select form-control">
+                        <select name="orden" id="ordenDest{{ $numero }}" class="select form-control ediciondestino">
                             <option value="" selected>Selección de misión</option>
                             <option value="transportar">Transportar</option>
                             <option value="transferir">Transferir</option>
@@ -80,7 +79,7 @@
                     </div>
                 </td>
                 <td class="text-light">
-                    <div id="selectorporcentVDest{{ $numero }}" class="input-group mb-3 borderless"
+                    <div id="selectorporcentVDest{{ $numero }}" class="input-group mb-3 borderless ediciondestino"
                         style="padding-left: 10px !important; padding-right: 5px !important">
                         <input id="porcentVDest{{ $numero }}" type="text" class="form-control input" value="100"
                             aria-label="Recipient's username" aria-describedby="basic-addon2">

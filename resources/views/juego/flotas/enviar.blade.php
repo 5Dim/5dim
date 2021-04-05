@@ -348,7 +348,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 cajita-info rounded">
+            <div id="lineaBotones"class="col-12 cajita-info rounded">
                 <button id="botonEnviar" type="button" class="btn btn-success col-12"  onclick="enviarFlota()">
                     Enviar flota
                 </button>

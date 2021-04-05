@@ -9,6 +9,7 @@ tablaHangares.dentroH = dentroH;
 tablaHangares.capacidadH = capacidadH;
 
 puedoCargarRecurso=[];
+deboCargarMunicion=true;
 
 fuelDestT = 0; //fuel total a todos los destinos
 
@@ -27,15 +28,31 @@ Avisos();
 
 function CargarFlotaEditada(){
 
-
     EsconderPorId("listaPrioridades0");
-    if (flota.id==undefined){
+    if (flota.id==undefined){//planeta
         nombreorigen="Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
 
-    } else {
+    } else { //flota
         nombreorigen="Carga actual en la flota";
         puedoCargarRecurso[0]=false;
         EsconderPorId("envias0");
+        EsconderPorId("botonEnviar");
+        $("#nombreFlota").val(flota.nombre);
+        deboCargarMunicion=false;
+
+        dest=0;
+        destinos.forEach(destino => {
+            dest+=1;
+            $("#sistemaDest"+dest).val(destino.estrella);
+            $("#planetaDest"+dest).val(destino.orbita);
+            $("#ordenDest"+dest).val(destino.mision);
+            $("#porcentVDest"+dest).val(Math.round(destino.porcentVel));
+
+
+
+
+        });
+        $('.ediciondestino').attr('disabled', true);
     }
 
     $(".ocultarenorigen" + 0).text("");
@@ -632,10 +649,12 @@ function Vaciar(dest) {
 }
 
 function CargarMunicion() {
-    res = "municion";
-    for (dest = 0; dest < destinos.length; dest++) {
-        var muniTotal = valFlotaT[res]; //+1* recur.replace(/\./g,'');
-        $("#" + res + dest).val(formatNumber(muniTotal));
+    if(deboCargarMunicion){
+        res = "municion";
+        for (dest = 0; dest < destinos.length; dest++) {
+            var muniTotal = valFlotaT[res]; //+1* recur.replace(/\./g,'');
+            $("#" + res + dest).val(formatNumber(muniTotal));
+        }
     }
 }
 
@@ -653,7 +672,7 @@ function CargaActual(dest) {
         cargaDest[dest][res] = recur;
 
         var resto = 0;
-        if (recursosDest[dest] != undefined) {
+        if (recursosDest[dest] != undefined && recursosDest[dest][res] != undefined) {
             var resto = Math.round(recursosDest[dest][res] - recur);
         }
 
