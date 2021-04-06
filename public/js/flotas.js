@@ -10,6 +10,8 @@ tablaHangares.capacidadH = capacidadH;
 
 puedoCargarRecurso=[];
 deboCargarMunicion=true;
+deboAlertasF=true;
+deboEsconderDestinosVacios=true;
 
 fuelDestT = 0; //fuel total a todos los destinos
 
@@ -37,21 +39,27 @@ function CargarFlotaEditada(){
         puedoCargarRecurso[0]=false;
         EsconderPorId("envias0");
         EsconderPorId("botonEnviar");
+        EsconderPorId("porcentsimbol");
         $("#nombreFlota").val(flota.nombre);
         deboCargarMunicion=false;
+        deboAlertasF=false;
 
         dest=0;
         destinos.forEach(destino => {
-            dest+=1;
+
             $("#sistemaDest"+dest).val(destino.estrella);
             $("#planetaDest"+dest).val(destino.orbita);
-            $("#ordenDest"+dest).val(destino.mision);
+            destino.misionSEG=destino.mision;//se guarda
             $("#porcentVDest"+dest).val(Math.round(destino.porcentVel));
 
-
-
-
+            dest+=1;
         });
+        if(deboEsconderDestinosVacios){
+            for(n=dest;n<cantidadDestinos+1;n++){
+                EsconderPorId("cajitaDestino"+n);
+            }
+        }
+
         $('.ediciondestino').attr('disabled', true);
     }
 
@@ -135,7 +143,7 @@ function RecursosInicio() {
                 cargaDest[dest].total +=cargaDest[dest][res];
             });
         }
-        destinos[dest].mision = $("#ordenDest" + dest).val();
+        //destinos[dest].mision = $("#ordenDest" + dest).val();
     }
     destinos[0].mision = "transportar";
 }
@@ -412,26 +420,28 @@ function Avisos() {  //////////////////////////////  VALIDACION
 
         $("#imagen" + dest).attr("src", img);
 
-        if (hayErrorMision) {
-            sePuedeEnviar = false;
-            $("#cajitaDestino" + dest)
-                .removeClass("cajita-success")
-                .addClass("cajita-danger");
-        } else {
-            $("#cajitaDestino" + dest)
-                .addClass("cajita-success")
-                .removeClass("cajita-danger");
-        }
+        if(deboAlertasF){
+            if (hayErrorMision) {
+                sePuedeEnviar = false;
+                $("#cajitaDestino" + dest)
+                    .removeClass("cajita-success")
+                    .addClass("cajita-danger");
+            } else {
+                $("#cajitaDestino" + dest)
+                    .addClass("cajita-success")
+                    .removeClass("cajita-danger");
+            }
 
-        if (faltaFuel) {
-            $("#fuelDest" + dest)
-                .addClass("text-danger")
-                .removeClass("text-light");
-            sePuedeEnviar = false;
-        } else {
-            $("#fuelDest" + dest)
-                .removeClass("text-danger")
-                .addClass("text-light");
+            if (faltaFuel) {
+                $("#fuelDest" + dest)
+                    .addClass("text-danger")
+                    .removeClass("text-light");
+                sePuedeEnviar = false;
+            } else {
+                $("#fuelDest" + dest)
+                    .removeClass("text-danger")
+                    .addClass("text-light");
+            }
         }
     }
 
@@ -573,12 +583,14 @@ function SiSeMueve(dest, fuelDest, tiempoDest) {
 
 function SelectorDestinos(dest) {
     // el selector coloca sistema y planeta
-    input = $("#listaPlanetas" + dest)
-        .val()
-        .split("x");
-    $("#sistemaDest" + dest).val(input[0]);
-    $("#planetaDest" + dest).val(input[1]);
-    TraerRecursos(input[0], input[1], dest);
+    if($("#listaPlanetas" + dest).val()!=null){
+        input = $("#listaPlanetas" + dest)
+            .val()
+            .split("x");
+        $("#sistemaDest" + dest).val(input[0]);
+        $("#planetaDest" + dest).val(input[1]);
+        TraerRecursos(input[0], input[1], dest);
+    }
 }
 
 function MostrarRecursos(dest) {
@@ -786,7 +798,17 @@ function formSuccess() {
     $("#msgSubmit").removeClass("hidden");
 }
 
+function RecursosSiDestino (dest){
+    estrella=$("#sistemaDest" + dest).val();
+    orbita= $("#planetaDest" + dest).val();
+    destinoF=estrella+"x"+orbita;
+    if(dest>0 && destinoF.length>4){
+        $('#listaPlanetas'+dest).val(destinoF).change();
+        $("#ordenDest"+dest).val(destinos[dest].misionSEG).change();
+    }
 
+
+}
 
 
 /////////////////////////////////////******************* FLOTAS EN VUELO ********************************** //////////////////////////////////

@@ -80,6 +80,10 @@ class FlotaController extends Controller
         //$flotaOrigen = $request->input('nombreflota');
         //Log::info('flota ver: '.$nombreflota);
         //Log::info(empty($nombreflota));
+        $cargaDest = [];
+        $prioridades = [];
+        $destinos=[];
+
         if (!empty($nombreflota) && !empty($tipoflota)){
 
             if ($tipoflota=="envuelo"){
@@ -92,21 +96,29 @@ class FlotaController extends Controller
 
                 if(!empty($flota)){ //editando flota en vuelo
                     $navesEstacionadas=$flota->diseniosenvuelo;
-                    $destinos=$flota->destinos;
+                    $destinosO=$flota->destinos;
                     $recursos=$flota->recursosenflota;
-                    $cargaDest = [];
-                    $prioridades = [];
 
-                    foreach($destinos as $destino){
+                    foreach($destinosO as $destino){
                         $recursosDestino=$destino->recursos;
                         array_push($cargaDest,$recursosDestino);
 
                         $prioridad=$destino->prioridades;
                         array_push($prioridades,$prioridad);
 
-                        //Log::info("recursosDestino: ".$recursosDestino);
+                        array_push($destinos,$destino);
 
+                        //Log::info("recursosDestino: ".$recursosDestino);
                     }
+
+                    $origen=new Destinos();
+                    $origen->estrella=$destinos[0]['initestrella'];
+                    $origen->orbita=$destinos[0]['initorbita'];
+                    $origen->porcentVel=100;
+                    array_unshift($destinos,$origen);
+                    array_push($cargaDest,$cargaDest[0]);
+                    array_push($prioridades,$prioridades[0]);
+
 
                     //$cargaDest=$destinos[0]->recursos;
                     //$prioridades=$destinos[0]->prioridades;
@@ -128,7 +140,6 @@ class FlotaController extends Controller
             $flota->nombre="";
 
             //prioridades
-            $prioridades = [];
             $prioridadesXDefecto=new Prioridades();
             $prioridadesXDefecto->personal=1;
             $prioridadesXDefecto->mineral=1;
@@ -145,7 +156,6 @@ class FlotaController extends Controller
             array_push($prioridades,$prioridadesXDefecto);
 
             // recursos en destinos
-            $cargaDest = [];
             $recursosDestino=new EnRecursosEnDestino;
                 $recursosDestino->personal=0;
                 $recursosDestino->mineral=0;
@@ -162,7 +172,6 @@ class FlotaController extends Controller
                 array_push($cargaDest,$recursosDestino);
 
             // destinos
-            $destinos=[];
             $origen=new Destinos();
             $origen->estrella=$planetaActual->estrella;
             $origen->orbita=$planetaActual->orbita;

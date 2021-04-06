@@ -373,6 +373,7 @@
         let prioridades =@json($prioridades);
         let flota =@json($flota);
         let linkFlota="{{ url('/juego/flotas') }}";
+        let cantidadDestinos={{$cantidadDestinos}};
 
 
         recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)

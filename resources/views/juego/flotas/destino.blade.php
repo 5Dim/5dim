@@ -67,23 +67,23 @@
                     <div id="selectorordenDest{{ $numero }}">
                         <select name="orden" id="ordenDest{{ $numero }}" class="select form-control ediciondestino">
                             <option value="" selected>Selección de misión</option>
-                            <option value="transportar">Transportar</option>
-                            <option value="transferir">Transferir</option>
-                            <option value="orbitar">Orbitar</option>
-                            <option value="recolectar">Recolectar</option>
-                            <option value="extraccion">Extracción</option>
-                            <option value="reciclar">Reciclar</option>
-                            <option value="colonizar">Colonizar</option>
+                            <option value="Transportar">Transportar</option>
+                            <option value="Transferir">Transferir</option>
+                            <option value="Orbitar">Orbitar</option>
+                            <option value="Recolectar">Recolectar</option>
+                            <option value="Extracción">Extracción</option>
+                            <option value="Reciclar">Reciclar</option>
+                            <option value="Colonizar">Colonizar</option>
                             <option class="text-danger"value="atacar">Atacar</option>
                         </select>
                     </div>
                 </td>
                 <td class="text-light">
-                    <div id="selectorporcentVDest{{ $numero }}" class="input-group mb-3 borderless ediciondestino"
+                    <div id="selectorporcentVDest{{ $numero }}" class="input-group mb-3 borderless"
                         style="padding-left: 10px !important; padding-right: 5px !important">
-                        <input id="porcentVDest{{ $numero }}" type="text" class="form-control input" value="100"
+                        <input id="porcentVDest{{ $numero }}" type="text" class="form-control input ediciondestino" value="100"
                             aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
+                        <div id="porcentsimbol" class="input-group-append">
                             <span class="input-group-text bg-dark text-light">%</span>
                         </div>
                     </div>
@@ -305,6 +305,8 @@
             width: '100%',
             language: "es"
         });
+
+        RecursosSiDestino({{ $numero }});
     });
 
     $('#sistemaDest{{ $numero }}').focusout(function() {
