@@ -47,13 +47,38 @@ function CargarFlotaEditada(){
         dest=0;
         destinos.forEach(destino => {
 
+            cargaT=0;
             $("#sistemaDest"+dest).val(destino.estrella);
             $("#planetaDest"+dest).val(destino.orbita);
             destino.misionSEG=destino.mision;//se guarda
             $("#porcentVDest"+dest).val(Math.round(destino.porcentVel));
 
+            recursosArray.forEach(res => {
+                $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
+                cargaT+=cargaDest[dest][res];
+                $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
+            });
+            cargaDest[dest].total =cargaT;
+
+
+            if (destino.visitado>0){
+                puedoCargarRecurso[dest]=false;
+                $('.enviarRecursos'+dest).attr('disabled', true);
+                $('.prioridadRecursos'+dest).attr('disabled', true);
+                hacecuanto=difTiempos(destino.fin,horaServer);
+                $("#titulo"+dest).text("Destino "+dest+" alcanzado hace "+hacecuanto);
+            } else {
+                if (dest>0){
+                    hacecuanto=difTiempos(horaServer,destino.fin);
+                    $("#titulo"+dest).text("Destino "+dest+" alcanzado en "+hacecuanto);
+                }
+            }
+
             dest+=1;
         });
+
+
+
         if(deboEsconderDestinosVacios){
             for(n=dest;n<cantidadDestinos+1;n++){
                 EsconderPorId("cajitaDestino"+n);
@@ -687,8 +712,9 @@ function CargaActual(dest) {
         if (recursosDest[dest] != undefined && recursosDest[dest][res] != undefined) {
             var resto = Math.round(recursosDest[dest][res] - recur);
         }
-
-        $("#boton" + res + dest).text(formatNumber(resto));
+        if(puedoCargarRecurso[dest]){
+            $("#boton" + res + dest).text(formatNumber(resto));
+        }
     });
     cargaDest[dest].total = cargatotal;
     //Avisos(); da error recursivo al llamarlo desde avisos
@@ -859,7 +885,7 @@ function RellenarFlotasEnVUelo(data){
         tregreso=formatHMS(1*flota['tregreso']);
         //recursosCarga=flota['recursos']
 
-        if (flota['tipo']=="propia"){
+            if (flota['tipo']=="propia"){
 
                 var tablaFlotasPropias = `
 
@@ -1000,6 +1026,67 @@ function RellenarFlotasEnVUelo(data){
                 `;
                 $("#tablaFlotasPropias").append(tablaFlotasPropias);
             }
+            else if (flota['tipo']=="aliada"){
+
+                var tablaFlotasAliadas = `
+
+                <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
+                    style="margin-top: 5px !important">
+                    <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info`+fila+`" aria-expanded="false"
+                        aria-controls="info`+fila+`">
+                        <div id="cuadro`+fila+`" class="">
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['origen']+`<big>
+                            </th>
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['nombre']+`<big>
+                            </th>
+                            <th colspan="4" class="text-success text-center borderless align-middle">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
+                            </th>
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['mision']+`<big>
+                            </th>
+                            <th colspan="3" class="text-success text-center borderless align-middle">
+                                <big>`+flota['destino']+`<big>
+                            </th>
+                        </div>
+                    </tr>
+                    <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="3" class="text-warning">tiempo restante: </td>
+                        <td colspan="3" class="text-warning">tiempo regreso:</td>
+                        <td colspan="3" class="text-warning">ataque:</td>
+                        <td colspan="3" class="text-warning">defensa</td>
+                    </tr>
+                    <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="3" class="text-light">`+trestante+`</td>
+                        <td colspan="3" class="text-light">`+tregreso+`</td>
+                        <td colspan="3" class="text-light">`+ataque+`</td>
+                        <td colspan="3" class="text-light">`+defensa+`</td>
+                    </tr>
+
+                    <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="4">
+
+                        </td>
+                        <td colspan="5">
+
+                        </td>
+                        <td colspan="4">
+                        <a type="button" class="btn btn-outline-success col-12 text-success"
+                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <i class="fa fa-eye "></i> Ver
+                        </a>
+                        </td>
+                    </tr>
+
+                </table>
+
+                `;
+                $("#tablaFlotasAliadas").append(tablaFlotasAliadas);
+            }
+
         }
 
     });

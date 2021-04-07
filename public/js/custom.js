@@ -327,7 +327,7 @@ function timeg(yqmas, dndv) {
         resultg = "Hoy a las " + hora + ":" + minuto;
     }
     if (diadehoy == day - 1 && yqmas < 48 * 3600) {
-        resultg = "Maniana a las " + hora + ":" + minuto;
+        resultg = "Mañana a las " + hora + ":" + minuto;
     }
 
     $("#" + dndv).html(resultg);
@@ -352,6 +352,20 @@ function formatHMS(secs) {
     var seconds = sec_num % 60;
 
     return [hours, minutes, seconds].map(v => (v < 10 ? "0" + v : v)).join(":");
+}
+
+function difTiempos(start, end) {
+    start=start.replaceAll("-",":");
+    start=start.replaceAll(" ",":");
+    start = start.split(":");
+    end=end.replaceAll("-",":");
+    end=end.replaceAll(" ",":");
+    end = end.split(":");
+    var startDate = new Date(start[0], start[1], start[2], start[3], start[4], start[5]);
+    var endDate = new Date(end[0], end[1], end[2], end[3], end[4], end[5]);
+    var diff = Math.abs((endDate.getTime() - startDate.getTime())/1000);
+
+    return formatHMS(diff);
 }
 
 function mostrarDatosConstruccion(codigo) {

@@ -127,6 +127,7 @@ class FlotaController extends Controller
                     //Log::info("destinos: ".$destinos);
                     //Log::info("recursosDestino: ".$cargaDest);
                     //Log::info("prioridadDestino: ".$prioridades);
+                    //Log::info("recursos: ".$recursos);
                 }
             }
 

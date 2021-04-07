@@ -32,6 +32,12 @@
     </div>
 </div>
 
+<div id="faliadas" aria-labelledby="faliadas" data-bs-parent="#propias" class="col-12 accordion-collapse show">
+    <table id="tablaFlotasAliadas">
+
+    </table>
+</div>
+
 
 <div class="col-12">
     <div id="extrangeras" class="table-responsive">

@@ -215,40 +215,40 @@
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="personal{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="personal{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="mineral{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="mineral{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="cristal{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="cristal{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="gas{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="gas{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="plastico{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="plastico{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="ceramica{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="ceramica{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="liquido{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="liquido{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="micros{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="micros{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="fuel{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="fuel{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="ma{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="ma{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="municion{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="municion{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="creditos{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="creditos{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
             </tr>
 
@@ -259,40 +259,40 @@
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadpersonal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadpersonal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadmineral{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadmineral{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadcristal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadcristal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadgas{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadgas{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadplastico{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadplastico{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadceramica{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadceramica{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadliquido{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadliquido{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadmicros{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadmicros{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadfuel{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadfuel{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadma{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadma{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadmunicion{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadmunicion{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadcreditos{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadcreditos{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
             </tr>
         </table>

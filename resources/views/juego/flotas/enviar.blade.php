@@ -374,6 +374,7 @@
         let flota =@json($flota);
         let linkFlota="{{ url('/juego/flotas') }}";
         let cantidadDestinos={{$cantidadDestinos}};
+        let horaServer='{{date("Y-m-d H:i:s")}}';
 
 
         recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
