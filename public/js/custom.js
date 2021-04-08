@@ -762,3 +762,9 @@ function EsconderPorId(id){
         el.style.display = 'none';
      });
 }
+
+function MostrarPorId(id){
+    document.querySelectorAll('#'+id).forEach(function(el) {
+        el.style.display = '';
+     });
+}

@@ -125,18 +125,18 @@ class Flotas extends Model
                     $ordenPost = $destinos[$destPost]['mision'];
                     // no se puede llegar
 
-                    if ($ordenAnt == "" || $ordenAnt == "transferir" || $ordenAnt == "recolectar" || $ordenAnt == "orbitar" || $ordenAnt == "extraer") {
+                    if ($ordenAnt == "" || $ordenAnt == "Transferir" || $ordenAnt == "Recolectar" || $ordenAnt == "Orbitar" || $ordenAnt == "Extraer") {
                         $errores = " No se alcanzará destino " . $dest;
                     }
 
                     // soy la ultima y debe ser de cierre
-                    if ($ordenPost=="" && $orden != "transferir" && $orden != "recolectar" && $orden != "orbitar" || $ordenAnt == "extraer") {
-                        $errores = " la misión del último destino no es transferir, orbitar,extraer o recolectar";
+                    if ($ordenPost=="" && $orden != "Transferir" && $orden != "Recolectar" && $orden != "Orbitar" || $ordenAnt == "Extraer") {
+                        $errores = " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                     }
 
                     if ($cantidadDestinos == $destPost) {
-                        if ($orden != "transferir" && $orden != "recolectar" && $orden != "orbitar" || $ordenAnt == "extraer") {
-                            $errores = " la misión del último destino no es transferir, orbitar,extraer o recolectar";
+                        if ($orden != "Transferir" && $orden != "Recolectar" && $orden != "Orbitar" || $ordenAnt == "Extraer") {
+                            $errores = " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                         }
                     }
 
@@ -308,7 +308,7 @@ class Flotas extends Model
         // calculos
         if ($origen['estrella'] != "0" && $destino['estrella'] != "0" && $origen['orbita'] != "0" && $destino['orbita'] != "0") {
             if ($origen['estrella'] == $destino['estrella'] && $origen['orbita'] == $destino['orbita']) {
-                //orbitar
+                //Orbitar
                 $factordistancia = $constantesU->where('codigo', 'distanciaorbita')->first()->valor;
                 $coordDestino['x'] = 0.5;
             } else if ($origen['estrella'] == $destino['estrella']) {

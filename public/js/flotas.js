@@ -391,7 +391,7 @@ function Avisos() {  //////////////////////////////  VALIDACION
     }
 
     //las misiones son viables
-    // añadir que no se puede transferir a una flota (solo atacar)
+    // añadir que no se puede Transferir a una flota (solo Atacar)
     for (dest = 1; dest < destinos.length; dest++) {
         var destAnt = dest - 1;
         var destPost = dest + 1;
@@ -407,26 +407,30 @@ function Avisos() {  //////////////////////////////  VALIDACION
             var ordenAnt = $("#ordenDest" + destAnt).val();
             var ordenPost = $("#ordenDest" + destPost).val();
             // no se puede llegar
-            if (ordenAnt == "" || ordenAnt == "transferir" || ordenAnt == "recolectar" || ordenAnt == "orbitar" || ordenAnt == "extraer") {
+            if (ordenAnt == "" || ordenAnt == "Transferir" || ordenAnt == "Recolectar" || ordenAnt == "Orbitar" || ordenAnt == "Extraer") {
                 errores += " No se alcanzará destino " + dest;
                 hayErrorMision = true;
             }
 
+            soyUltimoDestino=false;
             // soy la ultima y debe ser de cierre
             if (ordenPost != undefined) {
-                if ((ordenPost.length < 1 && orden != "transferir" && orden != "recolectar" && orden != "orbitar") || ordenAnt == "extraer") {
-                    errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
-                    hayErrorMision = true;
+                if ((ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
+                    errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                 }
             }
             if (destinos.length == destPost) {
-                if ((orden != "transferir" && orden != "recolectar" && orden != "orbitar") || ordenAnt == "extraer") {
-                    errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
+                if ((orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
+                    errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                     hayErrorMision = true;
                 }
             }
 
-            if (orden == "atacar" && !hayErrorMision) {
+            if ((orden == "Transferir" || orden == "Recolectar" || orden == "Orbitar" || orden == "Recolectar")) {
+                soyUltimoDestino=true;
+            }
+
+            if (orden == "Atacar" && !hayErrorMision) {
                 $("#cajitaDestino" + dest)
                     .removeClass("cajita-success")
                     .addClass("cajita-light");
@@ -435,6 +439,15 @@ function Avisos() {  //////////////////////////////  VALIDACION
                     .addClass("cajita-success")
                     .removeClass("cajita-light");
             }
+
+            if(soyUltimoDestino){
+                $('.enviarRecursos'+dest).attr('disabled', true);
+                $('.prioridadRecursos'+dest).attr('disabled', true);
+            } else {
+                $('.enviarRecursos'+dest).attr('disabled', false);
+                $('.prioridadRecursos'+dest).attr('disabled', false);
+            }
+
         } else if  (dest==1 && orden == ""){
             errores += " ,sin misión";
             hayErrorMision = true;

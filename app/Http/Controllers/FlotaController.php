@@ -92,8 +92,6 @@ class FlotaController extends Controller
                 ->where('publico',$nombreflota)
                 ->first();
 
-
-
                 if(!empty($flota)){ //editando flota en vuelo
                     $navesEstacionadas=$flota->diseniosenvuelo;
                     $destinosO=$flota->destinos;
@@ -410,6 +408,9 @@ class FlotaController extends Controller
         //se envia la flota  ////////////////////
         if (strlen($errores)<3){
 
+            $ajusteMapaBase=35; //ajuste 0,0 con mapa
+            $ajusteMapaFactor=7; //ajuste escala mapa
+
             DB::beginTransaction();
             try {
                 //construyendo flota
@@ -481,8 +482,8 @@ class FlotaController extends Controller
                             $TfinPto=date('Y-m-d H:i:s',$add_time);
 
                             $puntoFlota=new PuntosEnFlota();
-                            $puntoFlota->coordx= $destinos[$destAnt]['fincoordx'] + $vectorx * ($tiempoPto * $tiempoPuntosFlotas);
-                            $puntoFlota->coordy= $destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas);
+                            $puntoFlota->coordx= $ajusteMapaFactor * ($destinos[$destAnt]['fincoordx'] + $vectorx * ($tiempoPto * $tiempoPuntosFlotas))+$ajusteMapaBase;
+                            $puntoFlota->coordy= $ajusteMapaFactor * ($destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas))+$ajusteMapaBase;
                             $puntoFlota->fin= $TfinPto;
                             $puntoFlota->en_vuelo_id=$flotax->id;
                             $puntoFlota->jugadores_id=$jugadorActual->id;
@@ -491,8 +492,8 @@ class FlotaController extends Controller
                         }
                         //ultimo punto siempre va
                         $puntoFlota=new PuntosEnFlota();
-                        $puntoFlota->coordx= $destinos[$dest]['fincoordx'];
-                        $puntoFlota->coordy= $destinos[$dest]['fincoordy'];
+                        $puntoFlota->coordx= $ajusteMapaFactor * ($destinos[$dest]['fincoordx'])+$ajusteMapaBase;
+                        $puntoFlota->coordy= $ajusteMapaFactor * ($destinos[$dest]['fincoordy'])+$ajusteMapaBase;
                         $puntoFlota->fin= $Tfin;
                         $puntoFlota->en_vuelo_id=$flotax->id;
                         $puntoFlota->jugadores_id=$jugadorActual->id;
