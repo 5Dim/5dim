@@ -211,27 +211,28 @@ class Astrometria extends Model
             //$flotasVisiblesIds=[];
 
             //me aseguro que esta en el circulo de radares
-            foreach ($radares as $radar) {
+            foreach ($enZona as $ptoFlota) {
+                foreach ($radares as $radar) {
 
                 //Log::info($radar);
                 $coordDestino=Flotas::coordenadasBySistema($radar['estrella'],$anchoUniverso,$luzdemallauniverso);
                 $coordDestx=$ajusteMapaFactor * $coordDestino['x'] + $ajusteMapaBase;
                 $coordDesty=$ajusteMapaFactor * $coordDestino['y'] + $ajusteMapaBase;
 
-                foreach ($enZona as $ptoFlota) {
                     $dist =  (pow(($coordDestx - $ptoFlota['coordx']) * ($coordDestx - $ptoFlota['coordx']) + ($coordDesty - $ptoFlota['coordy']) * ($coordDesty - $ptoFlota['coordy']), 1 / 2)); ///  /$luzdemallauniverso
                     //Log::info("dist ".$dist);
                     if ($dist < $ajusteMapaFactor * $luzdemallauniverso * $radar['circulo']){
                             //Log::info($ptoFlota);
                         $flotasVisiblesAjena=EnVuelo::where('id',$ptoFlota['en_vuelo_id'])->first();
                             //Log::info($flotasVisiblesAjena);
-                        $estaflota=Astrometria::flotaValoresVisibles($radares,$flotasVisiblesAjena,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"ajeno");
+                        $estaflota=Astrometria::flotaValoresVisibles($radares,$flotasVisiblesAjena,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"ajena");
                         if ($estaflota!=null){
                             array_push($flotas,$estaflota );
                         }
-                        break;
+                        break 1;
                     }
                 }
+
             }
 
             //saco flotas aliadas
@@ -296,6 +297,7 @@ class Astrometria extends Model
 
             $flota = new \stdClass();
             $flota->numeroflota = $flotaVisible->publico;
+            $flota->nombre = $flotaVisible->publico;
             $flota->nick = $esteJugon['nombre'];
             $flota->ataque = $flotaVisible->ataqueVisible;
             $flota->defensa = $flotaVisible->defensaVisible;
@@ -307,27 +309,31 @@ class Astrometria extends Model
             $flota->coordfy = null;
             $flota->trestante = null;
             $flota->tregreso = null;
-            $flota->mision = null;
+            $flota->mision = "?";
             $flota->tipo = $tipo;
             $flota->fecha = null;
 
-        if ($tipo=="ajeno"){
+            $tiempovuelo=strtotime($destinoActual['fin'])-strtotime($destinoActual['init']);
+            $trestante=strtotime($destinoActual['fin'])-strtotime($ahora);
+            $tregreso=strtotime($ahora)-strtotime($destinoActual['init']);
+
+        if ($tipo=="ajena"){
             //calculo de si veo origen y destino
             $seveOrigen=false;
             $seveDestino=false;
 
             foreach ($radares as $radar) {
                 $coordDestino=Flotas::coordenadasBySistema($radar['estrella'],$anchoUniverso,$luzdemallauniverso);
-                $coordDestx=$ajusteMapaFactor * $coordDestino['x'] + $ajusteMapaBase;
-                $coordDesty=$ajusteMapaFactor * $coordDestino['y'] + $ajusteMapaBase;
+                $coordDestx=$ajusteMapaFactor  * $coordDestino['x']+$ajusteMapaBase;
+                $coordDesty=$ajusteMapaFactor  * $coordDestino['y']+$ajusteMapaBase;
 
-                $inicioActualx=$ajusteMapaFactor * $destinoActual->initcoordx + $ajusteMapaBase;
-                $inicioActualy=$ajusteMapaFactor * $destinoActual->initcoordy + $ajusteMapaBase;
+                $inicioActualx=$destinoActual->initcoordx;
+                $inicioActualy=$destinoActual->initcoordy;
 
-                $destinoActualx=$ajusteMapaFactor * $destinoActual->fincoordx + $ajusteMapaBase;
-                $destinoActualy=$ajusteMapaFactor * $destinoActual->fincoordy + $ajusteMapaBase;
+                $destinoActualx=$destinoActual->fincoordx;
+                $destinoActualy=$destinoActual->fincoordy;
 
-                $radarRango=$ajusteMapaFactor * $luzdemallauniverso * $radar['circulo'];
+                $radarRango=$luzdemallauniverso * $radar['circulo'] * $ajusteMapaFactor;
 
                 $dist =  (pow(($inicioActualx - $coordDestx) * ($inicioActualx - $coordDestx) + ($inicioActualy - $coordDesty) * ($inicioActualy - $coordDesty), 1 / 2)); //  /$luzdemallauniverso;
                 if (!$seveOrigen && $dist < $radarRango){
@@ -346,23 +352,40 @@ class Astrometria extends Model
                 }
 
                 if ($seveOrigen && $seveDestino){
+                    $flota->tvuelo = $tiempovuelo;
+                    $flota->trestante = $trestante;
+                    $flota->tregreso = $tregreso;
                     break;
                 }
             }
+            if(!$seveOrigen){
+                $flota->coordix =$ptoFlota->coordx;
+                $flota->coordiy =$ptoFlota->coordy;
+
+            } else {
+                $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
+                $flota->tregreso = $tregreso;
+            }
+            if(!$seveDestino){
+                $flota->coordfx =$ptoFlota->coordx;
+                $flota->coordfy =$ptoFlota->coordy;
+
+            } else {
+                $flota->destino =$destinoActual['estrella']."x".$destinoActual['orbita'];
+                $flota->trestante = $trestante;
+            }
+
             $flota->color = 3;
 
         } else if ($tipo=="aliado") {
             $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
-            $flota->coordix =$ajusteMapaFactor * $destinoActual->initcoordx+$ajusteMapaBase;
-            $flota->coordiy =$ajusteMapaFactor * $destinoActual->initcoordy+$ajusteMapaBase;
-            $flota->coordfx =$ajusteMapaFactor * $destinoActual->fincoordx+$ajusteMapaBase;
-            $flota->coordfy =$ajusteMapaFactor * $destinoActual->fincoordy+$ajusteMapaBase;
+            $flota->coordix =$destinoActual->initcoordx;
+            $flota->coordiy =$destinoActual->initcoordy;
+            $flota->coordfx =$destinoActual->fincoordx;
+            $flota->coordfy =$destinoActual->fincoordy;
             $flota->destino =$destinoActual['estrella']."x".$destinoActual['orbita'];
             $flota->color = 2;
 
-            $tiempovuelo=strtotime($destinoActual['fin'])-strtotime($destinoActual['init']);
-            $trestante=strtotime($destinoActual['fin'])-strtotime($ahora);
-            $tregreso=strtotime($ahora)-strtotime($destinoActual['init']);
             $flota->tvuelo = $tiempovuelo;
             $flota->trestante = $trestante;
             $flota->tregreso = $tregreso;
@@ -373,16 +396,13 @@ class Astrometria extends Model
 
             $flota->nombre = $flotaVisible->nombre;
             $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
-            $flota->coordix =$ajusteMapaFactor * $destinoActual->initcoordx+$ajusteMapaBase;
-            $flota->coordiy =$ajusteMapaFactor * $destinoActual->initcoordy+$ajusteMapaBase;
-            $flota->coordfx =$ajusteMapaFactor * $destinoActual->fincoordx+$ajusteMapaBase;
-            $flota->coordfy =$ajusteMapaFactor * $destinoActual->fincoordy+$ajusteMapaBase;
+            $flota->coordix =$destinoActual->initcoordx;
+            $flota->coordiy =$destinoActual->initcoordy;
+            $flota->coordfx =$destinoActual->fincoordx;
+            $flota->coordfy =$destinoActual->fincoordy;
             $flota->destino =$destinoActual['estrella']."x".$destinoActual['orbita'];
             $flota->color =1;
 
-            $tiempovuelo=strtotime($destinoActual['fin'])-strtotime($destinoActual['init']);
-            $trestante=strtotime($destinoActual['fin'])-strtotime($ahora);
-            $tregreso=strtotime($ahora)-strtotime($destinoActual['init']);
             $flota->tvuelo = $tiempovuelo;
             $flota->trestante = $trestante;
             $flota->tregreso = $tregreso;

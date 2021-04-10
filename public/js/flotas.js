@@ -882,7 +882,8 @@ function verFlotasEnVuelo() {
 function RellenarFlotasEnVUelo(data){
 
     $("#tablaFlotasPropias").empty();
-    //$("#tablaFlotasPropias").append("coco");
+    $("#tablaFlotasAliadas").empty();
+    $("#tablaFlotasExtrangeras").empty();
 
     var flotas= data["flotas"];
 
@@ -1042,7 +1043,6 @@ function RellenarFlotasEnVUelo(data){
             else if (flota['tipo']=="aliada"){
 
                 var tablaFlotasAliadas = `
-
                 <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
                     style="margin-top: 5px !important">
                     <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info`+fila+`" aria-expanded="false"
@@ -1098,6 +1098,68 @@ function RellenarFlotasEnVUelo(data){
 
                 `;
                 $("#tablaFlotasAliadas").append(tablaFlotasAliadas);
+            }
+            else if (flota['tipo']=="ajena"){
+
+                var tablaFlotasExtrangeras = `
+                <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
+                    style="margin-top: 5px !important">
+                    <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info`+fila+`" aria-expanded="false"
+                        aria-controls="info`+fila+`">
+                        <div id="cuadro`+fila+`" class="">
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['origen']+`<big>
+                            </th>
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['nombre']+`<big>
+                            </th>
+                            <th colspan="4" class="text-success text-center borderless align-middle">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
+                            </th>
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['mision']+`<big>
+                            </th>
+                            <th colspan="3" class="text-success text-center borderless align-middle">
+                                <big>`+flota['destino']+`<big>
+                            </th>
+                        </div>
+                    </tr>
+                    <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="3" class="text-warning">tiempo restante: </td>
+                        <td colspan="3" class="text-warning">tiempo regreso:</td>
+                        <td colspan="3" class="text-warning">ataque:</td>
+                        <td colspan="3" class="text-warning">defensa</td>
+                    </tr>
+                    <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="3" class="text-light">`+trestante+`</td>
+                        <td colspan="3" class="text-light">`+tregreso+`</td>
+                        <td colspan="3" class="text-light">`+ataque+`</td>
+                        <td colspan="3" class="text-light">`+defensa+`</td>
+                    </tr>
+
+                    <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="4">
+
+                        </td>
+                        <td colspan="5">
+                            <a type="button" class="disabled btn btn-outline-danger col-12 text-danger"
+                            href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+`">
+                            Atacar
+                            </a>
+                        </td>
+                        <td colspan="4">
+                        <a type="button" class="btn btn-outline-success col-12 text-success"
+                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <i class="fa fa-eye "></i> Ver
+                        </a>
+                        </td>
+                    </tr>
+
+                </table>
+
+                `;
+                $("#tablaFlotasExtrangeras").append(tablaFlotasExtrangeras);
             }
 
         }

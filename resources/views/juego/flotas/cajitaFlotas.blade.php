@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<div id="faliadas" aria-labelledby="faliadas" data-bs-parent="#propias" class="col-12 accordion-collapse show">
+<div id="faliadas" aria-labelledby="faliadas" data-bs-parent="#aliadas" class="col-12 accordion-collapse show">
     <table id="tablaFlotasAliadas">
 
     </table>
@@ -50,140 +50,13 @@
                 </th>
             </tr>
         </table>
-        <tr>
-            <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
-                style="margin-top: 5px !important">
-                <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info1" aria-expanded="false"
-                    aria-controls="info1">
-                    <div id="cuadro1" class="">
-                        <th colspan="2" class="text-success text-center borderless align-middle">
-                            <big>Origen<big>
-                        </th>
-                        <th colspan="2" class="text-success text-center borderless align-middle">
-                            <big>nombre<big>
-                        </th>
-                        <th colspan="4" class="text-success text-center borderless align-middle">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </th>
-                        <th colspan="2" class="text-success text-center borderless align-middle">
-                            <big>misión<big>
-                        </th>
-                        <th colspan="2" class="text-success text-center borderless align-middle">
-                            <big>destino<big>
-                        </th>
-                    </div>
-                </tr>
-                <tr id="info1" class="accordion-collapse collapse" aria-labelledby="info1" data-bs-parent="#cuadro1">
-                    <td colspan="3" class="text-warning">tiempo restante: </td>
-                    <td colspan="3" class="text-warning">tiempo regreso:</td>
-                    <td colspan="3" class="text-warning">ataque:</td>
-                    <td colspan="3" class="text-warning">defensa</td>
-                </tr>
-                <tr id="info1" class=" accordion-collapse collapse" aria-labelledby="info1" data-bs-parent="#cuadro1">
-                    <td colspan="3" class="text-light">01:55:33</td>
-                    <td colspan="3" class="text-light">01:55:33</td>
-                    <td colspan="3" class="text-light">212K</td>
-                    <td colspan="3" class="text-light">212K</td>
-                </tr>
-                <tr id="info1" class="accordion-collapse collapse" aria-labelledby="info1" data-bs-parent="#cuadro1">
-                    <td colspan="4">
-                        <a type="button" class="btn btn-outline-danger col-12 text-danger"
-                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
-                            <i class="fa fa-times "></i> Cancelar
-                        </a>
-                    </td>
-                    <td colspan="4">
-                        <a class="btn btn-outline-primary col-12 text-primary" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#datos5"
-                        aria-expanded="false" aria-controls="datos5"  onclick="MostrarResultadoFlota(1)">
-                        Datos
-                        </a>
-                    </td>
-                    <td colspan="4">
-                        <a type="button" class="btn btn-outline-success col-12 text-success"
-                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
-                            <i class="fa fa-eye "></i> Ver
-                        </a>
-                    </td>
-                </tr>
-                <tr id="datos5" class=" accordion-collapse collapse" aria-labelledby="datos5" data-bs-parent="#cuadro1">
-                    <th class="anchofijo text-warning align-middle">
-                    </th>
-                    <th class="anchofijo text-warning align-middle">
-                        Nombre
-                    </th>
-                    <th class="anchofijo text-warning align-middle">
-                        Ataque
-                    </th>
-                    <th class="anchofijo text-warning align-middle">
-                        Defensa
-                    </th>
-                    <th class="anchofijo text-warning align-middle">
-                        Carga
-                    </th>
-                    <th class="anchofijo text-warning align-middle">
-                        En flota
-                    </th>
-                    <th class="anchofijo text-warning align-middle">
-                        En hangar
-                    </th>
-                </tr>
-            </table>
-        </tr>
-        <tr>
-            <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
-                style="margin-top: 5px !important">
-                <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info2" aria-expanded="false"
-                    aria-controls="info2">
-                    <div id="cuadro2" class="">
-                        <th colspan="2" class="text-success text-center borderless align-middle">
-                            <big>Origen<big>
-                        </th>
-                        <th colspan="2" class="text-success text-center borderless align-middle">
-                            <big>nombre<big>
-                        </th>
-                        <th colspan="4" class="text-success text-center borderless align-middle">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </th>
-                        <th colspan="2" class="text-success text-center borderless align-middle">
-                            <big>misión<big>
-                        </th>
-                        <th colspan="2" class="text-success text-center borderless align-middle">
-                            <big>destino<big>
-                        </th>
-                    </div>
-                </tr>
-                <tr id="info2" class="accordion-collapse collapse" aria-labelledby="info2" data-bs-parent="#cuadro2">
-                    <td colspan="3" class="text-warning">tiempo restante: </td>
-                    <td colspan="3" class="text-warning">tiempo regreso:</td>
-                    <td colspan="3" class="text-warning">ataque:</td>
-                    <td colspan="3" class="text-warning">defensa</td>
-                </tr>
-                <tr id="info2" class="accordion-collapse collapse" aria-labelledby="info2" data-bs-parent="#cuadro2">
-                    <td colspan="3" class="text-light">01:55:33</td>
-                    <td colspan="3" class="text-light">01:55:33</td>
-                    <td colspan="3" class="text-light">212K</td>
-                    <td colspan="3" class="text-light">212K</td>
-                </tr>
-                <tr id="info2" class="accordion-collapse collapse" aria-labelledby="info2" data-bs-parent="#cuadro2">
-                    <td colspan="6">
-                        <a type="button" class="btn btn-outline-danger col-12 text-danger"
-                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
-                            <i class="fa fa-times "></i> Cancelar
-                        </a>
-                    </td>
-                    <td colspan="6">
-                        <a type="button" class="btn btn-outline-success col-12 text-success"
-                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
-                            <i class="fa fa-eye "></i> Ver
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </tr>
     </div>
+</div>
+
+<div id="fextrangeras" aria-labelledby="fextrangeras" data-bs-parent="#extrangeras" class="col-12 accordion-collapse show">
+    <table id="tablaFlotasExtrangeras">
+
+    </table>
 </div>
 
 <script>

@@ -462,10 +462,10 @@ class FlotaController extends Controller
                         $destino->initorbita=$destinos[$destAnt]['orbita'];
                         $destino->estrella=$destinos[$dest]['estrella'];
                         $destino->orbita=$destinos[$dest]['orbita'];
-                        $destino->initcoordx=$destinos[$destAnt]['fincoordx'];
-                        $destino->initcoordy=$destinos[$destAnt]['fincoordy'];
-                        $destino->fincoordx=$destinos[$dest]['fincoordx'];
-                        $destino->fincoordy=$destinos[$dest]['fincoordy'];
+                        $destino->initcoordx=$ajusteMapaFactor * $destinos[$destAnt]['fincoordx'] +$ajusteMapaBase;
+                        $destino->initcoordy=$ajusteMapaFactor * $destinos[$destAnt]['fincoordy'] +$ajusteMapaBase;
+                        $destino->fincoordx=$ajusteMapaFactor * $destinos[$dest]['fincoordx'] +$ajusteMapaBase;
+                        $destino->fincoordy=$ajusteMapaFactor * $destinos[$dest]['fincoordy'] +$ajusteMapaBase;
                         //$destino->vectorx=$destinos[$dest]['fincoordx']-$destinos[$dest]['initcoordx']; //entre segundos
                         //$destino->vectory=$destinos[$dest]['fincoordy']-$destinos[$dest]['initcoordy'];
                         $destino->init=$Tinit;
