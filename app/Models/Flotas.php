@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class Flotas extends Model
 {
@@ -193,7 +195,7 @@ class Flotas extends Model
                 if ($recursos->micros < $cargaDest[$dest]['micros']){
                     $errores = " No hay tanta carga: micros destino ".[$dest];
                 }
-                if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuel']){
+                if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']){//$valFlotaT['fuel']
                     $errores = " No hay tanto fuel destino ".[$dest];
                 }
                 if ($recursos->ma < $cargaDest[$dest]['ma']){
@@ -362,6 +364,130 @@ class Flotas extends Model
             return false;
         }
         return true;
+    }
+
+    public static function regresarFlota($nombreflota){
+
+        $jugadoryAlianza = [];
+
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));// Log::info($jugadorActual);
+        if($jugadorActual['alianzas_id']!=null){
+            array_push($jugadoryAlianza,$jugadorActual->alianzas_id);
+        }
+
+        array_push($jugadoryAlianza,$jugadorActual->id);
+
+        //Log::info("nombreflota: ".$nombreflota);
+        $errores="";
+        $flotax=EnVuelo::where('publico',$nombreflota)->where('jugadores_id',$jugadoryAlianza)->first();
+        if ($flotax!=null){
+
+            $ajusteMapaBase=35; //ajuste 0,0 con mapa
+            $ajusteMapaFactor=7; //ajuste escala mapa
+
+            DB::beginTransaction();
+            try {
+                $ahora=date("Y-m-d H:i:s");
+                $puntoFlota=PuntosEnFlota::
+                    where('fin','>',$ahora)
+                    ->where('en_vuelo_id',$flotax->id)
+                    ->orderBy('fin', 'asc')
+                    ->first();
+
+                //nuscamos destinoa actual
+                //$destinosO=$flotax->destinos;
+                $destino=Destinos::where("visitado",0)
+                ->where('en_vuelo_id',$flotax->id)
+                ->orderBy('id', 'asc')
+                ->first();
+                Log::info("destino: ".$destino);
+
+                if ($destino==null){
+                    $errores="No se encuentra el destino actual";
+                }
+                else if($destino->mision_regreso!=null){
+                    //se borran los viejos
+                    PuntosEnFlota::where('en_vuelo_id',$flotax->id)->delete();
+                    Destinos::where('en_vuelo_id',$flotax->id)
+                    ->where("id",">",$destino->id)
+                    ->references('id')->on('recursos')
+                    ->references('id')->on('prioridades')
+                    ->onDelete('cascade');;
+
+                    $constantesU = Constantes::where('tipo', 'universo')->get();
+                    $tiempoPuntosFlotas=$constantesU->where('codigo', 'tiempoPuntosFlotas')->first()->valor;
+
+                    $Tinit=$ahora;
+                    $initestrella=$destino->initestrella;
+                    $initorbita=$destino->initorbita;
+                    $duracion=strtotime($Tinit)-strtotime($destino['init']);
+
+                    $add_time=strtotime($Tinit)+$duracion;
+                    $Tfin=date('Y-m-d H:i:s',$add_time);
+
+                    $destino->porcentVel="100";
+                    $destino->mision=$destino->mision_regreso;
+                    $destino->mision_regreso=null;
+                    $destino->initestrella=$destino->estrella;
+                    $destino->initorbita=$destino->orbita;
+                    $destino->estrella=$initestrella;
+                    $destino->orbita=$initorbita;
+                    $destino->fincoordx=$destino->initcoordx;
+                    $destino->fincoordy=$destino->initcoordy;
+                    $destino->initcoordx=$puntoFlota->coordx;
+                    $destino->initcoordy=$puntoFlota->coordy;
+                    $destino->init=$Tinit;
+                    $destino->fin=$Tfin;
+                    $destino->en_vuelo_id=$flotax->id;
+                    $destino->save();
+
+                    //Log::info("destino final: ".$destino);
+
+                    $vectorx=($destino->fincoordx-$destino->initcoordx)/$duracion;
+                    $vectory=($destino->fincoordy-$destino->initcoordy)/$duracion;
+
+                    for ($tiempoPto = 0; $tiempoPto < $duracion/$tiempoPuntosFlotas; $tiempoPto++) {
+
+                        $add_time=strtotime($Tinit)+($tiempoPto * $tiempoPuntosFlotas);
+                        $TfinPto=date('Y-m-d H:i:s',$add_time);
+
+                        $puntoFlota=new PuntosEnFlota();
+                        $puntoFlota->coordx= $destino->initcoordx + $vectorx * ($tiempoPto * $tiempoPuntosFlotas);
+                        $puntoFlota->coordy= $destino->initcoordy + $vectory * ($tiempoPto * $tiempoPuntosFlotas);
+                        $puntoFlota->fin= $TfinPto;
+                        $puntoFlota->en_vuelo_id=$flotax->id;
+                        $puntoFlota->jugadores_id=$flotax->jugadores_id;
+                        //Log::info($puntoFlota);
+                        $puntoFlota->save();
+                    }
+                    //ultimo punto siempre va
+                    $puntoFlota=new PuntosEnFlota();
+                    $puntoFlota->coordx= $destino->fincoordx;
+                    $puntoFlota->coordy= $destino->fincoordy;
+                    $puntoFlota->fin= $Tfin;
+                    $puntoFlota->en_vuelo_id=$flotax->id;
+                    $puntoFlota->jugadores_id=$flotax->jugadores_id;
+                    $puntoFlota->save();
+
+                    DB::commit();
+                    Log::info("Enviada");
+
+                } else {
+                    $errores="La flota ya viene de regreso";
+                }
+
+
+            } catch (Exception $e) {
+                DB::rollBack();
+                Log::info("Error en Commit de cancelar flota ".$nombreflota." ".$e);
+                $errores="No ha sido posible";
+            }
+            //return redirect('/juego/flota');
+        } else {
+            $errores=("No se encuentra la flota: ".$nombreflota);
+        }
+        //Log::info($errores);
+        return compact('errores');
     }
 
 

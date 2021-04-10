@@ -86,9 +86,18 @@ class FlotaController extends Controller
 
         if (!empty($nombreflota) && !empty($tipoflota)){
 
+
             if ($tipoflota=="envuelo"){
+                $jugadoryAlianza = [];
+
+                $jugadorActual = Jugadores::find(session()->get('jugadores_id'));// Log::info($jugadorActual);
+                if($jugadorActual['alianzas_id']!=null){
+                    array_push($jugadoryAlianza,$jugadorActual->alianzas_id);
+                }
+                array_push($jugadoryAlianza,$jugadorActual->id);
+
                 $flota=EnVuelo::
-                where('jugadores_id',$jugadorActual->id)
+                where('jugadores_id',$jugadoryAlianza )
                 ->where('publico',$nombreflota)
                 ->first();
 
@@ -458,6 +467,7 @@ class FlotaController extends Controller
                         $destino = new destinos();
                         $destino->porcentVel=$destinos[$dest]['porcentVel'];
                         $destino->mision=ucfirst($destinos[$dest]['mision']);
+                        $destino->mision_regreso=ucfirst("Orbitar");
                         $destino->initestrella=$destinos[$destAnt]['estrella'];
                         $destino->initorbita=$destinos[$destAnt]['orbita'];
                         $destino->estrella=$destinos[$dest]['estrella'];
@@ -486,7 +496,7 @@ class FlotaController extends Controller
                             $puntoFlota->coordy= $ajusteMapaFactor * ($destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas))+$ajusteMapaBase;
                             $puntoFlota->fin= $TfinPto;
                             $puntoFlota->en_vuelo_id=$flotax->id;
-                            $puntoFlota->jugadores_id=$jugadorActual->id;
+                            $puntoFlota->jugadores_id=$flotax->jugadores_id;
                             //Log::info($puntoFlota);
                             $puntoFlota->save();
                         }
@@ -496,7 +506,7 @@ class FlotaController extends Controller
                         $puntoFlota->coordy= $ajusteMapaFactor * ($destinos[$dest]['fincoordy'])+$ajusteMapaBase;
                         $puntoFlota->fin= $Tfin;
                         $puntoFlota->en_vuelo_id=$flotax->id;
-                        $puntoFlota->jugadores_id=$jugadorActual->id;
+                        $puntoFlota->jugadores_id=$flotax->jugadores_id;
                         $puntoFlota->save();
 
                         //Log::info($destino);
@@ -573,7 +583,7 @@ class FlotaController extends Controller
                 $recursos->ceramica -= $cargaDest[$dest]['ceramica'];
                 $recursos->liquido -= $cargaDest[$dest]['liquido'];
                 $recursos->micros -= $cargaDest[$dest]['micros'];
-                $recursos->fuel -= $cargaDest[$dest]['fuel'];
+                $recursos->fuel -= $cargaDest[$dest]['fuel']+$valFlotaT['fuelDestT'];
                 $recursos->ma -= $cargaDest[$dest]['ma'];
                 $recursos->municion -= $cargaDest[$dest]['municion'];
                 $recursos->creditos -= $cargaDest[$dest]['creditos'];
@@ -630,16 +640,15 @@ class FlotaController extends Controller
 
 
 
-    public function verDatosFlota(Request $request){
+    public function regresarFlota(Request $request, $id = null){
 
         //evitamos peticiones sin sentido:
-        if(session()->get('jugadores_id')==null){
+        if(session()->get('jugadores_id')==null || $id==null){
             return compact(null);
         }
 
-        $nombreflota = $request->input('nombreflota');
-
-        return null;
+        $result=Flotas::regresarFlota($id);
+        return $result;
 
     }
 

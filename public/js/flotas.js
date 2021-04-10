@@ -414,9 +414,10 @@ function Avisos() {  //////////////////////////////  VALIDACION
 
             soyUltimoDestino=false;
             // soy la ultima y debe ser de cierre
-            if (ordenPost != undefined) {
+            if (ordenPost != undefined || ordenPost .length<1) {
                 if ((ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
                     errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
+                    hayErrorMision = true;
                 }
             }
             if (destinos.length == destPost) {
@@ -876,7 +877,6 @@ function verFlotasEnVuelo() {
             //alert(data.errores);
         },
     });
-
 }
 
 function RellenarFlotasEnVUelo(data){
@@ -892,10 +892,20 @@ function RellenarFlotasEnVUelo(data){
 
         if (flota!=null){
         fila++;
-        progreso=Math.round(((flota['tvuelo']-flota['trestante'])/flota['tvuelo'])*100,0);
+        if (flota['trestante']!=null && flota['trestante']!=undefined && flota['tvuelo']!=null && flota['tvuelo']!=undefined){
+            progreso=Math.round(((flota['tvuelo']-flota['trestante'])/flota['tvuelo'])*100,0);
+        } else {
+            progreso=0;
+        }
+
+        if (flota['trestante']!=null && flota['trestante']!=undefined){
+            trestante=formatHMS(1*flota['trestante']);
+        } else {
+            trestante="?";
+        }
+
         ataque=formatNumber(1*flota['ataque']);
         defensa=formatNumber(1*flota['defensa']);
-        trestante=formatHMS(1*flota['trestante']);
         tregreso=formatHMS(1*flota['tregreso']);
         //recursosCarga=flota['recursos']
 
@@ -933,8 +943,8 @@ function RellenarFlotasEnVUelo(data){
                         <td colspan="3" class="text-warning">defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="3" class="text-light">`+trestante+`</td>
-                        <td colspan="3" class="text-light">`+tregreso+`</td>
+                        <td id="trestantepropia`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
+                        <td id="tregresopropia`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
                         <td colspan="3" class="text-light">`+ataque+`</td>
                         <td colspan="3" class="text-light">`+defensa+`</td>
                     </tr>
@@ -1016,8 +1026,8 @@ function RellenarFlotasEnVUelo(data){
                 </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td colspan="4">
-                            <a type="button" class="btn btn-outline-danger col-12 text-danger"
-                                href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <a type="button" class="btn btn-outline-danger col-12 text-danger" id="botonregreso`+flota['numeroflota']+`"
+                            onclick="regresarFlota('`+flota['numeroflota']+`')">
                                 <i class="fa fa-times "></i> Regresar
                             </a>
                         </td>
@@ -1073,8 +1083,8 @@ function RellenarFlotasEnVUelo(data){
                         <td colspan="3" class="text-warning">defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="3" class="text-light">`+trestante+`</td>
-                        <td colspan="3" class="text-light">`+tregreso+`</td>
+                    <td id="trestantealiada`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
+                    <td id="tregresoaliada`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
                         <td colspan="3" class="text-light">`+ataque+`</td>
                         <td colspan="3" class="text-light">`+defensa+`</td>
                     </tr>
@@ -1132,8 +1142,8 @@ function RellenarFlotasEnVUelo(data){
                         <td colspan="3" class="text-warning">defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="3" class="text-light">`+trestante+`</td>
-                        <td colspan="3" class="text-light">`+tregreso+`</td>
+                        <td id="trestanteajena`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
+                        <td id="tregresoajena`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
                         <td colspan="3" class="text-light">`+ataque+`</td>
                         <td colspan="3" class="text-light">`+defensa+`</td>
                     </tr>
@@ -1171,3 +1181,31 @@ function RellenarFlotasEnVUelo(data){
 }
 
 
+function regresarFlota(numeroflota) {
+
+    //href="`+linkFlota+`/regresarFlota/`+flota['numeroflota']+`"
+    $.ajax({
+        type: "GET",
+        //dataType: "json",
+        url: "/juego/flotas/regresarFlota/"+numeroflota,
+        //contentType: 'application/json; charset=utf-8',
+        //data: { },
+        //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
+        beforeSend: function() {
+            $("#botonregreso"+numeroflota).prop("disabled", true);
+            var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....';
+            $("#botonregreso"+numeroflota).html(spinner);
+        },
+        success: function(response) {
+            $("#botonregreso"+numeroflota).text("Regresando...");
+            if (response.errores==""){
+                alert("Flota regresando");
+                verFlotasEnVuelo();
+            } else {
+                $("#botonregreso"+numeroflota).prop("disabled", false);
+                $("#botonregreso"+numeroflota).text("Regresar");
+                alert(response.errores);
+            }
+        }
+    });
+}

@@ -390,6 +390,7 @@ class Astrometria extends Model
             $flota->trestante = $trestante;
             $flota->tregreso = $tregreso;
             $flota->mision = $destinoActual['mision'];
+            $flota->misionregreso = $destinoActual['mision_regreso'];
             $flota->fecha = $destinoActual['fin'];
         } else { //propio
             //Log::info($destinoActual);
@@ -407,6 +408,7 @@ class Astrometria extends Model
             $flota->trestante = $trestante;
             $flota->tregreso = $tregreso;
             $flota->mision = $destinoActual['mision'];
+            $flota->misionregreso = $destinoActual['mision_regreso'];
             $flota->fecha = $destinoActual['fin'];
 
             $flota->recursos=RecursosEnFlota::where('en_vuelo_id',$flotaVisible['id'])->first();
