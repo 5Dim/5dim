@@ -182,11 +182,8 @@ class AstrometriaController extends Controller
                     $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : "";
                     $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : "";
                     $orbita->b_observar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : ""; // Posibilidad de incluirlo dentro del mapa
-                    $orbita->b_atacar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : "";
-                    $orbita->b_colonizar = empty($planetaActual->jugadores_id) && $planetaActual->tipo == "planeta" ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar" : "";
-                    $orbita->b_recolectar = $planetaActual->tipo == "asteroide" ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/recolectar" : "";
-                    $orbita->b_extraer = $planetaActual->tipo == "planeta" && empty($planetaActual->jugadores_id) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/extraer" : "";
-                    $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
+                    $orbita->b_enviar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : "";
+                    $orbita->b_verorbita = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
                 } else {
                     $orbita = new \stdClass();
                     $orbita->planeta = $i;
@@ -200,11 +197,8 @@ class AstrometriaController extends Controller
                     $orbita->plastico = "";
                     $orbita->ceramica = "";
                     $orbita->b_observar = "";
-                    $orbita->b_atacar = "";
-                    $orbita->b_colonizar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar";
-                    $orbita->b_recolectar = "";
-                    $orbita->b_extraer = "/juego/flotas/" . $numeroSistema . "/" . $i . "/extraer";
-                    $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
+                    $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar";
+                    $orbita->b_verorbita = "";
                 }
                 array_push($planetas, $orbita);
             }
@@ -227,11 +221,8 @@ class AstrometriaController extends Controller
                 $orbita->plastico = "";
                 $orbita->ceramica = "";
                 $orbita->b_observar = "";
-                $orbita->b_atacar = "";
-                $orbita->b_colonizar = "";
-                $orbita->b_recolectar = "";
-                $orbita->b_extraer = "";
-                $orbita->b_orbitar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
+                $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar";
+                $orbita->b_verorbita = "";
                 array_push($planetas, $orbita);
             }
         }
