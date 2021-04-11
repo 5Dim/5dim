@@ -21,7 +21,7 @@ class CreateDiseniosEnRecoleccionsTable extends Migration
             $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
             $table->unsignedBigInteger('en_recoleccion_id')->unsigned();
-            $table->foreign('en_recoleccion_id')->references('id')->on('en_recoleccions');
+            $table->foreign('en_recoleccion_id')->references('id')->on('en_recoleccions')->onDelete('cascade');
         });
     }
 

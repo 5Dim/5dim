@@ -28,7 +28,7 @@ class CreateEnPrioridadesEnRecoleccionsTable extends Migration
             $table->unsignedTinyInteger('municion')->default(0);
             $table->unsignedTinyInteger('creditos')->default(0);
             $table->unsignedBigInteger('en_recoleccion_id')->unsigned();
-            $table->foreign('en_recoleccion_id')->references('id')->on('en_recoleccions');
+            $table->foreign('en_recoleccion_id')->references('id')->on('en_recoleccions')->onDelete('cascade');
             $table->timestamps();
         });
     }

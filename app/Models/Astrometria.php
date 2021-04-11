@@ -242,9 +242,13 @@ class Astrometria extends Model
                     where('en_vuelo_id',$flotaV->id)
                     ->orderBy('fin', 'asc')
                     ->first();
-                    $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"aliada");
-                    if ($estaflota!=null){
-                        array_push($flotas,$estaflota );
+                    if($ptoFlota=== null){
+                        //no hay punto, la flota debe haber llegado
+                    } else {
+                        $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"aliada");
+                        if ($estaflota!=null){
+                            array_push($flotas,$estaflota );
+                        }
                     }
                 }
             }
@@ -258,9 +262,14 @@ class Astrometria extends Model
                 where('en_vuelo_id',$flotaV->id)
                 ->orderBy('fin', 'asc')
                 ->first();
-                $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"propia");
-                if ($estaflota!=null){
-                    array_push($flotas,$estaflota );
+                //Log::info("pto en flota: ".$ptoFlota);
+                if($ptoFlota=== null){
+                    //no hay punto, la flota debe haber llegado
+                } else {
+                    $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"propia");
+                    if ($estaflota!=null){
+                        array_push($flotas,$estaflota );
+                    }
                 }
             }
 
@@ -278,7 +287,7 @@ class Astrometria extends Model
     public static function flotaValoresVisibles($radares,$flotaVisible,$ptoFlota,$anchoUniverso,$luzdemallauniverso,$tipo){
 
         $ahora=date("Y-m-d H:i:s");
-
+        //Log::info("pto en flota: ".$ptoFlota);
         //Log::info($flotaVisible);
         $destinoActual=Destinos::where('en_vuelo_id',$flotaVisible['id'])
         ->where('init','<',$ahora)

@@ -28,7 +28,7 @@ class CreateEnPrioridadesEnDestinosTable extends Migration
             $table->unsignedTinyInteger('municion')->default(0);
             $table->unsignedTinyInteger('creditos')->default(0);
             $table->unsignedBigInteger('destinos_id')->unsigned();
-            $table->foreign('destinos_id')->references('id')->on('destinos');
+            $table->foreign('destinos_id')->references('id')->on('destinos')->onDelete('cascade');
             $table->timestamps();
         });
     }

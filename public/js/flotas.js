@@ -414,7 +414,7 @@ function Avisos() {  //////////////////////////////  VALIDACION
 
             soyUltimoDestino=false;
             // soy la ultima y debe ser de cierre
-            if (ordenPost != undefined || ordenPost .length<1) {
+            if (destPost <4 && (ordenPost != undefined || ordenPost .length<1)) {
                 if ((ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
                     errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                     hayErrorMision = true;
@@ -910,9 +910,13 @@ function RellenarFlotasEnVUelo(data){
         //recursosCarga=flota['recursos']
 
             if (flota['tipo']=="propia"){
+                deshabilitarRegreso="";
+                if(flota['misionregreso']==null){
+                    tregreso="Ya regresando";
+                    deshabilitarRegreso="disabled";
+                }
 
                 var tablaFlotasPropias = `
-
                 <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
                     style="margin-top: 5px !important">
                     <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info`+fila+`" aria-expanded="false"
@@ -1026,7 +1030,7 @@ function RellenarFlotasEnVUelo(data){
                 </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td colspan="4">
-                            <a type="button" class="btn btn-outline-danger col-12 text-danger" id="botonregreso`+flota['numeroflota']+`"
+                            <a type="button" class="`+deshabilitarRegreso+` btn btn-outline-danger col-12 text-danger" id="botonregreso`+flota['numeroflota']+`"
                             onclick="regresarFlota('`+flota['numeroflota']+`')">
                                 <i class="fa fa-times "></i> Regresar
                             </a>

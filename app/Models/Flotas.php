@@ -400,7 +400,7 @@ class Flotas extends Model
                 ->where('en_vuelo_id',$flotax->id)
                 ->orderBy('id', 'asc')
                 ->first();
-                Log::info("destino: ".$destino);
+                //Log::info("destino: ".$destino);
 
                 if ($destino==null){
                     $errores="No se encuentra el destino actual";
@@ -408,11 +408,9 @@ class Flotas extends Model
                 else if($destino->mision_regreso!=null){
                     //se borran los viejos
                     PuntosEnFlota::where('en_vuelo_id',$flotax->id)->delete();
+                    //Log::info("Borrando destinos sobrantes: ".$flotax->id." ".$destino->id);
                     Destinos::where('en_vuelo_id',$flotax->id)
-                    ->where("id",">",$destino->id)
-                    ->references('id')->on('recursos')
-                    ->references('id')->on('prioridades')
-                    ->onDelete('cascade');;
+                    ->where("id",">",$destino->id)->delete();
 
                     $constantesU = Constantes::where('tipo', 'universo')->get();
                     $tiempoPuntosFlotas=$constantesU->where('codigo', 'tiempoPuntosFlotas')->first()->valor;
@@ -424,6 +422,8 @@ class Flotas extends Model
 
                     $add_time=strtotime($Tinit)+$duracion;
                     $Tfin=date('Y-m-d H:i:s',$add_time);
+
+                    //Log::info("duración: ".$duracion." Tinit: ".$Tinit." destino init: ".$destino['init']." Tfin: ".$Tfin);
 
                     $destino->porcentVel="100";
                     $destino->mision=$destino->mision_regreso;
@@ -470,7 +470,7 @@ class Flotas extends Model
                     $puntoFlota->save();
 
                     DB::commit();
-                    Log::info("Enviada");
+                    //Log::info("Regresando");
 
                 } else {
                     $errores="La flota ya viene de regreso";

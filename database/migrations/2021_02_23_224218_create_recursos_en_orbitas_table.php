@@ -28,7 +28,7 @@ class CreateRecursosEnOrbitasTable extends Migration
             $table->unsignedBigInteger('municion')->default(0);
             $table->unsignedBigInteger('creditos')->default(0);
             $table->unsignedBigInteger('en_orbita_id')->unsigned();
-            $table->foreign('en_orbita_id')->references('id')->on('en_orbitas');
+            $table->foreign('en_orbita_id')->references('id')->on('en_orbitas')->onDelete('cascade');
             $table->timestamps();
         });
     }

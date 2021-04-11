@@ -467,7 +467,13 @@ class FlotaController extends Controller
                         $destino = new destinos();
                         $destino->porcentVel=$destinos[$dest]['porcentVel'];
                         $destino->mision=ucfirst($destinos[$dest]['mision']);
-                        $destino->mision_regreso=ucfirst("Orbitar");
+
+                        if ($id==false &&  $dest==1){
+                            $destino->mision_regreso=ucfirst("Transferir");
+                        } else {
+                            $destino->mision_regreso=ucfirst("Orbitar");
+                        }
+
                         $destino->initestrella=$destinos[$destAnt]['estrella'];
                         $destino->initorbita=$destinos[$destAnt]['orbita'];
                         $destino->estrella=$destinos[$dest]['estrella'];
@@ -476,8 +482,6 @@ class FlotaController extends Controller
                         $destino->initcoordy=$ajusteMapaFactor * $destinos[$destAnt]['fincoordy'] +$ajusteMapaBase;
                         $destino->fincoordx=$ajusteMapaFactor * $destinos[$dest]['fincoordx'] +$ajusteMapaBase;
                         $destino->fincoordy=$ajusteMapaFactor * $destinos[$dest]['fincoordy'] +$ajusteMapaBase;
-                        //$destino->vectorx=$destinos[$dest]['fincoordx']-$destinos[$dest]['initcoordx']; //entre segundos
-                        //$destino->vectory=$destinos[$dest]['fincoordy']-$destinos[$dest]['initcoordy'];
                         $destino->init=$Tinit;
                         $destino->fin=$Tfin;
                         $destino->en_vuelo_id=$flotax->id;

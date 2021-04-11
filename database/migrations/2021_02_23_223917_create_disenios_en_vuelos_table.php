@@ -21,7 +21,7 @@ class CreateDiseniosEnVuelosTable extends Migration
             $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
             $table->unsignedBigInteger('en_vuelo_id')->unsigned();
-            $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos');
+            $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos')->onDelete('cascade');
         });
     }
 

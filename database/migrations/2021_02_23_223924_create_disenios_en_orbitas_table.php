@@ -21,7 +21,7 @@ class CreateDiseniosEnOrbitasTable extends Migration
             $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
             $table->unsignedBigInteger('en_orbita_id')->unsigned();
-            $table->foreign('en_orbita_id')->references('id')->on('en_orbitas');
+            $table->foreign('en_orbita_id')->references('id')->on('en_orbitas')->onDelete('cascade');
         });
     }
 
