@@ -354,7 +354,7 @@ function formatHMS(secs) {
     return [hours, minutes, seconds].map(v => (v < 10 ? "0" + v : v)).join(":");
 }
 
-function difTiempos(start, end) {
+function difTiempos(start, end,formateado=true) {
     start=start.replaceAll("-",":");
     start=start.replaceAll(" ",":");
     start = start.split(":");
@@ -364,8 +364,12 @@ function difTiempos(start, end) {
     var startDate = new Date(start[0], start[1], start[2], start[3], start[4], start[5]);
     var endDate = new Date(end[0], end[1], end[2], end[3], end[4], end[5]);
     var diff = Math.abs((endDate.getTime() - startDate.getTime())/1000);
+    if (formateado){
+        return formatHMS(diff);
+    } else {
+        return diff;
+    }
 
-    return formatHMS(diff);
 }
 
 function mostrarDatosConstruccion(codigo) {

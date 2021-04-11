@@ -132,13 +132,13 @@ class Flotas extends Model
                     }
 
                     // soy la ultima y debe ser de cierre
-                    if ($ordenPost=="" && $orden != "Transferir" && $orden != "Recolectar" && $orden != "Orbitar" || $ordenAnt == "Extraer") {
+                    if ($ordenPost=="" && $orden != "Transferir" && $orden != "Recolectar" && $orden != "Orbitar" && $orden != "Extraer") {
                         $errores = " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                     }
 
-                    if ($cantidadDestinos == $destPost) {
-                        if ($orden != "Transferir" && $orden != "Recolectar" && $orden != "Orbitar" || $ordenAnt == "Extraer") {
-                            $errores = " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
+                    if ($cantidadDestinos == $dest) {
+                        if ($ordenPost != "Transferir" && $ordenPost != "Recolectar" && $ordenPost != "Orbitar" && $ordenPost != "Extraer") {
+                            $errores = " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar. ";
                         }
                     }
 

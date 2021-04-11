@@ -66,7 +66,7 @@
                 <td class="text-light">
                     <div id="selectorordenDest{{ $numero }}">
                         <select name="orden" id="ordenDest{{ $numero }}" class="select form-control ediciondestino">
-                            <option value="" selected>Selección de misión</option>
+                            <option value="" selected>Sin misión</option>
                             <option value="Transportar">Transportar</option>
                             <option value="Transferir">Transferir</option>
                             <option value="Orbitar">Orbitar</option>

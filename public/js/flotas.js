@@ -853,33 +853,39 @@ function RecursosSiDestino (dest){
 
 /////////////////////////////////////******************* FLOTAS EN VUELO ********************************** //////////////////////////////////
 
-
+var fechaAhoraMilisec = Date.now();
+primeraActualizacionEnVuelo=true;
 
 function verFlotasEnVuelo() {
 
-    $.ajax({
-        type: "GET",
-        //dataType: "json",
-        url: "/juego/flotas/verFlotasEnVuelo",
-        //contentType: 'application/json; charset=utf-8',
-        //data: { },
-        //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
-        beforeSend: function() {
+    haceCuantoActualice=Date.now()-fechaAhoraMilisec;
 
-        },
-        success: function(data) {
-            //alert(data);
-            RellenarFlotasEnVUelo(data);
-        },
-        error: function(xhr, textStatus, thrownError) {
-            console.log("status", xhr.status);
-            console.log("error", thrownError);
-            //alert(data.errores);
-        },
-    });
+    if(primeraActualizacionEnVuelo || haceCuantoActualice>30000){
+        primeraActualizacionEnVuelo=false;
+        $.ajax({
+            type: "GET",
+            //dataType: "json",
+            url: "/juego/flotas/verFlotasEnVuelo",
+            //contentType: 'application/json; charset=utf-8',
+            //data: { },
+            //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
+            beforeSend: function() {
+
+            },
+            success: function(data) {
+                //alert(data);
+                RellenarFlotasEnVuelo(data);
+            },
+            error: function(xhr, textStatus, thrownError) {
+                console.log("status", xhr.status);
+                console.log("error", thrownError);
+                //alert(data.errores);
+            },
+        });
+    }
 }
 
-function RellenarFlotasEnVUelo(data){
+function RellenarFlotasEnVuelo(data){
 
     $("#tablaFlotasPropias").empty();
     $("#tablaFlotasAliadas").empty();
@@ -928,10 +934,11 @@ function RellenarFlotasEnVUelo(data){
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['nombre']+`<big>
                             </th>
-                            <th colspan="4" class="text-success text-center borderless align-middle">
+                            <th colspan="3" class="text-success text-center borderless align-middle">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
                             </th>
+                            <th id="trestantepropia`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>
@@ -1068,10 +1075,11 @@ function RellenarFlotasEnVUelo(data){
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['nombre']+`<big>
                             </th>
-                            <th colspan="4" class="text-success text-center borderless align-middle">
+                            <th colspan="3" class="text-success text-center borderless align-middle">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
                             </th>
+                            <th id="trestantealiada`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>
@@ -1127,10 +1135,11 @@ function RellenarFlotasEnVUelo(data){
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['nombre']+`<big>
                             </th>
-                            <th colspan="4" class="text-success text-center borderless align-middle">
+                            <th colspan="3" class="text-success text-center borderless align-middle">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
                             </th>
+                            <th id="trestanteajena`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>
@@ -1187,14 +1196,11 @@ function RellenarFlotasEnVUelo(data){
 
 function regresarFlota(numeroflota) {
 
-    //href="`+linkFlota+`/regresarFlota/`+flota['numeroflota']+`"
+    primeraActualizacionEnVuelo=true;
     $.ajax({
         type: "GET",
         //dataType: "json",
         url: "/juego/flotas/regresarFlota/"+numeroflota,
-        //contentType: 'application/json; charset=utf-8',
-        //data: { },
-        //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
         beforeSend: function() {
             $("#botonregreso"+numeroflota).prop("disabled", true);
             var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....';
