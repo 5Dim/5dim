@@ -41,7 +41,7 @@ const jsonRadares ="/juego/astrometria/ajax/radares";
 //const jsonInfluencia ="/astrometria/data/influencia.json";
 const jsonInfluencia ="/juego/astrometria/ajax/influencia";
 
-const jsonRutas ="/astrometria/data/rutas.json";
+const jsonRutas ="/astrometria/data/rutas.json"; // No usadas en versión de lanzamiento
 //const jsonRutas ="/juego/astrometria/ajax/rutas";
 
 let home, homex, homey; //datos del sistema propio de inicio
@@ -394,13 +394,15 @@ function createViewport(){
         botones = app.stage.addChild(new PIXI.Container());            // crea la capa botones
         textos = app.stage.addChild(new PIXI.Container());             // crea la capa textos
         
+        capa_influencias = viewport.addChild(new PIXI.Container());        // crea la capa influencia propia
+        capa_influencias2 = viewport.addChild(new PIXI.Container());        // crea la capa influencia externa
+        
         capa_estrellas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
         capa_rutas = viewport.addChild(new PIXI.Container());        // crea la capa radares
         capa_flotas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
         capa_radares = viewport.addChild(new PIXI.Container());        // crea la capa radares
         
-        capa_influencias = viewport.addChild(new PIXI.Container());        // crea la capa influencia propia
-        capa_influencias2 = viewport.addChild(new PIXI.Container());        // crea la capa influencia externa
+
         
         sistemas = app.stage.addChild(new PIXI.Container());           // crea la capa sistemas
         
