@@ -491,4 +491,34 @@ class Flotas extends Model
     }
 
 
+    ///////////////  recepción de flotas   ////////////////////////
+    public static function llegadaFlotas(){
+
+        $ahora=date("Y-m-d H:i:s");
+        $listaDestinosEntrantes=Destinos::where('fin','<',$ahora)->where("visitado","0")->get();
+        foreach($listaDestinosEntrantes as $destino){
+            switch($destino->mision){
+                case "Transportar":
+                    //destino existe
+
+                    //actualiza recursos en destino
+
+                   //gestión de recursos
+
+
+
+                    break;
+
+            }
+
+
+
+
+        }
+
+
+
+    }
+
+
 }

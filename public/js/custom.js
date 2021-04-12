@@ -711,7 +711,7 @@ function DistanciaUniverso(origen, destino) {
     var dist = undefined;
 
     if (origen.estrella != "0" && destino.estrella != "0" && origen.orbita != "0" && destino.orbita != "0") {
-        if (origen.estrella == destino.estrella && origen.planeta == destino.planeta) {
+        if (origen.estrella == destino.estrella && origen.orbita == destino.orbita) {
             //orbitar
             factordistancia = $.grep(constantesU, function(busca) {
                 return busca.codigo == "distanciaorbita";

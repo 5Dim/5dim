@@ -343,7 +343,19 @@ function Avisos() {  //////////////////////////////  VALIDACION
     var excesocarga = false;
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
-        if (destinos[dest].estrella.toString.length !== 0 ){
+        if (destinos[dest].estrella.length !== 0 ){
+            destAnt=dest-1;
+            //las cargas de un destino van al otro
+            if(dest>0){
+                recursosArray.forEach(res => {
+                    if (recursosDest[dest][res] != undefined) {
+                        recursosDest[dest][res]=0;
+                    }
+                    recursosDest[dest][res]+=cargaDest[destAnt][res];
+                    $("#boton" + res + dest).text(formatNumber(Math.round(1 * recursosDest[dest][res])));
+                });
+            }
+
 
             if (cargaDest[dest] != undefined && cargaDest[dest].total > valFlotaT.carga) {
                 excesocarga = true;
@@ -358,17 +370,19 @@ function Avisos() {  //////////////////////////////  VALIDACION
                 $("#botonenvias" + dest).text("Enviar");
             }
 
-            recursosArray.forEach(res => {
-                if (cargaDest[dest] != undefined && recursosDest[dest] != undefined && cargaDest[dest][res] > Math.round(recursosDest[dest][res])) {
-                    $("#boton" + res + dest)
-                        .removeClass("btn-dark")
-                        .addClass("btn-danger");
-                } else {
-                    $("#boton" + res + dest)
-                        .addClass("btn-dark")
-                        .removeClass("btn-danger");
-                }
-            });
+            if(deboAlertasF){
+                recursosArray.forEach(res => {
+                    if (cargaDest[dest] != undefined && recursosDest[dest] != undefined && cargaDest[dest][res] > Math.round(recursosDest[dest][res])) {
+                        $("#boton" + res + dest)
+                            .removeClass("btn-dark")
+                            .addClass("btn-danger");
+                    } else {
+                        $("#boton" + res + dest)
+                            .addClass("btn-dark")
+                            .removeClass("btn-danger");
+                    }
+                });
+            }
         }
     }
 
@@ -680,6 +694,13 @@ function TraerRecursos(sistema, planeta, dest) {
                 MostrarRecursos(dest);
             },
         });
+    } else {
+        recursosArray.forEach(res => {
+            recursosDest[dest][res] = 0;
+        });
+        recursosDest[dest].total = 0;
+        MostrarRecursos(dest);
+        Avisos();
     }
 }
 
@@ -917,9 +938,11 @@ function RellenarFlotasEnVuelo(data){
 
             if (flota['tipo']=="propia"){
                 deshabilitarRegreso="";
+                colorbotonRegreso="danger";
                 if(flota['misionregreso']==null){
                     tregreso="Ya regresando";
                     deshabilitarRegreso="disabled";
+                    colorbotonRegreso="light";
                 }
 
                 var tablaFlotasPropias = `
@@ -1037,7 +1060,7 @@ function RellenarFlotasEnVuelo(data){
                 </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td colspan="4">
-                            <a type="button" class="`+deshabilitarRegreso+` btn btn-outline-danger col-12 text-danger" id="botonregreso`+flota['numeroflota']+`"
+                            <a type="button" class="`+deshabilitarRegreso+` btn btn-outline-`+colorbotonRegreso+` col-12 text-`+colorbotonRegreso+`" id="botonregreso`+flota['numeroflota']+`"
                             onclick="regresarFlota('`+flota['numeroflota']+`')">
                                 <i class="fa fa-times "></i> Regresar
                             </a>

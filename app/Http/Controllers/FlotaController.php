@@ -34,6 +34,8 @@ class FlotaController extends Controller
 {
     public function index($estrella="",$orbita="",$nombreflota="",$tipoflota="envuelo")
     {
+        Flotas::llegadaFlotas();
+
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
