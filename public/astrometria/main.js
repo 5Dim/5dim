@@ -401,9 +401,7 @@ function createViewport(){
         capa_rutas = viewport.addChild(new PIXI.Container());        // crea la capa radares
         capa_flotas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
         capa_radares = viewport.addChild(new PIXI.Container());        // crea la capa radares
-        
-
-        
+                
         sistemas = app.stage.addChild(new PIXI.Container());           // crea la capa sistemas
         
        // contenedor_efe_energia = app.stage.addChild(new PIXI.Container());   
