@@ -1,4 +1,6 @@
-{"influencias":[
+{"miInfluencia":[
+    {"estrella":81244,"circulo":9,"color":1}],
+"influencia":[
     {"estrella":42673,"circulo":6,"color":1},
     {"estrella":41892,"circulo":5,"color":2},
     {"estrella":44292,"circulo":4,"color":3},

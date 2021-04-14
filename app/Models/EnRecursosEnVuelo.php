@@ -9,7 +9,7 @@ class EnRecursosEnVuelo extends Model
 {
     use HasFactory;
 
-    public function flota()
+    public function envuelo()
     {
         return $this->hasOne(EnVuelo::class);
     }

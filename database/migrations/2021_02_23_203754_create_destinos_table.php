@@ -17,6 +17,7 @@ class CreateDestinosTable extends Migration
             $table->id();
             $table->decimal('porcentVel', 5, 2, true);
             $table->string('mision');
+            $table->string('mision_regreso')->nullable()->default(null);
             $table->unsignedMediumInteger('initestrella');
             $table->unsignedTinyInteger('initorbita');
             $table->unsignedMediumInteger('estrella');
@@ -26,12 +27,10 @@ class CreateDestinosTable extends Migration
             $table->unsignedDecimal('fincoordx', 8, 2, true);
             $table->unsignedDecimal('fincoordy', 8, 2, true);
             $table->unsignedTinyInteger('visitado')->default(0);
-            //$table->decimal('vectorx', 8, 2);
-            //$table->decimal('vectory', 8, 2);
             $table->timestamp('init');
             $table->timestamp('fin')->nullable();
-            $table->unsignedBigInteger('envuelos_id')->unsigned();
-            $table->foreign('envuelos_id')->references('id')->on('en_vuelos');
+            $table->unsignedBigInteger('en_vuelo_id')->unsigned();
+            $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos');
             $table->timestamps();
         });
     }

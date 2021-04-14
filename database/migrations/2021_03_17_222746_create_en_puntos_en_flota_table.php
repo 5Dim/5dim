@@ -19,8 +19,8 @@ class CreateEnPuntosEnFlotaTable extends Migration
             $table->unsignedDecimal('coordx', 8, 2, true);
             $table->unsignedDecimal('coordy', 8, 2, true);
             $table->timestamp('fin')->nullable();
-            $table->unsignedBigInteger('envuelos_id')->unsigned();
-            $table->foreign('envuelos_id')->references('id')->on('en_vuelos');
+            $table->unsignedBigInteger('en_vuelo_id')->unsigned();
+            $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos')->onDelete('cascade');
             $table->unsignedBigInteger('jugadores_id');
         });
     }

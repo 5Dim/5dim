@@ -65,7 +65,7 @@ function creaplanetas(){
     for (var i = 0; i < sistema_solar.planetas.length; i++){
     
       if(sistema_solar.planetas[i].img_planeta.length != 0){
-       planetas[i] = new Planeta(sistema_solar.planetas[i].planeta,sistema_solar.planetas[i].nom_pla,sistema_solar.planetas[i].nom_jug,sistema_solar.planetas[i].alianza,sistema_solar.planetas[i].estado,sistema_solar.planetas[i].mineral,sistema_solar.planetas[i].cristal,sistema_solar.planetas[i].gas,sistema_solar.planetas[i].plastico,sistema_solar.planetas[i].ceramica,sistema_solar.planetas[i].b_observar,sistema_solar.planetas[i].b_atacar, sistema_solar.planetas[i].b_colonizar,sistema_solar.planetas[i].b_recolectar,sistema_solar.planetas[i].b_conquistar,sistema_solar.planetas[i].naves,sistema_solar.planetas[i].img_planeta,sistema_solar.planetas[i].bloqueo);   
+       planetas[i] = new Planeta(sistema_solar.planetas[i].planeta,sistema_solar.planetas[i].nom_pla,sistema_solar.planetas[i].nom_jug,sistema_solar.planetas[i].alianza,sistema_solar.planetas[i].img_planeta,sistema_solar.planetas[i].mineral,sistema_solar.planetas[i].cristal,sistema_solar.planetas[i].gas,sistema_solar.planetas[i].plastico,sistema_solar.planetas[i].ceramica,sistema_solar.planetas[i].b_observar,sistema_solar.planetas[i].b_enviar, sistema_solar.planetas[i].b_verorbita,sistema_solar.planetas[i].naves);   
        
       }
     }
@@ -153,8 +153,8 @@ function creasistemasolar(texto){
 
   sistemas.addChild(b_cerrar);
 }
-
-function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico, ceramica, b_obs, b_at, b_col, b_recol,b_ext, naves,imagen_planeta,bloqueo) {
+//planetas[i] = planeta,nom_pla,nom_jug,alianza,img_planeta,mineral,cristal,gas,plastico,ceramica,b_observar,b_enviar,b_verorbita,naves);   
+function Planeta(n, nompla,nomjug, alianza, imagen_planeta,mineral,cristal,gas,plastico, ceramica, b_obs, b_envia, b_orbita, naves) {
   
   efEnergia = new PIXI.AnimatedSprite(ef_general.animations["energia"]);   
   efEnergia.width = 60;
@@ -182,19 +182,17 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       this.nompla = nompla; 
       this.nomjug = nomjug; 
       this.alianza = alianza; 
-      this.estado = estado; 
       this.mineral = mineral; 
       this.cristal = cristal; 
       this.gas = gas; 
       this.plastico = plastico; 
       this.bot_observar = b_obs; 
-      this.bot_atacar = b_at; 
-      this.bot_colonizar = b_col; 
-      this.bot_recolectar = b_recol; 
-      this.bot_extraer = b_ext; 
+      this.bot_enviar = b_envia; 
+      this.bot_verflotas = b_orbita; 
       this.naves_orbitando = naves; 
-      this.img_planet =imagen_planeta;
-      this.bloqueado=bloqueo; // 0=sin bloqueo, 1=defendiendo, 2=bloqueado
+      this.img_planet = imagen_planeta;
+
+     // this.bloqueado=bloqueo; // 0=sin bloqueo, 1=defendiendo, 2=bloqueado
      
       this.efe_energia = cont_sistema.addChild(efEnergia);
       this.efe_energia.animationSpeed = -0.25;
@@ -265,6 +263,7 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       this.efe_escudo.anchor.set(0.5);
       this.efe_escudo.position.set((n*100)+44, 50);
       
+      /*
       // 0=sin bloqueo, 1=defendiendo, 2=bloqueado
       if ( this.bloqueado==1){
       
@@ -273,7 +272,9 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
       if ( this.bloqueado==2){
         this.efe_escudo.tint = 0xff0000;
         this.efe_escudo.visible = true;
-      }    
+      }   
+      */
+      
       // formato para el nombre del planeta
       var nom_planet = cont_sistema.addChild(new PIXI.Text(n,{dropShadow: true,
       dropShadowBlur: 10,
@@ -343,16 +344,10 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
 
         // texturas para los botones
 
-        var atacar_on = PIXI.Texture.from('/astrometria/img/botones/atacar1.png');
-        var atacar_off = PIXI.Texture.from('/astrometria/img/botones/atacar0.png');
-        var extraer_on = PIXI.Texture.from('/astrometria/img/botones/extraer1.png');
-        var extraer_off = PIXI.Texture.from('/astrometria/img/botones/extraer0.png');
-        var recolectar_on = PIXI.Texture.from('/astrometria/img/botones/recolectar1.png');
-        var recolectar_off = PIXI.Texture.from('/astrometria/img/botones/recolectar0.png');
+        var enviar_on = PIXI.Texture.from('/astrometria/img/botones/enviar_flota1.png');
+        var enviar_off = PIXI.Texture.from('/astrometria/img/botones/enviar_flota0.png');
         var observar_on = PIXI.Texture.from('/astrometria/img/botones/observar1.png');
         var observar_off = PIXI.Texture.from('/astrometria/img/botones/observar0.png');
-        var colonizar_on = PIXI.Texture.from('/astrometria/img/botones/colonizar1.png');
-        var colonizar_off = PIXI.Texture.from('/astrometria/img/botones/colonizar0.png');
         var flotas_on = PIXI.Texture.from('/astrometria/img/botones/vflotas1.png');
         var flotas_off = PIXI.Texture.from('/astrometria/img/botones/vflotas0.png');
 
@@ -365,119 +360,63 @@ function Planeta(n, nompla,nomjug, alianza, estado,mineral,cristal,gas,plastico,
           b_observar.interactive = false;
           b_observar.buttonMode = false;
         }
-        if (b_at!=""){
-          b_atacar = new PIXI.Sprite(atacar_on);
-          b_atacar.interactive = true;
-          b_atacar.buttonMode = true;
+        if (b_envia!=""){
+          b_enviar = new PIXI.Sprite(enviar_on);
+          b_enviar.interactive = true;
+          b_enviar.buttonMode = true;
         }else{
-          b_atacar = new PIXI.Sprite(atacar_off);
-          b_atacar.interactive = false;
-          b_atacar.buttonMode = false;
-        }
-        if (b_col!=""){
-          b_colonizar = new PIXI.Sprite(colonizar_on);
-          b_colonizar.interactive = true;
-          b_colonizar.buttonMode = true;
-        }else{
-          b_colonizar = new PIXI.Sprite(colonizar_off);
-          b_colonizar.interactive = false;
-          b_colonizar.buttonMode = false;
-        }
-        if (b_recol!=""){
-          b_recolectar = new PIXI.Sprite(recolectar_on);
-          b_recolectar.interactive = true;
-          b_recolectar.buttonMode = true;
-        }else{
-          b_recolectar = new PIXI.Sprite(recolectar_off);
-          b_recolectar.interactive = false;
-          b_recolectar.buttonMode = false;
-        }
-        if (b_ext!=""){
-          b_extraer = new PIXI.Sprite(extraer_on);
-          b_extraer.interactive = true;
-          b_extraer.buttonMode = true;
-        }else{
-          b_extraer = new PIXI.Sprite(extraer_off);
-          b_extraer.interactive = false;
-          b_extraer.buttonMode = false;
+          b_enviar = new PIXI.Sprite(enviar_off);
+          b_enviar.interactive = false;
+          b_enviar.buttonMode = false;
         }
         if (naves!=""){
-          b_flotas = new PIXI.Sprite(flotas_on);
-          b_flotas.interactive = true;
-          b_flotas.buttonMode = true;
+          b_verflotas = new PIXI.Sprite(flotas_on);
+          b_verflotas.interactive = true;
+          b_verflotas.buttonMode = true;
         }else{
-          b_flotas = new PIXI.Sprite(flotas_off);
-          b_flotas.interactive = false;
-          b_flotas.buttonMode = false;
+          b_verflotas = new PIXI.Sprite(flotas_off);
+          b_verflotas.interactive = false;
+          b_verflotas.buttonMode = false;
         }
 
 
         //se establece el punto de ancla para las coordenadas en el centro
 
-        b_atacar.anchor.set(0.5)
-        b_extraer.anchor.set(0.5)
-        b_recolectar.anchor.set(0.5)
-        b_observar.anchor.set(0.5)
-        b_colonizar.anchor.set(0.5)
-        b_flotas.anchor.set(0.5)
+        b_enviar.anchor.set(0.5);
+        b_observar.anchor.set(0.5);
+        b_verflotas.anchor.set(0.5);
 
         //se establece la posición de inicio de cada botón
-        b_atacar.position.set (55,0)
-        b_extraer.position.set (135,0)
-        b_recolectar.position.set (215,0)
-        b_observar.position.set (295,0)
-        b_colonizar.position.set (375,0)
-        b_flotas.position.set (455,0)
+        b_enviar.position.set (155,0);
+        b_observar.position.set (255,0);
+        b_verflotas.position.set (355,0);
 
-        b_atacar.on('click', (event) => {
-          log(b_at);
+        b_enviar.on('click', (event) => {
+          log(b_enviar);
           var xmlhttp = new XMLHttpRequest();
-          xmlhttp.open("GET",b_at, true);
+          xmlhttp.open("GET",b_enviar, true);
           xmlhttp.send();
         });
-
-        b_extraer.on('click', (event) => {
-          log(b_ext);
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.open("GET",b_ext, true);
-          xmlhttp.send();          
-         });
         
-        b_recolectar.on('click', (event) => {
-          log(b_recol);
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.open("GET",b_recol, true);
-          xmlhttp.send();
-        });
- 
         b_observar.on('click', (event) => {
-          log(b_obs);
+          log(b_observar);
           var xmlhttp = new XMLHttpRequest();
-          xmlhttp.open("GET",b_obs, true);
+          xmlhttp.open("GET",b_observar, true);
           xmlhttp.send();
         });
-
-        b_colonizar.on('click', (event) => {
-          log(b_col);
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.open("GET",b_col, true);
-          xmlhttp.send();
-          });
    
-        b_flotas.on('click', (event) => {
-            log(naves);
+        b_verflotas.on('click', (event) => {
+            log(b_verflotas);
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET",naves, true);
+            xmlhttp.open("GET",b_verflotas, true);
             xmlhttp.send();
         });                   
 
 
-       this.capa_botones.addChild(b_flotas);
+       this.capa_botones.addChild(b_verflotas);
        this.capa_botones.addChild(b_observar);
-       this.capa_botones.addChild(b_atacar);
-       this.capa_botones.addChild(b_colonizar);
-       this.capa_botones.addChild(b_recolectar);
-       this.capa_botones.addChild(b_extraer);
+       this.capa_botones.addChild(b_enviar);
+
       
         //acciones para el botón
         planet.on('pointerdown', (event) => {

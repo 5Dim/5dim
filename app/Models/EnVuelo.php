@@ -9,8 +9,23 @@ class EnVuelo extends Model
 {
     use HasFactory;
 
-    public function jugadores()
+    public function diseniosenvuelo()
     {
-        return $this->belongsTo(Jugadores::class);
+        return $this->hasMany(DiseniosEnVuelo::class);
+    }
+
+    public function puntosenflota()
+    {
+        return $this->hasMany(PuntosEnFlota::class);
+    }
+
+    public function recursosenflota()
+    {
+        return $this->hasOne(RecursosEnFlota::class);
+    }
+
+    public function destinos()
+    {
+        return $this->hasMany(Destinos::class);
     }
 }

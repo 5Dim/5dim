@@ -327,7 +327,7 @@ function timeg(yqmas, dndv) {
         resultg = "Hoy a las " + hora + ":" + minuto;
     }
     if (diadehoy == day - 1 && yqmas < 48 * 3600) {
-        resultg = "Maniana a las " + hora + ":" + minuto;
+        resultg = "Mañana a las " + hora + ":" + minuto;
     }
 
     $("#" + dndv).html(resultg);
@@ -352,6 +352,24 @@ function formatHMS(secs) {
     var seconds = sec_num % 60;
 
     return [hours, minutes, seconds].map(v => (v < 10 ? "0" + v : v)).join(":");
+}
+
+function difTiempos(start, end,formateado=true) {
+    start=start.replaceAll("-",":");
+    start=start.replaceAll(" ",":");
+    start = start.split(":");
+    end=end.replaceAll("-",":");
+    end=end.replaceAll(" ",":");
+    end = end.split(":");
+    var startDate = new Date(start[0], start[1], start[2], start[3], start[4], start[5]);
+    var endDate = new Date(end[0], end[1], end[2], end[3], end[4], end[5]);
+    var diff = Math.abs((endDate.getTime() - startDate.getTime())/1000);
+    if (formateado){
+        return formatHMS(diff);
+    } else {
+        return diff;
+    }
+
 }
 
 function mostrarDatosConstruccion(codigo) {
@@ -693,7 +711,7 @@ function DistanciaUniverso(origen, destino) {
     var dist = undefined;
 
     if (origen.estrella != "0" && destino.estrella != "0" && origen.orbita != "0" && destino.orbita != "0") {
-        if (origen.estrella == destino.estrella && origen.planeta == destino.planeta) {
+        if (origen.estrella == destino.estrella && origen.orbita == destino.orbita) {
             //orbitar
             factordistancia = $.grep(constantesU, function(busca) {
                 return busca.codigo == "distanciaorbita";
@@ -735,4 +753,22 @@ function TiempoLLegada(distancia, velocidad) {
     })[0].valor;
 
     return (tiempo = Math.round(distancia / velocidad * factortiempoviaje)); //en segundos
+}
+
+function EsconderPorClase(clase){
+    document.querySelectorAll('.'+clase).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}
+
+function EsconderPorId(id){
+    document.querySelectorAll('#'+id).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}
+
+function MostrarPorId(id){
+    document.querySelectorAll('#'+id).forEach(function(el) {
+        el.style.display = '';
+     });
 }

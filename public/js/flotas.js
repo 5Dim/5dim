@@ -8,11 +8,18 @@ tablaHangares.fueraH = fueraH;
 tablaHangares.dentroH = dentroH;
 tablaHangares.capacidadH = capacidadH;
 
+puedoCargarRecurso=[];
+deboCargarMunicion=true;
+deboAlertasF=true;
+deboEsconderDestinosVacios=true;
+
 fuelDestT = 0; //fuel total a todos los destinos
 
+
 RecursosInicio();
+CargarFlotaEditada();
 CargarValoresPlaneta();
-CrearOrigen(0);
+
 
 for (dest = 1; dest < destinos.length; dest++) {
     CargaActual(dest);
@@ -20,9 +27,74 @@ for (dest = 1; dest < destinos.length; dest++) {
 }
 Avisos();
 
-function CrearOrigen(dest) {
-    $("#titulo0").text("Origen " + destinos[dest]["estrella"] + "x" + destinos[dest]["orbita"]);
-    $(".ocultarenorigen" + dest).text("");
+
+function CargarFlotaEditada(){
+
+    EsconderPorId("listaPrioridades0");
+    if (flota.id==undefined){//planeta
+        nombreorigen="Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
+
+    } else { //flota
+        nombreorigen="Carga actual en la flota";
+        puedoCargarRecurso[0]=false;
+        EsconderPorId("envias0");
+        EsconderPorId("botonEnviar");
+        EsconderPorId("porcentsimbol");
+        $("#nombreFlota").val(flota.nombre);
+        deboCargarMunicion=false;
+        deboAlertasF=false;
+
+        dest=0;
+        destinos.forEach(destino => {
+
+            cargaT=0;
+            $("#sistemaDest"+dest).val(destino.estrella);
+            $("#planetaDest"+dest).val(destino.orbita);
+            destino.misionSEG=destino.mision;//se guarda
+            $("#porcentVDest"+dest).val(Math.round(destino.porcentVel));
+
+            recursosArray.forEach(res => {
+                $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
+                cargaT+=cargaDest[dest][res];
+                $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
+            });
+            cargaDest[dest].total =cargaT;
+
+
+            if (destino.visitado>0){
+                puedoCargarRecurso[dest]=false;
+                $('.enviarRecursos'+dest).attr('disabled', true);
+                $('.prioridadRecursos'+dest).attr('disabled', true);
+                hacecuanto=difTiempos(destino.fin,horaServer);
+                $("#titulo"+dest).text("Destino "+dest+" alcanzado hace "+hacecuanto);
+            } else {
+                if (dest>0){
+                    hacecuanto=difTiempos(horaServer,destino.fin);
+                    $("#titulo"+dest).text("Destino "+dest+" alcanzado en "+hacecuanto);
+                }
+            }
+
+            dest+=1;
+        });
+
+
+
+        if(deboEsconderDestinosVacios){
+            for(n=dest;n<cantidadDestinos+1;n++){
+                EsconderPorId("cajitaDestino"+n);
+            }
+        }
+
+        $('.ediciondestino').attr('disabled', true);
+    }
+
+    $(".ocultarenorigen" + 0).text("");
+    CrearOrigen(nombreorigen);
+}
+
+function CrearOrigen(nombreorigen) {
+    $("#titulo0").text(nombreorigen);
+
 }
 
 // carga de valores
@@ -35,11 +107,15 @@ function CargarValoresPlaneta() {
 
         var este = valNaves.length - 1;
         valNaves[este].nombre = diseno.nombre;
-        valNaves[este].cantidad = nave.cantidad;
-        valNaves[este].cantidadT = nave.cantidad; //es constante
-        valNaves[este].enflota = 0;
-        valNaves[este].enhangar = 0;
+        valNaves[este].enflota = nave.enFlota ? nave.enFlota : 0;
+        valNaves[este].enhangar = nave.enHangar ? nave.enHangar : 0;
         valNaves[este].tamanio = diseno.tamanio;
+        if(valNaves[este].enflota+valNaves[este].enhangar>0){
+            valNaves[este].cantidad=0;
+        } else {
+            valNaves[este].cantidad=nave.cantidad;
+        }
+        valNaves[este].cantidadT = valNaves[este].cantidad +valNaves[este].enflota+valNaves[este].enhangar;; //es constante
 
         //ayuda visual esconde los 0
         $("#nombre" + diseno.id).text(diseno.nombre);
@@ -74,8 +150,11 @@ function CargarValoresPlaneta() {
 function RecursosInicio() {
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
+        puedoCargarRecurso[dest]=true;
         if (recursosDest[dest] != undefined) {
             MostrarRecursos(dest);
+        }else {
+            recursosDest[dest]=[];
         }
 
         if (cargaDest[dest] == undefined) {
@@ -84,8 +163,12 @@ function RecursosInicio() {
                 cargaDest[dest][res] = 0;
             });
             cargaDest[dest].total = 0;
+        } else {
+            recursosArray.forEach(res => {
+                cargaDest[dest].total +=cargaDest[dest][res];
+            });
         }
-        destinos[dest].mision = $("#ordenDest" + dest).val();
+        //destinos[dest].mision = $("#ordenDest" + dest).val();
     }
     destinos[0].mision = "transportar";
 }
@@ -260,7 +343,19 @@ function Avisos() {  //////////////////////////////  VALIDACION
     var excesocarga = false;
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
-        if (destinos[dest].estrella.toString.length !== 0 ){
+        if (destinos[dest].estrella.length !== 0 ){
+            destAnt=dest-1;
+            //las cargas de un destino van al otro
+            if(dest>0){
+                recursosArray.forEach(res => {
+                    if (recursosDest[dest][res] != undefined) {
+                        recursosDest[dest][res]=0;
+                    }
+                    recursosDest[dest][res]+=cargaDest[destAnt][res];
+                    $("#boton" + res + dest).text(formatNumber(Math.round(1 * recursosDest[dest][res])));
+                });
+            }
+
 
             if (cargaDest[dest] != undefined && cargaDest[dest].total > valFlotaT.carga) {
                 excesocarga = true;
@@ -275,17 +370,19 @@ function Avisos() {  //////////////////////////////  VALIDACION
                 $("#botonenvias" + dest).text("Enviar");
             }
 
-            recursosArray.forEach(res => {
-                if (cargaDest[dest] != undefined && recursosDest[dest] != undefined && cargaDest[dest][res] > Math.round(recursosDest[dest][res])) {
-                    $("#boton" + res + dest)
-                        .removeClass("btn-dark")
-                        .addClass("btn-danger");
-                } else {
-                    $("#boton" + res + dest)
-                        .addClass("btn-dark")
-                        .removeClass("btn-danger");
-                }
-            });
+            if(deboAlertasF){
+                recursosArray.forEach(res => {
+                    if (cargaDest[dest] != undefined && recursosDest[dest] != undefined && cargaDest[dest][res] > Math.round(recursosDest[dest][res])) {
+                        $("#boton" + res + dest)
+                            .removeClass("btn-dark")
+                            .addClass("btn-danger");
+                    } else {
+                        $("#boton" + res + dest)
+                            .addClass("btn-dark")
+                            .removeClass("btn-danger");
+                    }
+                });
+            }
         }
     }
 
@@ -308,7 +405,7 @@ function Avisos() {  //////////////////////////////  VALIDACION
     }
 
     //las misiones son viables
-    // añadir que no se puede transferir a una flota (solo atacar)
+    // añadir que no se puede Transferir a una flota (solo Atacar)
     for (dest = 1; dest < destinos.length; dest++) {
         var destAnt = dest - 1;
         var destPost = dest + 1;
@@ -324,26 +421,31 @@ function Avisos() {  //////////////////////////////  VALIDACION
             var ordenAnt = $("#ordenDest" + destAnt).val();
             var ordenPost = $("#ordenDest" + destPost).val();
             // no se puede llegar
-            if (ordenAnt == "" || ordenAnt == "transferir" || ordenAnt == "recolectar" || ordenAnt == "orbitar" || ordenAnt == "extraer") {
+            if (ordenAnt == "" || ordenAnt == "Transferir" || ordenAnt == "Recolectar" || ordenAnt == "Orbitar" || ordenAnt == "Extraer") {
                 errores += " No se alcanzará destino " + dest;
                 hayErrorMision = true;
             }
 
+            soyUltimoDestino=false;
             // soy la ultima y debe ser de cierre
-            if (ordenPost != undefined) {
-                if ((ordenPost.length < 1 && orden != "transferir" && orden != "recolectar" && orden != "orbitar") || ordenAnt == "extraer") {
-                    errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
+            if (destPost <4 && (ordenPost != undefined || ordenPost .length<1)) {
+                if ((ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
+                    errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                     hayErrorMision = true;
                 }
             }
             if (destinos.length == destPost) {
-                if ((orden != "transferir" && orden != "recolectar" && orden != "orbitar") || ordenAnt == "extraer") {
-                    errores += " la misión del último destino no es transferir, orbitar,extraer o recolectar";
+                if ((orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
+                    errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                     hayErrorMision = true;
                 }
             }
 
-            if (orden == "atacar" && !hayErrorMision) {
+            if ((orden == "Transferir" || orden == "Recolectar" || orden == "Orbitar" || orden == "Recolectar")) {
+                soyUltimoDestino=true;
+            }
+
+            if (orden == "Atacar" && !hayErrorMision) {
                 $("#cajitaDestino" + dest)
                     .removeClass("cajita-success")
                     .addClass("cajita-light");
@@ -352,6 +454,15 @@ function Avisos() {  //////////////////////////////  VALIDACION
                     .addClass("cajita-success")
                     .removeClass("cajita-light");
             }
+
+            if(soyUltimoDestino){
+                $('.enviarRecursos'+dest).attr('disabled', true);
+                $('.prioridadRecursos'+dest).attr('disabled', true);
+            } else {
+                $('.enviarRecursos'+dest).attr('disabled', false);
+                $('.prioridadRecursos'+dest).attr('disabled', false);
+            }
+
         } else if  (dest==1 && orden == ""){
             errores += " ,sin misión";
             hayErrorMision = true;
@@ -362,26 +473,28 @@ function Avisos() {  //////////////////////////////  VALIDACION
 
         $("#imagen" + dest).attr("src", img);
 
-        if (hayErrorMision) {
-            sePuedeEnviar = false;
-            $("#cajitaDestino" + dest)
-                .removeClass("cajita-success")
-                .addClass("cajita-danger");
-        } else {
-            $("#cajitaDestino" + dest)
-                .addClass("cajita-success")
-                .removeClass("cajita-danger");
-        }
+        if(deboAlertasF){
+            if (hayErrorMision) {
+                sePuedeEnviar = false;
+                $("#cajitaDestino" + dest)
+                    .removeClass("cajita-success")
+                    .addClass("cajita-danger");
+            } else {
+                $("#cajitaDestino" + dest)
+                    .addClass("cajita-success")
+                    .removeClass("cajita-danger");
+            }
 
-        if (faltaFuel) {
-            $("#fuelDest" + dest)
-                .addClass("text-danger")
-                .removeClass("text-light");
-            sePuedeEnviar = false;
-        } else {
-            $("#fuelDest" + dest)
-                .removeClass("text-danger")
-                .addClass("text-light");
+            if (faltaFuel) {
+                $("#fuelDest" + dest)
+                    .addClass("text-danger")
+                    .removeClass("text-light");
+                sePuedeEnviar = false;
+            } else {
+                $("#fuelDest" + dest)
+                    .removeClass("text-danger")
+                    .addClass("text-light");
+            }
         }
     }
 
@@ -523,12 +636,14 @@ function SiSeMueve(dest, fuelDest, tiempoDest) {
 
 function SelectorDestinos(dest) {
     // el selector coloca sistema y planeta
-    input = $("#listaPlanetas" + dest)
-        .val()
-        .split("x");
-    $("#sistemaDest" + dest).val(input[0]);
-    $("#planetaDest" + dest).val(input[1]);
-    TraerRecursos(input[0], input[1], dest);
+    if($("#listaPlanetas" + dest).val()!=null){
+        input = $("#listaPlanetas" + dest)
+            .val()
+            .split("x");
+        $("#sistemaDest" + dest).val(input[0]);
+        $("#planetaDest" + dest).val(input[1]);
+        TraerRecursos(input[0], input[1], dest);
+    }
 }
 
 function MostrarRecursos(dest) {
@@ -540,20 +655,22 @@ function MostrarRecursos(dest) {
 function CargarRecurso(dest, res) {
     var acargar = 0;
     var hueco = 0;
-    var recur = Math.round(recursosDest[dest][res] - cargaDest[dest][res]); //$("#boton" + res + dest).text();
+    if(puedoCargarRecurso[dest]){
+        var recur = Math.round(recursosDest[dest][res] - cargaDest[dest][res]);
 
-    CargaActual(dest);
-    hueco = Math.max(0, valFlotaT.carga - cargaDest[dest].total);
-    if (recur < hueco) {
-        acargar = recur;
-    } else {
-        acargar = hueco + cargaDest[dest][res];
+        CargaActual(dest);
+        hueco = Math.max(0, valFlotaT.carga - cargaDest[dest].total);
+        if (recur < hueco) {
+            acargar = recur;
+        } else {
+            acargar = hueco + cargaDest[dest][res];
+        }
+        $("#" + res + dest).val(formatNumber(acargar));
+        var resto = Math.max(0, recur - acargar);
+        $("#boton" + res + dest).text(formatNumber(resto));
+        CargaActual(dest);//al final recapitula
+        $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
     }
-    $("#" + res + dest).val(formatNumber(acargar));
-    var resto = Math.max(0, recur - acargar);
-    $("#boton" + res + dest).text(formatNumber(resto));
-    CargaActual(dest);//al final recapitula
-    $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
 }
 
 function TraerRecursos(sistema, planeta, dest) {
@@ -577,6 +694,13 @@ function TraerRecursos(sistema, planeta, dest) {
                 MostrarRecursos(dest);
             },
         });
+    } else {
+        recursosArray.forEach(res => {
+            recursosDest[dest][res] = 0;
+        });
+        recursosDest[dest].total = 0;
+        MostrarRecursos(dest);
+        Avisos();
     }
 }
 
@@ -597,10 +721,12 @@ function Vaciar(dest) {
 }
 
 function CargarMunicion() {
-    res = "municion";
-    for (dest = 0; dest < destinos.length; dest++) {
-        var muniTotal = valFlotaT[res]; //+1* recur.replace(/\./g,'');
-        $("#" + res + dest).val(formatNumber(muniTotal));
+    if(deboCargarMunicion){
+        res = "municion";
+        for (dest = 0; dest < destinos.length; dest++) {
+            var muniTotal = valFlotaT[res]; //+1* recur.replace(/\./g,'');
+            $("#" + res + dest).val(formatNumber(muniTotal));
+        }
     }
 }
 
@@ -618,11 +744,12 @@ function CargaActual(dest) {
         cargaDest[dest][res] = recur;
 
         var resto = 0;
-        if (recursosDest[dest] != undefined) {
+        if (recursosDest[dest] != undefined && recursosDest[dest][res] != undefined) {
             var resto = Math.round(recursosDest[dest][res] - recur);
         }
-
-        $("#boton" + res + dest).text(formatNumber(resto));
+        if(puedoCargarRecurso[dest]){
+            $("#boton" + res + dest).text(formatNumber(resto));
+        }
     });
     cargaDest[dest].total = cargatotal;
     //Avisos(); da error recursivo al llamarlo desde avisos
@@ -732,42 +859,58 @@ function formSuccess() {
     $("#msgSubmit").removeClass("hidden");
 }
 
+function RecursosSiDestino (dest){
+    estrella=$("#sistemaDest" + dest).val();
+    orbita= $("#planetaDest" + dest).val();
+    destinoF=estrella+"x"+orbita;
+    if(dest>0 && destinoF.length>4){
+        $('#listaPlanetas'+dest).val(destinoF).change();
+        $("#ordenDest"+dest).val(destinos[dest].misionSEG).change();
+    }
 
+
+}
 
 
 /////////////////////////////////////******************* FLOTAS EN VUELO ********************************** //////////////////////////////////
 
-
+var fechaAhoraMilisec = Date.now();
+primeraActualizacionEnVuelo=true;
 
 function verFlotasEnVuelo() {
 
-    $.ajax({
-        type: "GET",
-        //dataType: "json",
-        url: "/juego/flotas/verFlotasEnVuelo",
-        //contentType: 'application/json; charset=utf-8',
-        //data: { },
-        //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
-        beforeSend: function() {
+    haceCuantoActualice=Date.now()-fechaAhoraMilisec;
 
-        },
-        success: function(data) {
-            //alert(data);
-            RellenarFlotasEnVUelo(data);
-        },
-        error: function(xhr, textStatus, thrownError) {
-            console.log("status", xhr.status);
-            console.log("error", thrownError);
-            //alert(data.errores);
-        },
-    });
+    if(primeraActualizacionEnVuelo || haceCuantoActualice>30000){
+        primeraActualizacionEnVuelo=false;
+        $.ajax({
+            type: "GET",
+            //dataType: "json",
+            url: "/juego/flotas/verFlotasEnVuelo",
+            //contentType: 'application/json; charset=utf-8',
+            //data: { },
+            //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
+            beforeSend: function() {
 
+            },
+            success: function(data) {
+                //alert(data);
+                RellenarFlotasEnVuelo(data);
+            },
+            error: function(xhr, textStatus, thrownError) {
+                console.log("status", xhr.status);
+                console.log("error", thrownError);
+                //alert(data.errores);
+            },
+        });
+    }
 }
 
-function RellenarFlotasEnVUelo(data){
+function RellenarFlotasEnVuelo(data){
 
     $("#tablaFlotasPropias").empty();
-    //$("#tablaFlotasPropias").append("coco");
+    $("#tablaFlotasAliadas").empty();
+    $("#tablaFlotasExtrangeras").empty();
 
     var flotas= data["flotas"];
 
@@ -776,17 +919,33 @@ function RellenarFlotasEnVUelo(data){
 
         if (flota!=null){
         fila++;
-        progreso=Math.round(((flota['tvuelo']-flota['trestante'])/flota['tvuelo'])*100,0);
+        if (flota['trestante']!=null && flota['trestante']!=undefined && flota['tvuelo']!=null && flota['tvuelo']!=undefined){
+            progreso=Math.round(((flota['tvuelo']-flota['trestante'])/flota['tvuelo'])*100,0);
+        } else {
+            progreso=0;
+        }
+
+        if (flota['trestante']!=null && flota['trestante']!=undefined){
+            trestante=formatHMS(1*flota['trestante']);
+        } else {
+            trestante="?";
+        }
+
         ataque=formatNumber(1*flota['ataque']);
         defensa=formatNumber(1*flota['defensa']);
-        trestante=formatHMS(1*flota['trestante']);
         tregreso=formatHMS(1*flota['tregreso']);
         //recursosCarga=flota['recursos']
 
-        if (flota['tipo']=="propia"){
+            if (flota['tipo']=="propia"){
+                deshabilitarRegreso="";
+                colorbotonRegreso="danger";
+                if(flota['misionregreso']==null){
+                    tregreso="Ya regresando";
+                    deshabilitarRegreso="disabled";
+                    colorbotonRegreso="light";
+                }
 
                 var tablaFlotasPropias = `
-
                 <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
                     style="margin-top: 5px !important">
                     <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info`+fila+`" aria-expanded="false"
@@ -796,12 +955,13 @@ function RellenarFlotasEnVUelo(data){
                                 <big>`+flota['origen']+`<big>
                             </th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
-                                <big>`+flota['numeroflota']+`<big>
+                                <big>`+flota['nombre']+`<big>
                             </th>
-                            <th colspan="4" class="text-success text-center borderless align-middle">
+                            <th colspan="3" class="text-success text-center borderless align-middle">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
                             </th>
+                            <th id="trestantepropia`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>
@@ -817,8 +977,8 @@ function RellenarFlotasEnVUelo(data){
                         <td colspan="3" class="text-warning">defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="3" class="text-light">`+trestante+`</td>
-                        <td colspan="3" class="text-light">`+tregreso+`</td>
+                        <td id="trestantepropia`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
+                        <td id="tregresopropia`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
                         <td colspan="3" class="text-light">`+ataque+`</td>
                         <td colspan="3" class="text-light">`+defensa+`</td>
                     </tr>
@@ -900,15 +1060,14 @@ function RellenarFlotasEnVUelo(data){
                 </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td colspan="4">
-                            <a type="button" class="btn btn-outline-danger col-12 text-danger"
-                                href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <a type="button" class="`+deshabilitarRegreso+` btn btn-outline-`+colorbotonRegreso+` col-12 text-`+colorbotonRegreso+`" id="botonregreso`+flota['numeroflota']+`"
+                            onclick="regresarFlota('`+flota['numeroflota']+`')">
                                 <i class="fa fa-times "></i> Regresar
                             </a>
                         </td>
                         <td colspan="5">
                             <a class="btn btn-outline-primary col-12 text-primary" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#datos`+fila+`"
-                            aria-expanded="false" aria-controls="datos`+fila+`"  >
+                            href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+`">
                             Editar
                             </a>
                         </td>
@@ -925,6 +1084,130 @@ function RellenarFlotasEnVUelo(data){
                 `;
                 $("#tablaFlotasPropias").append(tablaFlotasPropias);
             }
+            else if (flota['tipo']=="aliada"){
+
+                var tablaFlotasAliadas = `
+                <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
+                    style="margin-top: 5px !important">
+                    <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info`+fila+`" aria-expanded="false"
+                        aria-controls="info`+fila+`">
+                        <div id="cuadro`+fila+`" class="">
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['origen']+`<big>
+                            </th>
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['nombre']+`<big>
+                            </th>
+                            <th colspan="3" class="text-success text-center borderless align-middle">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
+                            </th>
+                            <th id="trestantealiada`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['mision']+`<big>
+                            </th>
+                            <th colspan="3" class="text-success text-center borderless align-middle">
+                                <big>`+flota['destino']+`<big>
+                            </th>
+                        </div>
+                    </tr>
+                    <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="3" class="text-warning">tiempo restante: </td>
+                        <td colspan="3" class="text-warning">tiempo regreso:</td>
+                        <td colspan="3" class="text-warning">ataque:</td>
+                        <td colspan="3" class="text-warning">defensa</td>
+                    </tr>
+                    <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                    <td id="trestantealiada`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
+                    <td id="tregresoaliada`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
+                        <td colspan="3" class="text-light">`+ataque+`</td>
+                        <td colspan="3" class="text-light">`+defensa+`</td>
+                    </tr>
+
+                    <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="4">
+
+                        </td>
+                        <td colspan="5">
+
+                        </td>
+                        <td colspan="4">
+                        <a type="button" class="btn btn-outline-success col-12 text-success"
+                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <i class="fa fa-eye "></i> Ver
+                        </a>
+                        </td>
+                    </tr>
+
+                </table>
+
+                `;
+                $("#tablaFlotasAliadas").append(tablaFlotasAliadas);
+            }
+            else if (flota['tipo']=="ajena"){
+
+                var tablaFlotasExtrangeras = `
+                <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
+                    style="margin-top: 5px !important">
+                    <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#info`+fila+`" aria-expanded="false"
+                        aria-controls="info`+fila+`">
+                        <div id="cuadro`+fila+`" class="">
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['origen']+`<big>
+                            </th>
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['nombre']+`<big>
+                            </th>
+                            <th colspan="3" class="text-success text-center borderless align-middle">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
+                            </th>
+                            <th id="trestanteajena`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
+                            <th colspan="2" class="text-success text-center borderless align-middle">
+                                <big>`+flota['mision']+`<big>
+                            </th>
+                            <th colspan="3" class="text-success text-center borderless align-middle">
+                                <big>`+flota['destino']+`<big>
+                            </th>
+                        </div>
+                    </tr>
+                    <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="3" class="text-warning">tiempo restante: </td>
+                        <td colspan="3" class="text-warning">tiempo regreso:</td>
+                        <td colspan="3" class="text-warning">ataque:</td>
+                        <td colspan="3" class="text-warning">defensa</td>
+                    </tr>
+                    <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td id="trestanteajena`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
+                        <td id="tregresoajena`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
+                        <td colspan="3" class="text-light">`+ataque+`</td>
+                        <td colspan="3" class="text-light">`+defensa+`</td>
+                    </tr>
+
+                    <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td colspan="4">
+
+                        </td>
+                        <td colspan="5">
+                            <a type="button" class="disabled btn btn-outline-danger col-12 text-danger"
+                            href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+`">
+                            Atacar
+                            </a>
+                        </td>
+                        <td colspan="4">
+                        <a type="button" class="btn btn-outline-success col-12 text-success"
+                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                            <i class="fa fa-eye "></i> Ver
+                        </a>
+                        </td>
+                    </tr>
+
+                </table>
+
+                `;
+                $("#tablaFlotasExtrangeras").append(tablaFlotasExtrangeras);
+            }
+
         }
 
     });
@@ -934,3 +1217,28 @@ function RellenarFlotasEnVUelo(data){
 }
 
 
+function regresarFlota(numeroflota) {
+
+    primeraActualizacionEnVuelo=true;
+    $.ajax({
+        type: "GET",
+        //dataType: "json",
+        url: "/juego/flotas/regresarFlota/"+numeroflota,
+        beforeSend: function() {
+            $("#botonregreso"+numeroflota).prop("disabled", true);
+            var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....';
+            $("#botonregreso"+numeroflota).html(spinner);
+        },
+        success: function(response) {
+            $("#botonregreso"+numeroflota).text("Regresando...");
+            if (response.errores==""){
+                alert("Flota regresando");
+                verFlotasEnVuelo();
+            } else {
+                $("#botonregreso"+numeroflota).prop("disabled", false);
+                $("#botonregreso"+numeroflota).text("Regresar");
+                alert(response.errores);
+            }
+        }
+    });
+}

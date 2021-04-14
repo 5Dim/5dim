@@ -348,7 +348,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 cajita-info rounded">
+            <div id="lineaBotones"class="col-12 cajita-info rounded">
                 <button id="botonEnviar" type="button" class="btn btn-success col-12"  onclick="enviarFlota()">
                     Enviar flota
                 </button>
@@ -372,6 +372,9 @@
         let cargaDest = @json($cargaDest); //cargado para cada destino
         let prioridades =@json($prioridades);
         let flota =@json($flota);
+        let linkFlota="{{ url('/juego/flotas') }}";
+        let cantidadDestinos={{$cantidadDestinos}};
+        let horaServer='{{date("Y-m-d H:i:s")}}';
 
 
         recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)

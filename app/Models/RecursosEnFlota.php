@@ -10,4 +10,9 @@ class RecursosEnFlota extends Model
     protected $table = 'recursos_en_flota';
     use HasFactory;
 
+    public function envuelo()
+    {
+        return $this->hasOne(EnVuelo::class);
+    }
+
 }

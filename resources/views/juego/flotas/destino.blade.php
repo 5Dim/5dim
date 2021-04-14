@@ -42,8 +42,7 @@
             <tr class="ocultarenorigen{{ $numero }}">
                 <td class="text-light">
                     <div id="selectorPlaneta{{ $numero }}">
-                        <select  id="listaPlanetas{{ $numero }}"
-                            class="form-control">
+                        <select  id="listaPlanetas{{ $numero }}"  class="form-control ediciondestino">
                             <option value="none">Selecciona un planeta</option>
                             <optgroup label="Propios">
                                 @foreach (Auth::user()->jugador->planetas as $planeta)
@@ -57,24 +56,24 @@
                     </div>
                 </td>
                 <td class="text-light">
-                    <input id="sistemaDest{{ $numero }}" type="text" class="form-control input"
+                    <input id="sistemaDest{{ $numero }}" type="text" class="form-control input ediciondestino"
                         placeholder="Numero de sistema">
                 </td>
                 <td class="text-light">
-                    <input id="planetaDest{{ $numero }}" type="text" class="form-control input" type="number"  pattern="[0-9]{1}"
+                    <input id="planetaDest{{ $numero }}" type="text" class="form-control input ediciondestino" type="number"  pattern="[0-9]{1}"
                         placeholder="Numero de orbita">
                 </td>
                 <td class="text-light">
                     <div id="selectorordenDest{{ $numero }}">
-                        <select name="orden" id="ordenDest{{ $numero }}" class="select form-control">
-                            <option value="" selected>Selección de misión</option>
-                            <option value="transportar">Transportar</option>
-                            <option value="transferir">Transferir</option>
-                            <option value="orbitar">Orbitar</option>
-                            <option value="recolectar">Recolectar</option>
-                            <option value="extraccion">Extracción</option>
-                            <option value="reciclar">Reciclar</option>
-                            <option value="colonizar">Colonizar</option>
+                        <select name="orden" id="ordenDest{{ $numero }}" class="select form-control ediciondestino">
+                            <option value="" selected>Sin misión</option>
+                            <option value="Transportar">Transportar</option>
+                            <option value="Transferir">Transferir</option>
+                            <option value="Orbitar">Orbitar</option>
+                            <option value="Recolectar">Recolectar</option>
+                            <option value="Extracción">Extracción</option>
+                            <option value="Reciclar">Reciclar</option>
+                            <option value="Colonizar">Colonizar</option>
                             <option class="text-danger"value="atacar">Atacar</option>
                         </select>
                     </div>
@@ -82,9 +81,9 @@
                 <td class="text-light">
                     <div id="selectorporcentVDest{{ $numero }}" class="input-group mb-3 borderless"
                         style="padding-left: 10px !important; padding-right: 5px !important">
-                        <input id="porcentVDest{{ $numero }}" type="text" class="form-control input" value="100"
+                        <input id="porcentVDest{{ $numero }}" type="text" class="form-control input ediciondestino" value="100"
                             aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
+                        <div id="porcentsimbol" class="input-group-append">
                             <span class="input-group-text bg-dark text-light">%</span>
                         </div>
                     </div>
@@ -209,91 +208,91 @@
                     </button>
                 </td>
             </tr>
-            <tr>
+            <tr id="envias{{ $numero }}" class="">
                 <td class="anchofijo">
                     <button id="botonenvias{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="Vaciar({{$numero}})">
                         Enviar
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="personal{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="personal{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="mineral{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="mineral{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="cristal{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="cristal{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="gas{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="gas{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="plastico{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="plastico{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="ceramica{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="ceramica{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="liquido{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="liquido{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="micros{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="micros{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="fuel{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="fuel{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="ma{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="ma{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="municion{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="municion{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="creditos{{ $numero }}" type="text" class="form-control input form-control-sm" value="0" min="0" max="125248">
+                    <input id="creditos{{ $numero }}" type="text" class="form-control input form-control-sm enviarRecursos{{$numero}}" value="0" min="0" max="125248">
                 </td>
             </tr>
 
-            <tr>
+            <tr id="listaPrioridades{{ $numero }}" class="">
                 <td class="anchofijo">
                     <button id="botonprioridades{{ $numero }}" type="button" class="btn btn-dark col-12 btn-sm text-warning" onclick="VaciarPrioridades({{$numero}})">
                         Prioridades
                     </button>
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadpersonal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadpersonal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadmineral{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadmineral{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadcristal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadcristal{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadgas{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadgas{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadplastico{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadplastico{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadceramica{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadceramica{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadliquido{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadliquido{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadmicros{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadmicros{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadfuel{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadfuel{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadma{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadma{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadmunicion{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadmunicion{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
                 <td class="anchofijo text-light">
-                    <input id="prioridadcreditos{{ $numero }}" type="text" class="form-control input form-control-sm prioridad" value="0" min="0" max="15">
+                    <input id="prioridadcreditos{{ $numero }}" type="text" class="form-control input form-control-sm prioridad prioridadRecursos{{$numero}}" value="0" min="0" max="15">
                 </td>
             </tr>
         </table>
@@ -306,6 +305,8 @@
             width: '100%',
             language: "es"
         });
+
+        RecursosSiDestino({{ $numero }});
     });
 
     $('#sistemaDest{{ $numero }}').focusout(function() {

@@ -38,10 +38,10 @@ const jsonFlotas ="/juego/astrometria/ajax/flotas";
 //const jsonRadares ="/astrometria/data/radares.json";
 const jsonRadares ="/juego/astrometria/ajax/radares";
 
-const jsonInfluencia ="/astrometria/data/influencia.json";
-//const jsonInfluencia ="/juego/astrometria/ajax/influencia";
+//const jsonInfluencia ="/astrometria/data/influencia.json";
+const jsonInfluencia ="/juego/astrometria/ajax/influencia";
 
-const jsonRutas ="/astrometria/data/rutas.json";
+const jsonRutas ="/astrometria/data/rutas.json"; // No usadas en versión de lanzamiento
 //const jsonRutas ="/juego/astrometria/ajax/rutas";
 
 let home, homex, homey; //datos del sistema propio de inicio
@@ -58,16 +58,18 @@ function carga_universo(){
 		        universo = JSON.parse(this.responseText);
             home=universo.inicio;
             createViewport();
+            carga_influencias(); // carga las influencias
 		        createWorld();
 		        carga_flotas();  // carga las flotas
             carga_radares(); // carga los radares
-            carga_influencias(); // carga las influencias
+            
             // carga_rutas(); //dibuja unas rutas de prueba si no se cambia el valor de jsonRutas 
             botonF(); // crea el botón de flotas en la parte superior. desactivado en lanzamiento
             //botonRuta(); // crea el botón de marcar destinos y crear rutas en la parte superior
             //botonMarcar(); //desactivado en versión de lanzamiento
             botonH(); //crea el botón HOME
             botonI(); // crea el botçon de influencias en la parte superior
+            botonI2(); // crea el botçon de influencias en la parte superior
             botonR(); // crea el botçon de los radares
            // resize();
             botones.position.set (window.innerWidth/2 - botones.width/2,0);
@@ -392,14 +394,14 @@ function createViewport(){
         botones = app.stage.addChild(new PIXI.Container());            // crea la capa botones
         textos = app.stage.addChild(new PIXI.Container());             // crea la capa textos
         
+        capa_influencias = viewport.addChild(new PIXI.Container());        // crea la capa influencia propia
+        capa_influencias2 = viewport.addChild(new PIXI.Container());        // crea la capa influencia externa
+        
         capa_estrellas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
         capa_rutas = viewport.addChild(new PIXI.Container());        // crea la capa radares
         capa_flotas = viewport.addChild(new PIXI.Container());         // crea la capa flotas
         capa_radares = viewport.addChild(new PIXI.Container());        // crea la capa radares
-        
-        capa_influencias = viewport.addChild(new PIXI.Container());        // crea la capa radares
-        
-        
+                
         sistemas = app.stage.addChild(new PIXI.Container());           // crea la capa sistemas
         
        // contenedor_efe_energia = app.stage.addChild(new PIXI.Container());   
@@ -586,11 +588,48 @@ function crearadares(){
 }
 // se crean los radares
 function creainfluencias(){
-	var x, y; 
-    for (var i = 0; i < influencias.influencias.length; i++){    
-      let y = Math.floor(influencias.influencias[i].estrella/universo.ancho)*70;
-      let x = (influencias.influencias[i].estrella-(Math.floor(influencias.influencias[i].estrella/universo.ancho)*universo.ancho))*70;
-      influencia = new Influencia(influencias.influencias[i].estrella,x,y,influencias.influencias[i].circulo,influencias.influencias[i].color);       
+
+  //primero creo mi influencia en la capa influencias
+  const graphics = new PIXI.Graphics();
+
+  d=0;
+  influencia=0;
+  alpha=1;
+  max=influencias.miInfluencia[0].circulo*70;
+
+  
+  let y = Math.floor(influencias.miInfluencia[0].estrella/universo.ancho)*70;
+  let x = (influencias.miInfluencia[0].estrella-(Math.floor(influencias.miInfluencia[0].estrella/universo.ancho)*universo.ancho))*70;
+
+  for (var j = 0; j < influencias.miInfluencia[0].circulo+1; j++){
+      for (var i = 0; i < influencias.miInfluencia[0].circulo+1; i++){
+
+          d=(Math.sqrt( ((i*70)*(i*70))+((j*70)*(j*70)) ));
+          influencia=max-(max*(d/max));
+          alpha=((influencia*100)/max)/100;
+
+          if (influencias.miInfluencia[0].color==1){graphics.beginFill(0xDE3249,alpha);} //rosa
+          if (influencias.miInfluencia[0].color==2){graphics.beginFill(0x2980B9,alpha);} //azul
+          if (influencias.miInfluencia[0].color==3){graphics.beginFill(0x51AF61,alpha);} //verde
+          if (influencias.miInfluencia[0].color==4){graphics.beginFill(0xE74C3C,alpha);} //naranja
+
+          graphics.drawRect(x+35+(70*j), y+35+(70*i), 70, 70);
+          graphics.drawRect(x-(70*j)-35, y+35+(70*i), 70, 70);
+          graphics.drawRect(x+35+(70*j), y-(70*i)-35, 70, 70);
+          graphics.drawRect(x-(70*j)-35, y-(70*i)-35, 70, 70);
+          graphics.endFill();
+      }
+  }
+
+
+  capa_influencias.addChild(graphics);
+
+  //ahora creo el resto de incluencias
+
+    for (var i = 0; i < influencias.influencia.length; i++){    
+      let y = Math.floor(influencias.influencia[i].estrella/universo.ancho)*70;
+      let x = (influencias.influencia[i].estrella-(Math.floor(influencias.influencia[i].estrella/universo.ancho)*universo.ancho))*70;
+      influencia = new Influencia(influencias.influencia[i].estrella,x,y,influencias.influencia[i].circulo,influencias.influencia[i].color);       
     }  
 }
 

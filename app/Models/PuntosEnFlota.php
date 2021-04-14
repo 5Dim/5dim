@@ -9,4 +9,9 @@ class PuntosEnFlota extends Model
 {
     protected $table = 'en_puntos_en_flota';
     use HasFactory;
+
+    public function envuelo()
+    {
+        return $this->hasOne(EnVuelo::class);
+    }
 }
