@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use LengthException;
 
 class Flotas extends Model
 {
@@ -366,6 +367,64 @@ class Flotas extends Model
         return true;
     }
 
+
+public static function destinoTipoId($destino,$destinosDest){
+
+    $planetas_id=null;
+    $flota_id=null;
+    $en_recoleccion_id=null;
+    $en_orbita_id=null;
+    $errores="";
+
+    try {
+        $codigoDestino=$destinosDest['estrella'];
+
+        if(strlen($codigoDestino)<7 && $destinosDest['orbita']!=null){//destino es planeta
+
+            $planeta=Planetas::where('estrella', $destinosDest['estrella'])->where('orbita', $destinosDest['orbita'])->first();
+            if($planeta!=null){
+                $planetas_id=$planeta->id;
+            } else {
+                $errores="No existe planeta destino ".$destinosDest['estrella']."x".$destinosDest['orbita'];
+                //Log::info($errores);
+                throw new \Exception($errores);
+            }
+        } else{ //destino flota
+
+            $flotadestino=EnVuelo::where('publico',$codigoDestino)->orWhere('nombre',$codigoDestino)->first();
+            if($flotadestino!=null){
+                $flota_id=$flotadestino->id;
+            } else {
+                $flotadestino=EnOrbita::where('publico',$codigoDestino)->orWhere('nombre',$codigoDestino)->first();
+                if($flotadestino!=null){
+                    $en_orbita_id=$flotadestino->id;
+                } else {
+                    $flotadestino=EnRecoleccion::where('publico',$codigoDestino)->orWhere('nombre',$codigoDestino)->first();
+                    if($flotadestino!=null){
+                        $en_recoleccion_id=$flotadestino->id;
+                    } else {
+                        $errores="No existe flota destino ".$destinosDest['estrella'];
+                        //Log::info($errores);
+                        //$destino=$errores;
+                        throw new \Exception($errores);
+                    }
+                }
+            }
+        }
+
+        $destino->planetas_id=$planetas_id;
+        $destino->flota_id=$flota_id;
+        $destino->en_orbita_id=$en_orbita_id;
+        $destino->en_recoleccion_id=$en_recoleccion_id;
+    } catch (\Exception $e) {
+        Log::info($e);
+       // return $e->getMessage();
+    }
+    return [$destino,$errores];
+
+}
+
+
     public static function regresarFlota($nombreflota){
 
         $jugadoryAlianza = [];
@@ -425,6 +484,7 @@ class Flotas extends Model
 
                     //Log::info("duración: ".$duracion." Tinit: ".$Tinit." destino init: ".$destino['init']." Tfin: ".$Tfin);
 
+
                     $destino->porcentVel="100";
                     $destino->mision=$destino->mision_regreso;
                     $destino->mision_regreso=null;
@@ -439,6 +499,15 @@ class Flotas extends Model
                     $destino->init=$Tinit;
                     $destino->fin=$Tfin;
                     $destino->en_vuelo_id=$flotax->id;
+
+                    $result=Flotas::destinoTipoId($destino,$destino);
+                    $destino=$result[0];
+                    $errores=$result[1];
+                    if (strlen($errores)>3){
+                        //Log::info("coso" .$errores);
+                        throw new \Exception($errores);
+                    }
+
                     $destino->save();
 
                     //Log::info("destino final: ".$destino);
@@ -473,7 +542,7 @@ class Flotas extends Model
                     //Log::info("Regresando");
 
                 } else {
-                    $errores="La flota ya viene de regreso";
+                    $errores="La flota ya viene de regreso o no existe destino de regreso";
                 }
 
 
@@ -495,15 +564,43 @@ class Flotas extends Model
     public static function llegadaFlotas(){
 
         $ahora=date("Y-m-d H:i:s");
-        $listaDestinosEntrantes=Destinos::where('fin','<',$ahora)->where("visitado","0")->get();
+        $listaDestinosEntrantes=Destinos::where('fin','>',$ahora)->where("visitado","0")->get();
+
+
         foreach($listaDestinosEntrantes as $destino){
+            $tipodestino="planeta";
+
             switch($destino->mision){
                 case "Transportar":
                     //destino existe
+                    if($destino->flota!=null){ // flota
+                        $flotax=EnVuelo::where('publico',$destino->flota)->first();
+                        if($flotax!=null){
+                            $tipodestino="flota";
+                            //actualizamos sus recursos
 
-                    //actualiza recursos en destino
+                        }else {
+                            //flota sigue su camino
+                        }
+                    } else { // planeta
+                        $planetadestino = Planetas::where('estrella', $destino->estrella)->where('orbita', $destino->orbita)->first();
+                        if($planetadestino!=null && $planetadestino->recursos!=null){
+                            $tipodestino="planeta";
+                            //actualizamos sus recursos
+                            Recursos::calcularRecursos($planetadestino->id);
+                            ///$recursos = Recursos::where('planetas_id', $planetadestino->id)->first();
+                        } else {
+                            //flota sigue su camino
+                        }
+                    }
+                    break;
+                    case "Transferir":
+                        //si los ids de todos los destinos es nulo es orbitar el planeta
+
+                    break;
 
                    //gestión de recursos
+
 
 
 

@@ -25,6 +25,8 @@ use App\Models\DiseniosEnVuelo;
 use App\Models\PuntosEnFlota;
 use App\Models\RecursosEnFlota;
 use App\Models\Astrometria;
+use App\Models\EnOrbita;
+use App\Models\EnRecoleccion;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -476,6 +478,14 @@ class FlotaController extends Controller
                             $destino->mision_regreso=ucfirst("Orbitar");
                         }
 
+                        $result=Flotas::destinoTipoId($destino,$destinos[$dest]);
+                        $destino=$result[0];
+                        $errores=$result[1];
+                        if (strlen($errores)>3){
+                            //Log::info("coso" .$errores);
+                            throw new \Exception($errores);
+                        }
+
                         $destino->initestrella=$destinos[$destAnt]['estrella'];
                         $destino->initorbita=$destinos[$destAnt]['orbita'];
                         $destino->estrella=$destinos[$dest]['estrella'];
@@ -614,18 +624,18 @@ class FlotaController extends Controller
                 $recursosEnFlota->save();
                 //Log::info($recursosEnFlota);
 
-
-
             DB::commit();
             //Log::info("Enviada");
 
             } catch (Exception $e) {
                 DB::rollBack();
-                Log::info("Error en Commit de envio de flotas ".$e);
+                $errores="Error en Commit de envio de flotas ".$errores;//.$e;
+                Log::info($errores);
             }
             //return redirect('/juego/flota');
         } else {
-            Log::info("errores al enviar: ".$errores);
+            //Log::info("errores al enviar: ".$errores);
+            $errores="errores al enviar: ".$errores;
         }
         //Log::info($errores);
         return compact('errores');
