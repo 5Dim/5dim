@@ -23,4 +23,24 @@ class Destinos extends Model
     {
         return $this->hasOne(EnPrioridadesEnDestino::class);
     }
+
+    public function flota()
+    {
+        return $this->hasMany(EnVuelo::class, 'id', "flota_id");
+    }
+
+    public function enrecoleccion()
+    {
+        return $this->hasOne(EnRecoleccion::class);
+    }
+
+    public function enorbita()
+    {
+        return $this->hasOne(EnOrbita::class);
+    }
+
+    public function planeta()
+    {
+        return $this->hasOne(Planetas::class);
+    }
 }

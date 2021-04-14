@@ -28,4 +28,9 @@ class EnVuelo extends Model
     {
         return $this->hasMany(Destinos::class);
     }
+
+    public function objetivos()
+    {
+        return $this->belongsTo(Destinos::class, 'flota_id', "id");
+    }
 }

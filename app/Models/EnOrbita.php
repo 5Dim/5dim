@@ -18,4 +18,9 @@ class EnOrbita extends Model
     {
         return $this->belongsTo(Jugadores::class);
     }
+
+    public function objetivos()
+    {
+        return $this->belongsTo(Destinos::class, 'flota_id', "id");
+    }
 }

@@ -49,6 +49,11 @@ class Planetas extends Model
         return $this->hasMany(EnDisenios::class);
     }
 
+    public function objetivos()
+    {
+        return $this->belongsTo(Destinos::class, 'flota_id', "id");
+    }
+
     // Nuevo planeta de inicio.
     public static function nuevoPlaneta($idJugador)
     {

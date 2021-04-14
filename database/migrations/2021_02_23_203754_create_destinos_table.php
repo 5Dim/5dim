@@ -29,9 +29,17 @@ class CreateDestinosTable extends Migration
             $table->unsignedTinyInteger('visitado')->default(0);
             $table->timestamp('init');
             $table->timestamp('fin')->nullable();
+            $table->timestamps();
+            $table->unsignedBigInteger('planetas_id')->unsigned();
+            $table->foreign('planetas_id')->references('id')->on('planetas');
             $table->unsignedBigInteger('en_vuelo_id')->unsigned();
             $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos');
-            $table->timestamps();
+            $table->unsignedBigInteger('flota_id')->unsigned();
+            $table->foreign('flota_id')->references('id')->on('en_vuelos');
+            $table->unsignedBigInteger('en_recoleccion_id')->unsigned();
+            $table->foreign('en_recoleccion_id')->references('id')->on('en_recoleccions');
+            $table->unsignedBigInteger('en_orbita_id')->unsigned();
+            $table->foreign('en_orbita_id')->references('id')->on('en_orbitas');
         });
     }
 
