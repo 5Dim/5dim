@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class EnPrioridadesEnOrbita extends Model
 {
     use HasFactory;
+
+    public function orbita()
+    {
+        return $this->hasOne(EnOrbita::class);
+    }
 }

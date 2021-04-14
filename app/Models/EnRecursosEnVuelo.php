@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class EnRecursosEnVuelo extends Model
 {
     use HasFactory;
+
+    public function flota()
+    {
+        return $this->hasOne(EnVuelo::class);
+    }
 }

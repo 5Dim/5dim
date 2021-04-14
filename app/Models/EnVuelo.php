@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class EnVuelo extends Model
 {
     use HasFactory;
+
+    public function jugadores()
+    {
+        return $this->belongsTo(Jugadores::class);
+    }
 }

@@ -55,6 +55,21 @@ class Jugadores extends Model
         return $this->belongsToMany(Disenios::class);
     }
 
+    public function enVuelo()
+    {
+        return $this->hasMany(EnVuelo::class);
+    }
+
+    public function enOrbita()
+    {
+        return $this->hasMany(EnOrbita::class);
+    }
+
+    public function enRecoleccion()
+    {
+        return $this->hasMany(EnRecoleccion::class);
+    }
+
     public static function calcularPuntos($idJugador)
     {
         $puntosJugador = 0;

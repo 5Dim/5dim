@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class EnPrioridadesEnRecoleccion extends Model
 {
     use HasFactory;
+
+    public function recoleccion()
+    {
+        return $this->hasOne(EnRecoleccion::class);
+    }
 }

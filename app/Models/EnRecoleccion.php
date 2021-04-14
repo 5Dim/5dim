@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class EnRecoleccion extends Model
 {
     use HasFactory;
+
+    public function planeta()
+    {
+        return $this->hasOne(Planetas::class);
+    }
+
+    public function jugadores()
+    {
+        return $this->belongsTo(Jugadores::class);
+    }
 }
