@@ -215,6 +215,18 @@ class Recursos extends Model
         $recursos->save();
     }
 
+
+    public static function calcularRecoleccion($idPlaneta)
+    {
+
+    }
+
+
+
+
+
+
+
     /**
      * Relacion de los planetas con los usuarios
      */

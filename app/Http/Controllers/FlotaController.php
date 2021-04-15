@@ -153,18 +153,18 @@ class FlotaController extends Controller
 
             //prioridades
             $prioridadesXDefecto=new Prioridades();
-            $prioridadesXDefecto->personal=1;
-            $prioridadesXDefecto->mineral=1;
-            $prioridadesXDefecto->cristal=1;
-            $prioridadesXDefecto->gas=1;
-            $prioridadesXDefecto->plastico=1;
-            $prioridadesXDefecto->ceramica=1;
-            $prioridadesXDefecto->liquido=1;
-            $prioridadesXDefecto->micros=1;
-            $prioridadesXDefecto->fuel=1;
-            $prioridadesXDefecto->ma=1;
-            $prioridadesXDefecto->municion=1;
-            $prioridadesXDefecto->creditos=1;
+            $prioridadesXDefecto->personal=0;
+            $prioridadesXDefecto->mineral=0;
+            $prioridadesXDefecto->cristal=0;
+            $prioridadesXDefecto->gas=0;
+            $prioridadesXDefecto->plastico=0;
+            $prioridadesXDefecto->ceramica=0;
+            $prioridadesXDefecto->liquido=0;
+            $prioridadesXDefecto->micros=0;
+            $prioridadesXDefecto->fuel=0;
+            $prioridadesXDefecto->ma=0;
+            $prioridadesXDefecto->municion=0;
+            $prioridadesXDefecto->creditos=0;
             array_push($prioridades,$prioridadesXDefecto);
 
             // recursos en destinos

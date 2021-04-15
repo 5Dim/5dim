@@ -563,36 +563,58 @@ public static function destinoTipoId($destino,$destinosDest){
     ///////////////  recepción de flotas   ////////////////////////
     public static function llegadaFlotas(){
 
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $ahora=date("Y-m-d H:i:s");
         $listaDestinosEntrantes=Destinos::where('fin','>',$ahora)->where("visitado","0")->get();
 
 
         foreach($listaDestinosEntrantes as $destino){
-            $tipodestino="planeta";
+
+
+            $tipodestino=null;
+            if($destino->planetas_id!=null && $destino->planeta->id !=null){
+                $tipodestino="planeta";
+            } else if($destino->en_orbita_id!=null && $destino->enorbita->id !=null){
+                $tipodestino="enorbita";
+            } else if($destino->en_recoleccion_id!=null && $destino->enrecoleccion->id !=null){
+                $tipodestino="enrecoleccion";
+            } else if($destino->flota_id!=null && $destino->flota->id!=null){
+                $tipodestino="envuelo";
+            }
+
 
             switch($destino->mision){
                 case "Transportar":
-                    //destino existe
-                    if($destino->flota!=null){ // flota
-                        $flotax=EnVuelo::where('publico',$destino->flota)->first();
-                        if($flotax!=null){
-                            $tipodestino="flota";
+                    $recursosDestino=new Recursos();
+                    switch($tipodestino){
+                        case "planeta":
                             //actualizamos sus recursos
+                            Recursos::calcularRecursos($destino->planeta->id);
+                            $recursosDestino=$destino->planeta->recursos;
+                        break;
+                        case "enrecoleccion":
+                            //actualizamos sus recursos
+                            Recursos::calcularRecoleccion($destino->enrecoleccion->planeta->id);
+                            $recursosDestino=$destino->enrecoleccion->recursos;
+                        break;
+                        case "enrecoleccion":
+                            //actualizamos sus recursos
+                            $recursosDestino=$destino->enorbita->recursos;
+                        break;
+                        case "envuelo":
 
-                        }else {
-                            //flota sigue su camino
-                        }
-                    } else { // planeta
-                        $planetadestino = Planetas::where('estrella', $destino->estrella)->where('orbita', $destino->orbita)->first();
-                        if($planetadestino!=null && $planetadestino->recursos!=null){
-                            $tipodestino="planeta";
-                            //actualizamos sus recursos
-                            Recursos::calcularRecursos($planetadestino->id);
-                            ///$recursos = Recursos::where('planetas_id', $planetadestino->id)->first();
-                        } else {
-                            //flota sigue su camino
-                        }
+                        break 2;
                     }
+
+                    //calcular capacidad carga
+
+                    //primero cantiddaes, luego prioridades (solo si es tuyo)
+                    // traspaso de recursos
+                    foreach ($recursosArray as $recurso) {
+                        //$cargaDestT+=1 * $cargaDest[$dest][$recurso];
+                    }
+
+
                     break;
                     case "Transferir":
                         //si los ids de todos los destinos es nulo es orbitar el planeta
@@ -608,7 +630,7 @@ public static function destinoTipoId($destino,$destinosDest){
 
             }
 
-
+            // doy este destino como acabado
 
 
         }
