@@ -26,7 +26,7 @@ class Destinos extends Model
 
     public function flota()
     {
-        return $this->hasMany(EnVuelo::class, 'id', "flota_id");
+        return $this->hasMany(EnVuelo::class, 'id', "en_vuelo_id");
     }
 
     public function enrecoleccion()

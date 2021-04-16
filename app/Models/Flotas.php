@@ -371,7 +371,7 @@ class Flotas extends Model
 public static function destinoTipoId($destino,$destinosDest){
 
     $planetas_id=null;
-    $flota_id=null;
+    $en_vuelo_id=null;
     $en_recoleccion_id=null;
     $en_orbita_id=null;
     $errores="";
@@ -393,7 +393,7 @@ public static function destinoTipoId($destino,$destinosDest){
 
             $flotadestino=EnVuelo::where('publico',$codigoDestino)->orWhere('nombre',$codigoDestino)->first();
             if($flotadestino!=null){
-                $flota_id=$flotadestino->id;
+                $en_vuelo_id=$flotadestino->id;
             } else {
                 $flotadestino=EnOrbita::where('publico',$codigoDestino)->orWhere('nombre',$codigoDestino)->first();
                 if($flotadestino!=null){
@@ -413,7 +413,7 @@ public static function destinoTipoId($destino,$destinosDest){
         }
 
         $destino->planetas_id=$planetas_id;
-        $destino->flota_id=$flota_id;
+        $destino->en_vuelo_id=$en_vuelo_id;
         $destino->en_orbita_id=$en_orbita_id;
         $destino->en_recoleccion_id=$en_recoleccion_id;
     } catch (\Exception $e) {
@@ -449,14 +449,14 @@ public static function destinoTipoId($destino,$destinosDest){
                 $ahora=date("Y-m-d H:i:s");
                 $puntoFlota=PuntosEnFlota::
                     where('fin','>',$ahora)
-                    ->where('en_vuelo_id',$flotax->id)
+                    ->where('flota_id',$flotax->id)
                     ->orderBy('fin', 'asc')
                     ->first();
 
                 //nuscamos destinoa actual
                 //$destinosO=$flotax->destinos;
                 $destino=Destinos::where("visitado",0)
-                ->where('en_vuelo_id',$flotax->id)
+                ->where('flota_id',$flotax->id)
                 ->orderBy('id', 'asc')
                 ->first();
                 //Log::info("destino: ".$destino);
@@ -466,9 +466,9 @@ public static function destinoTipoId($destino,$destinosDest){
                 }
                 else if($destino->mision_regreso!=null){
                     //se borran los viejos
-                    PuntosEnFlota::where('en_vuelo_id',$flotax->id)->delete();
+                    PuntosEnFlota::where('flota_id',$flotax->id)->delete();
                     //Log::info("Borrando destinos sobrantes: ".$flotax->id." ".$destino->id);
-                    Destinos::where('en_vuelo_id',$flotax->id)
+                    Destinos::where('flota_id',$flotax->id)
                     ->where("id",">",$destino->id)->delete();
 
                     $constantesU = Constantes::where('tipo', 'universo')->get();
@@ -498,7 +498,7 @@ public static function destinoTipoId($destino,$destinosDest){
                     $destino->initcoordy=$puntoFlota->coordy;
                     $destino->init=$Tinit;
                     $destino->fin=$Tfin;
-                    $destino->en_vuelo_id=$flotax->id;
+                    $destino->flota_id=$flotax->id;
 
                     $result=Flotas::destinoTipoId($destino,$destino);
                     $destino=$result[0];
@@ -524,7 +524,7 @@ public static function destinoTipoId($destino,$destinosDest){
                         $puntoFlota->coordx= $destino->initcoordx + $vectorx * ($tiempoPto * $tiempoPuntosFlotas);
                         $puntoFlota->coordy= $destino->initcoordy + $vectory * ($tiempoPto * $tiempoPuntosFlotas);
                         $puntoFlota->fin= $TfinPto;
-                        $puntoFlota->en_vuelo_id=$flotax->id;
+                        $puntoFlota->flota_id=$flotax->id;
                         $puntoFlota->jugadores_id=$flotax->jugadores_id;
                         //Log::info($puntoFlota);
                         $puntoFlota->save();
@@ -534,7 +534,7 @@ public static function destinoTipoId($destino,$destinosDest){
                     $puntoFlota->coordx= $destino->fincoordx;
                     $puntoFlota->coordy= $destino->fincoordy;
                     $puntoFlota->fin= $Tfin;
-                    $puntoFlota->en_vuelo_id=$flotax->id;
+                    $puntoFlota->flota_id=$flotax->id;
                     $puntoFlota->jugadores_id=$flotax->jugadores_id;
                     $puntoFlota->save();
 
@@ -578,7 +578,7 @@ public static function destinoTipoId($destino,$destinosDest){
                 $tipodestino="enorbita";
             } else if($destino->en_recoleccion_id!=null && $destino->enrecoleccion->id !=null){
                 $tipodestino="enrecoleccion";
-            } else if($destino->flota_id!=null && $destino->flota->id!=null){
+            } else if($destino->en_vuelo_id!=null && $destino->flota->id!=null){
                 $tipodestino="envuelo";
             }
 

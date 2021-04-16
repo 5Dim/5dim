@@ -496,7 +496,7 @@ class FlotaController extends Controller
                         $destino->fincoordy=$ajusteMapaFactor * $destinos[$dest]['fincoordy'] +$ajusteMapaBase;
                         $destino->init=$Tinit;
                         $destino->fin=$Tfin;
-                        $destino->en_vuelo_id=$flotax->id;
+                        $destino->flota_id=$flotax->id;
                         $destino->save();
 
                         $vectorx=(1 * $destinos[$dest]['fincoordx']-1 * $destinos[$destAnt]['fincoordx'])/$duracion;
@@ -511,7 +511,7 @@ class FlotaController extends Controller
                             $puntoFlota->coordx= $ajusteMapaFactor * ($destinos[$destAnt]['fincoordx'] + $vectorx * ($tiempoPto * $tiempoPuntosFlotas))+$ajusteMapaBase;
                             $puntoFlota->coordy= $ajusteMapaFactor * ($destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas))+$ajusteMapaBase;
                             $puntoFlota->fin= $TfinPto;
-                            $puntoFlota->en_vuelo_id=$flotax->id;
+                            $puntoFlota->flota_id=$flotax->id;
                             $puntoFlota->jugadores_id=$flotax->jugadores_id;
                             //Log::info($puntoFlota);
                             $puntoFlota->save();
@@ -521,7 +521,7 @@ class FlotaController extends Controller
                         $puntoFlota->coordx= $ajusteMapaFactor * ($destinos[$dest]['fincoordx'])+$ajusteMapaBase;
                         $puntoFlota->coordy= $ajusteMapaFactor * ($destinos[$dest]['fincoordy'])+$ajusteMapaBase;
                         $puntoFlota->fin= $Tfin;
-                        $puntoFlota->en_vuelo_id=$flotax->id;
+                        $puntoFlota->flota_id=$flotax->id;
                         $puntoFlota->jugadores_id=$flotax->jugadores_id;
                         $puntoFlota->save();
 
@@ -578,7 +578,7 @@ class FlotaController extends Controller
                     $naveSale->enFlota=$navex['enflota'];
                     $naveSale->enHangar=$navex['enhangar'];
                     $naveSale->disenios_id=$navex['id'];
-                    $naveSale->en_vuelo_id=$flotax->id;
+                    $naveSale->flota_id=$flotax->id;
                     $naveSale->save();
 
                     $naveP=$navesEnPlaneta->firstWhere('disenios_id',$navex['id']);
@@ -620,7 +620,7 @@ class FlotaController extends Controller
                 $recursosEnFlota->ma = $cargaDest[$dest]['ma'];
                 $recursosEnFlota->municion = $cargaDest[$dest]['municion'];
                 $recursosEnFlota->creditos = $cargaDest[$dest]['creditos'];
-                $recursosEnFlota->en_vuelo_id=$flotax->id;
+                $recursosEnFlota->flota_id=$flotax->id;
                 $recursosEnFlota->save();
                 //Log::info($recursosEnFlota);
 
