@@ -30,16 +30,16 @@ class CreateDestinosTable extends Migration
             $table->timestamp('init');
             $table->timestamp('fin')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('en_vuelo_id')->unsigned(); //flota a la que pertenece
+            $table->unsignedBigInteger('en_vuelo_id'); //flota a la que pertenece
             $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos');
 
-            $table->unsignedBigInteger('planetas_id')->unsigned()->nullable()->default(null); //planeta destino
+            $table->unsignedBigInteger('planetas_id')->nullable()->default(null); //planeta destino
             $table->foreign('planetas_id')->references('id')->on('planetas');
-            $table->unsignedBigInteger('flota_id')->unsigned()->nullable()->default(null); // flota destino
+            $table->unsignedBigInteger('flota_id')->nullable()->default(null); // flota destino
             $table->foreign('flota_id')->references('id')->on('en_vuelos');
-            $table->unsignedBigInteger('en_recoleccion_id')->unsigned()->nullable()->default(null);    //flota recoleccion destino
+            $table->unsignedBigInteger('en_recoleccion_id')->nullable()->default(null);    //flota recoleccion destino
             $table->foreign('en_recoleccion_id')->references('id')->on('en_recoleccions');
-            $table->unsignedBigInteger('en_orbita_id')->unsigned()->nullable()->default(null); //flota en orbita destino
+            $table->unsignedBigInteger('en_orbita_id')->nullable()->default(null); //flota en orbita destino
             $table->foreign('en_orbita_id')->references('id')->on('en_orbitas');
         });
     }
