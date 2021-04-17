@@ -482,9 +482,9 @@ class FlotaController extends Controller
                         $destino=$result[0];
                         $errores=$result[1];
                         if (strlen($errores)>3){
-                            //Log::info("coso" .$errores);
                             throw new \Exception($errores);
                         }
+                        //Log::info("coso".$dest." ".$errores);
 
                         $destino->initestrella=$destinos[$destAnt]['estrella'];
                         $destino->initorbita=$destinos[$destAnt]['orbita'];
@@ -497,7 +497,7 @@ class FlotaController extends Controller
                         $destino->init=$Tinit;
                         $destino->fin=$Tfin;
                         $destino->flota_id=$flotax->id;
-                        $destino->save();
+                        $destino->save();//Log::info("coso".$dest." ".$flotax->id);
 
                         $vectorx=(1 * $destinos[$dest]['fincoordx']-1 * $destinos[$destAnt]['fincoordx'])/$duracion;
                         $vectory=(1 * $destinos[$dest]['fincoordy']-1 * $destinos[$destAnt]['fincoordy'])/$duracion;

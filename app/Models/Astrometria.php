@@ -354,7 +354,7 @@ class Astrometria extends Model
 
                 $dist =  (pow(($destinoActualx - $coordDestx) * ($destinoActualx - $coordDestx) + ($destinoActualy - $coordDesty) * ($destinoActualy - $coordDesty), 1 / 2)); // /$luzdemallauniverso;
                 if (!$seveDestino && $dist < $radarRango){
-                    $flota->destino =$destinoActual['estrella']."x".$destinoActual['orbita'];
+                    $flota->destino =Astrometria::nombreDestino($flota->destino);;
                     $flota->coordfx =$destinoActualx;
                     $flota->coordfy =$destinoActualy;
                     $seveDestino=true;
@@ -380,7 +380,7 @@ class Astrometria extends Model
                 $flota->coordfy =$ptoFlota->coordy;
 
             } else {
-                $flota->destino =$destinoActual['estrella']."x".$destinoActual['orbita'];
+                $flota->destino =Astrometria::nombreDestino($flota->destino);
                 $flota->trestante = $trestante;
             }
 
@@ -392,7 +392,7 @@ class Astrometria extends Model
             $flota->coordiy =$destinoActual->initcoordy;
             $flota->coordfx =$destinoActual->fincoordx;
             $flota->coordfy =$destinoActual->fincoordy;
-            $flota->destino =$destinoActual['estrella']."x".$destinoActual['orbita'];
+            $flota->destino =Astrometria::nombreDestino($flota->destino);
             $flota->color = 2;
 
             $flota->tvuelo = $tiempovuelo;
@@ -410,7 +410,7 @@ class Astrometria extends Model
             $flota->coordiy =$destinoActual->initcoordy;
             $flota->coordfx =$destinoActual->fincoordx;
             $flota->coordfy =$destinoActual->fincoordy;
-            $flota->destino =$destinoActual['estrella']."x".$destinoActual['orbita'];
+            $flota->destino =Astrometria::nombreDestino($flota->destino);//$destinoActual['estrella']."x".$destinoActual['orbita'];
             $flota->color =1;
 
             $flota->tvuelo = $tiempovuelo;
@@ -440,7 +440,50 @@ class Astrometria extends Model
 
     }
 
+    public static function tipoDestino($destino){
+
+        $tipodestino=null;
+        if($destino->planetas_id!=null && $destino->planeta->id !=null){
+            $tipodestino="planeta";
+        } else if($destino->en_orbita_id!=null && $destino->enorbita->id !=null){
+            $tipodestino="enorbita";
+        } else if($destino->en_recoleccion_id!=null && $destino->enrecoleccion->id !=null){
+            $tipodestino="enrecoleccion";
+        } else if($destino->en_vuelo_id!=null && $destino->flota->id!=null){
+            $tipodestino="envuelo";
+        }
+
+        return $tipodestino;
+    }
+
+    public static function nombreDestino($destino){
+
+        $tipodestino=Astrometria::tipoDestino($destino);
+        $nombreDestino="";
+
+        switch($tipodestino){
+            case "planeta":
+                $nombreDestino=$destino->planeta->sistema."x".$destino->planeta->orbita;
+            break;
+            case "enrecoleccion":
+
+            break;
+            case "enrecoleccion":
+
+            break;
+            case "envuelo":
+
+            break;
+        }
+
+
+        return $nombreDestino;
+    }
+
 }
+
+
+
 
 /*
 https://paiza.io/projects/kMVLKwrlHqzGuSlA4PbKaQ

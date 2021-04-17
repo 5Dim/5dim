@@ -570,18 +570,7 @@ public static function destinoTipoId($destino,$destinosDest){
 
         foreach($listaDestinosEntrantes as $destino){
 
-
-            $tipodestino=null;
-            if($destino->planetas_id!=null && $destino->planeta->id !=null){
-                $tipodestino="planeta";
-            } else if($destino->en_orbita_id!=null && $destino->enorbita->id !=null){
-                $tipodestino="enorbita";
-            } else if($destino->en_recoleccion_id!=null && $destino->enrecoleccion->id !=null){
-                $tipodestino="enrecoleccion";
-            } else if($destino->en_vuelo_id!=null && $destino->flota->id!=null){
-                $tipodestino="envuelo";
-            }
-
+            $tipodestino=Astrometria::tipoDestino($destino);
 
             switch($destino->mision){
                 case "Transportar":
