@@ -141,7 +141,7 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestDisenio;
                         $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $costosIniciales = [$codigo, 500, 500, 15000, 0, 5000, 0, 0, 0, 0, 900];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -154,7 +154,7 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestDisenio;
                         $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $costosIniciales = [$codigo, 5000, 500, 1000, 15000, 0, 0, 0, 0, 0, 1000];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -167,7 +167,20 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestDisenio;
                         $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $costosIniciales = [$codigo, 20000, 20000, 0, 0, 0, 0, 5000, 0, 0, 1100];
+                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
+                        break;
+
+                    case "invPlacas":
+                        // maximos
+                        $factorRebajaXMaximo = 1;
+                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
+                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
+                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
+                        }
+                        $costoIT = $costoInvestDisenio;
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 750, 750, 0, 7500, 15000, 0, 0, 0, 0, 1200];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -180,20 +193,7 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestDisenio;
                         $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
-                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
-                        break;
-
-                    case "invResinas":
-                        // maximos
-                        $factorRebajaXMaximo = 1;
-                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
-                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
-                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
-                        }
-                        $costoIT = $costoInvestDisenio;
-                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 1000, 0, 0, 0, 12000, 0, 0, 0, 0, 1200];
+                        $costosIniciales = [$codigo, 1000, 1000, 0, 0, 0, 7000, 14000, 0, 0, 1300];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 

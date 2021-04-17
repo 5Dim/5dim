@@ -14,10 +14,6 @@
                         aria-controls="colonia" aria-selected="true">
                         Colonia
                     </a>
-                    <a class="nav-item nav-link" id="imperio-tab" data-bs-toggle="tab" href="#imperio" role="tab"
-                        aria-controls="imperio" aria-selected="false">
-                        Imperio
-                    </a>
                     <a class="nav-item nav-link" id="refugio-tab" data-bs-toggle="tab" href="#refugio" role="tab"
                         aria-controls="refugio" aria-selected="false">
                         Refugio
@@ -813,8 +809,6 @@
                             </td>
                         </tr>
                     </table>
-                </div>
-                <div class="tab-pane fade show" id="imperio" role="tabpanel" aria-labelledby="imperio-tab">
                 </div>
                 <div class="tab-pane fade show" id="refugio" role="tabpanel" aria-labelledby="refugio-tab">
                     <table class="table table-sm table-borderless text-center anchofijo cajita rounded">
