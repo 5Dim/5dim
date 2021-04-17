@@ -31,16 +31,16 @@ class Destinos extends Model
 
     public function enrecoleccion()
     {
-        return $this->hasOne(EnRecoleccion::class);
+        return $this->hasOne(EnRecoleccion::class, 'id', "en_recoleccion_id");
     }
 
     public function enorbita()
     {
-        return $this->hasOne(EnOrbita::class);
+        return $this->hasOne(EnOrbita::class, 'id', "en_orbita_id");
     }
 
     public function planeta()
     {
-        return $this->hasOne(Planetas::class);
+        return $this->hasOne(Planetas::class, 'id', "planetas_id");
     }
 }

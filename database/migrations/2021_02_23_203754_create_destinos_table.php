@@ -18,6 +18,7 @@ class CreateDestinosTable extends Migration
             $table->decimal('porcentVel', 5, 2, true);
             $table->string('mision');
             $table->string('mision_regreso')->nullable()->default(null);
+            $table->string('initflota')->nullable()->default(null);
             $table->unsignedMediumInteger('initestrella');
             $table->unsignedTinyInteger('initorbita');
             $table->unsignedMediumInteger('estrella');
@@ -30,12 +31,12 @@ class CreateDestinosTable extends Migration
             $table->timestamp('init');
             $table->timestamp('fin')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('flota_id')->nullable()->default(null);              // flota propietaria de la ruta
+            $table->unsignedBigInteger('flota_id');             // flota propietaria de la ruta
             $table->foreign('flota_id')->references('id')->on('en_vuelos');
 
             $table->unsignedBigInteger('planetas_id')->nullable()->default(null);           //planeta destino
             $table->foreign('planetas_id')->references('id')->on('planetas');
-            $table->unsignedBigInteger('en_vuelo_id');                                      //flota en vuelo destino
+            $table->unsignedBigInteger('en_vuelo_id')->nullable()->default(null);           //flota en vuelo destino
             $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos');
             $table->unsignedBigInteger('en_recoleccion_id')->nullable()->default(null);     //flota recoleccion destino
             $table->foreign('en_recoleccion_id')->references('id')->on('en_recoleccions');

@@ -511,9 +511,9 @@ class FlotaController extends Controller
                             $puntoFlota->coordx= $ajusteMapaFactor * ($destinos[$destAnt]['fincoordx'] + $vectorx * ($tiempoPto * $tiempoPuntosFlotas))+$ajusteMapaBase;
                             $puntoFlota->coordy= $ajusteMapaFactor * ($destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas))+$ajusteMapaBase;
                             $puntoFlota->fin= $TfinPto;
-                            $puntoFlota->flota_id=$flotax->id;
+                            $puntoFlota->en_vuelo_id=$flotax->id;
                             $puntoFlota->jugadores_id=$flotax->jugadores_id;
-                            //Log::info($puntoFlota);
+                            //Log::info("puntoflota".$puntoFlota);
                             $puntoFlota->save();
                         }
                         //ultimo punto siempre va
@@ -521,7 +521,7 @@ class FlotaController extends Controller
                         $puntoFlota->coordx= $ajusteMapaFactor * ($destinos[$dest]['fincoordx'])+$ajusteMapaBase;
                         $puntoFlota->coordy= $ajusteMapaFactor * ($destinos[$dest]['fincoordy'])+$ajusteMapaBase;
                         $puntoFlota->fin= $Tfin;
-                        $puntoFlota->flota_id=$flotax->id;
+                        $puntoFlota->en_vuelo_id=$flotax->id;
                         $puntoFlota->jugadores_id=$flotax->jugadores_id;
                         $puntoFlota->save();
 
@@ -578,7 +578,7 @@ class FlotaController extends Controller
                     $naveSale->enFlota=$navex['enflota'];
                     $naveSale->enHangar=$navex['enhangar'];
                     $naveSale->disenios_id=$navex['id'];
-                    $naveSale->flota_id=$flotax->id;
+                    $naveSale->en_vuelo_id=$flotax->id;
                     $naveSale->save();
 
                     $naveP=$navesEnPlaneta->firstWhere('disenios_id',$navex['id']);
@@ -620,7 +620,7 @@ class FlotaController extends Controller
                 $recursosEnFlota->ma = $cargaDest[$dest]['ma'];
                 $recursosEnFlota->municion = $cargaDest[$dest]['municion'];
                 $recursosEnFlota->creditos = $cargaDest[$dest]['creditos'];
-                $recursosEnFlota->flota_id=$flotax->id;
+                $recursosEnFlota->en_vuelo_id=$flotax->id;
                 $recursosEnFlota->save();
                 //Log::info($recursosEnFlota);
 
@@ -630,7 +630,7 @@ class FlotaController extends Controller
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores="Error en Commit de envio de flotas ".$errores;//.$e;
-                Log::info($errores);
+                Log::info($errores." ".$e);
             }
             //return redirect('/juego/flota');
         } else {
