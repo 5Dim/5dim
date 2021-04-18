@@ -210,7 +210,7 @@ class AstrometriaController extends Controller
                 $orbita->nom_pla = "";
                 $orbita->nom_jug = "";
                 $orbita->alianza = "";
-                if (!empty($planetaActual)) {
+                if (empty($planetaActual)) {
                     $orbita->img_planeta = "";
                 } else {
                     $orbita->img_planeta = "planeta0.png";
