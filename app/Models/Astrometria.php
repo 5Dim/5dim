@@ -464,8 +464,8 @@ class Astrometria extends Model
 
         switch($tipodestino){
             case "planeta":
-                Log::info("destino planeta ".$destino->planeta);
-                $nombreDestino=$destino->planeta->sistema."x".$destino->planeta->orbita;
+               // Log::info("destino planeta ".$destino->planeta);
+                $nombreDestino=$destino->planeta->estrella."x".$destino->planeta->orbita;
             break;
             case "enrecoleccion":
 

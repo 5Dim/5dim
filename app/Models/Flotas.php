@@ -567,6 +567,7 @@ public static function destinoTipoId($destino,$destinosDest){
         $ahora=date("Y-m-d H:i:s");
         $listaDestinosEntrantes=Destinos::where('fin','>',$ahora)->where("visitado","0")->get();
 
+        Log::info("listaDestinosEntrantes ".$listaDestinosEntrantes);
 
         foreach($listaDestinosEntrantes as $destino){
 
@@ -577,9 +578,15 @@ public static function destinoTipoId($destino,$destinosDest){
                     $recursosDestino=new Recursos();
                     switch($tipodestino){
                         case "planeta":
-                            //actualizamos sus recursos
-                            Recursos::calcularRecursos($destino->planeta->id);
-                            $recursosDestino=$destino->planeta->recursos;
+                            if($destino->planeta->jugadores_id!=null){
+                                //actualizamos sus recursos
+                                Log::info("planeta".$destino->planeta->id);
+                                Recursos::calcularRecursos($destino->planeta->id);
+                                $recursosDestino=$destino->planeta->recursos;
+                            } else {
+                                break 3;
+                            }
+
                         break;
                         case "enrecoleccion":
                             //actualizamos sus recursos
@@ -595,7 +602,12 @@ public static function destinoTipoId($destino,$destinosDest){
                         break 2;
                     }
 
+                    Log::info($tipodestino."recursosDestino ".$recursosDestino);
+                    $estaFlota=$destino->flota;
+                    Log::info("estaFlota ".$estaFlota);
                     //calcular capacidad carga
+                    $cargaT=Disenios::cargaTotal($estaFlota->diseniosenvuelo);
+                    Log::info("cargaT ".$cargaT);
 
                     //primero cantiddaes, luego prioridades (solo si es tuyo)
                     // traspaso de recursos

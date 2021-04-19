@@ -215,61 +215,48 @@ class Disenios extends Model
         return $diseniosR;
     }
 
-    public static function mejoraCarga($disenios)
+    public static function cargaTotal($disenios)
     {
         $investigacion = Investigaciones::where('codigo', 'invCarga')->first()->nivel;
         $constante = Constantes::where('codigo', 'mejorainvCarga')->first()->valor;
-        $diseniosR = [];
+        $mejorasT=0;
 
         foreach ($disenios as $disenio) {
             $mejoras = $disenio->mejoras;
-            $datos = new MejorasDisenios();
             if ($mejoras->carga > 0) {
-                $datos->carga = $mejoras->carga * (1 + ($investigacion * $constante));
-            } else {
-                $datos->carga = 0;
+                $mejorasT += $mejoras->carga;
             }
-            $disenio['datos'] = $datos;
-            array_push($diseniosR, $disenio);
         }
-        return $diseniosR;
+        return $mejorasT * (1 + ($investigacion * $constante));
     }
-    public static function mejoraRecoleccion($disenios)
+
+    public static function recoleccionTotal($disenios)
     {
         $investigacion = Investigaciones::where('codigo', 'invRecoleccion')->first()->nivel;
         $constante = Constantes::where('codigo', 'mejorainvRecoleccion')->first()->valor;
-        $diseniosR = [];
+        $mejorasT=0;
 
         foreach ($disenios as $disenio) {
             $mejoras = $disenio->mejoras;
-            $datos = new MejorasDisenios();
             if ($mejoras->recoleccion > 0) {
-                $datos->recoleccion = $mejoras->recoleccion * (1 + ($investigacion * $constante));
-            } else {
-                $datos->recoleccion = 0;
+                $mejorasT +=  $mejoras->recoleccion;
             }
-            $disenio['datos'] = $datos;
-            array_push($diseniosR, $disenio);
         }
-        return $diseniosR;
+        return $mejorasT * (1 + ($investigacion * $constante));
     }
-    public static function mejoraExtraccion($disenios)
+
+    public static function extraccionTotal($disenios)
     {
         $investigacion = Investigaciones::where('codigo', 'invRecoleccion')->first()->nivel;
         $constante = Constantes::where('codigo', 'mejorainvRecoleccion')->first()->valor;
-        $diseniosR = [];
+        $mejorasT=0;
 
         foreach ($disenios as $disenio) {
             $mejoras = $disenio->mejoras;
-            $datos = new MejorasDisenios();
             if ($mejoras->extraccion > 0) {
-                $datos->extraccion = $mejoras->extraccion * (1 + ($investigacion * $constante));
-            } else {
-                $datos->extraccion = 0;
+                $mejorasT +=  $mejoras->extraccion;
             }
-            $disenio['datos'] = $datos;
-            array_push($diseniosR, $disenio);
         }
-        return $diseniosR;
+        return $mejorasT * (1 + ($investigacion * $constante));
     }
 }
