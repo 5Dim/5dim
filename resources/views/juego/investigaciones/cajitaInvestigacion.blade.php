@@ -4,7 +4,7 @@
             <table class="table table-borderless borderless table-sm text-center anchofijo"
                 style="margin-top: 5px !important">
                 <tr>
-                    <td colspan="4" class="text-success text-center borderless align-middle">
+                    <td colspan="3" class="text-success text-center borderless align-middle">
                         {{ trans('investigacion.' . $investigacion->codigo) }} nivel {{ $investigacion->nivel }} (de 90)
                         <span class="text-warning">
                             {{ count($investigacion->eninvestigaciones) > 0 ? 'En cola nivel: ' . $investigacion->eninvestigaciones[count($investigacion->eninvestigaciones) - 1]->nivel : '' }}
@@ -33,7 +33,7 @@
                     <td rowspan="4" class="anchofijo text-warning borderless"><img class="rounded"
                             src="{{ asset('img/juego/skin0/investigaciones/' . $investigacion->codigo . '.jpg') }}"
                             width="90" height="90"></td>
-                    <td colspan="11" class="borderless">&nbsp;</td>
+                    <td colspan="10" class="borderless">&nbsp;</td>
                 </tr>
                 <tr>
                     <td
@@ -68,7 +68,6 @@
                     <td
                         class="anchofijo {{ $investigacion->coste->municion == 0 ? 'text-muted' : 'text-warning' }} borderless">
                         Munición</td>
-                    <td class="anchofijo text-muted borderless">Personal</td>
                 </tr>
                 <tr>
                     @if ($investigacion->coste->mineral > 0 and $investigacion->coste->mineral > $recursos->mineral)
@@ -196,18 +195,6 @@
                             <td class="anchofijo text-light borderless">
                             </td>
                     @endif
-                    @if ($investigacion->coste->personal > 0 and $investigacion->coste->personal > $recursos->personal)
-                        <td class="anchofijo text-danger borderless">
-                            {{ $investigacion->coste->personal == '' ? $investigacion->coste->personal : number_format($investigacion->coste->personal, 0, ',', '.') }}
-                        </td>
-                    @elseif($investigacion->coste->personal > 0 and $investigacion->coste->personal < $recursos->personal)
-                            <td class="anchofijo text-light borderless">
-                                {{ $investigacion->coste->personal == '' ? $investigacion->coste->personal : number_format($investigacion->coste->personal, 0, ',', '.') }}
-                            </td>
-                        @else
-                            <td class="anchofijo text-light borderless">
-                            </td>
-                    @endif
                 </tr>
                 <tr>
                     @if ($investigacion->coste->mineral > 0 and $investigacion->coste->mineral > $recursos->mineral)
@@ -330,18 +317,6 @@
                     @elseif($investigacion->coste->municion > 0 and $investigacion->coste->municion < $recursos->municion)
                             <td class="anchofijo text-light borderless">
                                 {{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($recursos->municion - $investigacion->coste->municion, 0, ',', '.') }}
-                            </td>
-                        @else
-                            <td class="anchofijo text-light borderless">
-                            </td>
-                    @endif
-                    @if ($investigacion->coste->personal > 0 and $investigacion->coste->personal > $recursos->personal)
-                        <td class="anchofijo text-danger borderless">
-                            {{ $investigacion->coste->personal == '' ? $investigacion->coste->personal : number_format($recursos->personal - $investigacion->coste->personal, 0, ',', '.') }}
-                        </td>
-                    @elseif($investigacion->coste->personal > 0 and $investigacion->coste->personal < $recursos->personal)
-                            <td class="anchofijo text-light borderless">
-                                {{ $investigacion->coste->personal == '' ? $investigacion->coste->personal : number_format($recursos->personal - $investigacion->coste->personal, 0, ',', '.') }}
                             </td>
                         @else
                             <td class="anchofijo text-light borderless">
