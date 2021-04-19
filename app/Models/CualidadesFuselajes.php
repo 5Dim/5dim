@@ -349,7 +349,7 @@ class CualidadesFuselajes extends Model
                 $inirec13 = 1;    //energia
                 $inirec14 = 1; //tiempo
                 $inirec15 = 1; //moneda
-                $inirec16 = 2.2; ////defensa ya tiene en cuenta el tamanio y cuando sale
+                $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 2.5;   //factor de velocidad base
                 $inirec19 = 1;
                 $maxvel = 16; // indica la velocidad máxima que puede tener este disenio,
@@ -1161,7 +1161,7 @@ class CualidadesFuselajes extends Model
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
                 $inirec15 = 1;  //moneda
-                $inirec16 = 150; ////defensa ya tiene en cuenta el tamanio y cuando sale
+                $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 180;   //factor de velocidad base
                 $inirec19 = 1;
                 $maxvel = 18; // indica la velocidad máxima que puede tener este disenio,
@@ -1477,7 +1477,7 @@ class CualidadesFuselajes extends Model
                 $inirec13 = 1;    //energia
                 $inirec14 = 1;  //tiempo
                 $inirec15 = 1;  //moneda
-                $inirec16 = 14; ////defensa ya tiene en cuenta el tamanio y cuando sale
+                $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
                 $inirec18 = 14;   //factor de velocidad base
                 $inirec19 = 1;
                 $maxvel = 17; // indica la velocidad máxima que puede tener este disenio,
