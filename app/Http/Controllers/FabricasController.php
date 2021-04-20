@@ -82,6 +82,12 @@ class FabricasController extends Controller
         $inicio = date("Y-m-d H:i:s");
         $error = false;
 
+        $cola = EnDisenios::where('planetas_id', session()->get('planetas_id'))->get()->last();
+
+        if (!empty($cola)) {
+            $inicio = $cola->finished_at;
+        }
+
         //Comprobamos si hay recursos
         if ($recursos->mineral < ($costes->mineral * $cantidad)) {
             $error = true;
