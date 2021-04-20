@@ -181,7 +181,7 @@ class AstrometriaController extends Controller
                     $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : "";
                     $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : "";
                     $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : "";
-                    $orbita->b_observar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : ""; // Posibilidad de incluirlo dentro del mapa
+                    $orbita->b_observar = ""; // Posibilidad de incluirlo dentro del mapa
                     $orbita->b_enviar = !empty($planetaActual->nombre) ? "/juego/flotas/" . $numeroSistema . "/" . $i . "/atacar" : "";
                     $orbita->b_verorbita = "/juego/flotas/" . $numeroSistema . "/" . $i . "/orbitar";
                 } else {
@@ -197,8 +197,8 @@ class AstrometriaController extends Controller
                     $orbita->plastico = "";
                     $orbita->ceramica = "";
                     $orbita->b_observar = "";
-                    $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar";
-                    $orbita->b_verorbita = "";
+                    $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i;
+                    $orbita->b_verorbita = "/juego/flotas";
                 }
                 array_push($planetas, $orbita);
             }
@@ -221,8 +221,8 @@ class AstrometriaController extends Controller
                 $orbita->plastico = "";
                 $orbita->ceramica = "";
                 $orbita->b_observar = "";
-                $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i . "/colonizar";
-                $orbita->b_verorbita = "";
+                $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i;
+                $orbita->b_verorbita = "/juego/flotas";
                 array_push($planetas, $orbita);
             }
         }
