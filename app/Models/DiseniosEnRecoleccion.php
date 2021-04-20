@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DiseniosEnRecoleccion extends Model
 {
     use HasFactory;
+
+    public function disenios()
+    {
+        return $this->belongsTo(Disenios::class);
+    }
 }

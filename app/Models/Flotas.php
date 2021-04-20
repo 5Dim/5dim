@@ -566,25 +566,42 @@ public static function destinoTipoId($destino,$destinosDest){
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $ahora=date("Y-m-d H:i:s");
         $listaDestinosEntrantes=Destinos::where('fin','>',$ahora)->where("visitado","0")->get();
+        $errores="";
 
         Log::info("listaDestinosEntrantes ".$listaDestinosEntrantes);
 
         foreach($listaDestinosEntrantes as $destino){
 
             $tipodestino=Astrometria::tipoDestino($destino);
+            $destinoEsMio=false;
+            $destinoAlcanzado=false;
+            $estaFlota=$destino->flota;
+            $recursosFlota=$estaFlota->recursosenflota;
+            $recursosQuieroCargar=$destino->recursos;
+            $recursosDestino=new Recursos();
+            $guardarCambios=false;
+
+
+            //Log::info("destino ".$destino);
 
             switch($destino->mision){
                 case "Transportar":
-                    $recursosDestino=new Recursos();
+
                     switch($tipodestino){
                         case "planeta":
+                            //Log::info("planeta destino".$destino->planeta);
+
                             if($destino->planeta->jugadores_id!=null){
                                 //actualizamos sus recursos
-                                Log::info("planeta".$destino->planeta->id);
+                                //Log::info("planeta".$destino->planeta->id);
                                 Recursos::calcularRecursos($destino->planeta->id);
                                 $recursosDestino=$destino->planeta->recursos;
+                                $destinoEsMio=Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id,$destino->planeta->id);
+
+                                //Log::info("recursosDestino ".$recursosDestino." destinoEsMio ".$destinoEsMio);
                             } else {
-                                break 3;
+                                $destinoAlcanzado=true;
+                                break 2;
                             }
 
                         break;
@@ -602,17 +619,50 @@ public static function destinoTipoId($destino,$destinosDest){
                         break 2;
                     }
 
-                    Log::info($tipodestino."recursosDestino ".$recursosDestino);
-                    $estaFlota=$destino->flota;
-                    Log::info("estaFlota ".$estaFlota);
+                    //Log::info($tipodestino."recursosDestino ".$recursosDestino);
+
+                    //Log::info("estaFlota ".$estaFlota." diseños".$estaFlota->diseniosenvuelo);
                     //calcular capacidad carga
-                    $cargaT=Disenios::cargaTotal($estaFlota->diseniosenvuelo);
-                    Log::info("cargaT ".$cargaT);
+                    $cargaMaxima=Disenios::cargaTotal($estaFlota->diseniosenvuelo);
+                    $cargaTotalLLevo=Disenios::cargaTotalRecursos($recursosFlota);
+
+                    //Log::info("cargaTotalLLevo ".$cargaTotalLLevo."  cargaMaxima ".$cargaMaxima);
+                    // carga total que llevo ahora
 
                     //primero cantiddaes, luego prioridades (solo si es tuyo)
-                    // traspaso de recursos
+
+                    // traspaso de recursos por cantidad
                     foreach ($recursosArray as $recurso) {
-                        //$cargaDestT+=1 * $cargaDest[$dest][$recurso];
+
+                        if($recursosQuieroCargar[$recurso]>0){
+
+                            $difCarga=$recursosFlota[$recurso] - $recursosQuieroCargar[$recurso]; //si es <1 me llevo cosas
+
+                            if($difCarga<0 && $destinoEsMio){ // si no es mio no me llevo nada
+                                $difCarga=0;
+                            }
+
+                            if($difCarga<0 && $recursosDestino[$recurso]<$difCarga){ //no me llevo mas de lo que hay
+                                $difCarga=$recursosDestino;
+                            }
+
+                            if($difCarga>0 && $recursosFlota[$recurso]>$difCarga){ //no dejo mas de lo que llevo
+                                $difCarga=$recursosFlota[$recurso];
+                            }
+
+                            if($difCarga>0 && $cargaTotalLLevo+$difCarga>$cargaMaxima){  //no cargo mas de mi capacidad
+                                $difCarga=$cargaMaxima-$cargaTotalLLevo;
+                            }
+
+                            if($difCarga!=0){ //se hace el traspaso
+                                //Log::info("difCarga ".$difCarga."  recursosFlota[recurso] ".$recursosFlota[$recurso]."  recursosDestino[recurso] ".$recursosDestino[$recurso]);
+                                $recursosFlota[$recurso]-=$difCarga;
+                                $recursosDestino[$recurso]+=$difCarga;
+                                $cargaTotalLLevo+=$difCarga;
+                                $guardarCambios=true;
+                            }
+                        }
+
                     }
 
 
@@ -632,13 +682,34 @@ public static function destinoTipoId($destino,$destinosDest){
             }
 
             // doy este destino como acabado
+            DB::beginTransaction();
+            try {
+                if($guardarCambios){
+                    $recursosFlota->save();
+                    $recursosDestino->save();
+                }
 
+                if($destinoAlcanzado){
+                    //$destino->visitado=1;
+                }
+
+            DB::commit();
+            //Log::info("Enviada");
+
+            } catch (Exception $e) {
+                DB::rollBack();
+                $errores="Error en Commit recepción de flotas ".$errores;//.$e;
+                Log::info($errores." ".$e);
+            }
 
         }
 
 
 
     }
+
+
+
 
 
 }
