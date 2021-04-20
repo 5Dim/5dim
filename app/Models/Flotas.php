@@ -580,7 +580,7 @@ public static function destinoTipoId($destino,$destinosDest){
             $recursosQuieroCargar=$destino->recursos;
             $recursosDestino=new Recursos();
             $guardarCambios=false;
-
+            $prioridadesDestino=$destino->prioridades;
 
             //Log::info("destino ".$destino);
 
@@ -596,7 +596,7 @@ public static function destinoTipoId($destino,$destinosDest){
                                 //Log::info("planeta".$destino->planeta->id);
                                 Recursos::calcularRecursos($destino->planeta->id);
                                 $recursosDestino=$destino->planeta->recursos;
-                                $destinoEsMio=Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id,$destino->planeta->id);
+                                $destinoEsMio=Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id,$destino->planeta->jugadores_id);
 
                                 //Log::info("recursosDestino ".$recursosDestino." destinoEsMio ".$destinoEsMio);
                             } else {
@@ -642,15 +642,15 @@ public static function destinoTipoId($destino,$destinosDest){
                                 $difCarga=0;
                             }
 
-                            if($difCarga<0 && $recursosDestino[$recurso]<$difCarga){ //no me llevo mas de lo que hay
-                                $difCarga=$recursosDestino;
+                            if($difCarga<0 && $destinoEsMio && $recursosDestino[$recurso]<$difCarga){ //no me llevo mas de lo que hay
+                                $difCarga=$recursosDestino[$recurso];
                             }
 
-                            if($difCarga>0 && $recursosFlota[$recurso]>$difCarga){ //no dejo mas de lo que llevo
+                            if($difCarga>0 && $recursosFlota[$recurso]>$difCarga){ //no dejo mas de la diferencia
                                 $difCarga=$recursosFlota[$recurso];
                             }
 
-                            if($difCarga>0 && $cargaTotalLLevo+$difCarga>$cargaMaxima){  //no cargo mas de mi capacidad
+                            if($difCarga<0 && $destinoEsMio && $cargaTotalLLevo+$difCarga>$cargaMaxima){  //no cargo mas de mi capacidad
                                 $difCarga=$cargaMaxima-$cargaTotalLLevo;
                             }
 
@@ -662,8 +662,31 @@ public static function destinoTipoId($destino,$destinosDest){
                                 $guardarCambios=true;
                             }
                         }
-
                     }
+
+                    Log::info($destinoEsMio."prioridad ".$prioridadesDestino);
+                    //carga por prioridades
+                    if ($destinoEsMio){
+                        for ($ordinal=1;$ordinal<16;$ordinal++){
+                            foreach ($recursosArray as $recurso) {
+                                //Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
+                                if($prioridadesDestino[$recurso]==$ordinal){
+                                    $difCarga=$recursosDestino[$recurso];
+
+                                    Log::info("cargas prior ".$difCarga." cargaTotalLLevo ".$cargaTotalLLevo." cargaMaxima ".$cargaMaxima);
+                                    if($cargaTotalLLevo+$difCarga>$cargaMaxima){  //no cargo mas de mi capacidad
+                                        $difCarga=Round($cargaMaxima-$cargaTotalLLevo);
+                                        $recursosFlota[$recurso]+=$difCarga;
+                                        $recursosDestino[$recurso]-=$difCarga;
+                                        $cargaTotalLLevo+=$difCarga;
+                                        $guardarCambios=true;
+                                        Log::info("difCarga ".$difCarga." ".$recurso."  recursosFlota[recurso] ".$recursosFlota[$recurso]."  recursosDestino[recurso] ".$recursosDestino[$recurso]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
 
 
                     break;
@@ -687,10 +710,13 @@ public static function destinoTipoId($destino,$destinosDest){
                 if($guardarCambios){
                     $recursosFlota->save();
                     $recursosDestino->save();
+                    $destinoAlcanzado=true;
                 }
 
                 if($destinoAlcanzado){
-                    //$destino->visitado=1;
+                    //Log::info("visitado ");
+                    $destino['visitado']=1;
+                    $destino->save();
                 }
 
             DB::commit();

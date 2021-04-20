@@ -1084,8 +1084,8 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 1;
-        $constante->minimo = .5;
+        $constante->valor = .5;
+        $constante->minimo = .1;
         $constante->maximo = 2;
         $constante->codigo = 'fuelpordistancia';
         $constante->descripcion = 'factor de gasto de fuel por unidad de distancia';

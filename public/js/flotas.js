@@ -819,6 +819,11 @@ function enviarFlota() {
         alert(errores);
     } else {
         flota.nombre= $("#nombreFlota").val();
+        for (dest = 1; dest < destinos.length; dest++) {
+            recursosArray.forEach(res => {
+                prioridades[dest][res]=$("#prioridad" + res + dest).val();
+            });
+        }
 
         $.ajax({
             type: "post",
