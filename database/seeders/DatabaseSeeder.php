@@ -4,12 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-
 use App\Models\User;
-use App\Models\Recursos;
-use App\Models\CualidadesPlanetas;
-use App\Models\Jugadores;
 use App\Models\Planetas;
+
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
         // \App\Models\User::factory(10)->create();
         User::factory()->times(1)->create([
             'name' => 'McGuten',
@@ -52,7 +51,9 @@ class DatabaseSeeder extends Seeder
         Planetas::factory()->times(50)->create([
             'tipo' => 'canon',
         ]);
-        // CualidadesPlanetas::factory()->times(1000)->create();
-        // Recursos::factory()->times(1)->create();
+        Planetas::factory()->times(500)->create([
+            'tipo' => 'asteroide',
+            'imagen' => $faker->numberBetween(74, 79),
+        ]);
     }
 }
