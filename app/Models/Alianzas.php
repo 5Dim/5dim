@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Alianzas extends Model
 {
@@ -49,5 +50,24 @@ class Alianzas extends Model
 
         }
         return $idMiembros;
+    }
+
+    // mira para las flotas si el jugador propietario (que NO el jugador activo) puede hacer cosas como propias en destino
+    public static function idSoyYoOMiAlianza($idMio,$idDestino){
+
+        if($idMio==$idDestino){
+            return true;
+        }
+
+        $miJugador=Jugadores::where("id",$idMio)->first();
+
+        if ($miJugador->alianzas_id!=null){
+            $miAlianza=Alianzas::where("id",$miJugador['alianzas_id'])->get();
+            if ($miAlianza!=null && $miAlianza->id==$idDestino){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

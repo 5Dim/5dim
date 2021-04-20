@@ -13,4 +13,9 @@ class DiseniosEnVuelo extends Model
     {
         return $this->hasOne(EnVuelo::class);
     }
+
+    public function disenios()
+    {
+        return $this->belongsTo(Disenios::class);
+    }
 }

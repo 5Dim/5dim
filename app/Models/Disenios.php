@@ -61,6 +61,22 @@ class Disenios extends Model
         return $this->hasOne(MejorasDisenios::class);
     }
 
+    public function enVuelo()
+    {
+        return $this->hasMany(DiseniosEnVuelo::class);
+    }
+
+    public function enOrbita()
+    {
+        return $this->hasMany(DiseniosEnOrbita::class);
+    }
+
+    public function enRecoleccion()
+    {
+        return $this->hasMany(DiseniosEnRecoleccion::class);
+    }
+
+
     public static function calculaMejoras($disenios)
     {
         $investigaciones = Jugadores::find(session()->get('jugadores_id'))->investigaciones;
@@ -221,8 +237,10 @@ class Disenios extends Model
         $constante = Constantes::where('codigo', 'mejorainvCarga')->first()->valor;
         $mejorasT=0;
 
+        //Log::info("diseniosx ".$disenios);
+
         foreach ($disenios as $disenio) {
-            $mejoras = $disenio->mejoras;
+            $mejoras = $disenio->disenios->mejoras;
             if ($mejoras->carga > 0) {
                 $mejorasT += $mejoras->carga;
             }
@@ -237,7 +255,7 @@ class Disenios extends Model
         $mejorasT=0;
 
         foreach ($disenios as $disenio) {
-            $mejoras = $disenio->mejoras;
+            $mejoras = $disenio->disenios->mejoras;
             if ($mejoras->recoleccion > 0) {
                 $mejorasT +=  $mejoras->recoleccion;
             }
@@ -252,11 +270,25 @@ class Disenios extends Model
         $mejorasT=0;
 
         foreach ($disenios as $disenio) {
-            $mejoras = $disenio->mejoras;
+            $mejoras = $disenio->disenios->mejoras;
             if ($mejoras->extraccion > 0) {
                 $mejorasT +=  $mejoras->extraccion;
             }
         }
         return $mejorasT * (1 + ($investigacion * $constante));
     }
+
+    public static function cargaTotalRecursos($recursosFlota){ //cantidad de carga que llevo
+        $cargaT=0;
+
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+        foreach ($recursosArray as $recurso) {
+            $cargaT+=$recursosFlota[$recurso];
+        }
+
+        return $cargaT;
+    }
+
+
+
 }
