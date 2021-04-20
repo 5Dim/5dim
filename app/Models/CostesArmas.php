@@ -918,7 +918,7 @@ class CostesArmas extends Model
         $coste->plastico = $fccc * 20000; //4
         $coste->ceramica = $fccc * 0; //5
         $coste->liquido = $fccc * 0; //6
-        $coste->micros = $fccc * 50000;   //7
+        $coste->micros = $fccc * 30000;   //7
         $coste->fuel = $fccc * 0;     //8
         $coste->ma = 0;       //9
         $coste->municion = 0; //10
