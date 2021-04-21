@@ -13,7 +13,7 @@ class CreateRecursosEnFlotaTable extends Migration
      */
     public function up()
     {
-        Schema::create('recursos_en_flota', function (Blueprint $table) {
+        Schema::create('recursos_en_flotas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('personal')->default(0);
             $table->unsignedBigInteger('mineral')->default(0);
@@ -37,6 +37,9 @@ class CreateRecursosEnFlotaTable extends Migration
             $table->unsignedBigInteger('en_recoleccions_id')->nullable();
             $table->foreign('en_recoleccions_id')->references('id')->on('en_recoleccions')->onDelete('cascade');
 
+            $table->unsignedBigInteger('destinos_id')->nullable();
+            $table->foreign('destinos_id')->references('id')->on('destinos')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -48,6 +51,6 @@ class CreateRecursosEnFlotaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recursos_en_flota');
+        Schema::dropIfExists('recursos_en_flotas');
     }
 }

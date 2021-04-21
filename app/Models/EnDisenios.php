@@ -27,7 +27,7 @@ class EnDisenios extends Model
         $colas = EnDisenios::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
 
         foreach ($colas as $cola) {
-            $disenio = DiseniosEnPlaneta::where([
+            $disenio = DiseniosEnFlota::where([
                 ['disenios_id', $cola->disenios_id],
                 ['planetas_id', $cola->planetas_id]
             ])->first();
@@ -53,7 +53,7 @@ class EnDisenios extends Model
                     $disenio->cantidad += $cola->cantidad;
                 }
             } else {
-                $disenio = new DiseniosEnPlaneta();
+                $disenio = new DiseniosEnFlota();
                 $disenio->planetas_id = $cola->planetas_id;
                 $disenio->cantidad += $cola->cantidad;
                 $disenio->disenios_id = $cola->disenios_id;

@@ -48,7 +48,7 @@ class Disenios extends Model
 
     public function estacionadas()
     {
-        return $this->hasOne(DiseniosEnPlaneta::class);
+        return $this->hasOne(DiseniosEnFlota::class);
     }
 
     public function creador()
@@ -61,19 +61,9 @@ class Disenios extends Model
         return $this->hasOne(MejorasDisenios::class);
     }
 
-    public function enVuelo()
+    public function enFlota()
     {
-        return $this->hasMany(DiseniosEnVuelo::class);
-    }
-
-    public function enOrbita()
-    {
-        return $this->hasMany(DiseniosEnOrbita::class);
-    }
-
-    public function enRecoleccion()
-    {
-        return $this->hasMany(DiseniosEnRecoleccion::class);
+        return $this->hasMany(DiseniosEnFlota::class);
     }
 
 

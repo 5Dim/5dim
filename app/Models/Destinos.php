@@ -8,44 +8,38 @@ use Illuminate\Database\Eloquent\Model;
 class Destinos extends Model
 {
     use HasFactory;
-
-    public function envuelo()
-    {
-        return $this->hasOne(EnVuelo::class);
-    }
-
     public function recursos()
     {
-        return $this->hasOne(EnRecursosEnDestino::class);
+        return $this->hasOne(RecursosEnFlota::class);
     }
 
     public function prioridades()
     {
-        return $this->hasOne(EnPrioridadesEnDestino::class);
+        return $this->hasOne(PrioridadesEnFlota::class);
     }
 
     public function flota()
     {
-        return $this->hasOne(EnVuelo::class, 'id', "flota_id");
+        return $this->belongsTo(EnVuelo::class, 'flota_id');
     }
 
-    public function flotaDestino()
+    public function planetas()
     {
-        return $this->hasMany(EnVuelo::class, 'id', "en_vuelo_id");
+        return $this->belongsTo(Planetas::class);
     }
 
-    public function enrecoleccion()
+    public function enVuelo()
     {
-        return $this->hasOne(EnRecoleccion::class, 'id', "en_recoleccion_id");
+        return $this->belongsTo(EnVuelo::class);
     }
 
-    public function enorbita()
+    public function enRecoleccion()
     {
-        return $this->hasOne(EnOrbita::class, 'id', "en_orbita_id");
+        return $this->belongsTo(EnRecoleccion::class);
     }
 
-    public function planeta()
+    public function enOrbita()
     {
-        return $this->hasOne(Planetas::class, 'id', "planetas_id");
+        return $this->belongsTo(EnOrbita::class);
     }
 }

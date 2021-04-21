@@ -444,13 +444,13 @@ class Astrometria extends Model
 
         //Log::info("destino ".$destino);
         $tipodestino=null;
-        if($destino->planetas_id!=null && $destino->planeta->id !=null){
+        if($destino->planetas_id!=null && $destino->planetas->id !=null){
             $tipodestino="planeta";
-        } else if($destino->en_orbita_id!=null && $destino->enorbita->id !=null){
+        } else if($destino->en_orbita_id!=null && $destino->enOrbita->id !=null){
             $tipodestino="enorbita";
-        } else if($destino->en_recoleccion_id!=null && $destino->enrecoleccion->id !=null){
+        } else if($destino->en_recoleccion_id!=null && $destino->enRecoleccion->id !=null){
             $tipodestino="enrecoleccion";
-        } else if($destino->en_vuelo_id!=null && $destino->flota->id!=null){
+        } else if($destino->en_vuelo_id!=null && $destino->enVuelo->id!=null){
             $tipodestino="envuelo";
         }
 
@@ -465,7 +465,7 @@ class Astrometria extends Model
         switch($tipodestino){
             case "planeta":
                // Log::info("destino planeta ".$destino->planeta);
-                $nombreDestino=$destino->planeta->estrella."x".$destino->planeta->orbita;
+                $nombreDestino=$destino->planetas->estrella."x".$destino->planetas->orbita;
             break;
             case "enrecoleccion":
 

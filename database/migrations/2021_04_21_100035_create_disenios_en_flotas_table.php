@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiseniosEnVuelosTable extends Migration
+class CreateDiseniosEnFlotasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateDiseniosEnVuelosTable extends Migration
      */
     public function up()
     {
-        Schema::create('disenios_en_vuelos', function (Blueprint $table) {
+        Schema::create('disenios_en_flotas', function (Blueprint $table) {
             $table->id();
             $table->unsignedMediumInteger('enFlota')->default(0);
             $table->unsignedMediumInteger('enHangar')->default(0);
+            $table->unsignedMediumInteger('cantidad')->default(0);
+            $table->string('tipo')->nullable()->default(null);
             $table->timestamps();
             $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
@@ -30,7 +32,8 @@ class CreateDiseniosEnVuelosTable extends Migration
             $table->unsignedBigInteger('en_recoleccions_id')->nullable();
             $table->foreign('en_recoleccions_id')->references('id')->on('en_recoleccions')->onDelete('cascade');
 
-
+            $table->unsignedBigInteger('planetas_id')->nullable()->default(null);
+            $table->foreign('planetas_id')->references('id')->on('planetas');
         });
     }
 
@@ -41,6 +44,6 @@ class CreateDiseniosEnVuelosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('disenios_en_vuelos');
+        Schema::dropIfExists('disenios_en_flotas');
     }
 }

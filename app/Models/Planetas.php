@@ -41,7 +41,7 @@ class Planetas extends Model
 
     public function estacionadas()
     {
-        return $this->hasMany(DiseniosEnPlaneta::class);
+        return $this->hasMany(DiseniosEnFlota::class);
     }
 
     public function enDisenios()
@@ -51,7 +51,7 @@ class Planetas extends Model
 
     public function objetivos()
     {
-        return $this->belongsTo(Destinos::class, 'en_vuelo_id', "id");
+        return $this->hasMany(Destinos::class);
     }
 
     // Nuevo planeta de inicio.

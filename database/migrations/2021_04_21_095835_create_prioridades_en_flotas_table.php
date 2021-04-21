@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEnPrioridadesEnDestinosTable extends Migration
+class CreatePrioridadesEnFlotasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEnPrioridadesEnDestinosTable extends Migration
      */
     public function up()
     {
-        Schema::create('en_prioridades_en_destinos', function (Blueprint $table) {
+        Schema::create('prioridades_en_flotas', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('personal')->default(0);
             $table->tinyInteger('mineral')->default(0);
@@ -48,6 +48,6 @@ class CreateEnPrioridadesEnDestinosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('en_prioridades_en_destinos');
+        Schema::dropIfExists('prioridades_en_flotas');
     }
 }

@@ -9,9 +9,9 @@ class EnVuelo extends Model
 {
     use HasFactory;
 
-    public function diseniosenvuelo()
+    public function diseniosEnFlota()
     {
-        return $this->hasMany(DiseniosEnVuelo::class);
+        return $this->hasMany(DiseniosEnFlota::class);
     }
 
     public function puntosenflota()
@@ -19,18 +19,18 @@ class EnVuelo extends Model
         return $this->hasMany(PuntosEnFlota::class);
     }
 
-    public function recursosenflota()
+    public function recursosEnFlota()
     {
         return $this->hasOne(RecursosEnFlota::class);
     }
 
     public function destinos()
     {
-        return $this->hasMany(Destinos::class);
+        return $this->hasMany(Destinos::class, 'flota_id', "id");
     }
 
     public function objetivos()
     {
-        return $this->belongsTo(Destinos::class, 'en_vuelo_id', "id");
+        return $this->belongsTo(Destinos::class);
     }
 }
