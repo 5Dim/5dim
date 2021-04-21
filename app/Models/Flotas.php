@@ -575,6 +575,8 @@ public static function destinoTipoId($destino,$destinosDest){
             $tipodestino=Astrometria::tipoDestino($destino);
             $destinoEsMio=false;
             $destinoAlcanzado=false;
+            $cambioMision=false;
+
             $estaFlota=$destino->flota;
             $recursosFlota=$estaFlota->recursosenflota;
             $recursosQuieroCargar=$destino->recursos;
@@ -692,6 +694,32 @@ public static function destinoTipoId($destino,$destinosDest){
                 break;
                 case "Transferir":
                     //si los ids de todos los destinos es nulo es orbitar el planeta
+
+                    switch($tipodestino){
+                        case "planeta":
+                            if($destino->planeta->jugadores_id!=null){
+                                //actualizamos sus recursos
+                                //Log::info("planeta".$destino->planeta->id);
+                                Recursos::calcularRecursos($destino->planeta->id);
+                                $recursosDestino=$destino->planeta->recursos;
+                                $destinoEsMio=Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id,$destino->planeta->jugadores_id);
+
+                                //Log::info("recursosDestino ".$recursosDestino." destinoEsMio ".$destinoEsMio);
+                            } else {
+                                $cambioMision=true;
+                                $destino['mision']="Orbitar";
+                                break 2;
+                            }
+
+                        break;
+                        case "enrecoleccion":
+                        case "enrecoleccion":
+                        case "envuelo":
+
+
+                        break 2;
+                    }
+
 
                     /*
                         $newUser = \App\UserInfo::updateOrCreate([
