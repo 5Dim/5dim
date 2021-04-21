@@ -563,7 +563,7 @@ class Flotas extends Model
 
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $ahora = date("Y-m-d H:i:s");
-        $listaDestinosEntrantes = Destinos::where('fin', '>', $ahora)->where("visitado", "0")->get();
+        $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->get();
         $errores = "";
 
         Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
@@ -574,13 +574,14 @@ class Flotas extends Model
             $destinoEsMio = false;
             $destinoAlcanzado = false;
             $cambioMision = false;
+            $guardarCambios = false;
+            $guardarCambiosTransferir = false;
 
             $estaFlota = $destino->flota;
             $recursosFlota = $estaFlota->recursosEnFlota;
             $recursosQuieroCargar = $destino->recursos;
-            Log::info($recursosQuieroCargar);
+            //Log::info($recursosQuieroCargar);
             $recursosDestino = new RecursosEnFlota();
-            $guardarCambios = false;
             $prioridadesDestino = $destino->prioridades;
 
             //Log::info("destino ".$destino);
@@ -665,7 +666,7 @@ class Flotas extends Model
                         }
                     }
 
-                    Log::info($destinoEsMio . "prioridad " . $prioridadesDestino);
+                    //Log::info($destinoEsMio . "prioridad " . $prioridadesDestino);
                     //carga por prioridades
                     if ($destinoEsMio) {
                         for ($ordinal = 1; $ordinal < 16; $ordinal++) {
@@ -674,14 +675,14 @@ class Flotas extends Model
                                 if ($prioridadesDestino[$recurso] == $ordinal) {
                                     $difCarga = $recursosDestino[$recurso];
 
-                                    Log::info("cargas prior " . $difCarga . " cargaTotalLLevo " . $cargaTotalLLevo . " cargaMaxima " . $cargaMaxima);
+                                    //Log::info("cargas prior " . $difCarga . " cargaTotalLLevo " . $cargaTotalLLevo . " cargaMaxima " . $cargaMaxima);
                                     if ($cargaTotalLLevo + $difCarga > $cargaMaxima) {  //no cargo mas de mi capacidad
                                         $difCarga = Round($cargaMaxima - $cargaTotalLLevo);
                                         $recursosFlota[$recurso] += $difCarga;
                                         $recursosDestino[$recurso] -= $difCarga;
                                         $cargaTotalLLevo += $difCarga;
                                         $guardarCambios = true;
-                                        Log::info("difCarga " . $difCarga . " " . $recurso . "  recursosFlota[recurso] " . $recursosFlota[$recurso] . "  recursosDestino[recurso] " . $recursosDestino[$recurso]);
+                                        //Log::info("difCarga " . $difCarga . " " . $recurso . "  recursosFlota[recurso] " . $recursosFlota[$recurso] . "  recursosDestino[recurso] " . $recursosDestino[$recurso]);
                                     }
                                 }
                             }
@@ -697,44 +698,36 @@ class Flotas extends Model
                     switch ($tipodestino) {
                         case "planeta":
                             if ($destino->planetas->jugadores_id != null) {
-                                //actualizamos sus recursos
-                                //Log::info("planeta".$destino->planeta->id);
-                                Recursos::calcularRecursos($destino->planetas->id);
+                                // entrego recursos
                                 $recursosDestino = $destino->planetas->recursos;
-                                $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->planetas->jugadores_id);
+                                foreach ($recursosArray as $recurso) {
+                                    $recursosDestino[$recurso] += $recursosFlota[$recurso];
+                                }
+                                $guardarCambiosTransferir = true;
 
-                                //Log::info("recursosDestino ".$recursosDestino." destinoEsMio ".$destinoEsMio);
                             } else {
                                 $cambioMision = true;
                                 $destino['mision'] = "Orbitar";
-                                break 2;
+                                $destino['planeta_id'] =null;
+                                $destino['en_vuelo_id'] =null;
+                                $destino['en_recoleccion_id'] =null;
+                                $destino['en_orbita_id'] =null;
+                                break;
                             }
 
                             break;
                         case "enrecoleccion":
                         case "enrecoleccion":
                         case "envuelo":
-
-
-                            break 2;
+                            $destino['mision'] = "Orbitar";
+                            $destino['planeta_id'] =null;
+                            $destino['en_vuelo_id'] =null;
+                            $destino['en_recoleccion_id'] =null;
+                            $destino['en_orbita_id'] =null;
+                            break;
                     }
 
 
-                    /*
-                        $newUser = \App\UserInfo::updateOrCreate([
-                            //Add unique field combo to match here
-                            //For example, perhaps you only want one entry per user:
-                            'user_id'   => Auth::user()->id,
-                        ],[
-                            'about'     => $request->get('about'),
-                            'sec_email' => $request->get('sec_email'),
-                            'gender'    => $request->get("gender"),
-                            'country'   => $request->get('country'),
-                            'dob'       => $request->get('dob'),
-                            'address'   => $request->get('address'),
-                            'mobile'    => $request->get('cell_no')
-                        ]);
-                    */
 
                     break;
 
@@ -752,6 +745,29 @@ class Flotas extends Model
                 if ($guardarCambios) {
                     $recursosFlota->save();
                     $recursosDestino->save();
+                    $destinoAlcanzado = true;
+                }
+
+                if($guardarCambiosTransferir){
+                    $recursosDestino->save();
+
+                    //entrego naves
+                    //Log::info("Entregando Naves: ");
+                    foreach ($estaFlota->diseniosEnFlota as $diseno) {
+                        $cuantas=$diseno['enFlota']+$diseno['enHangar'];
+                        //Log::info("cuantas= ".$cuantas);
+                        $newDisenio = DiseniosEnFlota::updateOrCreate([
+                            'disenios_id'   => $diseno->disenios->id,
+                            'planetas_id'   => $destino->planetas->id
+                        ],[
+                            'cantidad'     => DB::raw("cantidad+".$cuantas),
+                            'tipo'          => 'nave',
+                            'disenios_id'   => $diseno->disenios->id,
+                            'planetas_id'   => $destino->planetas->id
+                        ]);
+                        $newDisenio->save();
+                    }
+
                     $destinoAlcanzado = true;
                 }
 

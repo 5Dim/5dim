@@ -83,7 +83,7 @@ class FlotaController extends Controller
         $cargaDest = [];
         $prioridades = [];
         $destinos = [];
-        $visionXDefecto = true;;
+        $visionXDefecto = true;
 
         if (!empty($nombreflota) && !empty($tipoflota)) {
             if ($tipoflota == "envuelo") {
@@ -182,6 +182,8 @@ class FlotaController extends Controller
             $recursosDestino->creditos = 0;
             array_push($cargaDest, $recursosDestino);
 
+            $recursosFlota=$recursos;
+
             // destinos
             $origen = new Destinos();
             $origen->estrella = $planetaActual->estrella;
@@ -239,6 +241,7 @@ class FlotaController extends Controller
         return view('juego.flotas.flotas', compact(
             // Recursos
             'recursos',
+            'recursosFlota',
             'personalOcupado',
             'capacidadAlmacenes',
             'produccion',
@@ -280,6 +283,12 @@ class FlotaController extends Controller
         return Flotas::existeSistema($estrella);
     }
 
+    /*
+    Fallos:
+    debe haber un gasto minimo de fuel de 1 (no puede ser 0 nunca)
+    puedes poner mision y no destino y enviar
+    Cuando te llevas todas las naves deja a 0 cantidad en planeta
+    */
 
     public function enviarFlota(Request $request, $id = false)
     { //$id es de la flota en orbita de la que salimos
@@ -590,7 +599,7 @@ class FlotaController extends Controller
                 // restando recursos de origen
                 //origen es un planeta:
                 $dest = 0;
-                Log::info($cargaDest[$dest]);
+                //Log::info($cargaDest[$dest]);
                 $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
                 $recursos->personal -= $cargaDest[$dest]['personal'];
                 $recursos->mineral -= $cargaDest[$dest]['mineral'];
@@ -605,7 +614,7 @@ class FlotaController extends Controller
                 $recursos->municion -= $cargaDest[$dest]['municion'];
                 $recursos->creditos -= $cargaDest[$dest]['creditos'];
                 $recursos->save();
-                Log::info($recursos);
+                //Log::info($recursos);
 
                 //a la flota
                 $recursosEnFlota = new RecursosEnFlota();
