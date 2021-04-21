@@ -9,6 +9,18 @@ class DiseniosEnFlota extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'cantidad',
+        'tipo',
+        'disenios_id',
+        'planetas_id',
+    ];
+
     public function envuelo()
     {
         return $this->belongsTo(EnVuelo::class);
