@@ -757,6 +757,10 @@ public static function destinoTipoId($destino,$destinosDest){
                     $destinoAlcanzado=true;
                 }
 
+                if($cambioMision){
+                    $destino->save();
+                }
+
                 if($destinoAlcanzado){
                     //Log::info("visitado ");
                     $destino['visitado']=1;
