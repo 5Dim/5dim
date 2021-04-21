@@ -18,4 +18,6 @@ class DiseniosEnVuelo extends Model
     {
         return $this->belongsTo(Disenios::class);
     }
+
+
 }

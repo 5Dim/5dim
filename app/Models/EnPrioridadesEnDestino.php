@@ -13,4 +13,14 @@ class EnPrioridadesEnDestino extends Model
     {
         return $this->hasOne(Destinos::class);
     }
+
+    public function orbita()
+    {
+        return $this->hasOne(EnOrbita::class);
+    }
+
+    public function recoleccion()
+    {
+        return $this->hasOne(EnRecoleccion::class);
+    }
 }

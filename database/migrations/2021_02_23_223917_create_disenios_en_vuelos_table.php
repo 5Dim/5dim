@@ -20,8 +20,17 @@ class CreateDiseniosEnVuelosTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('disenios_id')->unsigned();
             $table->foreign('disenios_id')->references('id')->on('disenios');
-            $table->unsignedBigInteger('en_vuelo_id')->unsigned();
+
+            $table->unsignedBigInteger('en_vuelo_id')->nullable();
             $table->foreign('en_vuelo_id')->references('id')->on('en_vuelos')->onDelete('cascade');
+
+            $table->unsignedBigInteger('en_orbita_id')->nullable();
+            $table->foreign('en_orbita_id')->references('id')->on('en_orbitas')->onDelete('cascade');
+
+            $table->unsignedBigInteger('en_recoleccions_id')->nullable();
+            $table->foreign('en_recoleccions_id')->references('id')->on('en_recoleccions')->onDelete('cascade');
+
+
         });
     }
 

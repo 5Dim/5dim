@@ -21,8 +21,7 @@ class CreateEnOrbitasTable extends Migration
             $table->unsignedMediumInteger('coordyinit')->nullable();
             $table->unsignedMediumInteger('coordx')->nullable();
             $table->unsignedMediumInteger('coordy')->nullable();
-            $table->decimal('vectorx', 8, 2);
-            $table->decimal('vectory', 8, 2);
+
             $table->unsignedBigInteger('ataqueReal')->nullable();
             $table->unsignedBigInteger('defensaReal')->nullable();
             $table->unsignedBigInteger('ataqueVisible')->nullable();

@@ -85,6 +85,7 @@ class FlotaController extends Controller
         $cargaDest = [];
         $prioridades = [];
         $destinos=[];
+        $visionXDefecto=true;;
 
         if (!empty($nombreflota) && !empty($tipoflota)){
 
@@ -103,30 +104,33 @@ class FlotaController extends Controller
                 ->where('publico',$nombreflota)
                 ->first();
 
-                if(!empty($flota)){ //editando flota en vuelo
+                if($flota != null && !empty($flota)){ //editando flota en vuelo
+                    $visionXDefecto=false;
                     $navesEstacionadas=$flota->diseniosenvuelo;
                     $destinosO=$flota->destinos;
                     $recursos=$flota->recursosenflota;
 
-                    foreach($destinosO as $destino){
-                        $recursosDestino=$destino->recursos;
-                        array_push($cargaDest,$recursosDestino);
+                    if($destinosO==null){
+                        foreach($destinosO as $destino){
+                            $recursosDestino=$destino->recursos;
+                            array_push($cargaDest,$recursosDestino);
 
-                        $prioridad=$destino->prioridades;
-                        array_push($prioridades,$prioridad);
+                            $prioridad=$destino->prioridades;
+                            array_push($prioridades,$prioridad);
 
-                        array_push($destinos,$destino);
+                            array_push($destinos,$destino);
+                        }
 
-                        //Log::info("recursosDestino: ".$recursosDestino);
+                        $origen=new Destinos();
+                        $origen->estrella=$destinosO[0]['initestrella'];
+                        $origen->orbita=$destinosO[0]['initorbita'];
+                        $origen->porcentVel=100;
+                        array_unshift($destinos,$origen);
+                        array_push($cargaDest,$cargaDest[0]);
+                        array_push($prioridades,$prioridades[0]);
+                    } else {
+                        $visionXDefecto=true;
                     }
-
-                    $origen=new Destinos();
-                    $origen->estrella=$destinos[0]['initestrella'];
-                    $origen->orbita=$destinos[0]['initorbita'];
-                    $origen->porcentVel=100;
-                    array_unshift($destinos,$origen);
-                    array_push($cargaDest,$cargaDest[0]);
-                    array_push($prioridades,$prioridades[0]);
 
 
                     //$cargaDest=$destinos[0]->recursos;
@@ -137,11 +141,17 @@ class FlotaController extends Controller
                     //Log::info("recursosDestino: ".$cargaDest);
                     //Log::info("prioridadDestino: ".$prioridades);
                     //Log::info("recursos: ".$recursos);
+                } else {
+                    $visionXDefecto=true;
                 }
             }
 
 
         } else {
+            $visionXDefecto=true;
+        }
+
+        if($visionXDefecto){
             //Naves en el planeta
             $navesEstacionadas = $planetaActual->estacionadas;
 

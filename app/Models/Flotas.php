@@ -608,11 +608,11 @@ public static function destinoTipoId($destino,$destinosDest){
                         case "enrecoleccion":
                             //actualizamos sus recursos
                             Recursos::calcularRecoleccion($destino->enrecoleccion->planeta->id);
-                            $recursosDestino=$destino->enrecoleccion->recursos;
+                            //$recursosDestino=$destino->enrecoleccion->recursos;
                         break;
                         case "enrecoleccion":
                             //actualizamos sus recursos
-                            $recursosDestino=$destino->enorbita->recursos;
+                            //$recursosDestino=$destino->enorbita->recursos;
                         break;
                         case "envuelo":
 
@@ -689,11 +689,27 @@ public static function destinoTipoId($destino,$destinosDest){
 
 
 
-                    break;
-                    case "Transferir":
-                        //si los ids de todos los destinos es nulo es orbitar el planeta
+                break;
+                case "Transferir":
+                    //si los ids de todos los destinos es nulo es orbitar el planeta
 
-                    break;
+                    /*
+                        $newUser = \App\UserInfo::updateOrCreate([
+                            //Add unique field combo to match here
+                            //For example, perhaps you only want one entry per user:
+                            'user_id'   => Auth::user()->id,
+                        ],[
+                            'about'     => $request->get('about'),
+                            'sec_email' => $request->get('sec_email'),
+                            'gender'    => $request->get("gender"),
+                            'country'   => $request->get('country'),
+                            'dob'       => $request->get('dob'),
+                            'address'   => $request->get('address'),
+                            'mobile'    => $request->get('cell_no')
+                        ]);
+                    */
+
+                break;
 
                    //gestión de recursos
 
