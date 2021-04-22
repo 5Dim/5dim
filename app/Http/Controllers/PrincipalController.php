@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Routing\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth as Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PrincipalController extends Controller
 {

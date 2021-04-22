@@ -15,10 +15,16 @@ use Illuminate\Database\Eloquent\Model;
 class Recursos extends Model
 {
     use HasFactory;
+
     public function planetas()
     {
         return $this->belongsTo(Planetas::class);
     }
+
+    // public function planeta()
+    // {
+    //     return $this->belongsTo(Planetas::class);
+    // }
 
     public static function recursosInicio($cantidad = 50000)
     {
@@ -33,8 +39,8 @@ class Recursos extends Model
         $recursos->fuel = 0;
         $recursos->ma = 0;
         $recursos->municion = 0;
-        $recursos->personal = $cantidad/2;
-        $recursos->creditos = $cantidad/10;
+        $recursos->personal = $cantidad / 2;
+        $recursos->creditos = $cantidad / 10;
         $recursos->planetas_id = session()->get('planetas_id');
         $recursos->save();
         return $recursos;
@@ -218,20 +224,25 @@ class Recursos extends Model
 
     public static function calcularRecoleccion($idPlaneta)
     {
-
     }
 
-
-
-
-
-
-
-    /**
-     * Relacion de los planetas con los usuarios
-     */
-    public function planeta()
+    public static function initRecursos($idPlaneta)
     {
-        return $this->belongsTo(Planetas::class);
+        $recursos = new Recursos;
+        $recursos->mineral = 0;
+        $recursos->cristal = 0;
+        $recursos->gas = 0;
+        $recursos->plastico = 0;
+        $recursos->ceramica = 0;
+        $recursos->liquido = 0;
+        $recursos->micros = 0;
+        $recursos->fuel = 0;
+        $recursos->ma = 0;
+        $recursos->municion = 0;
+        $recursos->personal = 0;
+        $recursos->creditos = 0;
+        $recursos->planetas_id = $idPlaneta;
+        $recursos->save();
+        return $recursos;
     }
 }
