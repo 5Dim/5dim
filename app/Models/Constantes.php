@@ -1159,7 +1159,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 99;
+        $constante->valor = 80;
         $constante->minimo = 70;
         $constante->maximo = 99;
         $constante->codigo = 'valoresbaseplanetasmaximo';

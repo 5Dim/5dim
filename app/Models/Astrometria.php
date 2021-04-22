@@ -19,25 +19,31 @@ class Astrometria extends Model
         $constanteRadar = Constantes::where('codigo', 'factorexpansionradar')->first()->valor;
         if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
             foreach ($jugadorActual->alianzas->miembros as $miembro) {
+                $nivelObservacion = $miembro->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
                 foreach ($miembro->planetas as $planeta) {
-                    $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
-                    $nivelObservacion = $miembro->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
-                    $radar = new Radares();
-                    $radar->estrella = $planeta->estrella;
-                    $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
-                    $radar->color = 2;
-                    array_push($radares, $radar);
+                    $observatorio=$planeta->construcciones->where('codigo', 'observacion')->first();
+                    if($observatorio!=null && $observatorio->nivel>0){
+                        $nivelObservatorio = $observatorio->nivel;
+                        $radar = new Radares();
+                        $radar->estrella = $planeta->estrella;
+                        $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
+                        $radar->color = 2;
+                        array_push($radares, $radar);
+                    }
                 }
             }
         } else {
+            $nivelObservacion = $jugadorActual->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
             foreach ($jugadorActual->planetas as $planeta) {
-                $nivelObservatorio = $planeta->construcciones->where('codigo', 'observacion')->first()->nivel;
-                $nivelObservacion = $jugadorActual->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
-                $radar = new Radares();
-                $radar->estrella = $planeta->estrella;
-                $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
-                $radar->color = 1;
-                array_push($radares, $radar);
+                $observatorio=$planeta->construcciones->where('codigo', 'observacion')->first();
+                if($observatorio!=null && $observatorio->nivel>0){
+                    $nivelObservatorio = $observatorio->nivel;
+                    $radar = new Radares();
+                    $radar->estrella = $planeta->estrella;
+                    $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
+                    $radar->color = 1;
+                    array_push($radares, $radar);
+                }
             }
         }
 
@@ -480,6 +486,11 @@ class Astrometria extends Model
 
 
         return $nombreDestino;
+    }
+
+    public static function colonizarZonaPosible($planetaid){
+
+        return true;
     }
 
 }

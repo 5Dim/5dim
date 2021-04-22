@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alianzas;
 use Illuminate\Routing\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
@@ -90,9 +91,9 @@ class FlotaController extends Controller
                 $jugadoryAlianza = [];
                 // Log::info($jugadorActual);
                 if ($jugadorActual['alianzas_id'] != null) {
-                    array_push($jugadoryAlianza, $jugadorActual->alianzas_id);
+                    array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id));
                 }
-                array_push($jugadoryAlianza, $jugadorActual->id);
+                array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->id));
 
                 $flota = EnVuelo::where('jugadores_id', $jugadoryAlianza)
                     ->where('publico', $nombreflota)
@@ -293,6 +294,7 @@ class FlotaController extends Controller
     public function enviarFlota(Request $request, $id = false)
     { //$id es de la flota en orbita de la que salimos
 
+        $turboAtaque=5; //trampas gordas, tiempo de llegar al destino
 
         $navesEstacionadas = $request->input('navesEstacionadas');
         $cargaDest = $request->input('cargaDest');
@@ -468,6 +470,7 @@ class FlotaController extends Controller
 
                     $destAnt = $dest - 1;
                     $duracion = 1 * $destinos[$dest]['tiempoDest'];
+                    if($turboAtaque>0){$duracion=$turboAtaque;}
                     $add_time = strtotime($Tinit) + $duracion;
                     $Tfin = date('Y-m-d H:i:s', $add_time);
 

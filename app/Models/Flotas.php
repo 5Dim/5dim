@@ -576,6 +576,7 @@ class Flotas extends Model
             $cambioMision = false;
             $guardarCambios = false;
             $guardarCambiosTransferir = false;
+            $guardarCambiosColonizacion=false;
 
             $estaFlota = $destino->flota;
             $recursosFlota = $estaFlota->recursosEnFlota;
@@ -603,6 +604,7 @@ class Flotas extends Model
                                 //Log::info("recursosDestino ".$recursosDestino." destinoEsMio ".$destinoEsMio);
                             } else {
                                 $destinoAlcanzado = true;
+                                $errores="El planeta al que transportar carece de dueño ";
                                 break 2;
                             }
 
@@ -617,7 +619,8 @@ class Flotas extends Model
                             //$recursosDestino=$destino->enorbita->recursos;
                             break;
                         case "envuelo":
-
+                            $destinoAlcanzado = true;
+                            $errores="No se puede transportar a una flota en vuelo ";
                             break 2;
                     }
 
@@ -688,9 +691,6 @@ class Flotas extends Model
                             }
                         }
                     }
-
-
-
                     break;
                 case "Transferir":
                     //si los ids de todos los destinos es nulo es orbitar el planeta
@@ -712,13 +712,14 @@ class Flotas extends Model
                                 $destino['en_vuelo_id'] =null;
                                 $destino['en_recoleccion_id'] =null;
                                 $destino['en_orbita_id'] =null;
-                                break;
+                                $errores="No se ha podido encontrar el destino al que transferir ";
                             }
 
                             break;
                         case "enrecoleccion":
                         case "enrecoleccion":
                         case "envuelo":
+                            $cambioMision = true;
                             $destino['mision'] = "Orbitar";
                             $destino['planeta_id'] =null;
                             $destino['en_vuelo_id'] =null;
@@ -726,20 +727,32 @@ class Flotas extends Model
                             $destino['en_orbita_id'] =null;
                             break;
                     }
+                    break;
+                case "Colonizar":
+                    if($tipodestino=="planeta" && $destino->planetas->jugadores_id == null) {
+                        if(!Astrometria::colonizarZonaPosible($destino->planetas->id)){
+                            $destinoAlcanzado = true;
+                            $errores="El planeta a colonizar está en el rango de colonización de otro jugador ";
 
+                        } else if($destino->planetas->tipo!="planeta"){
+                            $destinoAlcanzado = true;
+                            $errores="Sólo se pueden colonizar  cuerpos tipo planeta ";
 
+                        } else {
+                            $cambioMision = true;
+                            $destino['mision'] = "Transportar";
+                            $guardarCambiosColonizacion=true;
 
+                        }
+                    } else {
+                        //Log::info("tipodestino ".$tipodestino." dueño ".$destino->planetas->jugadores_id);
+                        $destinoAlcanzado = true;
+                        $errores="El planeta a colonizar ya tiene dueño ";
+                    }
                     break;
 
-                    //gestión de recursos
-
-
-
-
-                    break;
             }
 
-            // doy este destino como acabado
             DB::beginTransaction();
             try {
                 if ($guardarCambios) {
@@ -750,8 +763,6 @@ class Flotas extends Model
 
                 if($guardarCambiosTransferir){
                     $recursosDestino->save();
-
-                    //entrego naves
                     //Log::info("Entregando Naves: ");
                     foreach ($estaFlota->diseniosEnFlota as $diseno) {
                         $cuantas=$diseno['enFlota']+$diseno['enHangar'];
@@ -767,22 +778,32 @@ class Flotas extends Model
                         ]);
                         $newDisenio->save();
                     }
-
+                    $estaFlota->delete();
                     $destinoAlcanzado = true;
                 }
+
+
+                if($guardarCambiosColonizacion){
+                    $planetaColonizar=$destino->planetas;
+                    $planetaColonizar['jugadores_id']=$estaFlota->jugadores_id;
+                    $planetaColonizar['nombre']="Nueva";
+                    $planetaColonizar->save();
+                }
+
 
                 if ($cambioMision) {
                     $destino->save();
                 }
 
                 if ($destinoAlcanzado) {
-                    //Log::info("visitado ");
+                    //Log::info("visitado ".$destino);
                     $destino['visitado'] = 1;
                     $destino->save();
                 }
 
                 DB::commit();
                 //Log::info("Enviada");
+                Log::info($errores);
 
             } catch (Exception $e) {
                 DB::rollBack();

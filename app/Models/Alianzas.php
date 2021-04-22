@@ -33,7 +33,7 @@ class Alianzas extends Model
         return $idMiembros;
     }
 
-    public function jugadorAlianza($alianza) {
+    public static function jugadorAlianza($alianza) {
         $alianza = Alianzas::find($alianza)->nombre;
         $jugadorAlianza = Jugadores::where('nombre', $alianza)->first();
 
@@ -63,7 +63,7 @@ class Alianzas extends Model
 
         if ($miJugador->alianzas_id!=null){
             $miAlianza=Alianzas::where("id",$miJugador['alianzas_id'])->get();
-            if ($miAlianza!=null && $miAlianza->id==$idDestino){
+            if ($miAlianza!=null && Alianzas::jugadorAlianza($miAlianza->id)==$idDestino){
                 return true;
             }
         }

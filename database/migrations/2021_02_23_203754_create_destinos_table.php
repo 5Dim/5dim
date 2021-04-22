@@ -32,7 +32,7 @@ class CreateDestinosTable extends Migration
             $table->timestamp('fin')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('flota_id');             // flota propietaria de la ruta
-            $table->foreign('flota_id')->references('id')->on('en_vuelos');
+            $table->foreign('flota_id')->references('id')->on('en_vuelos')->onDelete('cascade');
 
             $table->unsignedBigInteger('planetas_id')->nullable()->default(null);           //planeta destino
             $table->foreign('planetas_id')->references('id')->on('planetas');
