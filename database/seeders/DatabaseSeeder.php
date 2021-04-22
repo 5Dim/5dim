@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Planetas;
 
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Log;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,25 +36,45 @@ class DatabaseSeeder extends Seeder
             'email' => 'vcode.es@gmail.com',
             'password' => Hash::make('1234'),
         ]);
-        // Jugadores::factory()->times(100)->create();
         Planetas::factory()->times(5000)->create([
             'tipo' => 'planeta',
         ]);
-        Planetas::factory()->times(3)->create([
-            'tipo' => 'nodriza',
-        ]);
-        Planetas::factory()->times(30)->create([
-            'tipo' => 'anubis',
-        ]);
-        Planetas::factory()->times(20)->create([
-            'tipo' => 'dyson',
-        ]);
-        Planetas::factory()->times(50)->create([
-            'tipo' => 'canon',
-        ]);
-        Planetas::factory()->times(500)->create([
-            'tipo' => 'asteroide',
-            'imagen' => $faker->numberBetween(74, 79),
-        ]);
+        for ($i = 0; $i < 50; $i++) {
+            Planetas::factory()->create([
+                'tipo' => 'nodriza',
+                'imagen' => 1,
+            ]);
+        }
+        for ($i = 0; $i < 50; $i++) {
+            Planetas::factory()->create([
+                'tipo' => 'anubis',
+                'imagen' => 5,
+            ]);
+        }
+        for ($i = 0; $i < 50; $i++) {
+            Planetas::factory()->create([
+                'tipo' => 'dyson',
+                'imagen' => 6,
+            ]);
+        }
+        for ($i = 0; $i < 50; $i++) {
+            Planetas::factory()->create([
+                'tipo' => 'canon',
+                'imagen' => 7,
+            ]);
+        }
+        for ($i = 0; $i < 1500; $i++) {
+            Planetas::factory()->create([
+                'tipo' => 'asteroide',
+                'imagen' => $faker->numberBetween(74, 79),
+            ]);
+        }
+        Log::info($faker->numberBetween(74, 79));
+        for ($i = 0; $i < 1000; $i++) {
+            Planetas::factory()->create([
+                'tipo' => 'sol',
+                'imagen' => $faker->numberBetween(80, 89),
+            ]);
+        }
     }
 }

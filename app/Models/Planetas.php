@@ -57,7 +57,7 @@ class Planetas extends Model
     // Nuevo planeta de inicio.
     public static function nuevoPlaneta($idJugador)
     {
-        $planetaElegido = Planetas::inRandomOrder()->first();
+        $planetaElegido = Planetas::where('tipo', 'planeta')->inRandomOrder()->first();
         $planetaElegido->jugadores_id = $idJugador;
         if ($planetaElegido->nombre == '' || $planetaElegido->nombre == null) {
             $planetaElegido->nombre = 'Planeta principal';

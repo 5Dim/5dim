@@ -1147,33 +1147,11 @@ class Constantes extends Model
         $constante->votable = 0;
         array_push($producciones, $constante);
 
-
-        $constante = new Constantes();
-        $constante->valor = 30;
-        $constante->minimo = 10;
-        $constante->maximo = 50;
-        $constante->codigo = 'valoresbaseplanetasminimo';
-        $constante->descripcion = 'valor inicial minimo de los planetas vacios';
-        $constante->tipo = 'universo';
-        $constante->votable = 0;
-        array_push($producciones, $constante);
-
-        $constante = new Constantes();
-        $constante->valor = 99;
-        $constante->minimo = 70;
-        $constante->maximo = 99;
-        $constante->codigo = 'valoresbaseplanetasmaximo';
-        $constante->descripcion = 'valor inicial maximo de los planetas vacios';
-        $constante->tipo = 'universo';
-        $constante->votable = 0;
-        array_push($producciones, $constante);
-
-
         $constante = new Constantes();
         $constante->valor = 0;
         $constante->minimo = 0;
         $constante->maximo = 10;
-        $constante->codigo = 'valoresbaseasteroidesminimo';
+        $constante->codigo = 'yacimientosasteroidesminimo';
         $constante->descripcion = 'valor inicial minimo de los asteroides vacios';
         $constante->tipo = 'universo';
         $constante->votable = 0;
@@ -1183,12 +1161,11 @@ class Constantes extends Model
         $constante->valor = 25;
         $constante->minimo = 10;
         $constante->maximo = 40;
-        $constante->codigo = 'valoresbaseasteroidesmaximo';
+        $constante->codigo = 'yacimientosasteroidesmaximo';
         $constante->descripcion = 'valor inicial maximo de los asteroides vacios';
         $constante->tipo = 'universo';
         $constante->votable = 0;
         array_push($producciones, $constante);
-
 
         $constante = new Constantes();
         $constante->valor = 50;
