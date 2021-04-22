@@ -87,7 +87,7 @@
                         </th> --}}
                         <th class="text-warning borderless ">
                             <div class="accordion accordion-flush" id="accordionFlushExample">
-                                <div class="accordion-item">
+                                <div class="accordion-item bg-transparent">
                                     <h2 class="accordion-header" id="flush-headingOne">
                                         <button class="btn btn-sm btn-dark" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#flush-collapseOne" aria-expanded="false"

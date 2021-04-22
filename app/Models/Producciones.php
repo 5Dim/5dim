@@ -204,4 +204,18 @@ class Producciones extends Model
 
         return $produccion;
     }
+
+    public static function produccionRecoleccion($idPlaneta)
+    {
+        $cualidades = Planetas::find($idPlaneta)->cualidades;
+        $produccion = new Producciones();
+
+        $produccion->mineral = Producciones::where('nivel', $cualidades->mineral)->first()->mineral;
+        $produccion->cristal = Producciones::where('nivel', $cualidades->cristal)->first()->cristal;
+        $produccion->gas = Producciones::where('nivel', $cualidades->gas)->first()->gas;
+        $produccion->plastico = Producciones::where('nivel', $cualidades->plastico)->first()->plastico;
+        $produccion->ceramica = Producciones::where('nivel', $cualidades->ceramica)->first()->ceramica;
+
+        return $produccion;
+    }
 }

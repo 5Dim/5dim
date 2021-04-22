@@ -1,310 +1,299 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('principal.layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>5Dim</title>
-
-    <!-- Bootstrap -->
-    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-
-    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
-
-    <!-- Custom fonts for this template -->
-    <link href="{{ asset('fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
-        type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/grayscale.min.css') }}" rel="stylesheet">
-</head>
-
-<body id="page-top">
-    <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Quinta dimension</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-                Menu
-                <i class="fa fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#login">Login/Registro</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#juego">El juego</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contacto">Contacto</a>
-                    </li>
-                </ul>
-            </div>
+@section('content')
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-    </nav>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="#777" />
+                </svg>
 
-    <!-- Header -->
-    <header class="masthead">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h1 class="brand-heading">5Dim</h1>
-                        <p class="intro-text text-info">5D es un juego masivo online novedoso, de estrategia,
-                            persistente y gratuito; jugable a través de
-                            tu navegador de internet, que te permitirá conocer a miles de jugadores y competir con ellos
-                            para ser el mejor jugando como más te guste.</p>
-                        <a href="#login" class="btn btn-circle js-scroll-trigger">
-                            <i class="fa fa-angle-double-down animated text-info"></i>
-                        </a>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Example headline.</h1>
+                        <p>Some representative placeholder content for the first slide of the carousel.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="#777" />
+                </svg>
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Another example headline.</h1>
+                        <p>Some representative placeholder content for the second slide of the carousel.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="#777" />
+                </svg>
+
+                <div class="container">
+                    <div class="carousel-caption text-end">
+                        <h1>One more for good measure.</h1>
+                        <p>Some representative placeholder content for the third slide of this carousel.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
-    <!-- Login -->
-    <section id="login" class="content-section text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h2>Accede a tu cuenta</h2>
-                    <div class="nav nav-tabs" id="login" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-login-tab" data-bs-toggle="tab" href="#nav-login"
-                            role="tab" aria-controls="nav-login" aria-selected="true">Login</a>
-                        <a class="nav-item nav-link" id="nav-registro-tab" data-bs-toggle="tab" href="#nav-registro"
-                            role="tab" aria-controls="nav-registro" aria-selected="false">Registro</a>
-                    </div>
-                    <div class="tab-content" id="loginContent">
-                        <div class="tab-pane fade show active" id="nav-login" role="tabpanel"
-                            aria-labelledby="nav-login-tab">
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                                    @csrf
-                                    <div class="form-group row">
-                                        <label for="email" class="col-sm-4 col-form-label text-md-right">Email</label>
-                                        <div class="col-md-6">
-                                            <input id="email" type="email"
-                                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                name="email" value="{{ old('email') }}" required>
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="password"
-                                            class="col-md-4 col-form-label text-md-right">Contrasenia</label>
-                                        <div class="col-md-6">
-                                            <input id="password" type="password"
-                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                name="password" required>
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('password') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mb-0">
-                                        <div class="col-md-8 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
-                                                Entrar
-                                            </button>
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                ¿Olvidaste la contrasenia?
-                                            </a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-registro" role="tabpanel" aria-labelledby="nav-registro-tab">
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                                    <p>Es imprescindible que facilites una cuenta de correo a la que tengas acceso para
-                                        poder
-                                        completar el registro.</p>
-                                    @csrf
-                                    <div class="form-group row">
-                                        <label for="name"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                name="name" value="{{ old('name') }}" required autofocus>
-                                            @if ($errors->has('name'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('name') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="email"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="email" type="email"
-                                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                name="email" value="{{ old('email') }}" required>
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="password"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="password" type="password"
-                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                name="password" required>
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('password') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="password-confirm"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="password-confirm" type="password" class="form-control"
-                                                name="password_confirmation" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('Register') }}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Juego Section -->
-    <section id="juego" class="download-section content-section text-center">
-        <div class="container">
-            <div class="col-lg-8 mx-auto">
-                <h2>El juego</h2>
-                <ul class="nav nav-tabs" id="juego" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link text-info active" id="astrometria-tab" data-bs-toggle="tab" href="#astrometria"
-                            role="tab" aria-controls="astrometria" aria-selected="true">Astrometria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-info" id="economia-tab" data-bs-toggle="tab" href="#economia" role="tab"
-                            aria-controls="economia" aria-selected="false">Economia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-info" id="flota-tab" data-bs-toggle="tab" href="#flota" role="tab"
-                            aria-controls="flota" aria-selected="false">Flota</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="juegoContent">
-                    <div class="tab-pane fade show active" id="astrometria" role="tabpanel"
-                        aria-labelledby="astrometria-tab">
-                        <p>
-                            El universo de 5Dim está en constante crecimiento y expansión por lo que es necesario una
-                            herramienta que nos permita ver
-                            todo lo que ocurre en este universo. Esta herramienta es la Astrometría.
-                        </p>
-                        <p>
-                            Con la Astrometría podemos ver la distribución de los sistemas solares y las flotas en
-                            vuelo, además de aniadir unas funciones
-                            avanzadas que complementan la información disponible. Entre estas funciones se encuentran la
-                            localización y búsqueda de sistemas solares y flotas, límite de visión de nuestros
-                            observatorios,
-                            creación de notas recordatorias a lo largo del mapa del universo y algunas más.
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="economia" role="tabpanel" aria-labelledby="economia-tab">
-                        <p>
-                            La economía te permitirá avanzar con paso firme si consigues el equilibrio perfecto. No es
-                            fácil, lo sabemos, pero en 5DIM
-                            es suficiente con tener un poco de sentido común, no gastes lo que no tienes y no te
-                            endeudes
-                            mas allá de lo que puedas recuperar en un vuelo. Dispones de una modena propia y estaciones
-                            de
-                            comercio que te ofrecerán grandes oportunidades de compra.
-                        </p>
-                        <p>
-                            Podrás tener la flota más poderosa del universo, pero si no pagas a tus soldados, las flotas
-                            se quedarán en el puerto y los
-                            pilotos se negarán a acatar tus órdenes.
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="flota" role="tabpanel" aria-labelledby="flota-tab">
-                        <p>
-                            La gestión de las flotas será un factor clave para el desarrollo de tus colonias. Tendrás a
+    <!-- Marketing messaging and featurettes
+                              ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+                    role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                        dy=".3em">140x140</text>
+                </svg>
+
+                <h2 class="text-light">Astrometria</h2>
+                <p class="text-light">El universo de 5Dim está en constante crecimiento y expansión por lo que es necesario
+                    una
+                    herramienta que nos permita ver
+                    todo lo que ocurre en este universo. Esta herramienta es la Astrometría.</p>
+                {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+                    role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                        dy=".3em">140x140</text>
+                </svg>
+
+                <h2 class="text-light">Economia</h2>
+                <p class="text-light">Podrás tener la flota más poderosa del universo, pero si no pagas a tus soldados, las
+                    flotas
+                    se quedarán en el puerto y los
+                    pilotos se negarán a acatar tus órdenes.</p>
+                {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+                    role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                        dy=".3em">140x140</text>
+                </svg>
+
+                <h2 class="text-light">Flota</h2>
+                <p class="text-light">La gestión de las flotas será un factor clave para el desarrollo de tus colonias. Tendrás a
                             tu disposición desde los más
                             pequenios cazas a las naves mas grandes jamás soniadas, las nodrizas son la culminación del
                             desarrollo
-                            de tecnología e investigación militar.
-                        </p>
-                        <p>
-                            En 5DIM no hay límites en cuanto a lo que puedes hacer con tus flotas, no hay más límites
-                            que los que te imponga tu propio
-                            desarrollo. Las flotas te permitirán controlar al resto de jugadores y puede que hasta el
-                            mismo
-                            universo, pero si no las gestionas con astucia, serás aniquilado por otros jugadores
-                            sedientos
-                            de gloria.
-                        </p>
+                            de tecnología e investigación militar.</p>
+                {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your
+                        mind.</span></h2>
+                <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose
+                    here.</p>
+            </div>
+            <div class="col-md-5">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
+                        dy=".3em">500x500</text>
+                </svg>
+
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span>
+                </h2>
+                <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this
+                    layout would work with some actual real-world content in place.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
+                        dy=".3em">500x500</text>
+                </svg>
+
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+                <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
+                    intended to be actually read, simply here to give you a better view of what this would look like with
+                    some actual content. Your content.</p>
+            </div>
+            <div class="col-md-5">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
+                        dy=".3em">500x500</text>
+                </svg>
+
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <!-- /END THE FEATURETTES -->
+
+    </div>
+    <!-- /.container -->
+
+
+    <!-- FOOTER -->
+    <footer class="container">
+        <!-- Footer -->
+        <footer class="text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-facebook-f"></i></a>
+
+                    <!-- Twitter -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-twitter"></i></a>
+
+                    <!-- Google -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-google"></i></a>
+
+                    <!-- Instagram -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-instagram"></i></a>
+                    {{-- <!-- Linkedin -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-linkedin-in"></i></a>
+
+                    <!-- Github -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-github"></i></a> --}}
+                </section>
+                <!-- Section: Social media -->
+                {{-- <!-- Grid container -->
+                <div class="container p-4">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Footer Content</h5>
+
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
+                                molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
+                                voluptatem veniam, est atque cumque eum delectus sint!
+                            </p>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Links</h5>
+
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#!" class="text-white">Link 1</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Link 2</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Link 3</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Link 4</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase mb-0">Links</h5>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#!" class="text-white">Link 1</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Link 2</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Link 3</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Link 4</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
                     </div>
+                    <!--Grid row-->
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contacto Section -->
-    <section id="contacto" class="content-section text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h2>Contacto</h2>
+                <!-- Grid container -->
+
+
+                <hr class="featurette-divider"> --}}
+
+                <!-- Copyright -->
+                <div class="text-center p-3">
+                    © 2021 Copyright: 5Dim
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <div id="map"></div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; Your Website 2018</p>
-        </div>
+                <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
     </footer>
-
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
-
-    <!-- Bootstrap -->
-    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-
-    <script src="{{ asset('js/jquery/jquery.easing.min.js') }}" type="text/javascript"></script>
-
-    <!-- Custom JavaScript for this template -->
-    <script src="{{ asset('js/grayscale.min.js') }}" type="text/javascript"></script>
-</body>
-
-</html>
+    </main>
+@endsection

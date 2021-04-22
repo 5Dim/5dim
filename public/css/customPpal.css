@@ -1,0 +1,8 @@
+body.bg {
+    background: url("../img/principal/fondo3.jpg") no-repeat center top fixed !important;
+    background-color: #000000 !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover !important;
+    -o-background-size: cover;
+}

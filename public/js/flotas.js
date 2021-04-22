@@ -8,18 +8,16 @@ tablaHangares.fueraH = fueraH;
 tablaHangares.dentroH = dentroH;
 tablaHangares.capacidadH = capacidadH;
 
-puedoCargarRecurso=[];
-deboCargarMunicion=true;
-deboAlertasF=true;
-deboEsconderDestinosVacios=true;
+puedoCargarRecurso = [];
+deboCargarMunicion = true;
+deboAlertasF = true;
+deboEsconderDestinosVacios = true;
 
 fuelDestT = 0; //fuel total a todos los destinos
-
 
 RecursosInicio();
 CargarFlotaEditada();
 CargarValoresPlaneta();
-
 
 for (dest = 1; dest < destinos.length; dest++) {
     CargaActual(dest);
@@ -27,65 +25,60 @@ for (dest = 1; dest < destinos.length; dest++) {
 }
 Avisos();
 
-
-function CargarFlotaEditada(){
-
+function CargarFlotaEditada() {
     EsconderPorId("listaPrioridades0");
-    if (flota.id==undefined){//planeta
-        nombreorigen="Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
-
-    } else { //flota
-        nombreorigen="Carga actual en la flota";
-        puedoCargarRecurso[0]=false;
+    if (flota.id == undefined) {
+        //planeta
+        nombreorigen = "Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
+    } else {
+        //flota
+        nombreorigen = "Carga actual en la flota";
+        puedoCargarRecurso[0] = false;
         EsconderPorId("envias0");
         EsconderPorId("botonEnviar");
         EsconderPorId("porcentsimbol");
         $("#nombreFlota").val(flota.nombre);
-        deboCargarMunicion=false;
-        deboAlertasF=false;
+        deboCargarMunicion = false;
+        deboAlertasF = false;
 
-        dest=0;
+        dest = 0;
         destinos.forEach(destino => {
-
-            cargaT=0;
-            $("#sistemaDest"+dest).val(destino.estrella);
-            $("#planetaDest"+dest).val(destino.orbita);
-            destino.misionSEG=destino.mision;//se guarda
-            $("#porcentVDest"+dest).val(Math.round(destino.porcentVel));
+            cargaT = 0;
+            $("#sistemaDest" + dest).val(destino.estrella);
+            $("#planetaDest" + dest).val(destino.orbita);
+            destino.misionSEG = destino.mision; //se guarda
+            $("#porcentVDest" + dest).val(Math.round(destino.porcentVel));
 
             recursosArray.forEach(res => {
                 $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
-                cargaT+=cargaDest[dest][res];
+                cargaT += cargaDest[dest][res];
                 $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
             });
-            cargaDest[dest].total =cargaT;
+            cargaDest[dest].total = cargaT;
 
-
-            if (destino.visitado>0){
-                puedoCargarRecurso[dest]=false;
-                $('.enviarRecursos'+dest).attr('disabled', true);
-                $('.prioridadRecursos'+dest).attr('disabled', true);
-                hacecuanto=difTiempos(destino.fin,horaServer);
-                $("#titulo"+dest).text("Destino "+dest+" alcanzado hace "+hacecuanto);
+            if (destino.visitado > 0) {
+                puedoCargarRecurso[dest] = false;
+                $(".enviarRecursos" + dest).attr("disabled", true);
+                $(".prioridadRecursos" + dest).attr("disabled", true);
+                hacecuanto = difTiempos(destino.fin, horaServer);
+                $("#titulo" + dest).text("Destino " + dest + " alcanzado hace " + hacecuanto);
             } else {
-                if (dest>0){
-                    hacecuanto=difTiempos(horaServer,destino.fin);
-                    $("#titulo"+dest).text("Destino "+dest+" alcanzado en "+hacecuanto);
+                if (dest > 0) {
+                    hacecuanto = difTiempos(horaServer, destino.fin);
+                    $("#titulo" + dest).text("Destino " + dest + " alcanzado en " + hacecuanto);
                 }
             }
 
-            dest+=1;
+            dest += 1;
         });
 
-
-
-        if(deboEsconderDestinosVacios){
-            for(n=dest;n<cantidadDestinos+1;n++){
-                EsconderPorId("cajitaDestino"+n);
+        if (deboEsconderDestinosVacios) {
+            for (n = dest; n < cantidadDestinos + 1; n++) {
+                EsconderPorId("cajitaDestino" + n);
             }
         }
 
-        $('.ediciondestino').attr('disabled', true);
+        $(".ediciondestino").attr("disabled", true);
     }
 
     $(".ocultarenorigen" + 0).text("");
@@ -94,7 +87,6 @@ function CargarFlotaEditada(){
 
 function CrearOrigen(nombreorigen) {
     $("#titulo0").text(nombreorigen);
-
 }
 
 // carga de valores
@@ -110,38 +102,50 @@ function CargarValoresPlaneta() {
         valNaves[este].enflota = nave.enFlota ? nave.enFlota : 0;
         valNaves[este].enhangar = nave.enHangar ? nave.enHangar : 0;
         valNaves[este].tamanio = diseno.tamanio;
-        if(valNaves[este].enflota+valNaves[este].enhangar>0){
-            valNaves[este].cantidad=0;
+        if (valNaves[este].enflota + valNaves[este].enhangar > 0) {
+            valNaves[este].cantidad = 0;
         } else {
-            valNaves[este].cantidad=nave.cantidad;
+            valNaves[este].cantidad = nave.cantidad;
         }
-        valNaves[este].cantidadT = valNaves[este].cantidad +valNaves[este].enflota+valNaves[este].enhangar;; //es constante
+        valNaves[este].cantidadT = valNaves[este].cantidad + valNaves[este].enflota + valNaves[este].enhangar; //es constante
 
         //ayuda visual esconde los 0
         $("#nombre" + diseno.id).text(diseno.nombre);
-        if (valNaves[este]['carga']==0){
-            $("#carga"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        if (valNaves[este]["carga"] == 0) {
+            $("#carga" + nave.disenios_id)
+                .removeClass("text-light")
+                .addClass("text-secondary");
         }
-        if (valNaves[este]['cargaPequenia']==0){
-            $("#hangarCazas"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        if (valNaves[este]["cargaPequenia"] == 0) {
+            $("#hangarCazas" + nave.disenios_id)
+                .removeClass("text-light")
+                .addClass("text-secondary");
         }
-        if (valNaves[este]['cargaMediana']==0){
-            $("#hangarLigeras"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        if (valNaves[este]["cargaMediana"] == 0) {
+            $("#hangarLigeras" + nave.disenios_id)
+                .removeClass("text-light")
+                .addClass("text-secondary");
         }
-        if (valNaves[este]['cargaGrande']==0){
-            $("#hangarMedias"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        if (valNaves[este]["cargaGrande"] == 0) {
+            $("#hangarMedias" + nave.disenios_id)
+                .removeClass("text-light")
+                .addClass("text-secondary");
         }
-        if (valNaves[este]['cargaEnorme']==0){
-            $("#hangarPesadas"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        if (valNaves[este]["cargaEnorme"] == 0) {
+            $("#hangarPesadas" + nave.disenios_id)
+                .removeClass("text-light")
+                .addClass("text-secondary");
         }
-        if (valNaves[este]['maniobra']==0){
-            $("#maniobra"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        if (valNaves[este]["maniobra"] == 0) {
+            $("#maniobra" + nave.disenios_id)
+                .removeClass("text-light")
+                .addClass("text-secondary");
         }
-        if (valNaves[este]['velocidad']==0){
-            $("#velocidad"+nave.disenios_id).removeClass("text-light").addClass("text-secondary");
+        if (valNaves[este]["velocidad"] == 0) {
+            $("#velocidad" + nave.disenios_id)
+                .removeClass("text-light")
+                .addClass("text-secondary");
         }
-
-
     });
 
     RecalculoTotal();
@@ -150,11 +154,11 @@ function CargarValoresPlaneta() {
 function RecursosInicio() {
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
-        puedoCargarRecurso[dest]=true;
+        puedoCargarRecurso[dest] = true;
         if (recursosDest[dest] != undefined) {
             MostrarRecursos(dest);
-        }else {
-            recursosDest[dest]=[];
+        } else {
+            recursosDest[dest] = [];
         }
 
         if (cargaDest[dest] == undefined) {
@@ -165,11 +169,12 @@ function RecursosInicio() {
             cargaDest[dest].total = 0;
         } else {
             recursosArray.forEach(res => {
-                cargaDest[dest].total +=cargaDest[dest][res];
+                cargaDest[dest].total += cargaDest[dest][res];
             });
         }
         //destinos[dest].mision = $("#ordenDest" + dest).val();
     }
+    console.log(destinos[0]);
     destinos[0].mision = "transportar";
 }
 
@@ -282,8 +287,8 @@ function RecalculoTotal() {
 
 var errores = "";
 
-function Avisos() {  //////////////////////////////  VALIDACION
-
+function Avisos() {
+    //////////////////////////////  VALIDACION
 
     var errorHangares = false;
     errores = "";
@@ -343,19 +348,18 @@ function Avisos() {  //////////////////////////////  VALIDACION
     var excesocarga = false;
     var dest;
     for (dest = 0; dest < destinos.length; dest++) {
-        if (destinos[dest].estrella.length !== 0 ){
-            destAnt=dest-1;
+        if (destinos[dest].estrella.length !== 0) {
+            destAnt = dest - 1;
             //las cargas de un destino van al otro
-            if(dest>0){
+            if (dest > 0) {
                 recursosArray.forEach(res => {
                     if (recursosDest[dest][res] != undefined) {
-                        recursosDest[dest][res]=0;
+                        recursosDest[dest][res] = 0;
                     }
-                    recursosDest[dest][res]+=cargaDest[destAnt][res];
+                    recursosDest[dest][res] += cargaDest[destAnt][res];
                     $("#boton" + res + dest).text(formatNumber(Math.round(1 * recursosDest[dest][res])));
                 });
             }
-
 
             if (cargaDest[dest] != undefined && cargaDest[dest].total > valFlotaT.carga) {
                 excesocarga = true;
@@ -370,7 +374,7 @@ function Avisos() {  //////////////////////////////  VALIDACION
                 $("#botonenvias" + dest).text("Enviar");
             }
 
-            if(deboAlertasF){
+            if (deboAlertasF) {
                 recursosArray.forEach(res => {
                     if (cargaDest[dest] != undefined && recursosDest[dest] != undefined && cargaDest[dest][res] > Math.round(recursosDest[dest][res])) {
                         $("#boton" + res + dest)
@@ -426,9 +430,9 @@ function Avisos() {  //////////////////////////////  VALIDACION
                 hayErrorMision = true;
             }
 
-            soyUltimoDestino=false;
+            soyUltimoDestino = false;
             // soy la ultima y debe ser de cierre
-            if (destPost <4 && (ordenPost != undefined || ordenPost .length<1)) {
+            if (destPost < 4 && (ordenPost != undefined || ordenPost.length < 1)) {
                 if ((ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
                     errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
                     hayErrorMision = true;
@@ -441,8 +445,8 @@ function Avisos() {  //////////////////////////////  VALIDACION
                 }
             }
 
-            if ((orden == "Transferir" || orden == "Recolectar" || orden == "Orbitar" || orden == "Recolectar")) {
-                soyUltimoDestino=true;
+            if (orden == "Transferir" || orden == "Recolectar" || orden == "Orbitar" || orden == "Recolectar") {
+                soyUltimoDestino = true;
             }
 
             if (orden == "Atacar" && !hayErrorMision) {
@@ -455,25 +459,23 @@ function Avisos() {  //////////////////////////////  VALIDACION
                     .removeClass("cajita-light");
             }
 
-            if(soyUltimoDestino){
-                $('.enviarRecursos'+dest).attr('disabled', true);
-                $('.prioridadRecursos'+dest).attr('disabled', true);
+            if (soyUltimoDestino) {
+                $(".enviarRecursos" + dest).attr("disabled", true);
+                $(".prioridadRecursos" + dest).attr("disabled", true);
             } else {
-                $('.enviarRecursos'+dest).attr('disabled', false);
-                $('.prioridadRecursos'+dest).attr('disabled', false);
+                $(".enviarRecursos" + dest).attr("disabled", false);
+                $(".prioridadRecursos" + dest).attr("disabled", false);
             }
-
-        } else if  (dest==1 && orden == ""){
+        } else if (dest == 1 && orden == "") {
             errores += " ,sin misión";
             hayErrorMision = true;
-        }
-        else {
+        } else {
             var img = origenImagenes + "/flotas/nada.jpg";
         }
 
         $("#imagen" + dest).attr("src", img);
 
-        if(deboAlertasF){
+        if (deboAlertasF) {
             if (hayErrorMision) {
                 sePuedeEnviar = false;
                 $("#cajitaDestino" + dest)
@@ -527,8 +529,6 @@ function Avisos() {  //////////////////////////////  VALIDACION
             .addClass("txt-warning");
         $("#botonEnviar").prop("disabled", false);
     }
-
-
 }
 
 function NaveAflota(iddisenio, canti = 0) {
@@ -587,7 +587,7 @@ function Calculoespacitiempo() {
                 NoSeMueve(dest);
             } else {
                 var porcentVel = $("#porcentVDest" + dest).val() / 100;
-                var fuelDest = GastoFuel(distancia, valFlotaT.fuel,porcentVel);
+                var fuelDest = GastoFuel(distancia, valFlotaT.fuel, porcentVel);
                 destinos[dest].porcentVel = porcentVel * 100;
 
                 if (distancia < 10) {
@@ -636,7 +636,7 @@ function SiSeMueve(dest, fuelDest, tiempoDest) {
 
 function SelectorDestinos(dest) {
     // el selector coloca sistema y planeta
-    if($("#listaPlanetas" + dest).val()!=null){
+    if ($("#listaPlanetas" + dest).val() != null) {
         input = $("#listaPlanetas" + dest)
             .val()
             .split("x");
@@ -655,7 +655,7 @@ function MostrarRecursos(dest) {
 function CargarRecurso(dest, res) {
     var acargar = 0;
     var hueco = 0;
-    if(puedoCargarRecurso[dest]){
+    if (puedoCargarRecurso[dest]) {
         var recur = Math.round(recursosDest[dest][res] - cargaDest[dest][res]);
 
         CargaActual(dest);
@@ -668,14 +668,13 @@ function CargarRecurso(dest, res) {
         $("#" + res + dest).val(formatNumber(acargar));
         var resto = Math.max(0, recur - acargar);
         $("#boton" + res + dest).text(formatNumber(resto));
-        CargaActual(dest);//al final recapitula
+        CargaActual(dest); //al final recapitula
         $("#botonenvias" + dest).text(formatNumber(cargaDest[dest].total));
     }
 }
 
 function TraerRecursos(sistema, planeta, dest) {
-
-    if (sistema!="none"){
+    if (sistema != "none") {
         $.ajax({
             method: "GET",
             url: "/juego/flotas/traerRecursos/" + sistema + "/" + planeta,
@@ -721,7 +720,7 @@ function Vaciar(dest) {
 }
 
 function CargarMunicion() {
-    if(deboCargarMunicion){
+    if (deboCargarMunicion) {
         res = "municion";
         for (dest = 0; dest < destinos.length; dest++) {
             var muniTotal = valFlotaT[res]; //+1* recur.replace(/\./g,'');
@@ -747,7 +746,7 @@ function CargaActual(dest) {
         if (recursosDest[dest] != undefined && recursosDest[dest][res] != undefined) {
             var resto = Math.round(recursosDest[dest][res] - recur);
         }
-        if(puedoCargarRecurso[dest]){
+        if (puedoCargarRecurso[dest]) {
             $("#boton" + res + dest).text(formatNumber(resto));
         }
     });
@@ -790,26 +789,26 @@ function VaciarPrioridades(dest) {
     });
 }
 
-function NaveGeneralAFlota(canti){
-    if (canti>0){
+function NaveGeneralAFlota(canti) {
+    if (canti > 0) {
         navesEstacionadas.forEach(nave => {
-            NaveAflota(nave.disenios_id,'m');
+            NaveAflota(nave.disenios_id, "m");
         });
     } else {
         navesEstacionadas.forEach(nave => {
-            NaveAflota(nave.disenios_id,0);
+            NaveAflota(nave.disenios_id, 0);
         });
     }
 }
 
-function NaveGeneralAHangar(canti){
-    if (canti>0){
+function NaveGeneralAHangar(canti) {
+    if (canti > 0) {
         navesEstacionadas.forEach(nave => {
-            NaveAhangar(nave.disenios_id,'m');
+            NaveAhangar(nave.disenios_id, "m");
         });
     } else {
         navesEstacionadas.forEach(nave => {
-            NaveAhangar(nave.disenios_id,0);
+            NaveAhangar(nave.disenios_id, 0);
         });
     }
 }
@@ -818,10 +817,10 @@ function enviarFlota() {
     if (errores.length > 0) {
         alert(errores);
     } else {
-        flota.nombre= $("#nombreFlota").val();
+        flota.nombre = $("#nombreFlota").val();
         for (dest = 1; dest < destinos.length; dest++) {
             recursosArray.forEach(res => {
-                prioridades[dest][res]=$("#prioridad" + res + dest).val();
+                prioridades[dest][res] = $("#prioridad" + res + dest).val();
             });
         }
 
@@ -830,7 +829,7 @@ function enviarFlota() {
             dataType: "json",
             url: "/juego/flotas/enviarFlota",
             //contentType: 'application/json; charset=utf-8',
-            data: { navesEstacionadas: navesEstacionadas, destinos: destinos,cargaDest: cargaDest,prioridades: prioridades,flota: flota },
+            data: { navesEstacionadas: navesEstacionadas, destinos: destinos, cargaDest: cargaDest, prioridades: prioridades, flota: flota },
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
@@ -842,12 +841,11 @@ function enviarFlota() {
             success: function(response) {
                 $("#botonEnviar").text("Enviar Flota");
                 $("#botonEnviar").prop("disabled", false);
-                if (response.errores==""){
+                if (response.errores == "") {
                     alert("Flota enviada");
                 } else {
                     alert(response.errores);
                 }
-
             },
             error: function(xhr, textStatus, thrownError) {
                 $("#botonEnviar").text("Enviar Flota");
@@ -864,30 +862,30 @@ function formSuccess() {
     $("#msgSubmit").removeClass("hidden");
 }
 
-function RecursosSiDestino (dest){
-    estrella=$("#sistemaDest" + dest).val();
-    orbita= $("#planetaDest" + dest).val();
-    destinoF=estrella+"x"+orbita;
-    if(dest>0 && destinoF.length>4){
-        $('#listaPlanetas'+dest).val(destinoF).change();
-        $("#ordenDest"+dest).val(destinos[dest].misionSEG).change();
+function RecursosSiDestino(dest) {
+    estrella = $("#sistemaDest" + dest).val();
+    orbita = $("#planetaDest" + dest).val();
+    destinoF = estrella + "x" + orbita;
+    if (dest > 0 && destinoF.length > 4) {
+        $("#listaPlanetas" + dest)
+            .val(destinoF)
+            .change();
+        $("#ordenDest" + dest)
+            .val(destinos[dest].misionSEG)
+            .change();
     }
-
-
 }
-
 
 /////////////////////////////////////******************* FLOTAS EN VUELO ********************************** //////////////////////////////////
 
 var fechaAhoraMilisec = Date.now();
-primeraActualizacionEnVuelo=true;
+primeraActualizacionEnVuelo = true;
 
 function verFlotasEnVuelo() {
+    haceCuantoActualice = Date.now() - fechaAhoraMilisec;
 
-    haceCuantoActualice=Date.now()-fechaAhoraMilisec;
-
-    if(primeraActualizacionEnVuelo || haceCuantoActualice>30000){
-        primeraActualizacionEnVuelo=false;
+    if (primeraActualizacionEnVuelo || haceCuantoActualice > 30000) {
+        primeraActualizacionEnVuelo = false;
         $.ajax({
             type: "GET",
             //dataType: "json",
@@ -895,9 +893,7 @@ function verFlotasEnVuelo() {
             //contentType: 'application/json; charset=utf-8',
             //data: { },
             //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
-            beforeSend: function() {
-
-            },
+            beforeSend: function() {},
             success: function(data) {
                 //alert(data);
                 RellenarFlotasEnVuelo(data);
@@ -1221,29 +1217,27 @@ function RellenarFlotasEnVuelo(data){
 
 }
 
-
 function regresarFlota(numeroflota) {
-
-    primeraActualizacionEnVuelo=true;
+    primeraActualizacionEnVuelo = true;
     $.ajax({
         type: "GET",
         //dataType: "json",
-        url: "/juego/flotas/regresarFlota/"+numeroflota,
+        url: "/juego/flotas/regresarFlota/" + numeroflota,
         beforeSend: function() {
-            $("#botonregreso"+numeroflota).prop("disabled", true);
+            $("#botonregreso" + numeroflota).prop("disabled", true);
             var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando....';
-            $("#botonregreso"+numeroflota).html(spinner);
+            $("#botonregreso" + numeroflota).html(spinner);
         },
         success: function(response) {
-            $("#botonregreso"+numeroflota).text("Regresando...");
-            if (response.errores==""){
+            $("#botonregreso" + numeroflota).text("Regresando...");
+            if (response.errores == "") {
                 alert("Flota regresando");
                 verFlotasEnVuelo();
             } else {
-                $("#botonregreso"+numeroflota).prop("disabled", false);
-                $("#botonregreso"+numeroflota).text("Regresar");
+                $("#botonregreso" + numeroflota).prop("disabled", false);
+                $("#botonregreso" + numeroflota).text("Regresar");
                 alert(response.errores);
             }
-        }
+        },
     });
 }

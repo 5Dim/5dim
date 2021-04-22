@@ -1,10 +1,18 @@
 body.bg {
-    background: url("../img/principal/fondo2.jpg") no-repeat center top fixed !important;
+    background: url("../img/principal/fondo3.jpg") no-repeat center top fixed !important;
     background-color: #000000 !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    background-size: cover;
+    background-size: cover !important;
     -o-background-size: cover;
+}
+
+.nav-item {
+    color: rgba(255, 255, 255, 0.897) !important;
+}
+
+.dropdown-item:hover {
+    background:#292b2c
 }
 
 #menuCuenta {

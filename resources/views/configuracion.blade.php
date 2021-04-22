@@ -31,7 +31,8 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-3" id="basic-addon1">Email</span>
-                                <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="Email" aria-label="Email"
+                                    aria-describedby="basic-addon1">
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -41,8 +42,8 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-3" id="basic-addon1">Contraseña</span>
-                                <input id="password" type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
-                                    aria-describedby="passwordHelpBlock">
+                                <input id="password" type="password" class="form-control" placeholder="Contraseña"
+                                    aria-label="Contraseña" aria-describedby="passwordHelpBlock">
                                 <div id="passwordHelpBlock" class="form-text">
                                     La contraseña debe contener al menos 8 caracteres.
                                 </div>
@@ -54,8 +55,9 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-3" id="basic-addon1">Confirmar contraseña</span>
-                                <input id="password-confirm" type="password" class="form-control" placeholder="Confirmar contraseña"
-                                    aria-label="Confirmar contraseña" aria-describedby="passwordHelpBlock">
+                                <input id="password-confirm" type="password" class="form-control"
+                                    placeholder="Confirmar contraseña" aria-label="Confirmar contraseña"
+                                    aria-describedby="passwordHelpBlock">
                             </div>
 
                             {{-- <div class="form-group row">
