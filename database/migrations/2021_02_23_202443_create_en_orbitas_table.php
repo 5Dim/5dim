@@ -17,8 +17,8 @@ class CreateEnOrbitasTable extends Migration
             $table->id();
             $table->string('nombre')->index(); // nombre privado, para ti unicamente
             $table->string('publico')->index(); // nombre publico, la que ven todos
-            $table->unsignedMediumInteger('coordxinit')->nullable();
-            $table->unsignedMediumInteger('coordyinit')->nullable();
+            $table->unsignedMediumInteger('estrella');
+            $table->unsignedTinyInteger('orbita');
             $table->unsignedMediumInteger('coordx')->nullable();
             $table->unsignedMediumInteger('coordy')->nullable();
 
@@ -30,6 +30,9 @@ class CreateEnOrbitasTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('jugadores_id');
             $table->foreign('jugadores_id')->references('id')->on('jugadores');
+
+            $table->unsignedBigInteger('planetas_id')->nullable()->default(null);           //planeta destino
+            $table->foreign('planetas_id')->references('id')->on('planetas');
         });
     }
 

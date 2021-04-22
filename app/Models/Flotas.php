@@ -560,11 +560,13 @@ class Flotas extends Model
     ///////////////  recepción de flotas   ////////////////////////
     public static function llegadaFlotas()
     {
-
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+        $anchoUniverso= $constantesU->where('codigo', 'anchouniverso')->first()->valor;
+        $luzdemallauniverso= $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $ahora = date("Y-m-d H:i:s");
         $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->get();
-        $errores = "";
+
 
         Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
 
@@ -577,6 +579,8 @@ class Flotas extends Model
             $guardarCambios = false;
             $guardarCambiosTransferir = false;
             $guardarCambiosColonizacion=false;
+            $errores = "";
+            $mensaje="";
 
             $estaFlota = $destino->flota;
             $recursosFlota = $estaFlota->recursosEnFlota;
@@ -734,9 +738,9 @@ class Flotas extends Model
                             $destinoAlcanzado = true;
                             $errores="El planeta a colonizar está en el rango de colonización de otro jugador ";
 
-                        } else if($destino->planetas->tipo!="planeta"){
+                        } else if($destino->planetas->tipo!="planeta" && $destino->planetas->imagen<70){
                             $destinoAlcanzado = true;
-                            $errores="Sólo se pueden colonizar  cuerpos tipo planeta ";
+                            $errores="Sólo se pueden colonizar cuerpos tipo planeta ";
 
                         } else {
                             $cambioMision = true;
@@ -749,6 +753,21 @@ class Flotas extends Model
                         $destinoAlcanzado = true;
                         $errores="El planeta a colonizar ya tiene dueño ";
                     }
+                    break;
+                case "Recolectar":
+
+                    if($destino->planetas->imagen>69 && $destino->planetas->imagen<80){
+                        Producciones::produccionRecoleccion($destino->planetas->id);
+                        // me pongo en recolectar
+                        $errores=Flotas::flotaARecolectar($estaFlota,$destino->planetas,$anchoUniverso,$luzdemallauniverso);
+                        $destinoAlcanzado = true;
+
+                    } else {
+                        $destinoAlcanzado = true;
+                        $errores="Sólo se pueden colonizar cuerpos tipo planeta ";
+                    }
+
+
                     break;
 
             }
@@ -774,7 +793,8 @@ class Flotas extends Model
                             'cantidad'     => DB::raw("cantidad+".$cuantas),
                             'tipo'          => 'nave',
                             'disenios_id'   => $diseno->disenios->id,
-                            'planetas_id'   => $destino->planetas->id
+                            'planetas_id'   => $destino->planetas->id,
+                            "en_vuelo_id"   =>null
                         ]);
                         $newDisenio->save();
                     }
@@ -787,6 +807,7 @@ class Flotas extends Model
                     $planetaColonizar=$destino->planetas;
                     $planetaColonizar['jugadores_id']=$estaFlota->jugadores_id;
                     $planetaColonizar['nombre']="Nueva";
+                    $planetaColonizar['creacion']=time();
                     $planetaColonizar->save();
                 }
 
@@ -812,4 +833,111 @@ class Flotas extends Model
             }
         }
     }
+
+    public static function flotaARecolectar($flotaLlega,$planeta,$anchoUniverso,$luzdemallauniverso){
+
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+        $errores="";
+
+        if ($flotaLlega!=null) {
+
+            $ajusteMapaBase = 35; //ajuste 0,0 con mapa
+            $ajusteMapaFactor = 7; //ajuste escala mapa
+
+            //si ya existe una flota en recolección
+            $flotaExiste=EnRecoleccion::
+            where("jugadores_id",$flotaLlega->jugadores_id)
+            ->where("planetas_id",$planeta->id)->first();
+
+            DB::beginTransaction();
+            try {
+                //construyendo flota
+
+                $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
+                $recoleccionT=Disenios::recoleccionTotal($flotaLlega->diseniosEnFlota);
+
+                if($flotaExiste!=null){
+                    $flotaExiste->ataqueReal += $flotaLlega['ataqueReal'];
+                    $flotaExiste->defensaReal += $flotaLlega['defensaReal'];
+                    $flotaExiste->ataqueVisible += $flotaLlega['ataqueVisible'];
+                    $flotaExiste->defensaVisible += $flotaLlega['defensaVisible'];
+                    $flotaExiste->creditos += $flotaLlega['creditos'];
+                    $flotaExiste->recoleccion += $recoleccionT;
+                    $flotaExiste->save();
+
+                } else {
+                    $coordDestino=Flotas::coordenadasBySistema($planeta['estrella'],$anchoUniverso,$luzdemallauniverso);
+                    $coordDestx=$ajusteMapaFactor  * $coordDestino['x']+$ajusteMapaBase;
+                    $coordDesty=$ajusteMapaFactor  * $coordDestino['y']+$ajusteMapaBase;
+
+                    $flotax = new EnRecoleccion();
+                    $flotax->nombre = $flotaLlega['nombre'];
+                    $flotax->publico = $flotaLlega['publico'];
+                    $flotax->ataqueReal = $flotaLlega['ataqueReal'];
+                    $flotax->defensaReal = $flotaLlega['defensaReal'];
+                    $flotax->ataqueVisible = $flotaLlega['ataqueVisible'];
+                    $flotax->defensaVisible = $flotaLlega['defensaVisible'];
+                    $flotax->creditos = $flotaLlega['creditos'];
+                    $flotax->recoleccion = $recoleccionT;
+                    $flotax->jugadores_id = $flotaLlega->jugadores_id;
+                    $flotax->coordx = $coordDestx;
+                    $flotax->coordy = $coordDesty;
+                    //Log::info($flotax);
+                    $flotax->save();
+                }
+
+                // naves a flota
+                if($flotaExiste!=null){
+                    foreach ($flotaLlega->diseniosEnFlota as $diseno) {
+                        $newDisenio = DiseniosEnFlota::updateOrCreate([
+                            'disenios_id'   => $diseno->disenios->id,
+                            'en_recoleccions_id'   => $flotaExiste->en_recoleccions_id,
+                        ],[
+                            'enFlota'     => DB::raw("enFlota+".$diseno['enFlota']),
+                            'enHangar'     => DB::raw("enFlota+".$diseno['enHangar']),
+                            'tipo'          => 'nave',
+                            'disenios_id'   => $diseno->disenios->id,
+                            'en_recoleccions_id'   => $flotaExiste->en_recoleccions_id,
+                            "en_vuelo_id"   =>null
+                        ]);
+                        $newDisenio->save();
+                    }
+                } else {
+                    DiseniosEnFlota::where("en_vuelo_id",$flotaLlega->id)->update(["en_recoleccions_id"=>$flotax->id,"en_vuelo_id",null]);
+                }
+
+                //recursos
+                if($flotaExiste!=null){
+                    $recursosLlega=$flotaExiste->recursosEnFlota;
+                    $recursosExiste=$flotaExiste->recursosEnFlota;
+
+                    foreach ($recursosArray as $recurso) {
+                        $recursosExiste[$recurso] += $recursosLlega[$recurso];
+                    }
+                    $recursosExiste->save();
+
+                } else {
+                    RecursosEnFlota::where("en_vuelo_id",$flotaLlega->id)->update(["en_recoleccions_id"=>$flotax->id,"en_vuelo_id",null]);
+                }
+
+                $flotaLlega->delete();
+
+                DB::commit();
+                //Log::info("Enviada");
+
+            } catch (Exception $e) {
+                DB::rollBack();
+                $errores = "Error en Commit de poner en recolección " . $errores; //.$e;
+                //Log::info($errores . " " . $e);
+            }
+            return $errores;
+        }
+
+
+
+    }
+
+
+
+
 }

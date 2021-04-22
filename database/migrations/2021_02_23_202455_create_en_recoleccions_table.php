@@ -17,6 +17,7 @@ class CreateEnRecoleccionsTable extends Migration
             $table->id();
             $table->string('nombre')->index(); // nombre privado, para ti unicamente
             $table->string('publico')->index(); // nombre publico, la que ven todos
+
             $table->unsignedMediumInteger('recoleccion')->nullable();
             $table->unsignedMediumInteger('extraccion')->nullable();
             $table->unsignedMediumInteger('coordx')->nullable();
@@ -30,6 +31,9 @@ class CreateEnRecoleccionsTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('jugadores_id');
             $table->foreign('jugadores_id')->references('id')->on('jugadores');
+
+            $table->unsignedBigInteger('planetas_id')->nullable()->default(null);           //planeta destino
+            $table->foreign('planetas_id')->references('id')->on('planetas');
         });
     }
 

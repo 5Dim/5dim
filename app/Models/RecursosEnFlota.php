@@ -14,6 +14,16 @@ class RecursosEnFlota extends Model
         return $this->hasOne(EnVuelo::class);
     }
 
+    public function enrecoleccion()
+    {
+        return $this->hasOne(EnRecoleccion::class);
+    }
+
+    public function enextraccion()
+    {
+        return $this->hasOne(EnExtraccion::class);
+    }
+
     public function destino()
     {
         return $this->hasOne(Destinos::class);

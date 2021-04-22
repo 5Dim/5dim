@@ -23,4 +23,14 @@ class EnRecoleccion extends Model
     {
         return $this->belongsTo(Destinos::class);
     }
+
+    public function planetas()
+    {
+        return $this->belongsTo(Planetas::class);
+    }
+
+    public function recursosEnFlota()
+    {
+        return $this->hasOne(RecursosEnFlota::class);
+    }
 }
