@@ -36,41 +36,41 @@ class DatabaseSeeder extends Seeder
             'email' => 'vcode.es@gmail.com',
             'password' => Hash::make('1234'),
         ]);
-        Planetas::factory()->times(5000)->create([
+        Planetas::factory()->times(1200)->create([
             'tipo' => 'planeta',
         ]);
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Planetas::factory()->create([
                 'tipo' => 'nodriza',
                 'imagen' => 1,
             ]);
         }
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Planetas::factory()->create([
                 'tipo' => 'anubis',
                 'imagen' => 5,
             ]);
         }
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Planetas::factory()->create([
                 'tipo' => 'dyson',
                 'imagen' => 6,
             ]);
         }
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Planetas::factory()->create([
                 'tipo' => 'canon',
                 'imagen' => 7,
             ]);
         }
-        for ($i = 0; $i < 1500; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             Planetas::factory()->create([
                 'tipo' => 'asteroide',
                 'imagen' => $faker->numberBetween(74, 79),
             ]);
         }
         Log::info($faker->numberBetween(74, 79));
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             Planetas::factory()->create([
                 'tipo' => 'sol',
                 'imagen' => $faker->numberBetween(80, 89),

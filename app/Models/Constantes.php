@@ -1024,7 +1024,7 @@ class Constantes extends Model
 
 
         $constante = new Constantes();
-        $constante->valor = 400;
+        $constante->valor = 100;
         $constante->minimo = 100;
         $constante->maximo = 600;
         $constante->codigo = 'anchouniverso';
