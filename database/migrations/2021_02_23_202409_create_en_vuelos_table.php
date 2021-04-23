@@ -23,6 +23,7 @@ class CreateEnVuelosTable extends Migration
             $table->unsignedBigInteger('defensaVisible')->nullable();
             $table->unsignedInteger('creditos');
             $table->timestamps();
+            $table->softDeletes();
             $table->unsignedBigInteger('jugadores_id');
             $table->foreign('jugadores_id')->references('id')->on('jugadores');
         });
