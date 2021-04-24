@@ -29,8 +29,8 @@ class CreateDiseniosEnFlotasTable extends Migration
             $table->unsignedBigInteger('en_orbita_id')->nullable();
             $table->foreign('en_orbita_id')->references('id')->on('en_orbitas')->onDelete('cascade');
 
-            $table->unsignedBigInteger('en_recoleccions_id')->nullable();
-            $table->foreign('en_recoleccions_id')->references('id')->on('en_recoleccions')->onDelete('cascade');
+            $table->unsignedBigInteger('en_recoleccion_id')->nullable();
+            $table->foreign('en_recoleccion_id')->references('id')->on('en_recoleccions')->onDelete('cascade');
 
             $table->unsignedBigInteger('planetas_id')->nullable()->default(null);
             $table->foreign('planetas_id')->references('id')->on('planetas');

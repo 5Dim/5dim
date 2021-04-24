@@ -35,7 +35,7 @@ class RecursosEnFlota extends Model
      * @var array
      */
     protected $fillable = [
-        'en_recoleccions_id',
+        'en_recoleccion_id',
         'en_vuelo_id',
         'en_orbita_id',
     ];

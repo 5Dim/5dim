@@ -905,13 +905,13 @@ los recuirsos realmente movidos se guardan en su destino
                         //Log::info($diseno);
                         $newDisenio = DiseniosEnFlota::updateOrCreate([
                             'disenios_id'   => $diseno->disenios->id,
-                            'en_recoleccions_id'   => $flotaExiste->en_recoleccions_id,
+                            'en_recoleccion_id'   => $flotaExiste->en_recoleccion_id,
                         ], [
                             'enFlota'     => DB::raw("enFlota+" . $diseno['enFlota']),
                             'enHangar'     => DB::raw("enFlota+" . $diseno['enHangar']),
                             'tipo'          => 'nave',
                             'disenios_id'   => $diseno->disenios->id,
-                            'en_recoleccions_id'   => $flotaExiste->en_recoleccions_id,
+                            'en_recoleccion_id'   => $flotaExiste->en_recoleccion_id,
                             "en_vuelo_id"   => null
                         ]);
                         //Log::info($newDisenio);
@@ -921,7 +921,7 @@ los recuirsos realmente movidos se guardan en su destino
                     $newDisenio=DiseniosEnFlota::updateOrCreate([
                         'en_vuelo_id'   => $flotaLlega->id,
                     ], [
-                        'en_recoleccions_id'   => $flotax->id,
+                        'en_recoleccion_id'   => $flotax->id,
                         "en_vuelo_id"   => null
                     ]);
                     Log::info(" new dise".$newDisenio);
@@ -941,7 +941,7 @@ los recuirsos realmente movidos se guardan en su destino
                     $newrecursos=RecursosEnFlota::updateOrCreate([
                         'en_vuelo_id'   => $flotaLlega->id,
                     ], [
-                        'en_recoleccions_id'   => $flotax->id,
+                        'en_recoleccion_id'   => $flotax->id,
                         "en_vuelo_id"   => null
                     ]);
                     Log::info(" new recu".$newrecursos);
