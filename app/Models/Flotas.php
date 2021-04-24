@@ -621,8 +621,9 @@ los recuirsos realmente movidos se guardan en su destino
                             break;
                         case "enrecoleccion":
                             //actualizamos sus recursos
-                            Recursos::calcularRecoleccion($destino->enrecoleccion->planeta->id);
-                            //$recursosDestino=$destino->enrecoleccion->recursos;
+                            Flotas::recolectarAsteroide($destino->enrecoleccion->planeta->id, $estaFlota);
+                            // Recursos::calcularRecoleccion($destino->enrecoleccion->planeta->id);
+                            $recursosDestino=$destino->enRecoleccion->recursosEnFlota;
                             break;
                         case "enextraccion":
                             //actualizamos sus recursos
