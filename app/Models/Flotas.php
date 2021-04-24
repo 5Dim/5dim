@@ -895,7 +895,7 @@ los recuirsos realmente movidos se guardan en su destino
                     $flotax->coordx = $coordDestx;
                     $flotax->coordy = $coordDesty;
                     $flotax->planetas_id = $planeta->id;
-                    //Log::info("flotax: ".$flotax);
+                    Log::info("flotax: ".$flotax);
                     $flotax->save();
                 }
 
@@ -905,16 +905,16 @@ los recuirsos realmente movidos se guardan en su destino
                         //Log::info($diseno);
                         $newDisenio = DiseniosEnFlota::updateOrCreate([
                             'disenios_id'   => $diseno->disenios->id,
-                            'en_recoleccion_id'   => $flotaExiste->en_recoleccion_id,
+                            'en_recoleccion_id'   => $flotaExiste->id,
                         ], [
                             'enFlota'     => DB::raw("enFlota+" . $diseno['enFlota']),
                             'enHangar'     => DB::raw("enFlota+" . $diseno['enHangar']),
                             'tipo'          => 'nave',
                             'disenios_id'   => $diseno->disenios->id,
-                            'en_recoleccion_id'   => $flotaExiste->en_recoleccion_id,
+                            'en_recoleccion_id'   => $flotaExiste->id,
                             "en_vuelo_id"   => null
                         ]);
-                        //Log::info($newDisenio);
+                        Log::info($flotaExiste->id." dd ".$diseno->disenios->id." ".$newDisenio);
                         $newDisenio->save();
                     }
                 } else {
@@ -924,7 +924,7 @@ los recuirsos realmente movidos se guardan en su destino
                         'en_recoleccion_id'   => $flotax->id,
                         "en_vuelo_id"   => null
                     ]);
-                    Log::info(" new dise".$newDisenio);
+                    Log::info($flotaLlega->id." mas ".$flotax->id." new dise".$newDisenio);
                     $newDisenio->save();
                 }
 

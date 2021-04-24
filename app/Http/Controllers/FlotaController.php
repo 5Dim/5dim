@@ -289,6 +289,7 @@ class FlotaController extends Controller
     debe haber un gasto minimo de fuel de 1 (no puede ser 0 nunca)
     puedes poner mision y no destino y enviar
     Cuando te llevas todas las naves deja a 0 cantidad en planeta
+    prioridades destino 1 si vas a recolectar
     */
 
     public function enviarFlota(Request $request, $id = false)
@@ -592,6 +593,7 @@ class FlotaController extends Controller
                     $naveSale->enHangar = $navex['enhangar'];
                     $naveSale->disenios_id = $navex['id'];
                     $naveSale->en_vuelo_id = $flotax->id;
+                    $naveSale->tipo = "nave";
                     $naveSale->save();
 
                     $naveP = $navesEnPlaneta->firstWhere('disenios_id', $navex['id']);
