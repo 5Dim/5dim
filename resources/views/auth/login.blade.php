@@ -68,13 +68,13 @@
                     autocomplete="current-password">
                 <label for="password" value="{{ __('Password') }}">Password</label>
             </div>
-            @if (Route::has('password.request'))
+            {{-- @if (Route::has('password.request'))
                 <div class="checkbox mb-3">
                     <a class="underline text-sm text-white hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 </div>
-            @endif
+            @endif --}}
             <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('Login') }}</button>
         </form>
     </main>
