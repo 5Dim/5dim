@@ -28,8 +28,8 @@ class JugadoresFactory extends Factory
         return [
             'user_id' => $this->faker->numberBetween($min = 1, $max = 2),
             'nombre' => $this->faker->name,
-            'universo_id' => 0,
-            'premiun_at' => date("Y-m-d H:i:s"),
+            'timezone' => 'Europe/Madrid',
+            'idioma' => 'Español',
         ];
         // });
     }

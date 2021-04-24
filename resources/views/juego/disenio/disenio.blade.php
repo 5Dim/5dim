@@ -28,7 +28,7 @@
                                             {{ $colaDisenios[$i]->cantidad }}
                                         </td>
                                         <td id="fechaFin{{ $i }}" class="text-light align-middle borderless">
-                                            {{ (new DateTime($colaDisenios[$i]->finished_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone("Europe/Madrid"))->format("Y-m-d H:i:s") }}
+                                            {{ (new DateTime($colaDisenios[$i]->finished_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone(Auth::user()->timezone))->format("Y-m-d H:i:s") }}
                                         </td>
                                         <td class="text-light align-middle borderless" id="{{ $colaDisenios[$i]->id }}"></td>
                                         <td class="text-light align-middle borderless">

@@ -331,16 +331,6 @@
             <table class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
-                        @php
-                        //Posible boton de proto
-                        @endphp
-                        <button type="button" class="btn btn-outline-primary col-12" data-bs-toggle="modal"
-                            data-bs-target="#datosModal"
-                            onclick="mostrarDatosInvestigacion('{{ $investigacion->codigo }}')">
-                            <i class="fa fa-question"></i> nombre prototipo desbloqueado
-                        </button>
-                    </td>
-                    <td>
                         <button type="button" class="btn btn-outline-primary col-12" data-bs-toggle="modal"
                             data-bs-target="#datosModal"
                             onclick="mostrarDatosInvestigacion('{{ $investigacion->codigo }}')">

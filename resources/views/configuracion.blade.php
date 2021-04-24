@@ -1,125 +1,136 @@
-@extends('layouts.app')
+@extends('principal.layout')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                @if (!empty($emailDup))
-                    <div class="alert alert-danger" role="alert">
-                        {{ $emailDup }}
-                    </div>
-                @endif
-                <div class="card">
-                    <div class="card-header">Cambia tus opciones</div>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ url('/update') }}">
-                            @csrf
+        body {
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
 
-                            <div class="input-group mb-3">
-                                <span class="input-group-text col-3" id="basic-addon1">Nombre</span>
-                                <input id="name" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre"
-                                    aria-describedby="basic-addon1">
-                                <div id="basic-addon1" class="form-text">
-                                    La contraseña debe contener al menos 8 caracteres.
-                                </div>
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text col-3" id="basic-addon1">Email</span>
-                                <input type="text" class="form-control" placeholder="Email" aria-label="Email"
-                                    aria-describedby="basic-addon1">
+        .form-signin {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            margin: auto;
+        }
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text col-3" id="basic-addon1">Contraseña</span>
-                                <input id="password" type="password" class="form-control" placeholder="Contraseña"
-                                    aria-label="Contraseña" aria-describedby="passwordHelpBlock">
-                                <div id="passwordHelpBlock" class="form-text">
-                                    La contraseña debe contener al menos 8 caracteres.
-                                </div>
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text col-3" id="basic-addon1">Confirmar contraseña</span>
-                                <input id="password-confirm" type="password" class="form-control"
-                                    placeholder="Confirmar contraseña" aria-label="Confirmar contraseña"
-                                    aria-describedby="passwordHelpBlock">
-                            </div>
+        .form-error {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            margin: auto;
+        }
 
-                            {{-- <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
 
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                                        value="{{ old('name') }}" autofocus>
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
 
-                                    @if ($errors->has('name'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
 
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+        .form-signin input[type="name"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
-                                        value="{{ old('email') }}">
+        .form-signin input[type="password"] {
+            margin-bottom: -1px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
 
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
+        .form-signin select {
+            margin-bottom: -1px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Contrasenia</label>
+        .form-signin button[type="submit"] {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password">
-
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar contrasenia</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-                                </div>
-                            </div> --}}
-
-                            <button type="submit" class="btn btn-primary">
-                                Guardar cambios
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    </style>
+    <hr class="featurette-divider">
+    @if ($errors->any())
+        <div class="alert alert-danger form-error">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-    </div>
+    @endif
+
+    <main class="form-signin">
+        <form method="POST" action="{{ route('user-profile-information.update') }}">
+            @csrf
+            @method('PUT')
+            <img class="mb-4" src="{{ asset('favicon.png') }}" alt="">
+
+            <div class="form-floating text-dark">
+                <input id="name" class="form-control" type="name" name="name" required value="{{ Auth::user()->name }}">
+                <label for="name" value="{{ __('Name') }}">Name</label>
+            </div>
+            <div class="form-floating text-dark">
+                <input id="email" class="form-control" type="email" name="email" :value="old('email')" required value="{{ Auth::user()->email }}">
+                <label for="email" value="{{ __('Email') }}">Email address</label>
+            </div>
+            <div class="form-floating text-dark">
+                <select id="timezone" name="timezone" class="form-control form-select-lg">
+                    <optgroup label="Propios">
+                        @foreach (timezone_identifiers_list() as $timeZone)
+                            <option value="none">Selecciona tu zona horaria</option>
+                            <option value="{{ $timeZone }}" {{ Auth::user()->timezone == $timeZone ? 'selected' : "" }}> {{ $timeZone }} </option>
+                        @endforeach
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-floating text-dark">
+                <select id="idioma" name="idioma" class="form-control form-select-lg">
+                    <option value="none">Selecciona tu idioma</option>
+                    <option value="Español" {{ Auth::user()->idioma == "Español" ? 'selected' : "" }}> Español </option>
+                    <option value="Ingles" {{ Auth::user()->idioma == "Ingles" ? 'selected' : "" }}> Ingles </option>
+                </select>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('Actualizar usuario') }}</button>
+        </form>
+
+        <form method="POST" action="{{ route('user-password.update') }}">
+            @csrf
+            @method('PUT')
+            <div class="form-floating text-dark">
+                <input id="current_password" name="current_password" type="password" class="form-control" wire:model.defer="state.current_password" autocomplete="current-password">
+                <label for="current_password" value="{{ __('Current Password') }}">Current Password</label>
+            </div>
+            <div class="form-floating text-dark">
+                <input id="password" name="password" type="password" class="form-control" wire:model.defer="state.password" autocomplete="new-password">
+                <label for="password" value="{{ __('New Password') }}">Password</label>
+            </div>
+            <div class="form-floating text-dark">
+                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" wire:model.defer="state.password_confirmation" autocomplete="new-password">
+                <label for="password_confirmation" value="{{ __('Confirm Password') }}">Confirm Password</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('Cambiar contraseña') }}</button>
+        </form>
+    </main>
 @endsection

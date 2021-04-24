@@ -27,6 +27,10 @@
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/customPpal.css') }}" rel="stylesheet">
 
+    <!-- Select2 -->
+    <link href="{{ asset('css/select2/select2.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/select2/select2-bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+
 
     <style>
         .bd-placeholder-img {
@@ -55,8 +59,8 @@
         <nav class="navbar navbar-expand-md">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    <img src="{{ asset('favicon.png') }}" alt="" width="30" height="24"
-                        class="d-inline-block align-text-top">
+                    <img src="{{ asset('favicon.png') }}" alt="" width="50" height="50"
+                        class="d-inline-block align-text-middle">
                     Quinta Dimension
                 </a>
                 @auth
@@ -67,11 +71,13 @@
                         </button>
 
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item bg-dark text-light" href="{{ url('/home') }}">Acceder a los universos</a>
-                            <a class="dropdown-item bg-dark text-light" href="{{ url('/configuracion') }}">Configuracion</a>
+                            <a class="dropdown-item bg-dark text-light" href="{{ url('/home') }}">Acceder a los
+                                universos</a>
+                            <a class="dropdown-item bg-dark text-light"
+                                href="{{ url('/configuracion') }}">Configuracion</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <a class="dropdown-item bg-danger text-light" href="{{ url('/logout') }}"
+                                <a class="dropdown-item bg-dark text-danger" href="{{ url('/logout') }}"
                                     onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
                             </form>
                         </div>
@@ -93,8 +99,30 @@
     </main>
     </div>
 
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
+
     <!-- Bootstrap -->
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Select2 -->
+    <script src="{{ asset('js/select2/select2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#timezone').select2({
+                placeholder: "Nombre del planeta",
+                width: '100%',
+                language: "es"
+            });
+            $('#idioma').select2({
+                placeholder: "Nombre del planeta",
+                width: '100%',
+                language: "es"
+            });
+        });
+
+    </script>
 
 </body>
 

@@ -269,10 +269,10 @@
     </div>
     <div class="col-12">
         <div id="cuadro1" class="table-responsive ">
-            <table class="table table-sm table-borderless text-center anchofijo">
+            <table class="table table-sm table-borderless text-center anchofijo align-middle">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-danger col-12"
+                        <button type="button" class="btn btn-danger btn-lg col-12"
                             onclick="reciclarDisenio({{ $disenio->id }})">
                             <i class="fa fa-info-circle"></i> Reciclar nave
                         </button>
@@ -301,14 +301,14 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success col-12"
+                        <button type="button" class="btn btn-success btn-lg col-12"
                             onclick="construirDisenio({{ $disenio->id }})">
                             <i class="fa fa-plus-circle"></i> Construir
                         </button>
                     </td>
                 </tr>
             </table>
-            <table class="table table-sm table-borderless text-center anchofijo">
+            <table class="table table-sm table-borderless text-center anchofijo align-middle">
                 <tr>
                     <td>
                         <a type="button" class="btn btn-outline-danger col-12 text-danger"
@@ -318,8 +318,8 @@
                     </td>
                     <td>
                         <div class="accordion accordion-flush" id="button{{ $disenio->id }}">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
+                            <div class="accordion-item bg-transparent">
+                                <h2 class="accordion-header" id="flush-headingOne" style="margin-bottom: 5px;">
                                     <a class="btn btn-outline-primary col-12 text-primary" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#info{{ $disenio->id }}"
                                         aria-expanded="false" aria-controls="info{{ $disenio->id }}"  onclick="MostrarResultadoDisenio({{$disenio}})">
@@ -342,7 +342,7 @@
             <div id="info{{ $disenio->id }}" class="accordion-collapse collapse"
                 aria-labelledby="info{{ $disenio->id }}" data-bs-parent="#button{{ $disenio->id }}">
                 <div class="">
-                    <table class="table table-sm table-borderless text-center anchofijo">
+                    <table class="table table-sm table-borderless text-center anchofijo align-middle">
                         <tr>
                             <td class="text-warning">Carga</td>
                             <td class="text-warning">Recoleccion</td>

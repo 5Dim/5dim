@@ -18,6 +18,16 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function jugador()
+    {
+        return $this->hasOne(Jugadores::class);
+    }
+
+    public function transacciones()
+    {
+        return $this->hasMany(TiendasHistorial::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +37,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'timezone',
+        'idioma',
     ];
 
     /**
@@ -58,14 +70,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public function jugador()
-    {
-        return $this->hasOne(Jugadores::class);
-    }
-
-    public function transacciones()
-    {
-        return $this->hasMany(TiendasHistorial::class);
-    }
 }

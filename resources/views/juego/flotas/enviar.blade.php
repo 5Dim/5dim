@@ -183,16 +183,13 @@
                     <table class="table table-borderless borderless table-sm text-center anchofijo"
                         style="margin-top: 5px !important">
                         <tr>
-                            <th colspan="9" class="text-success">
+                            <th colspan="12" class="text-success">
                                 <big>
                                     Resumen de la flota
                                 </big>
                             </th>
                         </tr>
                         <tr>
-                            <th class="text-warning align-middle">
-                                Nombre privado
-                            </th>
                             <th class="text-warning align-middle">
                                 Carga
                             </th>
@@ -226,12 +223,11 @@
                             <th class="text-warning align-middle">
                                 Extracción
                             </th>
+                            <th class="text-warning align-middle">
+                                Nombre privado
+                            </th>
                         </tr>
                         <tr>
-                            <td>
-                                <input type="text" id="nombreFlota" class="form-control input" placeholder="Nombre privado
-                                aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            </td>
                             <td id="totalcarga" class="text-light align-middle">
                             </td>
                             <td id="totalmunicion" class="text-light align-middle">
@@ -253,6 +249,10 @@
                             <td id="totalrecoleccionV" class="text-light align-middle">
                             </td>
                             <td id="totalextraccionV" class="text-light align-middle">
+                            </td>
+                            <td>
+                                <input type="text" id="nombreFlota" class="form-control input" placeholder="Nombre privado
+                                aria-label="Recipient's username" aria-describedby="basic-addon2">
                             </td>
                         </tr>
                     </table>

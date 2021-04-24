@@ -22,7 +22,7 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="colonia" role="tabpanel" aria-labelledby="colonia-tab">
-                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded">
+                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded align-middle">
                         <tr>
                             <th colspan="3" class="anchofijo text-success borderless">
                                 <big>Resumen de la colonia</big>
@@ -93,7 +93,7 @@
                             </td>
                         </tr>
                     </table>
-                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded">
+                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded align-middle">
                         <tr>
                             <th colspan="6" class="anchofijo text-success borderless">
                                 <big>Yacimientos y terraformador</big>
@@ -191,7 +191,7 @@
                             </td>
                         </tr>
                     </table>
-                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded">
+                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded align-middle">
                         <tr>
                             <th colspan="12" class="anchofijo text-success borderless">
                                 <big>Resumen de produccion e industrias</big>
@@ -811,7 +811,7 @@
                     </table>
                 </div>
                 <div class="tab-pane fade show" id="refugio" role="tabpanel" aria-labelledby="refugio-tab">
-                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded">
+                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded align-middle">
                         <tr>
                             <th colspan="11" class="anchofijo text-success">
                                 <big>
