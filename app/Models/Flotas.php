@@ -420,7 +420,7 @@ class Flotas extends Model
             $destino->en_orbita_id = $en_orbita_id;
             $destino->en_recoleccion_id = $en_recoleccion_id;
         } catch (\Exception $e) {
-            Log::info($e);
+            // Log::info($e);
             // return $e->getMessage();
         }
         return [$destino, $errores];
@@ -571,10 +571,10 @@ los recuirsos realmente movidos se guardan en su destino
         $luzdemallauniverso = $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $ahora = date("Y-m-d H:i:s");
-        $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init","desc")->get(); //
+        $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init", "desc")->get(); //
 
 
-        Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
+        // Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
 
         foreach ($listaDestinosEntrantes as $destino) {
 
@@ -682,7 +682,7 @@ los recuirsos realmente movidos se guardan en su destino
                         }
                     }
 
-                    $cargaTotalLLevo=0;
+                    $cargaTotalLLevo = 0;
                     foreach ($recursosArray as $recurso) {
                         $cargaTotalLLevo += $recursosFlota[$recurso];
                     }
@@ -768,7 +768,7 @@ los recuirsos realmente movidos se guardan en su destino
                 case "Recolectar":
 
                     if ($destino->planetas->imagen > 69 && $destino->planetas->imagen < 80) {
-                        $errores = Flotas::flotaARecolectar($estaFlota, $destino->planetas, $anchoUniverso, $luzdemallauniverso);
+                        $errores = Flotas::flotaARecolectar($estaFlota, $destino->planetas, $anchoUniverso, $luzdemallauniverso, $destino->id);
                         $destinoAlcanzado = true;
                     } else {
                         $destinoAlcanzado = true;
@@ -793,7 +793,7 @@ los recuirsos realmente movidos se guardan en su destino
                     foreach ($estaFlota->diseniosEnFlota as $diseno) {
                         $cuantas = $diseno['enFlota'] + $diseno['enHangar'];
                         //Log::info("cuantas= ".$cuantas);
-                        $newDisenio = DiseniosEnFlota::updateOrCreate([
+                        DiseniosEnFlota::updateOrCreate([
                             'disenios_id'   => $diseno->disenios->id,
                             'planetas_id'   => $destino->planetas->id
                         ], [
@@ -803,7 +803,6 @@ los recuirsos realmente movidos se guardan en su destino
                             'planetas_id'   => $destino->planetas->id,
                             "en_vuelo_id"   => null
                         ]);
-                        $newDisenio->save();
                     }
                     $estaFlota->delete();
                     $destinoAlcanzado = true;
@@ -842,7 +841,7 @@ los recuirsos realmente movidos se guardan en su destino
         }
     }
 
-    public static function flotaARecolectar($flotaLlega, $planeta, $anchoUniverso, $luzdemallauniverso)
+    public static function flotaARecolectar($flotaLlega, $planeta, $anchoUniverso, $luzdemallauniverso, $destinoID)
     {
 
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
@@ -850,14 +849,15 @@ los recuirsos realmente movidos se guardan en su destino
 
         if ($flotaLlega != null) {
 
-            $ajusteMapaBase = 35; //ajuste 0,0 con mapa
-            $ajusteMapaFactor = 7; //ajuste escala mapa
+            try {
+                $ajusteMapaBase = 35; //ajuste 0,0 con mapa
+                $ajusteMapaFactor = 7; //ajuste escala mapa
 
-            //si ya existe una flota en recolección
-            $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
-                ->where("planetas_id", $planeta->id)->first();
+                //si ya existe una flota en recolección
+                $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
+                    ->where("planetas_id", $planeta->id)->first();
 
-            //Log::info($planeta->id."jugador id ". $flotaLlega->jugadores_id." flotaExiste ".$flotaExiste);
+                // Log::info($planeta->id . "jugador id " . $flotaLlega->jugadores_id . " flotaExiste " . $flotaExiste);
                 // recolectando antes de nada
                 if ($flotaExiste != null) {
                     Flotas::recolectarAsteroide($planeta, $flotaExiste);
@@ -895,42 +895,45 @@ los recuirsos realmente movidos se guardan en su destino
                     $flotax->coordx = $coordDestx;
                     $flotax->coordy = $coordDesty;
                     $flotax->planetas_id = $planeta->id;
-                    Log::info("flotax: ".$flotax);
                     $flotax->save();
+                    // Log::info("flotax: " . $flotax);
                 }
 
                 // naves a flota
                 if ($flotaExiste != null) {
                     foreach ($flotaLlega->diseniosEnFlota as $diseno) {
-                        //Log::info($diseno);
-                        $newDisenio = DiseniosEnFlota::updateOrCreate([
+                        DiseniosEnFlota::updateOrCreate([
                             'disenios_id'   => $diseno->disenios->id,
                             'en_recoleccion_id'   => $flotaExiste->id,
                         ], [
                             'enFlota'     => DB::raw("enFlota+" . $diseno['enFlota']),
-                            'enHangar'     => DB::raw("enFlota+" . $diseno['enHangar']),
-                            'tipo'          => 'nave',
+                            'enHangar'     => DB::raw("enHangar+" . $diseno['enHangar']),
+                            'tipo'          => 'otra cosa',
                             'disenios_id'   => $diseno->disenios->id,
                             'en_recoleccion_id'   => $flotaExiste->id,
                             "en_vuelo_id"   => null
                         ]);
-                        Log::info($flotaExiste->id." dd ".$diseno->disenios->id." ".$newDisenio);
-                        $newDisenio->save();
                     }
                 } else {
-                    $newDisenio=DiseniosEnFlota::updateOrCreate([
-                        'en_vuelo_id'   => $flotaLlega->id,
+                    DiseniosEnFlota::updateOrCreate([
+                        'en_vuelo_id'   => $destinoID,
                     ], [
                         'en_recoleccion_id'   => $flotax->id,
                         "en_vuelo_id"   => null
                     ]);
-                    Log::info($flotaLlega->id." mas ".$flotax->id." new dise".$newDisenio);
-                    $newDisenio->save();
+                    // DiseniosEnFlota::where("en_vuelo_id", $flotaLlega->id)->update(["en_recoleccion_id" =>  DB::raw($flotax->id), "en_vuelo_id" => DB::raw('null')]);
+
+                    PrioridadesEnFlota::updateOrCreate([
+                        'destinos_id'   => $flotaLlega->id,
+                    ], [
+                        'en_recoleccion_id'   => $flotax->id,
+                        "destinos_id"   => null
+                    ]);
                 }
 
                 //recursos
                 if ($flotaExiste != null) {
-                    $recursosLlega = $flotaExiste->recursosEnFlota;
+                    $recursosLlega = $flotaLlega->recursosEnFlota;
                     $recursosExiste = $flotaExiste->recursosEnFlota;
 
                     foreach ($recursosArray as $recurso) {
@@ -938,24 +941,21 @@ los recuirsos realmente movidos se guardan en su destino
                     }
                     $recursosExiste->save();
                 } else {
-                    $newrecursos=RecursosEnFlota::updateOrCreate([
+                    RecursosEnFlota::updateOrCreate([
                         'en_vuelo_id'   => $flotaLlega->id,
                     ], [
                         'en_recoleccion_id'   => $flotax->id,
                         "en_vuelo_id"   => null
                     ]);
-                    Log::info(" new recu".$newrecursos);
-                    $newrecursos->save();
                 }
 
                 $flotaLlega->delete();
 
                 DB::commit();
                 //Log::info("Enviada");
-                try {
             } catch (Exception $e) {
                 DB::rollBack();
-                $errores = "Error en Commit de poner en recolección " . $errores.$e;
+                $errores = "Error en Commit de poner en recolección " . $errores . $e;
                 //Log::info($errores . " " . $e);
             }
             return $errores;
@@ -968,55 +968,56 @@ los recuirsos realmente movidos se guardan en su destino
     {
 
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
-        $errores="";
+        $errores = "";
 
-        try {
+        $recursosDestino = Producciones::produccionRecoleccion($planeta->id);
+        $recursosFlota = $flotax->recursosEnFlota;
+        $errores = "";
+        $prioridadesDestino = $flotax->prioridadesEnFlota;
+        // Log::info(" prioridadesEnFlota " . $flotax->prioridadesEnFlota);
 
-            Log::info("flotax ".$flotax);
-            $recursosDestino = Producciones::produccionRecoleccion($planeta->id);
-            $recursosFlota = $flotax->recursosEnFlota;
-            $errores = "";
-            Log::info("recursosFlota ".$recursosFlota);
-            $prioridadesDestino = $flotax->prioridadesEnFlota;
+        $flotax["recoleccion"] = Disenios::recoleccionTotal($flotax->diseniosEnFlota);
+        $capacidadRecoleccion = $flotax["recoleccion"];
+        // Log::info(" capacidadRecoleccion " . $capacidadRecoleccion);
+        $fechaInicio = strtotime($flotax->updated_at);
+        $fechaFin = time();
+        $fechaCalculo = ($fechaFin - $fechaInicio) / 3600;
+        // Log::info(" fechaCalculo " . $fechaCalculo);
 
-            //Log::info(" recursosDestino ".$recursosDestino);
+        for ($ordinal = 1; $ordinal < 16; $ordinal++) {
+            foreach ($recursosArray as $recurso) {
+                // Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
+                if ($prioridadesDestino[$recurso] == $ordinal) {
+                    $extraido = 0;
+                    $producido = $recursosDestino[$recurso] * $fechaCalculo;
+                    // Log::info(" producido " . $producido);
 
-            $capacidadRecoleccion = $flotax["recoleccion"] / 3600;
-            $fechaInicio = strtotime($flotax->updated_at);
-            $fechaFin = time();
-            $fechaCalculo = $fechaFin - $fechaInicio;
-
-            for ($ordinal = 1; $ordinal < 16; $ordinal++) {
-                foreach ($recursosArray as $recurso) {
-                    //Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
-                    if ($prioridadesDestino[$recurso] == $ordinal) {
-                        $extraido = 0;
-                        $producido = $recursosDestino[$recurso] * $fechaCalculo;
-
-                        if ($producido > $capacidadRecoleccion) {
-                            $extraido = $capacidadRecoleccion;
-                        } else {
-                            $extraido = $producido;
-                        }
-                        $recursosFlota[$recurso] +=  $extraido;
-                        $capacidadRecoleccion -= $extraido;
-
-                        Log::info(" extraido ".$extraido);
+                    if ($producido > $capacidadRecoleccion) {
+                        $extraido = $capacidadRecoleccion;
+                    } else {
+                        $extraido = $producido;
                     }
+                    $recursosFlota[$recurso] +=  $extraido;
+                    $capacidadRecoleccion -= $extraido;
+
+                    // Log::info(" extraido " . $extraido);
                 }
             }
+        }
 
-            $flotax->updated_at = time();
-            DB::beginTransaction();
-            Log::info($flotax);
-            $recursosFlota->save();
-            Log::info($flotax);
-            $flotax->save();
+        $flotax->updated_at = time();
+        DB::beginTransaction();
+        // Log::info($flotax);
+        $recursosFlota->save();
+        // Log::info($flotax);
+        $flotax->save();
 
-            DB::commit();
+        DB::commit();
+
+        try { // comprobar si tienes extraccion/recoleccion y si alguna prioridad es mayor a 0
         } catch (Exception $e) {
             DB::rollBack();
-            $errores = "Error en Commit ejecutar recolección flota " . $flotax->publico . "  lugar " . $planeta->sistema . "x" . $planeta->orbita . "  ".$errores; //.$e;
+            $errores = "Error en Commit ejecutar recolección flota " . $flotax->publico . "  lugar " . $planeta->sistema . "x" . $planeta->orbita . "  " . $errores; //.$e;
             //Log::info($errores . " " . $e);
         }
         return $errores;

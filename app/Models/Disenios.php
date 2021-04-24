@@ -238,16 +238,17 @@ class Disenios extends Model
         return $mejorasT * (1 + ($investigacion * $constante));
     }
 
-    public static function recoleccionTotal($disenios)
+    public static function recoleccionTotal($diseniosFlota)
     {
         $investigacion = Investigaciones::where('codigo', 'invRecoleccion')->first()->nivel;
         $constante = Constantes::where('codigo', 'mejorainvRecoleccion')->first()->valor;
         $mejorasT=0;
 
-        foreach ($disenios as $disenio) {
+        foreach ($diseniosFlota as $disenio) {
             $mejoras = $disenio->disenios->mejoras;
-            if ($mejoras->recoleccion > 0) {
-                $mejorasT +=  $mejoras->recoleccion;
+            $multiplicador = $disenio->enFlota + $disenio->enHangar;
+            if ($mejoras->recolector > 0) {
+                $mejorasT +=  $mejoras->recolector * $multiplicador;
             }
         }
         return $mejorasT * (1 + ($investigacion * $constante));
@@ -261,8 +262,9 @@ class Disenios extends Model
 
         foreach ($disenios as $disenio) {
             $mejoras = $disenio->disenios->mejoras;
-            if ($mejoras->extraccion > 0) {
-                $mejorasT +=  $mejoras->extraccion;
+            $multiplicador = $disenio->enFlota + $disenio->enHangar;
+            if ($mejoras->extractor > 0) {
+                $mejorasT +=  $mejoras->extractor * $multiplicador;
             }
         }
         return $mejorasT * (1 + ($investigacion * $constante));

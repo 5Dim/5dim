@@ -9,6 +9,17 @@ class PrioridadesEnFlota extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'en_recoleccion_id',
+        'en_orbita_id',
+        'destinos_id',
+    ];
+
     public function destino()
     {
         return $this->hasOne(Destinos::class);
