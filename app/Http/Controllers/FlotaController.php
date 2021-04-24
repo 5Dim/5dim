@@ -294,7 +294,7 @@ class FlotaController extends Controller
     public function enviarFlota(Request $request, $id = false)
     { //$id es de la flota en orbita de la que salimos
 
-        $turboAtaque=5; //trampas gordas, tiempo de llegar al destino
+        $turboAtaque=20; //trampas gordas, tiempo de llegar al destino
 
         $navesEstacionadas = $request->input('navesEstacionadas');
         $cargaDest = $request->input('cargaDest');

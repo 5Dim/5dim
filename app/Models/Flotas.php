@@ -557,6 +557,12 @@ class Flotas extends Model
         return compact('errores');
     }
 
+/*
+los recuirsos realmente movidos se guardan en su destino
+
+
+*/
+
     ///////////////  recepción de flotas   ////////////////////////
     public static function llegadaFlotas()
     {
@@ -582,7 +588,9 @@ class Flotas extends Model
             $errores = "";
             $mensaje="";
 
+
             $estaFlota = $destino->flota;
+            //Log::info("estaFlota");Log::info($estaFlota);
             $recursosFlota = $estaFlota->recursosEnFlota;
             $recursosQuieroCargar = $destino->recursos;
             //Log::info($recursosQuieroCargar);
@@ -757,8 +765,6 @@ class Flotas extends Model
                 case "Recolectar":
 
                     if($destino->planetas->imagen>69 && $destino->planetas->imagen<80){
-                        Producciones::produccionRecoleccion($destino->planetas->id);
-                        // me pongo en recolectar
                         $errores=Flotas::flotaARecolectar($estaFlota,$destino->planetas,$anchoUniverso,$luzdemallauniverso);
                         $destinoAlcanzado = true;
 
@@ -798,7 +804,7 @@ class Flotas extends Model
                         ]);
                         $newDisenio->save();
                     }
-                    $estaFlota->delete();
+                    $estaFlota->softDeletes();
                     $destinoAlcanzado = true;
                 }
 
@@ -809,6 +815,8 @@ class Flotas extends Model
                     $planetaColonizar['nombre']="Nueva";
                     $planetaColonizar['creacion']=time();
                     $planetaColonizar->save();
+
+                    Recursos::initRecursos($destino->planetas->id);
                 }
 
 
@@ -849,14 +857,19 @@ class Flotas extends Model
             where("jugadores_id",$flotaLlega->jugadores_id)
             ->where("planetas_id",$planeta->id)->first();
 
-            DB::beginTransaction();
             try {
-                //construyendo flota
+                // recolectando antes de nada
+                if($flotaExiste!=null){
+                    Flotas::recolectarAsteroide($planeta,$flotaExiste);
+                }
 
+                //construyendo flota
                 $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
                 $recoleccionT=Disenios::recoleccionTotal($flotaLlega->diseniosEnFlota);
 
+                DB::beginTransaction();
                 if($flotaExiste!=null){
+
                     $flotaExiste->ataqueReal += $flotaLlega['ataqueReal'];
                     $flotaExiste->defensaReal += $flotaLlega['defensaReal'];
                     $flotaExiste->ataqueVisible += $flotaLlega['ataqueVisible'];
@@ -920,7 +933,7 @@ class Flotas extends Model
                     RecursosEnFlota::where("en_vuelo_id",$flotaLlega->id)->update(["en_recoleccions_id"=>$flotax->id,"en_vuelo_id",null]);
                 }
 
-                $flotaLlega->delete();
+                $flotaLlega->softDeletes();
 
                 DB::commit();
                 //Log::info("Enviada");
@@ -932,12 +945,59 @@ class Flotas extends Model
             }
             return $errores;
         }
-
-
-
     }
 
 
+
+    public static function recolectarAsteroide($planeta,$flotax){
+
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+
+        try {
+
+            $recursosDestino=Producciones::produccionRecoleccion($planeta->id);
+            $recursosFlota=$flotax->recursosEnFlota;
+            $errores="";
+            $prioridadesDestino = $flotax->prioridadesEnFlota;
+
+            $capacidadRecoleccion=$flotax["recoleccion"]/3600;
+            $fechaInicio = strtotime($flotax->updated_at);
+            $fechaFin = time();
+            $fechaCalculo = $fechaFin - $fechaInicio;
+
+            for ($ordinal = 1; $ordinal < 16; $ordinal++) {
+                foreach ($recursosArray as $recurso) {
+                    //Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
+                    if ($prioridadesDestino[$recurso] == $ordinal) {
+                        $extraido=0;
+                        $producido = $recursosDestino[$recurso]*$fechaCalculo;
+
+                        if($producido>$capacidadRecoleccion){
+                            $extraido=$capacidadRecoleccion;
+                        } else {
+                            $extraido=$producido;
+                        }
+                        $recursosFlota[$recurso] +=  $extraido;
+                        $capacidadRecoleccion-=$extraido;
+                    }
+                }
+            }
+
+            $flotax->updated_at=time();
+            DB::beginTransaction();
+
+            $recursosFlota->save();
+            $flotax->save();
+
+            DB::commit();
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            $errores = "Error en Commit ejecutar recolección flota ".$flotax->publico."  lugar ".$planeta->sistema."x".$planeta->orbita."  ". $errores; //.$e;
+            //Log::info($errores . " " . $e);
+        }
+        return $errores;
+    }
 
 
 }
