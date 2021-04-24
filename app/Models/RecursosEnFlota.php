@@ -29,4 +29,15 @@ class RecursosEnFlota extends Model
         return $this->hasOne(Destinos::class);
     }
 
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'en_recoleccions_id',
+        'en_vuelo_id',
+        'en_orbita_id',
+    ];
+
 }

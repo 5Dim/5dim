@@ -571,7 +571,7 @@ los recuirsos realmente movidos se guardan en su destino
         $luzdemallauniverso = $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $ahora = date("Y-m-d H:i:s");
-        $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->get();
+        $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init","desc")->get(); //
 
 
         Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
@@ -588,17 +588,11 @@ los recuirsos realmente movidos se guardan en su destino
             $errores = "";
             $mensaje = "";
 
-            Log::info("destino");
-            Log::info($destino);
             $estaFlota = $destino->flota;
-            Log::info("estaFlota");
-            Log::info($estaFlota);
-            Log::info("recursosEnFlota");
-            Log::info($estaFlota->recursosEnFlota);
             $recursosFlota = $estaFlota->recursosEnFlota;
             $recursosQuieroCargar = $destino->recursos;
             //Log::info($recursosQuieroCargar);
-            $recursosDestino = new RecursosEnFlota();
+            //$recursosDestino = new RecursosEnFlota();
             $prioridadesDestino = $destino->prioridades;
 
             //Log::info("destino ".$destino);
@@ -630,7 +624,7 @@ los recuirsos realmente movidos se guardan en su destino
                             Recursos::calcularRecoleccion($destino->enrecoleccion->planeta->id);
                             //$recursosDestino=$destino->enrecoleccion->recursos;
                             break;
-                        case "enrecoleccion":
+                        case "enextraccion":
                             //actualizamos sus recursos
                             //$recursosDestino=$destino->enorbita->recursos;
                             break;
@@ -658,6 +652,7 @@ los recuirsos realmente movidos se guardan en su destino
                         if ($recursosQuieroCargar[$recurso] > 0) {
 
                             $difCarga = $recursosFlota[$recurso] - $recursosQuieroCargar[$recurso]; //si es <1 me llevo cosas
+                            //Log::info(" difCarga ".$difCarga);
 
                             if ($difCarga < 0 && $destinoEsMio) { // si no es mio no me llevo nada
                                 $difCarga = 0;
@@ -665,24 +660,31 @@ los recuirsos realmente movidos se guardan en su destino
 
                             if ($difCarga < 0 && $destinoEsMio && $recursosDestino[$recurso] < $difCarga) { //no me llevo mas de lo que hay
                                 $difCarga = $recursosDestino[$recurso];
+                                //Log::info("1 difCarga ".$difCarga);
                             }
 
-                            if ($difCarga > 0 && $recursosFlota[$recurso] > $difCarga) { //no dejo mas de la diferencia
+                            if ($difCarga > 0 && $recursosFlota[$recurso] < $difCarga) { //no dejo mas de lo que llevo
                                 $difCarga = $recursosFlota[$recurso];
+                                //Log::info("2 difCarga ".$difCarga);
                             }
 
                             if ($difCarga < 0 && $destinoEsMio && $cargaTotalLLevo + $difCarga > $cargaMaxima) {  //no cargo mas de mi capacidad
                                 $difCarga = $cargaMaxima - $cargaTotalLLevo;
+                                //Log::info("3 difCarga ".$difCarga);
                             }
 
                             if ($difCarga != 0) { //se hace el traspaso
-                                //Log::info("difCarga ".$difCarga."  recursosFlota[recurso] ".$recursosFlota[$recurso]."  recursosDestino[recurso] ".$recursosDestino[$recurso]);
                                 $recursosFlota[$recurso] -= $difCarga;
                                 $recursosDestino[$recurso] += $difCarga;
-                                $cargaTotalLLevo += $difCarga;
                                 $guardarCambios = true;
+                                //Log::info("CARGA difCarga ".$difCarga." recursosQuieroCargar ".$recursosQuieroCargar[$recurso]."  recursosFlota[recurso] ".$recursosFlota[$recurso]."  recursosDestino[recurso] ".$recursosDestino[$recurso]);
                             }
                         }
+                    }
+
+                    $cargaTotalLLevo=0;
+                    foreach ($recursosArray as $recurso) {
+                        $cargaTotalLLevo += $recursosFlota[$recurso];
                     }
 
                     //Log::info($destinoEsMio . "prioridad " . $prioridadesDestino);
@@ -697,11 +699,12 @@ los recuirsos realmente movidos se guardan en su destino
                                     //Log::info("cargas prior " . $difCarga . " cargaTotalLLevo " . $cargaTotalLLevo . " cargaMaxima " . $cargaMaxima);
                                     if ($cargaTotalLLevo + $difCarga > $cargaMaxima) {  //no cargo mas de mi capacidad
                                         $difCarga = Round($cargaMaxima - $cargaTotalLLevo);
+                                        //Log::info(" difCarga ".$difCarga);
                                         $recursosFlota[$recurso] += $difCarga;
                                         $recursosDestino[$recurso] -= $difCarga;
                                         $cargaTotalLLevo += $difCarga;
                                         $guardarCambios = true;
-                                        //Log::info("difCarga " . $difCarga . " " . $recurso . "  recursosFlota[recurso] " . $recursosFlota[$recurso] . "  recursosDestino[recurso] " . $recursosDestino[$recurso]);
+                                        //Log::info("PRIORIDADES difCarga " . $difCarga . " " . $recurso . "  recursosFlota[recurso] " . $recursosFlota[$recurso] . "  recursosDestino[recurso] " . $recursosDestino[$recurso]);
                                     }
                                 }
                             }
@@ -854,7 +857,7 @@ los recuirsos realmente movidos se guardan en su destino
             $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
                 ->where("planetas_id", $planeta->id)->first();
 
-            try {
+            //Log::info($planeta->id."jugador id ". $flotaLlega->jugadores_id." flotaExiste ".$flotaExiste);
                 // recolectando antes de nada
                 if ($flotaExiste != null) {
                     Flotas::recolectarAsteroide($planeta, $flotaExiste);
@@ -891,13 +894,15 @@ los recuirsos realmente movidos se guardan en su destino
                     $flotax->jugadores_id = $flotaLlega->jugadores_id;
                     $flotax->coordx = $coordDestx;
                     $flotax->coordy = $coordDesty;
-                    //Log::info($flotax);
+                    $flotax->planetas_id = $planeta->id;
+                    //Log::info("flotax: ".$flotax);
                     $flotax->save();
                 }
 
                 // naves a flota
                 if ($flotaExiste != null) {
                     foreach ($flotaLlega->diseniosEnFlota as $diseno) {
+                        //Log::info($diseno);
                         $newDisenio = DiseniosEnFlota::updateOrCreate([
                             'disenios_id'   => $diseno->disenios->id,
                             'en_recoleccions_id'   => $flotaExiste->en_recoleccions_id,
@@ -909,10 +914,18 @@ los recuirsos realmente movidos se guardan en su destino
                             'en_recoleccions_id'   => $flotaExiste->en_recoleccions_id,
                             "en_vuelo_id"   => null
                         ]);
+                        //Log::info($newDisenio);
                         $newDisenio->save();
                     }
                 } else {
-                    DiseniosEnFlota::where("en_vuelo_id", $flotaLlega->id)->update(["en_recoleccions_id" => $flotax->id, "en_vuelo_id", null]);
+                    $newDisenio=DiseniosEnFlota::updateOrCreate([
+                        'en_vuelo_id'   => $flotaLlega->id,
+                    ], [
+                        'en_recoleccions_id'   => $flotax->id,
+                        "en_vuelo_id"   => null
+                    ]);
+                    Log::info(" new dise".$newDisenio);
+                    $newDisenio->save();
                 }
 
                 //recursos
@@ -925,17 +938,24 @@ los recuirsos realmente movidos se guardan en su destino
                     }
                     $recursosExiste->save();
                 } else {
-                    RecursosEnFlota::where("en_vuelo_id", $flotaLlega->id)->update(["en_recoleccions_id" => $flotax->id, "en_vuelo_id", null]);
+                    $newrecursos=RecursosEnFlota::updateOrCreate([
+                        'en_vuelo_id'   => $flotaLlega->id,
+                    ], [
+                        'en_recoleccions_id'   => $flotax->id,
+                        "en_vuelo_id"   => null
+                    ]);
+                    Log::info(" new recu".$newrecursos);
+                    $newrecursos->save();
                 }
 
                 $flotaLlega->delete();
 
                 DB::commit();
                 //Log::info("Enviada");
-
+                try {
             } catch (Exception $e) {
                 DB::rollBack();
-                $errores = "Error en Commit de poner en recolección " . $errores; //.$e;
+                $errores = "Error en Commit de poner en recolección " . $errores.$e;
                 //Log::info($errores . " " . $e);
             }
             return $errores;
@@ -948,13 +968,18 @@ los recuirsos realmente movidos se guardan en su destino
     {
 
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+        $errores="";
 
         try {
 
+            Log::info("flotax ".$flotax);
             $recursosDestino = Producciones::produccionRecoleccion($planeta->id);
             $recursosFlota = $flotax->recursosEnFlota;
             $errores = "";
+            Log::info("recursosFlota ".$recursosFlota);
             $prioridadesDestino = $flotax->prioridadesEnFlota;
+
+            //Log::info(" recursosDestino ".$recursosDestino);
 
             $capacidadRecoleccion = $flotax["recoleccion"] / 3600;
             $fechaInicio = strtotime($flotax->updated_at);
@@ -975,20 +1000,23 @@ los recuirsos realmente movidos se guardan en su destino
                         }
                         $recursosFlota[$recurso] +=  $extraido;
                         $capacidadRecoleccion -= $extraido;
+
+                        Log::info(" extraido ".$extraido);
                     }
                 }
             }
 
             $flotax->updated_at = time();
             DB::beginTransaction();
-
+            Log::info($flotax);
             $recursosFlota->save();
+            Log::info($flotax);
             $flotax->save();
 
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            $errores = "Error en Commit ejecutar recolección flota " . $flotax->publico . "  lugar " . $planeta->sistema . "x" . $planeta->orbita . "  " . $errores; //.$e;
+            $errores = "Error en Commit ejecutar recolección flota " . $flotax->publico . "  lugar " . $planeta->sistema . "x" . $planeta->orbita . "  ".$errores; //.$e;
             //Log::info($errores . " " . $e);
         }
         return $errores;
