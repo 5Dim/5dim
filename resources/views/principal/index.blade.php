@@ -15,7 +15,6 @@
                 <div class="container">
                     <div class="carousel-caption">
                         <h1>Astrometria</h1>
-                        <p>Some representative placeholder content for the first slide of the carousel.</p>
                     </div>
                 </div>
             </div>
@@ -25,7 +24,6 @@
                 <div class="container">
                     <div class="carousel-caption">
                         <h1>Diseña tus propias naves</h1>
-                        <p>Some representative placeholder content for the second slide of the carousel.</p>
                     </div>
                 </div>
             </div>
@@ -35,7 +33,6 @@
                 <div class="container">
                     <div class="carousel-caption">
                         <h1>Evoluciona tus colonias</h1>
-                        <p>Some representative placeholder content for the third slide of this carousel.</p>
                     </div>
                 </div>
             </div>
@@ -54,7 +51,7 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4 align-center">
-                <img src="img/principal/observacion.jpg" class="" alt="..." style="height: 260px;">
+                <img src="img/principal/observacion.png" class="" alt="..." style="height: 260px;">
 
                 <h2 class="text-light">Astrometria</h2>
                 <p class="text-light">El universo de 5Dim está en constante crecimiento y expansión por lo que es necesario
@@ -63,7 +60,7 @@
                 {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <img src="img/principal/cons.jpg" class="" alt="..." style="height: 260px;">
+                <img src="img/principal/cons.png" class="" alt="..." style="height: 260px;">
 
                 <h2 class="text-light">Construccion</h2>
                 <p class="text-light">Podrás tener la flota más poderosa del universo, pero si no pagas a tus soldados, las
@@ -162,7 +159,7 @@
             <!-- Grid container -->
             <div class="container p-4">
                 <!-- Section: Social media -->
-                <section class="mb-4">
+                {{-- <section class="mb-4">
                     <!-- Facebook -->
                     <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
                             class="fab fa-facebook-f"></i></a>
@@ -184,8 +181,8 @@
 
                     <!-- Github -->
                     <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                            class="fab fa-github"></i></a> --}}
-                </section>
+                            class="fab fa-github"></i></a>
+                </section> --}}
                 <!-- Section: Social media -->
                 {{-- <!-- Grid container -->
                 <div class="container p-4">
