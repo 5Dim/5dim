@@ -93,7 +93,7 @@ class FlotaController extends Controller
                 if ($jugadorActual['alianzas_id'] != null) {
                     array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id));
                 }
-                array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->id));
+                array_push($jugadoryAlianza,$jugadorActual->id);
 
                 $flota = EnVuelo::where('jugadores_id', $jugadoryAlianza)
                     ->where('publico', $nombreflota)

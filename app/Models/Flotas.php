@@ -595,12 +595,18 @@ los recuirsos realmente movidos se guardan en su destino
         $luzdemallauniverso = $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $ahora = date("Y-m-d H:i:s");
-        $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init", "desc")->get()->unique('flota_id'); //
+        $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init", "desc")->get(); //->unique('flota_id'); //
 
-
-        // Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
+        //Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
 
         foreach ($listaDestinosEntrantes as $destino) {
+
+            $destinoAnterior=Destinos::where('fin', $destino['init'])->where("flota_id", $destino['flota_id'])->first();
+
+            if($destinoAnterior!=null && $destinoAnterior['visitado']==0){
+                //Log::info("destino anterior no ejecutado id=".$destino['id']);
+                break;
+            }
 
             $tipodestino = Astrometria::tipoDestino($destino);
             $destinoEsMio = false;
@@ -676,7 +682,7 @@ los recuirsos realmente movidos se guardan en su destino
                     $cargaMaxima = Disenios::cargaTotal($estaFlota->diseniosEnFlota);
                     $cargaTotalLLevo = Disenios::cargaTotalRecursos($recursosFlota);
 
-                    Log::info("cargaTotalLLevo ".$cargaTotalLLevo."  cargaMaxima ".$cargaMaxima. " recursosQuieroCargar ".$recursosQuieroCargar);
+                    //Log::info("cargaTotalLLevo ".$cargaTotalLLevo."  cargaMaxima ".$cargaMaxima. " recursosQuieroCargar ".$recursosQuieroCargar);
                     // carga total que llevo ahora
 
                     //primero cantiddaes, luego prioridades (solo si es tuyo)
@@ -685,7 +691,7 @@ los recuirsos realmente movidos se guardan en su destino
                     foreach ($recursosArray as $recurso) {
 
                         $difCarga = $recursosFlota[$recurso] - $recursosQuieroCargar[$recurso]; //si es <1 me llevo cosas
-                        Log::info(" difCarga ".$difCarga);
+                        //Log::info(" difCarga ".$difCarga);
 
                         if ($difCarga < 0 && $destinoEsMio) { // si no es mio no me llevo nada
                             $difCarga = 0;
@@ -742,6 +748,7 @@ los recuirsos realmente movidos se guardan en su destino
                             }
                         }
                     }
+                    $destinoAlcanzado = true;
                     break;
                 case "Transferir":
                     //si los ids de todos los destinos es nulo es orbitar el planeta
@@ -813,6 +820,7 @@ los recuirsos realmente movidos se guardan en su destino
 
             DB::beginTransaction();
             try {
+                //Log::info("guardar destinoAlcanzado: ".$destinoAlcanzado." guardarCambios ".$guardarCambios);
                 if ($guardarCambios) {
                     $recursosFlota->save();
                     $recursosDestino->save();
