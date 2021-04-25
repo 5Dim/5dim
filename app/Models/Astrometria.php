@@ -474,7 +474,7 @@ class Astrometria extends Model
                 $nombreDestino=$destino->planetas->estrella."x".$destino->planetas->orbita;
             break;
             case "enrecoleccion":
-
+                $nombreDestino=$destino->enRecoleccion["publico"];
             break;
             case "enrecoleccion":
 

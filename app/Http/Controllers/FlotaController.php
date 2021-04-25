@@ -436,7 +436,7 @@ class FlotaController extends Controller
             $ajusteMapaBase = 35; //ajuste 0,0 con mapa
             $ajusteMapaFactor = 7; //ajuste escala mapa
 
-            DB::beginTransaction();
+
             try {
                 //construyendo flota
 
@@ -447,7 +447,7 @@ class FlotaController extends Controller
                 if (strlen($flota['nombre']) < 1) {
                     $flota['nombre'] = $publico;
                 }
-
+                DB::beginTransaction();
                 //Log::info("Jugador ID= ".$jugadorActual->id);
                 $flotax = new EnVuelo;
                 $flotax->nombre = $flota['nombre'];;
@@ -494,15 +494,18 @@ class FlotaController extends Controller
                         $result = Flotas::destinoTipoId($destino, $destinos[$dest]);
                         $destino = $result[0];
                         $errores = $result[1];
+
+                        $destinos[$dest]['estrella']=$destino->estrella;
+                        $destinos[$dest]['orbita']=$destino->orbita;
+
                         if (strlen($errores) > 3) {
                             throw new \Exception($errores);
                         }
-                        //Log::info("coso".$dest." ".$errores);
+                        //Log::info("destinoANT ".$destinos[$destAnt]['estrella']);
 
-                        $destino->initestrella = $destinos[$destAnt]['estrella'];
-                        $destino->initorbita = $destinos[$destAnt]['orbita'];
-                        $destino->estrella = $destinos[$dest]['estrella'];
-                        $destino->orbita = $destinos[$dest]['orbita'];
+                        $destino->initestrella =1* $destinos[$destAnt]['estrella'];
+                        $destino->initorbita =1* $destinos[$destAnt]['orbita'];
+
                         $destino->initcoordx = $ajusteMapaFactor * $destinos[$destAnt]['fincoordx'] + $ajusteMapaBase;
                         $destino->initcoordy = $ajusteMapaFactor * $destinos[$destAnt]['fincoordy'] + $ajusteMapaBase;
                         $destino->fincoordx = $ajusteMapaFactor * $destinos[$dest]['fincoordx'] + $ajusteMapaBase;
@@ -511,6 +514,8 @@ class FlotaController extends Controller
                         $destino->fin = $Tfin;
                         $destino->flota_id = $flotax->id;
                         $destino->save(); //Log::info("coso".$dest." ".$flotax->id);
+
+                        //Log::info("destino".$dest." ".$destino);
 
                         $vectorx = (1 * $destinos[$dest]['fincoordx'] - 1 * $destinos[$destAnt]['fincoordx']) / $duracion;
                         $vectory = (1 * $destinos[$dest]['fincoordy'] - 1 * $destinos[$destAnt]['fincoordy']) / $duracion;
@@ -644,7 +649,7 @@ class FlotaController extends Controller
 
             } catch (Exception $e) {
                 DB::rollBack();
-                $errores = "Error en Commit de envio de flotas " . $errores; //.$e;
+                $errores = "Error en Commit de envio de flotas ".$e->getLine()." ".$e->getFile() . $errores; //.$e;
                 Log::info($errores . " " . $e);
             }
             //return redirect('/juego/flota');
