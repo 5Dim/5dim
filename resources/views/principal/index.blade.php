@@ -10,44 +10,32 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#777" />
-                </svg>
-
-                <div class="container">
-                    <div class="carousel-caption text-start">
-                        <h1>Example headline.</h1>
-                        <p>Some representative placeholder content for the first slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#777" />
-                </svg>
+                <img src="img/principal/astrometria.png" class="d-block w-100" alt="...">
 
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Some representative placeholder content for the second slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        <h1>Astrometria</h1>
+                        <p>Some representative placeholder content for the first slide of the carousel.</p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#777" />
-                </svg>
+                <img src="img/principal/disenio.png" class="d-block w-100" alt="...">
 
                 <div class="container">
-                    <div class="carousel-caption text-end">
-                        <h1>One more for good measure.</h1>
+                    <div class="carousel-caption">
+                        <h1>Diseña tus propias naves</h1>
+                        <p>Some representative placeholder content for the second slide of the carousel.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="img/principal/construccion.png" class="d-block w-100" alt="...">
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Evoluciona tus colonias</h1>
                         <p>Some representative placeholder content for the third slide of this carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
                     </div>
                 </div>
             </div>
@@ -62,57 +50,33 @@
         </button>
     </div>
 
-    <!-- Marketing messaging and featurettes
-                              ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
     <div class="container marketing">
         <!-- Three columns of text below the carousel -->
         <div class="row">
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
-                    role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                        dy=".3em">140x140</text>
-                </svg>
+            <div class="col-lg-4 align-center">
+                <img src="img/principal/astrometria.png" class="" alt="..." style="height: 260px;">
 
                 <h2 class="text-light">Astrometria</h2>
                 <p class="text-light">El universo de 5Dim está en constante crecimiento y expansión por lo que es necesario
-                    una
-                    herramienta que nos permita ver
-                    todo lo que ocurre en este universo. Esta herramienta es la Astrometría.</p>
+                    una herramienta que nos permita ver todo lo que ocurre en este universo. Esta herramienta es la
+                    Astrometría.</p>
                 {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
-                    role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                        dy=".3em">140x140</text>
-                </svg>
+                <img src="img//principal/economia.png" class="" alt="...">
 
                 <h2 class="text-light">Economia</h2>
                 <p class="text-light">Podrás tener la flota más poderosa del universo, pero si no pagas a tus soldados, las
-                    flotas
-                    se quedarán en el puerto y los
-                    pilotos se negarán a acatar tus órdenes.</p>
+                    flotas se quedarán en el puerto y los pilotos se negarán a acatar tus órdenes.</p>
                 {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
-                    role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                        dy=".3em">140x140</text>
-                </svg>
+                <img src="img//principal/flota.png" class="" alt="..." style="height: 260px;">
 
                 <h2 class="text-light">Flota</h2>
-                <p class="text-light">La gestión de las flotas será un factor clave para el desarrollo de tus colonias. Tendrás a
-                            tu disposición desde los más
-                            pequenios cazas a las naves mas grandes jamás soniadas, las nodrizas son la culminación del
-                            desarrollo
-                            de tecnología e investigación militar.</p>
+                <p class="text-light">La gestión de las flotas será un factor clave para el desarrollo de tus colonias.
+                    Tendrás a tu disposición desde los más pequenios cazas a las naves mas grandes jamás soniadas, las
+                    nodrizas son la culminación del de tecnología e investigación militar.</p>
                 {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
@@ -124,8 +88,8 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your
-                        mind.</span></h2>
+                <h2 class="featurette-heading">Coloniza y expande tu imperio. <span class="text-muted">Todo lo que puedas
+                        ver.</span></h2>
                 <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose
                     here.</p>
             </div>
@@ -145,7 +109,8 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span>
+                <h2 class="featurette-heading">Diseña tus propios fuselajes. <span class="text-muted">Naves de carga o de
+                        guerra?</span>
                 </h2>
                 <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this
                     layout would work with some actual real-world content in place.</p>
@@ -166,7 +131,7 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+                <h2 class="featurette-heading">Conquista el universo. <span class="text-muted">Elige tu camino.</span></h2>
                 <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
                     intended to be actually read, simply here to give you a better view of what this would look like with
                     some actual content. Your content.</p>
