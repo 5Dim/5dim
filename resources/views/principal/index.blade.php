@@ -54,7 +54,7 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4 align-center">
-                <img src="img/principal/astro.png" class="" alt="..." style="height: 260px;">
+                <img src="img/principal/observacion.jpg" class="" alt="..." style="height: 260px;">
 
                 <h2 class="text-light">Astrometria</h2>
                 <p class="text-light">El universo de 5Dim está en constante crecimiento y expansión por lo que es necesario
@@ -63,15 +63,15 @@
                 {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <img src="img//principal/economia.png" class="" alt="...">
+                <img src="img/principal/cons.jpg" class="" alt="..." style="height: 260px;">
 
-                <h2 class="text-light">Economia</h2>
+                <h2 class="text-light">Construccion</h2>
                 <p class="text-light">Podrás tener la flota más poderosa del universo, pero si no pagas a tus soldados, las
                     flotas se quedarán en el puerto y los pilotos se negarán a acatar tus órdenes.</p>
                 {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <img src="img//principal/flota.png" class="" alt="..." style="height: 260px;">
+                <img src="img/principal/flota.png" class="" alt="..." style="height: 260px;">
 
                 <h2 class="text-light">Flota</h2>
                 <p class="text-light">La gestión de las flotas será un factor clave para el desarrollo de tus colonias.
