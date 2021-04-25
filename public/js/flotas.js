@@ -461,7 +461,9 @@ function Avisos() {
 
             if (soyUltimoDestino) {
                 $(".enviarRecursos" + dest).attr("disabled", true);
-                $(".prioridadRecursos" + dest).attr("disabled", true);
+                if(orden != "Recolectar"){
+                    $(".prioridadRecursos" + dest).attr("disabled", true);
+                }
             } else {
                 $(".enviarRecursos" + dest).attr("disabled", false);
                 $(".prioridadRecursos" + dest).attr("disabled", false);
@@ -1240,4 +1242,28 @@ function regresarFlota(numeroflota) {
             }
         },
     });
+}
+
+
+function verFlotasEnRecoleccion() {
+    haceCuantoActualice = Date.now() - fechaAhoraMilisec;
+
+    if (primeraActualizacionEnVuelo || haceCuantoActualice > 30000) {
+        primeraActualizacionEnVuelo = false;
+        $.ajax({
+            type: "GET",
+            //dataType: "json",
+            url: "/juego/flotas/verFlotasEnVuelo",
+            beforeSend: function() {},
+            success: function(data) {
+                //alert(data);
+                RellenarFlotasEnVuelo(data);
+            },
+            error: function(xhr, textStatus, thrownError) {
+                console.log("status", xhr.status);
+                console.log("error", thrownError);
+                //alert(data.errores);
+            },
+        });
+    }
 }

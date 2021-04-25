@@ -355,17 +355,16 @@ class Flotas extends Model
     public static function coordenadasBySistema($nsistema, $anchoUniverso, $luzdemallauniverso)
     {
         $coord = [];
-        if (strlen($nsistema) < 7) { //destino es planeta
-                $coord['y'] = floor($nsistema / $anchoUniverso) * 10;
-                $coord['x'] = ($nsistema - floor($nsistema / $anchoUniverso) * $anchoUniverso) * $luzdemallauniverso;
-        } else { //destino es flota
+        if (strlen($nsistema) > 6) {  //destino es flota
             $flotaDestino=EnRecoleccion::where("publico",$nsistema)->orWhere("nombre",$nsistema)->first();
             if ($flotaDestino==null){
                 $flotaDestino=EnOrbita::where("publico",$nsistema)->orWhere("nombre",$nsistema)->first();
             }
-            $coord['y'] = $flotaDestino['coordx'];
-            $coord['x'] = $flotaDestino['coordy'];
+            $nsistema=$flotaDestino->planetas["estrella"];
         }
+
+        $coord['y'] = floor($nsistema / $anchoUniverso) * 10;
+        $coord['x'] = ($nsistema - floor($nsistema / $anchoUniverso) * $anchoUniverso) * $luzdemallauniverso;
 
         return $coord;
     }

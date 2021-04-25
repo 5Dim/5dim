@@ -143,7 +143,7 @@ class Astrometria extends Model
 
 
 
-    //determina que flotas son visibles
+    //determina que flotas son visibles envuelo
     public static function flotasVisibles(){
 
         //Log::info("flotas visibles");
@@ -289,7 +289,7 @@ class Astrometria extends Model
 
     }
 
-
+    /// parametro de las flotas visibles
     public static function flotaValoresVisibles($radares,$flotaVisible,$ptoFlota,$anchoUniverso,$luzdemallauniverso,$tipo){
 
         $ahora=date("Y-m-d H:i:s");
@@ -445,6 +445,152 @@ class Astrometria extends Model
         return $flota;
 
     }
+
+    // que se ve flotas en recoleccion
+    public static function flotasVisiblesEnRecoleccion(){
+
+        //Log::info("flotas visibles");
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+        $anchoUniverso= $constantesU->where('codigo', 'anchouniverso')->first()->valor;
+        $luzdemallauniverso= $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
+        $jugadoresAlianzas = [];
+
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));// Log::info($jugadorActual);
+        if($jugadorActual['alianzas_id']!=null){
+            $jugadoresAlianzas=Alianzas::idMiembros($jugadorActual['alianzas_id']); //Log::info($jugadoresAlianzas);
+
+            //saco flotas aliadas
+            $jugadorAlianzaSinMi=Alianzas::idMiembrosSinMi($jugadorActual['alianzas_id'],$jugadorActual->id);
+            $flotasVisiblesAliadas=EnRecoleccion::where('jugadores_id',$jugadorAlianzaSinMi)->get();
+        } else {
+            //$jugadoresAlianzas=$jugadorActual;
+            array_push($jugadoresAlianzas,$jugadorActual->id);
+        }
+
+        //Log::info('jugadoresAlianzas: '.$jugadoresAlianzas);
+
+        //determina caja de visibilidad
+        $minCoordx=9999999;
+        $maxCoordx=-1;
+        $minCoordy=99999999;
+        $maxCoordy=-1;
+        $ahora=date("Y-m-d H:i:s");
+
+        $ajusteMapaBase=35; //ajuste 0,0 con mapa
+        $ajusteMapaFactor=7; //ajuste escala mapa
+
+        $radares = Astrometria::radares();
+
+        foreach ($radares as $radar) {
+           // Log::info($radar);
+            $coordBase=Flotas::coordenadasBySistema($radar['estrella'],$anchoUniverso,$luzdemallauniverso);
+            //Log::info("coordBase: ".$coordBase['x'].",".$coordBase['y']);
+            $minCoordx=min($minCoordx,$ajusteMapaFactor * $coordBase['x'] + $ajusteMapaBase -$ajusteMapaFactor * $luzdemallauniverso * $radar['circulo']);
+            $maxCoordx=max($maxCoordx,$ajusteMapaFactor * $coordBase['x'] + $ajusteMapaBase +$ajusteMapaFactor * $luzdemallauniverso * $radar['circulo']);
+            $minCoordy=min($minCoordy,$ajusteMapaFactor * $coordBase['y'] + $ajusteMapaBase -$ajusteMapaFactor * $luzdemallauniverso * $radar['circulo']);
+            $maxCoordy=max($maxCoordy,$ajusteMapaFactor * $coordBase['y'] + $ajusteMapaBase +$ajusteMapaFactor * $luzdemallauniverso * $radar['circulo']);
+            //Log::info("radar: ".$ajusteMapaFactor * $radar['circulo']." ".$minCoordx." ".$maxCoordx." ".$minCoordy." ".$maxCoordy);
+        }
+
+            // arrays de flotas con formato de astrometría
+           // $flotasVisiblesAjenasF = [];
+            //$flotasVisiblesPropiasF = [];
+           // $flotasVisiblesAliadasF = [];
+            $flotas=[];
+
+            //Log::info("busca ptos flota: SELECT * FROM en_puntos_en_flota WHERE fin>'".$ahora."' and `jugadores_id` not in ( ) order by `fin` asc");
+            $puntosFlota=PuntosEnFlota::
+            where('fin','>',$ahora)
+            ->whereNotIn('jugadores_id',$jugadoresAlianzas)
+            ->orderBy('fin', 'asc')
+            ->get()->unique('en_vuelo_id');
+
+            $enZona=$puntosFlota->where('coordx','>=',$minCoordx)
+            ->where('coordx','<=',$maxCoordx)
+            ->where('coordy','>=',$minCoordy)
+            ->where('coordy','<=',$maxCoordy);
+
+            //Log::info($ahora." puntos flota: ".$puntosFlota);
+            //Log::info($minCoordx." ".$maxCoordx." ".$minCoordy." ".$maxCoordy);
+            //Log::info("enzona: ".$enZona);
+
+            //$flotasVisiblesIds=[];
+
+            //me aseguro que esta en el circulo de radares
+            foreach ($enZona as $ptoFlota) {
+                foreach ($radares as $radar) {
+
+                //Log::info($radar);
+                $coordDestino=Flotas::coordenadasBySistema($radar['estrella'],$anchoUniverso,$luzdemallauniverso);
+                $coordDestx=$ajusteMapaFactor * $coordDestino['x'] + $ajusteMapaBase;
+                $coordDesty=$ajusteMapaFactor * $coordDestino['y'] + $ajusteMapaBase;
+
+                    $dist =  (pow(($coordDestx - $ptoFlota['coordx']) * ($coordDestx - $ptoFlota['coordx']) + ($coordDesty - $ptoFlota['coordy']) * ($coordDesty - $ptoFlota['coordy']), 1 / 2)); ///  /$luzdemallauniverso
+                    //Log::info("dist ".$dist);
+                    if ($dist < $ajusteMapaFactor * $luzdemallauniverso * $radar['circulo']){
+                            //Log::info($ptoFlota);
+                        $flotasVisiblesAjena=EnVuelo::where('id',$ptoFlota['en_vuelo_id'])->first();
+                            //Log::info($flotasVisiblesAjena);
+                        $estaflota=Astrometria::flotaValoresVisibles($radares,$flotasVisiblesAjena,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"ajena");
+                        if ($estaflota!=null){
+                            array_push($flotas,$estaflota );
+                        }
+                        break 1;
+                    }
+                }
+
+            }
+
+            //saco flotas aliadas
+            if($jugadorActual['alianzas_id']!=null){
+                foreach($flotasVisiblesAliadas as $flotaV){
+                    $ptoFlota=PuntosEnFlota::
+                    where('en_vuelo_id',$flotaV->id)
+                    ->orderBy('fin', 'asc')
+                    ->first();
+                    if($ptoFlota=== null){
+                        //no hay punto, la flota debe haber llegado
+                    } else {
+                        $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"aliada");
+                        if ($estaflota!=null){
+                            array_push($flotas,$estaflota );
+                        }
+                    }
+                }
+            }
+
+            //saco flotas propias
+            $flotasVisiblesPropias=EnVuelo::where('jugadores_id',$jugadorActual->id)->get();
+            //Log::info("flotas visibles propias: ".$flotasVisiblesPropias);
+            foreach($flotasVisiblesPropias as $flotaV){
+                //Log::info($flotaV);
+                $ptoFlota=PuntosEnFlota::
+                where('en_vuelo_id',$flotaV->id)
+                ->orderBy('fin', 'asc')
+                ->first();
+                //Log::info("pto en flota: ".$ptoFlota);
+                if($ptoFlota=== null){
+                    //no hay punto, la flota debe haber llegado
+                } else {
+                    $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"propia");
+                    if ($estaflota!=null){
+                        array_push($flotas,$estaflota );
+                    }
+                }
+            }
+
+            //Log::info($flotasVisiblesPropias);
+
+            $data=[
+            'flotas'=>$flotas
+            ];
+
+            return $data;
+
+    }
+
+
+
 
     public static function tipoDestino($destino){
 

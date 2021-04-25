@@ -17,7 +17,7 @@
                         En órbita
                     </a>
                     <a class="nav-item nav-link" id="recoleccion-tab" data-bs-toggle="tab" href="#recoleccion" role="tab"
-                        aria-controls="recoleccion" aria-selected="false">
+                        aria-controls="recoleccion" aria-selected="false" onclick="verFlotasEnRecoleccion()">
                         En recolección
                     </a>
 
@@ -40,6 +40,9 @@
 
                 </div>
                 <div class="tab-pane fade" id="recoleccion" role="tabpanel" aria-labelledby="recoleccion-tab">
+                    @include('juego.flotas.cajitaEnRecoleccion', [
+                        'envuelo' => true
+                        ])
 
                 </div>
 

@@ -4,7 +4,7 @@
             style="margin-top: 5px !important">
             <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#fpropias" aria-expanded="false"
                 aria-controls="fpropias">
-                <th colspan="12" class="text-success text-center borderless align-middle">
+                <th colspan="12" class="text-light text-center borderless align-middle">
                     Flotas propias
                 </th>
             </tr>
@@ -24,7 +24,7 @@
             style="margin-top: 5px !important">
             <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#faliadas" aria-expanded="false"
                 aria-controls="faliadas">
-                <th colspan="12" class="text-success text-center borderless align-middle">
+                <th colspan="12" class="text-light text-center borderless align-middle">
                     Flotas Aliadas
                 </th>
             </tr>
@@ -45,7 +45,7 @@
             style="margin-top: 5px !important">
             <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#fextrangeras" aria-expanded="false"
                 aria-controls="fextrangeras">
-                <th colspan="12" class="text-success text-center borderless align-middle">
+                <th colspan="12" class="text-light text-center borderless align-middle">
                     Flotas Extrangeras
                 </th>
             </tr>
