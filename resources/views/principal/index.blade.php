@@ -54,7 +54,7 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4 align-center">
-                <img src="img/principal/astrometria.png" class="" alt="..." style="height: 260px;">
+                <img src="img/principal/astro.png" class="" alt="..." style="height: 260px;">
 
                 <h2 class="text-light">Astrometria</h2>
                 <p class="text-light">El universo de 5Dim está en constante crecimiento y expansión por lo que es necesario
