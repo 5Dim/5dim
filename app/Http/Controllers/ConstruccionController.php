@@ -169,7 +169,6 @@ class ConstruccionController extends Controller
         //Costes construcciones
         $costes = new CostesConstrucciones();
         $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
-        //dd($construccionesMax);
 
         //Calculamos el coste para calcular el tiempo
         $costeTotal = $construccion->sumarCostes($costesConstrucciones[0]);
@@ -178,9 +177,10 @@ class ConstruccionController extends Controller
         $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
 
         //Comprobamos que el tiempo no sea false, seria un error de personal
-        if (!$tiempo) {
+        if ($tiempo == false && $tiempo != 0) {
             $error = true;
         }
+        // dd($error);
 
         //Fecha prueba
         $fechaFin = strtotime($inicio) + $tiempo;
