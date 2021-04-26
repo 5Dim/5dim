@@ -22,6 +22,7 @@ use App\Models\CostesDisenios;
 use App\Models\CualidadesDisenios;
 use App\Models\MejorasDisenios;
 use App\Models\EnDisenios;
+use App\Models\MensajesIntervinientes;
 use App\Models\ViewDaniosDisenios;
 use Illuminate\Database\Eloquent\Builder;
 use Exception;
@@ -64,6 +65,12 @@ class DisenioController extends Controller
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
+        if (!empty($emisorSinLeer)) {
+            $mensajeNuevo = true;
+        }
         // Fin obligatorio por recursos
 
         $colaDisenios = EnDisenios::where('planetas_id', session()->get('planetas_id'))->get();
@@ -159,6 +166,7 @@ class DisenioController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'mensajeNuevo',
 
             'planetaActual',
             'nivelImperio',
@@ -226,6 +234,12 @@ class DisenioController extends Controller
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
+        if (!empty($emisorSinLeer)) {
+            $mensajeNuevo = true;
+        }
         // Fin obligatorio por recursos
 
         $disenio = Fuselajes::find($idFuselaje);
@@ -353,6 +367,7 @@ class DisenioController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'mensajeNuevo',
 
             'planetaActual',
             'nivelImperio',
@@ -408,6 +423,12 @@ class DisenioController extends Controller
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
+        if (!empty($emisorSinLeer)) {
+            $mensajeNuevo = true;
+        }
         // Fin obligatorio por recursos
 
         $esteDisenio = Disenios::where('id', $idDisenio)->first();
@@ -543,6 +564,7 @@ class DisenioController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'mensajeNuevo',
 
             'planetaActual',
             'nivelImperio',

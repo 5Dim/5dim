@@ -53,6 +53,9 @@ class MensajesController extends Controller
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
         // Fin obligatorio por recursos
 
         //Todos los jugadores para la lista de envio
@@ -72,6 +75,11 @@ class MensajesController extends Controller
             $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
         }
 
+        foreach ($recibidos as $recibido) {
+            $recibido->leido = true;
+            $recibido->save();
+        }
+
         return view('juego.mensajes.mensajes', compact(
             // Recursos
             'recursos',
@@ -80,6 +88,7 @@ class MensajesController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'mensajeNuevo',
 
             'planetaActual',
             'nivelImperio',
