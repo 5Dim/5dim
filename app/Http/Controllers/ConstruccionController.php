@@ -16,6 +16,7 @@ use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\CostesConstrucciones;
 use App\Models\Jugadores;
+use App\Models\MensajesIntervinientes;
 
 class ConstruccionController extends Controller
 {
@@ -55,6 +56,12 @@ class ConstruccionController extends Controller
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
+        if (!empty($emisorSinLeer)) {
+            $mensajeNuevo = true;
+        }
         // Fin obligatorio por recursos
 
         // Sacamos el estado de las industrias
@@ -98,6 +105,7 @@ class ConstruccionController extends Controller
             'planetasJugador',
             'planetasAlianza',
             'planetaActual',
+            'mensajeNuevo',
 
             // Categorias
             'construcciones',
@@ -169,7 +177,6 @@ class ConstruccionController extends Controller
         //Costes construcciones
         $costes = new CostesConstrucciones();
         $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
-        //dd($construccionesMax);
 
         //Calculamos el coste para calcular el tiempo
         $costeTotal = $construccion->sumarCostes($costesConstrucciones[0]);
@@ -178,9 +185,10 @@ class ConstruccionController extends Controller
         $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
 
         //Comprobamos que el tiempo no sea false, seria un error de personal
-        if (!$tiempo) {
+        if ($tiempo == false && $tiempo != 0) {
             $error = true;
         }
+        // dd($error);
 
         //Fecha prueba
         $fechaFin = strtotime($inicio) + $tiempo;

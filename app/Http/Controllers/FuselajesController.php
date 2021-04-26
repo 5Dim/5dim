@@ -13,6 +13,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\Fuselajes;
+use App\Models\MensajesIntervinientes;
 use Illuminate\Support\Facades\Auth;
 
 class FuselajesController extends Controller
@@ -52,6 +53,12 @@ class FuselajesController extends Controller
         }
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
+        if (!empty($emisorSinLeer)) {
+            $mensajeNuevo = true;
+        }
         // Fin obligatorio por recursos
 
         // $fuselajes = Fuselajes::all();
@@ -90,6 +97,7 @@ class FuselajesController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'mensajeNuevo',
 
             'planetaActual',
             'nivelImperio',

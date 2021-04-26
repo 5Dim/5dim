@@ -2,9 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Alianzas;
 use App\Models\Constantes;
-use App\Models\CualidadesPlanetas;
 use App\Models\Jugadores;
 use App\Models\Planetas;
 use Closure;

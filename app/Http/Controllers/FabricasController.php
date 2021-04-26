@@ -15,6 +15,7 @@ use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\Disenios;
 use App\Models\EnDisenios;
+use App\Models\MensajesIntervinientes;
 
 class FabricasController extends Controller
 {
@@ -53,6 +54,12 @@ class FabricasController extends Controller
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
+        if (!empty($emisorSinLeer)) {
+            $mensajeNuevo = true;
+        }
         // Fin obligatorio por recursos
 
         return view('juego.fabrica', compact(
@@ -63,6 +70,7 @@ class FabricasController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'mensajeNuevo',
 
             'planetaActual',
             'nivelImperio',

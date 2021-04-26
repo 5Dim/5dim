@@ -142,10 +142,11 @@ class Construcciones extends Model
     {
         $velocidadConst = Constantes::where('codigo', 'velocidadConst')->first();
         if ($personal > 0) {
-            $result = ((($preciototal + 12) * $velocidadConst->valor) / $personal);
+            $result = (($preciototal * $velocidadConst->valor) / $personal);
         } else {
             $result = false;
         }
+        // dd($result);
         return $result;
     }
 

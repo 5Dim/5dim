@@ -27,6 +27,7 @@ use App\Models\RecursosEnFlota;
 use App\Models\Astrometria;
 use App\Models\EnOrbita;
 use App\Models\EnRecoleccion;
+use App\Models\MensajesIntervinientes;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -69,6 +70,12 @@ class FlotaController extends Controller
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
+        if (!empty($emisorSinLeer)) {
+            $mensajeNuevo = true;
+        }
         // Fin obligatorio por recursos
 
         //variables universo
@@ -263,6 +270,7 @@ class FlotaController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'mensajeNuevo',
 
             'cantidadDestinos',
             'planetaActual',

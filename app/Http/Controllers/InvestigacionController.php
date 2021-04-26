@@ -15,6 +15,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\Jugadores;
 use App\Models\Investigaciones;
 use App\Models\CostesInvestigaciones;
+use App\Models\MensajesIntervinientes;
 
 class InvestigacionController extends Controller
 {
@@ -54,6 +55,12 @@ class InvestigacionController extends Controller
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
+
+        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        $mensajeNuevo = false;
+        if (!empty($emisorSinLeer)) {
+            $mensajeNuevo = true;
+        }
         // Fin obligatorio por recursos
 
         $armamentos = $investigaciones->where('categoria', 'armas');
@@ -93,6 +100,7 @@ class InvestigacionController extends Controller
             'produccion',
             'planetasJugador',
             'planetasAlianza',
+            'mensajeNuevo',
 
             'planetaActual',
             'velInvest',

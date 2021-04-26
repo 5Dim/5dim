@@ -26,8 +26,11 @@ class Recursos extends Model
     //     return $this->belongsTo(Planetas::class);
     // }
 
-    public static function recursosInicio($cantidad = 50000)
+    public static function recursosInicio($cantidad = 0)
     {
+        if ($cantidad == 0) {
+            $cantidad = Constantes::where('codigo', 'cantidadrecursosinicio')->first()->valor;
+        }
         $recursos = new Recursos;
         $recursos->mineral = $cantidad;
         $recursos->cristal = $cantidad;

@@ -45,14 +45,19 @@
                     <tr>
                         <th class="text-warning borderless ">
                             <a href="{{ url('/juego/mensajes') }}" target="_self">
-                                <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men.png') }}"
-                                    title="Mensajes" />
+                                @if ($mensajeNuevo)
+                                    <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men2.png') }}"
+                                        title="Mensajes" />
+                                @else
+                                    <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men.png') }}"
+                                        title="Mensajes" />
+                                @endif
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="misiones.php?tipo=1" target="_self">
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-mis.png') }}" title="Misiones" />
-                            </a>
+                            {{-- <a href="misiones.php?tipo=1" target="_self"> --}}
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-mis.png') }}" title="Misiones" />
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
                             <a href="{{ url('/juego/estadisticas') }}" target="_self">
@@ -106,9 +111,9 @@
                             </button>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="cuenta.php" target="_self">
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}" title="Opciones" />
-                            </a>
+                            {{-- <a href="cuenta.php" target="_self"> --}}
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}" title="Opciones" />
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
                             <a href="http://quintadim.foroactivo.com" target="_blank">
@@ -121,14 +126,19 @@
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="mensajeC.php?adm=1" target="_self">
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-rep.png') }}"
-                                    title="Reportar Admin" />
-                            </a>
+                            {{-- <a href="mensajeC.php?adm=1" target="_self"> --}}
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-rep.png') }}"
+                                title="Reportar Admin" />
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="{{ url('/logout') }}" target="_self">
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}" title="Salir" />
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ url('/logout') }}" target="_self"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}"
+                                        title="Salir" />
+                            </form>
                             </a>
                         </th>
                     </tr>
