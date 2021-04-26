@@ -45,42 +45,41 @@ class DatabaseSeeder extends Seeder
         Planetas::factory()->times(1200)->create([
             'tipo' => 'planeta',
         ]);
-        for ($i = 0; $i < 5; $i++) {
-            Planetas::factory()->create([
-                'tipo' => 'nodriza',
-                'imagen' => 1,
-            ]);
-        }
-        for ($i = 0; $i < 5; $i++) {
-            Planetas::factory()->create([
-                'tipo' => 'anubis',
-                'imagen' => 5,
-            ]);
-        }
-        for ($i = 0; $i < 5; $i++) {
-            Planetas::factory()->create([
-                'tipo' => 'dyson',
-                'imagen' => 6,
-            ]);
-        }
-        for ($i = 0; $i < 5; $i++) {
-            Planetas::factory()->create([
-                'tipo' => 'canon',
-                'imagen' => 7,
-            ]);
-        }
         for ($i = 0; $i < 500; $i++) {
             Planetas::factory()->create([
                 'tipo' => 'asteroide',
-                'imagen' => $faker->numberBetween(74, 79),
+                'imagen' => $faker->numberBetween(70, 79),
             ]);
         }
-        Log::info($faker->numberBetween(74, 79));
         for ($i = 0; $i < 200; $i++) {
             Planetas::factory()->create([
                 'tipo' => 'sol',
                 'imagen' => $faker->numberBetween(80, 89),
             ]);
         }
+        // for ($i = 0; $i < 5; $i++) {
+        //     Planetas::factory()->create([
+        //         'tipo' => 'nodriza',
+        //         'imagen' => 1,
+        //     ]);
+        // }
+        // for ($i = 0; $i < 5; $i++) {
+        //     Planetas::factory()->create([
+        //         'tipo' => 'anubis',
+        //         'imagen' => 5,
+        //     ]);
+        // }
+        // for ($i = 0; $i < 5; $i++) {
+        //     Planetas::factory()->create([
+        //         'tipo' => 'dyson',
+        //         'imagen' => 6,
+        //     ]);
+        // }
+        // for ($i = 0; $i < 5; $i++) {
+        //     Planetas::factory()->create([
+        //         'tipo' => 'canon',
+        //         'imagen' => 7,
+        //     ]);
+        // }
     }
 }
