@@ -13,7 +13,7 @@
 </div>
 
 <div id="recolecpropias" aria-labelledby="recolecpropias" data-bs-parent="#propias" class="col-12 accordion-collapse show">
-    <table id="tablaRecolecPropias">
+    <table id="tablaRecoleccionPropias">
 
     </table>
 </div>
@@ -33,7 +33,7 @@
 </div>
 
 <div id="recolectaliadas" aria-labelledby="recolectaliadas" data-bs-parent="#aliadas" class="col-12 accordion-collapse show">
-    <table id="tablaRecolecAliadas">
+    <table id="tablaRecoleccionAliadas">
 
     </table>
 </div>
@@ -54,7 +54,7 @@
 </div>
 
 <div id="recolecextrangeras" aria-labelledby="recolecextrangeras" data-bs-parent="#extrangeras" class="col-12 accordion-collapse show">
-    <table id="tablaRecolecExtrangeras">
+    <table id="tablaRecoleccionExtrangeras">
 
     </table>
 </div>

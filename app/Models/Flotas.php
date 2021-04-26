@@ -508,7 +508,6 @@ class Flotas extends Model
 
                     //Log::info("duración: ".$duracion." Tinit: ".$Tinit." destino init: ".$destino['init']." Tfin: ".$Tfin);
 
-
                     $destino->porcentVel = "100";
                     $destino->mision = $destino->mision_regreso;
                     $destino->mision_regreso = null;
@@ -583,7 +582,7 @@ class Flotas extends Model
 
     /*
 los recuirsos realmente movidos se guardan en su destino
-
+destino 0 con lo que sale
 
 */
 
@@ -805,13 +804,13 @@ los recuirsos realmente movidos se guardan en su destino
                     }
                     break;
                 case "Recolectar":
-
-                    if ($destino->planetas->imagen > 69 && $destino->planetas->imagen < 80) {
+                    //Log::info("planet ".$destino->planetas);
+                    if ($destino->planetas->tipo =="asteroide") {
                         $errores = Flotas::flotaARecolectar($estaFlota, $destino->planetas, $anchoUniverso, $luzdemallauniverso, $destino->id);
                         $destinoAlcanzado = true;
                     } else {
                         $destinoAlcanzado = true;
-                        $errores = "Sólo se pueden colonizar cuerpos tipo planeta ";
+                        $errores = "Sólo se pueden recolectar cuerpos tipo asteroide ";
                     }
 
 

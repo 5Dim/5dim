@@ -87,7 +87,7 @@ class FlotaController extends Controller
         $visionXDefecto = true;
 
         if (!empty($nombreflota) && !empty($tipoflota)) {
-            if ($tipoflota == "envuelo") {
+            if ($tipoflota == "envuelo" || $tipoflota == "enorbita"  || $tipoflota == "enrecoleccion" ) {
                 $jugadoryAlianza = [];
                 // Log::info($jugadorActual);
                 if ($jugadorActual['alianzas_id'] != null) {
@@ -95,13 +95,28 @@ class FlotaController extends Controller
                 }
                 array_push($jugadoryAlianza,$jugadorActual->id);
 
-                $flota = EnVuelo::where('jugadores_id', $jugadoryAlianza)
+                //Log::info($jugadoryAlianza);
+
+                if($tipoflota == "envuelo"){
+                    $flota = EnVuelo::where('jugadores_id', $jugadoryAlianza)
                     ->where('publico', $nombreflota)
                     ->first();
+                } else if ($tipoflota == "enrecoleccion"){
+                    $flota = EnRecoleccion::where('jugadores_id', $jugadoryAlianza)
+                    ->where('publico', $nombreflota)
+                    ->first();
+                } else if($tipoflota == "enorbita"){
+                    $flota = EnOrbita::where('jugadores_id', $jugadoryAlianza)
+                    ->where('publico', $nombreflota)
+                    ->first();
+                }
+
+                //Log::info("flota ".$flota);
 
                 if ($flota != null && !empty($flota)) { //editando flota en vuelo
                     $visionXDefecto = false;
                     $navesEstacionadas = $flota->diseniosEnFlota;
+
                     $destinosO = $flota->destinos;
                     $recursosFlota = $flota->recursosEnFlota;
                     if (!empty($destinosO)) {
@@ -687,6 +702,7 @@ class FlotaController extends Controller
         $flotas = Astrometria::flotasVisiblesEnRecoleccion();
 
         //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
+        //Log::info($flotas);
         return $flotas;
     }
 
