@@ -21,7 +21,7 @@
                 <tr>
                     <td rowspan="4" class="anchofijo text-warning borderless">
                         <img class="rounded"
-                            src="{{ asset('img/fotos naves/skin'.$disenio->skin.'/naveMT' . $disenio->fuselajes_id . '.jpg') }}"
+                            src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/naveMT' . $disenio->fuselajes_id . '.jpg') }}"
                             width="180" height="119">
                     </td>
                     <td colspan="7" class="borderless"></td>
@@ -158,7 +158,7 @@
                             </td>
                     @endif
                     <td id="tiempo{{ $disenio->id }}" class="anchofijo text-light borderless">
-                        {{round(($disenio->mejoras->tiempo /(1+($constanteVelocidad * $nivelHangar/100)))/3600)}}:{{gmdate('i:s',round($disenio->mejoras->tiempo /(1+($constanteVelocidad * $nivelHangar/100)))) }}
+                        {{ round($disenio->mejoras->tiempo / (1 + ($constanteVelocidad * $nivelHangar) / 100) / 3600) }}:{{ gmdate('i:s', round($disenio->mejoras->tiempo / (1 + ($constanteVelocidad * $nivelHangar) / 100))) }}
                     </td>
                 </tr>
                 <tr>
@@ -272,10 +272,16 @@
             <table class="table table-sm table-borderless text-center anchofijo align-middle">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-danger btn-lg col-12"
-                            onclick="reciclarDisenio({{ $disenio->id }})">
-                            <i class="fa fa-info-circle"></i> Reciclar nave
-                        </button>
+                        @if ($nivelHangar < 1)
+                            <button type="button" class="btn btn-outline-light btn-lg col-12" disabled>
+                                <i class="fa fa-info-circle"></i> Reciclar nave
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-danger btn-lg col-12"
+                                onclick="reciclarDisenio({{ $disenio->id }})">
+                                <i class="fa fa-info-circle"></i> Reciclar nave
+                            </button>
+                        @endif
                     </td>
                     <td>
                         <div class="input-group mb-3 input-group-sm borderless">
@@ -301,10 +307,16 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-success btn-lg col-12"
-                            onclick="construirDisenio({{ $disenio->id }})">
-                            <i class="fa fa-plus-circle"></i> Construir
-                        </button>
+                        @if ($nivelHangar < 1)
+                            <button type="button" class="btn btn-outline-light btn-lg col-12" disabled>
+                                <i class="fa fa-plus-circle"></i> Construir
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-success btn-lg col-12"
+                                onclick="construirDisenio({{ $disenio->id }})">
+                                <i class="fa fa-plus-circle"></i> Construir
+                            </button>
+                        @endif
                     </td>
                 </tr>
             </table>
@@ -322,7 +334,8 @@
                                 <h2 class="accordion-header" id="flush-headingOne" style="margin-bottom: 5px;">
                                     <a class="btn btn-outline-primary col-12 text-primary" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#info{{ $disenio->id }}"
-                                        aria-expanded="false" aria-controls="info{{ $disenio->id }}"  onclick="MostrarResultadoDisenio({{$disenio}})">
+                                        aria-expanded="false" aria-controls="info{{ $disenio->id }}"
+                                        onclick="MostrarResultadoDisenio({{ $disenio }})">
                                         Datos
                                     </a>
                                 </h2>
