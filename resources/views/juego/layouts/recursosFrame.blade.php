@@ -50,9 +50,9 @@
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="misiones.php?tipo=1" target="_self">
+                            {{-- <a href="misiones.php?tipo=1" target="_self"> --}}
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-mis.png') }}" title="Misiones" />
-                            </a>
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
                             <a href="{{ url('/juego/estadisticas') }}" target="_self">
