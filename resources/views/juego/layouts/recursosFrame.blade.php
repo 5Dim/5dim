@@ -127,8 +127,12 @@
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="{{ url('/logout') }}" target="_self">
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}" title="Salir" />
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ url('/logout') }}" target="_self" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}"
+                                        title="Salir" />
+                            </form>
                             </a>
                         </th>
                     </tr>
