@@ -1,7 +1,7 @@
 @extends('juego.layouts.recursosFrame')
 
 @section('content')
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <div class="container-fluid">
         <h3 class="text-light text-center">Ingresas <span class="text-success">17.000</span> creditos, tienes unos
             gastos de <span class="text-danger">16.000</span>, tu balance es <span class="text-success">1.000</span>
@@ -238,5 +238,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

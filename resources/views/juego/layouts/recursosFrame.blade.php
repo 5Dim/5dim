@@ -106,9 +106,9 @@
                             </button>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="cuenta.php" target="_self">
+                            {{-- <a href="cuenta.php" target="_self"> --}}
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}" title="Opciones" />
-                            </a>
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
                             <a href="http://quintadim.foroactivo.com" target="_blank">
@@ -121,10 +121,10 @@
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="mensajeC.php?adm=1" target="_self">
+                            {{-- <a href="mensajeC.php?adm=1" target="_self"> --}}
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-rep.png') }}"
                                     title="Reportar Admin" />
-                            </a>
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
                             <form method="POST" action="{{ route('logout') }}">
