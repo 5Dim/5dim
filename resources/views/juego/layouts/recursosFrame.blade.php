@@ -262,48 +262,43 @@
                         </tr>
                         <tr>
                             <td class="text-primary borderless">
-                                <span>{{ number_format($produccion->personal, 0, ',', '.') }}</span> ud/h
+                                <span>{{ number_format($produccion->personal, 0, ',', '.') }}</span>
                             </td>
                             <td class="text-primary borderless">
-                                <span>{{ number_format($produccion->mineral, 0, ',', '.') }}</span> ud/h
+                                <span>{{ number_format($produccion->mineral, 0, ',', '.') }}</span>
                             </td>
                             <td class="text-primary borderless">
-                                <span>{{ number_format($produccion->cristal, 0, ',', '.') }}</span> ud/h
+                                <span>{{ number_format($produccion->cristal, 0, ',', '.') }}</span>
                             </td>
                             <td class="text-primary borderless">
-                                <span>{{ number_format($produccion->gas, 0, ',', '.') }}</span> ud/h
+                                <span>{{ number_format($produccion->gas, 0, ',', '.') }}</span>
                             </td>
                             <td class="text-primary borderless">
-                                <span>{{ number_format($produccion->plastico, 0, ',', '.') }}</span> ud/h
+                                <span>{{ number_format($produccion->plastico, 0, ',', '.') }}</span>
                             </td>
                             <td class="text-primary borderless">
-                                <span>{{ number_format($produccion->ceramica, 0, ',', '.') }}</span> ud/h
+                                <span>{{ number_format($produccion->ceramica, 0, ',', '.') }}</span>
                             </td>
                             <td class="text-primary borderless">
                                 Producción
                             </td>
                             <td class="text-primary borderless">
                                 <span>{{ number_format($produccion->liquido, 0, ',', '.') }}</span>
-                                ud/h
                             </td>
                             <td class="text-primary borderless">
                                 <span>{{ number_format($produccion->micros, 0, ',', '.') }}</span>
-                                ud/h
                             </td>
                             <td class="text-primary borderless">
                                 <span>{{ number_format($produccion->fuel, 0, ',', '.') }}</span>
-                                ud/h
                             </td>
                             <td class="text-primary borderless">
                                 <span>{{ number_format($produccion->ma, 0, ',', '.') }}</span>
-                                ud/h
                             </td>
                             <td class="text-primary borderless">
                                 <span>{{ number_format($produccion->municion, 0, ',', '.') }}</span>
-                                ud/h
                             </td>
                             <td class="text-primary borderless">
-                                <span>{{ number_format($produccion->creditos, 0, ',', '.') }}</span> ud/d
+                                <span>{{ number_format($produccion->creditos / 24, 0, ',', '.') }}</span>
                             </td>
                         </tr>
                     </tbody>

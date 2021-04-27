@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
 use App\Models\Planetas;
@@ -23,46 +23,8 @@ class ConstruccionController extends Controller
     //Acceso a construcciones
     public function index($tab = "mina-tab")
     {
-        // Planeta, jugador y alianza
-        $planetaActual = Planetas::find(session()->get('planetas_id'));
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $planetasAlianza = null;
-        if (session()->has('alianza_id') != "nulo") {
-            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
-        }
-
-        //Recursos
-        $construcciones = Construcciones::construcciones($planetaActual);
-        $investigaciones = Investigaciones::investigaciones($planetaActual);
-        Recursos::calcularRecursos($planetaActual->id);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
-
-        // Personal ocupado
-        $personalOcupado = 0;
-        $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
-        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
-        foreach ($colaConstruccion as $cola) {
-            $personalOcupado += $cola->personal;
-        }
-        foreach ($colaInvestigacion as $cola) {
-            if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personalOcupado += $cola->personal;
-            }
-        }
-
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
-        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
-
-        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
-        $mensajeNuevo = false;
-        if (!empty($emisorSinLeer)) {
-            $mensajeNuevo = true;
-        }
-        // Fin obligatorio por recursos
+        $compact = $this->recursos();
+        extract($compact);
 
         // Sacamos el estado de las industrias
         $encendidoIndustrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();
@@ -106,6 +68,9 @@ class ConstruccionController extends Controller
             'planetasAlianza',
             'planetaActual',
             'mensajeNuevo',
+            'colaConstruccion',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
 
             // Categorias
             'construcciones',
@@ -120,13 +85,10 @@ class ConstruccionController extends Controller
             'especiales',
 
             // Especificas
-            'colaConstruccion',
             'velocidadConst',
             'tipoPlaneta',
             'dependencias',
             'tab',
-            'nivelImperio',
-            'nivelEnsamblajeFuselajes',
         ));
     }
 
@@ -347,7 +309,7 @@ class ConstruccionController extends Controller
                 // $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
                 $recursos = $colita->construcciones->planetas->recursos;
 
-                $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($colita->nivel, $colita->construcciones->codigo, $colita->construcciones->id);
+                $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($colita->nivel-1, $colita->construcciones->codigo, $colita->construcciones->id);
 
                 //Restaurar beneficio por reciclaje
                 $recursos->mineral += ($costesConstrucciones->mineral * $reciclaje);

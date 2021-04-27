@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
 use App\Models\Planetas;
@@ -32,46 +32,8 @@ class DisenioController extends Controller
 {
     public function index($tab = 'cazas-tab')
     {
-        // Planeta, jugador y alianza
-        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $planetasAlianza = null;
-        if (session()->has('alianza_id') != "nulo") {
-            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
-        }
-
-        //Recursos
-        $investigaciones = Investigaciones::investigaciones($planetaActual);
-        $construcciones = Construcciones::construcciones($planetaActual);
-        Recursos::calcularRecursos($planetaActual->id);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
-
-        // Personal ocupado
-        $personalOcupado = 0;
-        $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
-        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
-        foreach ($colaConstruccion as $cola) {
-            $personalOcupado += $cola->personal;
-        }
-        foreach ($colaInvestigacion as $cola) {
-            if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personalOcupado += $cola->personal;
-            }
-        }
-
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
-        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
-
-        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
-        $mensajeNuevo = false;
-        if (!empty($emisorSinLeer)) {
-            $mensajeNuevo = true;
-        }
-        // Fin obligatorio por recursos
+        $compact = $this->recursos();
+        extract($compact);
 
         $colaDisenios = EnDisenios::where('planetas_id', session()->get('planetas_id'))->get();
         $PConstantes = Constantes::where('tipo', 'produccion')->get();
@@ -201,46 +163,8 @@ class DisenioController extends Controller
 
     public function diseniar($idFuselaje)
     {
-        // Planeta, jugador y alianza
-        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $planetasAlianza = null;
-        if (session()->has('alianza_id') != "nulo") {
-            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
-        }
-
-        //Recursos
-        $investigaciones = Investigaciones::investigaciones($planetaActual);
-        $construcciones = Construcciones::construcciones($planetaActual);
-        Recursos::calcularRecursos($planetaActual->id);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
-
-        // Personal ocupado
-        $personalOcupado = 0;
-        $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
-        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
-        foreach ($colaConstruccion as $cola) {
-            $personalOcupado += $cola->personal;
-        }
-        foreach ($colaInvestigacion as $cola) {
-            if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personalOcupado += $cola->personal;
-            }
-        }
-
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
-        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
-
-        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
-        $mensajeNuevo = false;
-        if (!empty($emisorSinLeer)) {
-            $mensajeNuevo = true;
-        }
-        // Fin obligatorio por recursos
+        $compact = $this->recursos();
+        extract($compact);
 
         $disenio = Fuselajes::find($idFuselaje);
 
@@ -390,46 +314,8 @@ class DisenioController extends Controller
 
     public function editarDisenio($idDisenio)
     {
-        // Planeta, jugador y alianza
-        $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
-        $planetasAlianza = null;
-        if (session()->has('alianza_id') != "nulo") {
-            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
-        }
-
-        //Recursos
-        $investigaciones = Investigaciones::investigaciones($planetaActual);
-        $construcciones = Construcciones::construcciones($planetaActual);
-        Recursos::calcularRecursos($planetaActual->id);
-        $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
-        $capacidadAlmacenes = Almacenes::calcularAlmacenes($construcciones);
-
-        // Personal ocupado
-        $personalOcupado = 0;
-        $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
-        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
-        foreach ($colaConstruccion as $cola) {
-            $personalOcupado += $cola->personal;
-        }
-        foreach ($colaInvestigacion as $cola) {
-            if ($cola->planetas->id == session()->get('planetas_id')) {
-                $personalOcupado += $cola->personal;
-            }
-        }
-
-        $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
-        $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
-
-        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
-        $mensajeNuevo = false;
-        if (!empty($emisorSinLeer)) {
-            $mensajeNuevo = true;
-        }
-        // Fin obligatorio por recursos
+        $compact = $this->recursos();
+        extract($compact);
 
         $esteDisenio = Disenios::where('id', $idDisenio)->first();
         $idFuselaje = $esteDisenio->fuselajes_id;

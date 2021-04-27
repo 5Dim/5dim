@@ -1,7 +1,7 @@
 @extends('juego.layouts.recursosFrame')
 
 @section('content')
-    <div class="container-fluid">
+    {{-- <div class="container-fluid">
         <div class="container-fluid">
             <h2 class="text-success text-center">
                 Tienda Quinta Dimension
@@ -43,5 +43,5 @@
                         </div>
                     </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
