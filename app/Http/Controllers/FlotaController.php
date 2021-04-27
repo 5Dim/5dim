@@ -60,24 +60,27 @@ class FlotaController extends Controller
                 $jugadoryAlianza = [];
                 // Log::info($jugadorActual);
                 if ($jugadorActual['alianzas_id'] != null) {
-                    array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id));
+                    array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
                 }
                 array_push($jugadoryAlianza,$jugadorActual->id);
 
                 //Log::info($jugadoryAlianza);
 
                 if($tipoflota == "envuelo"){
-                    $flota = EnVuelo::where('jugadores_id', $jugadoryAlianza)
+                    $flota = EnVuelo::whereIn('jugadores_id', $jugadoryAlianza)
                     ->where('publico', $nombreflota)
                     ->first();
+                    $misionAct="Volando";
                 } else if ($tipoflota == "enrecoleccion"){
-                    $flota = EnRecoleccion::where('jugadores_id', $jugadoryAlianza)
+                    $flota = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)
                     ->where('publico', $nombreflota)
                     ->first();
+                    $misionAct="Recolectando";
                 } else if($tipoflota == "enorbita"){
-                    $flota = EnOrbita::where('jugadores_id', $jugadoryAlianza)
+                    $flota = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)
                     ->where('publico', $nombreflota)
                     ->first();
+                    $misionAct="Orbitando";
                 }
 
                 //Log::info("flota ".$flota);
@@ -85,29 +88,41 @@ class FlotaController extends Controller
                 if ($flota != null && !empty($flota)) { //editando flota en vuelo
                     $visionXDefecto = false;
                     $navesEstacionadas = $flota->diseniosEnFlota;
-
-                    $destinosO = $flota->destinos;
                     $recursosFlota = $flota->recursosEnFlota;
-                    if (!empty($destinosO)) {
-                        foreach ($destinosO as $destino) {
-                            $recursosDestino = $destino->recursos;
-                            array_push($cargaDest, $recursosDestino);
 
-                            $prioridad = $destino->prioridades;
-                            array_push($prioridades, $prioridad);
+                    if($tipoflota == "envuelo"){
+                        $destinosO = $flota->destinos;
+                        if (!empty($destinosO)) {
+                            foreach ($destinosO as $destino) {
+                                $recursosDestino = $destino->recursos;
+                                array_push($cargaDest, $recursosDestino);
 
-                            array_push($destinos, $destino);
+                                $prioridad = $destino->prioridades;
+                                array_push($prioridades, $prioridad);
+
+                                array_push($destinos, $destino);
+                            }
+
+                            $origen = new Destinos();
+                            $origen->estrella = $destinosO[0]['initestrella'];
+                            $origen->orbita = $destinosO[0]['initorbita'];
+                            $origen->porcentVel = 100;
+                            array_unshift($destinos, $origen);
+                            array_push($cargaDest, $cargaDest[0]);
+                            array_push($prioridades, $prioridades[0]);
+                        } else {
+                            $visionXDefecto=true;
                         }
-
-                        $origen = new Destinos();
-                        $origen->estrella = $destinosO[0]['initestrella'];
-                        $origen->orbita = $destinosO[0]['initorbita'];
-                        $origen->porcentVel = 100;
-                        array_unshift($destinos, $origen);
-                        array_push($cargaDest, $cargaDest[0]);
-                        array_push($prioridades, $prioridades[0]);
                     } else {
-                        $visionXDefecto=true;
+                            $origen = new Destinos();
+                            $origen->estrella = $flota->planetas->estrella;
+                            $origen->orbita = $flota->planetas->orbita;
+                            $origen->porcentVel = 100;
+                            $origen->mision = $misionAct;
+                            $origen->tipoflota=$tipoflota;
+                            array_unshift($destinos, $origen);
+                            array_push($prioridades, $flota->prioridadesEnFlota);
+
                     }
 
 
