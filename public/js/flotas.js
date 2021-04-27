@@ -882,11 +882,12 @@ function RecursosSiDestino(dest) {
 
 var fechaAhoraMilisec = Date.now();
 primeraActualizacionEnVuelo = true;
+primeraActualizacionEnRecoleccion=true;
 
 function verFlotasEnVuelo() {
     haceCuantoActualice = Date.now() - fechaAhoraMilisec;
 
-    if (primeraActualizacionEnVuelo || haceCuantoActualice > 30000) {
+    if (primeraActualizacionEnVuelo || haceCuantoActualice > 10000) {
         primeraActualizacionEnVuelo = false;
         $.ajax({
             type: "GET",
@@ -898,7 +899,7 @@ function verFlotasEnVuelo() {
             beforeSend: function() {},
             success: function(data) {
                 //alert(data);
-                RellenarFlotasEnVuelo(data);
+                RellenarFlotasEnVuelo(data,"tablaFlotas");
             },
             error: function(xhr, textStatus, thrownError) {
                 console.log("status", xhr.status);
@@ -909,11 +910,11 @@ function verFlotasEnVuelo() {
     }
 }
 
-function RellenarFlotasEnVuelo(data){
+function RellenarFlotasEnVuelo(data,prefix){
 
-    $("#tablaFlotasPropias").empty();
-    $("#tablaFlotasAliadas").empty();
-    $("#tablaFlotasExtrangeras").empty();
+    $("#"+prefix+"Propias").empty();
+    $("#"+prefix+"Aliadas").empty();
+    $("#"+prefix+"Extrangeras").empty();
 
     var flotas= data["flotas"];
 
@@ -921,29 +922,50 @@ function RellenarFlotasEnVuelo(data){
     flotas.forEach(flota => {
 
         if (flota!=null){
-        fila++;
-        if (flota['trestante']!=null && flota['trestante']!=undefined && flota['tvuelo']!=null && flota['tvuelo']!=undefined){
-            progreso=Math.round(((flota['tvuelo']-flota['trestante'])/flota['tvuelo'])*100,0);
-        } else {
-            progreso=0;
-        }
+            if(flota['estado']=="envuelo"){
+                fila++;
+                if (flota['trestante']!=null && flota['trestante']!=undefined && flota['tvuelo']!=null && flota['tvuelo']!=undefined){
+                    progreso=Math.round(((flota['tvuelo']-flota['trestante'])/flota['tvuelo'])*100,0);
+                } else {
+                    progreso=0;
+                }
 
-        if (flota['trestante']!=null && flota['trestante']!=undefined){
-            trestante=formatHMS(1*flota['trestante']);
-        } else {
-            trestante="?";
-        }
+                if (flota['trestante']!=null && flota['trestante']!=undefined){
+                    trestante=formatHMS(1*flota['trestante']);
+                } else {
+                    trestante="?";
+                }
+                barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">
+                <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
+                </th>
+                <th id="trestantepropia`+fila+`" colspan="1" class="text-light">`+trestante+`</th>`;
+                cabeza1="Tiempo restante: ";
+                cabeza2="tiempo regreso: ";
+                tregreso=formatHMS(1*flota['tregreso']);
+            } else {
+                barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle"> </th>
+                <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
+                cabeza1="Recolección ";
+                cabeza2="";
+                trestante=formatNumber(1*flota['recoleccion'])+" ud/h";
+                tregreso="";
+            }
 
-        ataque=formatNumber(1*flota['ataque']);
-        defensa=formatNumber(1*flota['defensa']);
-        tregreso=formatHMS(1*flota['tregreso']);
-        //recursosCarga=flota['recursos']
+            ataque=formatNumber(1*flota['ataque']);
+            defensa=formatNumber(1*flota['defensa']);
+
+            //recursosCarga=flota['recursos']
 
             if (flota['tipo']=="propia"){
                 deshabilitarRegreso="";
                 colorbotonRegreso="danger";
-                if(flota['misionregreso']==null){
+
+                if(flota['misionregreso']==null && flota['estado']=="envuelo"){
                     tregreso="Ya regresando";
+                    deshabilitarRegreso="disabled";
+                    colorbotonRegreso="light";
+                } else if(flota['estado']!="envuelo"){
                     deshabilitarRegreso="disabled";
                     colorbotonRegreso="light";
                 }
@@ -960,11 +982,7 @@ function RellenarFlotasEnVuelo(data){
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['nombre']+`<big>
                             </th>
-                            <th colspan="3" class="text-success text-center borderless align-middle">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
-                            </th>
-                            <th id="trestantepropia`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
+                            `+barraytiempo+`
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>
@@ -974,10 +992,10 @@ function RellenarFlotasEnVuelo(data){
                         </div>
                     </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="3" class="text-warning">tiempo restante: </td>
-                        <td colspan="3" class="text-warning">tiempo regreso:</td>
-                        <td colspan="3" class="text-warning">ataque:</td>
-                        <td colspan="3" class="text-warning">defensa</td>
+                        <td colspan="3" class="text-warning">`+cabeza1+`</td>
+                        <td colspan="3" class="text-warning">`+cabeza2+`</td>
+                        <td colspan="3" class="text-warning">Ataque:</td>
+                        <td colspan="3" class="text-warning">Defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td id="trestantepropia`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
@@ -1070,7 +1088,7 @@ function RellenarFlotasEnVuelo(data){
                         </td>
                         <td colspan="5">
                             <a class="btn btn-outline-primary col-12 text-primary" type="button"
-                            href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+`">
+                            href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+"/"+flota['estado']+`">
                             Editar
                             </a>
                         </td>
@@ -1085,7 +1103,7 @@ function RellenarFlotasEnVuelo(data){
                 </table>
 
                 `;
-                $("#tablaFlotasPropias").append(tablaFlotasPropias);
+                $("#"+prefix+"Propias").append(tablaFlotasPropias);
             }
             else if (flota['tipo']=="aliada"){
 
@@ -1145,7 +1163,7 @@ function RellenarFlotasEnVuelo(data){
                 </table>
 
                 `;
-                $("#tablaFlotasAliadas").append(tablaFlotasAliadas);
+                $("#"+prefix+"Aliadas").append(tablaFlotasAliadas);
             }
             else if (flota['tipo']=="ajena"){
 
@@ -1208,7 +1226,7 @@ function RellenarFlotasEnVuelo(data){
                 </table>
 
                 `;
-                $("#tablaFlotasExtrangeras").append(tablaFlotasExtrangeras);
+                $("#"+prefix+"Extrangeras").append(tablaFlotasExtrangeras);
             }
 
         }
@@ -1248,16 +1266,16 @@ function regresarFlota(numeroflota) {
 function verFlotasEnRecoleccion() {
     haceCuantoActualice = Date.now() - fechaAhoraMilisec;
 
-    if (primeraActualizacionEnVuelo || haceCuantoActualice > 30000) {
-        primeraActualizacionEnVuelo = false;
+    if (primeraActualizacionEnRecoleccion || haceCuantoActualice > 30000) {
+        primeraActualizacionEnRecoleccion = false;
         $.ajax({
             type: "GET",
             //dataType: "json",
-            url: "/juego/flotas/verFlotasEnVuelo",
+            url: "/juego/flotas/verFlotasEnRecoleccion",
             beforeSend: function() {},
             success: function(data) {
                 //alert(data);
-                RellenarFlotasEnVuelo(data);
+                RellenarFlotasEnVuelo(data,"tablaRecoleccion");
             },
             error: function(xhr, textStatus, thrownError) {
                 console.log("status", xhr.status);

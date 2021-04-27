@@ -290,20 +290,24 @@ class Astrometria extends Model
     }
 
     /// parametro de las flotas visibles
-    public static function flotaValoresVisibles($radares,$flotaVisible,$ptoFlota,$anchoUniverso,$luzdemallauniverso,$tipo){
+    public static function flotaValoresVisibles($radares,$flotaVisible,$ptoFlota,$anchoUniverso,$luzdemallauniverso,$tipo,$estado="envuelo"){
 
         $ahora=date("Y-m-d H:i:s");
         //Log::info("pto en flota: ".$ptoFlota);
         //Log::info($flotaVisible);
-        $destinoActual=Destinos::where('flota_id',$flotaVisible['id'])
-        ->where('init','<',$ahora)
-        ->where('fin','>=',$ahora)
-        ->first();
 
-        //Log::info($destinoActual);
-        if ($destinoActual==null){
+        if ($ptoFlota!=null){
+            $destinoActual=Destinos::where('flota_id',$flotaVisible['id'])
+            ->where('init','<',$ahora)
+            ->where('fin','>=',$ahora)
+            ->first();
+
+             //Log::info($destinoActual);
+            if ($destinoActual==null){
             return;
+            }
         }
+
 
         $esteJugon=Jugadores::find($flotaVisible['jugadores_id'])->first();
         //Log::info($esteJugon);
@@ -328,116 +332,192 @@ class Astrometria extends Model
             $flota->tipo = $tipo;
             $flota->fecha = null;
 
-            $tiempovuelo=strtotime($destinoActual['fin'])-strtotime($destinoActual['init']);
-            $trestante=strtotime($destinoActual['fin'])-strtotime($ahora);
-            $tregreso=strtotime($ahora)-strtotime($destinoActual['init']);
+            if ($ptoFlota!=null){
+                $tiempovuelo=strtotime($destinoActual['fin'])-strtotime($destinoActual['init']);
+                $trestante=strtotime($destinoActual['fin'])-strtotime($ahora);
+                $tregreso=strtotime($ahora)-strtotime($destinoActual['init']);
+            } else {
+                $tiempovuelo="";
+                $trestante="";
+                $tregreso="";
+            }
 
         if ($tipo=="ajena"){
             //calculo de si veo origen y destino
             $seveOrigen=false;
             $seveDestino=false;
 
-            foreach ($radares as $radar) {
-                $coordDestino=Flotas::coordenadasBySistema($radar['estrella'],$anchoUniverso,$luzdemallauniverso);
-                $coordDestx=$ajusteMapaFactor  * $coordDestino['x']+$ajusteMapaBase;
-                $coordDesty=$ajusteMapaFactor  * $coordDestino['y']+$ajusteMapaBase;
+            if($estado=="envuelo"){
+                foreach ($radares as $radar) {
+                    $coordDestino=Flotas::coordenadasBySistema($radar['estrella'],$anchoUniverso,$luzdemallauniverso);
+                    $coordDestx=$ajusteMapaFactor  * $coordDestino['x']+$ajusteMapaBase;
+                    $coordDesty=$ajusteMapaFactor  * $coordDestino['y']+$ajusteMapaBase;
 
-                $inicioActualx=$destinoActual->initcoordx;
-                $inicioActualy=$destinoActual->initcoordy;
+                    $inicioActualx=$destinoActual->initcoordx;
+                    $inicioActualy=$destinoActual->initcoordy;
 
-                $destinoActualx=$destinoActual->fincoordx;
-                $destinoActualy=$destinoActual->fincoordy;
+                    $destinoActualx=$destinoActual->fincoordx;
+                    $destinoActualy=$destinoActual->fincoordy;
 
-                $radarRango=$luzdemallauniverso * $radar['circulo'] * $ajusteMapaFactor;
+                    $radarRango=$luzdemallauniverso * $radar['circulo'] * $ajusteMapaFactor;
 
-                $dist =  (pow(($inicioActualx - $coordDestx) * ($inicioActualx - $coordDestx) + ($inicioActualy - $coordDesty) * ($inicioActualy - $coordDesty), 1 / 2)); //  /$luzdemallauniverso;
-                if (!$seveOrigen && $dist < $radarRango){
+                    $dist =  (pow(($inicioActualx - $coordDestx) * ($inicioActualx - $coordDestx) + ($inicioActualy - $coordDesty) * ($inicioActualy - $coordDesty), 1 / 2)); //  /$luzdemallauniverso;
+                    if (!$seveOrigen && $dist < $radarRango){
+                        $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
+                        $flota->coordix =$inicioActualx;
+                        $flota->coordiy =$inicioActualy;
+                        $seveOrigen=true;
+                    }
+
+                    $dist =  (pow(($destinoActualx - $coordDestx) * ($destinoActualx - $coordDestx) + ($destinoActualy - $coordDesty) * ($destinoActualy - $coordDesty), 1 / 2)); // /$luzdemallauniverso;
+                    if (!$seveDestino && $dist < $radarRango){
+                        $flota->destino =Astrometria::nombreDestino($destinoActual);
+                        $flota->coordfx =$destinoActualx;
+                        $flota->coordfy =$destinoActualy;
+                        $seveDestino=true;
+                    }
+
+                    if ($seveOrigen && $seveDestino){
+                        $flota->tvuelo = $tiempovuelo;
+                        $flota->trestante = $trestante;
+                        $flota->tregreso = $tregreso;
+                        break;
+                    }
+                }
+            } else if ($estado=="enrecoleccion" || $estado=="enextraccion"){
+                $seveOrigen= Astrometria::sistemaEnRadares($flotaVisible->planetas->estrella);
+            } else if ($estado=="enorbita"){
+                if($flotaVisible->planetas->tipo=="asteroide"){
+                    $seveOrigen= Astrometria::sistemaEnRadares($flotaVisible->planetas->estrella);
+                } else {
+                    $seveOrigen=false;
+                }
+
+            }
+
+
+            if ($ptoFlota!=null && $estado=="envuelo"){
+                if(!$seveOrigen){
+                    $flota->coordix =$ptoFlota->coordx;
+                    $flota->coordiy =$ptoFlota->coordy;
+
+                } else {
                     $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
-                    $flota->coordix =$inicioActualx;
-                    $flota->coordiy =$inicioActualy;
-                    $seveOrigen=true;
-                }
-
-                $dist =  (pow(($destinoActualx - $coordDestx) * ($destinoActualx - $coordDestx) + ($destinoActualy - $coordDesty) * ($destinoActualy - $coordDesty), 1 / 2)); // /$luzdemallauniverso;
-                if (!$seveDestino && $dist < $radarRango){
-                    $flota->destino =Astrometria::nombreDestino($destinoActual);
-                    $flota->coordfx =$destinoActualx;
-                    $flota->coordfy =$destinoActualy;
-                    $seveDestino=true;
-                }
-
-                if ($seveOrigen && $seveDestino){
-                    $flota->tvuelo = $tiempovuelo;
-                    $flota->trestante = $trestante;
                     $flota->tregreso = $tregreso;
-                    break;
                 }
-            }
-            if(!$seveOrigen){
-                $flota->coordix =$ptoFlota->coordx;
-                $flota->coordiy =$ptoFlota->coordy;
+                if(!$seveDestino){
+                    $flota->coordfx =$ptoFlota->coordx;
+                    $flota->coordfy =$ptoFlota->coordy;
 
-            } else {
-                $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
-                $flota->tregreso = $tregreso;
-            }
-            if(!$seveDestino){
-                $flota->coordfx =$ptoFlota->coordx;
-                $flota->coordfy =$ptoFlota->coordy;
-
-            } else {
-                $flota->destino =Astrometria::nombreDestino($destinoActual);
-                $flota->trestante = $trestante;
+                } else {
+                    $flota->destino =Astrometria::nombreDestino($destinoActual);
+                    $flota->trestante = $trestante;
+                }
+            } else if ($estado=="enrecoleccion" && $seveOrigen){
+                $flota->mision = "Recolectando";
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
+            }else if ($estado=="enextraccion" && $seveOrigen){
+                $flota->mision = "Extrayendo";
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
+            } else if ($estado=="enorbita" && $seveOrigen){
+                $flota->mision = "Orbitando";
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
             }
 
             $flota->color = 3;
 
-        } else if ($tipo=="aliado") {
-            $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
-            $flota->coordix =$destinoActual->initcoordx;
-            $flota->coordiy =$destinoActual->initcoordy;
-            $flota->coordfx =$destinoActual->fincoordx;
-            $flota->coordfy =$destinoActual->fincoordy;
-            $flota->destino =Astrometria::nombreDestino($destinoActual);
+        } else if ($tipo=="aliado" ) {
+            if ($ptoFlota!=null || $estado=="envuelo"){
+                $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
+                $flota->coordix =$destinoActual->initcoordx;
+                $flota->coordiy =$destinoActual->initcoordy;
+                $flota->coordfx =$destinoActual->fincoordx;
+                $flota->coordfy =$destinoActual->fincoordy;
+                $flota->mision = $destinoActual['mision'];
+                $flota->misionregreso = $destinoActual['mision_regreso'];
+                $flota->fecha = $destinoActual['fin'];
+                $flota->destino =Astrometria::nombreDestino($destinoActual);
+            } else if ($estado=="enrecoleccion"){
+                $flota->mision = "Recolectando";
+                $flota->recoleccion=$flotaVisible->recoleccion;
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
+            }else if ($estado=="enextraccion"){
+                $flota->mision = "Extrayendo";
+                $flota->recoleccion=$flotaVisible->extraccion;
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
+            } else if ($estado=="enorbita"){
+                $flota->mision = "Orbitando";
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
+            }
+
+
             $flota->color = 2;
 
             $flota->tvuelo = $tiempovuelo;
             $flota->trestante = $trestante;
             $flota->tregreso = $tregreso;
-            $flota->mision = $destinoActual['mision'];
-            $flota->misionregreso = $destinoActual['mision_regreso'];
-            $flota->fecha = $destinoActual['fin'];
+
         } else { //propio
             //Log::info($destinoActual);
+            if ($ptoFlota!=null || $estado=="envuelo"){
+                $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
+                $flota->coordix =$destinoActual->initcoordx;
+                $flota->coordiy =$destinoActual->initcoordy;
+                $flota->coordfx =$destinoActual->fincoordx;
+                $flota->coordfy =$destinoActual->fincoordy;
+                $flota->destino =Astrometria::nombreDestino($destinoActual);
+                $flota->mision = $destinoActual['mision'];
+                $flota->misionregreso = $destinoActual['mision_regreso'];
+                $flota->fecha = $destinoActual['fin'];
+                $flota->recursos=RecursosEnFlota::where('en_vuelo_id',$flotaVisible['id'])->first();
+            } else if ($estado=="enrecoleccion"){
+                Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
+                $flota->recursos=RecursosEnFlota::where('en_recoleccion_id',$flotaVisible['id'])->first();
+                $flota->mision = "Recolectando";
+                $flota->recoleccion=$flotaVisible->recoleccion;
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
+            }else if ($estado=="enextraccion"){
+                $flota->recursos=RecursosEnFlota::where('en_recoleccion_id',$flotaVisible['id'])->first();
+                $flota->mision = "Extrayendo";
+                $flota->recoleccion=$flotaVisible->extraccion;
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
+            } else if ($estado=="enorbita"){
+                $flota->recursos=RecursosEnFlota::where('en_orbita_id',$flotaVisible['id'])->first();
+                $flota->mision = "Orbitando";
+                $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
+                $flota->destino="";
+            }
 
             $flota->nombre = $flotaVisible->nombre;
-            $flota->origen =$destinoActual['initestrella']."x".$destinoActual['initorbita'];
-            $flota->coordix =$destinoActual->initcoordx;
-            $flota->coordiy =$destinoActual->initcoordy;
-            $flota->coordfx =$destinoActual->fincoordx;
-            $flota->coordfy =$destinoActual->fincoordy;
-            $flota->destino =Astrometria::nombreDestino($destinoActual);//$destinoActual['estrella']."x".$destinoActual['orbita'];
             $flota->color =1;
 
             $flota->tvuelo = $tiempovuelo;
             $flota->trestante = $trestante;
             $flota->tregreso = $tregreso;
-            $flota->mision = $destinoActual['mision'];
-            $flota->misionregreso = $destinoActual['mision_regreso'];
-            $flota->fecha = $destinoActual['fin'];
+            $flota->estado =$estado;
 
-            $flota->recursos=RecursosEnFlota::where('en_vuelo_id',$flotaVisible['id'])->first();
         }
-
-            $flota->coordx =$ptoFlota->coordx;
-            $flota->coordy =$ptoFlota->coordy;
+            if ($ptoFlota!=null){
+                $flota->coordx =$ptoFlota->coordx;
+                $flota->coordy =$ptoFlota->coordy;
+            }
             $flota->abreen = "ppal";
 
-            $vectorx=$destinoActual->fincoordx-$destinoActual->initcoordx;
-            $vectory=$destinoActual->fincoordy-$destinoActual->initcoordy;
-            $angle=atan2($vectory, $vectorx)+3.141579/2;
+            if ($ptoFlota!=null){
+                $vectorx=$destinoActual->fincoordx-$destinoActual->initcoordx;
+                $vectory=$destinoActual->fincoordy-$destinoActual->initcoordy;
+                $angle=atan2($vectory, $vectorx)+3.141579/2;
+                $flota->angulo = $angle;
+            }
 
-            $flota->angulo = $angle;
             //Log::info($flotaVisible->nombre." ".$flota->coordfx." ".$flota->coordix." ademas ".$flota->coordfy." ".$flota->coordiy);
             //Log::info($vectorx."  ".$vectory." = ".$angle.", grados= ".(180*$angle/3.141579));
             //Log::info($flotaVisible->nombre." mision: ".$flota->mision." id destino: ".$destinoActual['id']);
@@ -498,17 +578,12 @@ class Astrometria extends Model
            // $flotasVisiblesAliadasF = [];
             $flotas=[];
 
-            //Log::info("busca ptos flota: SELECT * FROM en_puntos_en_flota WHERE fin>'".$ahora."' and `jugadores_id` not in ( ) order by `fin` asc");
-            $puntosFlota=PuntosEnFlota::
-            where('fin','>',$ahora)
-            ->whereNotIn('jugadores_id',$jugadoresAlianzas)
-            ->orderBy('fin', 'asc')
-            ->get()->unique('en_vuelo_id');
-
-            $enZona=$puntosFlota->where('coordx','>=',$minCoordx)
+            $enZona=EnRecoleccion::where('coordx','>=',$minCoordx)
             ->where('coordx','<=',$maxCoordx)
             ->where('coordy','>=',$minCoordy)
-            ->where('coordy','<=',$maxCoordy);
+            ->where('coordy','<=',$maxCoordy)
+            ->whereNotIn('jugadores_id',$jugadoresAlianzas)
+            ->get();
 
             //Log::info($ahora." puntos flota: ".$puntosFlota);
             //Log::info($minCoordx." ".$maxCoordx." ".$minCoordy." ".$maxCoordy);
@@ -517,7 +592,7 @@ class Astrometria extends Model
             //$flotasVisiblesIds=[];
 
             //me aseguro que esta en el circulo de radares
-            foreach ($enZona as $ptoFlota) {
+            foreach ($enZona as $flotaV) {
                 foreach ($radares as $radar) {
 
                 //Log::info($radar);
@@ -525,57 +600,39 @@ class Astrometria extends Model
                 $coordDestx=$ajusteMapaFactor * $coordDestino['x'] + $ajusteMapaBase;
                 $coordDesty=$ajusteMapaFactor * $coordDestino['y'] + $ajusteMapaBase;
 
-                    $dist =  (pow(($coordDestx - $ptoFlota['coordx']) * ($coordDestx - $ptoFlota['coordx']) + ($coordDesty - $ptoFlota['coordy']) * ($coordDesty - $ptoFlota['coordy']), 1 / 2)); ///  /$luzdemallauniverso
+                    $dist =  (pow(($coordDestx - $flotaV['coordx']) * ($coordDestx - $flotaV['coordx']) + ($coordDesty - $flotaV['coordy']) * ($coordDesty - $flotaV['coordy']), 1 / 2)); ///  /$luzdemallauniverso
                     //Log::info("dist ".$dist);
                     if ($dist < $ajusteMapaFactor * $luzdemallauniverso * $radar['circulo']){
-                            //Log::info($ptoFlota);
-                        $flotasVisiblesAjena=EnVuelo::where('id',$ptoFlota['en_vuelo_id'])->first();
+                            //Log::info($flotaV);
+                        //$flotasVisiblesAjena=$flotaV;
                             //Log::info($flotasVisiblesAjena);
-                        $estaflota=Astrometria::flotaValoresVisibles($radares,$flotasVisiblesAjena,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"ajena");
+                        $estaflota=Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"ajena","enrecoleccion");
                         if ($estaflota!=null){
                             array_push($flotas,$estaflota );
                         }
                         break 1;
                     }
                 }
-
             }
 
             //saco flotas aliadas
             if($jugadorActual['alianzas_id']!=null){
                 foreach($flotasVisiblesAliadas as $flotaV){
-                    $ptoFlota=PuntosEnFlota::
-                    where('en_vuelo_id',$flotaV->id)
-                    ->orderBy('fin', 'asc')
-                    ->first();
-                    if($ptoFlota=== null){
-                        //no hay punto, la flota debe haber llegado
-                    } else {
-                        $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"aliada");
-                        if ($estaflota!=null){
-                            array_push($flotas,$estaflota );
-                        }
+                    $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"aliada","enrecoleccion");
+                    if ($estaflota!=null){
+                        array_push($flotas,$estaflota );
                     }
                 }
             }
 
             //saco flotas propias
-            $flotasVisiblesPropias=EnVuelo::where('jugadores_id',$jugadorActual->id)->get();
+            $flotasVisiblesPropias=EnRecoleccion::where('jugadores_id',$jugadorActual->id)->get();
             //Log::info("flotas visibles propias: ".$flotasVisiblesPropias);
             foreach($flotasVisiblesPropias as $flotaV){
                 //Log::info($flotaV);
-                $ptoFlota=PuntosEnFlota::
-                where('en_vuelo_id',$flotaV->id)
-                ->orderBy('fin', 'asc')
-                ->first();
-                //Log::info("pto en flota: ".$ptoFlota);
-                if($ptoFlota=== null){
-                    //no hay punto, la flota debe haber llegado
-                } else {
-                    $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,$ptoFlota,$anchoUniverso,$luzdemallauniverso,"propia");
-                    if ($estaflota!=null){
-                        array_push($flotas,$estaflota );
-                    }
+                $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"propia","enrecoleccion");
+                if ($estaflota!=null){
+                    array_push($flotas,$estaflota );
                 }
             }
 
@@ -586,7 +643,6 @@ class Astrometria extends Model
             ];
 
             return $data;
-
     }
 
 
@@ -620,13 +676,11 @@ class Astrometria extends Model
                 $nombreDestino=$destino->planetas->estrella."x".$destino->planetas->orbita;
             break;
             case "enrecoleccion":
+            case "enorbita":
                 $nombreDestino=$destino->enRecoleccion["publico"];
             break;
-            case "enrecoleccion":
-
-            break;
             case "envuelo":
-
+                $nombreDestino=$destino->enRecoleccion["publico"];
             break;
         }
 
