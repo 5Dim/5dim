@@ -147,13 +147,9 @@ class ConstruccionController extends Controller
         $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
 
         //Comprobamos que el tiempo no sea false, seria un error de personal
-        if ($tiempo == false && $tiempo != 0) {
+        if (!is_numeric($tiempo)) {
             $error = true;
         }
-        // dd($error);
-
-        //Fecha prueba
-        $fechaFin = strtotime($inicio) + $tiempo;
 
         // Comprobar dependencias
         $construcciones = Construcciones::construcciones($planetaActual);
@@ -169,7 +165,6 @@ class ConstruccionController extends Controller
             $error = true;
         } elseif ($construccion->planetas->recursos->gas < $costesConstrucciones[0]->gas) {
             $error = true;
-            dd($error);
         } elseif ($construccion->planetas->recursos->plastico < $costesConstrucciones[0]->plastico) {
             $error = true;
         } elseif ($construccion->planetas->recursos->ceramica < $costesConstrucciones[0]->ceramica) {
@@ -188,6 +183,9 @@ class ConstruccionController extends Controller
 
         //Si no tenemos ningun error continuamos
         if (!$error) {
+            //Fecha prueba
+            $fechaFin = strtotime($inicio) + $tiempo;
+
             //Restamos el coste a los recursos
             $construccion->planetas->recursos->mineral -= $costesConstrucciones[0]->mineral;
             $construccion->planetas->recursos->cristal -= $costesConstrucciones[0]->cristal;
@@ -309,7 +307,7 @@ class ConstruccionController extends Controller
                 // $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
                 $recursos = $colita->construcciones->planetas->recursos;
 
-                $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($colita->nivel-1, $colita->construcciones->codigo, $colita->construcciones->id);
+                $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($colita->nivel - 1, $colita->construcciones->codigo, $colita->construcciones->id);
 
                 //Restaurar beneficio por reciclaje
                 $recursos->mineral += ($costesConstrucciones->mineral * $reciclaje);

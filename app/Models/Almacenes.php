@@ -24,10 +24,10 @@ class Almacenes extends Model
         $cantalmainir = 0; // Cantidad inicial
         $potalmar = 10; //Potencia almacenamiento
 
-        for ($n = 0; $n < 250; $n++) {
+        for ($n = 1; $n < 250; $n++) {
             $capacidad = $cantalmainir + ((10000 * (pow($n, 3))) / $potalmar);
             $almacen = new Almacenes();
-            $almacen->nivel = $n;
+            $almacen->nivel = $n-1;
             $almacen->capacidad = $capacidad;
             array_push($almacenes, $almacen);
         }

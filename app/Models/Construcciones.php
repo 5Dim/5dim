@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\CostesConstrucciones;
 use App\Models\Industrias;
+use Illuminate\Support\Facades\Log;
 
 class Construcciones extends Model
 {
@@ -141,12 +142,11 @@ class Construcciones extends Model
     public function calcularTiempoConstrucciones($preciototal, $personal)
     {
         $velocidadConst = Constantes::where('codigo', 'velocidadConst')->first();
-        if ($personal > 0) {
+        if (is_numeric($personal) && $personal > 0) {
             $result = (($preciototal * $velocidadConst->valor) / $personal);
         } else {
-            $result = false;
+            $result = "sin personal";
         }
-        // dd($result);
         return $result;
     }
 

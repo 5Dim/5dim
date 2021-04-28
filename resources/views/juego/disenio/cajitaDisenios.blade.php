@@ -293,7 +293,7 @@
                                     </button>
                                 </span>
                             </div>
-                            <input type="text" class="form-control input" value="1" aria-label=""
+                            <input type="number" class="form-control input" value="1" aria-label=""
                                 aria-describedby="basic-addon2" id="disenio{{ $disenio->id }}"
                                 onkeyup='recalculaCostos(@json($disenio->id), @json($disenio->costes))'>
                             <div class="input-group-append">

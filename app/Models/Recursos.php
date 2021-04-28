@@ -35,11 +35,11 @@ class Recursos extends Model
         $recursos = new Recursos;
         $recursos->mineral = $cantidad;
         $recursos->cristal = $cantidad;
-        $recursos->gas = 0;
-        $recursos->plastico = 0;
-        $recursos->ceramica = 0;
-        $recursos->liquido = 0;
-        $recursos->micros = 0;
+        $recursos->gas = 1000;
+        $recursos->plastico = 1000;
+        $recursos->ceramica = 1000;
+        $recursos->liquido = 1000;
+        $recursos->micros = 1000;
         $recursos->fuel = 0;
         $recursos->ma = 0;
         $recursos->municion = 0;
