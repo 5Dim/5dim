@@ -58,7 +58,6 @@ class Recursos extends Model
         //$planeta = Planeta::where('id', $idPlaneta)->first();
         $construcciones = Construcciones::where('planetas_id', $idPlaneta)->get();
         $industrias = Industrias::where('planetas_id', $idPlaneta)->first();
-        $producciones = [];
         $almacenes = [];
 
         //Si no existen los recursos, los creamos
@@ -69,19 +68,10 @@ class Recursos extends Model
         $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
 
         //Calculamos producciones
-        for ($i = 0; $i < count($construcciones); $i++) {
-            if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
-                $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                array_push($producciones, $produccion);
-            } elseif (substr($construcciones[$i]->codigo, 0, 4) == "mina") {
-                $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 4)))->where('nivel', $construcciones[$i]->nivel)->first();
-                array_push($producciones, $produccion);
-                //Calculamos almacenes
-            } elseif (substr($construcciones[$i]->codigo, 0, 3) == "alm") {
-                $almacen = Almacenes::where('nivel', $construcciones[$i]->nivel)->first();
-                array_push($almacenes, $almacen);
-            }
-        }
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+
+        //Calculamos almacenes
+        $almacenes = Almacenes::calcularAlmacenes($construcciones);
 
         //Calculamos recursos
         $fechaInicio = strtotime($recursos->updated_at);
@@ -100,36 +90,32 @@ class Recursos extends Model
             $planetaActual = Planetas::find($idPlaneta);
         }
 
+        //calculo de niveles totales
+        $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
+        $numeroNiveles = 0;
+        foreach ($construcciones as $construccion) {
+            $numeroNiveles += $construccion->nivel;
+        }
+
         //Minas
-        $contProducciones = 1;
-        $recursos->mineral += (($producciones[$contProducciones]->mineral * (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador) / 100)) / 3600 * $fechaCalculo);
-        $contProducciones++;
-        $recursos->cristal += (($producciones[$contProducciones]->cristal * (1 + ($planetaActual->cualidades->cristal + $nivelTerraformador) / 100)) / 3600 * $fechaCalculo);
-        $contProducciones++;
-        $recursos->gas += (($producciones[$contProducciones]->gas * (1 + ($planetaActual->cualidades->gas + $nivelTerraformador) / 100)) / 3600 * $fechaCalculo);
-        $contProducciones++;
-        $recursos->plastico += (($producciones[$contProducciones]->plastico * (1 + ($planetaActual->cualidades->plastico + $nivelTerraformador) / 100)) / 3600 * $fechaCalculo);
-        $contProducciones++;
-        $recursos->ceramica += (($producciones[$contProducciones]->ceramica * (1 + ($planetaActual->cualidades->ceramica + $nivelTerraformador) / 100)) / 3600 * $fechaCalculo);
-        $contProducciones++;
+        $recursos->mineral += ((($produccion->mineral * (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador) / 100)) / 3600) * $fechaCalculo);
+        $recursos->cristal += ((($produccion->cristal * (1 + ($planetaActual->cualidades->cristal + $nivelTerraformador) / 100)) / 3600) * $fechaCalculo);
+        $recursos->gas += ((($produccion->gas * (1 + ($planetaActual->cualidades->gas + $nivelTerraformador) / 100)) / 3600) * $fechaCalculo);
+        $recursos->plastico += ((($produccion->plastico * (1 + ($planetaActual->cualidades->plastico + $nivelTerraformador) / 100)) / 3600) * $fechaCalculo);
+        $recursos->ceramica += ((($produccion->ceramica * (1 + ($planetaActual->cualidades->ceramica + $nivelTerraformador) / 100)) / 3600) * $fechaCalculo);
 
         //Industrias
-        $liquido = ($producciones[$contProducciones]->liquido / 3600 * $fechaCalculo);
-        $contProducciones++;
-        $micros = ($producciones[$contProducciones]->micros / 3600 * $fechaCalculo);
-        $contProducciones++;
-        $fuel = ($producciones[$contProducciones]->fuel / 3600 * $fechaCalculo);
-        $contProducciones++;
-        $ma = ($producciones[$contProducciones]->ma / 3600 * $fechaCalculo);
-        $contProducciones++;
-        $municion = ($producciones[$contProducciones]->municion / 3600 * $fechaCalculo);
-        $contProducciones++;
+        $liquido = ($produccion->liquido / 3600 * $fechaCalculo);
+        $micros = ($produccion->micros / 3600 * $fechaCalculo);
+        $fuel = ($produccion->fuel / 3600 * $fechaCalculo);
+        $ma = ($produccion->ma / 3600 * $fechaCalculo);
+        $municion = ($produccion->municion / 3600 * $fechaCalculo);
 
         //Calculamos industrias
         if (!empty($industrias)) {
             $mejoraIndustrias = Constantes::where('codigo', 'mejorainvIndustrias')->first()->valor;
-            $gastoFliquido = 0;
             if ($industrias->liquido == 1) {
+                $gastoFliquido = 0;
                 $costo = Constantes::where('codigo', 'costoLiquido')->first()->valor;
                 $gastoFliquido = $liquido * $costo;
                 if ($gastoFliquido > $recursos->mineral) {
@@ -138,10 +124,8 @@ class Recursos extends Model
                 }
                 $recursos->mineral -= $gastoFliquido;
                 $recursos->liquido += $liquido * (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
-            }
-
-            $gastoFmicros = 0;
-            if ($industrias->micros == 1) {
+            } elseif ($industrias->micros == 1) {
+                $gastoFmicros = 0;
                 $costo = Constantes::where('codigo', 'costoMicros')->first()->valor;
                 $gastoFmicros = $micros * $costo;
                 if ($gastoFmicros > $recursos->cristal) {
@@ -150,10 +134,8 @@ class Recursos extends Model
                 }
                 $recursos->cristal -= $gastoFmicros;
                 $recursos->micros += $micros * (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
-            }
-
-            $gastoFfuel = 0;
-            if ($industrias->fuel == 1) {
+            } elseif ($industrias->fuel == 1) {
+                $gastoFfuel = 0;
                 $costo = Constantes::where('codigo', 'costoFuel')->first()->valor;
                 $gastoFfuel = $fuel *  $costo;
                 if ($gastoFfuel > $recursos->gas) {
@@ -162,10 +144,8 @@ class Recursos extends Model
                 }
                 $recursos->gas -= $gastoFfuel;
                 $recursos->fuel += $fuel * (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
-            }
-
-            $gastoFma = 0;
-            if ($industrias->ma == 1) {
+            } elseif ($industrias->ma == 1) {
+                $gastoFma = 0;
                 $costo = Constantes::where('codigo', 'costoMa')->first()->valor;
                 $gastoFma = $ma *  $costo;
                 if ($gastoFma > $recursos->plastico) {
@@ -174,10 +154,8 @@ class Recursos extends Model
                 }
                 $recursos->plastico -= $gastoFma;
                 $recursos->ma += $ma * (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
-            }
-
-            $gastoFmunicion = 0;
-            if ($industrias->municion == 1) {
+            } elseif ($industrias->municion == 1) {
+                $gastoFmunicion = 0;
                 $costo = Constantes::where('codigo', 'costoMunicion')->first()->valor;
                 $gastoFmunicion = $municion *  $costo;
                 if ($gastoFmunicion > $recursos->ceramica) {
@@ -189,16 +167,11 @@ class Recursos extends Model
             }
         }
 
-        //calculo de niveles totales
-        $constanteCreditos = Constantes::where('codigo', 'monedaPorNivel')->first()->valor;
-        $numeroNiveles = 0;
-        foreach ($construcciones as $construccion) {
-            $numeroNiveles += $construccion->nivel;
-        }
-
         //Personal y creditos
-        $recursos->personal = ($producciones[0]->personal / 3600 * $fechaCalculo) + $recursos->personal;
+        $recursos->personal = ($produccion->personal / 3600 * $fechaCalculo) + $recursos->personal;
         $recursos->creditos = ((($numeroNiveles * $constanteCreditos * 1000) / (24 * 3600)) * $fechaCalculo) + $recursos->creditos;
+
+        // dd($almacenes);
 
         //Comprobamos almacenes
         $contAlmacenes = 0;
@@ -218,7 +191,6 @@ class Recursos extends Model
         $contAlmacenes++;
         $recursos->municion >= $almacenes[$contAlmacenes]->capacidad ? $recursos->municion = $almacenes[$contAlmacenes]->capacidad : '';
         $contAlmacenes++;
-        // $recursos->personal;
 
         //Guardamos los cambios
         $recursos->save();

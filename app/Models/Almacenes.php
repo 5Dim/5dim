@@ -43,9 +43,9 @@ class Almacenes extends Model
     {
         $almacenes = [];
 
-        for ($i = 0; $i < count($construcciones); $i++) {
-            if (substr($construcciones[$i]->codigo, 0, 3) == "alm") {
-                $almacen = Almacenes::where('nivel', $construcciones[$i]->nivel)->first();
+        foreach ($construcciones as $construccion) {
+            if (substr($construccion->codigo, 0, 3) == "alm") {
+                $almacen = Almacenes::where('nivel', $construccion->nivel)->first();
                 array_push($almacenes, $almacen);
             }
         }
