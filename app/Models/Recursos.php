@@ -11,6 +11,7 @@ use App\Models\Industrias;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Recursos extends Model
 {
@@ -68,7 +69,7 @@ class Recursos extends Model
         $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
 
         //Calculamos producciones
-        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual);
+        $produccion = Producciones::calcularProducciones($construcciones, $planetaActual, false);
 
         //Calculamos almacenes
         $almacenes = Almacenes::calcularAlmacenes($construcciones);
@@ -97,6 +98,7 @@ class Recursos extends Model
             $numeroNiveles += $construccion->nivel;
         }
 
+
         //Minas
         $recursos->mineral += ((($produccion->mineral * (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador) / 100)) / 3600) * $fechaCalculo);
         $recursos->cristal += ((($produccion->cristal * (1 + ($planetaActual->cualidades->cristal + $nivelTerraformador) / 100)) / 3600) * $fechaCalculo);
@@ -124,7 +126,8 @@ class Recursos extends Model
                 }
                 $recursos->mineral -= $gastoFliquido;
                 $recursos->liquido += $liquido * (1 + ($investigaciones->where('codigo', 'invIndLiquido')->first()->nivel * ($mejoraIndustrias)));
-            } elseif ($industrias->micros == 1) {
+            }
+            if ($industrias->micros == 1) {
                 $gastoFmicros = 0;
                 $costo = Constantes::where('codigo', 'costoMicros')->first()->valor;
                 $gastoFmicros = $micros * $costo;
@@ -134,7 +137,8 @@ class Recursos extends Model
                 }
                 $recursos->cristal -= $gastoFmicros;
                 $recursos->micros += $micros * (1 + ($investigaciones->where('codigo', 'invIndMicros')->first()->nivel * ($mejoraIndustrias)));
-            } elseif ($industrias->fuel == 1) {
+            }
+            if ($industrias->fuel == 1) {
                 $gastoFfuel = 0;
                 $costo = Constantes::where('codigo', 'costoFuel')->first()->valor;
                 $gastoFfuel = $fuel *  $costo;
@@ -144,7 +148,8 @@ class Recursos extends Model
                 }
                 $recursos->gas -= $gastoFfuel;
                 $recursos->fuel += $fuel * (1 + ($investigaciones->where('codigo', 'invIndFuel')->first()->nivel * ($mejoraIndustrias)));
-            } elseif ($industrias->ma == 1) {
+            }
+            if ($industrias->ma == 1) {
                 $gastoFma = 0;
                 $costo = Constantes::where('codigo', 'costoMa')->first()->valor;
                 $gastoFma = $ma *  $costo;
@@ -154,7 +159,8 @@ class Recursos extends Model
                 }
                 $recursos->plastico -= $gastoFma;
                 $recursos->ma += $ma * (1 + ($investigaciones->where('codigo', 'invIndMa')->first()->nivel * ($mejoraIndustrias)));
-            } elseif ($industrias->municion == 1) {
+            }
+            if ($industrias->municion == 1) {
                 $gastoFmunicion = 0;
                 $costo = Constantes::where('codigo', 'costoMunicion')->first()->valor;
                 $gastoFmunicion = $municion *  $costo;
@@ -168,10 +174,8 @@ class Recursos extends Model
         }
 
         //Personal y creditos
-        $recursos->personal = ($produccion->personal / 3600 * $fechaCalculo) + $recursos->personal;
-        $recursos->creditos = ((($numeroNiveles * $constanteCreditos * 1000) / (24 * 3600)) * $fechaCalculo) + $recursos->creditos;
-
-        // dd($almacenes);
+        $recursos->personal += ($produccion->personal / 3600 * $fechaCalculo);
+        $recursos->creditos += ((($numeroNiveles * $constanteCreditos * 1000) / (24 * 3600)) * $fechaCalculo);
 
         //Comprobamos almacenes
         $contAlmacenes = 0;
@@ -194,11 +198,6 @@ class Recursos extends Model
 
         //Guardamos los cambios
         $recursos->save();
-    }
-
-
-    public static function calcularRecoleccion($idPlaneta)
-    {
     }
 
     public static function initRecursos($idPlaneta)
