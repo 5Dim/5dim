@@ -11,6 +11,11 @@ class EnVuelo extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public function jugadores()
+    {
+        return $this->belongsTo(Jugadores::class);
+    }
+
     public function diseniosEnFlota()
     {
         return $this->hasMany(DiseniosEnFlota::class);

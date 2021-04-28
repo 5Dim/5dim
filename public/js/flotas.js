@@ -26,12 +26,17 @@ for (dest = 1; dest < destinos.length; dest++) {
 Avisos();
 
 function CargarFlotaEditada() {
-    EsconderPorId("listaPrioridades0");
+
     if (flota.id == undefined) {
         //planeta
         nombreorigen = "Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
+        EsconderPorId("listaPrioridades0");
     } else {
         //flota
+        if (destinos[0]["tipoflota"] == undefined ){
+            EsconderPorId("listaPrioridades0");
+        }
+
         nombreorigen = "Carga actual en la flota";
         puedoCargarRecurso[0] = false;
         EsconderPorId("envias0");
@@ -107,7 +112,7 @@ function CargarValoresPlaneta() {
         } else {
             valNaves[este].cantidad = nave.cantidad;
         }
-        valNaves[este].cantidadT = valNaves[este].cantidad + valNaves[este].enflota + valNaves[este].enhangar; //es constante
+        valNaves[este].cantidadT =(1* valNaves[este].cantidad + 1*valNaves[este].enflota +1* valNaves[este].enhangar); //es constante
 
         //ayuda visual esconde los 0
         $("#nombre" + diseno.id).text(diseno.nombre);
@@ -174,7 +179,7 @@ function RecursosInicio() {
         }
         //destinos[dest].mision = $("#ordenDest" + dest).val();
     }
-    console.log(destinos[0]);
+    //console.log(destinos[0]);
     destinos[0].mision = "transportar";
 }
 
@@ -922,6 +927,9 @@ function RellenarFlotasEnVuelo(data,prefix){
     flotas.forEach(flota => {
 
         if (flota!=null){
+
+            nick=flota['nick'];
+
             if(flota['estado']=="envuelo"){
                 fila++;
                 if (flota['trestante']!=null && flota['trestante']!=undefined && flota['tvuelo']!=null && flota['tvuelo']!=undefined){
@@ -944,7 +952,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                 cabeza2="tiempo regreso: ";
                 tregreso=formatHMS(1*flota['tregreso']);
             } else {
-                barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle"> </th>
+                barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
                 <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
                 cabeza1="Recolección ";
                 cabeza2="";
@@ -1119,10 +1127,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['nombre']+`<big>
                             </th>
-                            <th colspan="3" class="text-success text-center borderless align-middle">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
-                            </th>
+                            `+barraytiempo+`
                             <th id="trestantealiada`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
@@ -1133,8 +1138,8 @@ function RellenarFlotasEnVuelo(data,prefix){
                         </div>
                     </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="3" class="text-warning">tiempo restante: </td>
-                        <td colspan="3" class="text-warning">tiempo regreso:</td>
+                    <td colspan="3" class="text-warning">`+cabeza1+`</td>
+                    <td colspan="3" class="text-warning">`+cabeza2+`</td>
                         <td colspan="3" class="text-warning">ataque:</td>
                         <td colspan="3" class="text-warning">defensa</td>
                     </tr>
@@ -1166,6 +1171,8 @@ function RellenarFlotasEnVuelo(data,prefix){
                 $("#"+prefix+"Aliadas").append(tablaFlotasAliadas);
             }
             else if (flota['tipo']=="ajena"){
+                trestante="";
+                cabeza1="";
 
                 var tablaFlotasExtrangeras = `
                 <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
@@ -1179,10 +1186,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['nombre']+`<big>
                             </th>
-                            <th colspan="3" class="text-success text-center borderless align-middle">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
-                            </th>
+                            `+barraytiempo+`
                             <th id="trestanteajena`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
@@ -1193,8 +1197,8 @@ function RellenarFlotasEnVuelo(data,prefix){
                         </div>
                     </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="3" class="text-warning">tiempo restante: </td>
-                        <td colspan="3" class="text-warning">tiempo regreso:</td>
+                    <td colspan="3" class="text-warning">`+cabeza1+`</td>
+                    <td colspan="3" class="text-warning">`+cabeza2+`</td>
                         <td colspan="3" class="text-warning">ataque:</td>
                         <td colspan="3" class="text-warning">defensa</td>
                     </tr>

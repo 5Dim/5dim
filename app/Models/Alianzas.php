@@ -40,11 +40,12 @@ class Alianzas extends Model
         return $jugadorAlianza;
     }
 
+    //para cosas propias, me quito a mi y a mi propia alianza-jugador
     public static function idMiembrosSinMi($alianza,$miId) {
         $alianza = Alianzas::find($alianza);
         $idMiembros = [];
         foreach ($alianza->miembros as $miembro) {
-            if ($miembro->id !=$miId){
+            if ($miembro->id !=$miId && $miembro->user_id!=null){
                 array_push($idMiembros, $miembro->id);
             }
 

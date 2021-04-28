@@ -151,16 +151,18 @@ class Astrometria extends Model
         $anchoUniverso= $constantesU->where('codigo', 'anchouniverso')->first()->valor;
         $luzdemallauniverso= $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
         $jugadoresAlianzas = [];
+        $jugadoresPropios= [];
 
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));// Log::info($jugadorActual);
+        array_push($jugadoresPropios,$jugadorActual->id);
         if($jugadorActual['alianzas_id']!=null){
             $jugadoresAlianzas=Alianzas::idMiembros($jugadorActual['alianzas_id']); //Log::info($jugadoresAlianzas);
 
             //saco flotas aliadas
             $jugadorAlianzaSinMi=Alianzas::idMiembrosSinMi($jugadorActual['alianzas_id'],$jugadorActual->id);
-            $flotasVisiblesAliadas=EnVuelo::where('jugadores_id',$jugadorAlianzaSinMi)->get();
+            $flotasVisiblesAliadas=EnVuelo::whereIn('jugadores_id',$jugadorAlianzaSinMi)->get();
+            array_push($jugadoresPropios,Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
         } else {
-            //$jugadoresAlianzas=$jugadorActual;
             array_push($jugadoresAlianzas,$jugadorActual->id);
         }
 
@@ -260,7 +262,7 @@ class Astrometria extends Model
             }
 
             //saco flotas propias
-            $flotasVisiblesPropias=EnVuelo::where('jugadores_id',$jugadorActual->id)->get();
+            $flotasVisiblesPropias=EnVuelo::whereIn('jugadores_id',$jugadoresPropios)->get();
             //Log::info("flotas visibles propias: ".$flotasVisiblesPropias);
             foreach($flotasVisiblesPropias as $flotaV){
                 //Log::info($flotaV);
@@ -309,7 +311,7 @@ class Astrometria extends Model
         }
 
 
-        $esteJugon=Jugadores::find($flotaVisible['jugadores_id'])->first();
+        //$esteJugon=Jugadores::find($flotaVisible['jugadores_id'])->first();
         //Log::info($esteJugon);
         $ajusteMapaBase=35; //ajuste 0,0 con mapa
         $ajusteMapaFactor=7; //ajuste escala mapa
@@ -317,7 +319,7 @@ class Astrometria extends Model
             $flota = new \stdClass();
             $flota->numeroflota = $flotaVisible->publico;
             $flota->nombre = $flotaVisible->publico;
-            $flota->nick = $esteJugon['nombre'];
+            $flota->nick = $flotaVisible->jugadores['nombre'];
             $flota->ataque = $flotaVisible->ataqueVisible;
             $flota->defensa = $flotaVisible->defensaVisible;
             $flota->origen ="?";
@@ -518,6 +520,7 @@ class Astrometria extends Model
                 $flota->angulo = $angle;
             }
 
+            //Log::info(" flota visible: ".$flota->nombre);
             //Log::info($flotaVisible->nombre." ".$flota->coordfx." ".$flota->coordix." ademas ".$flota->coordfy." ".$flota->coordiy);
             //Log::info($vectorx."  ".$vectory." = ".$angle.", grados= ".(180*$angle/3.141579));
             //Log::info($flotaVisible->nombre." mision: ".$flota->mision." id destino: ".$destinoActual['id']);
@@ -534,19 +537,22 @@ class Astrometria extends Model
         $anchoUniverso= $constantesU->where('codigo', 'anchouniverso')->first()->valor;
         $luzdemallauniverso= $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
         $jugadoresAlianzas = [];
+        $jugadoresPropios= [];
 
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));// Log::info($jugadorActual);
+        array_push($jugadoresPropios,$jugadorActual->id);
         if($jugadorActual['alianzas_id']!=null){
             $jugadoresAlianzas=Alianzas::idMiembros($jugadorActual['alianzas_id']); //Log::info($jugadoresAlianzas);
 
             //saco flotas aliadas
             $jugadorAlianzaSinMi=Alianzas::idMiembrosSinMi($jugadorActual['alianzas_id'],$jugadorActual->id);
-            $flotasVisiblesAliadas=EnRecoleccion::where('jugadores_id',$jugadorAlianzaSinMi)->get();
+            $flotasVisiblesAliadas=EnRecoleccion::whereIn('jugadores_id',$jugadorAlianzaSinMi)->get();
+            array_push($jugadoresPropios,Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
         } else {
-            //$jugadoresAlianzas=$jugadorActual;
             array_push($jugadoresAlianzas,$jugadorActual->id);
         }
 
+        //Log::info($jugadoresPropios);
         //Log::info('jugadoresAlianzas: '.$jugadoresAlianzas);
 
         //determina caja de visibilidad
@@ -626,8 +632,9 @@ class Astrometria extends Model
             }
 
             //saco flotas propias
-            $flotasVisiblesPropias=EnRecoleccion::where('jugadores_id',$jugadorActual->id)->get();
-            //Log::info("flotas visibles propias: ".$flotasVisiblesPropias);
+            $flotasVisiblesPropias=EnRecoleccion::whereIn('jugadores_id',$jugadoresPropios)->get();
+           // Log::info($jugadoresPropios);
+           // Log::info("flotas visibles propias: ".$flotasVisiblesPropias);
             foreach($flotasVisiblesPropias as $flotaV){
                 //Log::info($flotaV);
                 $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"propia","enrecoleccion");
