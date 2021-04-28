@@ -28,9 +28,10 @@
                                             {{ $colaDisenios[$i]->cantidad }}
                                         </td>
                                         <td id="fechaFin{{ $i }}" class="text-light align-middle borderless">
-                                            {{ (new DateTime($colaDisenios[$i]->finished_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone(Auth::user()->timezone))->format("Y-m-d H:i:s") }}
+                                            {{ (new DateTime($colaDisenios[$i]->finished_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone(Auth::user()->timezone))->format('Y-m-d H:i:s') }}
                                         </td>
-                                        <td class="text-light align-middle borderless" id="{{ $colaDisenios[$i]->id }}"></td>
+                                        <td class="text-light align-middle borderless" id="{{ $colaDisenios[$i]->id }}">
+                                        </td>
                                         <td class="text-light align-middle borderless">
                                             <button type="button" class="btn btn-outline-danger col-12 btn-sm"
                                                 onclick="sendCancelarDisenio('{{ $colaDisenios[$i]->id }}')">
@@ -51,16 +52,17 @@
                         tiempos[{{ $i }}] = {{ strtotime($colaDisenios[$i]->finished_at) - strtotime(date('Y-m-d H:i:s')) }};
                     @endfor
                     cuentaAtras(id, tiempos);
+
                 </script>
             @endif
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link active" id="cazas-tab" data-bs-toggle="tab" href="#cazas" role="tab"
+                    <a class="nav-item nav-link " id="cazas-tab" data-bs-toggle="tab" href="#cazas" role="tab"
                         aria-controls="cazas" aria-selected="true">
                         Naves cazas
                     </a>
-                    <a class="nav-item nav-link" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
+                    <a class="nav-item nav-link active" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
                         aria-controls="ligeras" aria-selected="false">
                         Naves Ligeras
                     </a>
@@ -83,7 +85,7 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
+                <div class="tab-pane fade " id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                     @foreach ($cazas as $caza)
                         @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $caza,
@@ -91,7 +93,7 @@
                         ])
                     @endforeach
                 </div>
-                <div class="tab-pane fade" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
+                <div class="tab-pane fade show active" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
                     @foreach ($ligeras as $ligera)
                         @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $ligera,
@@ -141,47 +143,48 @@
                     <h5 class="modal-title text-success" id="ModalTitulo">
                         Nave de carga
                     </h5>
-                    <button type="button" class="btn-close btn-light" style="background-color: white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-light" style="background-color: white"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body modal-body-dark cajita" id="datosContenido" style="margin: 0px">
-                        <table class="table table-borderless borderless table-sm text-center anchofijo">
-                            <tr>
-                                <td class="text-warning">Carga</td>
-                                <td class="text-warning">Recoleccion</td>
-                                <td class="text-warning">Extracción</td>
-                                <td class="text-warning">Hangar cazas</td>
-                                <td class="text-warning">Hangar ligeras</td>
-                                <td class="text-warning">Hangar medias</td>
-                                <td class="text-warning">Hangar pesadas</td>
-                            </tr>
-                            <tr>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                            </tr>
-                            <tr>
-                                <td class="text-warning">Mantenimiento</td>
-                                <td class="text-warning">Munición</td>
-                                <td class="text-warning">Fuel</td>
-                                <td class="text-warning">Vel. Impulso</td>
-                                <td class="text-warning">Hypervelocidad</td>
-                                <td class="text-warning">Ataque</td>
-                                <td class="text-warning">Defensa</td>
-                            </tr>
-                            <tr>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                                <td class="text-light">0</td>
-                            </tr>
-                        </table>
+                    <table class="table table-borderless borderless table-sm text-center anchofijo">
+                        <tr>
+                            <td class="text-warning">Carga</td>
+                            <td class="text-warning">Recoleccion</td>
+                            <td class="text-warning">Extracción</td>
+                            <td class="text-warning">Hangar cazas</td>
+                            <td class="text-warning">Hangar ligeras</td>
+                            <td class="text-warning">Hangar medias</td>
+                            <td class="text-warning">Hangar pesadas</td>
+                        </tr>
+                        <tr>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                        </tr>
+                        <tr>
+                            <td class="text-warning">Mantenimiento</td>
+                            <td class="text-warning">Munición</td>
+                            <td class="text-warning">Fuel</td>
+                            <td class="text-warning">Vel. Impulso</td>
+                            <td class="text-warning">Hypervelocidad</td>
+                            <td class="text-warning">Ataque</td>
+                            <td class="text-warning">Defensa</td>
+                        </tr>
+                        <tr>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                            <td class="text-light">0</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -193,11 +196,10 @@
         var constantes = @json($constantes);
         var mejoras = @json($mejoras);
         var PConstantes = @json($PConstantes);
-        var constanteVelocidad=@json($constanteVelocidad);
-        var nivelHangar=@json($nivelHangar);
-        var ViewDaniosDisenios=@json($ViewDaniosDisenios);
+        var constanteVelocidad = @json($constanteVelocidad);
+        var nivelHangar = @json($nivelHangar);
+        var ViewDaniosDisenios = @json($ViewDaniosDisenios);
         //calcularDisenios(disenios, mejoras, investigaciones, constantes);
-
 
     </script>
 @endsection

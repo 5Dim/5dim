@@ -4,11 +4,11 @@
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link active" id="enviar-tab" data-bs-toggle="tab" href="#enviar" role="tab"
+                    <a class="nav-item nav-link " id="enviar-tab" data-bs-toggle="tab" href="#enviar" role="tab"
                         aria-controls="Enviar" aria-selected="true">
                         Enviar
                     </a>
-                    <a class="nav-item nav-link" id="envuelo-tab" data-bs-toggle="tab" href="#envuelo" role="tab"
+                    <a class="nav-item nav-link active" id="envuelo-tab" data-bs-toggle="tab" href="#envuelo" role="tab"
                         aria-controls="envuelo" aria-selected="false" onclick="verFlotasEnVuelo()">
                         En vuelo
                     </a>
@@ -28,10 +28,10 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="enviar" role="tabpanel" aria-labelledby="enviar-tab">
+                <div class="tab-pane fade " id="enviar" role="tabpanel" aria-labelledby="enviar-tab">
                     @include('juego.flotas.enviar')
                 </div>
-                <div class="tab-pane fade" id="envuelo" role="tabpanel" aria-labelledby="envuelo-tab">
+                <div class="tab-pane fade show active" id="envuelo" role="tabpanel" aria-labelledby="envuelo-tab">
                     @include('juego.flotas.cajitaFlotas', [
                         'envuelo' => true
                         ])
