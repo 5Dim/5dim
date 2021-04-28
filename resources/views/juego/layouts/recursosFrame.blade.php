@@ -83,13 +83,6 @@
                                     class="badge bg-warning text-dark">{{ $nivelImperio * 15 + 10 - count($planetasJugador) * 10 }}</span>
                             </button>
                         </th>
-                        {{-- <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Tienes 1 ataque(s) en curso"
-                                data-bs-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
-                                Ataques <span class="badge bg-danger">1</span>
-                            </button>
-                        </th> --}}
                         <th class="text-warning borderless ">
                             <div class="accordion accordion-flush" id="accordionFlushExample">
                                 <div class="accordion-item bg-transparent">
@@ -105,11 +98,18 @@
                         </th>
                         <th class="text-warning borderless">
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
+                                data-trigger="focus" title="Tienes 0 ataque(s) en curso"
+                                data-bs-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
+                                Ataques <span class="badge bg-warning text-dark">0</span>
+                            </button>
+                        </th>
+                        {{-- <th class="text-warning borderless">
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
                                 data-trigger="focus" title="Novas"
                                 data-bs-content="Las novas se usan para adquirir fuselajes especiales, modo premium y algunos packs de defensa, están disponibles en la tienda">
                                 Novas <span class="badge bg-warning text-dark">{{ Auth::user()->novas }}</span>
                             </button>
-                        </th>
+                        </th> --}}
                         <th class="text-warning borderless ">
                             {{-- <a href="cuenta.php" target="_self"> --}}
                             <img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}" title="Opciones" />

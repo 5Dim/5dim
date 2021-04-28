@@ -65,6 +65,28 @@ class Planetas extends Model
         $planetaElegido->save();
         CualidadesPlanetas::agregarCualidades($planetaElegido->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);
 
+        //Asteroide de inicio
+        $asteroidesAsociados = new Planetas();
+        $asteroidesAsociados->estrella = $planetaElegido->estrella;
+        if ($planetaElegido->orbita < 7) {
+            if (empty(Planetas::where([['estrella', $planetaElegido->estrella], ['orbita', $planetaElegido->orbita - 1]])->first())) {
+                $asteroidesAsociados->orbita = $planetaElegido->orbita + 1;
+            } else {
+                $asteroidesAsociados->orbita = $planetaElegido->orbita + 2;
+            }
+        } else {
+            if (empty(Planetas::where([['estrella', $planetaElegido->estrella], ['orbita', $planetaElegido->orbita - 1]])->first())) {
+                $asteroidesAsociados->orbita = $planetaElegido->orbita - 1;
+            } else {
+                $asteroidesAsociados->orbita = $planetaElegido->orbita - 2;
+            }
+        }
+        $asteroidesAsociados->imagen = random_int(70, 79);
+        $asteroidesAsociados->tipo = "asteroide";
+        $asteroidesAsociados->creacion = time();
+        Planetas::coordenadasBySistema($asteroidesAsociados);
+        CualidadesPlanetas::agregarCualidades($asteroidesAsociados->id, Constantes::where('codigo', 'yacimientosInicialesAsteriode')->first()->valor);
+
         return $planetaElegido->id;
     }
 

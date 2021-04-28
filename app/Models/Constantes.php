@@ -1064,6 +1064,16 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
+        $constante->valor = 10;
+        $constante->minimo = 5;
+        $constante->maximo = 15;
+        $constante->codigo = 'yacimientosInicialesAsteriode';
+        $constante->descripcion = 'Yacimientos del asteroide de inicio';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
         $constante->valor = 30;
         $constante->minimo = 25;
         $constante->maximo = 35;
@@ -1231,7 +1241,7 @@ class Constantes extends Model
 
 
         $constante = new Constantes();
-        $constante->valor = 50000;
+        $constante->valor = 200000;
         $constante->minimo = 30000;
         $constante->maximo = 200000;
         $constante->codigo = 'cantidadrecursosinicio';

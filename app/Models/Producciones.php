@@ -71,82 +71,71 @@ class Producciones extends Model
 
     public static function calcularProducciones($construcciones, $planetaActual, $calcular = true)
     {
-        $producciones = [];
+        $industrias = Industrias::where('planetas_id', $planetaActual->id)->first();
+        $produccion = new Producciones;
 
-        for ($i = 0; $i < count($construcciones); $i++) {
-            if (substr($construcciones[$i]->codigo, 0, 3) == "ind") {
-                $industrias = Industrias::where('planetas_id', $planetaActual->id)->first();
-                $industria = strtolower(substr($construcciones[$i]->codigo, 3));
-                if ($industria == 'liquido') {
-                    if ($industrias->liquido == 1) {
-                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                    } else {
-                        $produccion = new Producciones;
-                        $produccion->liquido = 0;
+        foreach ($construcciones as $construccion) {
+            if (substr($construccion->codigo, 0, 3) == "ind" || substr($construccion->codigo, 0, 4) == "mina") {
+                if (substr($construccion->codigo, 0, 3) == "ind") {
+                    $industria = strtolower(substr($construccion->codigo, 3));
+                    if ($industria == 'liquido') {
+                        if ($industrias->liquido == 1) {
+                            $produccion->liquido = Producciones::where('nivel', $construccion->nivel)->first()->liquido;
+                        } else {
+                            $produccion->liquido = 0;
+                        }
+                    } elseif ($industria == 'micros') {
+                        if ($industrias->micros == 1) {
+                            $produccion->micros = Producciones::where('nivel', $construccion->nivel)->first()->micros;
+                        } else {
+                            $produccion->micros = 0;
+                        }
+                    } elseif ($industria == 'fuel') {
+                        if ($industrias->fuel == 1) {
+                            $produccion->fuel = Producciones::where('nivel', $construccion->nivel)->first()->fuel;
+                        } else {
+                            $produccion->fuel = 0;
+                        }
+                    } elseif ($industria == 'ma') {
+                        if ($industrias->ma == 1) {
+                            $produccion->ma = Producciones::where('nivel', $construccion->nivel)->first()->ma;
+                        } else {
+                            $produccion->ma = 0;
+                        }
+                    } elseif ($industria == 'municion') {
+                        if ($industrias->municion == 1) {
+                            $produccion->municion = Producciones::where('nivel', $construccion->nivel)->first()->municion;
+                        } else {
+                            $produccion->municion = 0;
+                        }
+                    } elseif ($industria == 'personal') {
+                        $produccion->personal = Producciones::where('nivel', $construccion->nivel)->first()->personal;
                     }
-                } elseif ($industria == 'micros') {
-                    if ($industrias->micros == 1) {
-                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                    } else {
-                        $produccion = new Producciones;
-                        $produccion->micros = 0;
+                } elseif (substr($construccion->codigo, 0, 4) == "mina") {
+                    $mina = strtolower(substr($construccion->codigo, 4));
+                    if ($mina == 'mineral') {
+                        $produccion->mineral = Producciones::where('nivel', $construccion->nivel)->first()->mineral;
+                    } elseif ($mina == 'cristal') {
+                        $produccion->cristal = Producciones::where('nivel', $construccion->nivel)->first()->cristal;
+                    } elseif ($mina == 'gas') {
+                        $produccion->gas = Producciones::where('nivel', $construccion->nivel)->first()->gas;
+                    } elseif ($mina == 'plastico') {
+                        $produccion->plastico = Producciones::where('nivel', $construccion->nivel)->first()->plastico;
+                    } elseif ($mina == 'mineral') {
+                        $produccion->mineral = Producciones::where('nivel', $construccion->nivel)->first()->mineral;
                     }
-                } elseif ($industria == 'fuel') {
-                    if ($industrias->fuel == 1) {
-                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                    } else {
-                        $produccion = new Producciones;
-                        $produccion->fuel = 0;
-                    }
-                } elseif ($industria == 'ma') {
-                    if ($industrias->ma == 1) {
-                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                    } else {
-                        $produccion = new Producciones;
-                        $produccion->ma = 0;
-                    }
-                } elseif ($industria == 'municion') {
-                    if ($industrias->municion == 1) {
-                        $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
-                    } else {
-                        $produccion = new Producciones;
-                        $produccion->municion = 0;
-                    }
-                } elseif ($industria == 'personal') {
-                    $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 3)))->where('nivel', $construcciones[$i]->nivel)->first();
                 }
-                array_push($producciones, $produccion);
-            } elseif (substr($construcciones[$i]->codigo, 0, 4) == "mina") {
-                $produccion = Producciones::select(strtolower(substr($construcciones[$i]->codigo, 4)))->where('nivel', $construcciones[$i]->nivel)->first();
-                array_push($producciones, $produccion);
             }
         }
 
-        // dd($producciones);
-
         if ($calcular) {
-            //Si no tiene cualidades asociadas, las genera
-            if (empty($planetaActual->cualidades)) {
-                $planetaActual->cualidades = new CualidadesPlanetas;
-                $planetaActual->cualidades->mineral = rand($min = 30, $max = 99);
-                $planetaActual->cualidades->cristal = rand($min = 30, $max = 99);
-                $planetaActual->cualidades->gas = rand($min = 30, $max = 99);
-                $planetaActual->cualidades->plastico = rand($min = 30, $max = 99);
-                $planetaActual->cualidades->ceramica = rand($min = 30, $max = 99);
-                $planetaActual->cualidades->eje_x = 0;
-                $planetaActual->cualidades->eje_y = 0;
-                $planetaActual->cualidades->enfriamiento = 0;
-                $planetaActual->cualidades->planetas_id = $planetaActual->id;
-                $planetaActual->cualidades->save();
-            }
-
             //Calculamos los yacimientos y el terraformador
             $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
-            $producciones[1]->mineral *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador) / 100);
-            $producciones[2]->cristal *= (1 + ($planetaActual->cualidades->cristal + $nivelTerraformador) / 100);
-            $producciones[3]->gas *= (1 + ($planetaActual->cualidades->gas + $nivelTerraformador) / 100);
-            $producciones[4]->plastico *= (1 + ($planetaActual->cualidades->plastico + $nivelTerraformador) / 100);
-            $producciones[5]->ceramica *= (1 + ($planetaActual->cualidades->ceramica + $nivelTerraformador) / 100);
+            $produccion->mineral *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador) / 100);
+            $produccion->cristal *= (1 + ($planetaActual->cualidades->cristal + $nivelTerraformador) / 100);
+            $produccion->gas *= (1 + ($planetaActual->cualidades->gas + $nivelTerraformador) / 100);
+            $produccion->plastico *= (1 + ($planetaActual->cualidades->plastico + $nivelTerraformador) / 100);
+            $produccion->ceramica *= (1 + ($planetaActual->cualidades->ceramica + $nivelTerraformador) / 100);
 
             //Constantes de costes
             $CConstantes = Constantes::where('tipo', 'construccion')->get();
@@ -161,31 +150,31 @@ class Producciones extends Model
             $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
 
             //Calcular gastos de producciones
-            $produccion->personal = $producciones[0]->personal;
-            $produccion->mineral = $producciones[1]->mineral - ($producciones[6]->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
-            $produccion->cristal = $producciones[2]->cristal - ($producciones[7]->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
-            $produccion->gas = $producciones[3]->gas - ($producciones[8]->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
-            $produccion->plastico = $producciones[4]->plastico - ($producciones[9]->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
-            $produccion->ceramica = $producciones[5]->ceramica - ($producciones[10]->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
+            $produccion->personal = $produccion->personal;
+            $produccion->mineral = $produccion->mineral - ($produccion->liquido * $CConstantes->where('codigo', 'costoLiquido')->first()->valor);
+            $produccion->cristal = $produccion->cristal - ($produccion->micros * $CConstantes->where('codigo', 'costoMicros')->first()->valor);
+            $produccion->gas = $produccion->gas - ($produccion->fuel * $CConstantes->where('codigo', 'costoFuel')->first()->valor);
+            $produccion->plastico = $produccion->plastico - ($produccion->ma * $CConstantes->where('codigo', 'costoMa')->first()->valor);
+            $produccion->ceramica = $produccion->ceramica - ($produccion->municion * $CConstantes->where('codigo', 'costoMunicion')->first()->valor);
 
-            $produccion->liquido = $producciones[6]->liquido * $factorLiquido;
-            $produccion->micros = $producciones[7]->micros * $factorMicros;
-            $produccion->fuel = $producciones[8]->fuel * $factorFuel;
-            $produccion->ma = $producciones[9]->ma * $factorMa;
-            $produccion->municion = $producciones[10]->municion * $factorMunicion;
+            $produccion->liquido = $produccion->liquido * $factorLiquido;
+            $produccion->micros = $produccion->micros * $factorMicros;
+            $produccion->fuel = $produccion->fuel * $factorFuel;
+            $produccion->ma = $produccion->ma * $factorMa;
+            $produccion->municion = $produccion->municion * $factorMunicion;
         } else {
-            $produccion->personal = $producciones[0]->personal;
-            $produccion->mineral = $producciones[1]->mineral;
-            $produccion->cristal = $producciones[2]->cristal;
-            $produccion->gas = $producciones[3]->gas;
-            $produccion->plastico = $producciones[4]->plastico;
-            $produccion->ceramica = $producciones[5]->ceramica;
+            $produccion->personal = $produccion->personal;
+            $produccion->mineral = $produccion->mineral;
+            $produccion->cristal = $produccion->cristal;
+            $produccion->gas = $produccion->gas;
+            $produccion->plastico = $produccion->plastico;
+            $produccion->ceramica = $produccion->ceramica;
 
-            $produccion->liquido = $producciones[6]->liquido;
-            $produccion->micros = $producciones[7]->micros;
-            $produccion->fuel = $producciones[8]->fuel;
-            $produccion->ma = $producciones[9]->ma;
-            $produccion->municion = $producciones[10]->municion;
+            $produccion->liquido = $produccion->liquido;
+            $produccion->micros = $produccion->micros;
+            $produccion->fuel = $produccion->fuel;
+            $produccion->ma = $produccion->ma;
+            $produccion->municion = $produccion->municion;
         }
 
         //calculo de niveles totales
@@ -196,11 +185,7 @@ class Producciones extends Model
                 $numeroNiveles += $construccion->nivel;
             }
         }
-        // $produccion = new Producciones();
         $produccion->creditos = $numeroNiveles * 1000 * $constanteCreditos;
-        // array_push($producciones, $produccion);
-
-        // dd($produccion);
 
         return $produccion;
     }
@@ -209,7 +194,6 @@ class Producciones extends Model
     {
         $cualidades = Planetas::find($idPlaneta)->cualidades;
         $produccion = new Producciones();
-
         $produccion->mineral = Producciones::where('nivel', $cualidades->mineral)->first()->mineral;
         $produccion->cristal = Producciones::where('nivel', $cualidades->cristal)->first()->cristal;
         $produccion->gas = Producciones::where('nivel', $cualidades->gas)->first()->gas;

@@ -18,7 +18,7 @@
                         <div class="input-group mb-3 input-group-sm borderless">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light" style="padding: 0px">
-                                    <button type="button" class="btn btn-dark btn-sm text-light">
+                                    <button type="button" class="btn btn-dark btn-sm text-light" disabled>
                                         Personal
                                     </button>
                                 </span>

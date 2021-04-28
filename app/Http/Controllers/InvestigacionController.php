@@ -173,6 +173,12 @@ class InvestigacionController extends Controller
             $error = true;
         } elseif ($recurso->micros < $costeInvestigacion[0]->micros) {
             $error = true;
+        } elseif ($recurso->fuel < $costeInvestigacion[0]->fuel) {
+            $error = true;
+        } elseif ($recurso->ma < $costeInvestigacion[0]->ma) {
+            $error = true;
+        } elseif ($recurso->municion < $costeInvestigacion[0]->municion) {
+            $error = true;
         } elseif (($recurso->personal - $personalUsado) < $personal) {
             $error = true;
         } elseif ($accion != "Investigando") {
