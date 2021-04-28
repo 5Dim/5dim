@@ -121,8 +121,8 @@ class Producciones extends Model
                         $produccion->gas = Producciones::where('nivel', $construccion->nivel)->first()->gas;
                     } elseif ($mina == 'plastico') {
                         $produccion->plastico = Producciones::where('nivel', $construccion->nivel)->first()->plastico;
-                    } elseif ($mina == 'mineral') {
-                        $produccion->mineral = Producciones::where('nivel', $construccion->nivel)->first()->mineral;
+                    } elseif ($mina == 'ceramica') {
+                        $produccion->ceramica = Producciones::where('nivel', $construccion->nivel)->first()->ceramica;
                     }
                 }
             }
