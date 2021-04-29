@@ -13,7 +13,7 @@
                         En vuelo
                     </a>
                     <a class="nav-item nav-link" id="orbita-tab" data-bs-toggle="tab" href="#orbita" role="tab"
-                        aria-controls="orbita" aria-selected="false">
+                        aria-controls="orbita" aria-selected="false" onclick="verFlotasEnOrbita()">
                         En órbita
                     </a>
                     <a class="nav-item nav-link" id="recoleccion-tab" data-bs-toggle="tab" href="#recoleccion" role="tab"
@@ -37,7 +37,9 @@
                         ])
                 </div>
                 <div class="tab-pane fade" id="orbita" role="tabpanel" aria-labelledby="orbita-tab">
-
+                    @include('juego.flotas.cajitaEnOrbita', [
+                        'envuelo' => true
+                        ])
                 </div>
                 <div class="tab-pane fade" id="recoleccion" role="tabpanel" aria-labelledby="recoleccion-tab">
                     @include('juego.flotas.cajitaEnRecoleccion', [

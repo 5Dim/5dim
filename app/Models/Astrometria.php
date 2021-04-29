@@ -530,7 +530,7 @@ class Astrometria extends Model
     }
 
     // que se ve flotas en recoleccion
-    public static function flotasVisiblesEnRecoleccion(){
+    public static function flotasVisiblesEnRecoleccionOrbita($estado){
 
         //Log::info("flotas visibles");
         $constantesU = Constantes::where('tipo', 'universo')->get();
@@ -546,7 +546,12 @@ class Astrometria extends Model
 
             //saco flotas aliadas
             $jugadorAlianzaSinMi=Alianzas::idMiembrosSinMi($jugadorActual['alianzas_id'],$jugadorActual->id);
-            $flotasVisiblesAliadas=EnRecoleccion::whereIn('jugadores_id',$jugadorAlianzaSinMi)->get();
+            if($estado=="enrecoleccion"){
+                $flotasVisiblesAliadas=EnRecoleccion::whereIn('jugadores_id',$jugadorAlianzaSinMi)->get();
+            } else {
+                $flotasVisiblesAliadas=EnOrbita::whereIn('jugadores_id',$jugadorAlianzaSinMi)->get();
+            }
+
             array_push($jugadoresPropios,Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
         } else {
             array_push($jugadoresAlianzas,$jugadorActual->id);
@@ -583,13 +588,22 @@ class Astrometria extends Model
             //$flotasVisiblesPropiasF = [];
            // $flotasVisiblesAliadasF = [];
             $flotas=[];
-
-            $enZona=EnRecoleccion::where('coordx','>=',$minCoordx)
-            ->where('coordx','<=',$maxCoordx)
-            ->where('coordy','>=',$minCoordy)
-            ->where('coordy','<=',$maxCoordy)
-            ->whereNotIn('jugadores_id',$jugadoresAlianzas)
-            ->get();
+            if($estado=="enrecoleccion"){
+                $enZona=EnRecoleccion::where('coordx','>=',$minCoordx)
+                ->where('coordx','<=',$maxCoordx)
+                ->where('coordy','>=',$minCoordy)
+                ->where('coordy','<=',$maxCoordy)
+                ->whereNotIn('jugadores_id',$jugadoresAlianzas)
+                ->get();
+            }
+            else {
+                $enZona=EnOrbita::where('coordx','>=',$minCoordx)
+                ->where('coordx','<=',$maxCoordx)
+                ->where('coordy','>=',$minCoordy)
+                ->where('coordy','<=',$maxCoordy)
+                ->whereNotIn('jugadores_id',$jugadoresAlianzas)
+                ->get();
+            }
 
             //Log::info($ahora." puntos flota: ".$puntosFlota);
             //Log::info($minCoordx." ".$maxCoordx." ".$minCoordy." ".$maxCoordy);
@@ -612,7 +626,7 @@ class Astrometria extends Model
                             //Log::info($flotaV);
                         //$flotasVisiblesAjena=$flotaV;
                             //Log::info($flotasVisiblesAjena);
-                        $estaflota=Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"ajena","enrecoleccion");
+                        $estaflota=Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"ajena",$estado);
                         if ($estaflota!=null){
                             array_push($flotas,$estaflota );
                         }
@@ -624,7 +638,7 @@ class Astrometria extends Model
             //saco flotas aliadas
             if($jugadorActual['alianzas_id']!=null){
                 foreach($flotasVisiblesAliadas as $flotaV){
-                    $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"aliada","enrecoleccion");
+                    $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"aliada",$estado);
                     if ($estaflota!=null){
                         array_push($flotas,$estaflota );
                     }
@@ -632,12 +646,16 @@ class Astrometria extends Model
             }
 
             //saco flotas propias
-            $flotasVisiblesPropias=EnRecoleccion::whereIn('jugadores_id',$jugadoresPropios)->get();
+            if($estado=="enrecoleccion"){
+                $flotasVisiblesPropias=EnRecoleccion::whereIn('jugadores_id',$jugadoresPropios)->get();
+            } else {
+                $flotasVisiblesPropias=EnOrbita::whereIn('jugadores_id',$jugadoresPropios)->get();
+            }
            // Log::info($jugadoresPropios);
            // Log::info("flotas visibles propias: ".$flotasVisiblesPropias);
             foreach($flotasVisiblesPropias as $flotaV){
                 //Log::info($flotaV);
-                $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"propia","enrecoleccion");
+                $estaflota= Astrometria::flotaValoresVisibles($radares,$flotaV,null,$anchoUniverso,$luzdemallauniverso,"propia",$estado);
                 if ($estaflota!=null){
                     array_push($flotas,$estaflota );
                 }

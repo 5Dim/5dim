@@ -684,12 +684,28 @@ class FlotaController extends Controller
             return compact(null);
         }
 
-        $flotas = Astrometria::flotasVisiblesEnRecoleccion();
+        $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enrecoleccion");
 
         //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
         //Log::info($flotas);
         return $flotas;
     }
+
+    public function verFlotasEnOrbita()
+    {
+        //Log::info('message');
+        //evitamos peticiones sin sentido:
+        if (session()->get('jugadores_id') == null) {
+            return compact(null);
+        }
+
+        $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enorbita");
+
+        //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
+        //Log::info($flotas);
+        return $flotas;
+    }
+
 
 
     public function regresarFlota(Request $request, $id = null)

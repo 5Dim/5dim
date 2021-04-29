@@ -35,4 +35,14 @@ class EnOrbita extends Model
     {
         return $this->hasOne(RecursosEnFlota::class);
     }
+
+    public function diseniosEnFlota()
+    {
+        return $this->hasMany(DiseniosEnFlota::class);
+    }
+
+    public function prioridadesEnFlota()
+    {
+        return $this->hasOne(PrioridadesEnFlota::class);
+    }
 }
