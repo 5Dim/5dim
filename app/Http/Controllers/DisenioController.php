@@ -27,6 +27,7 @@ use App\Models\ViewDaniosDisenios;
 use Illuminate\Database\Eloquent\Builder;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DisenioController extends Controller
 {

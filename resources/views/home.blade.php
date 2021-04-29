@@ -13,12 +13,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">Creacion del universo</th>
-                        <td>01/01/2019</td>
+                        <th scope="row">Creación del universo</th>
+                        <td>01/01/2022</td>
                     </tr>
                     <tr>
-                        <th scope="row">Fecha de finalizacion del universo (prevista)</th>
-                        <td>01/01/2020</td>
+                        <th scope="row">Fecha de finalización del universo (prevista)</th>
+                        <td>320/12/2022</td>
                     </tr>
                 </tbody>
             </table>

@@ -18,7 +18,7 @@
                 <tr>
                     <td rowspan="4" class="anchofijo text-warning borderless">
                         <img class="rounded" data-skin="1" id="imagen{{ $fuselaje->id }}"
-                            src="{{ asset('img/fotos naves/skin1/naveMT' . $fuselaje->id . '.jpg') }}" width="180"
+                            src="{{ asset('img/fotos naves/skin1/nave' . $fuselaje->id . '.png') }}" width="180"
                             height="119">
                     </td>
                     <td
@@ -81,7 +81,7 @@
                         Carga Enorme</td>
                     <td
                         class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'warning' : 'muted' }} borderless">
-                        Velocidad max</td>
+                        </td>
                     <td
                         class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'warning' : 'muted' }} borderless">
                         Motores</td>
@@ -106,7 +106,7 @@
                     </td>
                     <td
                         class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'light' : 'muted' }} borderless">
-                        {{ $fuselaje->cualidades->velocidadMax }}
+
                     </td>
                     <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'light' : 'muted' }} borderless">
                         {{ $fuselaje->cualidades->motores }}
