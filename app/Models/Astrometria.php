@@ -112,7 +112,7 @@ class Astrometria extends Model
         if (empty($jugadorActual->alianzas)) {
             $restoJugadores = Jugadores::where('nombre', "!=", $jugadorActual->nombre)->get();
         } else {
-            $restoJugadores = Jugadores::wher('alianzas_id', "!=", $jugadorActual->alianzas->id)->get();
+            $restoJugadores = Jugadores::where('alianzas_id', "!=", $jugadorActual->alianzas->id)->get();
         }
         foreach ($restoJugadores as $jugador) {
             foreach ($jugador->planetas as $planeta) {

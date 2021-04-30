@@ -598,6 +598,7 @@ destino 0 con lo que sale
         foreach ($listaDestinosEntrantes as $destino) {
 
             $destinoAnterior = Destinos::where('fin', $destino['init'])->where("flota_id", $destino['flota_id'])->first();
+            Log::info("DESTINO " . $destino);
 
             if ($destinoAnterior != null && $destinoAnterior['visitado'] == 0) {
                 //Log::info("destino anterior no ejecutado id=".$destino['id']);
