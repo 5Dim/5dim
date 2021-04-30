@@ -603,7 +603,12 @@ class FlotaController extends Controller
 
                     $naveP = $navesEnPlaneta->firstWhere('disenios_id', $navex['id']);
                     $naveP->cantidad -= $navex['enflota'] + $navex['enhangar'];
-                    $naveP->save();
+                    if($naveP->cantidad <1){
+                        $naveP->delete();
+                    } else {
+                        $naveP->save();
+                    }
+
                 }
 
                 // restando recursos de origen

@@ -18,7 +18,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Fecha de finalización del universo (prevista)</th>
-                        <td>320/12/2022</td>
+                        <td>30/12/2022</td>
                     </tr>
                 </tbody>
             </table>
