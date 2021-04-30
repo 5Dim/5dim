@@ -958,16 +958,16 @@ function RellenarFlotasEnVuelo(data,prefix){
                 barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
                 <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
                 cabeza1="";
-                cabeza2="";
+                cabeza2="Carga Actual"
                 trestante="";
-                tregreso="";
+                tregreso=formatNumber(1*flota['cargaT']);
             }else {
                 barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
                 <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
-                cabeza1="Recolección ";
-                cabeza2="";
+                cabeza1="Recolección";
+                cabeza2="Carga Actual"
                 trestante=formatNumber(1*flota['recoleccion'])+" ud/h";
-                tregreso="";
+                tregreso=formatNumber(1*flota['cargaT']);
             }
 
             ataque=formatNumber(1*flota['ataque']);

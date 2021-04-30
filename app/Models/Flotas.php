@@ -132,7 +132,7 @@ class Flotas extends Model
                     // no se puede llegar
 
                     if ($ordenAnt == "" || $ordenAnt == "Transferir" || $ordenAnt == "Recolectar" || $ordenAnt == "Orbitar" || $ordenAnt == "Extraer") {
-                        $errores = " No se alcanzará destino " . $dest;
+                        $errores = " No se alcanzará destino ". $dest. " con la orden ".$ordenAnt;
                     }
 
                     // soy la ultima y debe ser de cierre
@@ -149,7 +149,7 @@ class Flotas extends Model
                     foreach ($recursosArray as $recurso) {
                         $cargaDestT += 1 * $cargaDest[$dest][$recurso];
                     }
-
+                    //Log::info(" dest es:".$destinos[$dest]['tiempoDest']." fuel dest ".$destinos[$dest]['fuelDest'] );
                     if ($destinos[$dest]['tiempoDest'] < 1 || $destinos[$dest]['fuelDest'] < 1) {
                         $errores = " tiempo o fuel no puede ser 0 a destino " . $dest;
                     }
@@ -249,6 +249,7 @@ class Flotas extends Model
         $coordDestino = Flotas::coordenadasBySistema($destinos[$dest]['estrella'], $anchoUniverso, $luzdemallauniverso);
         $destinos[$dest]['fincoordx'] = $coordDestino['x'];
         $destinos[$dest]['fincoordy'] = $coordDestino['y'];
+        //Log::info(" coord x ".$destinos[$dest]['fincoordx']." y ".$destinos[$dest]['fincoordy'] = $coordDestino['y'] );
 
         for ($dest = 1; $dest < count($destinos); $dest++) {
             //$("#municion" + dest).val(valFlotaT.municion);
@@ -259,9 +260,11 @@ class Flotas extends Model
 
             if (isset($destinos[$dest]['mision']) &&  $destinos[$dest]['mision'] != "") {
                 $destinos[$dest]['viable'] = true;
+                //Log::info($destinos[$destAnt]); Log::info($destinos[$dest]);Log::info(" ya ");
                 $result = Flotas::distanciaUniverso($destinos[$destAnt], $destinos[$dest], $constantesU);
                 $distancia = $result[0];
                 $destinos[$dest] = $result[1];
+                //Log::info($result);
 
                 if ($distancia == 0 || $destinos[$dest]['estrella'] == "") {
                     $destinos[$dest]['viable'] = false;
@@ -302,36 +305,62 @@ class Flotas extends Model
         $coordDestino['x'] = 0;
         $coordDestino['y'] = 0;
         $factordistancia = 1;
+        $oriestrella =$origen['estrella'];
+        $oriorbita =$origen['orbita'];
+        $destiestrella=$destino['estrella'];
+        $destiorbita =$destino['orbita'];
 
         $anchoUniverso = $constantesU->where('codigo', 'anchouniverso')->first()->valor;
         $luzdemallauniverso = $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
 
         $dist = 0;
 
+        if (strlen($oriestrella) > 6) {  //destino es flota
+            $flotaDestino = EnRecoleccion::where("publico", $oriestrella)->orWhere("nombre", $oriestrella)->first();
+            if ($flotaDestino == null) {
+                $flotaDestino = EnOrbita::where("publico", $oriestrella)->orWhere("nombre", $oriestrella)->first();
+            }
+            $oriestrella= $flotaDestino->planetas['estrella'];
+            $oriorbita= $flotaDestino->planetas['orbita'];
+            $origen['estrella']=$oriestrella;
+            $origen['orbita']=$oriorbita;
+        }
+
+        if (strlen($destiestrella) > 6) {  //destino es flota
+            $flotaDestino = EnRecoleccion::where("publico", $destiestrella)->orWhere("nombre", $destiestrella)->first();
+            if ($flotaDestino == null) {
+                $flotaDestino = EnOrbita::where("publico", $destiestrella)->orWhere("nombre", $destiestrella)->first();
+            }
+            $destiestrella= $flotaDestino->planetas['estrella'];
+            $destiorbita= $flotaDestino->planetas['orbita'];
+            $destino['estrella']=$destiestrella;
+            $destino['orbita']=$destiorbita;
+        }
+
         // calculos
-        if ($origen['estrella'] != "0" && $destino['estrella'] != "0" && $origen['orbita'] != "0" && $destino['orbita'] != "0") {
-            if ($origen['estrella'] == $destino['estrella'] && $origen['orbita'] == $destino['orbita']) {
+        if ($oriestrella != "0" && $destiestrella != "0" && $oriorbita != "0" && $destiorbita != "0") {
+            if ($oriestrella == $destiestrella && $oriorbita == $destiorbita) {
                 //Orbitar
                 $factordistancia = $constantesU->where('codigo', 'distanciaorbita')->first()->valor;
                 $coordDestino['x'] = 0.5;
-            } else if ($origen['estrella'] == $destino['estrella']) {
+            } else if ($oriestrella == $destiestrella) {
                 //mismo sistema
                 $factordistancia = $constantesU->where('codigo', 'distanciaentreplanetas')->first()->valor;
-                $coordOrigen['x'] = $origen['orbita'];
-                $coordDestino['x'] = $destino['orbita'];
+                $coordOrigen['x'] = $oriorbita;
+                $coordDestino['x'] = $destiorbita;
             } else {
                 //entre sistemas
                 $factordistancia = $constantesU->where('codigo', 'distanciaentresistemas')->first()->valor;
 
-                $coordOrigen = Flotas::coordenadasBySistema($origen['estrella'], $anchoUniverso, $luzdemallauniverso);
-                $coordDestino = Flotas::coordenadasBySistema($destino['estrella'], $anchoUniverso, $luzdemallauniverso);
+                $coordOrigen = Flotas::coordenadasBySistema($oriestrella, $anchoUniverso, $luzdemallauniverso);
+                $coordDestino = Flotas::coordenadasBySistema($destiestrella, $anchoUniverso, $luzdemallauniverso);
             }
             //calculo coords para distancia
             $dist = $factordistancia * pow(($coordDestino['x'] - $coordOrigen['x']) * ($coordDestino['x'] - $coordOrigen['x']) + ($coordDestino['y'] - $coordOrigen['y']) * ($coordDestino['y'] - $coordOrigen['y']), 1 / 2);
         }
 
         //guardando coord para representar
-        $coordDestino = Flotas::coordenadasBySistema($destino['estrella'], $anchoUniverso, $luzdemallauniverso);
+        $coordDestino = Flotas::coordenadasBySistema($destiestrella, $anchoUniverso, $luzdemallauniverso);
         $destino['fincoordx'] = $coordDestino['x'];
         $destino['fincoordy'] = $coordDestino['y'];
 

@@ -436,8 +436,8 @@ class FlotaController extends Controller
             $ajusteMapaBase = 35; //ajuste 0,0 con mapa
             $ajusteMapaFactor = 7; //ajuste escala mapa
 
-
             try {
+
                 //construyendo flota
 
                 $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
@@ -669,25 +669,14 @@ class FlotaController extends Controller
 
     public function verFlotasEnVuelo()
     {
-        //Log::info('message');
-        //evitamos peticiones sin sentido:
-        if (session()->get('jugadores_id') == null) {
-            return compact(null);
-        }
-
         $flotas = Astrometria::flotasVisibles();
 
-        Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
+        //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
         return $flotas;
     }
 
     public function verFlotasEnRecoleccion()
     {
-        //Log::info('message');
-        //evitamos peticiones sin sentido:
-        if (session()->get('jugadores_id') == null) {
-            return compact(null);
-        }
 
         $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enrecoleccion");
 
@@ -698,12 +687,6 @@ class FlotaController extends Controller
 
     public function verFlotasEnOrbita()
     {
-        //Log::info('message');
-        //evitamos peticiones sin sentido:
-        if (session()->get('jugadores_id') == null) {
-            return compact(null);
-        }
-
         $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enorbita");
 
         //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
@@ -712,15 +695,8 @@ class FlotaController extends Controller
     }
 
 
-
     public function regresarFlota(Request $request, $id = null)
     {
-
-        //evitamos peticiones sin sentido:
-        if (session()->get('jugadores_id') == null || $id == null) {
-            return compact(null);
-        }
-
         $result = Flotas::regresarFlota($id);
         return $result;
     }

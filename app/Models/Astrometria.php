@@ -295,6 +295,7 @@ class Astrometria extends Model
     public static function flotaValoresVisibles($radares,$flotaVisible,$ptoFlota,$anchoUniverso,$luzdemallauniverso,$tipo,$estado="envuelo"){
 
         $ahora=date("Y-m-d H:i:s");
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         //Log::info("pto en flota: ".$ptoFlota);
         //Log::info($flotaVisible);
 
@@ -447,15 +448,33 @@ class Astrometria extends Model
                 $flota->recoleccion=$flotaVisible->recoleccion;
                 $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
                 $flota->destino="";
+                $flota->recursos=RecursosEnFlota::where('en_recoleccion_id',$flotaVisible['id'])->first();
+                $cargaT=0;
+                foreach ($recursosArray as $recurso) {
+                    $cargaT += $flota->recursos[$recurso];
+                }
+                $flota->cargaT=$cargaT;
             }else if ($estado=="enextraccion"){
                 $flota->mision = "Extrayendo";
                 $flota->recoleccion=$flotaVisible->extraccion;
                 $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
                 $flota->destino="";
+                $flota->recursos=RecursosEnFlota::where('en_recoleccion_id',$flotaVisible['id'])->first();
+                $cargaT=0;
+                foreach ($recursosArray as $recurso) {
+                    $cargaT += $flota->recursos[$recurso];
+                }
+                $flota->cargaT=$cargaT;
             } else if ($estado=="enorbita"){
                 $flota->mision = "Orbitando";
                 $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
                 $flota->destino="";
+                $flota->recursos=RecursosEnFlota::where('en_recoleccion_id',$flotaVisible['id'])->first();
+                $cargaT=0;
+                foreach ($recursosArray as $recurso) {
+                    $cargaT += $flota->recursos[$recurso];
+                }
+                $flota->cargaT=$cargaT;
             }
 
 
@@ -481,18 +500,33 @@ class Astrometria extends Model
             } else if ($estado=="enrecoleccion"){
                 Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
                 $flota->recursos=RecursosEnFlota::where('en_recoleccion_id',$flotaVisible['id'])->first();
+                $cargaT=0;
+                foreach ($recursosArray as $recurso) {
+                    $cargaT += $flota->recursos[$recurso];
+                }
+                $flota->cargaT=$cargaT;
                 $flota->mision = "Recolectando";
                 $flota->recoleccion=$flotaVisible->recoleccion;
                 $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
                 $flota->destino="";
             }else if ($estado=="enextraccion"){
                 $flota->recursos=RecursosEnFlota::where('en_recoleccion_id',$flotaVisible['id'])->first();
+                $cargaT=0;
+                foreach ($recursosArray as $recurso) {
+                    $cargaT += $flota->recursos[$recurso];
+                }
+                $flota->cargaT=$cargaT;
                 $flota->mision = "Extrayendo";
                 $flota->recoleccion=$flotaVisible->extraccion;
                 $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
                 $flota->destino="";
             } else if ($estado=="enorbita"){
                 $flota->recursos=RecursosEnFlota::where('en_orbita_id',$flotaVisible['id'])->first();
+                $cargaT=0;
+                foreach ($recursosArray as $recurso) {
+                    $cargaT += $flota->recursos[$recurso];
+                }
+                $flota->cargaT=$cargaT;
                 $flota->mision = "Orbitando";
                 $flota->origen=$flotaVisible->planetas->estrella."x".$flotaVisible->planetas->orbita;
                 $flota->destino="";
