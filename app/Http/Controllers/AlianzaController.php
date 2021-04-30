@@ -56,6 +56,7 @@ class AlianzaController extends Controller
                 'produccion',
                 'planetasJugador',
                 'planetasAlianza',
+                'mensajeNuevo',
 
                 'planetaActual',
                 'nivelImperio',
