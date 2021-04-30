@@ -593,12 +593,11 @@ destino 0 con lo que sale
         $ahora = date("Y-m-d H:i:s");
         $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init", "desc")->get(); //->unique('flota_id'); //
 
-        Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
+        // Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
 
         foreach ($listaDestinosEntrantes as $destino) {
 
             $destinoAnterior = Destinos::where('fin', $destino['init'])->where("flota_id", $destino['flota_id'])->first();
-            Log::info("DESTINO " . $destinoAnterior);
 
             if ($destinoAnterior != null && $destinoAnterior['visitado'] == 0) {
                 //Log::info("destino anterior no ejecutado id=".$destino['id']);
