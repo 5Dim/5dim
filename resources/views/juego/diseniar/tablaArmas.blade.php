@@ -1612,13 +1612,12 @@ $.each( armas[elemento], function( key, e ) {
         costesVacio['mantenimiento']=costeobj['mantenimiento']*factorFuselaje;
         costesVacio['fuel']=costeobj['fuel']*factorFuselaje;
         sumaCualidades(costesMisMotores,multiplicadorMotores,costesVacio);
-        empujeT+=costeobj['velocidad']*multiplicadorMotores*cualidadesFuselaje['velocidad']*cte; //el empuje del motor por la cantidad por el factor de fuselaje
-        maniobraT+=costeobj['maniobra']*multiplicadorMotores*cualidadesFuselaje['maniobra']*cte; //el empuje del motor por la cantidad por el factor de fuselaje
+        empujeT = empujeT + costeobj['velocidad']*multiplicadorMotores*cualidadesFuselaje['velocidad']*cte; //el empuje del motor por la cantidad por el factor de fuselaje
+        maniobraT = maniobraT + costeobj['maniobra']*multiplicadorMotores*cualidadesFuselaje['maniobra']*cte; //el empuje del motor por la cantidad por el factor de fuselaje
     }
 });
 valueF=formatNumber (Math.round (costesMisMotores['energia']));
 $("#energia"+elemento).text(valueF);
-
 
 
 elemento='blindaje';
@@ -1724,7 +1723,7 @@ $.each( armas[elemento], function( key, e ) {
     if (e>0){
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
 
-        switch (obj['codigo']){
+        switch (1 * obj['codigo']){
 
         case 72: //escudos
         hazlo++;
@@ -1974,7 +1973,7 @@ danioarmasArm=0;
         if (e>0){
             var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
             var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
-            energiaArm+=costeobj['energia'];
+            energiaArm=(1 * energiaArm) + (1*  costeobj['energia']);
         }
     })
 
@@ -2100,17 +2099,17 @@ $.each( armas[elemento], function( key, e ) {
         var obj=$.grep(armasL, function(obj){return obj.codigo == e;})[0]; // busca este objeto entre las armas
         var costeobj=$.grep(costesArmas, function(costeobj){return costeobj.armas_codigo == obj['codigo'];})[0]; // busca costes este objeto entre las armas
 
-        switch (obj['codigo']){
+        switch (1 * obj['codigo']){
             case 75: //prop hyper
-            mejoraVelocidad+=costeobj["velocidad"]/100;
+            mejoraVelocidad = (1*mejoraVelocidad) + (1  * costeobj["velocidad"]/100);
 
             break;
             case 76: //aleaciones
-            mejoraPeso+=costeobj["masa"]/100;
+            mejoraPeso =(1* mejoraPeso) + (1 * costeobj["masa"]/100);
 
             break;
             case 73: //prop maniobra
-            mejoraManiobra+=costeobj["maniobra"]/100;
+            mejoraManiobra =(1*mejoraManiobra) + (1 * costeobj["maniobra"]/100);
 
             break;
         }
@@ -2219,50 +2218,50 @@ for(F=0;F<5;F++){
 
 
 function sumaCostosMejoras(destinoCosto,cte,esteCosto,sobrecosto){
-    destinoCosto['mineral']+=(esteCosto['mineral']/100)*cte *sobrecosto['mineral'];
-    destinoCosto['cristal']+=(esteCosto['cristal']/100)*cte *sobrecosto['cristal'];
-    destinoCosto['gas']+=(esteCosto['gas']/100)*cte *sobrecosto['gas'];
-    destinoCosto['plastico']+=(esteCosto['plastico']/100)*cte *sobrecosto['plastico'];
-    destinoCosto['ceramica']+=(esteCosto['ceramica']/100)*cte *sobrecosto['ceramica'];
-    destinoCosto['liquido']+=(esteCosto['liquido']/100)*cte *sobrecosto['liquido'];
-    destinoCosto['micros']+=(esteCosto['micros']/100)*cte *sobrecosto['micros'];
-    destinoCosto['personal']+=(esteCosto['personal']/100)*cte *sobrecosto['personal'];
-    destinoCosto['masa']+=(esteCosto['masa']/100)*cte *sobrecosto['masa'];
+    destinoCosto['mineral'] = (1*destinoCosto['mineral']) + ((esteCosto['mineral']/100)*cte *sobrecosto['mineral']);
+    destinoCosto['cristal'] = (1*destinoCosto['cristal']) + ((esteCosto['cristal']/100)*cte *sobrecosto['cristal']);
+    destinoCosto['gas'] = (1*destinoCosto['gas']) + ((esteCosto['gas']/100)*cte *sobrecosto['gas']);
+    destinoCosto['plastico'] = (1*destinoCosto['plastico']) + ((esteCosto['plastico']/100)*cte *sobrecosto['plastico']);
+    destinoCosto['ceramica'] = (1*destinoCosto['ceramica']) + ((esteCosto['ceramica']/100)*cte *sobrecosto['ceramica']);
+    destinoCosto['liquido'] = (1*destinoCosto['liquido']) + ((esteCosto['liquido']/100)*cte *sobrecosto['liquido']);
+    destinoCosto['micros'] = (1*destinoCosto['micros']) + ((esteCosto['micros']/100)*cte *sobrecosto['micros']);
+    destinoCosto['personal'] = (1*destinoCosto['personal']) + ((esteCosto['personal']/100)*cte *sobrecosto['personal']);
+    destinoCosto['masa'] = (1*destinoCosto['masa']) + ((esteCosto['masa']/100)*cte *sobrecosto['masa']);
 }
 
 function sumaCualidadesMejoras(destinoCosto,cte,esteCosto,sobrecosto){
-    destinoCosto['fuel']+=(esteCosto['fuel']/100)*cte *sobrecosto['fuel'];
-    destinoCosto['municion']+=(esteCosto['municion']/100)*cte *sobrecosto['municion'];
-    destinoCosto['masa']+=(esteCosto['masa']/100)*cte *sobrecosto['masa'];
-    destinoCosto['energia']+=(esteCosto['energia']/100)*cte *sobrecosto['energia'];
-    destinoCosto['tiempo']+=(esteCosto['tiempo']/100)*cte *sobrecosto['tiempo'];
-    destinoCosto['mantenimiento']+=(esteCosto['mantenimiento']/100)*cte *sobrecosto['mantenimiento'];
-    destinoCosto['defensa']+=(esteCosto['defensa']/100)*cte *sobrecosto['defensa'];
-    destinoCosto['ataque']+=(esteCosto['ataque']/100)*cte *sobrecosto['ataque'];
-    destinoCosto['velocidad']+=(esteCosto['velocidad']/100)*cte *sobrecosto['velocidad'];
-    destinoCosto['carga']+=(esteCosto['carga']/100)*cte *sobrecosto['carga'];
-    destinoCosto['cargaPequenia']+=(esteCosto['cargaPequenia']/100)*cte *sobrecosto['cargaPequenia'];
-    destinoCosto['cargaMediana']+=(esteCosto['cargaMediana']/100)*cte *sobrecosto['cargaMediana'];
-    destinoCosto['cargaGrande']+=(esteCosto['cargaGrande']/100)*cte *sobrecosto['cargaGrande'];
-    destinoCosto['cargaEnorme']+=(esteCosto['cargaEnorme']/100)*cte *sobrecosto['cargaEnorme'];
-    destinoCosto['cargaMega']+=(esteCosto['cargaMega']/100)*cte *sobrecosto['cargaMega'];
-    destinoCosto['recolector']+=(esteCosto['recolector']/100)*cte *sobrecosto['recolector'];
-    destinoCosto['extractor']+=(esteCosto['extractor']/100)*cte *sobrecosto['extractor'];
+    destinoCosto['fuel'] =(1 * destinoCosto['fuel'] ) + ((esteCosto['fuel']/100)*cte *sobrecosto['fuel']);
+    destinoCosto['municion'] =(1 * destinoCosto['municion'] ) + ((esteCosto['municion']/100)*cte *sobrecosto['municion']);
+    destinoCosto['masa'] =(1 * destinoCosto['masa'] ) + ((esteCosto['masa']/100)*cte *sobrecosto['masa']);
+    destinoCosto['energia'] =(1 * destinoCosto['energia'] ) + ((esteCosto['energia']/100)*cte *sobrecosto['energia']);
+    destinoCosto['tiempo'] =(1 * destinoCosto['tiempo'] ) + ((esteCosto['tiempo']/100)*cte *sobrecosto['tiempo']);
+    destinoCosto['mantenimiento'] =(1 * destinoCosto['mantenimiento'] ) + ((esteCosto['mantenimiento']/100)*cte *sobrecosto['mantenimiento']);
+    destinoCosto['defensa'] =(1 * destinoCosto['defensa'] ) + ((esteCosto['defensa']/100)*cte *sobrecosto['defensa']);
+    destinoCosto['ataque'] =(1 * destinoCosto['ataque'] ) + ((esteCosto['ataque']/100)*cte *sobrecosto['ataque']);
+    destinoCosto['velocidad'] =(1 * destinoCosto['velocidad'] ) + ((esteCosto['velocidad']/100)*cte *sobrecosto['velocidad']);
+    destinoCosto['carga'] =(1 * destinoCosto['carga'] ) + ((esteCosto['carga']/100)*cte *sobrecosto['carga']);
+    destinoCosto['cargaPequenia'] =(1 * destinoCosto['cargaPequenia'] ) + ((esteCosto['cargaPequenia']/100)*cte *sobrecosto['cargaPequenia']);
+    destinoCosto['cargaMediana'] =(1 * destinoCosto['cargaMediana'] ) + ((esteCosto['cargaMediana']/100)*cte *sobrecosto['cargaMediana']);
+    destinoCosto['cargaGrande'] =(1 * destinoCosto['cargaGrande'] ) + ((esteCosto['cargaGrande']/100)*cte *sobrecosto['cargaGrande']);
+    destinoCosto['cargaEnorme'] =(1 * destinoCosto['cargaEnorme'] ) + ((esteCosto['cargaEnorme']/100)*cte *sobrecosto['cargaEnorme']);
+    destinoCosto['cargaMega'] =(1 * destinoCosto['cargaMega'] ) + ((esteCosto['cargaMega']/100)*cte *sobrecosto['cargaMega']);
+    destinoCosto['recolector'] =(1 * destinoCosto['recolector'] ) + ((esteCosto['recolector']/100)*cte *sobrecosto['recolector']);
+    destinoCosto['extractor'] =(1 * destinoCosto['extractor'] ) + ((esteCosto['extractor']/100)*cte *sobrecosto['extractor']);
 
 }
 
 
 
 function sumaCostos(destinoCosto,cte,esteCosto){
-    destinoCosto['mineral']+=esteCosto['mineral']*cte;
-    destinoCosto['cristal']+=esteCosto['cristal']*cte;
-    destinoCosto['gas']+=esteCosto['gas']*cte;
-    destinoCosto['plastico']+=esteCosto['plastico']*cte;
-    destinoCosto['ceramica']+=esteCosto['ceramica']*cte;
-    destinoCosto['liquido']+=esteCosto['liquido']*cte;
-    destinoCosto['micros']+=esteCosto['micros']*cte;
-    destinoCosto['personal']+=esteCosto['personal']*cte;
-    destinoCosto['masa']+=esteCosto['masa']*cte;
+    destinoCosto['mineral'] = (1 * destinoCosto['mineral'] ) + (esteCosto['mineral']*cte);
+    destinoCosto['cristal'] = (1 * destinoCosto['cristal'] ) + (esteCosto['cristal']*cte);
+    destinoCosto['gas'] = (1 * destinoCosto['gas'] ) + (esteCosto['gas']*cte);
+    destinoCosto['plastico'] = (1 * destinoCosto['plastico'] ) + (esteCosto['plastico']*cte);
+    destinoCosto['ceramica'] = (1 * destinoCosto['ceramica'] ) + (esteCosto['ceramica']*cte);
+    destinoCosto['liquido'] = (1 * destinoCosto['liquido'] ) + (esteCosto['liquido']*cte);
+    destinoCosto['micros'] = (1 * destinoCosto['micros'] ) + (esteCosto['micros']*cte);
+    destinoCosto['personal'] = (1 * destinoCosto['personal'] ) + (esteCosto['personal']*cte);
+    destinoCosto['masa'] = (1 * destinoCosto['masa'] ) + (esteCosto['masa']*cte);
 
     if (destinoCosto['mineral']<0){destinoCosto['mineral']=costesFuselaje['mineral'];};
     if (destinoCosto['cristal']<0){destinoCosto['cristal']=costesFuselaje['cristal'];};
@@ -2278,23 +2277,23 @@ function sumaCostos(destinoCosto,cte,esteCosto){
 }
 
 function sumaCualidades(destinoCualidad,cte,esteCualidad){
-    destinoCualidad['fuel']+=esteCualidad['fuel']*cte;
-    destinoCualidad['municion']+=esteCualidad['municion']*cte;
-    destinoCualidad['masa']+=esteCualidad['masa']*cte;
-    destinoCualidad['energia']+=esteCualidad['energia']*cte;
-    destinoCualidad['tiempo']+=esteCualidad['tiempo']*cte;
-    destinoCualidad['mantenimiento']+=esteCualidad['mantenimiento']*cte;
-    destinoCualidad['defensa']+=esteCualidad['defensa']*cte;
-    destinoCualidad['ataque']+=esteCualidad['ataque']*cte;
-    destinoCualidad['velocidad']+=esteCualidad['velocidad']*cte;
-    destinoCualidad['carga']+=esteCualidad['carga']*cte;
-    destinoCualidad['cargaPequenia']+=esteCualidad['cargaPequenia']*cte;
-    destinoCualidad['cargaMediana']+=esteCualidad['cargaMediana']*cte;
-    destinoCualidad['cargaGrande']+=esteCualidad['cargaGrande']*cte;
-    destinoCualidad['cargaEnorme']+=esteCualidad['cargaEnorme']*cte;
-    destinoCualidad['cargaMega']+=esteCualidad['cargaMega']*cte;
-    destinoCualidad['recolector']+=esteCualidad['recolector']*cte;
-    destinoCualidad['extractor']+=esteCualidad['extractor']*cte;
+    destinoCualidad['fuel'] = ( 1*destinoCualidad['fuel']) + (esteCualidad['fuel']*cte);
+    destinoCualidad['municion'] = ( 1*destinoCualidad['municion']) + (esteCualidad['municion']*cte);
+    destinoCualidad['masa'] = ( 1*destinoCualidad['masa']) + (esteCualidad['masa']*cte);
+    destinoCualidad['energia'] = ( 1*destinoCualidad['energia']) + (esteCualidad['energia']*cte);
+    destinoCualidad['tiempo'] = ( 1*destinoCualidad['tiempo']) + (esteCualidad['tiempo']*cte);
+    destinoCualidad['mantenimiento'] = ( 1*destinoCualidad['mantenimiento']) + (esteCualidad['mantenimiento']*cte);
+    destinoCualidad['defensa'] = ( 1*destinoCualidad['defensa']) + (esteCualidad['defensa']*cte);
+    destinoCualidad['ataque'] = ( 1*destinoCualidad['ataque']) + (esteCualidad['ataque']*cte);
+    destinoCualidad['velocidad'] = ( 1*destinoCualidad['velocidad']) + (esteCualidad['velocidad']*cte);
+    destinoCualidad['carga'] = ( 1*destinoCualidad['carga']) + (esteCualidad['carga']*cte);
+    destinoCualidad['cargaPequenia'] = ( 1*destinoCualidad['cargaPequenia']) + (esteCualidad['cargaPequenia']*cte);
+    destinoCualidad['cargaMediana'] = ( 1*destinoCualidad['cargaMediana']) + (esteCualidad['cargaMediana']*cte);
+    destinoCualidad['cargaGrande'] = ( 1*destinoCualidad['cargaGrande']) + (esteCualidad['cargaGrande']*cte);
+    destinoCualidad['cargaEnorme'] = ( 1*destinoCualidad['cargaEnorme']) + (esteCualidad['cargaEnorme']*cte);
+    destinoCualidad['cargaMega'] = ( 1*destinoCualidad['cargaMega']) + (esteCualidad['cargaMega']*cte);
+    destinoCualidad['recolector'] = ( 1*destinoCualidad['recolector']) + (esteCualidad['recolector']*cte);
+    destinoCualidad['extractor'] = ( 1*destinoCualidad['extractor']) + (esteCualidad['extractor']*cte);
 }
 
 function mostrarResultado(){

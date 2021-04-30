@@ -213,6 +213,15 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
+        $constante->valor = -50;
+        $constante->minimo = -100;
+        $constante->maximo = 0;
+        $constante->codigo = 'piminimoscolonizar';
+        $constante->descripcion = 'puntos de imperio mínimos para colonizar';
+        $constante->tipo = 'investigacion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;

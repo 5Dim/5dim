@@ -450,7 +450,7 @@ function Avisos() {
                 }
             }
 
-            if (orden == "Transferir" || orden == "Recolectar" || orden == "Orbitar" || orden == "Recolectar") {
+            if (orden == "Transferir" || orden == "Recolectar" || orden == "Orbitar" || orden == "Extraer") {
                 soyUltimoDestino = true;
             }
 
@@ -466,8 +466,10 @@ function Avisos() {
 
             if (soyUltimoDestino) {
                 $(".enviarRecursos" + dest).attr("disabled", true);
-                if(orden != "Recolectar"){
+                if(orden != "Recolectar" && orden != "Extraer" && orden != "Orbitar"){
                     $(".prioridadRecursos" + dest).attr("disabled", true);
+                } else {
+                    $(".prioridadRecursos" + dest).attr("disabled", false);
                 }
             } else {
                 $(".enviarRecursos" + dest).attr("disabled", false);
@@ -888,6 +890,7 @@ function RecursosSiDestino(dest) {
 var fechaAhoraMilisec = Date.now();
 primeraActualizacionEnVuelo = true;
 primeraActualizacionEnRecoleccion=true;
+primeraActualizacionEnOrbita=true;
 
 function verFlotasEnVuelo() {
     haceCuantoActualice = Date.now() - fechaAhoraMilisec;
@@ -929,9 +932,9 @@ function RellenarFlotasEnVuelo(data,prefix){
         if (flota!=null){
 
             nick=flota['nick'];
-
+            fila++;
             if(flota['estado']=="envuelo"){
-                fila++;
+
                 if (flota['trestante']!=null && flota['trestante']!=undefined && flota['tvuelo']!=null && flota['tvuelo']!=undefined){
                     progreso=Math.round(((flota['tvuelo']-flota['trestante'])/flota['tvuelo'])*100,0);
                 } else {
@@ -951,7 +954,14 @@ function RellenarFlotasEnVuelo(data,prefix){
                 cabeza1="Tiempo restante: ";
                 cabeza2="tiempo regreso: ";
                 tregreso=formatHMS(1*flota['tregreso']);
-            } else {
+            }  else if(flota['estado']=="enorbita") {
+                barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
+                <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
+                cabeza1="";
+                cabeza2="";
+                trestante="";
+                tregreso="";
+            }else {
                 barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
                 <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
                 cabeza1="Recolección ";
@@ -1280,6 +1290,29 @@ function verFlotasEnRecoleccion() {
             success: function(data) {
                 //alert(data);
                 RellenarFlotasEnVuelo(data,"tablaRecoleccion");
+            },
+            error: function(xhr, textStatus, thrownError) {
+                console.log("status", xhr.status);
+                console.log("error", thrownError);
+                //alert(data.errores);
+            },
+        });
+    }
+}
+
+function verFlotasEnOrbita() {
+    haceCuantoActualice = Date.now() - fechaAhoraMilisec;
+
+    if (primeraActualizacionEnOrbita || haceCuantoActualice > 30000) {
+        primeraActualizacionEnOrbita = false;
+        $.ajax({
+            type: "GET",
+            //dataType: "json",
+            url: "/juego/flotas/verFlotasEnOrbita",
+            beforeSend: function() {},
+            success: function(data) {
+                //alert(data);
+                RellenarFlotasEnVuelo(data,"tablaOrbitando");
             },
             error: function(xhr, textStatus, thrownError) {
                 console.log("status", xhr.status);
