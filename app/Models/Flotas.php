@@ -1068,7 +1068,7 @@ destino 0 con lo que sale
                 // Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
                 if ($prioridadesDestino[$recurso] == $ordinal) {
                     $extraido = 0;
-                    $producido = ($recursosDestino[$recurso] / 3600) * $fechaCalculo;
+                    $producido = $recursosDestino[$recurso] * $fechaCalculo;
                     // Log::info(" producido " . $producido);
 
                     if ($producido > $capacidadRecoleccion) {
