@@ -1004,7 +1004,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>
-                            <th colspan="3" class="text-success text-center borderless align-middle">
+                            <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['destino']+`<big>
                             </th>
                         </div>
@@ -1104,7 +1104,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                                 <i class="fa fa-times "></i> Regresar
                             </a>
                         </td>
-                        <td colspan="5">
+                        <td colspan="4">
                             <a class="btn btn-outline-primary col-12 text-primary" type="button"
                             href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+"/"+flota['estado']+`">
                             Editar
