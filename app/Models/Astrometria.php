@@ -546,7 +546,7 @@ class Astrometria extends Model
     }
 
     // que se ve flotas en recoleccion
-    public static function flotasVisiblesEnRecoleccion()
+    public static function flotasVisiblesEnRecoleccionOrbita()
     {
 
         //Log::info("flotas visibles");
