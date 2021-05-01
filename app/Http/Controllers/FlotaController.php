@@ -337,13 +337,15 @@ class FlotaController extends Controller
 
                         $naveP = $navesEnPlaneta->firstWhere('disenios_id', $nave['disenios_id']);
 
-                        $cantidad = $naveP['cantidad'];
 
-                        if ($cantidad < $enflota + $enhangar) {
-                            $errores = "Mas naves a enviar de las que hay (" . $nave['disenios_id'] . ")" . $cantidad . " " . $enflota . " " . $enhangar;
+
+                        if ($naveP==null  || $naveP['cantidad'] < $enflota + $enhangar) {
+                            $errores = "Mas naves a enviar de las que hay (" . $nave['disenios_id'] . ")". $enflota . " " . $enhangar;
                             //Log::info($errores);
                             break;
                         }
+
+                        $cantidad = $naveP['cantidad'];
 
                         $disenio['enflota'] = $enflota;
                         $disenio['enhangar'] = $enhangar;
@@ -515,7 +517,7 @@ class FlotaController extends Controller
                         $destino->flota_id = $flotax->id;
                         $destino->save(); //Log::info("coso".$dest." ".$flotax->id);
 
-                        //Log::info("destino".$dest." ".$destino);
+                        //Log::info("destino ".$dest." ".$destino);
 
                         $vectorx = (1 * $destinos[$dest]['fincoordx'] - 1 * $destinos[$destAnt]['fincoordx']) / $duracion;
                         $vectory = (1 * $destinos[$dest]['fincoordy'] - 1 * $destinos[$destAnt]['fincoordy']) / $duracion;
@@ -682,7 +684,7 @@ class FlotaController extends Controller
         $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enrecoleccion");
 
         //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
-        Log::info($flotas);
+        //Log::info($flotas);
         return $flotas;
     }
 
@@ -692,7 +694,7 @@ class FlotaController extends Controller
         $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enorbita");
 
         //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
-        Log::info($flotas);
+        //Log::info($flotas);
         return $flotas;
     }
 
