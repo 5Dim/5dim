@@ -43,17 +43,17 @@ class DisenioController extends Controller
         $disenios = $jugadorActual->disenios;
         $investigaciones = Investigaciones::where('jugadores_id', session()->get('jugadores_id'))->get();
         $constantes = Constantes::where('tipo', 'investigacion')->get();
-        $constanteVelocidad=Constantes::where('codigo', 'velocidadHangar')->first()->valor;
+        $constanteVelocidad = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
         $nivelHangar = $construcciones->where('codigo', 'hangar')->first()->nivel;
 
-        $idsDiseno=array();
-        foreach($disenios as $diseno){
-            array_push($idsDiseno,$diseno->id);
+        $idsDiseno = array();
+        foreach ($disenios as $diseno) {
+            array_push($idsDiseno, $diseno->id);
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
         $mejoras = [];
-        for ($i=0; $i < count($disenios); $i++) {
+        for ($i = 0; $i < count($disenios); $i++) {
             $mejoras[$i] = $disenios[$i]->mejoras;
         }
         // $mejoras = $disenios->mejoras;
@@ -68,6 +68,7 @@ class DisenioController extends Controller
                 $query->where('jugadores_id', session()->get('jugadores_id'));
             })
             ->get();
+
         $ligeras = Disenios::where('jugadores_id', session()->get('jugadores_id'))
             ->whereHas('fuselajes', function (Builder $query) {
                 $query->where([
@@ -79,6 +80,7 @@ class DisenioController extends Controller
                 $query->where('jugadores_id', session()->get('jugadores_id'));
             })
             ->get();
+
         $medias = Disenios::where('jugadores_id', session()->get('jugadores_id'))
             ->whereHas('fuselajes', function (Builder $query) {
                 $query->where([
@@ -90,6 +92,7 @@ class DisenioController extends Controller
                 $query->where('jugadores_id', session()->get('jugadores_id'));
             })
             ->get();
+
         $pesadas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
             ->whereHas('fuselajes', function (Builder $query) {
                 $query->where([
@@ -101,6 +104,7 @@ class DisenioController extends Controller
                 $query->where('jugadores_id', session()->get('jugadores_id'));
             })
             ->get();
+
         $estaciones = Disenios::where('jugadores_id', session()->get('jugadores_id'))
             ->whereHas('fuselajes', function (Builder $query) {
                 $query->where([
@@ -112,6 +116,7 @@ class DisenioController extends Controller
                 $query->where('jugadores_id', session()->get('jugadores_id'));
             })
             ->get();
+
         $novas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
             ->whereHas('fuselajes', function (Builder $query) {
                 $query->where('categoria', 'compra');
@@ -1296,426 +1301,426 @@ class DisenioController extends Controller
             $costoFocoA = 1; //coste acumulado foco
 
 
-                //// armas ///////
+            //// armas ///////
 
-                $energiaT = $costesMisMotores['energia'] + $costesMisBlindajes['energia'] + $costesMisCargas['energia'] + $cualidades['energia']; // energia para armas total
-                $misCostes = $costesMisArmas;
-                //$armasTengoT=count($armasTengo[$tiposArmas[0]])+count($armasTengo[$tiposArmas[1]])+$armasTengo[$tiposArmas[2]]+$armasTengo[$tiposArmas[3]]+$armasTengo[$tiposArmas[4]]+$armasTengo[$tiposArmas[5]];
+            $energiaT = $costesMisMotores['energia'] + $costesMisBlindajes['energia'] + $costesMisCargas['energia'] + $cualidades['energia']; // energia para armas total
+            $misCostes = $costesMisArmas;
+            //$armasTengoT=count($armasTengo[$tiposArmas[0]])+count($armasTengo[$tiposArmas[1]])+$armasTengo[$tiposArmas[2]]+$armasTengo[$tiposArmas[3]]+$armasTengo[$tiposArmas[4]]+$armasTengo[$tiposArmas[5]];
 
 
 
-                // posicion del danio segun el arma
+            // posicion del danio segun el arma
 
-                $danoPosicion = [
-                    'armasLigera' => [0, 1],
-                    'armasMedia' => [1, 2],
-                    'armasPesada' => [2, 3],
-                    'armasInsertada' => [3, 4],
-                    'armasMisil' => [3, 5],
-                    'armasBomba' => [4, 5]
-                ];
+            $danoPosicion = [
+                'armasLigera' => [0, 1],
+                'armasMedia' => [1, 2],
+                'armasPesada' => [2, 3],
+                'armasInsertada' => [3, 4],
+                'armasMisil' => [3, 5],
+                'armasBomba' => [4, 5]
+            ];
 
-                $listaTecnos = [
-                    "invEnergia",
-                    "invPlasma",
-                    "invBalistica",
-                    "invMa"
-                ];
+            $listaTecnos = [
+                "invEnergia",
+                "invPlasma",
+                "invBalistica",
+                "invMa"
+            ];
 
-                $danoinvEnergia = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
-                $danoinvPlasma = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
-                $danoinvBalistica = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
-                $danoinvMa = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
+            $danoinvEnergia = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
+            $danoinvPlasma = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
+            $danoinvBalistica = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
+            $danoinvMa = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
 
-                $danoTotal = [
-                    'invEnergia' => $danoinvEnergia,
-                    'invPlasma' => $danoinvPlasma,
-                    'invBalistica' => $danoinvBalistica,
-                    'invMa' => $danoinvMa
-                ];
+            $danoTotal = [
+                'invEnergia' => $danoinvEnergia,
+                'invPlasma' => $danoinvPlasma,
+                'invBalistica' => $danoinvBalistica,
+                'invMa' => $danoinvMa
+            ];
 
+            $cteFoco = 1;
+            $costoFoco = 1;
+            $energiaUsada = 0;
+            $costoFocoA = 1;
+            foreach ($tiposArmas as $elemento) {
+
+                $hayalgo = 1;
                 $cteFoco = 1;
                 $costoFoco = 1;
-                $energiaUsada = 0;
-                $costoFocoA = 1;
-                foreach ($tiposArmas as $elemento) {
 
-                    $hayalgo = 1;
-                    $cteFoco = 1;
-                    $costoFoco = 1;
+                // focos
+                if ($cantiFocos[$danoPosicion[$elemento][0]] > 0) {
+                    $e2 = $danoPosicion[$elemento][0] + 80;
+                    $costeobj2 = $costesArmas->where('armas_codigo', $e2)->first();
+                    $cuantos2 = $cantiFocos[$danoPosicion[$elemento][0]];
+                    $cteFoco = $cuantos2; //lo que varia por nivel de tecno
+                    $costoFoco = (1 + ($costeobj2['mineral'] / 100)) * $cuantos2; // es el que se usa para todos
+                    $danoFocos[$danoPosicion[$elemento][0]] = $costoFoco;
+                    $costoFocoA += $costoFoco; //acumulado
+                }
+            }
+            $prueba = $costoFocoA;
 
-                    // focos
-                    if ($cantiFocos[$danoPosicion[$elemento][0]] > 0) {
-                        $e2 = $danoPosicion[$elemento][0] + 80;
-                        $costeobj2 = $costesArmas->where('armas_codigo', $e2)->first();
-                        $cuantos2 = $cantiFocos[$danoPosicion[$elemento][0]];
-                        $cteFoco = $cuantos2; //lo que varia por nivel de tecno
-                        $costoFoco = (1 + ($costeobj2['mineral'] / 100)) * $cuantos2; // es el que se usa para todos
-                        $danoFocos[$danoPosicion[$elemento][0]] = $costoFoco;
-                        $costoFocoA += $costoFoco; //acumulado
+            foreach ($tiposArmas as $elemento) {
+
+                $energiaArm = 0;
+                $danioarmasArm = 0;
+                foreach ($armasTengo[$elemento] as $e) {
+                    if ($e > 0) {
+                        $costeobj = $costesArmas->where('armas_codigo', $e)->first();
+                        $energiaArm += $costeobj['energia'];
                     }
                 }
-                $prueba = $costoFocoA;
 
-                foreach ($tiposArmas as $elemento) {
+                if ($energiaArm != 0) {
+                    $energiaXarma = 1 / $energiaArm;
+                } else {
+                    $energiaXarma = 0;
+                }
 
-                    $energiaArm = 0;
-                    $danioarmasArm = 0;
-                    foreach ($armasTengo[$elemento] as $e) {
+                $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "defensa" => 0,  "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" => 0];
+                //$elemento='blindaje';
+                //$genera='defensa';
+                $misCostes = $costesMisArmas;
+                $multiplicador = $multiplicadorblindajes;
+
+
+                foreach ($armasTengo[$elemento] as $e) {
+
+                    if ($e > 0 and $correcto > 0) {
+
+                        $hayalgo = 1;
+
+                        $costoPunteria = 1;
+                        $ctePunteria = 1;
+                        if ($ctrlPunteria > 0) {
+                            $e2 = 71;
+                            $costeobj2 = $costesArmas->where('armas_codigo', $e2)->first();
+                            $cuantos2 = $ctrlPunteria;
+                            $ctePunteria = ($cuantos2); //lo que varia por nivel de tecno
+                            $costoPunteria = (1 + ($costeobj2['mineral'] / 100)) * $cuantos2;
+                        }
+                        $costoAriete = 1;
+                        // cteAriete=1;
+                        if ($ariete > 0) {
+                            $e2 = 71;
+                            $costeobj2 = $costesArmas->where('armas_codigo', $e2)->first();
+                            $cuantos2 = $ariete;
+                            $cteAriete = ($cuantos2); //lo que varia por nivel de tecno
+                            $costoAriete = (1 + ($costeobj2['mineral'] / 100)) * $cuantos2;
+                        }
+
+
+                        //$obj=array_search($e,$armas);
+                        $obj = $armas->where('codigo', $e)->first();
+                        $factorFuselaje = $disenio->cualidades->$genera;
+                        $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0, "ataque" => 0, "defensa" => 0,  "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" => 0];
+
+                        //comprobando tengo la tecno necesaria
+                        $clase = $obj['clase'];
+                        $miNivelTecno = $investigaciones->where('codigo', $clase)->first()->nivel;
+                        if ($obj['niveltec'] > $miNivelTecno) {
+                            $correcto = false;
+                            $razonCorrecto += "<br>Tecnologia demasiado baja: " + $clase + " ";
+                        };
+                        $variacionAlcance = 1;
+                        $variacionDispersion = 1;
+
+                        $cantidadArmas = $multiplicadorArmas[$elemento];
+                        $estedano = $energiaArmas[$elemento] * $energiaT * $energiaXarma / $costeobj['energia'] * $cantidadArmas;
+                        $cte = 1; //la tecno
+                        $creceExpo = 1 + (($estedano / $costeobj['ataque']) * 2000);
+                        $danioarmasArm += round($cteFoco * ($cte * $estedano * 100000 / $creceExpo), 0); // la tecno influye solo en el valor final del danio
+                        $multiplicador = $estedano * 10 * $creceExpo;
+                        $alcance = $danoPosicion[$elemento][1] + 1 * $armasAlcance[$elemento];
+                        if ($alcance > 7) {
+                            $alcance = 7;
+                        };
+                        if ($alcance < 0) {
+                            $alcance = 0;
+                        };
+                        $variacionAlcance = pow(2.5, (1 * $armasAlcance[$elemento]));
+                        $variacionDispersion = pow(1.5, (1 * $armasDispersion[$elemento]));
+
+                        // sumo costes
+                        $costeobj = $costesArmas->where('armas_codigo', $e)->first();
+                        $misCostes = sumaCostos($misCostes, $multiplicador * $variacionAlcance * $variacionDispersion * $costoFocoA * $costoPunteria * $costoAriete, $costeobj); // sumo recursos basicos
+                        // sumo cualidades
+                        $costesVacio[$genera] = $costeobj[$genera] * 1 * $factorFuselaje; //lo q mejora por esos niveles
+                        $costesVacio['tiempo'] = $costeobj['tiempo'] * $factorFuselaje;
+                        $costesVacio['mantenimiento'] = $costeobj['mantenimiento'] * $factorFuselaje;
+                        $costesVacio['energia'] = $costeobj['energia'] * $factorFuselaje;
+                        $costesVacio['municion'] = $costeobj['municion'];
+                        $misCostes = sumaCualidades($misCostes, $multiplicador, $costesVacio);
+                        $costesMisArmas = $misCostes;
+
+                        $danoTotal[$obj['clase']][$danoPosicion[$elemento][0]][$alcance] = $danioarmasArm;
+                    }
+                }
+            }
+
+
+            //suma de todos los costes:
+            $cte = 1;
+            $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisMotores);
+            $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisBlindajes);
+            $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisArmas);
+            $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisCargas);
+            $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisMejoras);
+
+            $cualidades = sumaCualidades($cualidades, $cte, $costesMisMotores);
+            $cualidades = sumaCualidades($cualidades, $cte, $costesMisBlindajes);
+            $cualidades = sumaCualidades($cualidades, $cte, $costesMisArmas);
+            $cualidades = sumaCualidades($cualidades, $cte, $costesMisCargas);
+            $cualidades = sumaCualidades($cualidades, $cte, $costesMisMejoras);
+
+            // quitando decimales
+
+            $costesDisenio['mineral'] = round($costesDisenio['mineral'], 0);
+            $costesDisenio['cristal'] = round($costesDisenio['cristal'], 0);
+            $costesDisenio['gas'] = round($costesDisenio['gas'], 0);
+            $costesDisenio['plastico'] = round($costesDisenio['plastico'], 0);
+            $costesDisenio['ceramica'] = round($costesDisenio['ceramica'], 0);
+            $costesDisenio['liquido'] = round($costesDisenio['liquido'], 0);
+            $costesDisenio['micros'] = round($costesDisenio['micros'], 0);
+            $costesDisenio['personal'] = round($costesDisenio['personal'], 0);
+
+            /// velocidad
+
+            $pesoInicial = .0005 * $disenio->cualidades->masa * ($disenio->costes->mineral * 50 + $disenio->costes->cristal * 260 + $disenio->costes->gas * 1000 + $disenio->costes->plastico * 4000 + $disenio->costes->ceramica * 600 + $disenio->costes->liquido * 500 + $disenio->costes->micros * 2000 + $disenio->costes->personal * 500);
+
+            $pesoTotal = ($cualidades['masa'] + $pesoInicial);
+            $pesoTotal /= 1 + $mejoraPeso;
+
+            //guardando disenio ////////////////////////////////
+
+            DB::beginTransaction();
+            try {
+                $disenioS = new Disenios();
+                $disenioS->nombre = $datosBasicos['nombre'];
+
+
+
+                $position = $datosBasicos['posicion'];
+                if ($position = "") {
+                    $disenioS->posicion = 1;
+                } else {
+                    if ((int)($position) < 1) {
+                        $position = 1;
+                    }
+                    if ((int)($position) > 9) {
+                        $position = 9;
+                    }
+                    $disenioS->posicion = $position;
+                }
+
+                $disenioS->fuselajes_id = $idFuselaje;
+                $disenioS->codigo = $disenio->codigo;
+                $disenioS->skin = $datosBasicos['skin'];
+                $disenioS->jugadores_id = $jugadorActual->id;
+                $disenioS->save();
+                $jugadorActual->disenios()->attach($disenioS->id);
+
+
+                $disenioId = $disenioS->id;
+
+                /// guardando costes
+                $costesDisenioS = new CostesDisenios();
+                $costesDisenioS->mineral = $costesDisenio['mineral'];
+                $costesDisenioS->cristal = $costesDisenio['cristal'];
+                $costesDisenioS->gas = $costesDisenio['gas'];
+                $costesDisenioS->plastico = $costesDisenio['plastico'];
+                $costesDisenioS->ceramica = $costesDisenio['ceramica'];
+                $costesDisenioS->liquido = $costesDisenio['liquido'];
+                $costesDisenioS->micros = $costesDisenio['micros'];
+                $costesDisenioS->personal = $costesDisenio['personal'];
+                $costesDisenioS->disenios_id = $disenioId;
+                $costesDisenioS->save();
+
+                $mejorasDisenios = new MejorasDisenios();
+                $mejorasDisenios->invPropQuimico = $velocidad['invPropQuimico'] * (1 + $mejoraVelocidad);
+                $mejorasDisenios->invPropNuk = $velocidad['invPropNuk'] * (1 + $mejoraVelocidad);
+                $mejorasDisenios->invPropIon = $velocidad['invPropIon'] * (1 + $mejoraVelocidad);
+                $mejorasDisenios->invPropPlasma = $velocidad['invPropPlasma'] * (1 + $mejoraVelocidad);
+                $mejorasDisenios->invPropMa = $velocidad['invPropMa'] * (1 + $mejoraVelocidad);
+                //$mejorasDisenios->invPropHMA = $velocidad['invPropHMA'];
+                $mejorasDisenios->invManiobraQuimico = $maniobra['invPropQuimico'] * (1 + $mejoraManiobra);
+                $mejorasDisenios->invManiobraNuk = $maniobra['invPropNuk'] * (1 + $mejoraManiobra);
+                $mejorasDisenios->invManiobraIon = $maniobra['invPropIon'] * (1 + $mejoraManiobra);
+                $mejorasDisenios->invManiobraPlasma = $maniobra['invPropPlasma'] * (1 + $mejoraManiobra);
+                $mejorasDisenios->invManiobraMa = $maniobra['invPropMa'] * (1 + $mejoraManiobra);
+                //$mejorasDisenios->invPropHMA = $maniobra['invPropHMA'];
+                $mejorasDisenios->fuel = $cualidades['fuel'];
+                $mejorasDisenios->municion = $cualidades['municion'];
+                ///
+                $mejorasDisenios->invTitanio = $defensa['invTitanio'] * (1 + $mejoraDefensa);
+                $mejorasDisenios->invReactivo = $defensa['invReactivo'] * (1 + $mejoraDefensa);
+                $mejorasDisenios->invResinas = $defensa['invResinas'] * (1 + $mejoraDefensa);
+                $mejorasDisenios->invPlacas = $defensa['invPlacas'] * (1 + $mejoraDefensa);
+                $mejorasDisenios->invCarbonadio = $defensa['invCarbonadio'] * (1 + $mejoraDefensa);
+                ////
+                $mejorasDisenios->mantenimiento = $cualidades['mantenimiento'];
+                $mejorasDisenios->tiempo = $cualidades['tiempo'];
+                $mejorasDisenios->masa = $pesoTotal;
+                $mejorasDisenios->energia = $costesMisMotores['energia'];
+                $mejorasDisenios->carga = $cualidades['carga'];
+                $mejorasDisenios->cargaPequenia = $cualidades['cargaPequenia'];
+                $mejorasDisenios->cargaMediana = $cualidades['cargaMediana'];
+                $mejorasDisenios->cargaGrande = $cualidades['cargaGrande'];
+                $mejorasDisenios->cargaEnorme = $cualidades['cargaEnorme'];
+                $mejorasDisenios->cargaMega = $cualidades['cargaMega'];
+                $mejorasDisenios->recolector = $cualidades['recolector'];
+                $mejorasDisenios->extractor = $cualidades['extractor'];
+                $mejorasDisenios->disenios_id = $disenioId;
+                $mejorasDisenios->save();
+
+
+
+                //function dibujaDano($armasDispersion ){
+
+
+                $sumaataque = 0;
+                $arrayDispersion = [
+                    (1 * $armasDispersion['armasLigera']) + 1,
+                    (1 * $armasDispersion['armasMedia']) + 1,
+                    (1 * $armasDispersion['armasPesada']) + 1,
+                    (1 * $armasDispersion['armasInsertada']) + 1,
+                    (1 * $armasDispersion['armasMisil']) + 1,
+                    (1 * $armasDispersion['armasBomba']) + 1
+                ];
+
+                foreach ($listaTecnos as $tecno) {
+                    $danoTotalV = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
+                    for ($F = 0; $F < 5; $F++) {
+                        $dispersion = .2 * $arrayDispersion[$F];
+                        for ($C = 7; $C > -1; $C--) {
+                            $valueAqui = $danoTotal[$tecno][$F][$C];
+                            if ($valueAqui > 0) {
+                                $danoTotalV[$F][$C] += round($valueAqui, 0);
+                                for ($c = $C - 1; $c > -1; $c--) { //atras
+                                    $aAriete = 1;
+                                    if ($c == 0 && $ariete > 0) {
+                                        $aAriete = $ariete * $cteAriete;
+                                    }
+                                    $danoTotalV[$F][$c] += round($aAriete * $valueAqui * (1 + ($dispersion * ($C - $c))), 0);
+                                    $danoInf = $aAriete * $valueAqui * (1 + ($dispersion * ($C - $c))) / 1.25;
+                                    for ($f = $F + 1; $f < 5; $f++) { //atras abajo
+                                        $danoTotalV[$f][$c] += round($danoInf, 0);
+                                    }
+                                    for ($f = $F - 1; $f > -1; $f--) { //atras arriba
+                                        $danoTotalV[$f][$c] += round($danoInf * .01 * $f, 0);
+                                    }
+                                }
+                                for ($f = $F + 1; $f < 5; $f++) { // abajo
+                                    $danoTotalV[$f][$C] += round($valueAqui / 1.25, 0);
+                                }
+                                for ($f = $F - 1; $f > -1; $f--) { // arriba
+                                    $danoTotalV[$f][$C] += round($valueAqui * .01 * $f, 0);
+                                }
+                            }
+                            if ($danoTotalV[$F][$C] < 1) {
+                                $danoTotalV[$F][$C] = 0;
+                            }
+                            //$prueba.=$valueAqui." ";
+                        }
+                        // $prueba =$danoTotalV;
+
+                    }
+
+                    // guardando el danio
+                    for ($F = 0; $F < 5; $F++) {
+
+                        if ($danoTotalV[$F][0] > 0) {
+                            $filaDanio = new DaniosDisenios();
+                            $n = 0;
+                            foreach ($danoTotalV[$F] as $danio) {
+                                $distancia = "distancia" . $n;
+                                $filaDanio->{$distancia} = $danio;
+                                $n++;
+                            }
+                            $filaDanio->investigacion = $tecno;
+                            $filaDanio->fila = $F;
+                            $filaDanio->disenios_id = $disenioId;
+                            $filaDanio->save();
+                        }
+                    }
+                }
+
+
+                /// guardando elementos
+
+                $armasCualidades = [];
+                for ($x = 0; $x < 200; $x++) {
+                    array_push($armasCualidades, 0);
+                }
+
+                foreach ($armasTengo as $elemento) {
+                    //$prueba=$elemento;
+                    foreach ($elemento as $e) {
                         if ($e > 0) {
-                            $costeobj = $costesArmas->where('armas_codigo', $e)->first();
-                            $energiaArm += $costeobj['energia'];
-                        }
-                    }
-
-                    if ($energiaArm != 0) {
-                        $energiaXarma = 1 / $energiaArm;
-                    } else {
-                        $energiaXarma = 0;
-                    }
-
-                    $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0,  "ataque" => 0, "defensa" => 0,  "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" => 0];
-                    //$elemento='blindaje';
-                    //$genera='defensa';
-                    $misCostes = $costesMisArmas;
-                    $multiplicador = $multiplicadorblindajes;
-
-
-                    foreach ($armasTengo[$elemento] as $e) {
-
-                        if ($e > 0 and $correcto > 0) {
-
-                            $hayalgo = 1;
-
-                            $costoPunteria = 1;
-                            $ctePunteria = 1;
-                            if ($ctrlPunteria > 0) {
-                                $e2 = 71;
-                                $costeobj2 = $costesArmas->where('armas_codigo', $e2)->first();
-                                $cuantos2 = $ctrlPunteria;
-                                $ctePunteria = ($cuantos2); //lo que varia por nivel de tecno
-                                $costoPunteria = (1 + ($costeobj2['mineral'] / 100)) * $cuantos2;
-                            }
-                            $costoAriete = 1;
-                            // cteAriete=1;
-                            if ($ariete > 0) {
-                                $e2 = 71;
-                                $costeobj2 = $costesArmas->where('armas_codigo', $e2)->first();
-                                $cuantos2 = $ariete;
-                                $cteAriete = ($cuantos2); //lo que varia por nivel de tecno
-                                $costoAriete = (1 + ($costeobj2['mineral'] / 100)) * $cuantos2;
-                            }
-
-
-                            //$obj=array_search($e,$armas);
-                            $obj = $armas->where('codigo', $e)->first();
-                            $factorFuselaje = $disenio->cualidades->$genera;
-                            $costesVacio = ["mineral" => 0, "cristal" => 0, "gas" => 0, "plastico" => 0, "ceramica" => 0, "liquido" => 0, "micros" => 0, "personal" => 0, "fuel" => 0, "ma" => 0, "municion" => 0, "masa" => 0, "energia" => 0, "tiempo" => 0, "mantenimiento" => 0, "ataque" => 0, "defensa" => 0,  "velocidad" => 0, "carga" => 0, "cargaPequenia" => 0, "cargaMediana" => 0, "cargaGrande" => 0, "cargaEnorme" => 0, "cargaMega" => 0, "recolector" => 0, "extractor" => 0];
-
-                            //comprobando tengo la tecno necesaria
-                            $clase = $obj['clase'];
-                            $miNivelTecno = $investigaciones->where('codigo', $clase)->first()->nivel;
-                            if ($obj['niveltec'] > $miNivelTecno) {
-                                $correcto = false;
-                                $razonCorrecto += "<br>Tecnologia demasiado baja: " + $clase + " ";
-                            };
-                            $variacionAlcance = 1;
-                            $variacionDispersion = 1;
-
-                            $cantidadArmas = $multiplicadorArmas[$elemento];
-                            $estedano = $energiaArmas[$elemento] * $energiaT * $energiaXarma / $costeobj['energia'] * $cantidadArmas;
-                            $cte = 1; //la tecno
-                            $creceExpo = 1 + (($estedano / $costeobj['ataque']) * 2000);
-                            $danioarmasArm += round($cteFoco * ($cte * $estedano * 100000 / $creceExpo), 0); // la tecno influye solo en el valor final del danio
-                            $multiplicador = $estedano * 10 * $creceExpo;
-                            $alcance = $danoPosicion[$elemento][1] + 1 * $armasAlcance[$elemento];
-                            if ($alcance > 7) {
-                                $alcance = 7;
-                            };
-                            if ($alcance < 0) {
-                                $alcance = 0;
-                            };
-                            $variacionAlcance = pow(2.5, (1 * $armasAlcance[$elemento]));
-                            $variacionDispersion = pow(1.5, (1 * $armasDispersion[$elemento]));
-
-                            // sumo costes
-                            $costeobj = $costesArmas->where('armas_codigo', $e)->first();
-                            $misCostes = sumaCostos($misCostes, $multiplicador * $variacionAlcance * $variacionDispersion * $costoFocoA * $costoPunteria * $costoAriete, $costeobj); // sumo recursos basicos
-                            // sumo cualidades
-                            $costesVacio[$genera] = $costeobj[$genera] * 1 * $factorFuselaje; //lo q mejora por esos niveles
-                            $costesVacio['tiempo'] = $costeobj['tiempo'] * $factorFuselaje;
-                            $costesVacio['mantenimiento'] = $costeobj['mantenimiento'] * $factorFuselaje;
-                            $costesVacio['energia'] = $costeobj['energia'] * $factorFuselaje;
-                            $costesVacio['municion'] = $costeobj['municion'];
-                            $misCostes = sumaCualidades($misCostes, $multiplicador, $costesVacio);
-                            $costesMisArmas = $misCostes;
-
-                            $danoTotal[$obj['clase']][$danoPosicion[$elemento][0]][$alcance] = $danioarmasArm;
+                            $armasCualidades[$e]++;
                         }
                     }
                 }
 
-
-                //suma de todos los costes:
-                $cte = 1;
-                $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisMotores);
-                $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisBlindajes);
-                $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisArmas);
-                $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisCargas);
-                $costesDisenio = sumaCostos($costesDisenio, $cte, $costesMisMejoras);
-
-                $cualidades = sumaCualidades($cualidades, $cte, $costesMisMotores);
-                $cualidades = sumaCualidades($cualidades, $cte, $costesMisBlindajes);
-                $cualidades = sumaCualidades($cualidades, $cte, $costesMisArmas);
-                $cualidades = sumaCualidades($cualidades, $cte, $costesMisCargas);
-                $cualidades = sumaCualidades($cualidades, $cte, $costesMisMejoras);
-
-                // quitando decimales
-
-                $costesDisenio['mineral'] = round($costesDisenio['mineral'], 0);
-                $costesDisenio['cristal'] = round($costesDisenio['cristal'], 0);
-                $costesDisenio['gas'] = round($costesDisenio['gas'], 0);
-                $costesDisenio['plastico'] = round($costesDisenio['plastico'], 0);
-                $costesDisenio['ceramica'] = round($costesDisenio['ceramica'], 0);
-                $costesDisenio['liquido'] = round($costesDisenio['liquido'], 0);
-                $costesDisenio['micros'] = round($costesDisenio['micros'], 0);
-                $costesDisenio['personal'] = round($costesDisenio['personal'], 0);
-
-                /// velocidad
-
-                $pesoInicial = .0005 * $disenio->cualidades->masa * ($disenio->costes->mineral * 50 + $disenio->costes->cristal * 260 + $disenio->costes->gas * 1000 + $disenio->costes->plastico * 4000 + $disenio->costes->ceramica * 600 + $disenio->costes->liquido * 500 + $disenio->costes->micros * 2000 + $disenio->costes->personal * 500);
-
-                $pesoTotal = ($cualidades['masa'] + $pesoInicial);
-                $pesoTotal /= 1 + $mejoraPeso;
-
-                //guardando disenio ////////////////////////////////
-
-                DB::beginTransaction();
-                try {
-                    $disenioS = new Disenios();
-                    $disenioS->nombre = $datosBasicos['nombre'];
-
-
-
-                    $position = $datosBasicos['posicion'];
-                    if ($position = "") {
-                        $disenioS->posicion = 1;
-                    } else {
-                        if ((int)($position) < 1) {
-                            $position = 1;
-                        }
-                        if ((int)($position) > 9) {
-                            $position = 9;
-                        }
-                        $disenioS->posicion = $position;
-                    }
-
-                    $disenioS->fuselajes_id = $idFuselaje;
-                    $disenioS->codigo = $disenio->codigo;
-                    $disenioS->skin = $datosBasicos['skin'];
-                    $disenioS->jugadores_id = $jugadorActual->id;
-                    $disenioS->save();
-                    $jugadorActual->disenios()->attach($disenioS->id);
-
-
-                    $disenioId = $disenioS->id;
-
-                    /// guardando costes
-                    $costesDisenioS = new CostesDisenios();
-                    $costesDisenioS->mineral = $costesDisenio['mineral'];
-                    $costesDisenioS->cristal = $costesDisenio['cristal'];
-                    $costesDisenioS->gas = $costesDisenio['gas'];
-                    $costesDisenioS->plastico = $costesDisenio['plastico'];
-                    $costesDisenioS->ceramica = $costesDisenio['ceramica'];
-                    $costesDisenioS->liquido = $costesDisenio['liquido'];
-                    $costesDisenioS->micros = $costesDisenio['micros'];
-                    $costesDisenioS->personal = $costesDisenio['personal'];
-                    $costesDisenioS->disenios_id = $disenioId;
-                    $costesDisenioS->save();
-
-                    $mejorasDisenios = new MejorasDisenios();
-                    $mejorasDisenios->invPropQuimico = $velocidad['invPropQuimico'] * (1 + $mejoraVelocidad);
-                    $mejorasDisenios->invPropNuk = $velocidad['invPropNuk'] * (1 + $mejoraVelocidad);
-                    $mejorasDisenios->invPropIon = $velocidad['invPropIon'] * (1 + $mejoraVelocidad);
-                    $mejorasDisenios->invPropPlasma = $velocidad['invPropPlasma'] * (1 + $mejoraVelocidad);
-                    $mejorasDisenios->invPropMa = $velocidad['invPropMa'] * (1 + $mejoraVelocidad);
-                    //$mejorasDisenios->invPropHMA = $velocidad['invPropHMA'];
-                    $mejorasDisenios->invManiobraQuimico = $maniobra['invPropQuimico'] * (1 + $mejoraManiobra);
-                    $mejorasDisenios->invManiobraNuk = $maniobra['invPropNuk'] * (1 + $mejoraManiobra);
-                    $mejorasDisenios->invManiobraIon = $maniobra['invPropIon'] * (1 + $mejoraManiobra);
-                    $mejorasDisenios->invManiobraPlasma = $maniobra['invPropPlasma'] * (1 + $mejoraManiobra);
-                    $mejorasDisenios->invManiobraMa = $maniobra['invPropMa'] * (1 + $mejoraManiobra);
-                    //$mejorasDisenios->invPropHMA = $maniobra['invPropHMA'];
-                    $mejorasDisenios->fuel = $cualidades['fuel'];
-                    $mejorasDisenios->municion = $cualidades['municion'];
-                    ///
-                    $mejorasDisenios->invTitanio = $defensa['invTitanio'] * (1 + $mejoraDefensa);
-                    $mejorasDisenios->invReactivo = $defensa['invReactivo'] * (1 + $mejoraDefensa);
-                    $mejorasDisenios->invResinas = $defensa['invResinas'] * (1 + $mejoraDefensa);
-                    $mejorasDisenios->invPlacas = $defensa['invPlacas'] * (1 + $mejoraDefensa);
-                    $mejorasDisenios->invCarbonadio = $defensa['invCarbonadio'] * (1 + $mejoraDefensa);
-                    ////
-                    $mejorasDisenios->mantenimiento = $cualidades['mantenimiento'];
-                    $mejorasDisenios->tiempo = $cualidades['tiempo'];
-                    $mejorasDisenios->masa = $pesoTotal;
-                    $mejorasDisenios->energia = $costesMisMotores['energia'];
-                    $mejorasDisenios->carga = $cualidades['carga'];
-                    $mejorasDisenios->cargaPequenia = $cualidades['cargaPequenia'];
-                    $mejorasDisenios->cargaMediana = $cualidades['cargaMediana'];
-                    $mejorasDisenios->cargaGrande = $cualidades['cargaGrande'];
-                    $mejorasDisenios->cargaEnorme = $cualidades['cargaEnorme'];
-                    $mejorasDisenios->cargaMega = $cualidades['cargaMega'];
-                    $mejorasDisenios->recolector = $cualidades['recolector'];
-                    $mejorasDisenios->extractor = $cualidades['extractor'];
-                    $mejorasDisenios->disenios_id = $disenioId;
-                    $mejorasDisenios->save();
-
-
-
-                    //function dibujaDano($armasDispersion ){
-
-
-                    $sumaataque = 0;
-                    $arrayDispersion = [
-                        (1 * $armasDispersion['armasLigera']) + 1,
-                        (1 * $armasDispersion['armasMedia']) + 1,
-                        (1 * $armasDispersion['armasPesada']) + 1,
-                        (1 * $armasDispersion['armasInsertada']) + 1,
-                        (1 * $armasDispersion['armasMisil']) + 1,
-                        (1 * $armasDispersion['armasBomba']) + 1
-                    ];
-
-                    foreach ($listaTecnos as $tecno) {
-                        $danoTotalV = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
-                        for ($F = 0; $F < 5; $F++) {
-                            $dispersion = .2 * $arrayDispersion[$F];
-                            for ($C = 7; $C > -1; $C--) {
-                                $valueAqui = $danoTotal[$tecno][$F][$C];
-                                if ($valueAqui > 0) {
-                                    $danoTotalV[$F][$C] += round($valueAqui, 0);
-                                    for ($c = $C - 1; $c > -1; $c--) { //atras
-                                        $aAriete = 1;
-                                        if ($c == 0 && $ariete > 0) {
-                                            $aAriete = $ariete * $cteAriete;
-                                        }
-                                        $danoTotalV[$F][$c] += round($aAriete * $valueAqui * (1 + ($dispersion * ($C - $c))), 0);
-                                        $danoInf = $aAriete * $valueAqui * (1 + ($dispersion * ($C - $c))) / 1.25;
-                                        for ($f = $F + 1; $f < 5; $f++) { //atras abajo
-                                            $danoTotalV[$f][$c] += round($danoInf, 0);
-                                        }
-                                        for ($f = $F - 1; $f > -1; $f--) { //atras arriba
-                                            $danoTotalV[$f][$c] += round($danoInf * .01 * $f, 0);
-                                        }
-                                    }
-                                    for ($f = $F + 1; $f < 5; $f++) { // abajo
-                                        $danoTotalV[$f][$C] += round($valueAqui / 1.25, 0);
-                                    }
-                                    for ($f = $F - 1; $f > -1; $f--) { // arriba
-                                        $danoTotalV[$f][$C] += round($valueAqui * .01 * $f, 0);
-                                    }
-                                }
-                                if ($danoTotalV[$F][$C] < 1) {
-                                    $danoTotalV[$F][$C] = 0;
-                                }
-                                //$prueba.=$valueAqui." ";
-                            }
-                            // $prueba =$danoTotalV;
-
-                        }
-
-                        // guardando el danio
-                        for ($F = 0; $F < 5; $F++) {
-
-                            if ($danoTotalV[$F][0] > 0) {
-                                $filaDanio = new DaniosDisenios();
-                                $n = 0;
-                                foreach ($danoTotalV[$F] as $danio) {
-                                    $distancia = "distancia" . $n;
-                                    $filaDanio->{$distancia} = $danio;
-                                    $n++;
-                                }
-                                $filaDanio->investigacion = $tecno;
-                                $filaDanio->fila = $F;
-                                $filaDanio->disenios_id = $disenioId;
-                                $filaDanio->save();
-                            }
-                        }
-                    }
-
-
-                    /// guardando elementos
-
-                    $armasCualidades = [];
-                    for ($x = 0; $x < 200; $x++) {
-                        array_push($armasCualidades, 0);
-                    }
-
-                    foreach ($armasTengo as $elemento) {
-                        //$prueba=$elemento;
-                        foreach ($elemento as $e) {
-                            if ($e > 0) {
-                                $armasCualidades[$e]++;
-                            }
-                        }
-                    }
-
-                    for ($x = 0; $x < 200; $x++) {
-                        if ($armasCualidades[$x] > 0) {
-                            $filaCualidades = new CualidadesDisenios();
-                            $filaCualidades->codigo = $x;
-                            $filaCualidades->cantidad = $armasCualidades[$x];
-                            $filaCualidades->disenios_id = $disenioId;
-                            $obj = $armas->where('codigo', $x)->first();
-                            $filaCualidades->categoria = $obj->ranura;
-                            $filaCualidades->save();
-                        }
-                    }
-
-                    $x = 999;
-                    foreach ($energiaArmas as $elemento) {
-                        $x++;
+                for ($x = 0; $x < 200; $x++) {
+                    if ($armasCualidades[$x] > 0) {
                         $filaCualidades = new CualidadesDisenios();
                         $filaCualidades->codigo = $x;
-                        $filaCualidades->cantidad = $elemento * 100;
+                        $filaCualidades->cantidad = $armasCualidades[$x];
                         $filaCualidades->disenios_id = $disenioId;
-                        $filaCualidades->categoria = "energia";
+                        $obj = $armas->where('codigo', $x)->first();
+                        $filaCualidades->categoria = $obj->ranura;
                         $filaCualidades->save();
                     }
-                    $x = 1009;
-                    foreach ($armasAlcance as $elemento) {
-                        $x++;
-                        if ($elemento != 0) {
-                            $filaCualidades = new CualidadesDisenios();
-                            $filaCualidades->codigo = $x;
-                            $filaCualidades->cantidad = $elemento;
-                            $filaCualidades->disenios_id = $disenioId;
-                            $filaCualidades->categoria = "armasAlcance";
-                            $filaCualidades->save();
-                        }
-                    }
-                    $x = 1019;
-                    foreach ($armasDispersion as $elemento) {
-                        $x++;
-                        if ($elemento != 0) {
-                            $filaCualidades = new CualidadesDisenios();
-                            $filaCualidades->codigo = $x;
-                            $filaCualidades->cantidad = $elemento;
-                            $filaCualidades->disenios_id = $disenioId;
-                            $filaCualidades->categoria = "armasDispersion";
-                            $filaCualidades->save();
-                        }
-                    }
+                }
 
-                    //$prueba=$armasCualidades;
-                    //$prueba=$armasTengo;
+                $x = 999;
+                foreach ($energiaArmas as $elemento) {
+                    $x++;
+                    $filaCualidades = new CualidadesDisenios();
+                    $filaCualidades->codigo = $x;
+                    $filaCualidades->cantidad = $elemento * 100;
+                    $filaCualidades->disenios_id = $disenioId;
+                    $filaCualidades->categoria = "energia";
+                    $filaCualidades->save();
+                }
+                $x = 1009;
+                foreach ($armasAlcance as $elemento) {
+                    $x++;
+                    if ($elemento != 0) {
+                        $filaCualidades = new CualidadesDisenios();
+                        $filaCualidades->codigo = $x;
+                        $filaCualidades->cantidad = $elemento;
+                        $filaCualidades->disenios_id = $disenioId;
+                        $filaCualidades->categoria = "armasAlcance";
+                        $filaCualidades->save();
+                    }
+                }
+                $x = 1019;
+                foreach ($armasDispersion as $elemento) {
+                    $x++;
+                    if ($elemento != 0) {
+                        $filaCualidades = new CualidadesDisenios();
+                        $filaCualidades->codigo = $x;
+                        $filaCualidades->cantidad = $elemento;
+                        $filaCualidades->disenios_id = $disenioId;
+                        $filaCualidades->categoria = "armasDispersion";
+                        $filaCualidades->save();
+                    }
+                }
+
+                //$prueba=$armasCualidades;
+                //$prueba=$armasTengo;
                 DB::commit();
                 //Log::info("Enviada");
 
-                } catch (Exception $e) {
-                    DB::rollBack();
-                    $razonCorrecto += " ".$e;
-                    //Log::info($e);
-                }
+            } catch (Exception $e) {
+                DB::rollBack();
+                $razonCorrecto += " " . $e;
+                //Log::info($e);
+            }
         }
 
         //$prueba = $danoTotal['invMa'];

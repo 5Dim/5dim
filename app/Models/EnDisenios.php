@@ -38,7 +38,6 @@ class EnDisenios extends Model
                 if ($cola->accion == "Reciclando") {
                     $coste = $cola->disenios->costes;
                     $recursos = $cola->planetas->recursos;
-                    //$disenio->cantidad -= $cola->cantidad;
 
                     //Restaurar beneficio por reciclaje
                     $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
@@ -55,8 +54,8 @@ class EnDisenios extends Model
             } else {
                 $disenio = new DiseniosEnFlota();
                 $disenio->planetas_id = $cola->planetas_id;
-                $disenio->cantidad += $cola->cantidad;
-                $disenio->disenios_id = $cola->disenios_id;
+                $disenio->cantidad += $cola->enFlota;
+                $disenio->disenios_id = $cola->cantidad;
                 $coste = $cola->disenios->costes;
                 $disenio->tipo = $cola->disenios->fuselajes->tipo;
             }
@@ -69,7 +68,7 @@ class EnDisenios extends Model
     public static function tiempoProduccion($cantidad, $nivelFabrica, $tiempoxunidad)
     {
 
-        $velhangarxnivel = Constantes::where('codigo', 'velhangarxnivel')->first()->valor;
+        $velhangarxnivel = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
 
         $velprodhangar = (1 + (($nivelFabrica * $velhangarxnivel) / 100)); //por lo que se divide el tiempo, cada nivel un 20 %
         $periodo = (1 * $tiempoxunidad) / $velprodhangar; //tiempo por unidad

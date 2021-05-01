@@ -174,6 +174,9 @@ class AlianzaController extends Controller
         if ($alianza->creador->id == $jugadorActual->id) {
             $planetas = Jugadores::where('nombre', $alianza->nombre)->first()->planetas;
             foreach ($planetas as $planeta) {
+                foreach ($planeta->construcciones as $construccion) {
+                    $construccion->delete();
+                }
                 $planeta->jugadores_id = null;
                 $planeta->save();
             }
@@ -182,6 +185,11 @@ class AlianzaController extends Controller
                 $miembro->save();
             }
         }
+        $jugadorAlianza = Alianzas::jugadorAlianza($alianza->id);
+        foreach ($jugadorAlianza->investigaciones as $investigacion) {
+            $investigacion->delete();
+        }
+        $jugadorAlianza->delete();
 
         return redirect('/juego/alianza');
     }

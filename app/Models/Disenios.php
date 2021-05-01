@@ -46,11 +46,6 @@ class Disenios extends Model
         return $this->belongsTo(Fuselajes::class);
     }
 
-    public function estacionadas()
-    {
-        return $this->hasOne(DiseniosEnFlota::class);
-    }
-
     public function creador()
     {
         return $this->belongsTo(Jugadores::class, 'jugadores_id');
@@ -225,7 +220,7 @@ class Disenios extends Model
     {
         $investigacion = Investigaciones::where('codigo', 'invCarga')->first()->nivel;
         $constante = Constantes::where('codigo', 'mejorainvCarga')->first()->valor;
-        $mejorasT=0;
+        $mejorasT = 0;
 
         //Log::info("diseniosx ".$disenios);
 
@@ -242,7 +237,7 @@ class Disenios extends Model
     {
         $investigacion = Investigaciones::where('codigo', 'invRecoleccion')->first()->nivel;
         $constante = Constantes::where('codigo', 'mejorainvRecoleccion')->first()->valor;
-        $mejorasT=0;
+        $mejorasT = 0;
 
         foreach ($diseniosFlota as $disenio) {
             $mejoras = $disenio->disenios->mejoras;
@@ -258,7 +253,7 @@ class Disenios extends Model
     {
         $investigacion = Investigaciones::where('codigo', 'invRecoleccion')->first()->nivel;
         $constante = Constantes::where('codigo', 'mejorainvRecoleccion')->first()->valor;
-        $mejorasT=0;
+        $mejorasT = 0;
 
         foreach ($disenios as $disenio) {
             $mejoras = $disenio->disenios->mejoras;
@@ -270,17 +265,15 @@ class Disenios extends Model
         return $mejorasT * (1 + ($investigacion * $constante));
     }
 
-    public static function cargaTotalRecursos($recursosFlota){ //cantidad de carga que llevo
-        $cargaT=0;
+    public static function cargaTotalRecursos($recursosFlota) //cantidad de carga que llevo
+    {
+        $cargaT = 0;
 
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         foreach ($recursosArray as $recurso) {
-            $cargaT+=$recursosFlota[$recurso];
+            $cargaT += $recursosFlota[$recurso];
         }
 
         return $cargaT;
     }
-
-
-
 }

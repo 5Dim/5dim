@@ -96,10 +96,10 @@ class FabricasController extends Controller
 
             $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
             $construcciones = Construcciones::construcciones($planetaActual);
-            $constanteVelocidad=Constantes::where('codigo', 'velocidadHangar')->first()->valor;
+            $constanteVelocidad = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
             $nivelHangar = $construcciones->where('codigo', 'hangar')->first()->nivel;
 
-            $final = (strtotime($inicio) + ((($tiempo * $cantidad) * $cadenaProduccion))/(1+($constanteVelocidad * $nivelHangar/100)));
+            $final = (strtotime($inicio) + ((($tiempo * $cantidad) * $cadenaProduccion)) / (1 + ($constanteVelocidad * $nivelHangar / 100)));
 
             //Generamos la cola
             $cola = new EnDisenios();
@@ -117,24 +117,40 @@ class FabricasController extends Controller
         return redirect('/juego/disenio');
     }
 
-    public function reciclar($idDisenio, $cantidad)
+    public function reciclar($idDisenio, $cantidadInicial)
     {
+        $planetaActual = Planetas::find(session()->get('planetas_id'));
         $disenio = Disenios::find($idDisenio);
-        $disenio->calculaMejoras();
-        $tiempo = $disenio->datos->tiempo;
+        $tiempo = $disenio->mejoras->tiempo;
         $inicio = date("Y-m-d H:i:s");
-        $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
-        $final = (strtotime($inicio) + (($tiempo * $cantidad) * $cadenaProduccion));
+        // $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
+        $cantidadActual = $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota + $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enHangar;
+        $cantidad = $cantidadInicial;
 
-        $disenio->estacionadas->cantidad -= $cantidad;
-        $disenio->estacionadas->save();
+        if ($cantidad > $cantidadActual) {
+            $cantidad = $cantidadActual;
+            $cantidadInicial = $cantidadActual;
+        }
+
+        if ($cantidad > $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota) {
+            $cantidad -= $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota;
+            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota = 0;
+            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enHangar -= $cantidad;
+        } else {
+            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota -= $cantidad;
+        }
+        $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
+        $nivelHangar = $planetaActual->construcciones->where('codigo', 'hangar')->first()->nivel;
+        $constanteVelocidad = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
+        $cadenaProduccion = 1;
+        $final = (strtotime($inicio) + ((($tiempo * $cantidad) * $cadenaProduccion)) / (1 + ($constanteVelocidad * $nivelHangar / 100)));
 
         //Generamos la cola
         $cola = new EnDisenios();
         $cola->nombre = $disenio->nombre;
         $cola->accion = 'Reciclando';
-        $cola->tiempo = $tiempo;
-        $cola->cantidad = $cantidad;
+        $cola->tiempo = $tiempo; // AQUI FALTA LA FUNCION DEL TIEMPO!
+        $cola->cantidad = $cantidadInicial;
         $cola->disenios_id = $disenio->id;
         $cola->planetas_id = session()->get('planetas_id');
         $cola->created_at = $inicio;
@@ -151,11 +167,12 @@ class FabricasController extends Controller
         $coste = $disenio->costes;
         $recursos = $cola->planetas->recursos;
         $cancelar = Constantes::where('codigo', 'perdidaCancelar')->first()->valor;
+        $planetaActual = Planetas::find(session()->get('planetas_id'));
 
         if ($cola->accion == "Reciclando") {
-            $disenio->estacionadas->cantidad += $cola->cantidad;
-            $disenio->estacionadas->save();
-        }else {
+            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota += $cola->cantidad;
+            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
+        } else {
             $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
             $recursos->cristal += (($coste->cristal * $cola->cantidad) * $cancelar);
             $recursos->gas += (($coste->gas * $cola->cantidad) * $cancelar);

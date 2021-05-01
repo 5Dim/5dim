@@ -15,7 +15,7 @@
                     </th>
                     <th colspan="3" class="text-success text-center borderless align-middle">
                         <big>Cantidad:
-                            {{ empty($disenio->estacionadas->cantidad) ? '0' : number_format($disenio->estacionadas->cantidad, 0, ',', '.') }}<big>
+                            {{ !empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()) ? number_format($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota + $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enHangar + $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad, 0, ',', '.') : 0 }}<big>
                     </th>
                 </tr>
                 <tr>
