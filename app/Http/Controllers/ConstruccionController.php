@@ -17,6 +17,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\CostesConstrucciones;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
+use Illuminate\Support\Facades\Log;
 
 class ConstruccionController extends Controller
 {
@@ -300,11 +301,6 @@ class ConstruccionController extends Controller
         foreach ($listaCola as $colita) {
             //En caso de ser una construccion debe devolver parte de los recursos
             if ($colita->accion == "Construyendo") {
-                // $construccionesMax[0]->nivel = $colita->nivel;
-
-                //Costes construcciones
-                // $costes = new CostesConstrucciones();
-                // $costesConstrucciones = $costes->generaCostesConstrucciones($construccionesMax);
                 $recursos = $colita->construcciones->planetas->recursos;
 
                 $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($colita->nivel - 1, $colita->construcciones->codigo, $colita->construcciones->id);
@@ -325,7 +321,7 @@ class ConstruccionController extends Controller
         if ($cola->accion == "Construyendo") {
             $recursos = $cola->construcciones->planetas->recursos;
 
-            $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($cola->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
+            $costesConstrucciones = CostesConstrucciones::generarDatosCostesConstruccion($cola->nivel - 1, $cola->construcciones->codigo, $cola->construcciones->id);
 
             //Restaurar beneficio por reciclaje
             $recursos->mineral += ($costesConstrucciones->mineral * $reciclaje);
