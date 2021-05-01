@@ -132,7 +132,7 @@ class Flotas extends Model
                     // no se puede llegar
 
                     if ($ordenAnt == "" || $ordenAnt == "Transferir" || $ordenAnt == "Recolectar" || $ordenAnt == "Orbitar" || $ordenAnt == "Extraer") {
-                        $errores = " No se alcanzará destino ". $dest. " con la orden ".$ordenAnt;
+                        $errores = " No se alcanzará destino " . $dest . " con la orden " . $ordenAnt;
                     }
 
                     // soy la ultima y debe ser de cierre
@@ -305,10 +305,10 @@ class Flotas extends Model
         $coordDestino['x'] = 0;
         $coordDestino['y'] = 0;
         $factordistancia = 1;
-        $oriestrella =$origen['estrella'];
-        $oriorbita =$origen['orbita'];
-        $destiestrella=$destino['estrella'];
-        $destiorbita =$destino['orbita'];
+        $oriestrella = $origen['estrella'];
+        $oriorbita = $origen['orbita'];
+        $destiestrella = $destino['estrella'];
+        $destiorbita = $destino['orbita'];
 
         $anchoUniverso = $constantesU->where('codigo', 'anchouniverso')->first()->valor;
         $luzdemallauniverso = $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
@@ -320,10 +320,10 @@ class Flotas extends Model
             if ($flotaDestino == null) {
                 $flotaDestino = EnOrbita::where("publico", $oriestrella)->orWhere("nombre", $oriestrella)->first();
             }
-            $oriestrella= $flotaDestino->planetas['estrella'];
-            $oriorbita= $flotaDestino->planetas['orbita'];
-            $origen['estrella']=$oriestrella;
-            $origen['orbita']=$oriorbita;
+            $oriestrella = $flotaDestino->planetas['estrella'];
+            $oriorbita = $flotaDestino->planetas['orbita'];
+            $origen['estrella'] = $oriestrella;
+            $origen['orbita'] = $oriorbita;
         }
 
         if (strlen($destiestrella) > 6) {  //destino es flota
@@ -331,10 +331,10 @@ class Flotas extends Model
             if ($flotaDestino == null) {
                 $flotaDestino = EnOrbita::where("publico", $destiestrella)->orWhere("nombre", $destiestrella)->first();
             }
-            $destiestrella= $flotaDestino->planetas['estrella'];
-            $destiorbita= $flotaDestino->planetas['orbita'];
-            $destino['estrella']=$destiestrella;
-            $destino['orbita']=$destiorbita;
+            $destiestrella = $flotaDestino->planetas['estrella'];
+            $destiorbita = $flotaDestino->planetas['orbita'];
+            $destino['estrella'] = $destiestrella;
+            $destino['orbita'] = $destiorbita;
         }
 
         // calculos
@@ -470,7 +470,7 @@ class Flotas extends Model
             $destino->estrella = $destinoestrella;
             $destino->orbita = $destinorbita;
         } catch (\Exception $e) {
-            // Log::info($e->getLine()." " .$e);
+            Log::info($e);
             // return $e->getMessage();
         }
         return [$destino, $errores];
@@ -622,14 +622,14 @@ destino 0 con lo que sale
         $ahora = date("Y-m-d H:i:s");
         $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init", "desc")->get(); //->unique('flota_id'); //
 
-        // Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
+        Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
 
         foreach ($listaDestinosEntrantes as $destino) {
 
             $destinoAnterior = Destinos::where('fin', $destino['init'])->where("flota_id", $destino['flota_id'])->first();
 
             if ($destinoAnterior != null && $destinoAnterior['visitado'] == 0) {
-                //Log::info("destino anterior no ejecutado id=".$destino['id']);
+                Log::info("destino anterior no ejecutado id=".$destino['id']);
                 break;
             }
 
@@ -652,7 +652,7 @@ destino 0 con lo que sale
                 $estaFlota = $destino->enOrbita;
             }
 
-            //Log::info($destino."flota XXX".$estaFlota);
+            // Log::info($destino."flota XXX".$estaFlota);
             $recursosFlota = $estaFlota->recursosEnFlota;
             $recursosQuieroCargar = $destino->recursos;
             //Log::info($recursosQuieroCargar);
@@ -907,7 +907,6 @@ destino 0 con lo que sale
                 }
 
                 DB::commit();
-                //Log::info("Enviada");
                 Log::info($errores);
             } catch (Exception $e) {
                 DB::rollBack();
@@ -1060,7 +1059,7 @@ destino 0 con lo que sale
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit de poner en " . $quehacer . " " . $e->getLine() . " " . $errores . $e;
-                //Log::info($errores . " " . $e);
+                Log::info($errores . " " . $e);
             }
             return $errores;
         }
@@ -1124,7 +1123,7 @@ destino 0 con lo que sale
         } catch (Exception $e) {
             DB::rollBack();
             $errores = "Error en Commit ejecutar recolección flota " . $e->getLine() . " " . $flotax->publico . "  lugar " . $planeta->sistema . "x" . $planeta->orbita . "  " . $errores; //.$e;
-            //Log::info($errores . " " . $e);
+            Log::info($errores . " " . $e);
         }
         return $errores;
     }
