@@ -54,8 +54,8 @@ class EnDisenios extends Model
             } else {
                 $disenio = new DiseniosEnFlota();
                 $disenio->planetas_id = $cola->planetas_id;
-                $disenio->cantidad += $cola->enFlota;
-                $disenio->disenios_id = $cola->cantidad;
+                $disenio->cantidad += $cola->cantidad;
+                $disenio->disenios_id = $cola->disenios_id;
                 $coste = $cola->disenios->costes;
                 $disenio->tipo = $cola->disenios->fuselajes->tipo;
             }
