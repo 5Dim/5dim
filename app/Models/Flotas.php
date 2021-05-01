@@ -630,7 +630,7 @@ destino 0 con lo que sale
 
             if ($destinoAnterior != null && $destinoAnterior['visitado'] == 0) {
                 Log::info("destino anterior no ejecutado id=".$destino['id']);
-                break;
+                continue;
             }
 
             $tipodestino = Astrometria::tipoDestino($destino);
