@@ -38,18 +38,9 @@ class JugadorLogueado
             session()->put('jugadores_id', $jugador->id);
         }
 
-        // Comprobamos si el jugador tiene alianza o lo ponemos a nulo
-        if (!session()->has('alianza_id')) {
-            if (!empty($jugador->alianza_id)) {
-                session()->put('alianza_id', $jugador->alianza_id);
-            } else {
-                session()->put('alianza_id', "nulo");
-            }
-        }
-
         //Comprobamos que el planeta que tiene asignado sea propio
         $jugadorActual = $jugador;
-        if (session()->has('alianza_id') != "nulo") {
+        if (!empty($jugadorActual->alianzas)) {
             $idAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first()->id;
         } else {
             $idAlianza = "nulo";

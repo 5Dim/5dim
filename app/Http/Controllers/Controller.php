@@ -16,6 +16,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Log;
 
 class Controller extends BaseController
 {
@@ -28,10 +29,11 @@ class Controller extends BaseController
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
         $planetasAlianza = null;
-        if (session()->has('alianza_id') != "nulo") {
+        if (!empty($jugadorActual->alianzas)) {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
         }
+
 
         //Recursos
         $investigaciones = Investigaciones::investigaciones($planetaActual);

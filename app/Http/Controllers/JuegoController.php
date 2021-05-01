@@ -112,7 +112,7 @@ class JuegoController extends Controller
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
         //Comprobamos si el usuario tiene alianza para devolver los planetas
-        if (session()->get('alianza_id') != "nulo") {
+        if (!empty($jugadorActual->alianzas)) {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
         }
         //Planeta al que queremos acceder
