@@ -628,6 +628,8 @@ destino 0 con lo que sale
 
             $destinoAnterior = Destinos::where('fin', $destino['init'])->where("flota_id", $destino['flota_id'])->first();
 
+            Log::info($destinoAnterior);
+
             if ($destinoAnterior != null && $destinoAnterior['visitado'] == 0) {
                 Log::info("destino anterior no ejecutado id=".$destino['id']);
                 continue;

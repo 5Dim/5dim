@@ -669,6 +669,7 @@ class FlotaController extends Controller
 
     public function verFlotasEnVuelo()
     {
+        Log::info("VUELO");
         $flotas = Astrometria::flotasVisibles();
 
         //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
@@ -677,20 +678,21 @@ class FlotaController extends Controller
 
     public function verFlotasEnRecoleccion()
     {
-
+        Log::info("RECOLECCION");
         $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enrecoleccion");
 
         //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
-        //Log::info($flotas);
+        Log::info($flotas);
         return $flotas;
     }
 
     public function verFlotasEnOrbita()
     {
+        Log::info("ORBITA");
         $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enorbita");
 
         //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
-        //Log::info($flotas);
+        Log::info($flotas);
         return $flotas;
     }
 

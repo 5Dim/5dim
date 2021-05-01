@@ -925,6 +925,7 @@ function RellenarFlotasEnVuelo(data,prefix){
     $("#"+prefix+"Extrangeras").empty();
 
     var flotas= data["flotas"];
+    console.log(flotas);
 
     var fila=0;
     flotas.forEach(flota => {
