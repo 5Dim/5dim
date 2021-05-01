@@ -826,8 +826,7 @@ destino 0 con lo que sale
                             $destinoAlcanzado = true;
                             $errores = "Sólo se pueden colonizar cuerpos tipo planeta ";
                         } else {
-                            $cambioMision = true;
-                            $destino['mision'] = "Transportar";
+                            //$destino['mision'] = "Transportar";
                             $guardarCambiosColonizacion = true;
                         }
                     } else {
@@ -895,6 +894,27 @@ destino 0 con lo que sale
                     $planetaColonizar->save();
 
                     Recursos::initRecursos($destino->planetas->id);
+
+                    $recursosDestino = $destino->planetas->recursos;
+                    foreach ($recursosArray as $recurso) {
+                        $difCarga = $recursosFlota[$recurso] - $recursosQuieroCargar[$recurso]; //si es <1 me llevo cosas
+
+                        if ($difCarga < 0) {
+                            $difCarga = 0;
+                        }
+
+                        if ($difCarga > 0 && $recursosFlota[$recurso] < $difCarga) { //no dejo mas de lo que llevo
+                            $difCarga = $recursosFlota[$recurso];
+                        }
+
+                        if ($difCarga != 0) { //se hace el traspaso
+                            $recursosFlota[$recurso] -= $difCarga;
+                            $recursosDestino[$recurso] += $difCarga;
+                        }
+                    }
+                    $recursosFlota->save();
+                    $recursosDestino->save();
+                    $destinoAlcanzado = true;
                 }
 
 

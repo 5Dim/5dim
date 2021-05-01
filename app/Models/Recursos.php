@@ -84,7 +84,11 @@ class Recursos extends Model
         //Calculamos lo producido
 
         //Calculamos los yacimientos y el terraformador
-        $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
+        $Terraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first();
+        $nivelTerraformador =0;
+        if($Terraformador!=null){
+            $nivelTerraformador = $Terraformador->nivel;
+        }
 
         if (empty($planetaActual->cualidades)) {
             CualidadesPlanetas::agregarCualidades($planetaActual->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);
@@ -176,25 +180,27 @@ class Recursos extends Model
         //Personal y creditos
         $recursos->personal += ($produccion->personal / 3600 * $fechaCalculo);
         $recursos->creditos += ((($numeroNiveles * $constanteCreditos * 1000) / (24 * 3600)) * $fechaCalculo);
-
+        //Log::info("recursos");    Log::info($recursos);Log::info($almacenes);
         //Comprobamos almacenes
-        $contAlmacenes = 0;
-        $recursos->gas >= $almacenes[$contAlmacenes]->capacidad ? $recursos->gas = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->plastico >= $almacenes[$contAlmacenes]->capacidad ? $recursos->plastico = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->ceramica >= $almacenes[$contAlmacenes]->capacidad ? $recursos->ceramica = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->liquido >= $almacenes[$contAlmacenes]->capacidad ? $recursos->liquido = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->micros >= $almacenes[$contAlmacenes]->capacidad ? $recursos->micros = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->fuel >= $almacenes[$contAlmacenes]->capacidad ? $recursos->fuel = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->ma >= $almacenes[$contAlmacenes]->capacidad ? $recursos->ma = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
-        $recursos->municion >= $almacenes[$contAlmacenes]->capacidad ? $recursos->municion = $almacenes[$contAlmacenes]->capacidad : '';
-        $contAlmacenes++;
+        if(!empty($almacenes)){
+            $contAlmacenes = 0;
+            $recursos->gas >= $almacenes[$contAlmacenes]->capacidad ? $recursos->gas = $almacenes[$contAlmacenes]->capacidad : '';
+            $contAlmacenes++;
+            $recursos->plastico >= $almacenes[$contAlmacenes]->capacidad ? $recursos->plastico = $almacenes[$contAlmacenes]->capacidad : '';
+            $contAlmacenes++;
+            $recursos->ceramica >= $almacenes[$contAlmacenes]->capacidad ? $recursos->ceramica = $almacenes[$contAlmacenes]->capacidad : '';
+            $contAlmacenes++;
+            $recursos->liquido >= $almacenes[$contAlmacenes]->capacidad ? $recursos->liquido = $almacenes[$contAlmacenes]->capacidad : '';
+            $contAlmacenes++;
+            $recursos->micros >= $almacenes[$contAlmacenes]->capacidad ? $recursos->micros = $almacenes[$contAlmacenes]->capacidad : '';
+            $contAlmacenes++;
+            $recursos->fuel >= $almacenes[$contAlmacenes]->capacidad ? $recursos->fuel = $almacenes[$contAlmacenes]->capacidad : '';
+            $contAlmacenes++;
+            $recursos->ma >= $almacenes[$contAlmacenes]->capacidad ? $recursos->ma = $almacenes[$contAlmacenes]->capacidad : '';
+            $contAlmacenes++;
+            $recursos->municion >= $almacenes[$contAlmacenes]->capacidad ? $recursos->municion = $almacenes[$contAlmacenes]->capacidad : '';
+            $contAlmacenes++;
+        }
 
         //Guardamos los cambios
         $recursos->save();

@@ -130,7 +130,11 @@ class Producciones extends Model
 
         if ($calcular) {
             //Calculamos los yacimientos y el terraformador
-            $nivelTerraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first()->nivel;
+            $Terraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first();
+            $nivelTerraformador =0;
+            if($Terraformador!=null){
+                $nivelTerraformador = $Terraformador->nivel;
+            }
             $produccion->mineral *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador) / 100);
             $produccion->cristal *= (1 + ($planetaActual->cualidades->cristal + $nivelTerraformador) / 100);
             $produccion->gas *= (1 + ($planetaActual->cualidades->gas + $nivelTerraformador) / 100);
