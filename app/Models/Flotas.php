@@ -23,7 +23,6 @@ class Flotas extends Model
 
         //bucle por nave
         foreach ($disenios as $disenio) {
-            //Log::info($disenio);
 
             $aflota = $disenio['enflota'];
             $ahangar = $disenio['enhangar'];
@@ -310,10 +309,10 @@ class Flotas extends Model
         $destiestrella = $destino['estrella'];
         $destiorbita = $destino['orbita'];
 
-        $destino['planeta_id']=null;
-        $destino['en_vuelo_id']=null;
-        $destino['en_recoleccion_id']=null;
-        $destino['en_orbita_id']=null;
+        $destino['planeta_id'] = null;
+        $destino['en_vuelo_id'] = null;
+        $destino['en_recoleccion_id'] = null;
+        $destino['en_orbita_id'] = null;
 
 
         $anchoUniverso = $constantesU->where('codigo', 'anchouniverso')->first()->valor;
@@ -336,9 +335,9 @@ class Flotas extends Model
             $flotaDestino = EnRecoleccion::where("publico", $destiestrella)->orWhere("nombre", $destiestrella)->first();
             if ($flotaDestino == null) {
                 $flotaDestino = EnOrbita::where("publico", $destiestrella)->orWhere("nombre", $destiestrella)->first();
-                $destino['en_orbita_id']=$flotaDestino->id;
+                $destino['en_orbita_id'] = $flotaDestino->id;
             } else {
-                $destino['en_recoleccion_id']=$flotaDestino->id;
+                $destino['en_recoleccion_id'] = $flotaDestino->id;
             }
             $destiestrella = $flotaDestino->planetas['estrella'];
             $destiorbita = $flotaDestino->planetas['orbita'];
@@ -426,7 +425,7 @@ class Flotas extends Model
         $errores = "";
 
         try {
-            if ($destinosDest['en_vuelo_id']==null && $destinosDest['en_recoleccion_id']==null && $destinosDest['en_orbita_id']==null && $destinosDest['orbita'] != null) { //destino es planeta
+            if ($destinosDest['en_vuelo_id'] == null && $destinosDest['en_recoleccion_id'] == null && $destinosDest['en_orbita_id'] == null && $destinosDest['orbita'] != null) { //destino es planeta
 
                 $planeta = Planetas::where('estrella', $destinosDest['estrella'])->where('orbita', $destinosDest['orbita'])->first();
                 if ($planeta != null) {
@@ -438,7 +437,7 @@ class Flotas extends Model
                 }
             } else { //destino flota
 
-                if ($destinosDest['en_vuelo_id']==null && $destinosDest['en_recoleccion_id']==null && $destinosDest['en_orbita_id']==null){
+                if ($destinosDest['en_vuelo_id'] == null && $destinosDest['en_recoleccion_id'] == null && $destinosDest['en_orbita_id'] == null) {
                     $errores = "No existe flota destino " . $destinosDest['estrella'];
                     throw new \Exception($errores);
                 }
@@ -607,12 +606,12 @@ destino 0 con lo que sale
 
         foreach ($listaDestinosEntrantes as $destino) {
 
-            $destinoAnterior = Destinos::where('fin', $destino['init'])->where("flota_id", $destino['flota_id'])->first();
+            $destinoAnterior = Destinos::where([['fin', $destino['init']], ["flota_id", $destino['flota_id']], ["id", '!=', $destino['id']]])->first();
 
             Log::info($destinoAnterior);
 
             if ($destinoAnterior != null && $destinoAnterior['visitado'] == 0) {
-                Log::info("destino anterior no ejecutado id=".$destino['id']);
+                Log::info("destino anterior no ejecutado id=" . $destino['id']);
                 continue;
             }
 
@@ -704,12 +703,12 @@ destino 0 con lo que sale
                         $difCarga = $recursosFlota[$recurso] - $recursosQuieroCargar[$recurso]; //si es <1 me llevo cosas
                         //Log::info($destinoEsMio." difCarga ".$difCarga);
 
-                        if ($difCarga < 0 && $destinoEsMio!=1) { // si no es mio no me llevo nada
+                        if ($difCarga < 0 && $destinoEsMio != 1) { // si no es mio no me llevo nada
                             $difCarga = 0;
                             //Log::info("0- difcarga borrada");
                         }
 
-                        if ($difCarga < 0 && $destinoEsMio==1 && $recursosDestino[$recurso] < -1*$difCarga) { //no me llevo mas de lo que hay
+                        if ($difCarga < 0 && $destinoEsMio == 1 && $recursosDestino[$recurso] < -1 * $difCarga) { //no me llevo mas de lo que hay
                             $difCarga = $recursosDestino[$recurso];
                             //Log::info("1- difCarga ".$difCarga);
                         }
@@ -719,7 +718,7 @@ destino 0 con lo que sale
                             //Log::info("2- difCarga ".$difCarga);
                         }
 
-                        if ($difCarga < 0 && $destinoEsMio==1 && $cargaTotalLLevo + $difCarga > $cargaMaxima) {  //no cargo mas de mi capacidad
+                        if ($difCarga < 0 && $destinoEsMio == 1 && $cargaTotalLLevo + $difCarga > $cargaMaxima) {  //no cargo mas de mi capacidad
                             $difCarga = $cargaMaxima - $cargaTotalLLevo;
                             //Log::info("3- difCarga ".$difCarga);
                         }
@@ -739,7 +738,7 @@ destino 0 con lo que sale
 
                     //Log::info($destinoEsMio . "prioridad " . $prioridadesDestino);
                     //carga por prioridades
-                    if ($destinoEsMio==1) {
+                    if ($destinoEsMio == 1) {
                         for ($ordinal = 1; $ordinal < 16; $ordinal++) {
                             foreach ($recursosArray as $recurso) {
                                 //Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
