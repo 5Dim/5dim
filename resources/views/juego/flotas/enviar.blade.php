@@ -349,9 +349,20 @@
                 </div>
             </div>
             <div id="lineaBotones"class="col-12 cajita-info rounded">
-                <button id="botonEnviar" type="button" class="btn btn-success col-12"  onclick="enviarFlota()">
-                    Enviar flota
-                </button>
+                <table class="table table-sm table-borderless text-center anchofijo align-middle">
+                    <tr>
+                        <td>
+                            <button id="botonModificar" type="button" class="btn btn-success  col-12"  onclick="modificarFlota()">
+                                Modificar flota
+                            </button>
+                        </td>
+                        <td>
+                        <button id="botonEnviar" type="button" class="btn btn-success  col-12"  onclick="enviarFlota()">
+                            Enviar flota
+                        </button>
+                        </td>
+                    </tr>
+                </table>
             </div>
             @for ($dest=0;$dest <$cantidadDestinos+1;$dest++)
                 @include('juego.flotas.destino', [ 'destino' => 'destino'.$dest, 'numero' => $dest])
