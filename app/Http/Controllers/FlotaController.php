@@ -124,6 +124,7 @@ class FlotaController extends Controller
                         array_push($prioridades, $flota->prioridadesEnFlota);
                     }
 
+                    $flota['tipoflota']=$tipoflota;
 
                     //$cargaDest=$destinos[0]->recursos;
                     //$prioridades=$destinos[0]->prioridades;
@@ -131,7 +132,7 @@ class FlotaController extends Controller
                     //Log::info("flota: ".$flota);
                     //Log::info("destinos: ".$destinos);
                     //Log::info("recursosDestino: ".$cargaDest);
-                    //Log::info("prioridadDestino: ".$prioridades);
+                    //Log::info("prioridadDestino: ");Log::info($prioridades);
                     //Log::info("recursos: ".$recursos);
                 } else {
                     $visionXDefecto = true;
@@ -586,7 +587,7 @@ class FlotaController extends Controller
                         $prioridadex->destinos_id = $destino->id;
                         $prioridadex->save();
 
-                        // Log::info("prioridadex ".$prioridadex." prioridades ");Log::info($prioridades[$dest]);
+                        Log::info("prioridadex ".$prioridadex." prioridades ");Log::info($prioridades[$dest]);
                         // Log::info("hecho destino ".$dest );
                     }
                 }
