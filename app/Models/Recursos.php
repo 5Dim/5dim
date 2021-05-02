@@ -85,8 +85,8 @@ class Recursos extends Model
 
         //Calculamos los yacimientos y el terraformador
         $Terraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first();
-        $nivelTerraformador =0;
-        if($Terraformador!=null){
+        $nivelTerraformador = 0;
+        if ($Terraformador != null) {
             $nivelTerraformador = $Terraformador->nivel;
         }
 
@@ -182,7 +182,7 @@ class Recursos extends Model
         $recursos->creditos += ((($numeroNiveles * $constanteCreditos * 1000) / (24 * 3600)) * $fechaCalculo);
         //Log::info("recursos");    Log::info($recursos);Log::info($almacenes);
         //Comprobamos almacenes
-        if(!empty($almacenes)){
+        if (!empty($almacenes)) {
             $contAlmacenes = 0;
             $recursos->gas >= $almacenes[$contAlmacenes]->capacidad ? $recursos->gas = $almacenes[$contAlmacenes]->capacidad : '';
             $contAlmacenes++;

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\CostesConstrucciones;
 use App\Models\Industrias;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class Construcciones extends Model
@@ -165,10 +166,6 @@ class Construcciones extends Model
             array_push($listaConstrucciones, $construccion);
         }
 
-        foreach ($listaConstrucciones as $construccion) {
-            $construccion->save();
-        }
-
         $industrias = new Industrias();
         $industrias->planetas_id = $planeta;
         $industrias->liquido = true;
@@ -176,7 +173,17 @@ class Construcciones extends Model
         $industrias->fuel = true;
         $industrias->ma = true;
         $industrias->municion = true;
-        $industrias->save();
+
+        DB::beginTransaction();
+        try {
+            foreach ($listaConstrucciones as $construccion) {
+                $construccion->save();
+            }
+            $industrias->save();
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+        }
     }
 
     public static function construcciones()

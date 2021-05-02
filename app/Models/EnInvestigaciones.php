@@ -30,9 +30,9 @@ class EnInvestigaciones extends Model
             if (empty($cola->investigaciones->jugador->alianzas_id)) {
                 $jugadoresDeAlianza = Jugadores::where('alianzas_id', $cola->investigaciones->jugadores->alianzas_id)->get();
                 foreach ($jugadoresDeAlianza as $jugador) {
-                    $jugador->investigaciones->where('codigo', $cola->investigaciones->codigo)->nivel = $cola->nivel;
-                    // dd($jugador->investigaciones);
-                    $jugador->investigaciones->where('codigo', $cola->investigaciones->codigo)->first()->save();
+                    $invest = $jugador->investigaciones->where('codigo', $cola->investigaciones->codigo)->first();
+                    $invest->nivel = $cola->nivel;
+                    $invest->save();
                 }
             }
             $cola->investigaciones->save();

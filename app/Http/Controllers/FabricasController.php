@@ -16,6 +16,7 @@ use App\Models\Jugadores;
 use App\Models\Disenios;
 use App\Models\EnDisenios;
 use App\Models\MensajesIntervinientes;
+use Illuminate\Support\Facades\Log;
 
 class FabricasController extends Controller
 {
@@ -124,38 +125,43 @@ class FabricasController extends Controller
         $tiempo = $disenio->mejoras->tiempo;
         $inicio = date("Y-m-d H:i:s");
         // $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
-        $cantidadActual = $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota + $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enHangar;
-        $cantidad = $cantidadInicial;
+        $disenioEnPlaneta = $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first();
+        if (!empty($disenioEnPlaneta)) {
+            if ($disenioEnPlaneta->enFlota > 0) {
+                $disenioEnPlaneta->cantidad += $disenioEnPlaneta->enFlota;
+                $disenioEnPlaneta->enFlota = 0;
+            }
+            if ($disenioEnPlaneta->enHangar > 0) {
+                $disenioEnPlaneta->cantidad += $disenioEnPlaneta->enHangar;
+                $disenioEnPlaneta->enHangar = 0;
+            }
+            if ($cantidadInicial > $disenioEnPlaneta->cantidad) {
+                $cantidad = $disenioEnPlaneta->cantidad;
+            }else {
+                $cantidad = $cantidadInicial;
+            }
+            $disenioEnPlaneta->cantidad -= $cantidad;
+            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
+            $nivelHangar = $planetaActual->construcciones->where('codigo', 'hangar')->first()->nivel;
+            $constanteVelocidad = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
+            $cadenaProduccion = 1;
+            $final = (strtotime($inicio) + ((($tiempo * $cantidad) * $cadenaProduccion)) / (1 + ($constanteVelocidad * $nivelHangar / 100)));
 
-        if ($cantidad > $cantidadActual) {
-            $cantidad = $cantidadActual;
-            $cantidadInicial = $cantidadActual;
+            //Generamos la cola
+            $cola = new EnDisenios();
+            $cola->nombre = $disenio->nombre;
+            $cola->accion = 'Reciclando';
+            $cola->tiempo = $tiempo;
+            $cola->cantidad = $cantidad;
+            $cola->disenios_id = $disenio->id;
+            $cola->planetas_id = session()->get('planetas_id');
+            $cola->created_at = $inicio;
+            $cola->finished_at = date('Y/m/d H:i:s', $final);
+            $cola->save();
+        }else {
+            Log::info("ERROR AL RECICLAR USER: " . session()->get('jugadores_id'));
         }
 
-        if ($cantidad > $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota) {
-            $cantidad -= $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota;
-            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota = 0;
-            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enHangar -= $cantidad;
-        } else {
-            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota -= $cantidad;
-        }
-        $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
-        $nivelHangar = $planetaActual->construcciones->where('codigo', 'hangar')->first()->nivel;
-        $constanteVelocidad = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
-        $cadenaProduccion = 1;
-        $final = (strtotime($inicio) + ((($tiempo * $cantidad) * $cadenaProduccion)) / (1 + ($constanteVelocidad * $nivelHangar / 100)));
-
-        //Generamos la cola
-        $cola = new EnDisenios();
-        $cola->nombre = $disenio->nombre;
-        $cola->accion = 'Reciclando';
-        $cola->tiempo = $tiempo; // AQUI FALTA LA FUNCION DEL TIEMPO!
-        $cola->cantidad = $cantidadInicial;
-        $cola->disenios_id = $disenio->id;
-        $cola->planetas_id = session()->get('planetas_id');
-        $cola->created_at = $inicio;
-        $cola->finished_at = date('Y/m/d H:i:s', $final);
-        $cola->save();
 
         return redirect('/juego/disenio');
     }
