@@ -9,7 +9,7 @@
                 style="margin-top: 5px !important">
                 <tr>
                     <td colspan="4" class="text-light text-center borderless align-middle">
-                        <big>Modelo: {{ $fuselaje->codigo }}<big>
+                        <big>Modelo: {{ ucfirst(strtolower($fuselaje->codigo)) }}<big>
                     </td>
                     <td colspan="4" class="text-light text-center borderless align-middle">
                         <big>Propiedad de {{ $fuselaje->categoria }}<big>

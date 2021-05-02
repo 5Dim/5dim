@@ -4,24 +4,27 @@
             <table class="table table-borderless borderless table-sm text-center anchofijo"
                 style="margin-top: 5px !important">
                 <tr>
-                    <th colspan="3" class="text-success text-center borderless align-middle">
+                    <th colspan="2" class="text-success text-center borderless align-middle">
                         <big>Creador: {{ $disenio->creador->nombre }}<big>
                     </th>
                     <th colspan="2" class="text-success text-center borderless align-middle">
                         <big>Tamaño: {{ $disenio->fuselajes->tamanio }}<big>
                     </th>
                     <th colspan="2" class="text-success text-center borderless align-middle">
-                        <big>Modelo: {{ $disenio->nombre }}<big>
+                        <big>Modelo: {{ ucfirst(strtolower($disenio->fuselajes->codigo)) }}<big>
                     </th>
-                    <th colspan="3" class="text-success text-center borderless align-middle">
+                    <th colspan="2" class="text-success text-center borderless align-middle">
+                        <big>Nombre: {{ $disenio->nombre }}<big>
+                    </th>
+                    <th colspan="2" class="text-success text-center borderless align-middle">
                         <big>Cantidad:
-                            {{ !empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()) ? number_format($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota + $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enHangar + $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad, 0, ',', '.') : 0 }}<big>
+                            {{ !empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()) ? number_format($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad, 0, ',', '.') : 0 }}<big>
                     </th>
                 </tr>
                 <tr>
                     <td rowspan="4" class="anchofijo text-warning borderless">
                         <img class="rounded"
-                            src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/naveMT' . $disenio->fuselajes_id . '.jpg') }}"
+                            src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/nave' . $disenio->fuselajes_id . '.png') }}"
                             width="180" height="119">
                     </td>
                     <td colspan="7" class="borderless"></td>
@@ -272,7 +275,7 @@
             <table class="table table-sm table-borderless text-center anchofijo align-middle">
                 <tr>
                     <td>
-                        @if ($nivelHangar < 1)
+                        @if ($nivelHangar < 1 || empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()) || $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad == 0)
                             <button type="button" class="btn btn-outline-light btn-lg col-12" disabled>
                                 <i class="fa fa-info-circle"></i> Reciclar nave
                             </button>
@@ -307,7 +310,7 @@
                         </div>
                     </td>
                     <td>
-                        @if ($nivelHangar < 1)
+                        @if ($nivelHangar < 1 || $disenio->costes->mineral > $recursos->mineral || $disenio->costes->cristal > $recursos->cristal || $disenio->costes->gas > $recursos->gas || $disenio->costes->plastico > $recursos->plastico || $disenio->costes->ceramica > $recursos->ceramica || $disenio->costes->liquidos > $recursos->liquidos || $disenio->costes->micros > $recursos->micros || $disenio->costes->personal > $recursos->personal)
                             <button type="button" class="btn btn-outline-light btn-lg col-12" disabled>
                                 <i class="fa fa-plus-circle"></i> Construir
                             </button>
