@@ -1,16 +1,17 @@
 @extends('juego.layouts.recursosFrame')
+
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link active" id="cazas-tab" data-bs-toggle="tab" href="#cazas" role="tab"
-                        aria-controls="cazas" aria-selected="true">
+                    <a class="nav-item nav-link" id="cazas-tab" data-bs-toggle="tab" href="#cazas" role="tab"
+                        aria-controls="cazas" aria-selected="false">
                         Naves cazas
                     </a>
-                    <a class="nav-item nav-link" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
-                        aria-controls="ligeras" aria-selected="false">
+                    <a class="nav-item nav-link active" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
+                        aria-controls="ligeras" aria-selected="true">
                         Naves Ligeras
                     </a>
                     <a class="nav-item nav-link" id="medias-tab" data-bs-toggle="tab" href="#medias" role="tab"
@@ -32,7 +33,7 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
+                <div class="tab-pane fade" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                     @foreach ($cazas as $caza)
                         @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $caza,
@@ -41,7 +42,7 @@
                         ])
                     @endforeach
                 </div>
-                <div class="tab-pane fade" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
+                <div class="tab-pane fade show active" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
                     @foreach ($ligeras as $ligera)
                         @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $ligera,
