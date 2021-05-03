@@ -168,11 +168,11 @@ class Construcciones extends Model
 
         $industrias = new Industrias();
         $industrias->planetas_id = $planeta;
-        $industrias->liquido = true;
-        $industrias->micros = true;
-        $industrias->fuel = true;
-        $industrias->ma = true;
-        $industrias->municion = true;
+        $industrias->liquido = false;
+        $industrias->micros = false;
+        $industrias->fuel = false;
+        $industrias->ma = false;
+        $industrias->municion = false;
 
         DB::beginTransaction();
         try {
@@ -182,6 +182,7 @@ class Construcciones extends Model
             $industrias->save();
             DB::commit();
         } catch (\Throwable $e) {
+            Log::info("ERROR NUEVO PLANETA: " . $e);
             DB::rollBack();
         }
     }
