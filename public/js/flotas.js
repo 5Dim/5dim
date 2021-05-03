@@ -26,14 +26,13 @@ for (dest = 1; dest < destinos.length; dest++) {
 Avisos();
 
 function CargarFlotaEditada() {
-
     if (flota.id == undefined) {
         //planeta
         nombreorigen = "Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
         EsconderPorId("listaPrioridades0");
     } else {
         //flota
-        if (destinos[0]["tipoflota"] == undefined ){
+        if (destinos[0]["tipoflota"] == undefined) {
             EsconderPorId("listaPrioridades0");
         }
 
@@ -112,7 +111,7 @@ function CargarValoresPlaneta() {
         } else {
             valNaves[este].cantidad = nave.cantidad;
         }
-        valNaves[este].cantidadT =(1* valNaves[este].cantidad + 1*valNaves[este].enflota +1* valNaves[este].enhangar); //es constante
+        valNaves[este].cantidadT = 1 * valNaves[este].cantidad + 1 * valNaves[este].enflota + 1 * valNaves[este].enhangar; //es constante
 
         //ayuda visual esconde los 0
         $("#nombre" + diseno.id).text(diseno.nombre);
@@ -466,7 +465,7 @@ function Avisos() {
 
             if (soyUltimoDestino) {
                 $(".enviarRecursos" + dest).attr("disabled", true);
-                if(orden != "Recolectar" && orden != "Extraer" && orden != "Orbitar"){
+                if (orden != "Recolectar" && orden != "Extraer" && orden != "Orbitar") {
                     $(".prioridadRecursos" + dest).attr("disabled", true);
                 } else {
                     $(".prioridadRecursos" + dest).attr("disabled", false);
@@ -889,8 +888,8 @@ function RecursosSiDestino(dest) {
 
 var fechaAhoraMilisec = Date.now();
 primeraActualizacionEnVuelo = true;
-primeraActualizacionEnRecoleccion=true;
-primeraActualizacionEnOrbita=true;
+primeraActualizacionEnRecoleccion = true;
+primeraActualizacionEnOrbita = true;
 
 function verFlotasEnVuelo() {
     haceCuantoActualice = Date.now() - fechaAhoraMilisec;
@@ -899,15 +898,63 @@ function verFlotasEnVuelo() {
         primeraActualizacionEnVuelo = false;
         $.ajax({
             type: "GET",
-            //dataType: "json",
+            // dataType: "json",
             url: "/juego/flotas/verFlotasEnVuelo",
-            //contentType: 'application/json; charset=utf-8',
+            // contentType: 'application/json; charset=utf-8',
             //data: { },
             //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
             beforeSend: function() {},
             success: function(data) {
                 //alert(data);
-                RellenarFlotasEnVuelo(data,"tablaFlotas");
+                RellenarFlotasEnVuelo(data, "tablaFlotas");
+            },
+            error: function(xhr, textStatus, thrownError) {
+                console.log("status", xhr.status);
+                console.log("error", thrownError);
+                //alert(data.errores);
+            },
+        });
+    }
+}
+
+function verFlotasEnRecoleccion() {
+    haceCuantoActualice = Date.now() - fechaAhoraMilisec;
+
+    if (primeraActualizacionEnRecoleccion || haceCuantoActualice > 30000) {
+        primeraActualizacionEnRecoleccion = false;
+        $.ajax({
+            type: "GET",
+            // dataType: "json",
+            url: "/juego/flotas/verFlotasEnRecoleccion",
+            // contentType: 'application/json; charset=utf-8',
+            beforeSend: function() {},
+            success: function(data) {
+                //alert(data);
+                RellenarFlotasEnVuelo(data, "tablaRecoleccion");
+            },
+            error: function(xhr, textStatus, thrownError) {
+                console.log("status", xhr.status);
+                console.log("error", thrownError);
+                //alert(data.errores);
+            },
+        });
+    }
+}
+
+function verFlotasEnOrbita() {
+    haceCuantoActualice = Date.now() - fechaAhoraMilisec;
+
+    if (primeraActualizacionEnOrbita || haceCuantoActualice > 30000) {
+        primeraActualizacionEnOrbita = false;
+        $.ajax({
+            type: "GET",
+            // dataType: "json",
+            url: "/juego/flotas/verFlotasEnOrbita",
+            // contentType: 'application/json; charset=utf-8',
+            beforeSend: function() {},
+            success: function(data) {
+                //alert(data);
+                RellenarFlotasEnVuelo(data, "tablaOrbitando");
             },
             error: function(xhr, textStatus, thrownError) {
                 console.log("status", xhr.status);
@@ -1275,51 +1322,4 @@ function regresarFlota(numeroflota) {
             }
         },
     });
-}
-
-
-function verFlotasEnRecoleccion() {
-    haceCuantoActualice = Date.now() - fechaAhoraMilisec;
-
-    if (primeraActualizacionEnRecoleccion || haceCuantoActualice > 30000) {
-        primeraActualizacionEnRecoleccion = false;
-        $.ajax({
-            type: "GET",
-            //dataType: "json",
-            url: "/juego/flotas/verFlotasEnRecoleccion",
-            beforeSend: function() {},
-            success: function(data) {
-                //alert(data);
-                RellenarFlotasEnVuelo(data,"tablaRecoleccion");
-            },
-            error: function(xhr, textStatus, thrownError) {
-                console.log("status", xhr.status);
-                console.log("error", thrownError);
-                //alert(data.errores);
-            },
-        });
-    }
-}
-
-function verFlotasEnOrbita() {
-    haceCuantoActualice = Date.now() - fechaAhoraMilisec;
-
-    if (primeraActualizacionEnOrbita || haceCuantoActualice > 30000) {
-        primeraActualizacionEnOrbita = false;
-        $.ajax({
-            type: "GET",
-            //dataType: "json",
-            url: "/juego/flotas/verFlotasEnOrbita",
-            beforeSend: function() {},
-            success: function(data) {
-                //alert(data);
-                RellenarFlotasEnVuelo(data,"tablaOrbitando");
-            },
-            error: function(xhr, textStatus, thrownError) {
-                console.log("status", xhr.status);
-                console.log("error", thrownError);
-                //alert(data.errores);
-            },
-        });
-    }
 }

@@ -44,14 +44,60 @@
                     <div id="selectorPlaneta{{ $numero }}">
                         <select id="listaPlanetas{{ $numero }}" class="form-control ediciondestino">
                             <option value="none">Selecciona un planeta</option>
-                            <optgroup label="Propios">
-                                @foreach (Auth::user()->jugador->planetas as $planeta)
+                            <optgroup label="Planetas propios">
+                                @foreach ($planetasJugador as $planeta)
                                     <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
                                         {{ $planeta->estrella }}x{{ $planeta->orbita }}
                                         {{ $planeta->nombre }}
                                     </option>
                                 @endforeach
                             </optgroup>
+                            @if (!empty($flotasEnOrbitaPropias[0]))
+                                <optgroup label="Flotas orbitando propias">
+                                    @foreach ($flotasEnOrbitaPropias as $flota)
+                                        <option value="{{ $flota->estrella }}x{{ $flota->orbita }}">
+                                            {{ $flota->nombre }}
+                                        </option>
+                                    @endforeach
+                                </optgroup>
+                            @endif
+                            @if (!empty($flotasEnRecoleccionPropias[0]))
+                                <optgroup label="Flotas en recoleccion propias">
+                                    @foreach ($flotasEnRecoleccionPropias as $flota)
+                                        <option value="{{ $flota->estrella }}x{{ $flota->orbita }}">
+                                            {{ $flota->nombre }}
+                                        </option>
+                                    @endforeach
+                                </optgroup>
+                            @endif
+                            @if (!empty($planetasAlianza))
+                                <optgroup label="Planetas de alianza">
+                                    @foreach ($planetasAlianza as $planeta)
+                                        <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
+                                            {{ $planeta->estrella }}x{{ $planeta->orbita }}
+                                            {{ $planeta->nombre }}
+                                        </option>
+                                    @endforeach
+                                </optgroup>
+                            @endif
+                            @if (!empty($flotasEnOrbitaAlianza))
+                                <optgroup label="Flotas orbitando de alianza">
+                                    @foreach ($flotasEnOrbitaAlianza as $flota)
+                                        <option value="{{ $flota->estrella }}x{{ $flota->orbita }}">
+                                            {{ $flota->nombre }}
+                                        </option>
+                                    @endforeach
+                                </optgroup>
+                            @endif
+                            @if (!empty($flotasEnRecoleccionAlianza))
+                                <optgroup label="Flotas en recoleccion de alianza">
+                                    @foreach ($flotasEnRecoleccionAlianza as $flota)
+                                        <option value="{{ $flota->estrella }}x{{ $flota->orbita }}">
+                                            {{ $flota->nombre }}
+                                        </option>
+                                    @endforeach
+                                </optgroup>
+                            @endif
                         </select>
                     </div>
                 </td>

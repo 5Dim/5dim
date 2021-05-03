@@ -124,7 +124,7 @@ class FlotaController extends Controller
                         array_push($prioridades, $flota->prioridadesEnFlota);
                     }
 
-                    $flota['tipoflota']=$tipoflota;
+                    $flota['tipoflota'] = $tipoflota;
 
                     //$cargaDest=$destinos[0]->recursos;
                     //$prioridades=$destinos[0]->prioridades;
@@ -226,6 +226,17 @@ class FlotaController extends Controller
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
 
+        $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
+        $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
+
+        if (!empty($jugadorAlianza)) {
+            $flotasEnOrbitaAlianza = $jugadorAlianza->enOrbita;
+            $flotasEnRecoleccionAlianza = $jugadorAlianza->enRecoleccion;
+        } else {
+            $flotasEnOrbitaAlianza = null;
+            $flotasEnRecoleccionAlianza = null;
+        }
+
         //Log::info($navesEstacionadas );
         //Log::info($destinosP);
 
@@ -258,6 +269,10 @@ class FlotaController extends Controller
             'cargaDest',
             'prioridades',
             'flota',
+            'flotasEnOrbitaPropias',
+            'flotasEnRecoleccionPropias',
+            'flotasEnOrbitaAlianza',
+            'flotasEnRecoleccionAlianza',
 
         ));
     }
@@ -286,8 +301,8 @@ class FlotaController extends Controller
     prioridades destino 1 si vas a recolectar
     */
 
-    public function enviarFlota(Request $request, $id = false)
-    { //$id es de la flota en orbita de la que salimos
+    public function enviarFlota(Request $request, $id = false) //$id es de la flota en orbita de la que salimos
+    {
 
         $turboAtaque = 0; //trampas gordas, tiempo de llegar al destino
 
@@ -317,7 +332,8 @@ class FlotaController extends Controller
             $diseniosJugador = [];
             foreach ($navesEstacionadas as $nave) {
                 $nave = DiseniosEnFlota::find($nave["id"]);
-                Log::info("nave"); Log::info($nave);
+                Log::info("nave");
+                Log::info($nave);
                 $nave->disenios->mejoras;
                 $nave->disenios->tamanio = $nave->disenios->fuselajes->tamanio;
 
@@ -587,7 +603,8 @@ class FlotaController extends Controller
                         $prioridadex->destinos_id = $destino->id;
                         $prioridadex->save();
 
-                        Log::info("prioridadex ".$prioridadex." prioridades ");Log::info($prioridades[$dest]);
+                        Log::info("prioridadex " . $prioridadex . " prioridades ");
+                        Log::info($prioridades[$dest]);
                         // Log::info("hecho destino ".$dest );
                     }
                 }
@@ -675,30 +692,19 @@ class FlotaController extends Controller
 
     public function verFlotasEnVuelo()
     {
-        Log::info("VUELO");
         $flotas = Astrometria::flotasVisibles();
-
-        //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
         return $flotas;
     }
 
     public function verFlotasEnRecoleccion()
     {
-        Log::info("RECOLECCION");
         $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enrecoleccion");
-
-        //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
-        //Log::info($flotas);
         return $flotas;
     }
 
     public function verFlotasEnOrbita()
     {
-        Log::info("ORBITA");
         $flotas = Astrometria::flotasVisiblesEnRecoleccionOrbita("enorbita");
-
-        //Flotas::llegadaFlotas(); // mandar a midleware terminaflotas
-        //Log::info($flotas);
         return $flotas;
     }
 
