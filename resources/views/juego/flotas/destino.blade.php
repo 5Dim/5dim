@@ -55,8 +55,8 @@
                             @if (!empty($flotasEnOrbitaPropias[0]))
                                 <optgroup label="Flotas orbitando propias">
                                     @foreach ($flotasEnOrbitaPropias as $flota)
-                                        <option value="{{ $flota->estrella }}x{{ $flota->orbita }}">
-                                            {{ $flota->nombre }}
+                                        <option value="{{ $flota->publico }}">
+                                            {{ $flota->nombre }} ({{ $flota->publico }})
                                         </option>
                                     @endforeach
                                 </optgroup>
@@ -64,8 +64,8 @@
                             @if (!empty($flotasEnRecoleccionPropias[0]))
                                 <optgroup label="Flotas en recoleccion propias">
                                     @foreach ($flotasEnRecoleccionPropias as $flota)
-                                        <option value="{{ $flota->estrella }}x{{ $flota->orbita }}">
-                                            {{ $flota->nombre }}
+                                        <option value="{{ $flota->publico }}">
+                                            {{ $flota->nombre }} ({{ $flota->publico }})
                                         </option>
                                     @endforeach
                                 </optgroup>
@@ -83,8 +83,8 @@
                             @if (!empty($flotasEnOrbitaAlianza))
                                 <optgroup label="Flotas orbitando de alianza">
                                     @foreach ($flotasEnOrbitaAlianza as $flota)
-                                        <option value="{{ $flota->estrella }}x{{ $flota->orbita }}">
-                                            {{ $flota->nombre }}
+                                        <option value="{{ $flota->publico }}">
+                                            {{ $flota->nombre }} ({{ $flota->publico }})
                                         </option>
                                     @endforeach
                                 </optgroup>
@@ -92,8 +92,8 @@
                             @if (!empty($flotasEnRecoleccionAlianza))
                                 <optgroup label="Flotas en recoleccion de alianza">
                                     @foreach ($flotasEnRecoleccionAlianza as $flota)
-                                        <option value="{{ $flota->estrella }}x{{ $flota->orbita }}">
-                                            {{ $flota->nombre }}
+                                        <option value="{{ $flota->publico }}">
+                                            {{ $flota->nombre }} ({{ $flota->publico }})
                                         </option>
                                     @endforeach
                                 </optgroup>

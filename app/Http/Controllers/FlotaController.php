@@ -283,8 +283,9 @@ class FlotaController extends Controller
         //Log::info('trear de: '.$estrella."x".$orbita);
 
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-
-        $recursos = Planetas::where([['estrella', $estrella], ['orbita', $orbita], ['jugadores_id', $jugadorActual->id]])->first()->recursos;
+        $idJugadores = Alianzas::idMiembros($jugadorActual->alianzas->id);
+        Recursos::calcularRecursos(session()->get('planetas_id'));
+        $recursos = Planetas::where([['estrella', $estrella], ['orbita', $orbita]])->whereIn('jugadores_id', $idJugadores)->first()->recursos;
         return compact('recursos');
     }
 
