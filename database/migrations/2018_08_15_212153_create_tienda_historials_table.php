@@ -17,6 +17,10 @@ class CreateTiendaHistorialsTable extends Migration
             $table->id();
             $table->string('accion');
             $table->unsignedMediumInteger('coste');
+            $table->unsignedBigInteger('tiendas_id')->unsigned();
+            $table->foreign('tiendas_id')->references('id')->on('tiendas');
+            $table->unsignedBigInteger('users_id')->unsigned();
+            $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

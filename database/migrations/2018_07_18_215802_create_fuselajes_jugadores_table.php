@@ -15,6 +15,10 @@ class CreateFuselajesJugadoresTable extends Migration
     {
         Schema::create('fuselajes_jugadores', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('fuselajes_id')->unsigned();
+            $table->foreign('fuselajes_id')->references('id')->on('fuselajes');
+            $table->unsignedBigInteger('jugadores_id')->unsigned();
+            $table->foreign('jugadores_id')->references('id')->on('jugadores');
         });
     }
 

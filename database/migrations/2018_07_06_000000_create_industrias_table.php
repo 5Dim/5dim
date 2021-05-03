@@ -15,11 +15,13 @@ class CreateIndustriasTable extends Migration
     {
         Schema::create('industrias', function (Blueprint $table) {
             $table->id();
-            $table->boolean('liquido'); // si esta activa la industria
+            $table->boolean('liquido');
             $table->boolean('micros');
             $table->boolean('fuel');
             $table->boolean('ma');
             $table->boolean('municion');
+            $table->unsignedBigInteger('planetas_id')->unsigned();
+            $table->foreign('planetas_id')->references('id')->on('planetas');
         });
     }
 

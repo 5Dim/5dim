@@ -15,6 +15,10 @@ class CreateDiseniosJugadoresTable extends Migration
     {
         Schema::create('disenios_jugadores', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('disenios_id')->unsigned();
+            $table->foreign('disenios_id')->references('id')->on('disenios');
+            $table->unsignedBigInteger('jugadores_id')->unsigned();
+            $table->foreign('jugadores_id')->references('id')->on('jugadores');
         });
     }
 

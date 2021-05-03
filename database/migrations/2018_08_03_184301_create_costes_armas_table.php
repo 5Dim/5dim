@@ -43,6 +43,8 @@ class CreateCostesArmasTable extends Migration
             $table->unsignedMediumInteger('cargaMega');
             $table->unsignedMediumInteger('recolector')->default(0);
             $table->unsignedMediumInteger('extractor')->default(0);
+            $table->unsignedTinyInteger('armas_codigo');
+            $table->foreign('armas_codigo')->references('codigo')->on('armas');
             //$table->timestamps();
         });
     }

@@ -24,6 +24,8 @@ class CreateCostesFuselajesTable extends Migration
             $table->integer('micros');
             $table->integer('personal');
             $table->integer('puntos');
+            $table->unsignedBigInteger('fuselajes_id')->unsigned();
+            $table->foreign('fuselajes_id')->references('id')->on('fuselajes');
         });
     }
 

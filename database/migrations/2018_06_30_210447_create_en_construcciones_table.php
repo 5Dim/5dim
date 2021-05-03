@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddEnConstruccionesIdToConstrucciones extends Migration
+class CreateEnConstruccionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class AddEnConstruccionesIdToConstrucciones extends Migration
      */
     public function up()
     {
-        Schema::table('en_construcciones', function (Blueprint $table) {
+        Schema::create('en_construcciones', function (Blueprint $table) {
+            $table->id();
+            $table->decimal('personal', 13, 2);
+            $table->unsignedTinyInteger('nivel');
+            $table->string('accion');
             $table->unsignedBigInteger('construcciones_id')->unsigned();
             $table->foreign('construcciones_id')->references('id')->on('construcciones');
+            $table->timestamps();
+            $table->timestamp('finished_at')->nullable();
         });
     }
 
@@ -26,9 +32,6 @@ class AddEnConstruccionesIdToConstrucciones extends Migration
      */
     public function down()
     {
-        Schema::table('en_construcciones', function (Blueprint $table) {
-            $table->dropforeign(['construcciones_id']);
-            $table->dropColumn('construcciones_id');
-        });
+        Schema::dropIfExists('en_construcciones');
     }
 }

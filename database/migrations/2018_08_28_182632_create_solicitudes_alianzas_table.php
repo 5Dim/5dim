@@ -16,6 +16,10 @@ class CreateSolicitudesAlianzasTable extends Migration
         Schema::create('solicitudes_alianzas', function (Blueprint $table) {
             $table->id();
             $table->text('solicitud');
+            $table->unsignedBigInteger('alianzas_id')->unsigned();
+            $table->foreign('alianzas_id')->references('id')->on('alianzas');
+            $table->unsignedBigInteger('jugadores_id')->unsigned();
+            $table->foreign('jugadores_id')->references('id')->on('jugadores');
             $table->timestamps();
         });
     }

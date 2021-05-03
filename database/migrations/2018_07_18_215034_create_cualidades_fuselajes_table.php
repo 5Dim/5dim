@@ -41,6 +41,8 @@ class CreateCualidadesFuselajesTable extends Migration
             $table->unsignedTinyInteger('mejoras');
             $table->unsignedSmallInteger('blindajes');
             $table->unsignedSmallInteger('motores');
+            $table->unsignedBigInteger('fuselajes_id')->unsigned();
+            $table->foreign('fuselajes_id')->references('id')->on('fuselajes');
         });
     }
 

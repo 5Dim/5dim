@@ -23,6 +23,8 @@ class CreatePlanetasTable extends Migration
             $table->unsignedInteger('creacion')->nullable();
             $table->unsignedMediumInteger('coordx')->nullable();
             $table->unsignedMediumInteger('coordy')->nullable();
+            $table->unsignedBigInteger('jugadores_id')->unsigned()->nullable();
+            $table->foreign('jugadores_id')->references('id')->on('jugadores');
             $table->timestamps();
         });
     }

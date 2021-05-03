@@ -20,6 +20,10 @@ class CreateDiseniosTable extends Migration
             $table->integer('posicion')->default(9);
             $table->string('codigo');
             $table->unsignedTinyInteger('skin')->default(1);
+            $table->unsignedBigInteger('jugadores_id')->unsigned();
+            $table->foreign('jugadores_id')->references('id')->on('jugadores');
+            $table->unsignedBigInteger('fuselajes_id')->unsigned();
+            $table->foreign('fuselajes_id')->references('id')->on('fuselajes');
             $table->timestamps();
         });
     }

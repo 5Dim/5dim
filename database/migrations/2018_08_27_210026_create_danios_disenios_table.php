@@ -25,6 +25,8 @@ class CreateDaniosDiseniosTable extends Migration
             $table->unsignedInteger('distancia5')->default(0);
             $table->unsignedInteger('distancia6')->default(0);
             $table->unsignedInteger('distancia7')->default(0);
+            $table->unsignedBigInteger('disenios_id')->unsigned();
+            $table->foreign('disenios_id')->references('id')->on('disenios');
 
         // $table->timestamps();
         });

@@ -24,20 +24,15 @@ class MensajesController extends Controller
         extract($compact);
 
         //Todos los jugadores para la lista de envio
-        $jugadores = Jugadores::all();
+        $jugadores = Jugadores::orderBy("nombre")->get();
 
         //Lista de mensajes recibidos
         if ($jugadorActual->alianza_id) {
-            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orWhere('emisor', $jugadorAlianza->id)->get();
+            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orWhere('emisor', $jugadorAlianza->id)->orderBy('id', 'desc')->get();
+            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orWhere('receptor', $jugadorAlianza->id)->orderBy('id', 'desc')->get();
         } else {
-            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->get();
-        }
-
-        //Lista de mensajes enviados
-        if ($jugadorActual->alianza_id) {
-            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orWhere('receptor', $jugadorAlianza->id)->get();
-        } else {
-            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
+            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orderBy('id', 'desc')->get();
+            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orderBy('id', 'desc')->get();
         }
 
         foreach ($recibidos as $recibido) {
@@ -74,13 +69,15 @@ class MensajesController extends Controller
         $mensaje->eliminado = false;
         $mensaje->categoria = "recibidos";
         $mensaje->save();
-        $receptor = request()->input('listaJugadores');
-        if (!empty($receptor) or $receptor != 0) {
-            $interviniente = new MensajesIntervinientes();
-            $interviniente->receptor = $receptor;
-            $interviniente->leido = false;
-            $interviniente->mensajes_id = $mensaje->id;
-            $interviniente->save();
+        $receptores = request()->input('listaJugadores');
+        if (!empty($receptores)) {
+            foreach ($receptores as $receptor) {
+                $interviniente = new MensajesIntervinientes();
+                $interviniente->receptor = $receptor;
+                $interviniente->leido = false;
+                $interviniente->mensajes_id = $mensaje->id;
+                $interviniente->save();
+            }
         }
         return redirect('/juego/mensajes');
     }

@@ -18,6 +18,8 @@ class CreateCualidadesDiseniosTable extends Migration
             $table->string('codigo')->index();
             $table->unsignedSmallInteger('cantidad');
             $table->string('categoria');
+            $table->unsignedBigInteger('disenios_id')->unsigned();
+            $table->foreign('disenios_id')->references('id')->on('disenios');
         });
     }
 

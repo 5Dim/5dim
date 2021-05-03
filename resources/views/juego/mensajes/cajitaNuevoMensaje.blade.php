@@ -11,7 +11,7 @@
                 <button class="btn btn-success col-12 align-bottom" type="submit">
                     <i class="fa fa-share-square"></i> Enviar
                 </button>
-                <select id="listaJugadores" name="listaJugadores" type="text" class="form-control"></select>
+                <select id="listaJugadores" name="listaJugadores[]" type="text" class="form-control" multiple></select>
             </div>
         </div>
     </form>
@@ -19,7 +19,7 @@
 <script>
     $(document).ready(function() {
         $('#listaJugadores').select2({
-            // theme: "bootstrap",
+            theme: "classic",
             width: '100%',
             // closeOnSelect: false,
             placeholder: "Nombre del jugador",

@@ -23,6 +23,8 @@ class CreateCualidadesPlanetasTable extends Migration
             $table->unsignedMediumInteger('eje_x');
             $table->unsignedMediumInteger('eje_y');
             $table->unsignedTinyInteger('enfriamiento');
+            $table->unsignedBigInteger('planetas_id')->unsigned();
+            $table->foreign('planetas_id')->references('id')->on('planetas');
             $table->timestamps();
         });
     }

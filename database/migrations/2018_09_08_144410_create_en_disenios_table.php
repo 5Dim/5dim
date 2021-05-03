@@ -19,6 +19,10 @@ class CreateEnDiseniosTable extends Migration
             $table->string('accion');
             $table->unsignedMediumInteger('cantidad');
             $table->unsignedInteger('tiempo');
+            $table->unsignedBigInteger('disenios_id')->unsigned();
+            $table->foreign('disenios_id')->references('id')->on('disenios');
+            $table->unsignedBigInteger('planetas_id')->unsigned();
+            $table->foreign('planetas_id')->references('id')->on('planetas');
             $table->timestamps();
             $table->timestamp('finished_at')->nullable();
         });

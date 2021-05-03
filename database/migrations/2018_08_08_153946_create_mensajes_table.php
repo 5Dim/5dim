@@ -18,7 +18,9 @@ class CreateMensajesTable extends Migration
             $table->string('asunto');
             $table->mediumText('mensaje');
             $table->string('categoria')->index();
-            $table->boolean('eliminado')->default(0);
+            $table->unsignedBigInteger('emisor')->unsigned();
+            $table->foreign('emisor')->references('id')->on('jugadores')->nullable()->default(null);
+            $table->string('emisor_sys');
             $table->timestamps();
         });
     }

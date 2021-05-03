@@ -23,6 +23,8 @@ class CreateCostesDiseniosTable extends Migration
             $table->unsignedInteger('liquido')->default(0);
             $table->unsignedInteger('micros')->default(0);
             $table->unsignedInteger('personal')->default(0);
+            $table->unsignedBigInteger('disenios_id')->unsigned();
+            $table->foreign('disenios_id')->references('id')->on('disenios');
         });
     }
 

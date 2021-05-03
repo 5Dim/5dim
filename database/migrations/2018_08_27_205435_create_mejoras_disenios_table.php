@@ -46,6 +46,8 @@ class CreateMejorasDiseniosTable extends Migration
             $table->unsignedInteger('cargaMega')->default(0);
             $table->unsignedInteger('recolector')->default(0);
             $table->unsignedInteger('extractor')->default(0);
+            $table->unsignedBigInteger('disenios_id')->unsigned();
+            $table->foreign('disenios_id')->references('id')->on('disenios');
         });
     }
 

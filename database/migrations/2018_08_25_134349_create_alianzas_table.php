@@ -19,8 +19,9 @@ class CreateAlianzasTable extends Migration
             $table->string('tag')->unique();
             $table->string('estandarte')->default("");
             $table->string('logo')->default("");
-            $table->text('interno');
-            $table->text('portada');
+            $table->text('interno')->default("");
+            $table->text('portada')->default("");
+            $table->unsignedBigInteger('jugadores_id')->unsigned();
             $table->timestamps();
         });
     }

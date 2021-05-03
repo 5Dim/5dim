@@ -18,6 +18,8 @@ class CreateConstruccionesTable extends Migration
             $table->string('codigo')->index();
             $table->string('categoria');
             $table->unsignedTinyInteger('nivel')->default(0);
+            $table->unsignedBigInteger('planetas_id')->unsigned();
+            $table->foreign('planetas_id')->references('id')->on('planetas');
         });
     }
 
