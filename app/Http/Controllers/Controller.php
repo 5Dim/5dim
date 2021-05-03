@@ -27,11 +27,11 @@ class Controller extends BaseController
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->get();
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->orderBy('creacion')->get();
         $planetasAlianza = null;
         if (!empty($jugadorActual->alianzas)) {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->get();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->orderBy('creacion')->get();
         }
 
 
