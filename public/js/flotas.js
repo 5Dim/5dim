@@ -899,7 +899,7 @@ function verFlotasEnVuelo() {
         $.ajax({
             type: "GET",
             // dataType: "json",
-            url: "/juego/flotas/verFlotasEnVuelo",
+            url: "/juego/flotas/ajax/verFlotasEnVuelo",
             // contentType: 'application/json; charset=utf-8',
             //data: { },
             //headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),  },
@@ -925,7 +925,7 @@ function verFlotasEnRecoleccion() {
         $.ajax({
             type: "GET",
             // dataType: "json",
-            url: "/juego/flotas/verFlotasEnRecoleccion",
+            url: "/juego/flotas/ajax/verFlotasEnRecoleccion",
             // contentType: 'application/json; charset=utf-8',
             beforeSend: function() {},
             success: function(data) {
@@ -949,7 +949,7 @@ function verFlotasEnOrbita() {
         $.ajax({
             type: "GET",
             // dataType: "json",
-            url: "/juego/flotas/verFlotasEnOrbita",
+            url: "/juego/flotas/ajax/verFlotasEnOrbita",
             // contentType: 'application/json; charset=utf-8',
             beforeSend: function() {},
             success: function(data) {

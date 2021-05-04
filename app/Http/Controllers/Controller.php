@@ -85,4 +85,10 @@ class Controller extends BaseController
             'jugadorActual',
         );
     }
+
+    // public function flotaBase()
+    // {
+    //     //Cosas flotas
+    //     return compact();
+    // }
 }
