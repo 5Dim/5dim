@@ -74,8 +74,8 @@ function Sistema(n, x, y, habitado) {
         var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0xFFF700" }));
     } //OCUPADO amarillo
     if (habitado == 2) {
-        estrella.tint = 0x99ccff;
-        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0x99ccff" }));
+        estrella.tint = 0x4db8ff;
+        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0x4db8ff" }));
     } //PROPIO (home) azul
     if (habitado == 3) {
         estrella.tint = 0x4dff88;
