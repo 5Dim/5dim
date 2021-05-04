@@ -143,7 +143,7 @@ function Radar(n, x, y, t, c) {
 
     //circulo.tint = Math.floor(Math.random() * 0xffffff)
     // log(this);
-    circulo.alpha = 0.2;
+    circulo.alpha = 1;
 
     this.n = n; //numero de sistema
     this.px = x; //posicion x
