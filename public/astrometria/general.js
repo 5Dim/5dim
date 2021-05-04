@@ -78,8 +78,8 @@ function Sistema(n, x, y, habitado) {
         var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0x99ccff" }));
     } //PROPIO (home) azul
     if (habitado == 3) {
-        estrella.tint = 0xd6f5d6;
-        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0xd6f5d6" }));
+        estrella.tint = 0xadebad;
+        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0xadebad" }));
     } //ALIADO verde
     if (habitado == 4) {
         estrella.tint = 0xff0000;
