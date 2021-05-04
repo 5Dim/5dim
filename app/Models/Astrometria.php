@@ -15,6 +15,7 @@ class Astrometria extends Model
     public static function radares()
     {
         $radares = [];
+        $misRadares = [];
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $constanteRadar = Constantes::where('codigo', 'factorexpansionradar')->first()->valor;
         if (!empty($jugadorActual->alianzas) && !empty($jugadorActual->alianzas->miembros)) {
@@ -29,10 +30,11 @@ class Astrometria extends Model
                         $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
                         if ($planeta->jugadores_id == session()->get('jugadores_id')) {
                             $radar->color = 1;
+                            array_push($misRadares, $radar);
                         } else {
                             $radar->color = 2;
+                            array_push($radares, $radar);
                         }
-                        array_push($radares, $radar);
                     }
                 }
                 $flotasOrbitando = EnOrbita::where('jugadores_id', session()->get('jugadores_id'))->get();
@@ -43,10 +45,11 @@ class Astrometria extends Model
                     $radar->circulo = Astrometria::radioRadar(($nivelObservacion * $constanteRadar) / $cantidadFlotas);
                     if ($planeta->jugadores_id == session()->get('jugadores_id')) {
                         $radar->color = 1;
+                        array_push($misRadares, $radar);
                     } else {
                         $radar->color = 2;
+                        array_push($radares, $radar);
                     }
-                    array_push($radares, $radar);
                 }
             }
         } else {
@@ -59,7 +62,7 @@ class Astrometria extends Model
                     $radar->estrella = $planeta->estrella;
                     $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
                     $radar->color = 1;
-                    array_push($radares, $radar);
+                    array_push($misRadares, $radar);
                 }
             }
             $flotasOrbitando = EnOrbita::where('jugadores_id', session()->get('jugadores_id'))->get();
@@ -69,11 +72,13 @@ class Astrometria extends Model
                 $radar->estrella = $flota->estrella;
                 $radar->circulo = Astrometria::radioRadar(($nivelObservacion * $constanteRadar) / $cantidadFlotas);
                 $radar->color = 1;
-                array_push($radares, $radar);
+                array_push($misRadares, $radar);
             }
         }
 
-        return $radares;
+        $result = array_merge($radares, $misRadares);
+
+        return $result;
     }
 
     // Generar influencia propia
