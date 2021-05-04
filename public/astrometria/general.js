@@ -74,12 +74,12 @@ function Sistema(n, x, y, habitado) {
         var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0xFFF700" }));
     } //OCUPADO amarillo
     if (habitado == 2) {
-        estrella.tint = 0x4da6ff;
-        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0x4da6ff" }));
+        estrella.tint = 0x99ccff;
+        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0x99ccff" }));
     } //PROPIO (home) azul
     if (habitado == 3) {
-        estrella.tint = 0xadebad;
-        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0xadebad" }));
+        estrella.tint = 0xd6f5d6;
+        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0xd6f5d6" }));
     } //ALIADO verde
     if (habitado == 4) {
         estrella.tint = 0xff0000;
@@ -116,10 +116,10 @@ function Radar(n, x, y, t, c) {
 
     //circulo.filters = [new PIXI.filters.BlurFilter(52)];
     if (c == 1) {
-        circulo.tint = 0x0083e7;
+        circulo.tint = 0x001a33;
     } // azul
     if (c == 2) {
-        circulo.tint = 0x00e73e;
+        circulo.tint = 0x0f3d0f;
     } // verde
     if (c == 3) {
         circulo.tint = 0xe7ad00;
@@ -143,7 +143,7 @@ function Radar(n, x, y, t, c) {
 
     //circulo.tint = Math.floor(Math.random() * 0xffffff)
     // log(this);
-    circulo.alpha = 0.2;
+    circulo.alpha = 1;
 
     this.n = n; //numero de sistema
     this.px = x; //posicion x
