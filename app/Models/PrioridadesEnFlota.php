@@ -18,6 +18,18 @@ class PrioridadesEnFlota extends Model
         'en_recoleccion_id',
         'en_orbita_id',
         'destinos_id',
+        'personal',
+        'mineral',
+        'cristal',
+        'gas',
+        'plastico',
+        'ceramica',
+        'liquidos',
+        'micros',
+        'fuel',
+        'ma',
+        'municion',
+        'creditos'
     ];
 
     public function destino()

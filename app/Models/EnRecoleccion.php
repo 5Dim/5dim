@@ -11,6 +11,10 @@ class EnRecoleccion extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'nombre'
+    ];
+
     public function planeta()
     {
         return $this->hasOne(Planetas::class);

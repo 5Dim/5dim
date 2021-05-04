@@ -38,6 +38,18 @@ class RecursosEnFlota extends Model
         'en_recoleccion_id',
         'en_vuelo_id',
         'en_orbita_id',
+        'personal',
+        'mineral',
+        'cristal',
+        'gas',
+        'plastico',
+        'ceramica',
+        'liquidos',
+        'micros',
+        'fuel',
+        'ma',
+        'municion',
+        'creditos'
     ];
 
 }

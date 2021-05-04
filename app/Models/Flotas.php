@@ -67,9 +67,12 @@ class Flotas extends Model
         //Log::info("calculo flota");
         //Log::info($valFlotaT);
         //Log::info($tablaHangares);
-        $result = Flotas::calculoespaciotiempo($destinos, $valFlotaT);
+        if($destinos!=null){
+            $result = Flotas::calculoespaciotiempo($destinos, $valFlotaT);
+            return [$result[1], $result[0], $tablaHangares];
+        }
 
-        return [$result[1], $result[0], $tablaHangares];
+        return [$valFlotaT,null, $tablaHangares];
     }
 
 
@@ -950,13 +953,8 @@ destino 0 con lo que sale
                 }
 
                 //Log::info($planeta->id . "jugador id " . $flotaLlega->jugadores_id . " flotaExiste " . $flotaExiste);
-                // recolectando antes de nada
-
-
                 //construyendo flota
                 //$timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
-
-
                 DB::beginTransaction();
                 if ($flotaExiste != null) {
 
@@ -1027,14 +1025,14 @@ destino 0 con lo que sale
                     ]);
                     // DiseniosEnFlota::where("en_vuelo_id", $flotaLlega->id)->update(["en_recoleccion_id" =>  DB::raw($flotax->id), "en_vuelo_id" => DB::raw('null')]);
 
-                    if ($quehacer == "recolectar") {
-                        PrioridadesEnFlota::updateOrCreate([
-                            'destinos_id'   => $flotaLlega->id,
-                        ], [
-                            $columnNaves   => $flotax->id,
-                            "destinos_id"   => null
-                        ]);
-                    }
+
+                    PrioridadesEnFlota::updateOrCreate([
+                        'destinos_id'   => $flotaLlega->id,
+                    ], [
+                        $columnNaves   => $flotax->id,
+                        "destinos_id"   => null
+                    ]);
+
                 }
 
                 //recursos

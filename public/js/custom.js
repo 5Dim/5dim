@@ -652,14 +652,15 @@ function CalculoDisenio(diseno) {
 function resultadoRealDiseno(diseno, invest, invstobj = invest) {
     minves = "mejora" + invest;
     return (
-        diseno.mejoras[invstobj] *
-        (1 +
-            $.grep(investigaciones, function(nivelInv) {
-                return nivelInv.codigo == invest;
-            })[0]["nivel"] *
-                $.grep(constantes, function(nivelConst) {
-                    return nivelConst.codigo == minves;
-                })[0]["valor"])
+        Math.round( diseno.mejoras[invstobj] *
+            (1 +
+                $.grep(investigaciones, function(nivelInv) {
+                    return nivelInv.codigo == invest;
+                })[0]["nivel"] *
+                    $.grep(constantes, function(nivelConst) {
+                        return nivelConst.codigo == minves;
+                    })[0]["valor"])
+        )
     );
 }
 

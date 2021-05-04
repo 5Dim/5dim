@@ -12,6 +12,7 @@ puedoCargarRecurso = [];
 deboCargarMunicion = true;
 deboAlertasF = true;
 deboEsconderDestinosVacios = true;
+botonenviarAnulado=false;
 
 fuelDestT = 0; //fuel total a todos los destinos
 
@@ -30,6 +31,7 @@ function CargarFlotaEditada() {
         //planeta
         nombreorigen = "Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
         EsconderPorId("listaPrioridades0");
+        $("#botonModificar").attr("disabled", true);
     } else {
         //flota
         if (destinos[0]["tipoflota"] == undefined) {
@@ -39,25 +41,34 @@ function CargarFlotaEditada() {
         nombreorigen = "Carga actual en la flota";
         puedoCargarRecurso[0] = false;
         EsconderPorId("envias0");
-        EsconderPorId("botonEnviar");
         EsconderPorId("porcentsimbol");
+
+        if(flota.tipoflota=="envuelo"){
+            botonenviarAnulado=true;
+        }
+
         $("#nombreFlota").val(flota.nombre);
         deboCargarMunicion = false;
         deboAlertasF = false;
 
         dest = 0;
         destinos.forEach(destino => {
+
             cargaT = 0;
             $("#sistemaDest" + dest).val(destino.estrella);
             $("#planetaDest" + dest).val(destino.orbita);
             destino.misionSEG = destino.mision; //se guarda
             $("#porcentVDest" + dest).val(Math.round(destino.porcentVel));
 
-            recursosArray.forEach(res => {
-                $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
-                cargaT += cargaDest[dest][res];
-                $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
-            });
+
+                recursosArray.forEach(res => {
+                    $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
+                    cargaT += cargaDest[dest][res];
+
+                    $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
+                });
+
+
             cargaDest[dest].total = cargaT;
 
             if (destino.visitado > 0) {
@@ -209,9 +220,9 @@ function RecalculoTotal() {
             return valor.iddisenio == nave.disenios_id;
         })[0];
 
-        cantidad = valnave.cantidad;
-        aflota = valnave.enflota;
-        ahangar = valnave.enhangar;
+        cantidad =1* valnave.cantidad;
+        aflota =1* valnave.enflota;
+        ahangar =1* valnave.enhangar;
         atotal = aflota + ahangar;
 
         var estacionada = $.grep(navesEstacionadas, function(valor) {
@@ -515,27 +526,31 @@ function Avisos() {
     //falta velocidad
 
     /// se puede enviar o no
-    $("#botonEnviar").text("Enviar Flota");
-    if (!sePuedeEnviar) {
-        $("#botonEnviar").text(errores);
-        $("#botonEnviar")
-            .addClass("btn-danger")
-            .removeClass("btn-success");
+    if(!botonenviarAnulado){
+        $("#botonEnviar").text("Enviar Flota");
+        if (!sePuedeEnviar) {
+            $("#botonEnviar").text(errores);
+            $("#botonEnviar")
+                .addClass("btn-danger")
+                .removeClass("btn-success");
 
-        $("#consumofuel1")
-            .addClass("txt-danger")
-            .removeClass("txt-warning");
+            $("#consumofuel1")
+                .addClass("txt-danger")
+                .removeClass("txt-warning");
 
-        $("#botonEnviar").prop("disabled", true);
+            $("#botonEnviar").prop("disabled", true);
+        } else {
+            $("#botonEnviar")
+                .removeClass("btn-danger")
+                .addClass("btn-success");
+
+            $("#consumofuel1")
+                .removeClass("txt-danger")
+                .addClass("txt-warning");
+            $("#botonEnviar").prop("disabled", false);
+        }
     } else {
-        $("#botonEnviar")
-            .removeClass("btn-danger")
-            .addClass("btn-success");
-
-        $("#consumofuel1")
-            .removeClass("txt-danger")
-            .addClass("txt-warning");
-        $("#botonEnviar").prop("disabled", false);
+        $("#botonEnviar").prop("disabled", true);
     }
 }
 
@@ -864,6 +879,50 @@ function enviarFlota() {
             },
         });
     }
+}
+
+
+function modificarFlota() {
+
+    flota.nombre = $("#nombreFlota").val();
+    for (dest = 1; dest < destinos.length; dest++) {
+        recursosArray.forEach(res => {
+            prioridades[dest][res] = $("#prioridad" + res + dest).val();
+        });
+    }
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "/juego/flotas/modificarFlota",
+        //contentType: 'application/json; charset=utf-8',
+        data: { navesEstacionadas: navesEstacionadas, destinos: destinos, cargaDest: cargaDest, prioridades: prioridades, flota: flota },
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        beforeSend: function() {
+            $("#botonModificar").prop("disabled", true);
+            var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Modificando....';
+            $("#botonModificar").html(spinner);
+        },
+        success: function(response) {
+            $("#botonModificar").text("Modificar Flota");
+            $("#botonModificar").prop("disabled", false);
+            if (response.errores == "") {
+                alert("Flota modificada");
+            } else {
+                alert(response.errores);
+            }
+        },
+        error: function(xhr, textStatus, thrownError) {
+            $("#botonModificar").text("Modificar Flota");
+            $("#botonModificar").prop("disabled", false);
+            console.log("status", xhr.status);
+            console.log("error", thrownError);
+            //alert(data.errores);
+        },
+    });
+
 }
 
 function formSuccess() {

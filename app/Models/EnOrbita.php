@@ -11,6 +11,10 @@ class EnOrbita extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'nombre'
+    ];
+
     public function orbita()
     {
         return $this->hasOne(Planetas::class);

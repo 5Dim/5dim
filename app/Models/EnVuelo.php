@@ -11,6 +11,10 @@ class EnVuelo extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'nombre'
+    ];
+
     public function jugadores()
     {
         return $this->belongsTo(Jugadores::class);

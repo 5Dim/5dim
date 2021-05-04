@@ -349,7 +349,7 @@
                 </div>
             </div>
             <div id="lineaBotones"class="col-12 cajita-info rounded">
-                <table class="table table-sm table-borderless text-center anchofijo align-middle">
+                <table class="table table-sm table-borderless text-center anchofijo align-middle borderless">
                     <tr>
                         <td>
                             <button id="botonModificar" type="button" class="btn btn-success  col-12"  onclick="modificarFlota()">
