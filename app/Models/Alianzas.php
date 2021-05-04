@@ -59,21 +59,16 @@ class Alianzas extends Model
     // mira para las flotas si el jugador propietario (que NO el jugador activo) puede hacer cosas como propias en destino
     public static function idSoyYoOMiAlianza($idMio, $idDestino)
     {
+        $miJugador = Jugadores::where("id", $idMio)->first();
         if ($idMio == $idDestino) {
             return true;
-        }
-
-        $miJugador = Jugadores::where("id", $idMio)->first();
-
-        if ($miJugador->alianzas_id != null) {
-            $miAlianza = Alianzas::where("id", $miJugador['alianzas_id'])->first();
-            if ($miAlianza != null && Alianzas::jugadorAlianza($miAlianza->id) == $idDestino) {
+        } elseif (!empty($miJugador->alianzas)) {
+            if (Alianzas::jugadorAlianza($miJugador->alianzas->id) == $idDestino) {
                 return true;
             }
+        } else {
+            return false;
         }
-
-
-
         return false;
     }
 }
