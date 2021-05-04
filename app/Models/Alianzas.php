@@ -20,11 +20,13 @@ class Alianzas extends Model
         return $this->hasMany(Jugadores::class);
     }
 
-    public function creador() {
+    public function creador()
+    {
         return $this->hasOne(Jugadores::class, 'id', "jugadores_id");
     }
 
-    public static function idMiembros($alianza) {
+    public static function idMiembros($alianza)
+    {
         $alianza = Alianzas::find($alianza);
         $idMiembros = [];
         foreach ($alianza->miembros as $miembro) {
@@ -33,7 +35,8 @@ class Alianzas extends Model
         return $idMiembros;
     }
 
-    public static function jugadorAlianza($alianza) {
+    public static function jugadorAlianza($alianza)
+    {
         $alianza = Alianzas::find($alianza)->nombre;
         $jugadorAlianza = Jugadores::where('nombre', $alianza)->first();
 
@@ -41,30 +44,30 @@ class Alianzas extends Model
     }
 
     //para cosas propias, me quito a mi y a mi propia alianza-jugador
-    public static function idMiembrosSinMi($alianza,$miId) {
+    public static function idMiembrosSinMi($alianza, $miId)
+    {
         $alianza = Alianzas::find($alianza);
         $idMiembros = [];
         foreach ($alianza->miembros as $miembro) {
-            if ($miembro->id !=$miId && $miembro->user_id!=null){
+            if ($miembro->id != $miId && $miembro->user_id != null) {
                 array_push($idMiembros, $miembro->id);
             }
-
         }
         return $idMiembros;
     }
 
     // mira para las flotas si el jugador propietario (que NO el jugador activo) puede hacer cosas como propias en destino
-    public static function idSoyYoOMiAlianza($idMio,$idDestino){
-
-        if($idMio==$idDestino){
+    public static function idSoyYoOMiAlianza($idMio, $idDestino)
+    {
+        if ($idMio == $idDestino) {
             return true;
         }
 
-        $miJugador=Jugadores::where("id",$idMio)->first();
+        $miJugador = Jugadores::where("id", $idMio)->first();
 
-        if ($miJugador->alianzas_id!=null){
-            $miAlianza=Alianzas::where("id",$miJugador['alianzas_id'])->get();
-            if ($miAlianza!=null && Alianzas::jugadorAlianza($miAlianza->id)==$idDestino){
+        if ($miJugador->alianzas_id != null) {
+            $miAlianza = Alianzas::where("id", $miJugador['alianzas_id'])->first();
+            if ($miAlianza != null && Alianzas::jugadorAlianza($miAlianza->id) == $idDestino) {
                 return true;
             }
         }
