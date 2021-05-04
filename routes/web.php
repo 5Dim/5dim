@@ -118,10 +118,12 @@ Route::middleware(
     Route::get('/juego/astrometria/ajax/flotas', [AstrometriaController::class, 'generarFlotas']);
     Route::get('/juego/astrometria/ajax/sistema/{numeroSistema}', [AstrometriaController::class, 'sistema']);
 
-    //Flota
-    Route::get('/juego/flotas/verFlotasEnRecoleccion/', [FlotaController::class, 'verFlotasEnRecoleccion']);
-    Route::get('/juego/flotas/verFlotasEnOrbita/', [FlotaController::class, 'verFlotasEnOrbita']);
-    Route::get('/juego/flotas/verFlotasEnVuelo/', [FlotaController::class, 'verFlotasEnVuelo']);
+    //Flota ajax
+    Route::get('/juego/flotas/ajax/verFlotasEnRecoleccion/', [FlotaController::class, 'verFlotasEnRecoleccion']);
+    Route::get('/juego/flotas/ajax/verFlotasEnOrbita/', [FlotaController::class, 'verFlotasEnOrbita']);
+    Route::get('/juego/flotas/ajax/verFlotasEnVuelo/', [FlotaController::class, 'verFlotasEnVuelo']);
+
+    // Flota
     Route::get('/juego/flotas/regresarFlota/{id}', [FlotaController::class, 'regresarFlota']);
     Route::get('/juego/flotas/traerRecursos/{estrella}/{orbita}', [FlotaController::class, 'traerRecursos']);
     Route::get('/juego/flotas/{estrella?}/{orbita?}/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'index']);

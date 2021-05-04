@@ -389,13 +389,13 @@ function createViewport() {
     botones = app.stage.addChild(new PIXI.Container()); // crea la capa botones
     textos = app.stage.addChild(new PIXI.Container()); // crea la capa textos
 
+    capa_radares = viewport.addChild(new PIXI.Container()); // crea la capa radares
     capa_influencias = viewport.addChild(new PIXI.Container()); // crea la capa influencia propia
     capa_influencias2 = viewport.addChild(new PIXI.Container()); // crea la capa influencia externa
 
     capa_estrellas = viewport.addChild(new PIXI.Container()); // crea la capa flotas
     capa_rutas = viewport.addChild(new PIXI.Container()); // crea la capa radares
     capa_flotas = viewport.addChild(new PIXI.Container()); // crea la capa flotas
-    capa_radares = viewport.addChild(new PIXI.Container()); // crea la capa radares
 
     sistemas = app.stage.addChild(new PIXI.Container()); // crea la capa sistemas
 

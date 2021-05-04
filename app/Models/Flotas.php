@@ -1084,15 +1084,14 @@ destino 0 con lo que sale
         $recursosFlota = $flotax->recursosEnFlota;
         $errores = "";
         $prioridadesDestino = $flotax->prioridadesEnFlota;
-        //Log::info(" recursosDestino recolectados ".$recursosDestino." prioridadesEnFlota " . $flotax->prioridadesEnFlota);
+        // Log::info(" recursosDestino recolectados ".$recursosDestino." prioridadesEnFlota " . $flotax->prioridadesEnFlota);
 
-        $flotax["recoleccion"] = Disenios::recoleccionTotal($flotax->diseniosEnFlota);
-        $capacidadRecoleccion = $flotax["recoleccion"];
         // Log::info(" capacidadRecoleccion " . $capacidadRecoleccion);
         $fechaInicio = strtotime($flotax->updated_at);
         $fechaFin = time();
         $fechaCalculo = ($fechaFin - $fechaInicio) / 3600;
         // Log::info(" fechaCalculo " . $fechaCalculo);
+        $capacidadRecoleccion = Disenios::recoleccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
 
         for ($ordinal = 1; $ordinal < 16; $ordinal++) {
             foreach ($recursosArray as $recurso) {
@@ -1119,7 +1118,6 @@ destino 0 con lo que sale
         DB::beginTransaction();
         $recursosFlota->save();
         $flotax->save();
-
         DB::commit();
 
         try { // comprobar si tienes extraccion/recoleccion y si alguna prioridad es mayor a 0
