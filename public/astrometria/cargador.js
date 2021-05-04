@@ -1,4 +1,3 @@
-
 /*
     for (i = 0; i < 50; i++) {
         // create an explosion AnimatedSprite
@@ -18,45 +17,43 @@ var textura_ef_circulo,textura_ef_transicion,textura_ef_energia;
 //var textura_ef_planeta;
 */
 
-let efNaves, efTransicion, efEnergia, efGeneral, efPlanetas1,efNavesOrbitando, efEscudo;
-let ef_circulo,ef_transicion,ef_energia, ef_general, ef_planetas1;
+let efNaves, efTransicion, efEnergia, efGeneral, efPlanetas1, efNavesOrbitando, efEscudo;
+let ef_circulo, ef_transicion, ef_energia, ef_general, ef_planetas1;
 
-let jsonNaves = '/astrometria/img/ef_circulo.json';
-let jsonTransicion = '/astrometria/img/efectos/transic.json';
+let jsonNaves = "/astrometria/img/ef_circulo.json";
+let jsonTransicion = "/astrometria/img/efectos/transic.json";
 //let jsonEnergia = 'img/efectos/energia2.json';
-let jsonGeneral = '/astrometria/img/efectos-general.json';
-let jsonPlanetas1 = '/astrometria/img/planetas1.json';
-
-
+let jsonGeneral = "/astrometria/img/efectos-general.json";
+let jsonPlanetas1 = "/astrometria/img/planetas1.json";
 
 const carga = new PIXI.Loader();
 
-function cargaTexturasGeneral(){
+function cargaTexturasGeneral() {
     //carga.add('img/sistema/p1.json');
     log("Inicio");
-    carga.add(jsonNaves)
-         .add(jsonTransicion)
-         .add(jsonGeneral)
-         .add(jsonPlanetas1);
-        // .add(jsonEnergia);
+    carga
+        .add(jsonNaves)
+        .add(jsonTransicion)
+        .add(jsonGeneral)
+        .add(jsonPlanetas1);
+    // .add(jsonEnergia);
     carga.onProgress.add(verProgreso);
     carga.onComplete.add(cargaCompleta);
     carga.onError.add(verError);
 
     carga.load();
 }
-function verProgreso(e){
+function verProgreso(e) {
     //log(e.progress);
-    barraCarga.position.set(0,0);
-    barraCarga.beginFill(0xff3c28); 
-    barraCarga.drawRect  (0, 0, e.progress, 2);
+    barraCarga.position.set(0, 0);
+    barraCarga.beginFill(0xff3c28);
+    barraCarga.drawRect(0, 0, e.progress, 2);
     barraCarga.endFill();
-  
-  }
+}
 
-function cargaCompleta(e){
+function cargaCompleta(e) {
     log("Carga completa");
-    barraCarga.visible =false; 
+    barraCarga.visible = false;
 
     ef_circulo = carga.resources[jsonNaves].spritesheet;
     ef_transicion = carga.resources[jsonTransicion].spritesheet;
@@ -65,17 +62,14 @@ function cargaCompleta(e){
     ef_planetas1 = carga.resources[jsonPlanetas1].spritesheet;
     // efNaves = new PIXI.AnimatedSprite(ef_circulo.animations["ef_circulo"]);
     // nave = capa_flotas.addChild(efNaves);
-    
-
 
     creaflotas();
     creasistemasolar();
-  } 
+}
 
-function verError(e){
+function verError(e) {
     console.error("Error: " + e.message);
-  }
-
+}
 
 /*
 
@@ -84,7 +78,7 @@ function cargaTexturasGeneral(){
 cargador.add('circulo', 'img/ef_circulo.json')
         .add('transicion','img/efectos/transic.json')
         .add('energia','img/efectos/energia2.json')
-        
+
         .load(efectos_cargados);
 
 }
@@ -113,7 +107,7 @@ function efectos_cargados() {
             ef_transicion.push(textura_ef_transicion);
         }
         transicion = sistemas.addChild(new PIXI.AnimatedSprite(ef_transicion));
-    
+
 
         transicion.scale.set(1);
         transicion.width =1024;
@@ -127,11 +121,11 @@ function efectos_cargados() {
             textura_ef_energia = PIXI.Texture.from('energia2_' + (i) + '.png');
             ef_energia.push(textura_ef_energia);
         }
-  
 
 
 
-        
-}    
+
+
+}
 
 */

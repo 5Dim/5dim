@@ -86,14 +86,15 @@ class Astrometria extends Model
         if (empty($jugadorActual->alianzas)) {
             $restoJugadores = Jugadores::where('nombre', "!=", $jugadorActual->nombre)->get();
         } else {
-            $restoJugadores = Jugadores::where('alianzas_id', "!=", $jugadorActual->alianzas->id)->get();
+            $restoJugadores = Jugadores::where('alianzas_id', "!=", $jugadorActual->alianzas_id)->orWhereNull('alianzas_id')->get();
         }
+        // dd($restoJugadores);
         foreach ($restoJugadores as $jugador) {
             foreach ($jugador->planetas as $planeta) {
                 $radar = new Radares();
                 $radar->estrella = $planeta->estrella;
                 $radar->circulo = Astrometria::radioInfluencia(((time() - $planeta->creacion) / (3600 * 24 * 30)));
-                $radar->color = 2;
+                $radar->color = 3;
                 array_push($influencia, $radar);
             }
         }
