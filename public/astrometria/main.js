@@ -390,7 +390,6 @@ function createViewport() {
     textos = app.stage.addChild(new PIXI.Container()); // crea la capa textos
 
     capa_radares = viewport.addChild(new PIXI.Container()); // crea la capa radares
-    capa_radares.alpha = 0.2;
     capa_influencias = viewport.addChild(new PIXI.Container()); // crea la capa influencia propia
     capa_influencias2 = viewport.addChild(new PIXI.Container()); // crea la capa influencia externa
 
