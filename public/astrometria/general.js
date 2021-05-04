@@ -74,12 +74,12 @@ function Sistema(n, x, y, habitado) {
         var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0xFFF700" }));
     } //OCUPADO amarillo
     if (habitado == 2) {
-        estrella.tint = 0x00cce7;
-        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0x00CCE7" }));
+        estrella.tint = 0x4da6ff;
+        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0x4da6ff" }));
     } //PROPIO (home) azul
     if (habitado == 3) {
-        estrella.tint = 0x00ff36;
-        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0x00FF36" }));
+        estrella.tint = 0xadebad;
+        var txt = capa_estrellas.addChild(new PIXI.Text(n, { fontFamily: "Arial", fontSize: 12, fill: "0xadebad" }));
     } //ALIADO verde
     if (habitado == 4) {
         estrella.tint = 0xff0000;
