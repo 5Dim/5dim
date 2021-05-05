@@ -340,7 +340,7 @@
                     <td>
                         @if ($nivelLaboratorio->nivel > 0)
                             @if ($dependencia->nivelRequiere <= $nivel)
-                                @if ($investigacion->nivel >= 99 or $investigacion->coste->mineral > $recursos->mineral or $investigacion->coste->cristal > $recursos->cristal or $investigacion->coste->gas > $recursos->gas or $investigacion->coste->plastico > $recursos->plastico or $investigacion->coste->ceramica > $recursos->ceramica or $investigacion->coste->liquido > $recursos->liquido or $investigacion->coste->micros > $recursos->micros or $investigacion->coste->fuel > $recursos->fuel or $investigacion->coste->ma > $recursos->ma or $investigacion->coste->municion > $recursos->municion or count($colaInvestigaciones->where('codigo', $investigacion->codigo)->get()) > 0)
+                                @if ($investigacion->nivel >= 99 or $investigacion->coste->mineral > $recursos->mineral or $investigacion->coste->cristal > $recursos->cristal or $investigacion->coste->gas > $recursos->gas or $investigacion->coste->plastico > $recursos->plastico or $investigacion->coste->ceramica > $recursos->ceramica or $investigacion->coste->liquido > $recursos->liquido or $investigacion->coste->micros > $recursos->micros or $investigacion->coste->fuel > $recursos->fuel or $investigacion->coste->ma > $recursos->ma or $investigacion->coste->municion > $recursos->municion)
                                     <button type="button" class="btn btn-outline-light col-12" disabled
                                         onclick="sendInvestigar('{{ $investigacion->id }}', '{{ $investigacion->codigo }}', '{{ $tab }}')">
                                         <i class="fa fa-arrow-alt-circle-up "></i> Investigar

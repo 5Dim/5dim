@@ -9,7 +9,7 @@
                             <table class="table table-borderless borderless table-sm text-center anchofijo"
                                 style="margin-bottom: 15px !important;">
                                 <tr>
-                                    <td class=" text-warning">Edificio</td>
+                                    <td class=" text-warning">Tecnología</td>
                                     <td class=" text-warning">Accion</td>
                                     <td class=" text-warning">Nivel</td>
                                     <td class=" text-warning">Personal</td>

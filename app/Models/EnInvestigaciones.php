@@ -45,7 +45,11 @@ class EnInvestigaciones extends Model
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $colaInvestigaciones = [];
         $colaInvestigaciones2 = [];
-        $miembros = Alianzas::idMiembros($jugadorActual->alianzas->id);
+        if (!empty($jugadorActual->alianzas)) {
+            $miembros = Alianzas::idMiembros($jugadorActual->alianzas->id);
+        }else {
+            $miembros = [session()->get('jugadores_id')];
+        }
         $investigaciones = Investigaciones::whereIn('jugadores_id', $miembros)->get();
         foreach ($investigaciones as $investigacion) {
             if (!empty($investigacion->enInvestigaciones[0])) {
@@ -59,6 +63,8 @@ class EnInvestigaciones extends Model
                 }
             }
         }
+        // dd($colaInvestigaciones);
+        // dd(collect($colaInvestigaciones)->where('codigo', "invTitanio"));
         return $colaInvestigaciones;
     }
 }
