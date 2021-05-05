@@ -44,7 +44,7 @@ class RecursosEnFlota extends Model
         'gas',
         'plastico',
         'ceramica',
-        'liquidos',
+        'liquido',
         'micros',
         'fuel',
         'ma',

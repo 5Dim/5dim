@@ -885,7 +885,7 @@ function enviarFlota() {
 function modificarFlota() {
 
     flota.nombre = $("#nombreFlota").val();
-    for (dest = 1; dest < destinos.length; dest++) {
+    for (dest = 0; dest < destinos.length; dest++) {
         recursosArray.forEach(res => {
             prioridades[dest][res] = $("#prioridad" + res + dest).val();
         });

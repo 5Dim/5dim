@@ -775,31 +775,30 @@ class FlotaController extends Controller
         //$navesEstacionadasResult = $request->input('navesEstacionadas');
         $cargaDest = $request->input('cargaDest');
         $prioridadesResult = $request->input('prioridades');
-        $flotaResult = $request->input('Original');
-        $destinosResult = $request->input('destinos');
+        $flotaResult = $request->input('flota');
+        //$destinosResult = $request->input('destinos');
 
+        //Log::info("id: ".$id);
         //Log::info("navesEstacionadas");Log::info($navesEstacionadasResult);
         // Log::info("cargaDest");Log::info($cargaDest);
         //Log::info("prioridades");Log::info($prioridadesResult);
         //Log::info("flota");Log::info($flotaResult);
-        // Log::info("destinos");Log::info($destinos);
+        //Log::info("destinos");Log::info($destinosResult);
+
 
         $errores = "";
 
-        if ($flotaResult != null && !empty($flotaResult)) {
+        if ($flotaResult == null || empty($flotaResult)) {
             $errores = "Error en la asignación de flota";
-        } else if ($prioridadesResult != null && !empty($prioridades)) {
+        } else if ($prioridadesResult == null || empty($prioridadesResult)) {
             $errores = "Error en asignación de prioridades";
-        }else if ($destinosResult != null && !empty($destinosResult)) {
-            $errores = "Error en asignación de destinos";
-        }else if ($cargaDest != null && !empty($cargaDest)) {
-            $errores = "Error en asignación de cargas";
         }
 
 
         if (strlen($errores) < 1) {
             $tipoflota=$flotaResult['tipoflota'];
             $flotaid=$flotaResult['id'];
+            //Log::info("flota datos ".$flotaid." ".$flotaResult['publico']);
 
             $jugadoryAlianza = [];
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
@@ -808,21 +807,23 @@ class FlotaController extends Controller
             }
             array_push($jugadoryAlianza, $jugadorActual->id);
 
+            //Log::info($jugadoryAlianza);
+
             if ($tipoflota == "envuelo") {
                 $flota = EnVuelo::whereIn('jugadores_id', $jugadoryAlianza)
-                    ->where('id', $flotaid)
+                ->where([['id', $flotaid],['publico',$flotaResult['publico']]])
                     ->first();
             } else if ($tipoflota == "enrecoleccion") {
                 $flota = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)
-                    ->where('id', $flotaid)
+                ->where([['id', $flotaid],['publico',$flotaResult['publico']]])
                     ->first();
             } else if ($tipoflota == "enorbita") {
                 $flota = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)
-                    ->where('id', $flotaid)
+                    ->where([['id', $flotaid],['publico',$flotaResult['publico']]])
                     ->first();
             }
 
-            if ($flota != null && !empty($flota)) {
+            if ($flota == null && empty($flota)) {
                 $errores = "No se encuentra la flota a modificar";
             }
 
@@ -945,9 +946,9 @@ class FlotaController extends Controller
         //se modifica la flota  ////////////////////
         if (strlen($errores) < 3) {
 
-            try {
+
                 DB::beginTransaction();
-                //Log::info("Jugador ID= ".$jugadorActual->id);
+                //Log::info(" ID= ".$flotaid);
 
                 if ($tipoflota == "envuelo") {
                     EnVuelo::updateOrCreate([
@@ -955,15 +956,15 @@ class FlotaController extends Controller
                     ], [
                         'nombre'   => $flotaResult['nombre']
                     ]);
-                } else if($tipoflota == "enrecoleccion"){
+                } else if($tipoflota == "enorbita"){
                     EnOrbita::updateOrCreate([
                         'id'   => $flotaid
                     ], [
                         'nombre'   => $flotaResult['nombre']
                     ]);
-                } else if($tipoflota == "enorbita"){
+                } else if($tipoflota == "enrecoleccion"){
                     EnRecoleccion::updateOrCreate([
-                        'id'   => $flotaid
+                        'id'   => $flotaid,
                     ], [
                         'nombre'   => $flotaResult['nombre']
                     ]);
@@ -971,6 +972,10 @@ class FlotaController extends Controller
 
                 //cambio de destinos
                 if ($tipoflota == "envuelo") {
+                    if ($cargaDest == null || empty($cargaDest)) {
+                        $errores = "Error en asignación de cargas";
+                        return compact('errores');
+                    }
                     $dest=-1;
                     foreach ($flota->destinos as $destino) {
                         $dest++;
@@ -985,7 +990,7 @@ class FlotaController extends Controller
                                 'gas' => $cargaDest[$dest]['gas'],
                                 'plastico' => $cargaDest[$dest]['plastico'],
                                 'ceramica' => $cargaDest[$dest]['ceramica'],
-                                'liquidos' => $cargaDest[$dest]['liquido'],
+                                'liquido' => $cargaDest[$dest]['liquido'],
                                 'micros' => $cargaDest[$dest]['micros'],
                                 'fuel' => $cargaDest[$dest]['fuel'],
                                 'ma' => $cargaDest[$dest]['ma'],
@@ -1002,7 +1007,7 @@ class FlotaController extends Controller
                                 'gas' => $prioridadesResult[$dest]['gas'],
                                 'plastico' => $prioridadesResult[$dest]['plastico'],
                                 'ceramica' => $prioridadesResult[$dest]['ceramica'],
-                                'liquidos' => $prioridadesResult[$dest]['liquido'],
+                                'liquido' => $prioridadesResult[$dest]['liquido'],
                                 'micros' => $prioridadesResult[$dest]['micros'],
                                 'fuel' => $prioridadesResult[$dest]['fuel'],
                                 'ma' => $prioridadesResult[$dest]['ma'],
@@ -1022,7 +1027,7 @@ class FlotaController extends Controller
                         'gas' => $prioridadesResult[$dest]['gas'],
                         'plastico' => $prioridadesResult[$dest]['plastico'],
                         'ceramica' => $prioridadesResult[$dest]['ceramica'],
-                        'liquidos' => $prioridadesResult[$dest]['liquido'],
+                        'liquido' => $prioridadesResult[$dest]['liquido'],
                         'micros' => $prioridadesResult[$dest]['micros'],
                         'fuel' => $prioridadesResult[$dest]['fuel'],
                         'ma' => $prioridadesResult[$dest]['ma'],
@@ -1040,7 +1045,7 @@ class FlotaController extends Controller
                         'gas' => $prioridadesResult[$dest]['gas'],
                         'plastico' => $prioridadesResult[$dest]['plastico'],
                         'ceramica' => $prioridadesResult[$dest]['ceramica'],
-                        'liquidos' => $prioridadesResult[$dest]['liquido'],
+                        'liquido' => $prioridadesResult[$dest]['liquido'],
                         'micros' => $prioridadesResult[$dest]['micros'],
                         'fuel' => $prioridadesResult[$dest]['fuel'],
                         'ma' => $prioridadesResult[$dest]['ma'],
@@ -1050,10 +1055,10 @@ class FlotaController extends Controller
                 }
                 DB::commit();
                 Log::info("Modificada");
-
+                try {
             } catch (Exception $e) {
                 DB::rollBack();
-                $errores = "Error en Commit de modificacion de flotas " . $e->getLine() . " " . $e->getFile() . $errores; //.$e;
+                $errores = "Error en Commit de modificacion de flotas ".$e->getFile()." ". $e->getLine() . $errores; //.$e;
                 Log::info($errores . " " . $e);
             }
             //return redirect('/juego/flota');

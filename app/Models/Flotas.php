@@ -914,6 +914,7 @@ destino 0 con lo que sale
                     $destino->save();
                 }
 
+                //Mensajes::transporte($destino);
                 DB::commit();
                 Log::info($errores);
             } catch (Exception $e) {

@@ -24,7 +24,7 @@ class PrioridadesEnFlota extends Model
         'gas',
         'plastico',
         'ceramica',
-        'liquidos',
+        'liquido',
         'micros',
         'fuel',
         'ma',
