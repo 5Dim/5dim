@@ -5,7 +5,7 @@
                 style="margin-top: 5px !important">
                 <tr>
                     <td colspan="2" class="text-success text-center borderless align-middle">
-                        {{ __('construccion.' . $construccion->codigo) }} nivel {{ $construccion->nivel }} (de 90)
+                        {{ __('construccion.' . $construccion->codigo) }} nivel {{ $construccion->nivel }}
                         <span class="text-warning">
                             {{ count($construccion->enConstrucciones) > 0 ? 'En cola nivel: ' . $construccion->enConstrucciones[count($construccion->enConstrucciones) - 1]->nivel : '' }}
                         </span>
