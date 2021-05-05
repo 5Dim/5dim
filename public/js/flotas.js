@@ -13,6 +13,8 @@ deboCargarMunicion = true;
 deboAlertasF = true;
 deboEsconderDestinosVacios = true;
 botonenviarAnulado=false;
+enviarEnOrbita=false;
+EnviarFlotaTxt="Enviar Flota";
 
 fuelDestT = 0; //fuel total a todos los destinos
 
@@ -34,6 +36,7 @@ function CargarFlotaEditada() {
         $("#botonModificar").attr("disabled", true);
     } else {
         //flota
+        enviarEnOrbita=true;
         if (destinos[0]["tipoflota"] == undefined) {
             EsconderPorId("listaPrioridades0");
         }
@@ -42,9 +45,11 @@ function CargarFlotaEditada() {
         puedoCargarRecurso[0] = false;
         EsconderPorId("envias0");
         EsconderPorId("porcentsimbol");
+        EnviarFlotaTxt="Editar para Enviar Flota";
 
         if(flota.tipoflota=="envuelo"){
             botonenviarAnulado=true;
+            $(".distribuidorNaves").prop("disabled", true);
         }
 
         $("#nombreFlota").val(flota.nombre);
@@ -67,7 +72,6 @@ function CargarFlotaEditada() {
 
                     $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
                 });
-
 
             cargaDest[dest].total = cargaT;
 
@@ -98,6 +102,16 @@ function CargarFlotaEditada() {
 
     $(".ocultarenorigen" + 0).text("");
     CrearOrigen(nombreorigen);
+}
+
+function MostrarDestinos(){
+    for (n = dest; n < cantidadDestinos + 1; n++) {
+        MostrarPorId("cajitaDestino" + n);
+    }
+    $(".ediciondestino").attr("disabled", false);
+    MostrarPorId("envias0");
+    EsconderPorId("listaPrioridades0");
+    $("#botonModificar").prop("disabled", true);
 }
 
 function CrearOrigen(nombreorigen) {
@@ -527,7 +541,7 @@ function Avisos() {
 
     /// se puede enviar o no
     if(!botonenviarAnulado){
-        $("#botonEnviar").text("Enviar Flota");
+        $("#botonEnviar").text(EnviarFlotaTxt);
         if (!sePuedeEnviar) {
             $("#botonEnviar").text(errores);
             $("#botonEnviar")
@@ -837,6 +851,14 @@ function NaveGeneralAHangar(canti) {
 }
 
 function enviarFlota() {
+    if(enviarEnOrbita){
+        MostrarDestinos();
+        EnviarFlotaTxt="Enviar Flota";
+        $("#botonEnviar").text(EnviarFlotaTxt);
+        enviarEnOrbita=false;
+        return;
+    }
+
     if (errores.length > 0) {
         alert(errores);
     } else {
@@ -862,7 +884,7 @@ function enviarFlota() {
                 $("#botonEnviar").html(spinner);
             },
             success: function(response) {
-                $("#botonEnviar").text("Enviar Flota");
+                $("#botonEnviar").text(EnviarFlotaTxt);
                 $("#botonEnviar").prop("disabled", false);
                 if (response.errores == "") {
                     alert("Flota enviada");
@@ -871,7 +893,7 @@ function enviarFlota() {
                 }
             },
             error: function(xhr, textStatus, thrownError) {
-                $("#botonEnviar").text("Enviar Flota");
+                $("#botonEnviar").text(EnviarFlotaTxt);
                 $("#botonEnviar").prop("disabled", false);
                 console.log("status", xhr.status);
                 console.log("error", thrownError);

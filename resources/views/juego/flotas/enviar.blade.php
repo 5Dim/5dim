@@ -52,7 +52,7 @@
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <div class="input-group mb-3 input-group-sm borderless">
                                     <span class="input-group-text bg-dark text-light">
-                                        <button type="button" class="btn btn-dark btn-sm text-warning"
+                                        <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                             onclick="NaveGeneralAFlota(0)">
                                             0
                                         </button>
@@ -61,7 +61,7 @@
                                         En flota
                                     </span>
                                     <span class="input-group-text bg-dark text-light">
-                                        <button type="button" class="btn btn-dark btn-sm text-warning"
+                                        <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                             onclick="NaveGeneralAFlota(1)">
                                             M
                                         </button>
@@ -71,7 +71,7 @@
                             <th class="anchofijo text-warning align-middle" style="max-width: 180px">
                                 <div class="input-group mb-3 input-group-sm borderless">
                                     <span class="input-group-text bg-dark text-light">
-                                        <button type="button" class="btn btn-dark btn-sm text-warning"
+                                        <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                             onclick="NaveGeneralAHangar(0)">
                                             0
                                         </button>
@@ -80,7 +80,7 @@
                                         En hangar
                                     </span>
                                     <span class="input-group-text bg-dark text-light">
-                                        <button type="button" class="btn btn-dark btn-sm text-warning"
+                                        <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                             onclick="NaveGeneralAHangar(1)">
                                             M
                                         </button>
@@ -134,18 +134,18 @@
                                     <div class="input-group mb-3 input-group-sm borderless">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
-                                                <button type="button" class="btn btn-dark btn-sm text-warning"
+                                                <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                                     onclick="NaveAflota({{ $nave->disenios_id }},0)">
                                                     0
                                                 </button>
                                             </span>
                                         </div>
-                                        <input id="enflota{{ $nave->disenios_id}}" type="text" class="form-control input"
+                                        <input id="enflota{{ $nave->disenios_id}}" type="text" class="form-control input distribuidorNaves"
                                             value="0" aria-label="" onKeyUp="NaveAflota({{ $nave->disenios_id }},'x')"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
-                                                <button type="button" class="btn btn-dark btn-sm text-warning"
+                                                <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                                     onclick="NaveAflota({{ $nave->disenios_id }},'m')">
                                                     M
                                                 </button>
@@ -158,18 +158,18 @@
                                     <div class="input-group mb-3 input-group-sm borderless">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
-                                                <button type="button" class="btn btn-dark btn-sm text-warning"
+                                                <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                                     onclick="NaveAhangar({{ $nave->disenios_id }},0)">
                                                     0
                                                 </button>
                                             </span>
                                         </div>
-                                        <input id="enhangar{{ $nave->disenios_id }}" type="text" class="form-control input"
+                                        <input id="enhangar{{ $nave->disenios_id }}" type="text" class="form-control input distribuidorNaves"
                                             value="0" aria-label="" onKeyUp="NaveAhangar({{ $nave->disenios_id }},'x')"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-dark text-light">
-                                                <button type="button" class="btn btn-dark btn-sm text-warning"
+                                                <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                                     onclick="NaveAhangar({{ $nave->disenios_id }},'m')">
                                                     M
                                                 </button>

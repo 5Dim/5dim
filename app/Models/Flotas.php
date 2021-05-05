@@ -79,6 +79,7 @@ class Flotas extends Model
     public static function valoresValidos($cantidadDestinos, $cargaDest, $prioridades)
     {
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+        //Log::info($cantidadDestinos);
 
         for ($dest = 1; $dest < $cantidadDestinos; $dest++) {
             foreach ($recursosArray as $recurso) {
