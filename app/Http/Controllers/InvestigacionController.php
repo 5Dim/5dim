@@ -158,7 +158,7 @@ class InvestigacionController extends Controller
         }
 
         //Comprobamos que el edificio se puede construir
-        $recurso = $investigacion->jugadores->planetas->where('id', $planetaActual->id)->first()->recursos;
+        $recurso = Planetas::where('id', $planetaActual->id)->first()->recursos;
         if ($recurso->mineral < $costeInvestigacion[0]->mineral) {
             $error = true;
         } elseif ($recurso->cristal < $costeInvestigacion[0]->cristal) {
