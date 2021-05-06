@@ -145,13 +145,7 @@ class FlotaController extends Controller
             $visionXDefecto = true;
         }
 
-        if ($visionXDefecto) {
-            //Naves en el planeta
-            $navesEstacionadas = $planetaActual->estacionadas;
-
-            // datosFlota
-            $flota = new EnVuelo;
-            $flota->nombre = "";
+        // valores vacios
 
             //prioridades
             $prioridadesXDefecto = new Prioridades();
@@ -167,7 +161,7 @@ class FlotaController extends Controller
             $prioridadesXDefecto->ma = 0;
             $prioridadesXDefecto->municion = 0;
             $prioridadesXDefecto->creditos = 0;
-            array_push($prioridades, $prioridadesXDefecto);
+
 
             // recursos en destinos
             $recursosDestino = new RecursosEnFlota();
@@ -183,7 +177,6 @@ class FlotaController extends Controller
             $recursosDestino->ma = 0;
             $recursosDestino->municion = 0;
             $recursosDestino->creditos = 0;
-            array_push($cargaDest, $recursosDestino);
 
             $recursosFlota = $recursos;
 
@@ -192,19 +185,39 @@ class FlotaController extends Controller
             $origen->estrella = $planetaActual->estrella;
             $origen->orbita = $planetaActual->orbita;
             $origen->porcentVel = 100;
-            array_push($destinos, $origen);
+
 
             $destino = new Destinos();
             $destino->estrella = -1;
             $destino->orbita = -1;
             $destino->porcentVel = 100;
-            /// prioridades por defecto
+
+            $cargaDestVacia = [];
+            $prioridadesVacia = [];
+            $destinosVacia = [];
+            array_push($destinosVacia, $destino);
+            array_push($cargaDestVacia, $recursosDestino);
+            array_push($prioridadesVacia, $prioridadesXDefecto);
+
+
+        if ($visionXDefecto) {
+
+            array_push($prioridades, $prioridadesXDefecto);
+            array_push($cargaDest, $recursosDestino);
+            array_push($destinos, $origen);
 
             for ($dest = 1; $dest < $cantidadDestinos + 1; $dest++) {
                 array_push($destinos, $destino);
                 array_push($cargaDest, $recursosDestino);
                 array_push($prioridades, $prioridadesXDefecto);
             }
+
+            //Naves en el planeta
+            $navesEstacionadas = $planetaActual->estacionadas;
+
+            // datosFlota
+            $flota = new EnVuelo;
+            $flota->nombre = "";
         }
 
         // $diseniosJugador = $jugadorActual->disenios;
@@ -274,6 +287,9 @@ class FlotaController extends Controller
             'flotasEnRecoleccionPropias',
             'flotasEnOrbitaAlianza',
             'flotasEnRecoleccionAlianza',
+            'destinosVacia',
+            'cargaDestVacia',
+            'prioridadesVacia',
 
         ));
     }

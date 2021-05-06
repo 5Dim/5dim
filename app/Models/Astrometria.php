@@ -392,15 +392,15 @@ class Astrometria extends Model
                     $radarRango = $luzdemallauniverso * $radar['circulo'] * $ajusteMapaFactor;
 
                     $dist =  (pow(($inicioActualx - $coordDestx) * ($inicioActualx - $coordDestx) + ($inicioActualy - $coordDesty) * ($inicioActualy - $coordDesty), 1 / 2)); //  /$luzdemallauniverso;
-                    if (!$seveOrigen && $dist < $radarRango) {
-                        $flota->origen = $destinoActual['initestrella'] . "x" . $destinoActual['initorbita'];
+                    if ( $dist < $radarRango) {
+                        $flota->origen = Astrometria::nombreDestino($destinoActual);
                         $flota->coordix = $inicioActualx;
                         $flota->coordiy = $inicioActualy;
                         $seveOrigen = true;
                     }
 
                     $dist =  (pow(($destinoActualx - $coordDestx) * ($destinoActualx - $coordDestx) + ($destinoActualy - $coordDesty) * ($destinoActualy - $coordDesty), 1 / 2)); // /$luzdemallauniverso;
-                    if (!$seveDestino && $dist < $radarRango) {
+                    if ($dist < $radarRango) {
                         $flota->destino = Astrometria::nombreDestino($destinoActual);
                         $flota->coordfx = $destinoActualx;
                         $flota->coordfy = $destinoActualy;
@@ -430,7 +430,7 @@ class Astrometria extends Model
                     $flota->coordix = $ptoFlota->coordx;
                     $flota->coordiy = $ptoFlota->coordy;
                 } else {
-                    $flota->origen = $destinoActual['initestrella'] . "x" . $destinoActual['initorbita'];
+                    $flota->origen = Astrometria::nombreDestino($destinoActual);
                     $flota->tregreso = $tregreso;
                 }
                 if (!$seveDestino) {
@@ -457,7 +457,7 @@ class Astrometria extends Model
             $flota->color = 3;
         } else if ($tipo == "aliado") {
             if ($ptoFlota != null || $estado == "envuelo") {
-                $flota->origen = $destinoActual['initestrella'] . "x" . $destinoActual['initorbita'];
+                $flota->origen = Astrometria::nombreDestino($destinoActual);
                 $flota->coordix = $destinoActual->initcoordx;
                 $flota->coordiy = $destinoActual->initcoordy;
                 $flota->coordfx = $destinoActual->fincoordx;
@@ -509,7 +509,7 @@ class Astrometria extends Model
         } else { //propio
             //Log::info($destinoActual);
             if ($ptoFlota != null || $estado == "envuelo") {
-                $flota->origen = $destinoActual['initestrella'] . "x" . $destinoActual['initorbita'];
+                $flota->origen = Astrometria::nombreDestino($destinoActual);
                 $flota->coordix = $destinoActual->initcoordx;
                 $flota->coordiy = $destinoActual->initcoordy;
                 $flota->coordfx = $destinoActual->fincoordx;
@@ -747,18 +747,19 @@ class Astrometria extends Model
 
         $tipodestino = Astrometria::tipoDestino($destino);
         $nombreDestino = "";
-
         switch ($tipodestino) {
             case "planeta":
                 // Log::info("destino planeta ".$destino->planeta);
-                $nombreDestino = $destino->planetas->estrella . "x" . $destino->planetas->orbita;
+                $nombreDestino = $destino->planetas->estrella . "x" . $destino->planetas->orbita." ".$destino->planetas->nombre;
                 break;
             case "enrecoleccion":
-            case "enorbita":
                 $nombreDestino = $destino->enRecoleccion["publico"];
                 break;
+            case "enorbita":
+                $nombreDestino = $destino->enOrbita["publico"];
+                break;
             case "envuelo":
-                $nombreDestino = $destino->enRecoleccion["publico"];
+                $nombreDestino = $destino->enVuelo["publico"];
                 break;
         }
 

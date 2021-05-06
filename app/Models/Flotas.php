@@ -79,9 +79,10 @@ class Flotas extends Model
     public static function valoresValidos($cantidadDestinos, $cargaDest, $prioridades)
     {
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
-        //Log::info($cantidadDestinos);
+        Log::info($cantidadDestinos);
 
         for ($dest = 1; $dest < $cantidadDestinos; $dest++) {
+            Log::info($cargaDest[$dest]);
             foreach ($recursosArray as $recurso) {
 
                 if (!is_numeric($cargaDest[$dest][$recurso])) {
@@ -324,7 +325,7 @@ class Flotas extends Model
 
         $dist = 0;
 
-        if (strlen($oriestrella) > 6) {  // origen es flota
+        if (strlen($oriestrella) > 6 || !is_numeric($oriestrella)) {  // origen es flota
             $flotaDestino = EnRecoleccion::where("publico", $oriestrella)->orWhere("nombre", $oriestrella)->first();
             if ($flotaDestino == null) {
                 $flotaDestino = EnOrbita::where("publico", $oriestrella)->orWhere("nombre", $oriestrella)->first();
@@ -335,7 +336,7 @@ class Flotas extends Model
             $origen['orbita'] = $oriorbita;
         }
 
-        if (strlen($destiestrella) > 6) {  //destino es flota
+        if (strlen($destiestrella) > 6 || !is_numeric($destiestrella)) {  //destino es flota
             $flotaDestino = EnRecoleccion::where("publico", $destiestrella)->orWhere("nombre", $destiestrella)->first();
             if ($flotaDestino == null) {
                 $flotaDestino = EnOrbita::where("publico", $destiestrella)->orWhere("nombre", $destiestrella)->first();
@@ -396,7 +397,7 @@ class Flotas extends Model
     public static function coordenadasBySistema($nsistema, $anchoUniverso, $luzdemallauniverso)
     {
         $coord = [];
-        if (strlen($nsistema) > 6) {  //destino es flota
+        if (strlen($nsistema) > 6 || !is_numeric($nsistema)) {  //destino es flota
             $flotaDestino = EnRecoleccion::where("publico", $nsistema)->orWhere("nombre", $nsistema)->first();
             if ($flotaDestino == null) {
                 $flotaDestino = EnOrbita::where("publico", $nsistema)->orWhere("nombre", $nsistema)->first();
@@ -412,7 +413,7 @@ class Flotas extends Model
 
     public static function existeSistema($estrella)
     {
-        if (strlen($estrella) < 7) { //destino es planeta
+        if (strlen($estrella) < 7  && is_numeric($estrella)) { //destino es planeta
             $planeta = Planetas::where([['estrella', $estrella]])->first();
             if ($planeta == null) {
                 return false;
@@ -645,7 +646,7 @@ destino 0 con lo que sale
             //$recursosDestino = new RecursosEnFlota();
             $prioridadesDestino = $destino->prioridades;
 
-            //Log::info("destino ".$destino);
+            //Log::info("destino ".$destino." tipodestino ".$tipodestino);
 
             switch ($destino->mision) {
                 case "Transportar":
@@ -675,9 +676,11 @@ destino 0 con lo que sale
                             Flotas::recolectarAsteroide($destino->enRecoleccion->planetas, null, $estaFlota->jugadores_id);
                             $recursosDestino = $destino->enRecoleccion->recursosEnFlota;
                             $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enRecoleccion->jugadores_id);
-                            //Log::info("tengo ".$recursosDestino);
-                            //Log::info(" destino es mio: ".$destinoEsMio."jugador id ".$estaFlota->jugadores_id." destino id".$destino->enRecoleccion->jugadores_id);
                             break;
+                            case "enorbita":
+                                $recursosDestino = $destino->enOrbita->recursosEnFlota;
+                                $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enOrbita->jugadores_id);
+                                break;
                         case "enextraccion":
                             //actualizamos sus recursos
                             //$recursosDestino=$destino->enorbita->recursos;

@@ -82,7 +82,7 @@ function CargarFlotaEditada() {
                 hacecuanto = difTiempos(destino.fin, horaServer);
                 $("#titulo" + dest).text("Destino " + dest + " alcanzado hace " + hacecuanto);
             } else {
-                if (dest > 0) {
+                if (dest > 0 && destino.fin!=undefined) {
                     hacecuanto = difTiempos(horaServer, destino.fin);
                     $("#titulo" + dest).text("Destino " + dest + " alcanzado en " + hacecuanto);
                 }
@@ -105,13 +105,19 @@ function CargarFlotaEditada() {
 }
 
 function MostrarDestinos(){
-    for (n = dest; n < cantidadDestinos + 1; n++) {
+    for (n = 1; n < cantidadDestinos + 1; n++) {
+        CrearDestinoVacio();
         MostrarPorId("cajitaDestino" + n);
     }
     $(".ediciondestino").attr("disabled", false);
     MostrarPorId("envias0");
     EsconderPorId("listaPrioridades0");
     $("#botonModificar").prop("disabled", true);
+}
+
+function CrearDestinoVacio(){
+
+
 }
 
 function CrearOrigen(nombreorigen) {
@@ -959,11 +965,15 @@ function RecursosSiDestino(dest) {
         $("#listaPlanetas" + dest)
             .val(destinoF)
             .change();
-        $("#ordenDest" + dest)
-            .val(destinos[dest].misionSEG)
-            .change();
+            if(destinos[dest]!=undefined){
+                $("#ordenDest" + dest)
+                .val(destinos[dest].misionSEG)
+                .change();
+            }
     }
 }
+
+
 
 /////////////////////////////////////******************* FLOTAS EN VUELO ********************************** //////////////////////////////////
 
@@ -1061,6 +1071,8 @@ function RellenarFlotasEnVuelo(data,prefix){
         if (flota!=null){
 
             nick=flota['nick'];
+           // var img = origenImagenes + "/flotas/nada.jpg";
+
             fila++;
             if(flota['estado']=="envuelo"){
 
