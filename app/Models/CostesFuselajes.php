@@ -94,8 +94,8 @@ class CostesFuselajes extends Model
 
             case "AGNI":
                 $Tnave = "estacion";
-                $factn = 2;
-                $r1cce = [$codigo, 200000, 50000, 200000, 90000, 30000, 100000, 55000, 0, 2000];
+                $factn = 1;
+                $r1cce = [$codigo, 500000, 200000, 200000, 100000, 150000, 25000, 35000, 1000, 2000];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -360,8 +360,8 @@ class CostesFuselajes extends Model
 
             case "KARMA":
                 $Tnave = "estacion";
-                $factn = 2;
-                $r1cce = [$codigo, 1550000, 500000, 200000, 95000, 59000, 150000, 35000, 1, 0, 1000];
+                $factn = 1;
+                $r1cce = [$codigo, 3100000, 1000000, 400000, 200000, 300000, 80000, 35000, 2000, 0, 1000];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 

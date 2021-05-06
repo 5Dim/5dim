@@ -214,7 +214,7 @@
                     </td>
                     @php
                         $texto = 'Se requiere el diseño';
-                        $clase = 'btn-secondar';
+                        $clase = 'btn-outline-light';
                         $deshabilitado = 'disabled';
                         if (!empty(Auth::user()->jugador->fuselajes->where('id', $disenio->id)->first())) {
                             if ($disenio->id == Auth::user()->jugador->fuselajes->where('id', $disenio->id)->first()->id) {
