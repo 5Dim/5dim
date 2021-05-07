@@ -160,7 +160,7 @@ class FabricasController extends Controller
             $cola->finished_at = date('Y/m/d H:i:s', $final);
             $cola->save();
         }else {
-            Log::info("ERROR AL RECICLAR USER: " . session()->get('jugadores_id'));
+            //Log::info("ERROR AL RECICLAR USER: " . session()->get('jugadores_id'));
         }
 
 
