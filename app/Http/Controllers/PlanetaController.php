@@ -59,6 +59,7 @@ class PlanetaController extends Controller
             'planetasJugador',
             'planetasAlianza',
             'mensajeNuevo',
+            'consImperio',
 
             'planetaActual',
             'nivelImperio',

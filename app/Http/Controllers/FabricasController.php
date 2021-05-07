@@ -34,6 +34,7 @@ class FabricasController extends Controller
             'planetasJugador',
             'planetasAlianza',
             'mensajeNuevo',
+            'consImperio',
 
             'planetaActual',
             'nivelImperio',

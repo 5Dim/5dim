@@ -34,6 +34,7 @@ class JuegoController extends Controller
             'nivelImperio',
             'nivelEnsamblajeFuselajes',
             'mensajeNuevo',
+            'consImperio',
         ));
     }
 
@@ -63,6 +64,7 @@ class JuegoController extends Controller
             'planetasJugador',
             'planetasAlianza',
             'mensajeNuevo',
+            'consImperio',
 
             'planetaActual',
             'nivelImperio',
@@ -89,6 +91,7 @@ class JuegoController extends Controller
             'planetasJugador',
             'planetasAlianza',
             'mensajeNuevo',
+            'consImperio',
 
             'planetaActual',
             'nivelImperio',

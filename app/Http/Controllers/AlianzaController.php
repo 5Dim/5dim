@@ -39,6 +39,7 @@ class AlianzaController extends Controller
                 'planetasJugador',
                 'planetasAlianza',
                 'mensajeNuevo',
+                'consImperio',
 
                 'planetaActual',
                 'nivelImperio',
@@ -57,6 +58,7 @@ class AlianzaController extends Controller
                 'planetasJugador',
                 'planetasAlianza',
                 'mensajeNuevo',
+                'consImperio',
 
                 'planetaActual',
                 'nivelImperio',

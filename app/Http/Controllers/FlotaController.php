@@ -268,6 +268,7 @@ class FlotaController extends Controller
             'planetasJugador',
             'planetasAlianza',
             'mensajeNuevo',
+            'consImperio',
 
             'cantidadDestinos',
             'planetaActual',

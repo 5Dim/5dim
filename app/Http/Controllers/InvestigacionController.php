@@ -63,6 +63,7 @@ class InvestigacionController extends Controller
             'planetasJugador',
             'planetasAlianza',
             'mensajeNuevo',
+            'consImperio',
 
             'planetaActual',
             'velInvest',

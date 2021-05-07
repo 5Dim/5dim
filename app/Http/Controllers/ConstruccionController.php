@@ -72,6 +72,7 @@ class ConstruccionController extends Controller
             'colaConstruccion',
             'nivelImperio',
             'nivelEnsamblajeFuselajes',
+            'consImperio',
 
             // Categorias
             'construcciones',

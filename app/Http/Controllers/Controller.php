@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Almacenes;
+use App\Models\Constantes;
 use App\Models\Construcciones;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
@@ -57,6 +58,7 @@ class Controller extends BaseController
         }
 
         $nivelImperio = $investigaciones->where('codigo', 'invImperio')->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+        $consImperio = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
 
         $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
@@ -83,6 +85,7 @@ class Controller extends BaseController
             'nivelEnsamblajeFuselajes',
             'mensajeNuevo',
             'jugadorActual',
+            'consImperio',
         );
     }
 
