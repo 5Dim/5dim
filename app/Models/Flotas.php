@@ -849,10 +849,13 @@ destino 0 con lo que sale
             DB::beginTransaction();
             try {
                 //Log::info("guardar destinoAlcanzado: ".$destinoAlcanzado." guardarCambios ".$guardarCambios);
+               // Log::info($recursosFlota);Log::info($recursosDestino);
                 if ($guardarCambios) {
                     $recursosFlota->save();
                     $recursosDestino->save();
                     $destinoAlcanzado = true;
+                    $recursosEnDestino=Flotas::recursosADestino($recursosFlota,$destino->recursos);
+                    $recursosEnDestino->save();
                 }
 
                 if ($guardarCambiosTransferir) {
@@ -928,6 +931,17 @@ destino 0 con lo que sale
                 Log::info($errores . " " . $e);
             }
         }
+    }
+
+    public static function recursosADestino($recursosLlega,$recursosEnFlota){
+        $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+        //Log::info($recursosEnFlota);Log::info($recursosLlega);
+        foreach ($recursosArray as $recurso) {
+
+            $recursosEnFlota[$recurso] = $recursosLlega[$recurso];
+        }
+        return $recursosEnFlota;
+
     }
 
     public static function flotaARecolectarOrbitar($flotaLlega, $planeta, $anchoUniverso, $luzdemallauniverso, $quehacer)

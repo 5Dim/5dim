@@ -401,7 +401,7 @@ class Astrometria extends Model
 
                     $dist =  (pow(($destinoActualx - $coordDestx) * ($destinoActualx - $coordDestx) + ($destinoActualy - $coordDesty) * ($destinoActualy - $coordDesty), 1 / 2)); // /$luzdemallauniverso;
                     if ($dist < $radarRango) {
-                        $flota->destino = Astrometria::nombreDestino($destinoActual);
+                        $flota->destino = Astrometria::nombreDestino($destinoActual,true);
                         $flota->coordfx = $destinoActualx;
                         $flota->coordfy = $destinoActualy;
                         $seveDestino = true;
@@ -437,7 +437,7 @@ class Astrometria extends Model
                     $flota->coordfx = $ptoFlota->coordx;
                     $flota->coordfy = $ptoFlota->coordy;
                 } else {
-                    $flota->destino = Astrometria::nombreDestino($destinoActual);
+                    $flota->destino = Astrometria::nombreDestino($destinoActual,true);
                     $flota->trestante = $trestante;
                 }
             } else if ($estado == "enrecoleccion" && $seveOrigen) {
@@ -465,7 +465,7 @@ class Astrometria extends Model
                 $flota->mision = $destinoActual['mision'];
                 $flota->misionregreso = $destinoActual['mision_regreso'];
                 $flota->fecha = $destinoActual['fin'];
-                $flota->destino = Astrometria::nombreDestino($destinoActual);
+                $flota->destino = Astrometria::nombreDestino($destinoActual,true);
             } else if ($estado == "enrecoleccion") {
                 $flota->mision = "Recolectando";
                 $flota->recoleccion = $flotaVisible->recoleccion;
@@ -514,7 +514,7 @@ class Astrometria extends Model
                 $flota->coordiy = $destinoActual->initcoordy;
                 $flota->coordfx = $destinoActual->fincoordx;
                 $flota->coordfy = $destinoActual->fincoordy;
-                $flota->destino = Astrometria::nombreDestino($destinoActual);
+                $flota->destino = Astrometria::nombreDestino($destinoActual,true);
                 $flota->mision = $destinoActual['mision'];
                 $flota->misionregreso = $destinoActual['mision_regreso'];
                 $flota->fecha = $destinoActual['fin'];
@@ -742,7 +742,7 @@ class Astrometria extends Model
         return $tipodestino;
     }
 
-    public static function nombreDestino($destino)
+    public static function nombreDestino($destino,$anterior=false)
     {
 
         $tipodestino = Astrometria::tipoDestino($destino);
@@ -750,7 +750,13 @@ class Astrometria extends Model
         switch ($tipodestino) {
             case "planeta":
                 // Log::info("destino planeta ".$destino->planeta);
-                $nombreDestino = $destino->planetas->estrella . "x" . $destino->planetas->orbita." ".$destino->planetas->nombre;
+                if($anterior){
+                    $nombreDestino =$destino->planetas->nombre." ".$destino->planetas->estrella . "x" . $destino->planetas->orbita;
+                } else {
+                    $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
+                    $nombreDestino =$planetaAnterior->nombre." ".$planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
+                }
+
                 break;
             case "enrecoleccion":
                 $nombreDestino = $destino->enRecoleccion["publico"];
