@@ -67,12 +67,12 @@ class Flotas extends Model
         //Log::info("calculo flota");
         //Log::info($valFlotaT);
         //Log::info($tablaHangares);
-        if($destinos!=null){
+        if ($destinos != null) {
             $result = Flotas::calculoespaciotiempo($destinos, $valFlotaT);
             return [$result[1], $result[0], $tablaHangares];
         }
 
-        return [$valFlotaT,null, $tablaHangares];
+        return [$valFlotaT, null, $tablaHangares];
     }
 
 
@@ -478,10 +478,10 @@ class Flotas extends Model
         $flotax = EnVuelo::where('publico', $nombreflota)->where('jugadores_id', $jugadoryAlianza)->first();
         if ($flotax != null) {
             try {
-            $ajusteMapaBase = 35; //ajuste 0,0 con mapa
-            $ajusteMapaFactor = 7; //ajuste escala mapa
+                $ajusteMapaBase = 35; //ajuste 0,0 con mapa
+                $ajusteMapaFactor = 7; //ajuste escala mapa
 
-            DB::beginTransaction();
+                DB::beginTransaction();
 
                 $ahora = date("Y-m-d H:i:s");
                 $puntoFlota = PuntosEnFlota::where('fin', '>', $ahora)
@@ -489,7 +489,7 @@ class Flotas extends Model
                     ->orderBy('fin', 'asc')
                     ->first();
 
-                    //Log::info("vfvf ".$flotax->id);
+                //Log::info("vfvf ".$flotax->id);
                 //nuscamos destinoa actual
                 //$destinosO=$flotax->destinos;
                 $destino = Destinos::where("visitado", 0)
@@ -579,7 +579,6 @@ class Flotas extends Model
                 } else {
                     $errores = "La flota ya viene de regreso o no existe destino de regreso";
                 }
-
             } catch (Exception $e) {
                 DB::rollBack();
                 Log::info("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
@@ -679,10 +678,10 @@ destino 0 con lo que sale
                             $recursosDestino = $destino->enRecoleccion->recursosEnFlota;
                             $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enRecoleccion->jugadores_id);
                             break;
-                            case "enorbita":
-                                $recursosDestino = $destino->enOrbita->recursosEnFlota;
-                                $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enOrbita->jugadores_id);
-                                break;
+                        case "enorbita":
+                            $recursosDestino = $destino->enOrbita->recursosEnFlota;
+                            $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enOrbita->jugadores_id);
+                            break;
                         case "enextraccion":
                             //actualizamos sus recursos
                             //$recursosDestino=$destino->enorbita->recursos;
@@ -920,8 +919,8 @@ destino 0 con lo que sale
                     $destino->save();
                 }
 
-                //Mensajes::transporte($destino);
                 DB::commit();
+                // Mensajes::transporte($destino);
                 Log::info($errores);
             } catch (Exception $e) {
                 DB::rollBack();
@@ -1039,7 +1038,6 @@ destino 0 con lo que sale
                         $columnNaves   => $flotax->id,
                         "destinos_id"   => null
                     ]);
-
                 }
 
                 //recursos

@@ -42,4 +42,9 @@ class Destinos extends Model
     {
         return $this->belongsTo(EnOrbita::class);
     }
+
+    public static function destinoAnterior($destino)
+    {
+        return Destinos::where([['fin', $destino->init], ['flota_id', $destino->flota_id], ["id", '!=', $destino->id]])->first();
+    }
 }
