@@ -61,6 +61,7 @@
                         @if ($recibido->categoria == 'flotas')
                             @include('juego.mensajes.cajitaMensajesRecibidos', [
                             'mensaje' => $recibido,
+                            'imagenAvatar' => 'img/juego/skin0/mensajes/comandante.png',
                             ])
                         @endif
                     @endforeach

@@ -612,7 +612,7 @@ destino 0 con lo que sale
 
         foreach ($listaDestinosEntrantes as $destino) {
 
-            $destinoAnterior = Destinos::where([['fin', $destino['init']], ["flota_id", $destino['flota_id']], ["id", '!=', $destino['id']]])->first();
+            $destinoAnterior = Destinos::destinoAnterior($destino);
 
             //Log::info($destinoAnterior);
 
@@ -920,7 +920,7 @@ destino 0 con lo que sale
                 }
 
                 DB::commit();
-                // Mensajes::transporte($destino);
+                Mensajes::enviarMensajeFlota($destino);
                 Log::info($errores);
             } catch (Exception $e) {
                 DB::rollBack();

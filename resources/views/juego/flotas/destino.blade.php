@@ -47,8 +47,8 @@
                             <optgroup label="Planetas propios">
                                 @foreach ($planetasJugador as $planeta)
                                     <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
-                                        {{ $planeta->estrella }}x{{ $planeta->orbita }}
                                         {{ $planeta->nombre }}
+                                        ({{ $planeta->estrella }}x{{ $planeta->orbita }})
                                     </option>
                                 @endforeach
                             </optgroup>
@@ -74,8 +74,8 @@
                                 <optgroup label="Planetas de alianza">
                                     @foreach ($planetasAlianza as $planeta)
                                         <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
-                                            {{ $planeta->estrella }}x{{ $planeta->orbita }}
                                             {{ $planeta->nombre }}
+                                            ({{ $planeta->estrella }}x{{ $planeta->orbita }})
                                         </option>
                                     @endforeach
                                 </optgroup>
