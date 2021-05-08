@@ -86,6 +86,7 @@ class Controller extends BaseController
             'mensajeNuevo',
             'jugadorActual',
             'consImperio',
+            'jugadorAlianza'
         );
     }
 

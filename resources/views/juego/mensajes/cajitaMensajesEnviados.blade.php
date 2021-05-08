@@ -1,24 +1,24 @@
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
-            <table class="table table-borderless borderless table-sm text-center anchofijo">
+            <table class="table table-borderless borderless table-sm anchofijo">
                 <tr>
-                    <td colspan="1" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href="" role="button"
+                    <td colspan="1" class="text-success text-center borderless align-middle">
+                        <a class="btn btn-link text-success" data-bs-toggle="collapse" href="" role="button"
                             aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <img class="rounded" src="{{ $mensaje->jugadores->avatar }}" width="50" height="50">
                             <big>{{ $mensaje->jugadores->nombre }}<big>
                         </a>
                     </td>
-                    <td colspan="7" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href="" role="button"
+                    <td colspan="7" class="text-success borderless align-middle">
+                        <a class="btn btn-link text-success" data-bs-toggle="collapse" href="" role="button"
                             aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <big>Asunto: {{ $mensaje->asunto }}<big>
                         </a>
                     </td>
-                    <td colspan="2" class="text-{{ $clase }} text-center borderless align-middle">
+                    <td colspan="2" class="text-success borderless align-middle">
                         Enviado a:
                         @foreach ($mensaje->intervinientes as $intervinientes)
                             @if($loop->last)
@@ -28,8 +28,8 @@
                             @endif
                         @endforeach
                     </td>
-                    <td colspan="1" class="text-{{ $clase }} text-center borderless align-middle">
-                        <a class="btn btn-link text-{{ $clase }}" data-bs-toggle="collapse" href=""
+                    <td colspan="1" class="text-success text-center borderless align-middle">
+                        <a class="btn btn-link text-success" data-bs-toggle="collapse" href=""
                             role="button" aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <big>{{ $mensaje->created_at }}<big>

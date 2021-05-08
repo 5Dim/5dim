@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alianzas;
 use Illuminate\Http\Request;
 use App\Models\Recursos;
 use App\Models\Almacenes;
@@ -14,6 +15,7 @@ use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\Mensajes;
 use App\Models\MensajesIntervinientes;
+use Illuminate\Database\Eloquent\Builder;
 
 class MensajesController extends Controller
 {
@@ -27,18 +29,21 @@ class MensajesController extends Controller
         $jugadores = Jugadores::orderBy("nombre")->get();
 
         //Lista de mensajes recibidos
-        if ($jugadorActual->alianza_id) {
-            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orWhere('emisor', $jugadorAlianza->id)->orderBy('id', 'desc')->get();
-            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orWhere('receptor', $jugadorAlianza->id)->orderBy('id', 'desc')->get();
-        } else {
-            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orderBy('id', 'desc')->get();
-            $recibidos = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->orderBy('id', 'desc')->get();
+        if (!empty($jugadorActual->alianzas)) {
+            $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorActual) {
+                    $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorActual->id]);
+                })->orderBy('id', 'desc')->get();
+            $enviados = Mensajes::whereIn('emisor', [session()->get('jugadores_id'), $jugadorActual->id])->orderBy('id', 'desc')->get();
         }
 
-        foreach ($recibidos as $recibido) {
+        $mios = MensajesIntervinientes::whereIn('receptor', [session()->get('jugadores_id'), $jugadorActual->id])->get();
+
+        foreach ($mios as $recibido) {
             $recibido->leido = true;
             $recibido->save();
         }
+
+        // dd($recibidos);
 
         return view('juego.mensajes.mensajes', compact(
             // Recursos
