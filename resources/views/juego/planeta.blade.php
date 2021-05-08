@@ -14,6 +14,14 @@
                         aria-controls="colonia" aria-selected="true">
                         Colonia
                     </a>
+                    <a class="nav-item nav-link" id="producciones-tab" data-bs-toggle="tab" href="#producciones" role="tab"
+                        aria-controls="producciones" aria-selected="false">
+                        Producciones
+                    </a>
+                    <a class="nav-item nav-link" id="tecnologia-tab" data-bs-toggle="tab" href="#tecnologia" role="tab"
+                        aria-controls="tecnologia" aria-selected="false">
+                        Desbloqueo por tecnologia
+                    </a>
                     <a class="nav-item nav-link" id="refugio-tab" data-bs-toggle="tab" href="#refugio" role="tab"
                         aria-controls="refugio" aria-selected="false">
                         Refugio
@@ -22,7 +30,7 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="colonia" role="tabpanel" aria-labelledby="colonia-tab">
-                    <table class="table table-sm table-borderless text-center anchofijo cajita rounded align-middle">
+                    <table class="table table-sm text-center anchofijo cajita rounded align-middle">
                         <tr>
                             <th colspan="3" class="anchofijo text-success borderless">
                                 <big>Resumen de la colonia</big>
@@ -50,7 +58,7 @@
                                     style="padding-left: 5px !important; padding-right: 5px !important">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light" style="padding: 0px">
-                                            @if(count(Auth::user()->jugador->planetas) > 1)
+                                            @if (count(Auth::user()->jugador->planetas) > 1)
                                                 <button type="button" class="btn btn-dark text-light"
                                                     onclick="sendCederColonia()">
                                                     Ceder colonia
@@ -64,27 +72,31 @@
                                     </div>
                                     <select name="listaJugadores" id="listaJugadores" class="form-control"></select>
                                     <script>
-                                    $('#listaJugadores').select2({
-                                        // theme: "bootstrap",
-                                        // width: '100%',
-                                        // closeOnSelect: false,
-                                        placeholder: "Nombre del jugador",
-                                        data: [
-                                            { id: 0, text: "Nombre del jugador" },
-                                            @foreach ($jugadores as $jugador)
-                                                { id: {{ $jugador->id }}, text: "{{ $jugador->nombre }}" },
-                                            @endforeach
-                                        ],
-                                        language: "es"
-                                    });
+                                        $('#listaJugadores').select2({
+                                            // theme: "bootstrap",
+                                            // width: '100%',
+                                            // closeOnSelect: false,
+                                            placeholder: "Nombre del jugador",
+                                            data: [{
+                                                    id: 0,
+                                                    text: "Nombre del jugador"
+                                                },
+                                                @foreach ($jugadores as $jugador)
+                                                    { id: {{ $jugador->id }}, text: "{{ $jugador->nombre }}" },
+                                                @endforeach
+                                            ],
+                                            language: "es"
+                                        });
+
                                     </script>
                                 </div>
                             </td>
                             <td>
-                                @if(count(Auth::user()->jugador->planetas) > 1)
-                                <button type="button" class="btn btn-outline-danger col-12" onclick="window.location.href = '/juego/destruirColonia'">
-                                    <i class="fa fa-times-circle"></i> Destruir colonia
-                                </button>
+                                @if (count(Auth::user()->jugador->planetas) > 1)
+                                    <button type="button" class="btn btn-outline-danger col-12"
+                                        onclick="window.location.href = '/juego/destruirColonia'">
+                                        <i class="fa fa-times-circle"></i> Destruir colonia
+                                    </button>
                                 @else
                                     <button type="button" class="btn btn-outline-light col-12" disabled>
                                         <i class="fa fa-times-circle"></i> No puedes destruir tu último planeta
@@ -810,10 +822,142 @@
                         </tr>
                     </table>
                 </div>
+                <div class="tab-pane fade show" id="producciones" role="tabpanel" aria-labelledby="producciones-tab">
+                    <table class="table table-sm table-hover table-borderless table-striped text-center anchofijo cajita-info rounded align-middle">
+                        <tr>
+                            <th colspan="12" class="anchofijo text-success">
+                                <big>
+                                    Producciones base de las minas
+                                </big>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="anchofijo text-success borderless">
+                                Nivel
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Personal
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Mineral
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Cristal
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Gas
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Plastico
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Ceramica
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Liquido
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Micros
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Fuel
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                MA
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Municion
+                            </td>
+                        </tr>
+                        @foreach ($producciones as $produccion)
+                            <tr>
+                                <td class="anchofijo text-warning borderless">
+                                    {{ number_format($produccion->nivel, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->personal, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->mineral, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->cristal, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->gas, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->plastico, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->ceramica, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->liquido, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->micros, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->fuel, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->ma, 0, ',', '.') }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ number_format($produccion->municion, 0, ',', '.') }}
+                                </td>
+                            </tr>
+
+                        @endforeach
+                    </table>
+                </div>
+                <div class="tab-pane fade show" id="tecnologia" role="tabpanel" aria-labelledby="tecnologia-tab">
+                    <table class="table table-sm table-hover table-borderless table-striped cajita-info rounded align-middle">
+                        <tr>
+                            <th colspan="4" class="anchofijo text-success text-center">
+                                <big>
+                                    Tecnologias y desbloqueos
+                                </big>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="anchofijo text-success borderless">
+                                Tecnologia
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Nivel
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Nombre
+                            </td>
+                            <td class="anchofijo text-success borderless">
+                                Descripcion
+                            </td>
+                        </tr>
+                        @foreach ($desbloqueos as $arma)
+                            <tr>
+                                <td class="anchofijo text-warning borderless">
+                                    {{ __('investigacion.' . $arma->clase) }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ $arma->niveltec }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ $arma->nombre }}
+                                </td>
+                                <td class="anchofijo text-light borderless">
+                                    {{ $arma->descripcion }}
+                                </td>
+                            </tr>
+
+                        @endforeach
+                    </table>
+                </div>
                 <div class="tab-pane fade show" id="refugio" role="tabpanel" aria-labelledby="refugio-tab">
                     <table class="table table-sm table-borderless text-center anchofijo cajita rounded align-middle">
                         <tr>
-                            <th colspan="11" class="anchofijo text-success">
+                            <th colspan="12" class="anchofijo text-success">
                                 <big>
                                     Recursos protegidos por el refugio
                                 </big>

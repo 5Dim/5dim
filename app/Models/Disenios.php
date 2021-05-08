@@ -216,7 +216,7 @@ class Disenios extends Model
         return $diseniosR;
     }
 
-    public static function cargaTotal($disenios)
+    public static function cargaTotal($diseniosEnFlota)
     {
         $investigacion = Investigaciones::where('codigo', 'invCarga')->first()->nivel;
         $constante = Constantes::where('codigo', 'mejorainvCarga')->first()->valor;
@@ -224,10 +224,11 @@ class Disenios extends Model
 
         //Log::info("diseniosx ".$disenios);
 
-        foreach ($disenios as $disenio) {
-            $mejoras = $disenio->disenios->mejoras;
+        foreach ($diseniosEnFlota as $disenioEnFlota) {
+            $cantidad = $disenioEnFlota->enFlota + $disenioEnFlota->enHangar;
+            $mejoras = $disenioEnFlota->disenios->mejoras;
             if ($mejoras->carga > 0) {
-                $mejorasT += $mejoras->carga;
+                $mejorasT += ($mejoras->carga * $cantidad);
             }
         }
         return $mejorasT * (1 + ($investigacion * $constante));

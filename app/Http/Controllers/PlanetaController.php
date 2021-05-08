@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
+use App\Models\Armas;
 use App\Models\Planetas;
 use App\Models\Constantes;
 use App\Models\Producciones;
@@ -47,6 +48,12 @@ class PlanetaController extends Controller
         $factorMunicion = (1 + ($investigaciones->where('codigo', 'invIndMunicion')->first()->nivel * ($mejoraIndustrias)));
         array_push($factoresIndustrias, $factorMunicion);
 
+        //Datos de las armas que se desbloquean por tecnologia
+        $desbloqueos = Armas::whereIn('clase', ['invIa', 'invCarga', 'invHangar', 'invRecoleccion'])->get();
+
+        //Datos de las producciones
+        $producciones = Producciones::all();
+
         //Todos los jugadores para la cesiones
         $jugadores = Jugadores::all();
 
@@ -70,6 +77,8 @@ class PlanetaController extends Controller
             'produccionesSinCalcular',
             'capacidadRefugio',
             'jugadores',
+            'producciones',
+            'desbloqueos',
         ));
     }
 
