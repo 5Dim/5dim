@@ -133,7 +133,41 @@ class Mensajes extends Model
 
     public static function colonizar($destino)
     {
-        //
+        $contenido = "<p>La flota <b class='text-success'>" . $destino->flota->nombre . "</b> ha llegado a <b class='text-success'>";
+        if (!empty($destino->planetas_id)) {
+            $contenido .= "(" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
+        } elseif (!empty($destino->en_vuelo_id)) {
+            $contenido .= $destino->enVuelo->nombre;
+        } elseif (!empty($destino->en_recoleccion_id)) {
+            $contenido .= $destino->enRecoleccion->nombre;
+        } elseif (!empty($destino->en_orbita_id)) {
+            $contenido .= $destino->enOrbita->nombre;
+        }
+
+        $contenido .= "</b> con mision <b>colonizar</b>.</p>";
+        $destinoAnterior = Destinos::destinoAnterior($destino);
+        $contenido .= "</b> con mision <b>transferir</b>.</p> <table class='table table-sm table-borderless text-center anchofijo align-middle'> <tr> <td class='text-warning'> Accion </td> <td class='text-warning'> Personal </td> <td class='text-warning'> Mineral </td> <td class='text-warning'> Cristal </td> <td class='text-warning'> Gas </td> <td class='text-warning'> Plástico </td> <td class='text-warning'> Cerámica </td> <td class='text-warning'> Líquido </td> <td class='text-warning'> Micros </td> <td class='text-warning'> Fuel </td> <td class='text-warning'> MA </td> <td class='text-warning'> Munición </td> <td class='text-warning'> Créditos </td> </tr>";
+        $contenido .= "<tr> <td class='text-warning'> Dejas </td> <td class='text-success'>" . number_format($destinoAnterior->recursos->personal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->mineral, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->cristal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->gas, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->plastico, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->liquido, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->micros, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->fuel, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ma, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->municion, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos, 0, ',', '.') . "</td> </tr>";
+        $contenido .= " </table> ";
+        $contenido .= "<table class='table table-sm table-borderless text-center align-middle'> <tr><td class='text-warning'> Nave </td> <td class='text-warning'> Cantidad </td></tr>";
+        foreach ($destino->flota->diseniosEnFlota as $disenio) {
+            $contenido .= "<tr><td class='text-light'> " . $disenio->disenios->nombre . " </td> <td class='text-light'> " . number_format(intval($disenio->enFlota) + intval($disenio->enHangar), 0, ',', '.') . " </td></tr>";
+        }
+        $contenido .= " </table> ";
+
+        $mensaje = new Mensajes();
+        $mensaje->mensaje = $contenido;
+        $mensaje->asunto = "La flota " . $destino->flota->nombre . " ha llegado a orbitar";
+        $mensaje->categoria = 'flotas';
+        $mensaje->emisor = null;
+        $mensaje->emisor_sys = 'Comandante';
+        $mensaje->save();
+
+        $receptor = new MensajesIntervinientes();
+        $receptor->leido = false;
+        $receptor->mensajes_id = $mensaje->id;
+        $receptor->receptor = $destino->flota->jugadores_id;
+        $receptor->save();
     }
 
     public static function recolectar($destino)
@@ -188,7 +222,7 @@ class Mensajes extends Model
             $contenido .= $destino->enOrbita->nombre;
         }
 
-        $contenido .= "</b> con mision <b>recolectar</b>.</p>";
+        $contenido .= "</b> con mision <b>orbitar</b>.</p>";
         $destinoAnterior = Destinos::destinoAnterior($destino);
         $contenido .= "</b> con mision <b>transferir</b>.</p> <table class='table table-sm table-borderless text-center anchofijo align-middle'> <tr> <td class='text-warning'> Accion </td> <td class='text-warning'> Personal </td> <td class='text-warning'> Mineral </td> <td class='text-warning'> Cristal </td> <td class='text-warning'> Gas </td> <td class='text-warning'> Plástico </td> <td class='text-warning'> Cerámica </td> <td class='text-warning'> Líquido </td> <td class='text-warning'> Micros </td> <td class='text-warning'> Fuel </td> <td class='text-warning'> MA </td> <td class='text-warning'> Munición </td> <td class='text-warning'> Créditos </td> </tr>";
         $contenido .= "<tr> <td class='text-warning'> Dejas </td> <td class='text-success'>" . number_format($destinoAnterior->recursos->personal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->mineral, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->cristal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->gas, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->plastico, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->liquido, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->micros, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->fuel, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ma, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->municion, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos, 0, ',', '.') . "</td> </tr>";
