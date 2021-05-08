@@ -30,6 +30,7 @@ class Controller extends BaseController
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->orderBy('creacion')->get();
         $planetasAlianza = null;
+        $jugadorAlianza = null;
         if (!empty($jugadorActual->alianzas)) {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
             $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->orderBy('creacion')->get();
