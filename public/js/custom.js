@@ -411,11 +411,11 @@ function changeSkin(id) {
     eval("imagen=imagen" + id + ";");
     sumask = 1 + 1 * imagen.dataset.skin;
 
-    if (sumask > 4) {
+    if (sumask > 2) {
         sumask = 1;
     }
     imagen.dataset.skin = sumask;
-    img = "background: url('/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;";
+    img = "background: url('/img/fotos naves/skin" + sumask + "/nave" + id + ".png') no-repeat center !important;";
     // $('#imagen' + id).attr("src", img);
     $("#tablaArmas").prop("style", img);
 }

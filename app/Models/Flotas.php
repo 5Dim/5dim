@@ -79,10 +79,10 @@ class Flotas extends Model
     public static function valoresValidos($cantidadDestinos, $cargaDest, $prioridades)
     {
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
-        Log::info($cantidadDestinos);
+        //Log::info($cantidadDestinos);
 
         for ($dest = 1; $dest < $cantidadDestinos; $dest++) {
-            Log::info($cargaDest[$dest]);
+            //Log::info($cargaDest[$dest]);
             foreach ($recursosArray as $recurso) {
 
                 if (!is_numeric($cargaDest[$dest][$recurso])) {
@@ -477,18 +477,19 @@ class Flotas extends Model
         $errores = "";
         $flotax = EnVuelo::where('publico', $nombreflota)->where('jugadores_id', $jugadoryAlianza)->first();
         if ($flotax != null) {
-
+            try {
             $ajusteMapaBase = 35; //ajuste 0,0 con mapa
             $ajusteMapaFactor = 7; //ajuste escala mapa
 
             DB::beginTransaction();
-            try {
+
                 $ahora = date("Y-m-d H:i:s");
                 $puntoFlota = PuntosEnFlota::where('fin', '>', $ahora)
-                    ->where('flota_id', $flotax->id)
+                    ->where('en_vuelo_id', $flotax->id)
                     ->orderBy('fin', 'asc')
                     ->first();
 
+                    //Log::info("vfvf ".$flotax->id);
                 //nuscamos destinoa actual
                 //$destinosO=$flotax->destinos;
                 $destino = Destinos::where("visitado", 0)
@@ -501,7 +502,7 @@ class Flotas extends Model
                     $errores = "No se encuentra el destino actual";
                 } else if ($destino->mision_regreso != null) {
                     //se borran los viejos
-                    PuntosEnFlota::where('flota_id', $flotax->id)->delete();
+                    PuntosEnFlota::where('en_vuelo_id', $flotax->id)->delete();
                     //Log::info("Borrando destinos sobrantes: ".$flotax->id." ".$destino->id);
                     Destinos::where('flota_id', $flotax->id)
                         ->where("id", ">", $destino->id)->delete();
@@ -558,7 +559,7 @@ class Flotas extends Model
                         $puntoFlota->coordx = $destino->initcoordx + $vectorx * ($tiempoPto * $tiempoPuntosFlotas);
                         $puntoFlota->coordy = $destino->initcoordy + $vectory * ($tiempoPto * $tiempoPuntosFlotas);
                         $puntoFlota->fin = $TfinPto;
-                        $puntoFlota->flota_id = $flotax->id;
+                        $puntoFlota->en_vuelo_id = $flotax->id;
                         $puntoFlota->jugadores_id = $flotax->jugadores_id;
                         //Log::info($puntoFlota);
                         $puntoFlota->save();
@@ -568,7 +569,7 @@ class Flotas extends Model
                     $puntoFlota->coordx = $destino->fincoordx;
                     $puntoFlota->coordy = $destino->fincoordy;
                     $puntoFlota->fin = $Tfin;
-                    $puntoFlota->flota_id = $flotax->id;
+                    $puntoFlota->en_vuelo_id = $flotax->id;
                     $puntoFlota->jugadores_id = $flotax->jugadores_id;
                     $puntoFlota->save();
 
@@ -578,6 +579,7 @@ class Flotas extends Model
                 } else {
                     $errores = "La flota ya viene de regreso o no existe destino de regreso";
                 }
+
             } catch (Exception $e) {
                 DB::rollBack();
                 Log::info("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
@@ -607,16 +609,16 @@ destino 0 con lo que sale
         $ahora = date("Y-m-d H:i:s");
         $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init", "desc")->get(); //->unique('flota_id'); //
 
-        Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
+        //Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
 
         foreach ($listaDestinosEntrantes as $destino) {
 
             $destinoAnterior = Destinos::where([['fin', $destino['init']], ["flota_id", $destino['flota_id']], ["id", '!=', $destino['id']]])->first();
 
-            Log::info($destinoAnterior);
+            //Log::info($destinoAnterior);
 
             if ($destinoAnterior != null && $destinoAnterior['visitado'] == 0) {
-                Log::info("destino anterior no ejecutado id=" . $destino['id']);
+                //Log::info("destino anterior no ejecutado id=" . $destino['id']);
                 continue;
             }
 
