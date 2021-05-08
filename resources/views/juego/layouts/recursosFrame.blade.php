@@ -388,14 +388,12 @@
                                 <div class="dropdown">
                                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{ $planetaActual->estrella }}x{{ $planetaActual->orbita }}
-                                        {{ $planetaActual->nombre }}
+                                        {{ $planetaActual->nombre }} ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         @foreach ($planetasJugador as $planeta)
                                             <a class="dropdown-item"
-                                                href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }}
-                                                {{ $planeta->nombre }}</a>
+                                                href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->nombre }} ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                                         @endforeach
                                         @if (!empty($planetasAlianza))
                                             @foreach ($planetasAlianza as $planeta)
@@ -403,8 +401,7 @@
                                                     <div class="dropdown-divider"></div>
                                                 @endif
                                                 <a class="dropdown-item text-primary"
-                                                    href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->estrella }}x{{ $planeta->orbita }}
-                                                    {{ $planeta->nombre }}</a>
+                                                    href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->nombre }} ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                                             @endforeach
                                         @endif
                                     </div>
