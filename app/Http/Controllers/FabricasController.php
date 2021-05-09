@@ -177,7 +177,7 @@ class FabricasController extends Controller
         $planetaActual = Planetas::find(session()->get('planetas_id'));
 
         if ($cola->accion == "Reciclando") {
-            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->enFlota += $cola->cantidad;
+            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad += $cola->cantidad;
             $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
         } else {
             $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
