@@ -20,6 +20,7 @@ use App\Models\Disenios;
 use App\Models\DaniosDisenios;
 use App\Models\CostesDisenios;
 use App\Models\CualidadesDisenios;
+use App\Models\DiseniosEnFlota;
 use App\Models\MejorasDisenios;
 use App\Models\EnDisenios;
 use App\Models\MensajesIntervinientes;
@@ -117,14 +118,47 @@ class DisenioController extends Controller
             })
             ->get();
 
-        $novas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
-            ->whereHas('fuselajes', function (Builder $query) {
-                $query->where('categoria', 'compra');
-            })
-            ->whereHas('jugadores', function (Builder $query) {
-                $query->where('jugadores_id', session()->get('jugadores_id'));
-            })
-            ->get();
+        // $novas = Disenios::where('jugadores_id', session()->get('jugadores_id'))
+        //     ->whereHas('fuselajes', function (Builder $query) {
+        //         $query->where('categoria', 'compra');
+        //     })
+        //     ->whereHas('jugadores', function (Builder $query) {
+        //         $query->where('jugadores_id', session()->get('jugadores_id'));
+        //     })
+        //     ->get();
+
+        $diseniosEnPlaneta = DiseniosEnFlota::where('planetas_id', session()->get('planetas_id'))->get();
+        // dd($diseniosEnPlaneta);
+        foreach ($diseniosEnPlaneta as $disenio) {
+
+            switch ($disenio->disenios->fuselajes->tamanio) {
+                case 'caza':
+                    if (empty($cazas->where('id', $disenio->disenios->id)->first())) {
+                        $cazas->prepend($disenio->disenios);
+                    }
+                    break;
+                case 'ligera':
+                    if (empty($ligeras->where('id', $disenio->disenios->id)->first())) {
+                        $ligeras->prepend($disenio->disenios);
+                    }
+                    break;
+                case 'media':
+                    if (empty($medias->where('id', $disenio->disenios->id)->first())) {
+                        $medias->prepend($disenio->disenios);
+                    }
+                    break;
+                case 'pesada':
+                    if (empty($pesadas->where('id', $disenio->disenios->id)->first())) {
+                        $pesadas->prepend($disenio->disenios);
+                    }
+                    break;
+                case 'estacion':
+                    if (empty($estaciones->where('id', $disenio->disenios->id)->first())) {
+                        $estaciones->prepend($disenio->disenios);
+                    }
+                    break;
+            }
+        }
 
         return view('juego.disenio.disenio', compact(
             // Recursos
@@ -151,7 +185,7 @@ class DisenioController extends Controller
             'medias',
             'pesadas',
             'estaciones',
-            'novas',
+            // 'novas',
             'tab',
             'nivelHangar',
             'constanteVelocidad',

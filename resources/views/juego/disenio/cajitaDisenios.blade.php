@@ -310,7 +310,7 @@
                         </div>
                     </td>
                     <td>
-                        @if ($nivelHangar < 1 || $disenio->costes->mineral > $recursos->mineral || $disenio->costes->cristal > $recursos->cristal || $disenio->costes->gas > $recursos->gas || $disenio->costes->plastico > $recursos->plastico || $disenio->costes->ceramica > $recursos->ceramica || $disenio->costes->liquidos > $recursos->liquidos || $disenio->costes->micros > $recursos->micros || $disenio->costes->personal > $recursos->personal)
+                        @if ($nivelHangar < 1 || $disenio->costes->mineral > $recursos->mineral || $disenio->costes->cristal > $recursos->cristal || $disenio->costes->gas > $recursos->gas || $disenio->costes->plastico > $recursos->plastico || $disenio->costes->ceramica > $recursos->ceramica || $disenio->costes->liquidos > $recursos->liquidos || $disenio->costes->micros > $recursos->micros || $disenio->costes->personal > $recursos->personal || empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
                             <button type="button" class="btn btn-outline-light btn-lg col-12" disabled>
                                 <i class="fa fa-plus-circle"></i> Construir
                             </button>
@@ -326,10 +326,16 @@
             <table class="table table-sm table-borderless text-center anchofijo align-middle">
                 <tr>
                     <td>
-                        <a type="button" class="btn btn-outline-danger col-12 text-danger"
-                            href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
-                            <i class="fa fa-times "></i> Borrar diseño
-                        </a>
+                        @if (empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
+                            <button type="button" class="btn btn-outline-light col-12" disabled>
+                                <i class="fa fa-times "></i> Diseño borrado
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-outline-danger col-12 text-danger"
+                                href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
+                                <i class="fa fa-times "></i> Borrar diseño
+                            </button>
+                        @endif
                     </td>
                     <td>
                         <div class="accordion accordion-flush" id="button{{ $disenio->id }}">
@@ -346,10 +352,16 @@
                         </div>
                     </td>
                     <td>
-                        <a type="button" class="btn btn-outline-success col-12 text-success"
-                            href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
-                            <i class="fa fa-edit"></i> Editar disenio
-                        </a>
+                        @if (empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
+                            <button type="button" class="btn btn-outline-light col-12" disabled>
+                                <i class="fa fa-times "></i> Diseño borrado
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-outline-danger col-12 text-danger"
+                                href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
+                                <i class="fa fa-times "></i> Editar disenio
+                            </button>
+                        @endif
                     </td>
                 </tr>
             </table>
