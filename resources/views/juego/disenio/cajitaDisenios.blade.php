@@ -357,7 +357,7 @@
                                 <i class="fa fa-times "></i> Diseño borrado
                             </button>
                         @else
-                            <button type="button" class="btn btn-outline-danger col-12 text-danger"
+                            <button type="button" class="btn btn-outline-success col-12 text-success"
                                 href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
                                 <i class="fa fa-times "></i> Editar disenio
                             </button>
