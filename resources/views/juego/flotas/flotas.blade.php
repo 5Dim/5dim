@@ -55,8 +55,6 @@
 
 
     <script>
-
-
-
+        verFlotasEnVuelo()
     </script>
 @endsection
