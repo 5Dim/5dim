@@ -390,7 +390,6 @@
         let cargaDestVacia = @json($cargaDestVacia); //cargado para cada destino
         let prioridadesVacia =@json($prioridadesVacia);
 
-
         recursosDest = [];  //recursos que hay en cada destino (el 0 es el origen)
         recursosDest[0] = @json($recursosFlota);
 

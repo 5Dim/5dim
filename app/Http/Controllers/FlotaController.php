@@ -191,13 +191,16 @@ class FlotaController extends Controller
             $destino->estrella = -1;
             $destino->orbita = -1;
             $destino->porcentVel = 100;
+            $destino->mision = "";
 
             $cargaDestVacia = [];
             $prioridadesVacia = [];
             $destinosVacia = [];
-            array_push($destinosVacia, $destino);
-            array_push($cargaDestVacia, $recursosDestino);
-            array_push($prioridadesVacia, $prioridadesXDefecto);
+            for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
+                array_push($destinosVacia, $destino);
+                array_push($cargaDestVacia, $recursosDestino);
+                array_push($prioridadesVacia, $prioridadesXDefecto);
+            }
 
 
         if ($visionXDefecto) {
@@ -234,13 +237,12 @@ class FlotaController extends Controller
         foreach ($navesEstacionadas as $diseno) {
             $estedisenioj = Disenios::where('id', $diseno->disenios->id)->first();
 
-            array_push($idsDiseno, $diseno->id);
-            // $diseno->enFlota = 0;
-            // $diseno->enHangar = 0;
+            array_push($idsDiseno, $diseno->disenios_id);
             $diseno->fuselajes_id = $estedisenioj->fuselajes_id;
             $diseno->skin = $estedisenioj->skin;
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
+        //Log::info("message");Log::info($ViewDaniosDisenios);Log::info($idsDiseno);Log::info($navesEstacionadas);
 
         $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
         $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
@@ -335,7 +337,7 @@ class FlotaController extends Controller
         $destinos = $request->input('destinos');
 
         // Log::info("navesEstacionadas");Log::info($navesEstacionadas);
-        // Log::info("cargaDest");Log::info($cargaDest);
+         //Log::info("cargaDest");Log::info($cargaDest);
         // Log::info("prioridades");Log::info($prioridades);
         // Log::info("flota");Log::info($flota);
         // Log::info("destinos");Log::info($destinos);
@@ -345,7 +347,44 @@ class FlotaController extends Controller
 
         //// valores de las naves en planeta
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
-        $navesEnPlaneta = $planetaActual->estacionadas;
+        //Log::info(isset($flota['id'])." ".$flota['id']);
+        $flotaid=null;
+        if (isset($flota['id']) && $flota['id']!=null){ //salimos de uns flota
+            $tipoflota=$flota['tipoflota'];
+            $flotaid=$flota['id'];
+
+            $jugadoryAlianza = [];
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+            if ($jugadorActual['alianzas_id'] != null) {
+                array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
+            }
+            array_push($jugadoryAlianza, $jugadorActual->id);
+
+            //Log::info(" datos v ".$flotaid." ".$tipoflota);
+
+            if ($tipoflota == "envuelo") {
+                $errores = "Una flota en vuelo no puede separarse";
+            } else if ($tipoflota == "enrecoleccion") {
+                $flotaOrigen = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)
+                ->where([['id', $flotaid]])
+                    ->first();
+            } else if ($tipoflota == "enorbita") {
+                $flotaOrigen = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)
+                    ->where([['id', $flotaid]])
+                    ->first();
+            }
+
+            if ($flota == null && empty($flota)) {
+                $errores = "No se encuentra la flota a modificar";
+            }
+            $navesEnPlaneta=$flotaOrigen->diseniosEnFlota;
+
+        } else {
+            $navesEnPlaneta = $planetaActual->estacionadas;
+        }
+        //Log::info("flotaOrigen ".$flotaOrigen);
+        //Log::info("navesEnPlaneta ".$navesEnPlaneta);
 
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $diseniosJugador = $jugadorActual->disenios;
@@ -357,41 +396,9 @@ class FlotaController extends Controller
             array_push($diseniosJugador, $nave->disenios);
         }
 
-        $disenios = [];
-        $arraycolumn = array_column($navesEstacionadas, 'disenios_id');
-
-        foreach ($diseniosJugador as $disenio) {
-
-            $key = array_search($disenio->id, $arraycolumn);  //de los diseños
-            if (false !== $key) {
-                $nave = $navesEstacionadas[$key]; // enviar
-
-                $enhangar = $nave['enhangar'];
-                $enflota = $nave['enflota'];
-
-                if ($enflota > 0 || $enhangar > 0) {
-
-                    $naveP = $navesEnPlaneta->firstWhere('disenios_id', $nave['disenios_id']);
-
-
-
-                    if ($naveP == null  || $naveP['cantidad'] < $enflota + $enhangar) {
-                        $errores = "Mas naves a enviar de las que hay (" . $nave['disenios_id'] . ")" . $enflota . " " . $enhangar;
-                        //Log::info($errores);
-                        break;
-                    }
-
-                    $cantidad = $naveP['cantidad'];
-
-                    $disenio['enflota'] = $enflota;
-                    $disenio['enhangar'] = $enhangar;
-                    $disenio['cantidad'] = $cantidad;
-
-                    array_push($disenios, $disenio);
-                }
-            }
-        }
-
+        $result = Flotas::ValoresDiseniosFlota($navesEstacionadas,$diseniosJugador,$navesEnPlaneta,$flotaid);
+        $errores = $result[0];
+        $disenios = $result[1];
 
         //Log::info($disenios);
         //Log::info("errores: ".$errores);
@@ -474,7 +481,7 @@ class FlotaController extends Controller
             $ajusteMapaBase = 35; //ajuste 0,0 con mapa
             $ajusteMapaFactor = 7; //ajuste escala mapa
 
-            try {
+            //try {
 
                 //construyendo flota
 
@@ -698,11 +705,51 @@ class FlotaController extends Controller
                     $naveSale->save();
 
                     $naveP = $navesEnPlaneta->firstWhere('disenios_id', $navex['id']);
-                    $naveP->cantidad -= $navex['enflota'] + $navex['enhangar'];
-                    if ($naveP->cantidad < 1) {
-                        $naveP->delete();
-                    } else {
-                        $naveP->save();
+                    if($flotaid==null){//restar del planeta
+                        $naveP->cantidad -= $navex['enflota'] + $navex['enhangar'];
+                        if ($naveP->cantidad < 1) {
+                            $naveP->delete();
+                        } else {
+                            $naveP->save();
+                        }
+                    } else { //restar de la flota
+                        if($navex['enflota']<0){$navex['enflota']=0;}
+                        if($navex['enhangar']<0){$navex['enhangar']=0;}
+
+                        $restarAFlota=$navex['enflota'];
+                        $restarAHangar=$navex['enhangar'];
+                        //Log::info("messageI ".$restarAFlota." ".$restarAHangar);
+
+                        if($naveP->enFlota > $navex['enflota']){ //tengo menos en flota de las que me llevo
+                            $restarAHangar+=$naveP->enFlota - $navex['enflota'];
+                        }
+
+                        if($naveP->enhangar > $navex['enhangar']){ //tengo menos  en hangar de las que me llevo
+                            $restarAFlota+=$naveP->enhangar - $navex['enhangar'];
+                        }
+
+                        if($naveP->enFlota - $restarAFlota <0){ // la cantidad que queda no puede ser negativa
+                            $restarAHangar+=-1*($naveP->enFlota - $restarAFlota);
+                            $restarAFlota=$naveP->enFlota;
+                        }
+                        if($naveP->enHangar - $restarAHangar <0){ // la cantidad que queda no puede ser negativa
+                            $restarAFlota=-1*($naveP->enHangar - $restarAHangar);
+                            $restarAHangar=$naveP->enHangar;
+                        }
+                        if($naveP->enFlota - $restarAFlota <0){ // (segunda vuelta necesaria) la cantidad que queda no puede ser negativa
+                            $restarAHangar+=-1*($naveP->enFlota - $restarAFlota);
+                            $restarAFlota=$naveP->enFlota;
+                        }
+
+                        $naveP->enFlota -=$restarAFlota;
+                        $naveP->enHangar -=$restarAHangar;
+                        //Log::info($naveP);
+                        //Log::info("messageR ".$restarAFlota." ".$restarAHangar);
+                        if($naveP->enFlota+$naveP->enHangar<1){
+                            $naveP->delete();
+                        } else {
+                            $naveP->save();
+                        }
                     }
                 }
 
@@ -710,7 +757,14 @@ class FlotaController extends Controller
                 //origen es un planeta:
                 $dest = 0;
                 //Log::info($cargaDest[$dest]);
-                $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
+                if($flotaid==null){//restar del planeta
+                    $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
+                } else {
+                    $recursos = $flotaOrigen->recursosEnFlota;
+                }
+
+                //Log::info($recursos);
+
                 $recursos->personal -= $cargaDest[$dest]['personal'];
                 $recursos->mineral -= $cargaDest[$dest]['mineral'];
                 $recursos->cristal -= $cargaDest[$dest]['cristal'];
@@ -724,7 +778,6 @@ class FlotaController extends Controller
                 $recursos->municion -= $cargaDest[$dest]['municion'];
                 $recursos->creditos -= $cargaDest[$dest]['creditos'];
                 $recursos->save();
-                //Log::info($recursos);
 
                 //a la flota
                 $recursosEnFlota = new RecursosEnFlota();
@@ -744,9 +797,46 @@ class FlotaController extends Controller
                 $recursosEnFlota->save();
                 //Log::info($recursosEnFlota);
 
+                if($flotaid!=null){ //recalculo flota que quede
+
+                    $valFlotaT = [];
+                    //reinicio valores
+                    $valFlotaT['carga'] = 0;
+                    $valFlotaT['municion'] = 0;
+                    $valFlotaT['fuel'] = 0;
+                    $valFlotaT['velocidad'] = 999;
+                    $valFlotaT['maniobra'] = 999;
+                    $valFlotaT['ataqueR'] = 0;
+                    $valFlotaT['defensaR'] = 0;
+                    $valFlotaT['ataqueV'] = 0;
+                    $valFlotaT['defensaV'] = 0;
+                    $valFlotaT['extraccion'] = 0;
+                    $valFlotaT['recoleccion'] = 0;
+                    $valFlotaT['fuelDestT'] = 0;
+                    $valFlotaT['atotal'] = 0;
+                    $valFlotaT['mantenimiento'] = 0;
+
+                    //Log::info("navesEnPlaneta ");Log::info($navesEnPlaneta);
+                    $result = Flotas::ValoresDiseniosFlota((array)$navesEnPlaneta,$diseniosJugador,$navesEnPlaneta,$flotaid);//recalculo las naves enflota y hangar que me quedaron
+                    $errores = $result[0];
+                    $disenios = $result[1];
+
+                    $result = Flotas::calculoFlota($disenios, $valFlotaT, null, $tablaHangares);
+                    $valFlotaT = $result[0];
+
+                    $flotaOrigen->ataqueReal = $valFlotaT['ataqueR'];
+                    $flotaOrigen->defensaReal = $valFlotaT['defensaR'];
+                    $flotaOrigen->ataqueVisible = $valFlotaT['ataqueV'];
+                    $flotaOrigen->defensaVisible = $valFlotaT['defensaV'];
+                    $flotaOrigen->creditos = $valFlotaT['mantenimiento'];
+                    $flotaOrigen->save();
+
+                    //borrar la flota si queda vacia del todo
+                }
+
                 DB::commit();
                 //Log::info("Enviada");
-
+                try {
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit de envio de flotas " . $e->getLine() . " " . $e->getFile() . $errores; //.$e;
@@ -856,108 +946,6 @@ class FlotaController extends Controller
                 }
             }
         }
-
-        // modificar naves
-        /*
-        if (strlen($errores) < 1 && $misionAct!="Volando") {
-
-            $navesEstacionadasResult = $request->input('navesEstacionadas');
-
-            if ($navesEstacionadasResult != null && !empty($navesEstacionadasResult)) {
-                $errores = "Error en seleccion de naves";
-                return compact('errores');
-            }
-
-            $navesEstacionadas = $flota->diseniosEnFlota;
-           // $recursosFlota = $flota->recursosEnFlota;
-            $navesEnPlaneta = $flota->diseniosEnFlota;
-
-            $diseniosJugador = $jugadorActual->disenios;
-            $diseniosJugador = [];
-            foreach ($navesEstacionadas as $nave) {
-                $nave = DiseniosEnFlota::find($nave["id"]);
-                $nave->disenios->mejoras;
-                $nave->disenios->tamanio = $nave->disenios->fuselajes->tamanio;
-
-                array_push($diseniosJugador, $nave->disenios);
-            }
-
-            $disenios = [];
-            $arraycolumn = array_column($navesEstacionadas, 'disenios_id');
-
-            foreach ($diseniosJugador as $disenio) {
-
-                $key = array_search($disenio->id, $arraycolumn);  //de los diseños
-                if (false !== $key) {
-                    $nave = $navesEstacionadas[$key]; // enviar
-
-                    $enhangar = $nave['enhangar'];
-                    $enflota = $nave['enflota'];
-
-                    if ($enflota > 0 || $enhangar > 0) {
-
-                        $naveP = $navesEnPlaneta->firstWhere('disenios_id', $nave['disenios_id']);
-
-                        if ($naveP == null  || $naveP['cantidad'] < $enflota + $enhangar) {
-                            $errores = "Mas naves a seleccionadas de las que hay (" . $nave['disenios_id'] . ")" . $enflota . " " . $enhangar;
-                            break;
-                        }
-                        $cantidad = $naveP['cantidad'];
-                        $disenio['enflota'] = $enflota;
-                        $disenio['enhangar'] = $enhangar;
-                        $disenio['cantidad'] = $cantidad;
-                        array_push($disenios, $disenio);
-                    }
-                }
-            }
-
-            $tamaniosArray = array("cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega");
-
-            $fueraH = [];
-            $dentroH = [];
-            $capacidadH = [];
-            $tablaHangares = [];
-            $tablaHangares['fueraH'] = $fueraH;
-            $tablaHangares['dentroH'] = $dentroH;
-            $tablaHangares['capacidadH'] = $capacidadH;
-
-            foreach ($tamaniosArray as $tamanio) {
-                $tablaHangares['capacidadH'][$tamanio] = 0;
-                $tablaHangares['fueraH'][$tamanio] = 0;
-                $tablaHangares['dentroH'][$tamanio] = 0;
-            };
-
-
-            $valFlotaT = [];
-            //reinicio valores
-            $valFlotaT['carga'] = 0;
-            $valFlotaT['municion'] = 0;
-            $valFlotaT['fuel'] = 0;
-            $valFlotaT['velocidad'] = 999;
-            $valFlotaT['maniobra'] = 999;
-            $valFlotaT['ataqueR'] = 0;
-            $valFlotaT['defensaR'] = 0;
-            $valFlotaT['ataqueV'] = 0;
-            $valFlotaT['defensaV'] = 0;
-            $valFlotaT['extraccion'] = 0;
-            $valFlotaT['recoleccion'] = 0;
-            $valFlotaT['fuelDestT'] = 0;
-            $valFlotaT['atotal'] = 0;
-            $valFlotaT['mantenimiento'] = 0;
-
-            $disenios = Disenios::calculaMejoras($disenios);
-
-            //añado tamaños
-            foreach ($disenios as $disenio) {
-                $disenio->tamanio = $disenio->fuselajes->tamanio;
-            }
-
-            $result = Flotas::calculoFlota($disenios, $valFlotaT, null, $tablaHangares);
-            $valFlotaT = $result[0];
-            $destinos = $result[1];
-            $tablaHangares = $result[2];
-        }
-        */
 
 
         //se modifica la flota  ////////////////////
