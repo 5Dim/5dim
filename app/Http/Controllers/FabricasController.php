@@ -14,6 +14,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\Disenios;
+use App\Models\DiseniosEnFlota;
 use App\Models\EnDisenios;
 use App\Models\MensajesIntervinientes;
 use Illuminate\Support\Facades\Log;
@@ -138,10 +139,13 @@ class FabricasController extends Controller
             }
             if ($cantidadInicial > $disenioEnPlaneta->cantidad) {
                 $cantidad = $disenioEnPlaneta->cantidad;
-            }else {
+            } else {
                 $cantidad = $cantidadInicial;
             }
             $disenioEnPlaneta->cantidad -= $cantidad;
+            if ($disenioEnPlaneta->cantidad == 0) {
+                $disenioEnPlaneta->delete();
+            }
             $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
             $nivelHangar = $planetaActual->construcciones->where('codigo', 'hangar')->first()->nivel;
             $constanteVelocidad = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
@@ -159,7 +163,7 @@ class FabricasController extends Controller
             $cola->created_at = $inicio;
             $cola->finished_at = date('Y/m/d H:i:s', $final);
             $cola->save();
-        }else {
+        } else {
             //Log::info("ERROR AL RECICLAR USER: " . session()->get('jugadores_id'));
         }
 
@@ -177,8 +181,18 @@ class FabricasController extends Controller
         $planetaActual = Planetas::find(session()->get('planetas_id'));
 
         if ($cola->accion == "Reciclando") {
-            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad += $cola->cantidad;
-            $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
+            if (!empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first())) {
+                $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad += $cola->cantidad;
+                $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
+            } else {
+                $disenioEnPlaneta = new DiseniosEnFlota();
+                $disenioEnPlaneta->enFlota = 0;
+                $disenioEnPlaneta->enHangar = 0;
+                $disenioEnPlaneta->cantidad = $cola->cantidad;
+                $disenioEnPlaneta->tipo = 'nave';
+                $disenioEnPlaneta->planetas_id = session()->get('planetas_id');
+                $disenioEnPlaneta->disenios_id = $disenio->id;
+            }
         } else {
             $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
             $recursos->cristal += (($coste->cristal * $cola->cantidad) * $cancelar);

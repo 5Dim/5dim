@@ -331,10 +331,10 @@
                                 <i class="fa fa-times "></i> Diseño borrado
                             </button>
                         @else
-                            <button type="button" class="btn btn-outline-danger col-12 text-danger"
+                            <a type="button" class="btn btn-outline-danger col-12 text-danger"
                                 href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
                                 <i class="fa fa-times "></i> Borrar diseño
-                            </button>
+                            </a>
                         @endif
                     </td>
                     <td>
@@ -357,10 +357,10 @@
                                 <i class="fa fa-times "></i> Diseño borrado
                             </button>
                         @else
-                            <button type="button" class="btn btn-outline-success col-12 text-success"
+                            <a type="button" class="btn btn-outline-success col-12 text-success"
                                 href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
                                 <i class="fa fa-times "></i> Editar disenio
-                            </button>
+                            </a>
                         @endif
                     </td>
                 </tr>
