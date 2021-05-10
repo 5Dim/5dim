@@ -314,7 +314,7 @@ class Flotas extends Model
         $destiestrella = $destino['estrella'];
         $destiorbita = $destino['orbita'];
 
-        $destino['planeta_id'] = null;
+        $destino['planetas_id'] = null;
         $destino['en_vuelo_id'] = null;
         $destino['en_recoleccion_id'] = null;
         $destino['en_orbita_id'] = null;
@@ -784,7 +784,7 @@ destino 0 con lo que sale
                             } else {
                                 $cambioMision = true;
                                 $destino['mision'] = "Orbitar";
-                                $destino['planeta_id'] = null;
+                                $destino['planetas_id'] = null;
                                 $destino['en_vuelo_id'] = null;
                                 $destino['en_recoleccion_id'] = null;
                                 $destino['en_orbita_id'] = null;
@@ -797,7 +797,7 @@ destino 0 con lo que sale
                         case "envuelo":
                             $cambioMision = true;
                             $destino['mision'] = "Orbitar";
-                            $destino['planeta_id'] = null;
+                            $destino['planetas_id'] = null;
                             $destino['en_vuelo_id'] = null;
                             $destino['en_recoleccion_id'] = null;
                             $destino['en_orbita_id'] = null;
@@ -1029,7 +1029,7 @@ destino 0 con lo que sale
                         ], [
                             'enFlota'     => DB::raw("enFlota+" . $diseno['enFlota']),
                             'enHangar'     => DB::raw("enHangar+" . $diseno['enHangar']),
-                            'tipo'          => 'otra cosa',
+                            'tipo'          => 'nave',
                             'disenios_id'   => $diseno->disenios->id,
                             $columnNaves   => $flotaExiste->id,
                             "en_vuelo_id"   => null
