@@ -47,27 +47,41 @@ class Mensajes extends Model
         if (!empty($destino->planetas_id)) {
             $recursosQueTienes = new Recursos();
             $recursosQueTienes = $destino->planetas->recursos;
+            $propietarioDestino = $destino->planetas->jugadores->id;;
             $contenido .= $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
         } elseif (!empty($destino->en_vuelo_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enVuelo->recursosEnFlota;
+            $propietarioDestino = $destino->enVuelo->jugadores->id;;
             $contenido .= $destino->enVuelo->nombre;
         } elseif (!empty($destino->en_recoleccion_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enRecoleccion->recursosEnFlota;
+            $propietarioDestino = $destino->enRecoleccion->jugadores->id;;
             $contenido .= $destino->enRecoleccion->nombre;
         } elseif (!empty($destino->en_orbita_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enOrbita->recursosEnFlota;
+            $propietarioDestino = $destino->enOrbita->jugadores->id;;
             $contenido .= $destino->enOrbita->nombre;
+        }
+        $duenioFlota = $destino->flota->jugadores->id;
+        $jugadorAlianza = null;
+        if (!empty($destino->flota->jugadores->alianzas)) {
+            $jugadorAlianza = Alianzas::jugadorAlianza($destino->flota->jugadores->alianzas->id);
         }
 
         $destinoAnterior = Destinos::destinoAnterior($destino);
         $contenido .= "</b> con mision <b>transportar</b>.</p> <table class='table table-sm table-borderless text-center anchofijo align-middle'> <tr> <td class='text-warning'> Accion </td> <td class='text-warning'> Personal </td> <td class='text-warning'> Mineral </td> <td class='text-warning'> Cristal </td> <td class='text-warning'> Gas </td> <td class='text-warning'> Plástico </td> <td class='text-warning'> Cerámica </td> <td class='text-warning'> Líquido </td> <td class='text-warning'> Micros </td> <td class='text-warning'> Fuel </td> <td class='text-warning'> MA </td> <td class='text-warning'> Munición </td> <td class='text-warning'> Créditos </td> </tr>";
-        $contenido .= "<tr> <td class='text-warning'> En destino </td> <td class='text-light'>" . number_format($recursosQueTienes->personal, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->mineral, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->cristal, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->gas, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->plastico, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->ceramica, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->liquido, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->micros, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->fuel, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->ma, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->municion, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->creditos, 0, ',', '.') . "</td> </tr>";
-        $contenido .= "<tr> <td class='text-warning'> Dejas </td> <td class='text-success'>" . number_format($destinoAnterior->recursos->personal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->mineral, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->cristal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->gas, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->plastico, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->liquido, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->micros, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->fuel, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ma, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->municion, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos, 0, ',', '.') . "</td> </tr>";
-        $contenido .= "<tr> <td class='text-warning'> Recojes </td> <td class='text-danger'>" . number_format($destino->recursos->personal, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->mineral, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->cristal, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->gas, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->plastico, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->liquido, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->micros, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->fuel, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->ma, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->municion, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->creditos, 0, ',', '.') . "</td> </tr>";
-        $contenido .= "<tr> <td class='text-warning'> Prioridades </td> <td class='text-light'>" . $destino->prioridades->personal . "</td> <td class='text-light'>" . $destino->prioridades->mineral . "</td> <td class='text-light'>" . $destino->prioridades->cristal . "</td> <td class='text-light'>" . $destino->prioridades->gas . "</td> <td class='text-light'>" . $destino->prioridades->plastico . "</td> <td class='text-light'>" . $destino->prioridades->ceramica . "</td> <td class='text-light'>" . $destino->prioridades->liquido . "</td> <td class='text-light'>" . $destino->prioridades->micros . "</td> <td class='text-light'>" . $destino->prioridades->fuel . "</td> <td class='text-light'>" . $destino->prioridades->ma . "</td> <td class='text-light'>" . $destino->prioridades->municion . "</td> <td class='text-light'>" . $destino->prioridades->creditos . "</td> </tr> </table> ";
+        if ($propietarioDestino == $duenioFlota || (!empty($jugadorAlianza) && $propietarioDestino == $jugadorAlianza->id)) {
+            $contenido .= "<tr> <td class='text-warning'> En destino </td> <td class='text-light'>" . number_format($recursosQueTienes->personal, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->mineral, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->cristal, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->gas, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->plastico, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->ceramica, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->liquido, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->micros, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->fuel, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->ma, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->municion, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->creditos, 0, ',', '.') . "</td> </tr>";
+            $contenido .= "<tr> <td class='text-warning'> Dejas </td> <td class='text-success'>" . number_format($destinoAnterior->recursos->personal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->mineral, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->cristal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->gas, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->plastico, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->liquido, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->micros, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->fuel, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ma, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->municion, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos, 0, ',', '.') . "</td> </tr>";
+            $contenido .= "<tr> <td class='text-warning'> Recojes </td> <td class='text-danger'>" . number_format($destino->recursos->personal, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->mineral, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->cristal, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->gas, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->plastico, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->liquido, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->micros, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->fuel, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->ma, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->municion, 0, ',', '.') . "</td> <td class='text-danger'>" . number_format($destino->recursos->creditos, 0, ',', '.') . "</td> </tr>";
+            $contenido .= "<tr> <td class='text-warning'> Balance </td> <td class='text-success'>" . number_format($destinoAnterior->recursos->personal - $destino->recursos->personal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->mineral - $destino->recursos->mineral, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->cristal - $destino->recursos->cristal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->gas - $destino->recursos->gas, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->plastico - $destino->recursos->plastico, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ceramica - $destino->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->liquido - $destino->recursos->liquido, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->micros - $destino->recursos->micros, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->fuel - $destino->recursos->fuel, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ma - $destino->recursos->ma, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->municion - $destino->recursos->municion, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos - $destino->recursos->creditos, 0, ',', '.') . "</td> </tr> </table>";
+            $contenido .= "<tr> <td class='text-warning'> Prioridades </td> <td class='text-light'>" . $destino->prioridades->personal . "</td> <td class='text-light'>" . $destino->prioridades->mineral . "</td> <td class='text-light'>" . $destino->prioridades->cristal . "</td> <td class='text-light'>" . $destino->prioridades->gas . "</td> <td class='text-light'>" . $destino->prioridades->plastico . "</td> <td class='text-light'>" . $destino->prioridades->ceramica . "</td> <td class='text-light'>" . $destino->prioridades->liquido . "</td> <td class='text-light'>" . $destino->prioridades->micros . "</td> <td class='text-light'>" . $destino->prioridades->fuel . "</td> <td class='text-light'>" . $destino->prioridades->ma . "</td> <td class='text-light'>" . $destino->prioridades->municion . "</td> <td class='text-light'>" . $destino->prioridades->creditos . "</td> </tr> </table> ";
+        }else {
+            $contenido .= "<tr> <td class='text-warning'> Dejas </td> <td class='text-success'>" . number_format($destinoAnterior->recursos->personal - $destino->recursos->personal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->mineral - $destino->recursos->mineral, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->cristal - $destino->recursos->cristal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->gas - $destino->recursos->gas, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->plastico - $destino->recursos->plastico, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ceramica - $destino->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->liquido - $destino->recursos->liquido, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->micros - $destino->recursos->micros, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->fuel - $destino->recursos->fuel, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ma - $destino->recursos->ma, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->municion - $destino->recursos->municion, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos - $destino->recursos->creditos, 0, ',', '.') . "</td> </tr> </table>";
+        }
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;
@@ -77,11 +91,7 @@ class Mensajes extends Model
         $mensaje->emisor_sys = 'Comandante';
         $mensaje->save();
 
-        $receptor = new MensajesIntervinientes();
-        $receptor->leido = false;
-        $receptor->mensajes_id = $mensaje->id;
-        $receptor->receptor = $destino->flota->jugadores_id;
-        $receptor->save();
+        MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
     }
 
     public static function transferir($destino)
@@ -90,26 +100,37 @@ class Mensajes extends Model
         if (!empty($destino->planetas_id)) {
             $recursosQueTienes = new Recursos();
             $recursosQueTienes = $destino->planetas->recursos;
+            $propietarioDestino = $destino->planetas->jugadores->id;;
             $contenido .= $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
         } elseif (!empty($destino->en_vuelo_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enVuelo->recursosEnFlota;
+            $propietarioDestino = $destino->enVuelo->jugadores->id;;
             $contenido .= $destino->enVuelo->nombre;
         } elseif (!empty($destino->en_recoleccion_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enRecoleccion->recursosEnFlota;
+            $propietarioDestino = $destino->enRecoleccion->jugadores->id;;
             $contenido .= $destino->enRecoleccion->nombre;
         } elseif (!empty($destino->en_orbita_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enOrbita->recursosEnFlota;
+            $propietarioDestino = $destino->enOrbita->jugadores->id;;
             $contenido .= $destino->enOrbita->nombre;
+        }
+        $duenioFlota = $destino->flota->jugadores->id;
+        $jugadorAlianza = null;
+        if (!empty($destino->flota->jugadores->alianzas)) {
+            $jugadorAlianza = Alianzas::jugadorAlianza($destino->flota->jugadores->alianzas->id);
         }
 
         $destinoAnterior = Destinos::destinoAnterior($destino);
         $contenido .= "</b> con mision <b>transferir</b>.</p> <table class='table table-sm table-borderless text-center anchofijo align-middle'> <tr> <td class='text-warning'> Accion </td> <td class='text-warning'> Personal </td> <td class='text-warning'> Mineral </td> <td class='text-warning'> Cristal </td> <td class='text-warning'> Gas </td> <td class='text-warning'> Plástico </td> <td class='text-warning'> Cerámica </td> <td class='text-warning'> Líquido </td> <td class='text-warning'> Micros </td> <td class='text-warning'> Fuel </td> <td class='text-warning'> MA </td> <td class='text-warning'> Munición </td> <td class='text-warning'> Créditos </td> </tr>";
-        $contenido .= "<tr> <td class='text-warning'> En destino </td> <td class='text-light'>" . number_format($recursosQueTienes->personal, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->mineral, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->cristal, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->gas, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->plastico, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->ceramica, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->liquido, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->micros, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->fuel, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->ma, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->municion, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->creditos, 0, ',', '.') . "</td> </tr>";
+        if ($propietarioDestino == $duenioFlota || $propietarioDestino == $jugadorAlianza->id) {
+            $contenido .= "<tr> <td class='text-warning'> En destino </td> <td class='text-light'>" . number_format($recursosQueTienes->personal, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->mineral, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->cristal, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->gas, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->plastico, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->ceramica, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->liquido, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->micros, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->fuel, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->ma, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->municion, 0, ',', '.') . "</td> <td class='text-light'>" . number_format($recursosQueTienes->creditos, 0, ',', '.') . "</td> </tr>";
+        }
         $contenido .= "<tr> <td class='text-warning'> Dejas </td> <td class='text-success'>" . number_format($destinoAnterior->recursos->personal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->mineral, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->cristal, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->gas, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->plastico, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ceramica, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->liquido, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->micros, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->fuel, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->ma, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->municion, 0, ',', '.') . "</td> <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos, 0, ',', '.') . "</td> </tr>";
-        $contenido .= " </table> ";
+        $contenido .= "</table> ";
         $contenido .= "<table class='table table-sm table-borderless text-center align-middle'> <tr><td class='text-warning'> Nave </td> <td class='text-warning'> Cantidad </td></tr>";
         foreach ($destino->flota->diseniosEnFlota as $disenio) {
             $contenido .= "<tr><td class='text-light'> " . $disenio->disenios->nombre . " </td> <td class='text-light'> " . number_format(intval($disenio->enFlota) + intval($disenio->enHangar), 0, ',', '.') . " </td></tr>";
@@ -124,11 +145,7 @@ class Mensajes extends Model
         $mensaje->emisor_sys = 'Comandante';
         $mensaje->save();
 
-        $receptor = new MensajesIntervinientes();
-        $receptor->leido = false;
-        $receptor->mensajes_id = $mensaje->id;
-        $receptor->receptor = $destino->flota->jugadores_id;
-        $receptor->save();
+        MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
     }
 
     public static function colonizar($destino)
@@ -163,11 +180,7 @@ class Mensajes extends Model
         $mensaje->emisor_sys = 'Comandante';
         $mensaje->save();
 
-        $receptor = new MensajesIntervinientes();
-        $receptor->leido = false;
-        $receptor->mensajes_id = $mensaje->id;
-        $receptor->receptor = $destino->flota->jugadores_id;
-        $receptor->save();
+        MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
     }
 
     public static function recolectar($destino)
@@ -202,11 +215,7 @@ class Mensajes extends Model
         $mensaje->emisor_sys = 'Comandante';
         $mensaje->save();
 
-        $receptor = new MensajesIntervinientes();
-        $receptor->leido = false;
-        $receptor->mensajes_id = $mensaje->id;
-        $receptor->receptor = $destino->flota->jugadores_id;
-        $receptor->save();
+        MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
     }
 
     public static function orbitar($destino)
@@ -241,10 +250,6 @@ class Mensajes extends Model
         $mensaje->emisor_sys = 'Comandante';
         $mensaje->save();
 
-        $receptor = new MensajesIntervinientes();
-        $receptor->leido = false;
-        $receptor->mensajes_id = $mensaje->id;
-        $receptor->receptor = $destino->flota->jugadores_id;
-        $receptor->save();
+        MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
     }
 }

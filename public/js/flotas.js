@@ -1279,7 +1279,6 @@ function RellenarFlotasEnVuelo(data,prefix){
                                 <big>`+flota['nombre']+`<big>
                             </th>
                             `+barraytiempo+`
-                            <th id="trestantealiada`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>
@@ -1338,7 +1337,6 @@ function RellenarFlotasEnVuelo(data,prefix){
                                 <big>`+flota['nombre']+`<big>
                             </th>
                             `+barraytiempo+`
-                            <th id="trestanteajena`+fila+`" colspan="1" class="text-light">`+trestante+`</th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
                                 <big>`+flota['mision']+`<big>
                             </th>

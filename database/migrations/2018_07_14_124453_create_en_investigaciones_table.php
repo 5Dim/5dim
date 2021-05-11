@@ -18,6 +18,7 @@ class CreateEnInvestigacionesTable extends Migration
             $table->decimal('personal', 13, 2);
             $table->unsignedTinyInteger('nivel');
             $table->string('accion');
+            $table->string('codigo');
             $table->unsignedBigInteger('investigaciones_id')->unsigned();
             $table->foreign('investigaciones_id')->references('id')->on('investigaciones');
             $table->unsignedBigInteger('planetas_id')->unsigned();

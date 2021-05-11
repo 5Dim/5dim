@@ -47,20 +47,17 @@
                 class="table table-sm table-borderless text-center anchofijo collapse mensajeRecibido{{ $mensaje->id }}">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-danger col-12" data-bs-toggle="modal"
-                            data-bs-target="#datosModal">
+                        <a type="button" class="btn btn-outline-danger col-12" href="mensajes/borrar/{{ $mensaje->id }}/{{ Auth::user()->jugador->id }}">
                             <i class="fa fa-info-circle"></i> Eliminar
-                        </button>
+                        </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12" data-bs-toggle="modal"
-                            data-bs-target="#datosModal">
+                        <a type="button" class="btn btn-outline-primary col-12" href="">
                             <i class="fa fa-info-circle"></i> Reportar
-                        </button>
+                        </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success col-12" data-bs-toggle="modal"
-                            data-bs-target="#datosModal">
+                        <button type="button" class="btn btn-outline-success col-12" onclick="responderMensaje({{ $mensaje->emisor }})">
                             <i class="fa fa-info-circle"></i> Responder
                         </button>
                     </td>

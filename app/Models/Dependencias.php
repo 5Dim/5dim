@@ -339,14 +339,14 @@ class Dependencias extends Model
         array_push($dependencias, $dependencia);
 
         $dependencia = new Dependencias();
-        $dependencia->codigo = 'invPropNuk';
+        $dependencia->codigo = 'invPropIon';
         $dependencia->codigoRequiere = 'invEnergia';
         $dependencia->nivelRequiere = 0;
         $dependencia->tipo = 'investigacion';
         array_push($dependencias, $dependencia);
 
         $dependencia = new Dependencias();
-        $dependencia->codigo = 'invPropIon';
+        $dependencia->codigo = 'invPropNuk';
         $dependencia->codigoRequiere = 'invEnergia';
         $dependencia->nivelRequiere = 5;
         $dependencia->tipo = 'investigacion';

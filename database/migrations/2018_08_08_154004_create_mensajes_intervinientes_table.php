@@ -16,12 +16,12 @@ class CreateMensajesIntervinientesTable extends Migration
         Schema::create('mensajes_intervinientes', function (Blueprint $table) {
             $table->id();
             $table->boolean('leido');
-            $table->boolean('eliminado')->default(0);
             $table->unsignedBigInteger('mensajes_id')->unsigned();
             $table->foreign('mensajes_id')->references('id')->on('mensajes');
             $table->unsignedBigInteger('receptor')->unsigned();
             $table->foreign('receptor')->references('id')->on('jugadores');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

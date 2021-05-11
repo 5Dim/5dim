@@ -199,15 +199,16 @@ class InvestigacionController extends Controller
             $recurso->save();
 
             //Generamos la cola
-            $construyendo = new EnInvestigaciones();
-            $construyendo->personal = $personal;
-            $construyendo->investigaciones_id = $idInvestigacion;
-            $construyendo->planetas_id = $planetaActual->id;
-            $construyendo->nivel = $nivel;
-            $construyendo->accion = "Investigando";
-            $construyendo->created_at = $inicio;
-            $construyendo->finished_at = date('Y-m-d H:i:s', $fechaFin);
-            $construyendo->save();
+            $investigando = new EnInvestigaciones();
+            $investigando->personal = $personal;
+            $investigando->investigaciones_id = $idInvestigacion;
+            $investigando->planetas_id = $planetaActual->id;
+            $investigando->nivel = $nivel;
+            $investigando->accion = "Investigando";
+            $investigando->codigo = $investigacion->codigo;
+            $investigando->created_at = $inicio;
+            $investigando->finished_at = date('Y-m-d H:i:s', $fechaFin);
+            $investigando->save();
 
             /*
             //Generamos el coste del edificio

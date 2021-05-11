@@ -153,6 +153,6 @@ Route::middleware(
 
     //Mensajes
     Route::get('/juego/mensajes', [MensajesController::class, 'index']);
-    Route::get('/juego/nuevoMensaje', [MensajesController::class, 'nuevoMensaje']);
-    Route::post('/juego/enviarMensaje', [MensajesController::class, 'enviarMensaje']);
+    Route::post('/juego/mensajes/enviarMensaje', [MensajesController::class, 'enviarMensaje']);
+    Route::get('/juego/mensajes/borrar/{idMensaje}/{idJugador}', [MensajesController::class, 'borrarMensaje']);
 });

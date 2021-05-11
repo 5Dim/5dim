@@ -6,13 +6,15 @@
                 <div class="row rounded cajita">
                     <div class="col-12">
                         <div id="cuadro1" class="table-responsive">
-                            <table class="table table-borderless borderless table-sm text-center anchofijo"
+                            <table class="table table-borderless borderless table-sm text-center"
                                 style="margin-bottom: 15px !important;">
                                 <tr>
                                     <td class=" text-warning">Tecnología</td>
                                     <td class=" text-warning">Accion</td>
                                     <td class=" text-warning">Nivel</td>
                                     <td class=" text-warning">Personal</td>
+                                    <td class=" text-warning">Planeta</td>
+                                    <td class=" text-warning">Jugador</td>
                                     <td class=" text-warning">Acaba a las</td>
                                     <td class=" text-warning">Tiempo restante</td>
                                     <td>&nbsp;</td>
@@ -31,15 +33,28 @@
                                         <td class=" text-light align-middle borderless">
                                             {{ number_format($colaInvestigacion[$i]->personal, 0, ',', '.') }}
                                         </td>
+                                        <td class=" text-light align-middle borderless">
+                                            {{ $colaInvestigacion[$i]->planetas->nombre }} ({{ $colaInvestigacion[$i]->planetas->estrella }}x{{ $colaInvestigacion[$i]->planetas->orbita }})
+                                        </td>
+                                        <td class=" text-light align-middle borderless">
+                                            {{ $colaInvestigacion[$i]->planetas->jugadores->nombre }}
+                                        </td>
                                         <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
                                             {{ (new DateTime($colaInvestigacion[$i]->finished_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone(Auth::user()->timezone))->format("Y-m-d H:i:s") }}
                                         </td>
                                         <td class=" text-light align-middle borderless" id="{{ $colaInvestigacion[$i]->id }}"></td>
                                         <td class=" text-light align-middle borderless">
-                                            <button type="button" class="btn btn-outline-danger col-12 btn-sm"
-                                                onclick="sendCancelarInvestigacion('{{ $colaInvestigacion[$i]->id }}')">
-                                                <i class="fa fa-trash"></i> Cancelar
-                                            </button>
+                                            @if ($colaInvestigacion[$i]->planetas->id == session()->get('planetas_id'))
+                                                <button type="button" class="btn btn-danger col-12"
+                                                    onclick="sendCancelarInvestigacion('{{ $colaInvestigacion[$i]->id }}')">
+                                                    <i class="fa fa-trash"></i> Cancelar
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-outline-danger col-12"
+                                                    onclick="sendCancelarInvestigacion('{{ $colaInvestigacion[$i]->id }}')">
+                                                    <i class="fa fa-trash"></i> Cancelar
+                                                </button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endfor

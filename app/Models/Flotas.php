@@ -923,7 +923,7 @@ destino 0 con lo que sale
                 }
 
                 DB::commit();
-                // Mensajes::enviarMensajeFlota($destino);
+                Mensajes::enviarMensajeFlota($destino);
                 Log::info($errores);
             } catch (Exception $e) {
                 DB::rollBack();

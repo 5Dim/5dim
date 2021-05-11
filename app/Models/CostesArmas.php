@@ -18,7 +18,7 @@ class CostesArmas extends Model
         /// construcciones y produccion
         $fcmot = 1;  //factor corrector costos motor
         $fcenermot = 1; // energia que te el motor
-        $fcpotmot = 0.9; // potencia que te el motor
+        $fcpotmot = 1; // potencia que te el motor
         $fcblind = 3;  //factor corrector blindaje
         $fccc = 1; //Factor corrector comp. de carga
         $fcae = 1; //factor corrector costo armas energía
@@ -77,8 +77,8 @@ class CostesArmas extends Model
         $coste->mantenimiento = $fman * $fcmot * 5;
         $coste->defensa = 0;
         $coste->ataque = 0;
-        $coste->velocidad = 4000 * $fcpotmot; //velocidad
-        $coste->maniobra = 4000 * $fcpotmot; //maniobra
+        $coste->velocidad = 5000 * $fcpotmot; //velocidad
+        $coste->maniobra = 5000 * $fcpotmot; //maniobra
         $coste->carga = 0;
         $coste->cargaPequenia = 0;
         $coste->cargaMediana = 0;
@@ -106,7 +106,7 @@ class CostesArmas extends Model
         $coste->mantenimiento = $fman * $fcmot * 9;
         $coste->defensa = 0;
         $coste->ataque = 0;
-        $coste->velocidad = 5700 * $fcpotmot; //velocidad
+        $coste->velocidad = 6000 * $fcpotmot; //velocidad
         $coste->maniobra = 700 * $fcpotmot; //maniobra
         $coste->carga = 0;
         $coste->cargaPequenia = 0;
@@ -135,8 +135,8 @@ class CostesArmas extends Model
         $coste->mantenimiento = $fman * $fcmot * 14;
         $coste->defensa = 0;
         $coste->ataque = 0;
-        $coste->velocidad = 4500 * $fcpotmot; //velocidad
-        $coste->maniobra = 4800 * $fcpotmot; //maniobra
+        $coste->velocidad = 4200 * $fcpotmot; //velocidad
+        $coste->maniobra = 5500 * $fcpotmot; //maniobra
         $coste->carga = 0;
         $coste->cargaPequenia = 0;
         $coste->cargaMediana = 0;
@@ -153,7 +153,7 @@ class CostesArmas extends Model
         $coste->plastico = $fcmot * 500; //4
         $coste->ceramica = $fcmot * 400; //5
         $coste->liquido = $fcmot * 275; //6
-        $coste->micros = $fcmot * 1000;   //7
+        $coste->micros = $fcmot * 750;   //7
         $coste->fuel = $fcmot * 3;     //8
         $coste->ma = 0;       //9
         $coste->municion = 0; //10
@@ -164,8 +164,8 @@ class CostesArmas extends Model
         $coste->mantenimiento = $fman * $fcmot * 20;
         $coste->defensa = 0;
         $coste->ataque = 0;
-        $coste->velocidad = 6000 * $fcpotmot; //velocidad
-        $coste->maniobra = 6000 * $fcpotmot; //maniobra
+        $coste->velocidad = 6500 * $fcpotmot; //velocidad
+        $coste->maniobra = 5000 * $fcpotmot; //maniobra
         $coste->carga = 0;
         $coste->cargaPequenia = 0;
         $coste->cargaMediana = 0;

@@ -309,8 +309,8 @@ class CostesInvestigaciones extends Model
                             $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
                         }
                         $costoIT = $costoInvestMotores;
-                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2.1, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 0, 0, 4000, 0, 0, 1500, 0, 800, 0, 0];
+                        $r1cce = [$codigo, 2, 2.2, 1.5, 2.3, 1.1, 1.2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 0, 8000, 0, 650, 4000, 0, 0, 400, 0, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -322,8 +322,8 @@ class CostesInvestigaciones extends Model
                             $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
                         }
                         $costoIT = $costoInvestMotores;
-                        $r1cce = [$codigo, 2, 2.2, 1.5, 2.3, 1.1, 1.2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 0, 8000, 0, 650, 4000, 0, 0, 400, 0, 0];
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2.1, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 0, 0, 4000, 0, 0, 1500, 0, 800, 0, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 

@@ -58,8 +58,8 @@ class Investigaciones extends Model
             "invObservacion",
             // Motores
             "invPropQuimico",
-            "invPropNuk",
             "invPropIon",
+            "invPropNuk",
             "invPropPlasma",
             "invPropMa",
             // "invPropHMA",

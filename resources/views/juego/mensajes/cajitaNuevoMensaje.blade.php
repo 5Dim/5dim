@@ -1,5 +1,5 @@
 <div class="col-12 rounded cajita">
-    <form method="POST" action="{{ url('juego/enviarMensaje') }}" style="margin: 10px;">
+    <form method="POST" action="{{ url('juego/mensajes/enviarMensaje') }}" style="margin: 10px;">
         @csrf
         <div class="row">
             <div class="col-9">

@@ -354,22 +354,21 @@ function formatHMS(secs) {
     return [hours, minutes, seconds].map(v => (v < 10 ? "0" + v : v)).join(":");
 }
 
-function difTiempos(start, end,formateado=true) {
-    start=start.replaceAll("-",":");
-    start=start.replaceAll(" ",":");
+function difTiempos(start, end, formateado = true) {
+    start = start.replaceAll("-", ":");
+    start = start.replaceAll(" ", ":");
     start = start.split(":");
-    end=end.replaceAll("-",":");
-    end=end.replaceAll(" ",":");
+    end = end.replaceAll("-", ":");
+    end = end.replaceAll(" ", ":");
     end = end.split(":");
     var startDate = new Date(start[0], start[1], start[2], start[3], start[4], start[5]);
     var endDate = new Date(end[0], end[1], end[2], end[3], end[4], end[5]);
-    var diff = Math.abs((endDate.getTime() - startDate.getTime())/1000);
-    if (formateado){
+    var diff = Math.abs((endDate.getTime() - startDate.getTime()) / 1000);
+    if (formateado) {
         return formatHMS(diff);
     } else {
         return diff;
     }
-
 }
 
 function mostrarDatosConstruccion(codigo) {
@@ -510,7 +509,6 @@ function calcularDisenios(disenios, mejoras, investigaciones, constantes) {
     var rdiseno = [];
     var resultado = [rdiseno];
 
-
     disenios.forEach(diseno => {
         resultado.push(CalculoDisenio(diseno));
     });
@@ -644,23 +642,22 @@ function CalculoDisenio(diseno) {
         ataqueTotal += 1 * fila.total;
     });
     rdiseno.ataque = Math.round(ataqueTotal);
-    rdiseno.iddisenio=diseno.id;
+    rdiseno.iddisenio = diseno.id;
 
     return rdiseno;
 }
 
 function resultadoRealDiseno(diseno, invest, invstobj = invest) {
     minves = "mejora" + invest;
-    return (
-        Math.round( diseno.mejoras[invstobj] *
+    return Math.round(
+        diseno.mejoras[invstobj] *
             (1 +
                 $.grep(investigaciones, function(nivelInv) {
                     return nivelInv.codigo == invest;
                 })[0]["nivel"] *
                     $.grep(constantes, function(nivelConst) {
                         return nivelConst.codigo == minves;
-                    })[0]["valor"])
-        )
+                    })[0]["valor"]),
     );
 }
 
@@ -756,20 +753,26 @@ function TiempoLLegada(distancia, velocidad) {
     return (tiempo = Math.round(distancia / velocidad * factortiempoviaje)); //en segundos
 }
 
-function EsconderPorClase(clase){
-    document.querySelectorAll('.'+clase).forEach(function(el) {
-        el.style.display = 'none';
-     });
+function EsconderPorClase(clase) {
+    document.querySelectorAll("." + clase).forEach(function(el) {
+        el.style.display = "none";
+    });
 }
 
-function EsconderPorId(id){
-    document.querySelectorAll('#'+id).forEach(function(el) {
-        el.style.display = 'none';
-     });
+function EsconderPorId(id) {
+    document.querySelectorAll("#" + id).forEach(function(el) {
+        el.style.display = "none";
+    });
 }
 
-function MostrarPorId(id){
-    document.querySelectorAll('#'+id).forEach(function(el) {
-        el.style.display = '';
-     });
+function MostrarPorId(id) {
+    document.querySelectorAll("#" + id).forEach(function(el) {
+        el.style.display = "";
+    });
+}
+
+function responderMensaje(emisor) {
+    $("#listaJugadores").val(emisor);
+    $("#listaJugadores").trigger("change");
+    mostrarTab("nuevo-tab");
 }

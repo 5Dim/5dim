@@ -131,8 +131,8 @@ class Producciones extends Model
         if ($calcular) {
             //Calculamos los yacimientos y el terraformador
             $Terraformador = $planetaActual->construcciones->where('codigo', 'terraformadorMinero')->first();
-            $nivelTerraformador =0;
-            if($Terraformador!=null){
+            $nivelTerraformador = 0;
+            if ($Terraformador != null) {
                 $nivelTerraformador = $Terraformador->nivel;
             }
             $produccion->mineral *= (1 + ($planetaActual->cualidades->mineral + $nivelTerraformador) / 100);
@@ -194,15 +194,24 @@ class Producciones extends Model
         return $produccion;
     }
 
-    public static function produccionRecoleccion($idPlaneta)
+    public static function produccionRecoleccion($idPlaneta, $calcular = true)
     {
         $cualidades = Planetas::find($idPlaneta)->cualidades;
+        $mejoraInvestigacionRecoleccion = 1+(Investigaciones::where('codigo', 'invRecoleccion')->first()->nivel * Constantes::where('codigo', 'mejorainvRecoleccion')->first()->valor);
         $produccion = new Producciones();
-        $produccion->mineral = Producciones::where('nivel', $cualidades->mineral)->first()->mineral;
-        $produccion->cristal = Producciones::where('nivel', $cualidades->cristal)->first()->cristal;
-        $produccion->gas = Producciones::where('nivel', $cualidades->gas)->first()->gas;
-        $produccion->plastico = Producciones::where('nivel', $cualidades->plastico)->first()->plastico;
-        $produccion->ceramica = Producciones::where('nivel', $cualidades->ceramica)->first()->ceramica;
+        if ($calcular) {
+            $produccion->mineral = Producciones::where('nivel', $cualidades->mineral)->first()->mineral * $mejoraInvestigacionRecoleccion;
+            $produccion->cristal = Producciones::where('nivel', $cualidades->cristal)->first()->cristal * $mejoraInvestigacionRecoleccion;
+            $produccion->gas = Producciones::where('nivel', $cualidades->gas)->first()->gas * $mejoraInvestigacionRecoleccion;
+            $produccion->plastico = Producciones::where('nivel', $cualidades->plastico)->first()->plastico * $mejoraInvestigacionRecoleccion;
+            $produccion->ceramica = Producciones::where('nivel', $cualidades->ceramica)->first()->ceramica * $mejoraInvestigacionRecoleccion;
+        } else {
+            $produccion->mineral = Producciones::where('nivel', $cualidades->mineral)->first()->mineral;
+            $produccion->cristal = Producciones::where('nivel', $cualidades->cristal)->first()->cristal;
+            $produccion->gas = Producciones::where('nivel', $cualidades->gas)->first()->gas;
+            $produccion->plastico = Producciones::where('nivel', $cualidades->plastico)->first()->plastico;
+            $produccion->ceramica = Producciones::where('nivel', $cualidades->ceramica)->first()->ceramica;
+        }
 
         return $produccion;
     }

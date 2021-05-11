@@ -77,7 +77,6 @@ class MensajesController extends Controller
         $mensaje->mensaje = request()->input('descripcion');
         $mensaje->emisor = session()->get('jugadores_id');
         $mensaje->asunto = request()->input('asunto');
-        $mensaje->eliminado = false;
         $mensaje->categoria = "recibidos";
         $mensaje->save();
         $receptores = request()->input('listaJugadores');
@@ -89,6 +88,20 @@ class MensajesController extends Controller
                 $interviniente->mensajes_id = $mensaje->id;
                 $interviniente->save();
             }
+        }
+        return redirect('/juego/mensajes');
+    }
+
+    public function borrarMensaje($idMensaje, $idJugador)
+    {
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        $jugadorAlianza = null;
+        if ($jugadorActual->alianzas) {
+            $jugadorAlianza = Alianzas::jugadorAlianza($jugadorActual->alianzas->id);
+        }
+        if ($idJugador == session()->get('jugadores_id') || (!empty($jugadorAlianza) && $idJugador == $jugadorAlianza->id)) {
+            $mensaje = Mensajes::find($idMensaje);
+            $mensaje->intervinientes->where('receptor', $idJugador)->first()->delete();
         }
         return redirect('/juego/mensajes');
     }

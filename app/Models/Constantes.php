@@ -168,7 +168,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 1.03;
+        $constante->valor = 1.05;
         $constante->minimo = 1;
         $constante->maximo = 1.1;
         $constante->codigo = 'costoInvestMotores';
@@ -420,7 +420,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = .05;
+        $constante->valor = .03;
         $constante->minimo = .01;
         $constante->maximo = .2;
         $constante->codigo = 'mejorainvHangar';
