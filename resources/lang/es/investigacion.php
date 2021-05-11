@@ -48,7 +48,7 @@ return [
 
     'invCargaDescripcion' => "Además de mejorar la capacidad de carga en cada nivel, en algunos podemos obtener nuevos módulos de carga para nuestras naves. Estos módulos estan agrupados por tamaños, de modo que en una nave podemos colocar en el mismo lugar carga o hangar para otras naves.",
     'invHangarDescripcion' => "",
-    'invRecoleccionDescripcion' => "",
+    'invRecoleccionDescripcion' => "Cada nivel aunmenta un % la cantidad maxima extraida",
     'invIaDescripcion' => "Podemos crear mecanismos y sistemas accesorios que mejoren las cualidades de los diseños. Por cada nivel investigado obtenemos una mejora para nuestros diseños en algún aspecto, aunque sus costes suelen ser elevados las ventajas que aportan nos premiten afinar nuestros diseños.",
 
     'invEnsamblajeFuselajesDescripcion' => "Obtener fuselajes cada vez mejores requiere tecnologías mas avanzadas. Cada nivel de esta investigación nos da puntos para gastar en desbloquear nuevos fuselajes, estos puntos son generales de nuestra cuenta y no dependen del planeta, una vez gastados no pueden serán devueltos.",

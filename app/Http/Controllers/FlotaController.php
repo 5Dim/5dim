@@ -117,8 +117,14 @@ class FlotaController extends Controller
                         }
                     } else {
                         $origen = new Destinos();
-                        $origen->estrella = $flota->planetas->estrella;
-                        $origen->orbita = $flota->planetas->orbita;
+                        if ($flota->planetas==null){
+                            $origen->estrella = $flota->estrella;
+                            $origen->orbita = $flota->orbita;
+                        } else {
+                            $origen->estrella = $flota->planetas->estrella;
+                            $origen->orbita = $flota->planetas->orbita;
+                        }
+
                         $origen->porcentVel = 100;
                         $origen->mision = $misionAct;
                         $origen->tipoflota = $tipoflota;
@@ -406,7 +412,7 @@ class FlotaController extends Controller
 
             $tamaniosArray = array("cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega");
             //$tamaniosNaveAcarga = array( 'caza'=> "cargaPequenia", 'ligera'=> "cargaMediana", 'media'=> "cargaGrande", 'pesada'=> "cargaEnorme", 'estacion'=> "cargaMega" );
-            //$recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
+            $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
 
             $fueraH = [];
             $dentroH = [];
@@ -761,10 +767,18 @@ class FlotaController extends Controller
                     $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
                 } else {
                     $recursos = $flotaOrigen->recursosEnFlota;
+                    if($recursos->fuel< $valFlotaT['fuelDestT']){ //no puedo gastar mas de lo que tengo (se ha quitado omitido en validaciones por la siguiente condición)
+                        $errores="Fuel insuficiente";
+                        throw new \Exception($errores);
+                    }
+                    if($recursos->fuel< $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']){ //si me llevo mas fuel del que tengo, resto de lo que me llevo
+                        //$resd=-$valFlotaT['fuelDestT'] + $recursos->fuel ;Log::info("fuel me llevo= ".$cargaDest[$dest]['fuel']." fuel llevo: ".$recursos->fuel ." fuel gasto: ".$valFlotaT['fuelDestT']." result= ".$resd);
+                        $cargaDest[$dest]['fuel'] = -$valFlotaT['fuelDestT'] + $recursos->fuel ;
+                    }
                 }
 
                 //Log::info($recursos);
-
+                // restando origen
                 $recursos->personal -= $cargaDest[$dest]['personal'];
                 $recursos->mineral -= $cargaDest[$dest]['mineral'];
                 $recursos->cristal -= $cargaDest[$dest]['cristal'];
@@ -799,39 +813,57 @@ class FlotaController extends Controller
 
                 if($flotaid!=null){ //recalculo flota que quede
 
-                    $valFlotaT = [];
-                    //reinicio valores
-                    $valFlotaT['carga'] = 0;
-                    $valFlotaT['municion'] = 0;
-                    $valFlotaT['fuel'] = 0;
-                    $valFlotaT['velocidad'] = 999;
-                    $valFlotaT['maniobra'] = 999;
-                    $valFlotaT['ataqueR'] = 0;
-                    $valFlotaT['defensaR'] = 0;
-                    $valFlotaT['ataqueV'] = 0;
-                    $valFlotaT['defensaV'] = 0;
-                    $valFlotaT['extraccion'] = 0;
-                    $valFlotaT['recoleccion'] = 0;
-                    $valFlotaT['fuelDestT'] = 0;
-                    $valFlotaT['atotal'] = 0;
-                    $valFlotaT['mantenimiento'] = 0;
+                    //verifico si borro la flota
+                    $cargaQueda=0;
+                    foreach ($recursosArray as $recurso) {
+                        $cargaQueda += $recursos[$recurso];
+                        if($cargaQueda>0){break;}
+                    }
+                    $totalNaves=0;
+                    foreach($navesEnPlaneta as $nave){
+                        $totalNaves+=$nave["enFlota"]+$nave["enHangar"];
+                        if($totalNaves>0){break;}
+                    }
 
-                    //Log::info("navesEnPlaneta ");Log::info($navesEnPlaneta);
-                    $result = Flotas::ValoresDiseniosFlota((array)$navesEnPlaneta,$diseniosJugador,$navesEnPlaneta,$flotaid);//recalculo las naves enflota y hangar que me quedaron
-                    $errores = $result[0];
-                    $disenios = $result[1];
+                    //Log::info("cargaQueda ".$cargaQueda." naves quedan: ");Log::info($navesEnPlaneta);
+                    if($cargaQueda < 1 && $totalNaves<1){ //borramos la flota enterita
+                        $flotaOrigen->delete();
+                    } else { //recalculamos el resto
+                        $valFlotaT = [];
+                        //reinicio valores
+                        $valFlotaT['carga'] = 0;
+                        $valFlotaT['municion'] = 0;
+                        $valFlotaT['fuel'] = 0;
+                        $valFlotaT['velocidad'] = 999;
+                        $valFlotaT['maniobra'] = 999;
+                        $valFlotaT['ataqueR'] = 0;
+                        $valFlotaT['defensaR'] = 0;
+                        $valFlotaT['ataqueV'] = 0;
+                        $valFlotaT['defensaV'] = 0;
+                        $valFlotaT['extraccion'] = 0;
+                        $valFlotaT['recoleccion'] = 0;
+                        $valFlotaT['fuelDestT'] = 0;
+                        $valFlotaT['atotal'] = 0;
+                        $valFlotaT['mantenimiento'] = 0;
 
-                    $result = Flotas::calculoFlota($disenios, $valFlotaT, null, $tablaHangares);
-                    $valFlotaT = $result[0];
+                        //Log::info("navesEnPlaneta ");Log::info($navesEnPlaneta);
+                        $result = Flotas::ValoresDiseniosFlota((array)$navesEnPlaneta,$diseniosJugador,$navesEnPlaneta,$flotaid);//recalculo las naves enflota y hangar que me quedaron
+                        $errores = $result[0];
+                        $disenios = $result[1];
 
-                    $flotaOrigen->ataqueReal = $valFlotaT['ataqueR'];
-                    $flotaOrigen->defensaReal = $valFlotaT['defensaR'];
-                    $flotaOrigen->ataqueVisible = $valFlotaT['ataqueV'];
-                    $flotaOrigen->defensaVisible = $valFlotaT['defensaV'];
-                    $flotaOrigen->creditos = $valFlotaT['mantenimiento'];
-                    $flotaOrigen->save();
+                        $result = Flotas::calculoFlota($disenios, $valFlotaT, null, $tablaHangares);
+                        $valFlotaT = $result[0];
+
+                        $flotaOrigen->ataqueReal = $valFlotaT['ataqueR'];
+                        $flotaOrigen->defensaReal = $valFlotaT['defensaR'];
+                        $flotaOrigen->ataqueVisible = $valFlotaT['ataqueV'];
+                        $flotaOrigen->defensaVisible = $valFlotaT['defensaV'];
+                        $flotaOrigen->creditos = $valFlotaT['mantenimiento'];
+                        $flotaOrigen->save();
+                    }
 
                     //borrar la flota si queda vacia del todo
+
                 }
 
                 DB::commit();

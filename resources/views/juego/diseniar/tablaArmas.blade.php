@@ -1697,8 +1697,8 @@ for (x=1;x<6;x++){
                 costesVacio['tiempo']=costeobj['tiempo']*factorFuselaje;
                 costesVacio['mantenimiento']=costeobj['mantenimiento']*factorFuselaje;
                 costesVacio['energia']=costeobj['energia']*factorFuselaje;
-                costesVacio['recolector']=costeobj['recolector']*factorFuselaje*cte;
-                costesVacio['extractor']=costeobj['extractor']*factorFuselaje*cte;
+                costesVacio['recolector']=costeobj['recolector']*factorFuselaje;
+                costesVacio['extractor']=costeobj['extractor']*factorFuselaje;
                 if (genera2!=""){costesVacio[genera2]=costeobj[genera2]*cte;} //hangares
                 sumaCualidades(misCostes,multiplicador,costesVacio);
             }
@@ -2303,7 +2303,7 @@ function mostrarResultado(){
         $("#"+key+"D").text(valueF);
     })
     $.each( cualidades, function( key, value ) {
-    valueF=formatNumber (Math.round (value));
+    valueF=formatNumber (Math.floor (value));
         $("#"+key+"D").text(valueF);
     })
 

@@ -153,6 +153,9 @@ class Flotas extends Model
                     foreach ($recursosArray as $recurso) {
                         $cargaDestT += 1 * $cargaDest[$dest][$recurso];
                     }
+                    if($destinos[$dest]['fuelDest'] ==0){ //viajes cortos y una navecilla
+                        $destinos[$dest]['fuelDest'] =1;
+                    }
                     //Log::info(" dest es:".$destinos[$dest]['tiempoDest']." fuel dest ".$destinos[$dest]['fuelDest'] );
                     if ($destinos[$dest]['tiempoDest'] < 1 || $destinos[$dest]['fuelDest'] < 1) {
                         $errores = " tiempo o fuel no puede ser 0 a destino " . $dest;
@@ -436,9 +439,17 @@ class Flotas extends Model
                 if ($planeta != null) {
                     $planetas_id = $planeta->id;
                 } else {
-                    $errores = "No existe planeta destino " . $destinosDest['estrella'] . "x" . $destinosDest['orbita'];
-                    //Log::info($errores);
-                    throw new \Exception($errores);
+                    if(!$destinosDest['orbita'] ){
+                        $errores = "No existe planeta destino " . $destinosDest['estrella'] . "x" . $destinosDest['orbita'];
+                        //Log::info($errores);
+                        throw new \Exception($errores);
+                    } else {
+                        $destino->en_orbita_id = $destinosDest['en_orbita_id'];
+                        $destino->estrella = $destinosDest['estrella'];;
+                        $destino->orbita = $destinosDest['orbita'];
+                        return [$destino, $errores];
+                    }
+
                 }
             } else { //destino flota
 
@@ -456,7 +467,7 @@ class Flotas extends Model
             $destino->orbita = $destinosDest['orbita'];
         } catch (\Exception $e) {
             Log::info($e);
-            // return $e->getMessage();
+           // return [$destino,$e->getMessage()];
         }
         return [$destino, $errores];
     }
@@ -539,7 +550,7 @@ class Flotas extends Model
                     $destino = $result[0];
                     $errores = $result[1];
                     if (strlen($errores) > 3) {
-                        //Log::info("coso" .$errores);
+                        Log::info("coso" .$errores);
                         throw new \Exception($errores);
                     }
 
@@ -829,7 +840,7 @@ destino 0 con lo que sale
                 case "Recolectar":
                     //Log::info("planet ".$destino->planetas);
                     if ($destino->planetas->tipo == "asteroide") {
-                        $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino->planetas, $anchoUniverso, $luzdemallauniverso, "recolectar");
+                        $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino, $anchoUniverso, $luzdemallauniverso, "recolectar");
                         if (strlen($errores) < 4) {
                             $destinoAlcanzado = true;
                         }
@@ -839,7 +850,7 @@ destino 0 con lo que sale
                     }
                     break;
                 case "Orbitar":
-                    $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino->planetas, $anchoUniverso, $luzdemallauniverso, "orbitar");
+                    $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino, $anchoUniverso, $luzdemallauniverso, "orbitar");
                     if (strlen($errores) < 4) {
                         $destinoAlcanzado = true;
                     }
@@ -923,13 +934,13 @@ destino 0 con lo que sale
                 }
 
                 DB::commit();
-                Mensajes::enviarMensajeFlota($destino);
                 Log::info($errores);
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit recepción de flotas " . $e->getLine() . " " . $errores; //.$e;
                 Log::info($errores . " " . $e);
             }
+            //Mensajes::enviarMensajeFlota($destino);
         }
     }
 
@@ -944,19 +955,22 @@ destino 0 con lo que sale
 
     }
 
-    public static function flotaARecolectarOrbitar($flotaLlega, $planeta, $anchoUniverso, $luzdemallauniverso, $quehacer)
+    public static function flotaARecolectarOrbitar($flotaLlega, $destino, $anchoUniverso, $luzdemallauniverso, $quehacer)
     {
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $errores = "";
 
         if ($flotaLlega != null) {
 
-            try {
+
+            //try {
                 $ajusteMapaBase = 35; //ajuste 0,0 con mapa
                 $ajusteMapaFactor = 7; //ajuste escala mapa
+                $planeta=$destino->planetas;
 
                 if ($quehacer == "recolectar") {
                     //si ya existe una flota en recolección
+
                     $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
                         ->where("planetas_id", $planeta->id)->first();
 
@@ -967,8 +981,15 @@ destino 0 con lo que sale
                     $columnNaves = "en_recoleccion_id";
                 } else {
                     $flotaExiste = EnOrbita::where("jugadores_id", $flotaLlega->jugadores_id)
-                        ->where("planetas_id", $planeta->id)->first();
+                        ->where("estrella",$destino->estrella)->where("orbita",$destino->orbita )->first();
                     $columnNaves = "en_orbita_id";
+                    if($planeta==null){
+                        $planeta=new \stdClass();
+                        $planeta->estrella=$destino->estrella;
+                        $planeta->orbita=$destino->orbita;
+                        $planeta->id=null;
+
+                    }
                     //Log::info($flotaExiste);
                 }
 
@@ -989,7 +1010,7 @@ destino 0 con lo que sale
                     }
                     $flotaExiste->save();
                 } else {
-                    $coordDestino = Flotas::coordenadasBySistema($planeta['estrella'], $anchoUniverso, $luzdemallauniverso);
+                    $coordDestino = Flotas::coordenadasBySistema($planeta->estrella, $anchoUniverso, $luzdemallauniverso);
                     $coordDestx = $ajusteMapaFactor  * $coordDestino['x'] + $ajusteMapaBase;
                     $coordDesty = $ajusteMapaFactor  * $coordDestino['y'] + $ajusteMapaBase;
 
@@ -1008,7 +1029,10 @@ destino 0 con lo que sale
                     $flotax->jugadores_id = $flotaLlega->jugadores_id;
                     $flotax->coordx = $coordDestx;
                     $flotax->coordy = $coordDesty;
-                    $flotax->planetas_id = $planeta->id;
+                    if($planeta->id!=null){
+                        $flotax->planetas_id = $planeta->id;
+                    }
+
 
                     if ($quehacer == "recolectar") {
                         $flotax->recoleccion = $recoleccionT;
@@ -1075,7 +1099,7 @@ destino 0 con lo que sale
                 }
 
                 $flotaLlega->delete();
-
+            try{
                 DB::commit();
                 //Log::info("Enviada");
             } catch (Exception $e) {

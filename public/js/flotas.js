@@ -441,10 +441,11 @@ function Avisos() {
     //falta fuel
 
     var faltaFuel = false;
-
-    if (recursosDest[0] != undefined) {
-        if (recursosDest[0]["fuel"] - cargaDest[0]["fuel"] < fuelDestT) {
-            faltaFuel = true;
+    if (deboAlertasF) {
+        if (recursosDest[0] != undefined) {
+            if (recursosDest[0]["fuel"] - cargaDest[0]["fuel"] < fuelDestT) {
+                faltaFuel = true;
+            }
         }
     }
 

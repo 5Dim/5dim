@@ -550,7 +550,7 @@ class Astrometria extends Model
                 }
                 $flota->cargaT = $cargaT;
                 $flota->mision = "Orbitando";
-                $flota->origen = $flotaVisible->planetas->estrella . "x" . $flotaVisible->planetas->orbita;
+                $flota->origen = $flotaVisible->estrella . "x" . $flotaVisible->orbita;
                 $flota->destino = "";
             }
 
