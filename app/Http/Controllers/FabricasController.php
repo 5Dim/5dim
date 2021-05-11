@@ -127,7 +127,8 @@ class FabricasController extends Controller
         $tiempo = $disenio->mejoras->tiempo;
         $inicio = date("Y-m-d H:i:s");
         // $cadenaProduccion = EnDisenios::cadenaProduccion($cantidad, $disenio->fuselajes->tnave);
-        $disenioEnPlaneta = $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first();
+        $id = $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->id;
+        $disenioEnPlaneta = DiseniosEnFlota::find($id);
         if (!empty($disenioEnPlaneta)) {
             if ($disenioEnPlaneta->enFlota > 0) {
                 $disenioEnPlaneta->cantidad += $disenioEnPlaneta->enFlota;
@@ -143,6 +144,7 @@ class FabricasController extends Controller
                 $cantidad = $cantidadInicial;
             }
             $disenioEnPlaneta->cantidad -= $cantidad;
+            $disenioEnPlaneta->save();
             if ($disenioEnPlaneta->cantidad == 0) {
                 $disenioEnPlaneta->delete();
             }
@@ -184,6 +186,7 @@ class FabricasController extends Controller
             if (!empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first())) {
                 $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad += $cola->cantidad;
                 $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->save();
+                Log::info("UPDATE");
             } else {
                 $disenioEnPlaneta = new DiseniosEnFlota();
                 $disenioEnPlaneta->enFlota = 0;
@@ -192,6 +195,7 @@ class FabricasController extends Controller
                 $disenioEnPlaneta->tipo = 'nave';
                 $disenioEnPlaneta->planetas_id = session()->get('planetas_id');
                 $disenioEnPlaneta->disenios_id = $disenio->id;
+                $disenioEnPlaneta->save();
             }
         } else {
             $recursos->mineral += (($coste->mineral * $cola->cantidad) * $cancelar);
