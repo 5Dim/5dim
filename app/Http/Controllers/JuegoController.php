@@ -128,8 +128,10 @@ class JuegoController extends Controller
         ) {
             session()->put('planetas_id', $planeta);
         } else {
-            redirect('/juego/construccion');
+            return back();
+            // return redirect('/juego/construccion');
         }
-        return redirect('/juego/calcularPuntos');
+        return back();
+        // return redirect('/juego/calcularPuntos');
     }
 }
