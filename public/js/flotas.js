@@ -67,10 +67,15 @@ function CargarFlotaEditada() {
 
 
                 recursosArray.forEach(res => {
+                    if(dest==0){
+                        recursosDest[dest][res]=flota["recursos_en_flota"][res];
+                        //cargaDest[dest][res]=flota["recursos_en_flota"][res];
+                    }
                     $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
                     cargaT += cargaDest[dest][res];
 
                     $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
+
                 });
 
             cargaDest[dest].total = cargaT;
@@ -856,11 +861,22 @@ function NaveGeneralAHangar(canti) {
     }
 }
 
+function AddValoresVacios(){
+    //for (n = 1; n < cantidadDestinos + 1; n++) {
+        cargaDest=cargaDestVacia;
+        prioridades=prioridadesVacia;
+        destinos=destinosVacia;
+}
+
 function enviarFlota() {
     if(enviarEnOrbita){
         MostrarDestinos();
         EnviarFlotaTxt="Enviar Flota";
         $("#botonEnviar").text(EnviarFlotaTxt);
+        AddValoresVacios();
+        RecursosInicio();
+        destinos[0]["estrella"]=flota["estrella"];
+        destinos[0]["orbita"]=flota["orbita"];
         enviarEnOrbita=false;
         return;
     }

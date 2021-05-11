@@ -1147,4 +1147,55 @@ destino 0 con lo que sale
         }
         return $errores;
     }
+
+    public static function ValoresDiseniosFlota($navesEstacionadas,$diseniosJugador,$navesEnPlaneta,$flotaid=null){
+        $disenios = [];
+        $arraycolumn = array_column($navesEstacionadas, 'disenios_id');
+        $errores="";
+
+        foreach ($diseniosJugador as $disenio) {
+
+            $key = array_search($disenio->id, $arraycolumn);  //de los diseños
+            if (false !== $key) {
+
+                $nave = $navesEstacionadas[$key]; // enviar
+
+                $enhangar = $nave['enhangar'];
+                $enflota = $nave['enflota'];
+
+                if ($enflota > 0 || $enhangar > 0) {
+
+                    $naveP = $navesEnPlaneta->firstWhere('disenios_id', $nave['disenios_id']);
+
+                    if($flotaid==null){
+                        $cantidadEnOrigen=$naveP['cantidad'];
+                    } else {
+                        $cantidadEnOrigen=$naveP['enFlota']+$naveP['enHangar'];
+                    }
+
+                    if ($naveP == null  || $cantidadEnOrigen < $enflota + $enhangar) {
+                        $errores = "Mas naves a enviar de las que hay (" . $nave['disenios_id'] . ")" . $enflota . " " . $enhangar;
+                        //Log::info($errores);
+                        break;
+                    }
+
+                    $cantidad = $cantidadEnOrigen;
+
+                    $disenio['enflota'] = $enflota;
+                    $disenio['enhangar'] = $enhangar;
+
+                    if($flotaid==null){
+                        $disenio['cantidad'] = $cantidad;
+                    } else {
+                        $disenio['cantidad']=0;
+                    }
+
+                    array_push($disenios, $disenio);
+                }
+            }
+        }
+
+        return [$errores, $disenios];
+
+    }
 }
