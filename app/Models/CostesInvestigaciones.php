@@ -257,7 +257,7 @@ class CostesInvestigaciones extends Model
                             $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
                         }
                         $costoIT = $costoInvestImperio;
-                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2.45, 2, 2, 2, $nivel];
                         $costosIniciales = [$codigo, 0, 0, 0, 0, 0, 0, 25000, 0, 0, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
@@ -270,7 +270,7 @@ class CostesInvestigaciones extends Model
                             $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
                         }
                         $costoIT = $costoInvestImperio;
-                        $r1cce = [$codigo, 1.5, 2, 2, 2, 2, 2, 1.5, 2, 2, 2, $nivel];
+                        $r1cce = [$codigo, 1.5, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
                         $costosIniciales = [$codigo, 2000, 0, 0, 0, 0, 0, 20000, 0, 0, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
@@ -301,19 +301,6 @@ class CostesInvestigaciones extends Model
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
-                    case "invPropNuk":
-                        // maximos
-                        $factorRebajaXMaximo = 1;
-                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
-                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
-                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
-                        }
-                        $costoIT = $costoInvestMotores;
-                        $r1cce = [$codigo, 2, 2.2, 1.5, 2.3, 1.1, 1.2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 0, 8000, 0, 650, 4000, 0, 0, 400, 0, 0];
-                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
-                        break;
-
                     case "invPropIon":
                         // maximos
                         $factorRebajaXMaximo = 1;
@@ -324,6 +311,19 @@ class CostesInvestigaciones extends Model
                         $costoIT = $costoInvestMotores;
                         $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2.1, 2, 2, $nivel];
                         $costosIniciales = [$codigo, 0, 0, 4000, 0, 0, 1500, 0, 800, 0, 0];
+                        $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
+                        break;
+
+                    case "invPropNuk":
+                        // maximos
+                        $factorRebajaXMaximo = 1;
+                        $UmbralNivelRebaja = $nivelesMaximos->where('codigo', $investigacion->codigo)->first()->nivel - $nivelBajoElQueRebajar;
+                        if ($UmbralNivelRebaja > $nivel) { //hay rebaja
+                            $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
+                        }
+                        $costoIT = $costoInvestMotores;
+                        $r1cce = [$codigo, 2, 2.2, 1.5, 2.3, 1.1, 1.2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 0, 8000, 0, 650, 4000, 0, 0, 400, 0, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -375,8 +375,8 @@ class CostesInvestigaciones extends Model
                             $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
                         }
                         $costoIT = $costoInvestIndustrias;
-                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 3000, 6000, 0, 0, 0, 0, 0, 0, 0, 0];
+                        $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 1.99, 2, $nivel];
+                        $costosIniciales = [$codigo, 30000, 60000, 0, 0, 0, 0, 0, 0, 10000, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -401,7 +401,7 @@ class CostesInvestigaciones extends Model
                             $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
                         }
                         $costoIT = $costoInvestIndustrias;
-                        $r1cce = [$codigo, 2, 2, 2, 1.6, 2, 2, 2, 2, 1.5, 2, $nivel];
+                        $r1cce = [$codigo, 2, 2, 2, 1.6, 2, 2, 2, 2, 2, 2, $nivel];
                         $costosIniciales = [$codigo, 0, 0, 0, 2500, 0, 0, 0, 0, 6000, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
@@ -428,7 +428,7 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestIndustrias;
                         $r1cce = [$codigo, .8, 2, 2, .3, 2, 2, 2, 2, 2, .2, $nivel];
-                        $costosIniciales = [$codigo, 3000, 0, 0, 5000, 0, 0, 0, 0, 15000, 10000];
+                        $costosIniciales = [$codigo, 3000, 0, 0, 0, 15000, 0, 0, 0, 15000, 10000];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
                 }

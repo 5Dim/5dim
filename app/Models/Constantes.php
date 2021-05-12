@@ -204,7 +204,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 15;
+        $constante->valor = 10;
         $constante->minimo = 10;
         $constante->maximo = 20;
         $constante->codigo = 'adminImperioPuntos';
@@ -213,7 +213,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = -10;
+        $constante->valor = -30;
         $constante->minimo = -20;
         $constante->maximo = 0;
         $constante->codigo = 'piminimoscolonizar';

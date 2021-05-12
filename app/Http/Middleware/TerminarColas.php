@@ -26,7 +26,7 @@ class TerminarColas
         EnInvestigaciones::terminarColaInvestigaciones();
         EnDisenios::terminarColaDisenios();
         Flotas::llegadaFlotas();
-        Jugadores::calcularPuntos(session()->get('jugadores_id'));
+        // Jugadores::calcularPuntos(session()->get('jugadores_id'));
         return $next($request);
     }
 }
