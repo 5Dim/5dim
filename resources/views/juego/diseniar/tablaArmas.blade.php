@@ -268,14 +268,14 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                                                 <img onClick="encajar('motor',59,'aniade')" class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",59)->first()->nombre}}" src="{{ asset('img/fotos armas/arma59.jpg') }}" width="40" height="40">
                                             </td>
                                             @endif
-                                            @if ($investNiveles["invPropNuk"]>0)
-                                            <td>
-                                                <img onClick="encajar('motor',60,'aniade')"  class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",60)->first()->nombre}}" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
-                                            </td>
-                                            @endif
                                             @if ($investNiveles["invPropIon"]>0)
                                             <td>
                                                 <img onClick="encajar('motor',61,'aniade')"  class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",61)->first()->nombre}}" src="{{ asset('img/fotos armas/arma61.jpg') }}" width="40" height="40">
+                                            </td>
+                                            @endif
+                                            @if ($investNiveles["invPropNuk"]>0)
+                                            <td>
+                                                <img onClick="encajar('motor',60,'aniade')"  class="rounded" data-bs-toggle="tooltip" data-placement="top" title="{{$armas->where("codigo",60)->first()->nombre}}" src="{{ asset('img/fotos armas/arma60.jpg') }}" width="40" height="40">
                                             </td>
                                             @endif
                                             @if ($investNiveles["invPropPlasma"]>0)
