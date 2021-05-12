@@ -726,12 +726,12 @@ class FlotaController extends Controller
                         $restarAHangar=$navex['enhangar'];
                         //Log::info("messageI ".$restarAFlota." ".$restarAHangar);
 
-                        if($naveP->enFlota > $navex['enflota']){ //tengo menos en flota de las que me llevo
-                            $restarAHangar+=$naveP->enFlota - $navex['enflota'];
+                        if($naveP->enFlota < $navex['enflota']){ //tengo menos en flota de las que me llevo
+                            $restarAHangar+=-$naveP->enFlota + $navex['enflota'];
                         }
 
-                        if($naveP->enhangar > $navex['enhangar']){ //tengo menos  en hangar de las que me llevo
-                            $restarAFlota+=$naveP->enhangar - $navex['enhangar'];
+                        if($naveP->enhangar < $navex['enhangar']){ //tengo menos  en hangar de las que me llevo
+                            $restarAFlota+=-$naveP->enHangar + $navex['enhangar'];
                         }
 
                         if($naveP->enFlota - $restarAFlota <0){ // la cantidad que queda no puede ser negativa
@@ -750,7 +750,7 @@ class FlotaController extends Controller
                         $naveP->enFlota -=$restarAFlota;
                         $naveP->enHangar -=$restarAHangar;
                         //Log::info($naveP);
-                        //Log::info("messageR ".$restarAFlota." ".$restarAHangar);
+                        Log::info("messageR ".$restarAFlota." ".$restarAHangar);
                         if($naveP->enFlota+$naveP->enHangar<1){
                             $naveP->delete();
                         } else {
