@@ -118,7 +118,7 @@
                             <option value="Transferir">Transferir</option>
                             <option value="Orbitar">Orbitar</option>
                             <option value="Recolectar">Recolectar</option>
-                            <option value="Extraer">Extracción</option>
+                            <option value="Extraer">Extraer</option>
                             <option value="Reciclar">Reciclar</option>
                             <option value="Colonizar">Colonizar</option>
                             <option class="text-danger" value="atacar">Atacar</option>

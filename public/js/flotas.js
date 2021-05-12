@@ -474,14 +474,14 @@ function Avisos() {
             soyUltimoDestino = false;
             // soy la ultima y debe ser de cierre
             if (destPost < 4 && (ordenPost != undefined || ordenPost.length < 1)) {
-                if ((ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
-                    errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
+                if ((ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && ordenAnt == "Extraer")) {
+                    errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
                 }
             }
             if (destinos.length == destPost) {
-                if ((orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") || ordenAnt == "Extraer") {
-                    errores += " la misión del último destino no es Transferir, Orbitar,Extraer o Recolectar";
+                if ((orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && ordenAnt == "Extraer")) {
+                    errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
                 }
             }

@@ -27,7 +27,9 @@ class MensajesIntervinientes extends Model
         Log::info("destino " . $destino);
         $duenioFlota = $destino->flota->jugadores->id;
         $duenioDestino = null;
-        if (!empty($destino->planetas_id)) {
+        if ($destino->mision == "Recolectar" || $destino->mision == "Orbitar" || $destino->mision == "Extraer" || $destino->mision == "Colonizar") {
+            $duenioDestino = $duenioFlota;
+        } elseif (!empty($destino->planetas_id)) {
             $duenioDestino = $destino->planetas->jugadores->id;
         } elseif (!empty($destino->en_vuelo_id)) {
             $duenioDestino = $destino->enVuelo->jugadores->id;

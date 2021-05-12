@@ -283,7 +283,7 @@ function calculaTiempoInvestigacion(costes, velocidadInvest, dnd, nivel, nivelLa
         timeDura(result, "tiempo" + dnd);
         // $("#tiempo" + dnd).html(horaImprimible);
         timeg(result, "termina" + dnd);
-        console.log(result);
+        // console.log(result);
     } else {
         $("#tiempo" + dnd).html(horaImprimible);
     }
