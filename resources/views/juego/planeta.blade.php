@@ -869,43 +869,43 @@
                                 Municion
                             </td>
                         </tr>
-                        @foreach ($producciones as $produccion)
+                        @foreach ($tablaProduccion as $prod)
                             <tr>
                                 <td class="anchofijo text-warning borderless">
-                                    {{ number_format($produccion->nivel, 0, ',', '.') }}
+                                    {{ number_format($prod->nivel, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->personal, 0, ',', '.') }}
+                                    {{ number_format($prod->personal, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->mineral, 0, ',', '.') }}
+                                    {{ number_format($prod->mineral, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->cristal, 0, ',', '.') }}
+                                    {{ number_format($prod->cristal, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->gas, 0, ',', '.') }}
+                                    {{ number_format($prod->gas, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->plastico, 0, ',', '.') }}
+                                    {{ number_format($prod->plastico, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->ceramica, 0, ',', '.') }}
+                                    {{ number_format($prod->ceramica, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->liquido, 0, ',', '.') }}
+                                    {{ number_format($prod->liquido, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->micros, 0, ',', '.') }}
+                                    {{ number_format($prod->micros, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->fuel, 0, ',', '.') }}
+                                    {{ number_format($prod->fuel, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->ma, 0, ',', '.') }}
+                                    {{ number_format($prod->ma, 0, ',', '.') }}
                                 </td>
                                 <td class="anchofijo text-light borderless">
-                                    {{ number_format($produccion->municion, 0, ',', '.') }}
+                                    {{ number_format($prod->municion, 0, ',', '.') }}
                                 </td>
                             </tr>
 

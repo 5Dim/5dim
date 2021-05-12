@@ -52,7 +52,7 @@ class PlanetaController extends Controller
         $desbloqueos = Armas::whereIn('clase', ['invIa', 'invCarga', 'invHangar', 'invRecoleccion'])->get();
 
         //Datos de las producciones
-        $producciones = Producciones::all();
+        $tablaProduccion = Producciones::all();
 
         //Todos los jugadores para la cesiones
         $jugadores = Jugadores::all();
@@ -77,7 +77,7 @@ class PlanetaController extends Controller
             'produccionesSinCalcular',
             'capacidadRefugio',
             'jugadores',
-            'producciones',
+            'tablaProduccion',
             'desbloqueos',
         ));
     }
