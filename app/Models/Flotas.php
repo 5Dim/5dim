@@ -253,6 +253,7 @@ class Flotas extends Model
         $fuelfactorreduccionpordistancia = $constantesU->where('codigo', 'fuelfactorreduccionpordistancia')->first()->valor;
 
         $dest = 0;
+        //Log::info("destinos ");Log::info($destinos);
         $coordDestino = Flotas::coordenadasBySistema($destinos[$dest]['estrella'], $anchoUniverso, $luzdemallauniverso);
         $destinos[$dest]['fincoordx'] = $coordDestino['x'];
         $destinos[$dest]['fincoordy'] = $coordDestino['y'];
@@ -658,6 +659,7 @@ destino 0 con lo que sale
             $prioridadesDestino = $destino->prioridades;
 
             //Log::info("destino ".$destino." tipodestino ".$tipodestino);
+            //Log::info("mision: ".$destino->mision);
 
             switch ($destino->mision) {
                 case "Transportar":
@@ -837,8 +839,13 @@ destino 0 con lo que sale
                     }
                     break;
                 case "Recolectar":
-                    //Log::info("planet ".$destino->planetas);
-                    if ($destino->planetas->tipo == "asteroide") {
+                    $puedoRecolectar=false;
+                    if ($destino->planetas != null && $destino->planetas->tipo == "asteroide") {
+                        $puedoRecolectar=true;
+                    } else if ($destino->enRecoleccion!= null){ //destino es una flota que ya esta recolectando
+                        $puedoRecolectar=true;
+                    }
+                    if($puedoRecolectar){
                         $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino, $anchoUniverso, $luzdemallauniverso, "recolectar");
                         if (strlen($errores) < 4) {
                             $destinoAlcanzado = true;
@@ -852,6 +859,25 @@ destino 0 con lo que sale
                     $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino, $anchoUniverso, $luzdemallauniverso, "orbitar");
                     if (strlen($errores) < 4) {
                         $destinoAlcanzado = true;
+                    }
+                    break;
+                case "Extraer":
+                    $puedoRecolectar=false;
+                    //Log::info($destino->planetas);
+                    if ($destino->planetas != null && $destino->planetas->tipo == "planeta" && $destino->planetas->jugadores_id==null) {
+                        $puedoRecolectar=true;
+                    } else if ($destino->enRecoleccion!= null){ //destino es una flota que ya esta recolectando
+                        $puedoRecolectar=true;
+                    }
+
+                    if($puedoRecolectar){
+                        $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino, $anchoUniverso, $luzdemallauniverso, "extraer");
+                        if (strlen($errores) < 4) {
+                            $destinoAlcanzado = true;
+                        }
+                    } else {
+                        $destinoAlcanzado = true;
+                        $errores = "Sólo se pueden recolectar cuerpos tipo planeta deshabitado";
                     }
                     break;
             }
@@ -959,24 +985,34 @@ destino 0 con lo que sale
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $errores = "";
 
-        if ($flotaLlega != null) {
-
+        if (!empty($flotaLlega)) {
 
             //try {
+            $planeta=null;
             $ajusteMapaBase = 35; //ajuste 0,0 con mapa
             $ajusteMapaFactor = 7; //ajuste escala mapa
-            $planeta = $destino->planetas;
+            if ($destino->planetas!=null){
+                $planeta = $destino->planetas;
+            }
 
-            if ($quehacer == "recolectar") {
+            //Log::info("quehacer: ".$quehacer);
+            if ($quehacer == "recolectar" || $quehacer == "extraer") {
                 //si ya existe una flota en recolección
-
+                if ($planeta==null){
+                    $planeta=Planetas::where("estrella", $destino->estrella)->where("orbita", $destino->orbita)->first();
+                }
+                //Log::info("s ".$destino->estrella." o " .$destino->orbita." p ".$planeta  );
                 $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
                     ->where("planetas_id", $planeta->id)->first();
 
                 if ($flotaExiste != null) {
-                    Flotas::recolectarAsteroide($planeta, $flotaExiste);
+                    Flotas::recolectarAsteroide($planeta, $flotaExiste,null,$quehacer);
                 }
-                $recoleccionT = Disenios::recoleccionTotal($flotaLlega->diseniosEnFlota);
+                if($quehacer!="extraer"){
+                    $recoleccionT = Disenios::recoleccionTotal($flotaLlega->diseniosEnFlota);
+                } else {
+                    $recoleccionT = Disenios::extraccionTotal($flotaLlega->diseniosEnFlota);
+                }
                 $columnNaves = "en_recoleccion_id";
             } else {
                 $flotaExiste = EnOrbita::where("jugadores_id", $flotaLlega->jugadores_id)
@@ -1058,7 +1094,7 @@ destino 0 con lo que sale
                     ]);
                 }
             } else {
-                //Log::info("message ".$columnNaves. " ".$destinoID);
+                //Log::info($flotax);
                 DiseniosEnFlota::updateOrCreate([
                     'en_vuelo_id'   => $flotaLlega->id,
                 ], [
@@ -1111,7 +1147,7 @@ destino 0 con lo que sale
 
 
 
-    public static function recolectarAsteroide($planeta, $flotax = null, $jugadorid = null)
+    public static function recolectarAsteroide($planeta, $flotax = null, $jugadorid = null,$quehacer="recolectar")
     {
 
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
@@ -1132,7 +1168,13 @@ destino 0 con lo que sale
         $fechaFin = time();
         $fechaCalculo = ($fechaFin - $fechaInicio) / 3600;
         // Log::info(" fechaCalculo " . $fechaCalculo);
-        $capacidadRecoleccion = Disenios::recoleccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
+        //Log::info("quehacer: ".$quehacer);
+        if($quehacer=="extraer"){
+            $capacidadRecoleccion = Disenios::recoleccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
+        } else {
+            $capacidadRecoleccion = Disenios::extraccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
+        }
+
 
         for ($ordinal = 1; $ordinal < 16; $ordinal++) {
             foreach ($recursosArray as $recurso) {

@@ -726,7 +726,6 @@ class Astrometria extends Model
 
     public static function tipoDestino($destino)
     {
-
         //Log::info("destino ".$destino);
         $tipodestino = null;
         if ($destino->planetas_id != null && $destino->planetas->id != null) {
@@ -737,6 +736,8 @@ class Astrometria extends Model
             $tipodestino = "enrecoleccion";
         } else if ($destino->en_vuelo_id != null && $destino->enVuelo->id != null) {
             $tipodestino = "envuelo";
+        } else {//orbita sin planeta
+            $tipodestino = "otro";
         }
 
         return $tipodestino;
@@ -744,19 +745,21 @@ class Astrometria extends Model
 
     public static function nombreDestino($destino,$anterior=false)
     {
-
         $tipodestino = Astrometria::tipoDestino($destino);
         $nombreDestino = "";
+       // Log::info($destino);
         switch ($tipodestino) {
             case "planeta":
-                // Log::info("destino planeta ".$destino->planeta);
                 if($anterior){
                     $nombreDestino =$destino->planetas->nombre." ".$destino->planetas->estrella . "x" . $destino->planetas->orbita;
                 } else {
                     $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
-                    $nombreDestino =$planetaAnterior->nombre." ".$planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
+                    if ($planetaAnterior!=null){
+                        $nombreDestino =$planetaAnterior->nombre." ".$planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
+                    } else {
+                        $nombreDestino =$destino['initestrella'] . "x" . $destino['initorbita'];
+                    }
                 }
-
                 break;
             case "enrecoleccion":
                 $nombreDestino = $destino->enRecoleccion["publico"];
@@ -766,6 +769,13 @@ class Astrometria extends Model
                 break;
             case "envuelo":
                 $nombreDestino = $destino->enVuelo["publico"];
+                break;
+            default:
+            if($anterior){
+                    $nombreDestino =$destino['estrella'] . "x" . $destino['orbita'];
+                } else {
+                    $nombreDestino =$destino['initestrella'] . "x" . $destino['initorbita'];
+                }
                 break;
         }
 

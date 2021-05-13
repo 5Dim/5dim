@@ -680,7 +680,7 @@ function NoSeMueve(dest) {
 function SiSeMueve(dest, fuelDest, tiempoDest) {
     //si la flota se mueve coloca valores
     $("#fuelDest" + dest).text(formatNumber(fuelDest));
-    $("#tiempoDest" + dest).text(formatTimestamp(tiempoDest));
+    $("#tiempoDest" + dest).text(formatHMS(tiempoDest));
 }
 
 function SelectorDestinos(dest) {
@@ -871,6 +871,10 @@ function AddValoresVacios(){
 
 function enviarFlota() {
     if(enviarEnOrbita){
+        if(destinos[0]["estrella"]!=undefined){
+            flota["estrella"]=destinos[0]["estrella"];
+            flota["orbita"]=destinos[0]["orbita"];
+        }
         MostrarDestinos();
         EnviarFlotaTxt="Enviar Flota";
         $("#botonEnviar").text(EnviarFlotaTxt);

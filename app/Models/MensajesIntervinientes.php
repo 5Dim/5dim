@@ -24,7 +24,7 @@ class MensajesIntervinientes extends Model
 
     public static function intervinientesDeFlotas($destino, $idMensaje)
     {
-        Log::info("destino " . $destino);
+        //Log::info("destino " . $destino);
         $duenioFlota = $destino->flota->jugadores->id;
         $duenioDestino = null;
         if ($destino->mision == "Recolectar" || $destino->mision == "Orbitar" || $destino->mision == "Extraer" || $destino->mision == "Colonizar") {

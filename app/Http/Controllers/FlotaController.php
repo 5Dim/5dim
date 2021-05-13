@@ -102,16 +102,6 @@ class FlotaController extends Controller
 
                                 array_push($destinos, $destino);
                             }
-
-                            /*
-                            $origen = new Destinos();
-                            $origen->estrella = $destinosO[0]['initestrella'];
-                            $origen->orbita = $destinosO[0]['initorbita'];
-                            $origen->porcentVel = 100;
-                            array_unshift($destinos, $origen);
-                            */
-                            //array_push($cargaDest, $cargaDest[0]);
-                            //array_push($prioridades, $prioridades[0]);
                         } else {
                             $visionXDefecto = true;
                         }
@@ -120,7 +110,11 @@ class FlotaController extends Controller
                         if ($flota->planetas==null){
                             $origen->estrella = $flota->estrella;
                             $origen->orbita = $flota->orbita;
-                        } else {
+                        } else if ($flota->estrella!=null){
+                            $origen->estrella = $flota->estrella;
+                            $origen->orbita = $flota->orbita;
+                        }
+                        else {
                             $origen->estrella = $flota->planetas->estrella;
                             $origen->orbita = $flota->planetas->orbita;
                         }
@@ -750,7 +744,7 @@ class FlotaController extends Controller
                         $naveP->enFlota -=$restarAFlota;
                         $naveP->enHangar -=$restarAHangar;
                         //Log::info($naveP);
-                        Log::info("messageR ".$restarAFlota." ".$restarAHangar);
+                        //Log::info("messageR ".$restarAFlota." ".$restarAHangar);
                         if($naveP->enFlota+$naveP->enHangar<1){
                             $naveP->delete();
                         } else {
