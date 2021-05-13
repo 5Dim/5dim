@@ -885,7 +885,7 @@ destino 0 con lo que sale
             }
 
             DB::beginTransaction();
-            try {
+            //try {
                 //Log::info("guardar destinoAlcanzado: ".$destinoAlcanzado." guardarCambios ".$guardarCambios);
                 // Log::info($recursosFlota);Log::info($recursosDestino);
                 if ($guardarCambios) {
@@ -963,6 +963,7 @@ destino 0 con lo que sale
                 DB::commit();
                 Log::info($errores);
                 Mensajes::enviarMensajeFlota($destino);
+            try {
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit recepción de flotas " . $e->getLine() . " " . $errores; //.$e;
@@ -989,7 +990,7 @@ destino 0 con lo que sale
 
         if (!empty($flotaLlega)) {
 
-            //try {
+            try {
             $planeta=null;
             $ajusteMapaBase = 35; //ajuste 0,0 con mapa
             $ajusteMapaFactor = 7; //ajuste escala mapa
@@ -1137,7 +1138,7 @@ destino 0 con lo que sale
             }
 
             $flotaLlega->delete();
-            try {
+            //try {
                 DB::commit();
                 //Log::info("Enviada");
             } catch (Exception $e) {

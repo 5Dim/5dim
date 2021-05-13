@@ -302,13 +302,55 @@ class FlotaController extends Controller
     {
         Recursos::calcularRecursos(session()->get('planetas_id'));
 
+        $tipoNombre="planeta";
+        if (strlen($estrella) > 6 || !is_numeric($estrella)) {
+            $tipoNombre="flota";
+            $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
+            if ($flotaDestino == null) {
+                $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
+            }
+        }
+
+
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
         if ($jugadorActual->alianzas!=null){
             $idJugadores = Alianzas::idMiembros($jugadorActual->alianzas->id);
-            $recursos = Planetas::where([['estrella', $estrella], ['orbita', $orbita]])->whereIn('jugadores_id', $idJugadores)->first()->recursos;
+            if ($tipoNombre=="flota") {  // es flota
+                $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->whereIn('jugadores_id', $idJugadores)->first();
+                if ($flotaDestino == null) {
+                    $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->whereIn('jugadores_id', $idJugadores)->first();
+                }
+
+                if (!empty($flotaDestino)){
+                    $recursos=$flotaDestino->recursosEnFlota;
+                }
+
+            } else {
+                $planet = Planetas::where([['estrella', $estrella], ['orbita', $orbita]])->whereIn('jugadores_id', $idJugadores)->first();
+                if (!empty($recursos)){
+                    $recursos=$planet->recursos;
+                }
+            }
         } else {
-            $recursos = Planetas::where([['estrella', $estrella], ['orbita', $orbita]],['jugador_id',$jugadorActual->id])->first()->recursos;
+            if ($tipoNombre=="flota") {  // es flota
+                $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
+                if ($flotaDestino == null) {
+                    $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
+                }
+
+                if (!empty($flotaDestino) && $flotaDestino->jugadores_id==$jugadorActual->id){
+                    $recursos=$flotaDestino->recursosEnFlota;
+                }
+            } else {
+                $planet = Planetas::where([['estrella', $estrella], ['orbita', $orbita]],['jugador_id',$jugadorActual->id])->first();
+                if (!empty($recursos)){
+                    $recursos=$planet->recursos;
+                }
+            }
+
         }
+
         return compact('recursos');
     }
 
