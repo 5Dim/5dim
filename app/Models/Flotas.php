@@ -695,8 +695,10 @@ destino 0 con lo que sale
                             $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enOrbita->jugadores_id);
                             break;
                         case "enextraccion":
-                            //actualizamos sus recursos
-                            //$recursosDestino=$destino->enorbita->recursos;
+                            Flotas::recolectarAsteroide($destino->enRecoleccion->planetas, null, $estaFlota->jugadores_id);
+                            $recursosDestino = $destino->enRecoleccion->recursosEnFlota;
+                            $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enRecoleccion->jugadores_id);
+                            break;
                             break;
                         case "envuelo":
                             $destinoAlcanzado = true;
@@ -1006,9 +1008,10 @@ destino 0 con lo que sale
                     ->where("planetas_id", $planeta->id)->first();
 
                 if ($flotaExiste != null) {
-                    Flotas::recolectarAsteroide($planeta, $flotaExiste,null,$quehacer);
+                    Flotas::recolectarAsteroide($planeta, $flotaExiste,null);
                 }
-                if($quehacer!="extraer"){
+                //Log::info("quehacer1 ".$quehacer);
+                if($quehacer=="recolectar"){
                     $recoleccionT = Disenios::recoleccionTotal($flotaLlega->diseniosEnFlota);
                 } else {
                     $recoleccionT = Disenios::extraccionTotal($flotaLlega->diseniosEnFlota);
@@ -1031,7 +1034,7 @@ destino 0 con lo que sale
             //construyendo flota
             //$timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
             DB::beginTransaction();
-            if ($flotaExiste != null) {
+            if (!empty($flotaExiste)) {
 
                 $flotaExiste->ataqueReal += $flotaLlega['ataqueReal'];
                 $flotaExiste->defensaReal += $flotaLlega['defensaReal'];
@@ -1039,7 +1042,7 @@ destino 0 con lo que sale
                 $flotaExiste->defensaVisible += $flotaLlega['defensaVisible'];
                 $flotaExiste->creditos += $flotaLlega['creditos'];
 
-                if ($quehacer == "recolectar") {
+                if ($quehacer == "recolectar" || $quehacer == "extraer") {
                     $flotaExiste->recoleccion += $recoleccionT;
                 }
                 $flotaExiste->save();
@@ -1048,7 +1051,7 @@ destino 0 con lo que sale
                 $coordDestx = $ajusteMapaFactor  * $coordDestino['x'] + $ajusteMapaBase;
                 $coordDesty = $ajusteMapaFactor  * $coordDestino['y'] + $ajusteMapaBase;
 
-                if ($quehacer == "recolectar") {
+                if ($quehacer == "recolectar" || $quehacer == "extraer") {
                     $flotax = new EnRecoleccion();
                 } else {
                     $flotax = new EnOrbita();
@@ -1068,15 +1071,16 @@ destino 0 con lo que sale
                 }
 
 
-                if ($quehacer == "recolectar") {
+                if ($quehacer == "recolectar" || $quehacer == "extraer") {
                     $flotax->recoleccion = $recoleccionT;
                 } else {
                     $flotax->estrella = $planeta->estrella;
                     $flotax->orbita = $planeta->orbita;
                 }
                 $flotax->save();
-                // Log::info("flotax: " . $flotax);
+                //Log::info($flotax);Log::info(" hh ");
             }
+            //Log::info($flotax);Log::info(" hh ");
 
             // naves a flota
             if ($flotaExiste != null) {
@@ -1094,7 +1098,7 @@ destino 0 con lo que sale
                     ]);
                 }
             } else {
-                //Log::info($flotax);
+                //Log::info($flotaLlega->id);  Log::info($flotax->id); Log::info($columnNaves);
                 DiseniosEnFlota::updateOrCreate([
                     'en_vuelo_id'   => $flotaLlega->id,
                 ], [
@@ -1147,7 +1151,7 @@ destino 0 con lo que sale
 
 
 
-    public static function recolectarAsteroide($planeta, $flotax = null, $jugadorid = null,$quehacer="recolectar")
+    public static function recolectarAsteroide($planeta, $flotax = null, $jugadorid = null)
     {
 
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
@@ -1168,10 +1172,11 @@ destino 0 con lo que sale
         $fechaFin = time();
         $fechaCalculo = ($fechaFin - $fechaInicio) / 3600;
         // Log::info(" fechaCalculo " . $fechaCalculo);
-        //Log::info("quehacer: ".$quehacer);
-        if($quehacer=="extraer"){
+        //Log::info("quehacer2 ".$quehacer);
+        $capacidadRecoleccion =0;
+        if($planeta->tipo=="asteroide"){
             $capacidadRecoleccion = Disenios::recoleccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
-        } else {
+        } else if($planeta->tipo=="planeta"){
             $capacidadRecoleccion = Disenios::extraccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
         }
 
@@ -1182,8 +1187,8 @@ destino 0 con lo que sale
                 if ($prioridadesDestino[$recurso] == $ordinal) {
                     $extraido = 0;
                     $producido = $recursosDestino[$recurso] * $fechaCalculo;
-                    // Log::info(" producido " . $producido);
-
+                    //Log::info(" producido " . $producido);
+                    //Log::info(" capacidadRecoleccion " . $capacidadRecoleccion);
                     if ($producido > $capacidadRecoleccion) {
                         $extraido = $capacidadRecoleccion;
                     } else {

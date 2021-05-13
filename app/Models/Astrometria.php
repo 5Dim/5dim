@@ -532,6 +532,7 @@ class Astrometria extends Model
                 $flota->origen = $flotaVisible->planetas->estrella . "x" . $flotaVisible->planetas->orbita;
                 $flota->destino = "";
             } else if ($estado == "enextraccion") {
+                Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
                 $flota->recursos = RecursosEnFlota::where('en_recoleccion_id', $flotaVisible['id'])->first();
                 $cargaT = 0;
                 foreach ($recursosArray as $recurso) {
