@@ -456,6 +456,7 @@ class Mensajes extends Model
 
         MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
     }
+
     public static function extraer($destino)
     {
         $contenido = "<p>La flota <b class='text-success'>" . $destino->flota->nombre . "</b> ha llegado a <b class='text-success'>";

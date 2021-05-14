@@ -61,20 +61,20 @@
 
             <div class="form-floating text-dark">
                 <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus>
-                <label for="email" value="{{ __('Email') }}">Email address</label>
+                <label for="email" value="{{ __('user.email') }}">{{ __('user.email') }}</label>
             </div>
             <div class="form-floating text-dark">
                 <input id="password" class="form-control" type="password" name="password" required
                     autocomplete="current-password">
-                <label for="password" value="{{ __('Password') }}">Password</label>
+                <label for="password" value="{{ __('user.contraseña') }}">{{ __('user.contraseña') }}</label>
             </div>
-            {{-- @if (Route::has('password.request'))
+            @if (Route::has('password.request'))
                 <div class="checkbox mb-3">
                     <a class="underline text-sm text-white hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 </div>
-            @endif --}}
+            @endif
             <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('Login') }}</button>
         </form>
     </main>

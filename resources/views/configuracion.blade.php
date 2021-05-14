@@ -87,31 +87,28 @@
 
             <div class="form-floating text-dark">
                 <input id="name" class="form-control" type="name" name="name" required value="{{ Auth::user()->name }}">
-                <label for="name" value="{{ __('Name') }}">Name</label>
+                <label for="name" value="{{ __('user.nombre') }}">{{ __('user.nombre') }}</label>
             </div>
             <div class="form-floating text-dark">
                 <input id="email" class="form-control" type="email" name="email" :value="old('email')" required value="{{ Auth::user()->email }}">
-                <label for="email" value="{{ __('Email') }}">Email address</label>
+                <label for="email" value="{{ __('user.email') }}">{{ __('user.email') }}</label>
             </div>
             <div class="form-floating text-dark">
                 <select id="timezone" name="timezone" class="form-control form-select-lg">
-                    <optgroup label="Propios">
-                        @foreach (timezone_identifiers_list() as $timeZone)
-                            <option value="none">Selecciona tu zona horaria</option>
-                            <option value="{{ $timeZone }}" {{ Auth::user()->timezone == $timeZone ? 'selected' : "" }}> {{ $timeZone }} </option>
-                        @endforeach
-                    </optgroup>
+                    @foreach (timezone_identifiers_list() as $timeZone)
+                        <option value="{{ $timeZone }}" {{ Auth::user()->timezone == $timeZone ? 'selected' : "" }}> {{ $timeZone }} </option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-floating text-dark">
                 <select id="idioma" name="idioma" class="form-control form-select-lg">
                     <option value="none">Selecciona tu idioma</option>
-                    <option value="Español" {{ Auth::user()->idioma == "Español" ? 'selected' : "" }}> Español </option>
-                    <option value="Ingles" {{ Auth::user()->idioma == "Ingles" ? 'selected' : "" }}> Ingles </option>
+                    <option value="es" {{ Auth::user()->idioma == "es" ? 'selected' : "" }}> Español </option>
+                    <option value="en" {{ Auth::user()->idioma == "en" ? 'selected' : "" }}> Ingles </option>
                 </select>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('Actualizar usuario') }}</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('actualizar usuario') }}</button>
         </form>
 
         <form method="POST" action="{{ route('user-password.update') }}">
@@ -119,18 +116,18 @@
             @method('PUT')
             <div class="form-floating text-dark">
                 <input id="current_password" name="current_password" type="password" class="form-control" wire:model.defer="state.current_password" autocomplete="current-password">
-                <label for="current_password" value="{{ __('Current Password') }}">Current Password</label>
+                <label for="current_password" value="{{ __('user.contraseña actual') }}">{{ __('user.contraseña actual') }}</label>
             </div>
             <div class="form-floating text-dark">
                 <input id="password" name="password" type="password" class="form-control" wire:model.defer="state.password" autocomplete="new-password">
-                <label for="password" value="{{ __('New Password') }}">Password</label>
+                <label for="password" value="{{ __('user.contraseña') }}">{{ __('user.contraseña') }}</label>
             </div>
             <div class="form-floating text-dark">
                 <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" wire:model.defer="state.password_confirmation" autocomplete="new-password">
-                <label for="password_confirmation" value="{{ __('Confirm Password') }}">Confirm Password</label>
+                <label for="password_confirmation" value="{{ __('user.confirmar contraseña') }}">{{ __('user.confirmar contraseña') }}</label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('Cambiar contraseña') }}</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('user.cambiar contraseña') }}</button>
         </form>
     </main>
 @endsection

@@ -7,6 +7,7 @@ use App\Http\Controllers\ComercioController;
 use App\Http\Controllers\ConstruccionController;
 use App\Http\Controllers\DatosMaestrosController;
 use App\Http\Controllers\DisenioController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FabricasController;
 use App\Http\Controllers\FlotaController;
 use App\Http\Controllers\FuselajesController;
@@ -18,8 +19,12 @@ use App\Http\Controllers\MensajesController;
 use App\Http\Controllers\PlanetaController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Middleware\JugadorLogueado;
+use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\TerminarColas;
 use Illuminate\Support\Facades\Route;
+use App\Mail\MailtrapExample;
+use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,14 +41,34 @@ Route::get('/', [PrincipalController::class, 'index'])->name('root')->withoutMid
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home')->withoutMiddleware([JugadorLogueado::class]);
 
-//Rutas para administrador
-Route::get('/admin/DatosMaestros', [DatosMaestrosController::class, 'index']);
+Route::middleware(
+    [
+        'auth:sanctum',
+        'verified',
+        SetLocale::class,
+    ]
+)->group(function () {
+    //Rutas para administrador
+    Route::get('/panelControl/DatosMaestros', [DatosMaestrosController::class, 'index']);
+
+    // Route::get('/panelControl/send-mail', function () {
+    //     Mail::to('newuser@example.com')->send(new MailtrapExample());
+    //     // Mail::to('newuser@example.com')->queue(new MailtrapExample());
+    //     return 'A message has been sent to Mailtrap!';
+    // });
+
+    Route::get('/panelControl/emailResetRonda', [EmailController::class, 'index']);
+});
 
 //Rutas generales sin auth
 Route::get('/pruebas', [JuegoController::class, 'pruebas']);
 
 Route::middleware(
-    ['auth:sanctum', 'verified']
+    [
+        'auth:sanctum',
+        'verified',
+        SetLocale::class,
+    ]
 )->group(
     function () {
         //Cambiar opciones del usuario
@@ -58,7 +83,8 @@ Route::middleware(
         'auth:sanctum',
         'verified',
         JugadorLogueado::class,
-        TerminarColas::class
+        TerminarColas::class,
+        SetLocale::class,
     ]
 )->group(function () {
 

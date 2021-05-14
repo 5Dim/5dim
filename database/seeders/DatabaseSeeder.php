@@ -26,21 +26,21 @@ class DatabaseSeeder extends Seeder
             'email' => 'mcguten.videos@gmail.com',
             'password' => Hash::make('1234'),
             'timezone' => 'Europe/Madrid',
-            'idioma' => 'Español',
+            'idioma' => 'es',
         ]);
         User::factory()->times(1)->create([
             'name' => 'OdinSpain',
             'email' => 'odinspn@gmail.com',
             'password' => Hash::make('1234'),
             'timezone' => 'Europe/Madrid',
-            'idioma' => 'Español',
+            'idioma' => 'es',
         ]);
         User::factory()->times(1)->create([
             'name' => 'vcode',
             'email' => 'vcode.es@gmail.com',
             'password' => Hash::make('1234'),
             'timezone' => 'Europe/Madrid',
-            'idioma' => 'Español',
+            'idioma' => 'es',
         ]);
         Planetas::factory()->times(1200)->create([
             'tipo' => 'planeta',
