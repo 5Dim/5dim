@@ -24,7 +24,7 @@ class JugadorLogueado
         // Comprobamos que los datos maestros existan
         $constantesCheck = Constantes::find(1);
         if (empty($constantesCheck)) {
-            return redirect('/admin/DatosMaestros');
+            return redirect('/panelControl/DatosMaestros');
         }
         //Comprobamos si el usuario tiene un jugador en el mundo
         if (empty(Auth::user()->jugador)) {
