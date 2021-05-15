@@ -311,7 +311,7 @@ class FlotaController extends Controller
             }
         }
 
-
+        //Log::info("tipoNombre ".$tipoNombre);
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
         if ($jugadorActual->alianzas!=null){
@@ -324,12 +324,14 @@ class FlotaController extends Controller
 
                 if (!empty($flotaDestino)){
                     $recursos=$flotaDestino->recursosEnFlota;
+                    $recursos["imagen"]=asset("/img/juego/skin0/flotas/Transferir.jpg");
                 }
 
             } else {
                 $planet = Planetas::where([['estrella', $estrella], ['orbita', $orbita]])->whereIn('jugadores_id', $idJugadores)->first();
-                if (!empty($recursos)){
+                if (!empty($planet)){
                     $recursos=$planet->recursos;
+                    $recursos["imagen"]=asset('astrometria/img/sistema/planeta').$planet->imagen.".png";
                 }
             }
         } else {
@@ -341,11 +343,14 @@ class FlotaController extends Controller
 
                 if (!empty($flotaDestino) && $flotaDestino->jugadores_id==$jugadorActual->id){
                     $recursos=$flotaDestino->recursosEnFlota;
+                    $recursos["imagen"]=asset("/img/juego/skin0/flotas/Transferir.jpg");
                 }
             } else {
-                $planet = Planetas::where([['estrella', $estrella], ['orbita', $orbita]],['jugador_id',$jugadorActual->id])->first();
-                if (!empty($recursos)){
+                //Log::info("message ".$estrella." ".$orbita." ".$jugadorActual->id);
+                $planet = Planetas::where([['estrella', $estrella], ['orbita', $orbita]],['jugadores_id',$jugadorActual->id])->first();
+                if (!empty($planet)){
                     $recursos=$planet->recursos;
+                    $recursos["imagen"]=asset('astrometria/img/sistema/planeta').$planet->imagen.".png";
                 }
             }
 

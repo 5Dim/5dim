@@ -11,7 +11,7 @@
             </tr>
             <tr class="ocultarenorigen{{ $numero }}">
                 <th rowspan="2" class="align-middle">
-                    <img id="imagen{{ $numero }}" class="rounded"
+                    <img id="imagenDestino{{ $numero }}" class="rounded"
                         src="{{ asset('img/juego/skin0/edificios/minaMineral.jpg') }}" width="120" height="120">
                 </th>
                 <th class="text-warning align-middle ">

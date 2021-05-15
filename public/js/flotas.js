@@ -69,7 +69,6 @@ function CargarFlotaEditada() {
                 recursosArray.forEach(res => {
                     if(dest==0){
                         recursosDest[dest][res]=flota["recursos_en_flota"][res];
-                        //cargaDest[dest][res]=flota["recursos_en_flota"][res];
                     }
                     $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
                     cargaT += cargaDest[dest][res];
@@ -96,6 +95,8 @@ function CargarFlotaEditada() {
             dest += 1;
         });
 
+        MostrarRecursos(0);
+
         if (deboEsconderDestinosVacios) {
             for (n = dest; n < cantidadDestinos + 1; n++) {
                 EsconderPorId("cajitaDestino" + n);
@@ -111,7 +112,6 @@ function CargarFlotaEditada() {
 
 function MostrarDestinos(){
     for (n = 1; n < cantidadDestinos + 1; n++) {
-        CrearDestinoVacio();
         MostrarPorId("cajitaDestino" + n);
     }
     $(".ediciondestino").attr("disabled", false);
@@ -120,10 +120,6 @@ function MostrarDestinos(){
     $("#botonModificar").prop("disabled", true);
 }
 
-function CrearDestinoVacio(){
-
-
-}
 
 function CrearOrigen(nombreorigen) {
     $("#titulo0").text(nombreorigen);
@@ -393,7 +389,7 @@ function Avisos() {
             //las cargas de un destino van al otro
             if (dest > 0) {
                 recursosArray.forEach(res => {
-                    if (recursosDest[dest][res] != undefined) {
+                    if (recursosDest[dest][res] == undefined) {
                         recursosDest[dest][res] = 0;
                     }
                     recursosDest[dest][res] += cargaDest[destAnt][res];
@@ -461,7 +457,13 @@ function Avisos() {
         var hayErrorMision = false;
 
         if (orden != "") {
+
             var img = origenImagenes + "/flotas/" + orden + ".jpg";
+            if (recursosDest[dest]["imagen"]!= undefined){
+                img = recursosDest[dest]["imagen"];
+            }
+
+
 
             var ordenAnt = $("#ordenDest" + destAnt).val();
             var ordenPost = $("#ordenDest" + destPost).val();
@@ -518,7 +520,7 @@ function Avisos() {
             var img = origenImagenes + "/flotas/nada.jpg";
         }
 
-        $("#imagen" + dest).attr("src", img);
+        $("#imagenDestino" + dest).attr("src", img);
 
         if (deboAlertasF) {
             if (hayErrorMision) {
@@ -728,7 +730,14 @@ function TraerRecursos(sistema, planeta, dest) {
             method: "GET",
             url: "/juego/flotas/traerRecursos/" + sistema + "/" + planeta,
             success: function(data) {
-                recursosDest[dest] = data.recursos;
+                if(recursosDest[dest]==undefined){
+                    recursosDest[dest]=cargaDestVacia[dest];
+                }
+                recursosArray.forEach(res => {
+                    recursosDest[dest][res] += 1*data.recursos[res];
+                });
+                recursosDest[dest]["imagen"]=data.recursos["imagen"];
+                $("#imagenDestino" + dest).attr("src", data.recursos["imagen"]);
                 MostrarRecursos(dest);
             },
             error: function(xhr, textStatus, thrownError) {
