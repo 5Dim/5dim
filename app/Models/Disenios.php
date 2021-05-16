@@ -251,9 +251,7 @@ class Disenios extends Model
 
     public static function extraccionTotal($disenios)
     {
-
         $mejorasT = 0;
-
         foreach ($disenios as $disenio) {
             $mejoras = $disenio->disenios->mejoras;
             $multiplicador = $disenio->enFlota + $disenio->enHangar;

@@ -821,9 +821,18 @@ destino 0 con lo que sale
                 case "Colonizar":
 
                     //valorar la constante piminimoscolonizar
-                    //$piminimoscolonizar = Constantes::where('codigo', 'piminimoscolonizar')->first();
+                    $piminimoscolonizar = Constantes::where('codigo', 'piminimoscolonizar')->first();
+                    $adminImperioPuntos = Constantes::where('codigo', 'adminImperioPuntos')->first();
 
-                    if ($tipodestino == "planeta" && $destino->planetas->jugadores_id == null) {
+                    $nivelImperio = Investigaciones::where([['codigo', 'invImperio'],["jugador_id",$estaFlota->jugadores_id]])->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+                    $consImperio = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
+                    $puntosIMperioLibres=$nivelImperio * $consImperio + 10 - count($estaFlota->jugadores->planetas) * 10 ;
+                    //Log::info("puntosIMperioLibres ".$puntosIMperioLibres);
+                    if ($puntosIMperioLibres-$adminImperioPuntos < $piminimoscolonizar){
+                        $errores = "Insuficientes puntos de imperio para colonizar ";
+                    }
+
+                    if (!strlen($errores)>3 && $tipodestino == "planeta" && $destino->planetas->jugadores_id == null) {
                         if (!Astrometria::colonizarZonaPosible($destino->planetas->id)) {
                             $destinoAlcanzado = true;
                             $errores = "El planeta a colonizar está en el rango de colonización de otro jugador ";
