@@ -34,8 +34,7 @@ class DisenioController extends Controller
 {
     public function index($tab = 'cazas-tab')
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         $colaDisenios = EnDisenios::where('planetas_id', session()->get('planetas_id'))->get();
         $PConstantes = Constantes::where('tipo', 'produccion')->get();
@@ -204,8 +203,7 @@ class DisenioController extends Controller
 
     public function diseniar($idFuselaje)
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         $disenio = Fuselajes::find($idFuselaje);
 
@@ -356,8 +354,7 @@ class DisenioController extends Controller
 
     public function editarDisenio($idDisenio)
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         $esteDisenio = Disenios::where('id', $idDisenio)->first();
         $idFuselaje = $esteDisenio->fuselajes_id;

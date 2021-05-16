@@ -21,8 +21,7 @@ class FuselajesController extends Controller
 
     public function index($tab = "")
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         // $fuselajes = Fuselajes::all();
         $cazas = Fuselajes::where([

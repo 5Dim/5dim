@@ -291,14 +291,15 @@
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">
                                     <button type="button" class="btn btn-dark text-warning"
-                                        onclick='resetCantidad(@json($disenio->id))'>
+                                        onclick='resetCantidad(@json($disenio->costes), @json($disenio->id))'>
                                         1
                                     </button>
                                 </span>
                             </div>
                             <input type="number" class="form-control input" value="1" aria-label=""
-                                aria-describedby="basic-addon2" id="disenio{{ $disenio->id }}"
-                                onkeyup='recalculaCostos(@json($disenio->id), @json($disenio->costes))'>
+                                aria-describedby="basic-addon2" id="disenio{{ $disenio->id }}" min="1"
+                                onkeyup='recalculaCostos(@json($disenio->id), @json($disenio->costes))'
+                                onchange='recalculaCostos(@json($disenio->id), @json($disenio->costes))'>
                             <div class="input-group-append">
                                 <span class="input-group-text bg-dark text-light">
                                     <button type="button" class="btn btn-dark text-warning"
@@ -316,7 +317,7 @@
                             </button>
                         @else
                             <button type="button" class="btn btn-success btn-lg col-12"
-                                onclick="construirDisenio({{ $disenio->id }})">
+                                onclick="construirDisenio({{ $disenio->id }})" id="disenioConstruir{{ $disenio->id }}">
                                 <i class="fa fa-plus-circle"></i> Construir
                             </button>
                         @endif

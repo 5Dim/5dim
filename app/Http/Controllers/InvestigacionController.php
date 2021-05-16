@@ -22,8 +22,7 @@ class InvestigacionController extends Controller
 
     public function index($tab = "militares-tab")
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         $armamentos = $investigaciones->where('categoria', 'armas');
         $blindajes = $investigaciones->where('categoria', 'blindaje');

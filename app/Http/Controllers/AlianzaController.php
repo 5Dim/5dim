@@ -21,8 +21,7 @@ class AlianzaController extends Controller
 {
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         //Listado de alianzas
         $alianzas = Alianzas::all();

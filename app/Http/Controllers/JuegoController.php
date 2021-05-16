@@ -21,8 +21,7 @@ class JuegoController extends Controller
 {
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         return view('juego.layouts.recursosFrame', compact(
             'recursos',
@@ -40,8 +39,7 @@ class JuegoController extends Controller
 
     public function estadisticas()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         //Actualizamos estadisticas
         Jugadores::calcularPuntos(session()->get('jugadores_id'));
@@ -77,8 +75,7 @@ class JuegoController extends Controller
 
     public function tienda()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         $articulos = Tiendas::all();
 

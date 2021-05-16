@@ -372,9 +372,9 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
     var flotas_on = PIXI.Texture.from("/astrometria/img/botones/vflotas1.png");
     var flotas_off = PIXI.Texture.from("/astrometria/img/botones/vflotas0.png");
 
-        console.log("b_obs", b_obs);
-        console.log("b_envia", b_envia);
-        console.log("naves", naves);
+    console.log("b_obs", b_obs);
+    console.log("b_envia", b_envia);
+    console.log("naves", naves);
 
     if (b_obs != "") {
         b_observar = new PIXI.Sprite(observar_on);
@@ -435,7 +435,7 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
         // var xmlhttp = new XMLHttpRequest();
         // xmlhttp.open("GET", b_verflotas, true);
         // xmlhttp.send();
-        window.location.href = b_envia;
+        window.location.href = b_orbita;
     });
 
     this.capa_botones.addChild(b_verflotas);

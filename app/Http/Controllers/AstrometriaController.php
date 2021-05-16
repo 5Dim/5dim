@@ -14,6 +14,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Astrometria;
 use App\Models\CualidadesPlanetas;
+use App\Models\EnOrbita;
 use App\Models\Jugadores;
 use App\Models\Flotas;
 use App\Models\MensajesIntervinientes;
@@ -23,8 +24,7 @@ class AstrometriaController extends Controller
 {
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         return view('juego.astrometria.astrometria', compact(
             // Recursos
@@ -152,10 +152,10 @@ class AstrometriaController extends Controller
                     $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : "";
                     $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : "";
                     $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : "";
-                    $orbita->naves = 0;
+                    $orbita->naves = !empty(EnOrbita::where([['estrella', $planetaActual->estrella], ['orbita', $planetaActual->orbita]])->first()) ? 1 : 0;
                     $orbita->b_observar = ""; // Posibilidad de incluirlo dentro del mapa
-                    $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i;
-                    $orbita->b_verorbita = "/juego/flotas/";
+                    $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
+                    $orbita->b_verorbita = "/juego/flotas/orbita-tab";
                 } else {
                     $orbita = new \stdClass();
                     $orbita->planeta = $i;
@@ -170,8 +170,8 @@ class AstrometriaController extends Controller
                     $orbita->ceramica = "";
                     $orbita->naves = 0;
                     $orbita->b_observar = "";
-                    $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i;
-                    $orbita->b_verorbita = "/juego/flotas";
+                    $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
+                    $orbita->b_verorbita = "/juego/flotas/orbita-tab";
                 }
                 array_push($planetas, $orbita);
             }
@@ -195,8 +195,8 @@ class AstrometriaController extends Controller
                 $orbita->ceramica = "";
                 $orbita->naves = 0;
                 $orbita->b_observar = "";
-                $orbita->b_enviar = "/juego/flotas/" . $numeroSistema . "/" . $i;
-                $orbita->b_verorbita = "/juego/flotas";
+                $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
+                $orbita->b_verorbita = "/juego/flotas/orbita-tab";
                 array_push($planetas, $orbita);
             }
         }

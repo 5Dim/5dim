@@ -21,8 +21,7 @@ class PlanetaController extends Controller
 
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         //Producciones sin calcular
         $produccionesSinCalcular = Producciones::calcularProducciones($construcciones, $planetaActual, false);

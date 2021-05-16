@@ -37,21 +37,17 @@
                             </th>
                         </tr>
                         <tr>
-                            <td class="anchofijo text-secondary borderless">
-                                <div class="input-group mb-3 borderless"
-                                    style="padding-left: 10px !important; padding-right: 5px !important">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light" style="padding: 0px">
-                                            <button type="button" class="btn btn-dark text-light"
-                                                onclick="sendRenombrarColonia()">
-                                                Renombrar colonia
-                                            </button>
-                                        </span>
-                                    </div>
-                                    <input id="nombreColonia" type="text" class="form-control input"
-                                        placeholder="Nombre de la colonia" aria-label="Recipient's username"
-                                        aria-describedby="basic-addon2">
-                                </div>
+                            <td>
+                                @if (count(Auth::user()->jugador->planetas) > 1)
+                                    <button type="button" class="btn btn-outline-danger col-12"
+                                        onclick="window.location.href = '/juego/destruirColonia'">
+                                        <i class="fa fa-times-circle"></i> Destruir colonia
+                                    </button>
+                                @else
+                                    <button type="button" class="btn btn-outline-light col-12" disabled>
+                                        <i class="fa fa-times-circle"></i> No puedes destruir tu último planeta
+                                    </button>
+                                @endif
                             </td>
                             <td class="anchofijo text-secondary borderless">
                                 <div class="input-group mb-3 borderless"
@@ -91,17 +87,21 @@
                                     </script>
                                 </div>
                             </td>
-                            <td>
-                                @if (count(Auth::user()->jugador->planetas) > 1)
-                                    <button type="button" class="btn btn-outline-danger col-12"
-                                        onclick="window.location.href = '/juego/destruirColonia'">
-                                        <i class="fa fa-times-circle"></i> Destruir colonia
-                                    </button>
-                                @else
-                                    <button type="button" class="btn btn-outline-light col-12" disabled>
-                                        <i class="fa fa-times-circle"></i> No puedes destruir tu último planeta
-                                    </button>
-                                @endif
+                            <td class="anchofijo text-secondary borderless">
+                                <div class="input-group mb-3 borderless"
+                                    style="padding-left: 10px !important; padding-right: 5px !important">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-dark text-light" style="padding: 0px">
+                                            <button type="button" class="btn btn-dark text-light"
+                                                onclick="sendRenombrarColonia()">
+                                                Renombrar colonia
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <input id="nombreColonia" type="text" class="form-control input"
+                                        placeholder="Nombre de la colonia" aria-label="Recipient's username"
+                                        aria-describedby="basic-addon2">
+                                </div>
                             </td>
                         </tr>
                     </table>
