@@ -37,10 +37,9 @@ use function GuzzleHttp\Promise\each;
 
 class FlotaController extends Controller
 {
-    public function index($estrella = "", $orbita = "", $nombreflota = "", $tipoflota = "envuelo")
+    public function index($tab = 'envuelo-tab')
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         //variables universo
         $constantesU = Constantes::where('tipo', 'universo')->get();
@@ -107,14 +106,13 @@ class FlotaController extends Controller
                         }
                     } else {
                         $origen = new Destinos();
-                        if ($flota->planetas==null){
+                        if ($flota->planetas == null) {
                             $origen->estrella = $flota->estrella;
                             $origen->orbita = $flota->orbita;
-                        } else if ($flota->estrella!=null){
+                        } else if ($flota->estrella != null) {
                             $origen->estrella = $flota->estrella;
                             $origen->orbita = $flota->orbita;
-                        }
-                        else {
+                        } else {
                             $origen->estrella = $flota->planetas->estrella;
                             $origen->orbita = $flota->planetas->orbita;
                         }
@@ -147,60 +145,580 @@ class FlotaController extends Controller
 
         // valores vacios
 
-            //prioridades
-            $prioridadesXDefecto = new Prioridades();
-            $prioridadesXDefecto->personal = 0;
-            $prioridadesXDefecto->mineral = 0;
-            $prioridadesXDefecto->cristal = 0;
-            $prioridadesXDefecto->gas = 0;
-            $prioridadesXDefecto->plastico = 0;
-            $prioridadesXDefecto->ceramica = 0;
-            $prioridadesXDefecto->liquido = 0;
-            $prioridadesXDefecto->micros = 0;
-            $prioridadesXDefecto->fuel = 0;
-            $prioridadesXDefecto->ma = 0;
-            $prioridadesXDefecto->municion = 0;
-            $prioridadesXDefecto->creditos = 0;
+        //prioridades
+        $prioridadesXDefecto = new Prioridades();
+        $prioridadesXDefecto->personal = 0;
+        $prioridadesXDefecto->mineral = 0;
+        $prioridadesXDefecto->cristal = 0;
+        $prioridadesXDefecto->gas = 0;
+        $prioridadesXDefecto->plastico = 0;
+        $prioridadesXDefecto->ceramica = 0;
+        $prioridadesXDefecto->liquido = 0;
+        $prioridadesXDefecto->micros = 0;
+        $prioridadesXDefecto->fuel = 0;
+        $prioridadesXDefecto->ma = 0;
+        $prioridadesXDefecto->municion = 0;
+        $prioridadesXDefecto->creditos = 0;
 
 
-            // recursos en destinos
-            $recursosDestino = new RecursosEnFlota();
-            $recursosDestino->personal = 0;
-            $recursosDestino->mineral = 0;
-            $recursosDestino->cristal = 0;
-            $recursosDestino->gas = 0;
-            $recursosDestino->plastico = 0;
-            $recursosDestino->ceramica = 0;
-            $recursosDestino->liquido = 0;
-            $recursosDestino->micros = 0;
-            $recursosDestino->fuel = 0;
-            $recursosDestino->ma = 0;
-            $recursosDestino->municion = 0;
-            $recursosDestino->creditos = 0;
+        // recursos en destinos
+        $recursosDestino = new RecursosEnFlota();
+        $recursosDestino->personal = 0;
+        $recursosDestino->mineral = 0;
+        $recursosDestino->cristal = 0;
+        $recursosDestino->gas = 0;
+        $recursosDestino->plastico = 0;
+        $recursosDestino->ceramica = 0;
+        $recursosDestino->liquido = 0;
+        $recursosDestino->micros = 0;
+        $recursosDestino->fuel = 0;
+        $recursosDestino->ma = 0;
+        $recursosDestino->municion = 0;
+        $recursosDestino->creditos = 0;
 
-            $recursosFlota = $recursos;
+        $recursosFlota = $recursos;
 
-            // destinos
-            $origen = new Destinos();
-            $origen->estrella = $planetaActual->estrella;
-            $origen->orbita = $planetaActual->orbita;
-            $origen->porcentVel = 100;
+        // destinos
+        $origen = new Destinos();
+        $origen->estrella = $planetaActual->estrella;
+        $origen->orbita = $planetaActual->orbita;
+        $origen->porcentVel = 100;
 
 
-            $destino = new Destinos();
-            $destino->estrella = -1;
-            $destino->orbita = -1;
-            $destino->porcentVel = 100;
-            $destino->mision = "";
+        $destino = new Destinos();
+        $destino->estrella = -1;
+        $destino->orbita = -1;
+        $destino->porcentVel = 100;
+        $destino->mision = "";
 
-            $cargaDestVacia = [];
-            $prioridadesVacia = [];
-            $destinosVacia = [];
-            for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
-                array_push($destinosVacia, $destino);
-                array_push($cargaDestVacia, $recursosDestino);
-                array_push($prioridadesVacia, $prioridadesXDefecto);
+        $cargaDestVacia = [];
+        $prioridadesVacia = [];
+        $destinosVacia = [];
+        for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
+            array_push($destinosVacia, $destino);
+            array_push($cargaDestVacia, $recursosDestino);
+            array_push($prioridadesVacia, $prioridadesXDefecto);
+        }
+
+
+        if ($visionXDefecto) {
+
+            array_push($prioridades, $prioridadesXDefecto);
+            array_push($cargaDest, $recursosDestino);
+            array_push($destinos, $origen);
+
+            for ($dest = 1; $dest < $cantidadDestinos + 1; $dest++) {
+                array_push($destinos, $destino);
+                array_push($cargaDest, $recursosDestino);
+                array_push($prioridades, $prioridadesXDefecto);
             }
+
+            //Naves en el planeta
+            $navesEstacionadas = $planetaActual->estacionadas;
+
+            // datosFlota
+            $flota = new EnVuelo;
+            $flota->nombre = "";
+        }
+
+        // $diseniosJugador = $jugadorActual->disenios;
+
+        $diseniosJugador = [];
+        foreach ($navesEstacionadas as $nave) {
+            $nave->disenios->mejoras;
+            $nave->disenios->tamanio = $nave->disenios->fuselajes->tamanio;
+
+            array_push($diseniosJugador, $nave->disenios);
+        }
+
+        $idsDiseno = array();
+        foreach ($navesEstacionadas as $diseno) {
+            $estedisenioj = Disenios::where('id', $diseno->disenios->id)->first();
+
+            array_push($idsDiseno, $diseno->disenios_id);
+            $diseno->fuselajes_id = $estedisenioj->fuselajes_id;
+            $diseno->skin = $estedisenioj->skin;
+        }
+        $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
+        //Log::info("message");Log::info($ViewDaniosDisenios);Log::info($idsDiseno);Log::info($navesEstacionadas);
+
+        $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
+        $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
+
+        if (!empty($jugadorAlianza)) {
+            $flotasEnOrbitaAlianza = $jugadorAlianza->enOrbita;
+            $flotasEnRecoleccionAlianza = $jugadorAlianza->enRecoleccion;
+        } else {
+            $flotasEnOrbitaAlianza = null;
+            $flotasEnRecoleccionAlianza = null;
+        }
+
+        //Log::info($navesEstacionadas );
+        //Log::info($destinosP);
+
+        //$flotasVisibles=Astrometria::flotasVisibles();
+
+        return view('juego.flotas.flotas', compact(
+            // Recursos
+            'recursos',
+            'recursosFlota',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+            'mensajeNuevo',
+            'consImperio',
+
+            'cantidadDestinos',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
+            'investigaciones',
+            'constantesU',
+            'navesEstacionadas',
+            'diseniosJugador',
+            'constantes',
+            'ViewDaniosDisenios',
+            'destinos',
+            'cargaDest',
+            'prioridades',
+            'flota',
+            'flotasEnOrbitaPropias',
+            'flotasEnRecoleccionPropias',
+            'flotasEnOrbitaAlianza',
+            'flotasEnRecoleccionAlianza',
+            'destinosVacia',
+            'cargaDestVacia',
+            'prioridadesVacia',
+            'tab',
+        ));
+    }
+
+    public function astrometria($estrella = "", $orbita = "", $tab = 'enviar-tab')
+    {
+        extract($this->recursos());
+
+        Log::info("estrella " . $estrella);
+
+        //variables universo
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+        $cantidadDestinos = $constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
+
+        //constantes invest
+        $constantes = Constantes::where('tipo', 'investigacion')->get();
+
+        //$flotaOrigen = $request->input('nombreflota');
+        //Log::info('flota ver: '.$nombreflota);
+        //Log::info(empty($nombreflota));
+        $cargaDest = [];
+        $prioridades = [];
+        $destinos = [];
+        $visionXDefecto = true;
+
+        if (!empty($nombreflota) && !empty($tipoflota)) {
+            if ($tipoflota == "envuelo" || $tipoflota == "enorbita"  || $tipoflota == "enrecoleccion") {
+                $jugadoryAlianza = [];
+                // Log::info($jugadorActual);
+                if ($jugadorActual['alianzas_id'] != null) {
+                    array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
+                }
+                array_push($jugadoryAlianza, $jugadorActual->id);
+
+                //Log::info($jugadoryAlianza);
+
+                if ($tipoflota == "envuelo") {
+                    $flota = EnVuelo::whereIn('jugadores_id', $jugadoryAlianza)
+                        ->where('publico', $nombreflota)
+                        ->first();
+                    $misionAct = "Volando";
+                } else if ($tipoflota == "enrecoleccion") {
+                    $flota = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)
+                        ->where('publico', $nombreflota)
+                        ->first();
+                    $misionAct = "Recolectando";
+                } else if ($tipoflota == "enorbita") {
+                    $flota = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)
+                        ->where('publico', $nombreflota)
+                        ->first();
+                    $misionAct = "Orbitando";
+                }
+
+                if ($flota != null && !empty($flota)) { //editando flota en vuelo
+                    $visionXDefecto = false;
+                    $navesEstacionadas = $flota->diseniosEnFlota;
+                    $recursosFlota = $flota->recursosEnFlota;
+
+                    if ($tipoflota == "envuelo") {
+                        $destinosO = $flota->destinos;
+                        if (!empty($destinosO)) {
+                            foreach ($destinosO as $destino) {
+                                $recursosDestino = $destino->recursos;
+                                array_push($cargaDest, $recursosDestino);
+
+                                $prioridad = $destino->prioridades;
+                                array_push($prioridades, $prioridad);
+
+                                array_push($destinos, $destino);
+                            }
+                        } else {
+                            $visionXDefecto = true;
+                        }
+                    } else {
+                        $origen = new Destinos();
+                        if ($flota->planetas == null) {
+                            $origen->estrella = $flota->estrella;
+                            $origen->orbita = $flota->orbita;
+                        } else if ($flota->estrella != null) {
+                            $origen->estrella = $flota->estrella;
+                            $origen->orbita = $flota->orbita;
+                        } else {
+                            $origen->estrella = $flota->planetas->estrella;
+                            $origen->orbita = $flota->planetas->orbita;
+                        }
+
+                        $origen->porcentVel = 100;
+                        $origen->mision = $misionAct;
+                        $origen->tipoflota = $tipoflota;
+                        array_unshift($destinos, $origen);
+                        array_push($prioridades, $flota->prioridadesEnFlota);
+                        //Log::info($prioridades);
+                    }
+
+                    $flota['tipoflota'] = $tipoflota;
+
+                    //$cargaDest=$destinos[0]->recursos;
+                    //$prioridades=$destinos[0]->prioridades;
+
+                    //Log::info("flota: ".$flota);
+                    //Log::info("destinos: ".$destinos);
+                    //Log::info("recursosDestino: ".$cargaDest);
+                    //Log::info("prioridadDestino: ");Log::info($prioridades);
+                    //Log::info("recursos: ".$recursos);
+                } else {
+                    $visionXDefecto = true;
+                }
+            }
+        } else {
+            $visionXDefecto = true;
+        }
+
+        // valores vacios
+
+        //prioridades
+        $prioridadesXDefecto = new Prioridades();
+        $prioridadesXDefecto->personal = 0;
+        $prioridadesXDefecto->mineral = 0;
+        $prioridadesXDefecto->cristal = 0;
+        $prioridadesXDefecto->gas = 0;
+        $prioridadesXDefecto->plastico = 0;
+        $prioridadesXDefecto->ceramica = 0;
+        $prioridadesXDefecto->liquido = 0;
+        $prioridadesXDefecto->micros = 0;
+        $prioridadesXDefecto->fuel = 0;
+        $prioridadesXDefecto->ma = 0;
+        $prioridadesXDefecto->municion = 0;
+        $prioridadesXDefecto->creditos = 0;
+
+
+        // recursos en destinos
+        $recursosDestino = new RecursosEnFlota();
+        $recursosDestino->personal = 0;
+        $recursosDestino->mineral = 0;
+        $recursosDestino->cristal = 0;
+        $recursosDestino->gas = 0;
+        $recursosDestino->plastico = 0;
+        $recursosDestino->ceramica = 0;
+        $recursosDestino->liquido = 0;
+        $recursosDestino->micros = 0;
+        $recursosDestino->fuel = 0;
+        $recursosDestino->ma = 0;
+        $recursosDestino->municion = 0;
+        $recursosDestino->creditos = 0;
+
+        $recursosFlota = $recursos;
+
+        // destinos
+        $origen = new Destinos();
+        $origen->estrella = $planetaActual->estrella;
+        $origen->orbita = $planetaActual->orbita;
+        $origen->porcentVel = 100;
+
+
+        $destino = new Destinos();
+        $destino->estrella = -1;
+        $destino->orbita = -1;
+        $destino->porcentVel = 100;
+        $destino->mision = "";
+
+        $cargaDestVacia = [];
+        $prioridadesVacia = [];
+        $destinosVacia = [];
+        for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
+            array_push($destinosVacia, $destino);
+            array_push($cargaDestVacia, $recursosDestino);
+            array_push($prioridadesVacia, $prioridadesXDefecto);
+        }
+
+
+        if ($visionXDefecto) {
+
+            array_push($prioridades, $prioridadesXDefecto);
+            array_push($cargaDest, $recursosDestino);
+            array_push($destinos, $origen);
+
+            for ($dest = 1; $dest < $cantidadDestinos + 1; $dest++) {
+                array_push($destinos, $destino);
+                array_push($cargaDest, $recursosDestino);
+                array_push($prioridades, $prioridadesXDefecto);
+            }
+
+            //Naves en el planeta
+            $navesEstacionadas = $planetaActual->estacionadas;
+
+            // datosFlota
+            $flota = new EnVuelo;
+            $flota->nombre = "";
+        }
+
+        // $diseniosJugador = $jugadorActual->disenios;
+
+        $diseniosJugador = [];
+        foreach ($navesEstacionadas as $nave) {
+            $nave->disenios->mejoras;
+            $nave->disenios->tamanio = $nave->disenios->fuselajes->tamanio;
+
+            array_push($diseniosJugador, $nave->disenios);
+        }
+
+        $idsDiseno = array();
+        foreach ($navesEstacionadas as $diseno) {
+            $estedisenioj = Disenios::where('id', $diseno->disenios->id)->first();
+
+            array_push($idsDiseno, $diseno->disenios_id);
+            $diseno->fuselajes_id = $estedisenioj->fuselajes_id;
+            $diseno->skin = $estedisenioj->skin;
+        }
+        $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
+        //Log::info("message");Log::info($ViewDaniosDisenios);Log::info($idsDiseno);Log::info($navesEstacionadas);
+
+        $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
+        $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
+
+        if (!empty($jugadorAlianza)) {
+            $flotasEnOrbitaAlianza = $jugadorAlianza->enOrbita;
+            $flotasEnRecoleccionAlianza = $jugadorAlianza->enRecoleccion;
+        } else {
+            $flotasEnOrbitaAlianza = null;
+            $flotasEnRecoleccionAlianza = null;
+        }
+
+        //Log::info($navesEstacionadas );
+        //Log::info($destinosP);
+
+        //$flotasVisibles=Astrometria::flotasVisibles();
+
+        return view('juego.flotas.flotas', compact(
+            // Recursos
+            'recursos',
+            'recursosFlota',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+            'mensajeNuevo',
+            'consImperio',
+
+            'cantidadDestinos',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
+            'investigaciones',
+            'constantesU',
+            'navesEstacionadas',
+            'diseniosJugador',
+            'constantes',
+            'ViewDaniosDisenios',
+            'destinos',
+            'cargaDest',
+            'prioridades',
+            'flota',
+            'flotasEnOrbitaPropias',
+            'flotasEnRecoleccionPropias',
+            'flotasEnOrbitaAlianza',
+            'flotasEnRecoleccionAlianza',
+            'destinosVacia',
+            'cargaDestVacia',
+            'prioridadesVacia',
+            'estrella',
+            'orbita',
+            'tab',
+        ));
+    }
+
+    public function editarFlota($estrella = "", $orbita = "", $nombreflota = "", $tipoflota = "envuelo")
+    {
+        extract($this->recursos());
+
+        //variables universo
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+        $cantidadDestinos = $constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
+
+        //constantes invest
+        $constantes = Constantes::where('tipo', 'investigacion')->get();
+
+        //$flotaOrigen = $request->input('nombreflota');
+        //Log::info('flota ver: '.$nombreflota);
+        //Log::info(empty($nombreflota));
+        $cargaDest = [];
+        $prioridades = [];
+        $destinos = [];
+        $visionXDefecto = true;
+
+        if (!empty($nombreflota) && !empty($tipoflota)) {
+            if ($tipoflota == "envuelo" || $tipoflota == "enorbita"  || $tipoflota == "enrecoleccion") {
+                $jugadoryAlianza = [];
+                // Log::info($jugadorActual);
+                if ($jugadorActual['alianzas_id'] != null) {
+                    array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
+                }
+                array_push($jugadoryAlianza, $jugadorActual->id);
+
+                //Log::info($jugadoryAlianza);
+
+                if ($tipoflota == "envuelo") {
+                    $flota = EnVuelo::whereIn('jugadores_id', $jugadoryAlianza)
+                        ->where('publico', $nombreflota)
+                        ->first();
+                    $misionAct = "Volando";
+                } else if ($tipoflota == "enrecoleccion") {
+                    $flota = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)
+                        ->where('publico', $nombreflota)
+                        ->first();
+                    $misionAct = "Recolectando";
+                } else if ($tipoflota == "enorbita") {
+                    $flota = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)
+                        ->where('publico', $nombreflota)
+                        ->first();
+                    $misionAct = "Orbitando";
+                }
+
+                if ($flota != null && !empty($flota)) { //editando flota en vuelo
+                    $visionXDefecto = false;
+                    $navesEstacionadas = $flota->diseniosEnFlota;
+                    $recursosFlota = $flota->recursosEnFlota;
+
+                    if ($tipoflota == "envuelo") {
+                        $destinosO = $flota->destinos;
+                        if (!empty($destinosO)) {
+                            foreach ($destinosO as $destino) {
+                                $recursosDestino = $destino->recursos;
+                                array_push($cargaDest, $recursosDestino);
+
+                                $prioridad = $destino->prioridades;
+                                array_push($prioridades, $prioridad);
+
+                                array_push($destinos, $destino);
+                            }
+                        } else {
+                            $visionXDefecto = true;
+                        }
+                    } else {
+                        $origen = new Destinos();
+                        if ($flota->planetas == null) {
+                            $origen->estrella = $flota->estrella;
+                            $origen->orbita = $flota->orbita;
+                        } else if ($flota->estrella != null) {
+                            $origen->estrella = $flota->estrella;
+                            $origen->orbita = $flota->orbita;
+                        } else {
+                            $origen->estrella = $flota->planetas->estrella;
+                            $origen->orbita = $flota->planetas->orbita;
+                        }
+
+                        $origen->porcentVel = 100;
+                        $origen->mision = $misionAct;
+                        $origen->tipoflota = $tipoflota;
+                        array_unshift($destinos, $origen);
+                        array_push($prioridades, $flota->prioridadesEnFlota);
+                        //Log::info($prioridades);
+                    }
+
+                    $flota['tipoflota'] = $tipoflota;
+
+                    //$cargaDest=$destinos[0]->recursos;
+                    //$prioridades=$destinos[0]->prioridades;
+
+                    //Log::info("flota: ".$flota);
+                    //Log::info("destinos: ".$destinos);
+                    //Log::info("recursosDestino: ".$cargaDest);
+                    //Log::info("prioridadDestino: ");Log::info($prioridades);
+                    //Log::info("recursos: ".$recursos);
+                } else {
+                    $visionXDefecto = true;
+                }
+            }
+        } else {
+            $visionXDefecto = true;
+        }
+
+        // valores vacios
+
+        //prioridades
+        $prioridadesXDefecto = new Prioridades();
+        $prioridadesXDefecto->personal = 0;
+        $prioridadesXDefecto->mineral = 0;
+        $prioridadesXDefecto->cristal = 0;
+        $prioridadesXDefecto->gas = 0;
+        $prioridadesXDefecto->plastico = 0;
+        $prioridadesXDefecto->ceramica = 0;
+        $prioridadesXDefecto->liquido = 0;
+        $prioridadesXDefecto->micros = 0;
+        $prioridadesXDefecto->fuel = 0;
+        $prioridadesXDefecto->ma = 0;
+        $prioridadesXDefecto->municion = 0;
+        $prioridadesXDefecto->creditos = 0;
+
+
+        // recursos en destinos
+        $recursosDestino = new RecursosEnFlota();
+        $recursosDestino->personal = 0;
+        $recursosDestino->mineral = 0;
+        $recursosDestino->cristal = 0;
+        $recursosDestino->gas = 0;
+        $recursosDestino->plastico = 0;
+        $recursosDestino->ceramica = 0;
+        $recursosDestino->liquido = 0;
+        $recursosDestino->micros = 0;
+        $recursosDestino->fuel = 0;
+        $recursosDestino->ma = 0;
+        $recursosDestino->municion = 0;
+        $recursosDestino->creditos = 0;
+
+        $recursosFlota = $recursos;
+
+        // destinos
+        $origen = new Destinos();
+        $origen->estrella = $planetaActual->estrella;
+        $origen->orbita = $planetaActual->orbita;
+        $origen->porcentVel = 100;
+
+
+        $destino = new Destinos();
+        $destino->estrella = -1;
+        $destino->orbita = -1;
+        $destino->porcentVel = 100;
+        $destino->mision = "";
+
+        $cargaDestVacia = [];
+        $prioridadesVacia = [];
+        $destinosVacia = [];
+        for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
+            array_push($destinosVacia, $destino);
+            array_push($cargaDestVacia, $recursosDestino);
+            array_push($prioridadesVacia, $prioridadesXDefecto);
+        }
 
 
         if ($visionXDefecto) {
@@ -297,14 +815,13 @@ class FlotaController extends Controller
         ));
     }
 
-
     public function traerRecursos($estrella, $orbita)
     {
         Recursos::calcularRecursos(session()->get('planetas_id'));
 
-        $tipoNombre="planeta";
+        $tipoNombre = "planeta";
         if (strlen($estrella) > 6 || !is_numeric($estrella)) {
-            $tipoNombre="flota";
+            $tipoNombre = "flota";
             $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
             if ($flotaDestino == null) {
                 $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
@@ -314,46 +831,44 @@ class FlotaController extends Controller
         //Log::info("tipoNombre ".$tipoNombre);
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
-        if ($jugadorActual->alianzas!=null){
+        if ($jugadorActual->alianzas != null) {
             $idJugadores = Alianzas::idMiembros($jugadorActual->alianzas->id);
-            if ($tipoNombre=="flota") {  // es flota
+            if ($tipoNombre == "flota") {  // es flota
                 $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->whereIn('jugadores_id', $idJugadores)->first();
                 if ($flotaDestino == null) {
                     $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->whereIn('jugadores_id', $idJugadores)->first();
                 }
 
-                if (!empty($flotaDestino)){
-                    $recursos=$flotaDestino->recursosEnFlota;
-                    $recursos["imagen"]=asset("/img/juego/skin0/flotas/Transferir.jpg");
+                if (!empty($flotaDestino)) {
+                    $recursos = $flotaDestino->recursosEnFlota;
+                    $recursos["imagen"] = asset("/img/juego/skin0/flotas/Transferir.jpg");
                 }
-
             } else {
                 $planet = Planetas::where([['estrella', $estrella], ['orbita', $orbita]])->whereIn('jugadores_id', $idJugadores)->first();
-                if (!empty($planet)){
-                    $recursos=$planet->recursos;
-                    $recursos["imagen"]=asset('astrometria/img/sistema/planeta').$planet->imagen.".png";
+                if (!empty($planet)) {
+                    $recursos = $planet->recursos;
+                    $recursos["imagen"] = asset('astrometria/img/sistema/planeta') . $planet->imagen . ".png";
                 }
             }
         } else {
-            if ($tipoNombre=="flota") {  // es flota
+            if ($tipoNombre == "flota") {  // es flota
                 $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
                 if ($flotaDestino == null) {
                     $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
                 }
 
-                if (!empty($flotaDestino) && $flotaDestino->jugadores_id==$jugadorActual->id){
-                    $recursos=$flotaDestino->recursosEnFlota;
-                    $recursos["imagen"]=asset("/img/juego/skin0/flotas/Transferir.jpg");
+                if (!empty($flotaDestino) && $flotaDestino->jugadores_id == $jugadorActual->id) {
+                    $recursos = $flotaDestino->recursosEnFlota;
+                    $recursos["imagen"] = asset("/img/juego/skin0/flotas/Transferir.jpg");
                 }
             } else {
                 //Log::info("message ".$estrella." ".$orbita." ".$jugadorActual->id);
-                $planet = Planetas::where([['estrella', $estrella], ['orbita', $orbita]],['jugadores_id',$jugadorActual->id])->first();
-                if (!empty($planet)){
-                    $recursos=$planet->recursos;
-                    $recursos["imagen"]=asset('astrometria/img/sistema/planeta').$planet->imagen.".png";
+                $planet = Planetas::where([['estrella', $estrella], ['orbita', $orbita]], ['jugadores_id', $jugadorActual->id])->first();
+                if (!empty($planet)) {
+                    $recursos = $planet->recursos;
+                    $recursos["imagen"] = asset('astrometria/img/sistema/planeta') . $planet->imagen . ".png";
                 }
             }
-
         }
 
         return compact('recursos');
@@ -384,7 +899,7 @@ class FlotaController extends Controller
         $destinos = $request->input('destinos');
 
         // Log::info("navesEstacionadas");Log::info($navesEstacionadas);
-         //Log::info("cargaDest");Log::info($cargaDest);
+        //Log::info("cargaDest");Log::info($cargaDest);
         // Log::info("prioridades");Log::info($prioridades);
         // Log::info("flota");Log::info($flota);
         // Log::info("destinos");Log::info($destinos);
@@ -395,10 +910,10 @@ class FlotaController extends Controller
         //// valores de las naves en planeta
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         //Log::info(isset($flota['id'])." ".$flota['id']);
-        $flotaid=null;
-        if (isset($flota['id']) && $flota['id']!=null){ //salimos de uns flota
-            $tipoflota=$flota['tipoflota'];
-            $flotaid=$flota['id'];
+        $flotaid = null;
+        if (isset($flota['id']) && $flota['id'] != null) { //salimos de uns flota
+            $tipoflota = $flota['tipoflota'];
+            $flotaid = $flota['id'];
 
             $jugadoryAlianza = [];
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
@@ -414,7 +929,7 @@ class FlotaController extends Controller
                 $errores = "Una flota en vuelo no puede separarse";
             } else if ($tipoflota == "enrecoleccion") {
                 $flotaOrigen = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)
-                ->where([['id', $flotaid]])
+                    ->where([['id', $flotaid]])
                     ->first();
             } else if ($tipoflota == "enorbita") {
                 $flotaOrigen = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)
@@ -425,8 +940,7 @@ class FlotaController extends Controller
             if ($flota == null && empty($flota)) {
                 $errores = "No se encuentra la flota a modificar";
             }
-            $navesEnPlaneta=$flotaOrigen->diseniosEnFlota;
-
+            $navesEnPlaneta = $flotaOrigen->diseniosEnFlota;
         } else {
             $navesEnPlaneta = $planetaActual->estacionadas;
         }
@@ -443,7 +957,7 @@ class FlotaController extends Controller
             array_push($diseniosJugador, $nave->disenios);
         }
 
-        $result = Flotas::ValoresDiseniosFlota($navesEstacionadas,$diseniosJugador,$navesEnPlaneta,$flotaid);
+        $result = Flotas::ValoresDiseniosFlota($navesEstacionadas, $diseniosJugador, $navesEnPlaneta, $flotaid);
         $errores = $result[0];
         $disenios = $result[1];
 
@@ -530,386 +1044,394 @@ class FlotaController extends Controller
 
             //try {
 
-                //construyendo flota
+            //construyendo flota
 
-                $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-                $nombreJugon = substr($jugadorActual['nombre'], 4);
-                $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
-                $publico = substr($nombreJugon, 0, 3) . substr($timestamp, 5);
-                if (strlen($flota['nombre']) < 1) {
-                    $flota['nombre'] = $publico;
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+            $nombreJugon = substr($jugadorActual['nombre'], 4);
+            $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
+            $publico = substr($nombreJugon, 0, 3) . substr($timestamp, 5);
+            if (strlen($flota['nombre']) < 1) {
+                $flota['nombre'] = $publico;
+            }
+            DB::beginTransaction();
+            //Log::info("Jugador ID= ".$jugadorActual->id);
+            $flotax = new EnVuelo;
+            $flotax->nombre = $flota['nombre'];;
+            $flotax->publico = $publico;
+            $flotax->ataqueReal = $valFlotaT['ataqueR'];
+            $flotax->defensaReal = $valFlotaT['defensaR'];
+            $flotax->ataqueVisible = $valFlotaT['ataqueV'];
+            $flotax->defensaVisible = $valFlotaT['defensaV'];
+            $flotax->creditos = $valFlotaT['mantenimiento'];
+            $flotax->jugadores_id = $jugadorActual->id;
+            //Log::info($flotax);
+            $flotax->save();
+
+            //Log::info($flota);
+
+            /// destino 0 de salida
+            $dest = 0;
+            $destino = new destinos();
+            $destino->porcentVel = 100;
+            $destino->mision = 'Salida';
+            $destino->visitado = true;
+
+            $destino->initestrella = 1 * $destinos[0]['estrella'];
+            $destino->initorbita = 1 * $destinos[0]['orbita'];
+            $destino->estrella = 1 * $destinos[0]['estrella'];
+            $destino->orbita = 1 * $destinos[0]['orbita'];
+
+            $destino->initcoordx = 0;
+            $destino->initcoordy = 0;
+            $destino->fincoordx = 0;
+            $destino->fincoordy = 0;
+
+            $destino->init = date("Y-m-d H:i:s");
+            $destino->fin = date("Y-m-d H:i:s");
+            $destino->flota_id = $flotax->id;
+            $destino->save();
+
+            $recursosDestino = new RecursosEnFlota();
+            $recursosDestino->personal = $cargaDest[$dest]['personal'];
+            $recursosDestino->mineral = $cargaDest[$dest]['mineral'];
+            $recursosDestino->cristal = $cargaDest[$dest]['cristal'];
+            $recursosDestino->gas = $cargaDest[$dest]['gas'];
+            $recursosDestino->plastico = $cargaDest[$dest]['plastico'];
+            $recursosDestino->ceramica = $cargaDest[$dest]['ceramica'];
+            $recursosDestino->liquido = $cargaDest[$dest]['liquido'];
+            $recursosDestino->micros = $cargaDest[$dest]['micros'];
+            $recursosDestino->fuel = $cargaDest[$dest]['fuel'];
+            $recursosDestino->ma = $cargaDest[$dest]['ma'];
+            $recursosDestino->municion = $cargaDest[$dest]['municion'];
+            $recursosDestino->creditos = $cargaDest[$dest]['creditos'];
+            $recursosDestino->destinos_id = $destino->id;
+            $recursosDestino->save();
+
+            $prioridadex = new PrioridadesEnFlota();
+            $prioridadex->personal = 0;
+            $prioridadex->mineral = 0;
+            $prioridadex->cristal = 0;
+            $prioridadex->gas = 0;
+            $prioridadex->plastico = 0;
+            $prioridadex->ceramica = 0;
+            $prioridadex->liquido = 0;
+            $prioridadex->micros = 0;
+            $prioridadex->fuel = 0;
+            $prioridadex->ma = 0;
+            $prioridadex->municion = 0;
+            $prioridadex->creditos = 0;
+            $prioridadex->destinos_id = $destino->id;
+            $prioridadex->save();
+
+            //Log::info(" destino 0 creado ");
+
+            //construyendo destinos
+            $Tinit = date("Y-m-d H:i:s");
+            for ($dest = 1; $dest < count($destinos); $dest++) {
+
+                //Log::info($Tinit);
+                $destAnt = $dest - 1;
+                $duracion = 1 * $destinos[$dest]['tiempoDest'];
+                if ($turboAtaque > 0) {
+                    $duracion = $turboAtaque;
                 }
-                DB::beginTransaction();
-                //Log::info("Jugador ID= ".$jugadorActual->id);
-                $flotax = new EnVuelo;
-                $flotax->nombre = $flota['nombre'];;
-                $flotax->publico = $publico;
-                $flotax->ataqueReal = $valFlotaT['ataqueR'];
-                $flotax->defensaReal = $valFlotaT['defensaR'];
-                $flotax->ataqueVisible = $valFlotaT['ataqueV'];
-                $flotax->defensaVisible = $valFlotaT['defensaV'];
-                $flotax->creditos = $valFlotaT['mantenimiento'];
-                $flotax->jugadores_id = $jugadorActual->id;
-                //Log::info($flotax);
-                $flotax->save();
+                $add_time = strtotime($Tinit) + $duracion;
+                $Tfin = date('Y-m-d H:i:s', $add_time);
 
-                //Log::info($flota);
+                //Log::info($Tfin);
 
-                /// destino 0 de salida
-                $dest = 0;
-                $destino = new destinos();
-                $destino->porcentVel = 100;
-                $destino->mision = 'Salida';
-                $destino->visitado=true;
+                //Log::info($destinos[$destAnt]);
+                //Log::info($destinos[$dest]);
 
-                $destino->initestrella = 1 * $destinos[0]['estrella'];
-                $destino->initorbita = 1 * $destinos[0]['orbita'];
-                $destino->estrella = 1 * $destinos[0]['estrella'];
-                $destino->orbita = 1 * $destinos[0]['orbita'];
+                if ($destinos[$dest]['viable'] == true) {
+                    $destino = new destinos();
+                    $destino->porcentVel = $destinos[$dest]['porcentVel'];
+                    $destino->mision = ucfirst($destinos[$dest]['mision']);
 
-                $destino->initcoordx = 0;
-                $destino->initcoordy = 0;
-                $destino->fincoordx = 0;
-                $destino->fincoordy = 0;
-
-                $destino->init = date("Y-m-d H:i:s");
-                $destino->fin = date("Y-m-d H:i:s");
-                $destino->flota_id = $flotax->id;
-                $destino->save();
-
-                $recursosDestino = new RecursosEnFlota();
-                $recursosDestino->personal = $cargaDest[$dest]['personal'];
-                $recursosDestino->mineral = $cargaDest[$dest]['mineral'];
-                $recursosDestino->cristal = $cargaDest[$dest]['cristal'];
-                $recursosDestino->gas = $cargaDest[$dest]['gas'];
-                $recursosDestino->plastico = $cargaDest[$dest]['plastico'];
-                $recursosDestino->ceramica = $cargaDest[$dest]['ceramica'];
-                $recursosDestino->liquido = $cargaDest[$dest]['liquido'];
-                $recursosDestino->micros = $cargaDest[$dest]['micros'];
-                $recursosDestino->fuel = $cargaDest[$dest]['fuel'];
-                $recursosDestino->ma = $cargaDest[$dest]['ma'];
-                $recursosDestino->municion = $cargaDest[$dest]['municion'];
-                $recursosDestino->creditos = $cargaDest[$dest]['creditos'];
-                $recursosDestino->destinos_id = $destino->id;
-                $recursosDestino->save();
-
-                $prioridadex = new PrioridadesEnFlota();
-                $prioridadex->personal = 0;
-                $prioridadex->mineral = 0;
-                $prioridadex->cristal = 0;
-                $prioridadex->gas = 0;
-                $prioridadex->plastico = 0;
-                $prioridadex->ceramica = 0;
-                $prioridadex->liquido = 0;
-                $prioridadex->micros = 0;
-                $prioridadex->fuel = 0;
-                $prioridadex->ma = 0;
-                $prioridadex->municion = 0;
-                $prioridadex->creditos = 0;
-                $prioridadex->destinos_id = $destino->id;
-                $prioridadex->save();
-
-                //Log::info(" destino 0 creado ");
-
-                //construyendo destinos
-                $Tinit = date("Y-m-d H:i:s");
-                for ($dest = 1; $dest < count($destinos); $dest++) {
-
-                    //Log::info($Tinit);
-                    $destAnt = $dest - 1;
-                    $duracion = 1 * $destinos[$dest]['tiempoDest'];
-                    if ($turboAtaque > 0) {
-                        $duracion = $turboAtaque;
+                    if ($id == false &&  $dest == 1) {
+                        $destino->mision_regreso = ucfirst("Transferir");
+                    } else {
+                        $destino->mision_regreso = ucfirst("Orbitar");
                     }
-                    $add_time = strtotime($Tinit) + $duracion;
-                    $Tfin = date('Y-m-d H:i:s', $add_time);
 
-                    //Log::info($Tfin);
+                    $result = Flotas::destinoTipoId($destino, $destinos[$dest]);
+                    $destino = $result[0];
+                    $errores = $result[1];
 
-                    //Log::info($destinos[$destAnt]);
-                    //Log::info($destinos[$dest]);
+                    $destinos[$dest]['estrella'] = $destino->estrella;
+                    $destinos[$dest]['orbita'] = $destino->orbita;
 
-                    if ($destinos[$dest]['viable'] == true) {
-                        $destino = new destinos();
-                        $destino->porcentVel = $destinos[$dest]['porcentVel'];
-                        $destino->mision = ucfirst($destinos[$dest]['mision']);
-
-                        if ($id == false &&  $dest == 1) {
-                            $destino->mision_regreso = ucfirst("Transferir");
-                        } else {
-                            $destino->mision_regreso = ucfirst("Orbitar");
-                        }
-
-                        $result = Flotas::destinoTipoId($destino, $destinos[$dest]);
-                        $destino = $result[0];
-                        $errores = $result[1];
-
-                        $destinos[$dest]['estrella'] = $destino->estrella;
-                        $destinos[$dest]['orbita'] = $destino->orbita;
-
-                        if (strlen($errores) > 3) {
-                            throw new \Exception($errores);
-                        }
-                        //Log::info("destinoANT ".$destinos[$destAnt]['estrella']);
-
-                        $destino->initestrella = 1 * $destinos[$destAnt]['estrella'];
-                        $destino->initorbita = 1 * $destinos[$destAnt]['orbita'];
-
-                        $destino->initcoordx = $ajusteMapaFactor * $destinos[$destAnt]['fincoordx'] + $ajusteMapaBase;
-                        $destino->initcoordy = $ajusteMapaFactor * $destinos[$destAnt]['fincoordy'] + $ajusteMapaBase;
-                        $destino->fincoordx = $ajusteMapaFactor * $destinos[$dest]['fincoordx'] + $ajusteMapaBase;
-                        $destino->fincoordy = $ajusteMapaFactor * $destinos[$dest]['fincoordy'] + $ajusteMapaBase;
-                        $destino->init = $Tinit;
-                        $destino->fin = $Tfin;
-                        $destino->flota_id = $flotax->id;
-                        $destino->save(); //Log::info("coso".$dest." ".$flotax->id);
-
-                        //Log::info("destino ".$dest." ".$destino);
-
-                        $vectorx = (1 * $destinos[$dest]['fincoordx'] - 1 * $destinos[$destAnt]['fincoordx']) / $duracion;
-                        $vectory = (1 * $destinos[$dest]['fincoordy'] - 1 * $destinos[$destAnt]['fincoordy']) / $duracion;
-
-                        for ($tiempoPto = 0; $tiempoPto < $duracion / $tiempoPuntosFlotas; $tiempoPto++) {
-
-                            $add_time = strtotime($Tinit) + ($tiempoPto * $tiempoPuntosFlotas);
-                            $TfinPto = date('Y-m-d H:i:s', $add_time);
-
-                            $puntoFlota = new PuntosEnFlota();
-                            $puntoFlota->coordx = $ajusteMapaFactor * ($destinos[$destAnt]['fincoordx'] + $vectorx * ($tiempoPto * $tiempoPuntosFlotas)) + $ajusteMapaBase;
-                            $puntoFlota->coordy = $ajusteMapaFactor * ($destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas)) + $ajusteMapaBase;
-                            $puntoFlota->fin = $TfinPto;
-                            $puntoFlota->en_vuelo_id = $flotax->id;
-                            $puntoFlota->jugadores_id = $flotax->jugadores_id;
-                            //Log::info("puntoflota".$puntoFlota);
-                            $puntoFlota->save();
-                        }
-                        //ultimo punto siempre va
-                        $puntoFlota = new PuntosEnFlota();
-                        $puntoFlota->coordx = $ajusteMapaFactor * ($destinos[$dest]['fincoordx']) + $ajusteMapaBase;
-                        $puntoFlota->coordy = $ajusteMapaFactor * ($destinos[$dest]['fincoordy']) + $ajusteMapaBase;
-                        $puntoFlota->fin = $Tfin;
-                        $puntoFlota->en_vuelo_id = $flotax->id;
-                        $puntoFlota->jugadores_id = $flotax->jugadores_id;
-                        $puntoFlota->save();
-
-                        //Log::info($destino);
-                        $Tinit = $Tfin;
-
-                        //Log::info($cargaDest[$dest]);
-
-                        $recursosDestino = new RecursosEnFlota();
-                        $recursosDestino->personal = $cargaDest[$dest]['personal'];
-                        $recursosDestino->mineral = $cargaDest[$dest]['mineral'];
-                        $recursosDestino->cristal = $cargaDest[$dest]['cristal'];
-                        $recursosDestino->gas = $cargaDest[$dest]['gas'];
-                        $recursosDestino->plastico = $cargaDest[$dest]['plastico'];
-                        $recursosDestino->ceramica = $cargaDest[$dest]['ceramica'];
-                        $recursosDestino->liquido = $cargaDest[$dest]['liquido'];
-                        $recursosDestino->micros = $cargaDest[$dest]['micros'];
-                        $recursosDestino->fuel = $cargaDest[$dest]['fuel'];
-                        $recursosDestino->ma = $cargaDest[$dest]['ma'];
-                        $recursosDestino->municion = $cargaDest[$dest]['municion'];
-                        $recursosDestino->creditos = $cargaDest[$dest]['creditos'];
-                        $recursosDestino->destinos_id = $destino->id;
-                        $recursosDestino->save();
-
-                        $prioridadex = new PrioridadesEnFlota();
-                        $prioridadex->personal = $prioridades[$dest]['personal'];
-                        $prioridadex->mineral = $prioridades[$dest]['mineral'];
-                        $prioridadex->cristal = $prioridades[$dest]['cristal'];
-                        $prioridadex->gas = $prioridades[$dest]['gas'];
-                        $prioridadex->plastico = $prioridades[$dest]['plastico'];
-                        $prioridadex->ceramica = $prioridades[$dest]['ceramica'];
-                        $prioridadex->liquido = $prioridades[$dest]['liquido'];
-                        $prioridadex->micros = $prioridades[$dest]['micros'];
-                        $prioridadex->fuel = $prioridades[$dest]['fuel'];
-                        $prioridadex->ma = $prioridades[$dest]['ma'];
-                        $prioridadex->municion = $prioridades[$dest]['municion'];
-                        $prioridadex->creditos = $prioridades[$dest]['creditos'];
-                        $prioridadex->destinos_id = $destino->id;
-                        $prioridadex->save();
-
-                        //Log::info("prioridadex " . $prioridadex . " prioridades ");
-                        //Log::info($prioridades[$dest]);
-                        // Log::info("hecho destino ".$dest );
-                    }
-                }
-
-                // Log::info("todos los destinos done");
-
-                // naves a flota
-
-                foreach ($disenios as $navex) {
-
-                    //Log::info($navex);
-
-                    $naveSale = new DiseniosEnFlota();
-                    $naveSale->enFlota = $navex['enflota'];
-                    $naveSale->enHangar = $navex['enhangar'];
-                    $naveSale->disenios_id = $navex['id'];
-                    $naveSale->en_vuelo_id = $flotax->id;
-                    $naveSale->tipo = "nave";
-                    $naveSale->save();
-
-                    $naveP = $navesEnPlaneta->firstWhere('disenios_id', $navex['id']);
-                    if($flotaid==null){//restar del planeta
-                        $naveP->cantidad -= $navex['enflota'] + $navex['enhangar'];
-                        if ($naveP->cantidad < 1) {
-                            $naveP->delete();
-                        } else {
-                            $naveP->save();
-                        }
-                    } else { //restar de la flota
-                        if($navex['enflota']<0){$navex['enflota']=0;}
-                        if($navex['enhangar']<0){$navex['enhangar']=0;}
-
-                        $restarAFlota=$navex['enflota'];
-                        $restarAHangar=$navex['enhangar'];
-                        //Log::info("messageI ".$restarAFlota." ".$restarAHangar);
-
-                        if($naveP->enFlota < $navex['enflota']){ //tengo menos en flota de las que me llevo
-                            $restarAHangar+=-$naveP->enFlota + $navex['enflota'];
-                        }
-
-                        if($naveP->enhangar < $navex['enhangar']){ //tengo menos  en hangar de las que me llevo
-                            $restarAFlota+=-$naveP->enHangar + $navex['enhangar'];
-                        }
-
-                        if($naveP->enFlota - $restarAFlota <0){ // la cantidad que queda no puede ser negativa
-                            $restarAHangar+=-1*($naveP->enFlota - $restarAFlota);
-                            $restarAFlota=$naveP->enFlota;
-                        }
-                        if($naveP->enHangar - $restarAHangar <0){ // la cantidad que queda no puede ser negativa
-                            $restarAFlota=-1*($naveP->enHangar - $restarAHangar);
-                            $restarAHangar=$naveP->enHangar;
-                        }
-                        if($naveP->enFlota - $restarAFlota <0){ // (segunda vuelta necesaria) la cantidad que queda no puede ser negativa
-                            $restarAHangar+=-1*($naveP->enFlota - $restarAFlota);
-                            $restarAFlota=$naveP->enFlota;
-                        }
-
-                        $naveP->enFlota -=$restarAFlota;
-                        $naveP->enHangar -=$restarAHangar;
-                        //Log::info($naveP);
-                        //Log::info("messageR ".$restarAFlota." ".$restarAHangar);
-                        if($naveP->enFlota+$naveP->enHangar<1){
-                            $naveP->delete();
-                        } else {
-                            $naveP->save();
-                        }
-                    }
-                }
-
-                // restando recursos de origen
-                //origen es un planeta:
-                $dest = 0;
-                //Log::info($cargaDest[$dest]);
-                if($flotaid==null){//restar del planeta
-                    $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
-                } else {
-                    $recursos = $flotaOrigen->recursosEnFlota;
-                    if($recursos->fuel< $valFlotaT['fuelDestT']){ //no puedo gastar mas de lo que tengo (se ha quitado omitido en validaciones por la siguiente condición)
-                        $errores="Fuel insuficiente";
+                    if (strlen($errores) > 3) {
                         throw new \Exception($errores);
                     }
-                    if($recursos->fuel< $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']){ //si me llevo mas fuel del que tengo, resto de lo que me llevo
-                        //$resd=-$valFlotaT['fuelDestT'] + $recursos->fuel ;Log::info("fuel me llevo= ".$cargaDest[$dest]['fuel']." fuel llevo: ".$recursos->fuel ." fuel gasto: ".$valFlotaT['fuelDestT']." result= ".$resd);
-                        $cargaDest[$dest]['fuel'] = -$valFlotaT['fuelDestT'] + $recursos->fuel ;
+                    //Log::info("destinoANT ".$destinos[$destAnt]['estrella']);
+
+                    $destino->initestrella = 1 * $destinos[$destAnt]['estrella'];
+                    $destino->initorbita = 1 * $destinos[$destAnt]['orbita'];
+
+                    $destino->initcoordx = $ajusteMapaFactor * $destinos[$destAnt]['fincoordx'] + $ajusteMapaBase;
+                    $destino->initcoordy = $ajusteMapaFactor * $destinos[$destAnt]['fincoordy'] + $ajusteMapaBase;
+                    $destino->fincoordx = $ajusteMapaFactor * $destinos[$dest]['fincoordx'] + $ajusteMapaBase;
+                    $destino->fincoordy = $ajusteMapaFactor * $destinos[$dest]['fincoordy'] + $ajusteMapaBase;
+                    $destino->init = $Tinit;
+                    $destino->fin = $Tfin;
+                    $destino->flota_id = $flotax->id;
+                    $destino->save(); //Log::info("coso".$dest." ".$flotax->id);
+
+                    //Log::info("destino ".$dest." ".$destino);
+
+                    $vectorx = (1 * $destinos[$dest]['fincoordx'] - 1 * $destinos[$destAnt]['fincoordx']) / $duracion;
+                    $vectory = (1 * $destinos[$dest]['fincoordy'] - 1 * $destinos[$destAnt]['fincoordy']) / $duracion;
+
+                    for ($tiempoPto = 0; $tiempoPto < $duracion / $tiempoPuntosFlotas; $tiempoPto++) {
+
+                        $add_time = strtotime($Tinit) + ($tiempoPto * $tiempoPuntosFlotas);
+                        $TfinPto = date('Y-m-d H:i:s', $add_time);
+
+                        $puntoFlota = new PuntosEnFlota();
+                        $puntoFlota->coordx = $ajusteMapaFactor * ($destinos[$destAnt]['fincoordx'] + $vectorx * ($tiempoPto * $tiempoPuntosFlotas)) + $ajusteMapaBase;
+                        $puntoFlota->coordy = $ajusteMapaFactor * ($destinos[$destAnt]['fincoordy'] + $vectory * ($tiempoPto * $tiempoPuntosFlotas)) + $ajusteMapaBase;
+                        $puntoFlota->fin = $TfinPto;
+                        $puntoFlota->en_vuelo_id = $flotax->id;
+                        $puntoFlota->jugadores_id = $flotax->jugadores_id;
+                        //Log::info("puntoflota".$puntoFlota);
+                        $puntoFlota->save();
+                    }
+                    //ultimo punto siempre va
+                    $puntoFlota = new PuntosEnFlota();
+                    $puntoFlota->coordx = $ajusteMapaFactor * ($destinos[$dest]['fincoordx']) + $ajusteMapaBase;
+                    $puntoFlota->coordy = $ajusteMapaFactor * ($destinos[$dest]['fincoordy']) + $ajusteMapaBase;
+                    $puntoFlota->fin = $Tfin;
+                    $puntoFlota->en_vuelo_id = $flotax->id;
+                    $puntoFlota->jugadores_id = $flotax->jugadores_id;
+                    $puntoFlota->save();
+
+                    //Log::info($destino);
+                    $Tinit = $Tfin;
+
+                    //Log::info($cargaDest[$dest]);
+
+                    $recursosDestino = new RecursosEnFlota();
+                    $recursosDestino->personal = $cargaDest[$dest]['personal'];
+                    $recursosDestino->mineral = $cargaDest[$dest]['mineral'];
+                    $recursosDestino->cristal = $cargaDest[$dest]['cristal'];
+                    $recursosDestino->gas = $cargaDest[$dest]['gas'];
+                    $recursosDestino->plastico = $cargaDest[$dest]['plastico'];
+                    $recursosDestino->ceramica = $cargaDest[$dest]['ceramica'];
+                    $recursosDestino->liquido = $cargaDest[$dest]['liquido'];
+                    $recursosDestino->micros = $cargaDest[$dest]['micros'];
+                    $recursosDestino->fuel = $cargaDest[$dest]['fuel'];
+                    $recursosDestino->ma = $cargaDest[$dest]['ma'];
+                    $recursosDestino->municion = $cargaDest[$dest]['municion'];
+                    $recursosDestino->creditos = $cargaDest[$dest]['creditos'];
+                    $recursosDestino->destinos_id = $destino->id;
+                    $recursosDestino->save();
+
+                    $prioridadex = new PrioridadesEnFlota();
+                    $prioridadex->personal = $prioridades[$dest]['personal'];
+                    $prioridadex->mineral = $prioridades[$dest]['mineral'];
+                    $prioridadex->cristal = $prioridades[$dest]['cristal'];
+                    $prioridadex->gas = $prioridades[$dest]['gas'];
+                    $prioridadex->plastico = $prioridades[$dest]['plastico'];
+                    $prioridadex->ceramica = $prioridades[$dest]['ceramica'];
+                    $prioridadex->liquido = $prioridades[$dest]['liquido'];
+                    $prioridadex->micros = $prioridades[$dest]['micros'];
+                    $prioridadex->fuel = $prioridades[$dest]['fuel'];
+                    $prioridadex->ma = $prioridades[$dest]['ma'];
+                    $prioridadex->municion = $prioridades[$dest]['municion'];
+                    $prioridadex->creditos = $prioridades[$dest]['creditos'];
+                    $prioridadex->destinos_id = $destino->id;
+                    $prioridadex->save();
+
+                    //Log::info("prioridadex " . $prioridadex . " prioridades ");
+                    //Log::info($prioridades[$dest]);
+                    // Log::info("hecho destino ".$dest );
+                }
+            }
+
+            // Log::info("todos los destinos done");
+
+            // naves a flota
+
+            foreach ($disenios as $navex) {
+
+                //Log::info($navex);
+
+                $naveSale = new DiseniosEnFlota();
+                $naveSale->enFlota = $navex['enflota'];
+                $naveSale->enHangar = $navex['enhangar'];
+                $naveSale->disenios_id = $navex['id'];
+                $naveSale->en_vuelo_id = $flotax->id;
+                $naveSale->tipo = "nave";
+                $naveSale->save();
+
+                $naveP = $navesEnPlaneta->firstWhere('disenios_id', $navex['id']);
+                if ($flotaid == null) { //restar del planeta
+                    $naveP->cantidad -= $navex['enflota'] + $navex['enhangar'];
+                    if ($naveP->cantidad < 1) {
+                        $naveP->delete();
+                    } else {
+                        $naveP->save();
+                    }
+                } else { //restar de la flota
+                    if ($navex['enflota'] < 0) {
+                        $navex['enflota'] = 0;
+                    }
+                    if ($navex['enhangar'] < 0) {
+                        $navex['enhangar'] = 0;
+                    }
+
+                    $restarAFlota = $navex['enflota'];
+                    $restarAHangar = $navex['enhangar'];
+                    //Log::info("messageI ".$restarAFlota." ".$restarAHangar);
+
+                    if ($naveP->enFlota < $navex['enflota']) { //tengo menos en flota de las que me llevo
+                        $restarAHangar += -$naveP->enFlota + $navex['enflota'];
+                    }
+
+                    if ($naveP->enhangar < $navex['enhangar']) { //tengo menos  en hangar de las que me llevo
+                        $restarAFlota += -$naveP->enHangar + $navex['enhangar'];
+                    }
+
+                    if ($naveP->enFlota - $restarAFlota < 0) { // la cantidad que queda no puede ser negativa
+                        $restarAHangar += -1 * ($naveP->enFlota - $restarAFlota);
+                        $restarAFlota = $naveP->enFlota;
+                    }
+                    if ($naveP->enHangar - $restarAHangar < 0) { // la cantidad que queda no puede ser negativa
+                        $restarAFlota = -1 * ($naveP->enHangar - $restarAHangar);
+                        $restarAHangar = $naveP->enHangar;
+                    }
+                    if ($naveP->enFlota - $restarAFlota < 0) { // (segunda vuelta necesaria) la cantidad que queda no puede ser negativa
+                        $restarAHangar += -1 * ($naveP->enFlota - $restarAFlota);
+                        $restarAFlota = $naveP->enFlota;
+                    }
+
+                    $naveP->enFlota -= $restarAFlota;
+                    $naveP->enHangar -= $restarAHangar;
+                    //Log::info($naveP);
+                    //Log::info("messageR ".$restarAFlota." ".$restarAHangar);
+                    if ($naveP->enFlota + $naveP->enHangar < 1) {
+                        $naveP->delete();
+                    } else {
+                        $naveP->save();
+                    }
+                }
+            }
+
+            // restando recursos de origen
+            //origen es un planeta:
+            $dest = 0;
+            //Log::info($cargaDest[$dest]);
+            if ($flotaid == null) { //restar del planeta
+                $recursos = Planetas::where('id', session()->get('planetas_id'))->first()->recursos;
+            } else {
+                $recursos = $flotaOrigen->recursosEnFlota;
+                if ($recursos->fuel < $valFlotaT['fuelDestT']) { //no puedo gastar mas de lo que tengo (se ha quitado omitido en validaciones por la siguiente condición)
+                    $errores = "Fuel insuficiente";
+                    throw new \Exception($errores);
+                }
+                if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']) { //si me llevo mas fuel del que tengo, resto de lo que me llevo
+                    //$resd=-$valFlotaT['fuelDestT'] + $recursos->fuel ;Log::info("fuel me llevo= ".$cargaDest[$dest]['fuel']." fuel llevo: ".$recursos->fuel ." fuel gasto: ".$valFlotaT['fuelDestT']." result= ".$resd);
+                    $cargaDest[$dest]['fuel'] = -$valFlotaT['fuelDestT'] + $recursos->fuel;
+                }
+            }
+
+            //Log::info($recursos);
+            // restando origen
+            $recursos->personal -= $cargaDest[$dest]['personal'];
+            $recursos->mineral -= $cargaDest[$dest]['mineral'];
+            $recursos->cristal -= $cargaDest[$dest]['cristal'];
+            $recursos->gas -= $cargaDest[$dest]['gas'];
+            $recursos->plastico -= $cargaDest[$dest]['plastico'];
+            $recursos->ceramica -= $cargaDest[$dest]['ceramica'];
+            $recursos->liquido -= $cargaDest[$dest]['liquido'];
+            $recursos->micros -= $cargaDest[$dest]['micros'];
+            $recursos->fuel -= $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT'];
+            $recursos->ma -= $cargaDest[$dest]['ma'];
+            $recursos->municion -= $cargaDest[$dest]['municion'];
+            $recursos->creditos -= $cargaDest[$dest]['creditos'];
+            $recursos->save();
+
+            //a la flota
+            $recursosEnFlota = new RecursosEnFlota();
+            $recursosEnFlota->personal = $cargaDest[$dest]['personal'];
+            $recursosEnFlota->mineral = $cargaDest[$dest]['mineral'];
+            $recursosEnFlota->cristal = $cargaDest[$dest]['cristal'];
+            $recursosEnFlota->gas = $cargaDest[$dest]['gas'];
+            $recursosEnFlota->plastico = $cargaDest[$dest]['plastico'];
+            $recursosEnFlota->ceramica = $cargaDest[$dest]['ceramica'];
+            $recursosEnFlota->liquido = $cargaDest[$dest]['liquido'];
+            $recursosEnFlota->micros = $cargaDest[$dest]['micros'];
+            $recursosEnFlota->fuel = $cargaDest[$dest]['fuel'];
+            $recursosEnFlota->ma = $cargaDest[$dest]['ma'];
+            $recursosEnFlota->municion = $cargaDest[$dest]['municion'];
+            $recursosEnFlota->creditos = $cargaDest[$dest]['creditos'];
+            $recursosEnFlota->en_vuelo_id = $flotax->id;
+            $recursosEnFlota->save();
+            //Log::info($recursosEnFlota);
+
+            if ($flotaid != null) { //recalculo flota que quede
+
+                //verifico si borro la flota
+                $cargaQueda = 0;
+                foreach ($recursosArray as $recurso) {
+                    $cargaQueda += $recursos[$recurso];
+                    if ($cargaQueda > 0) {
+                        break;
+                    }
+                }
+                $totalNaves = 0;
+                foreach ($navesEnPlaneta as $nave) {
+                    $totalNaves += $nave["enFlota"] + $nave["enHangar"];
+                    if ($totalNaves > 0) {
+                        break;
                     }
                 }
 
-                //Log::info($recursos);
-                // restando origen
-                $recursos->personal -= $cargaDest[$dest]['personal'];
-                $recursos->mineral -= $cargaDest[$dest]['mineral'];
-                $recursos->cristal -= $cargaDest[$dest]['cristal'];
-                $recursos->gas -= $cargaDest[$dest]['gas'];
-                $recursos->plastico -= $cargaDest[$dest]['plastico'];
-                $recursos->ceramica -= $cargaDest[$dest]['ceramica'];
-                $recursos->liquido -= $cargaDest[$dest]['liquido'];
-                $recursos->micros -= $cargaDest[$dest]['micros'];
-                $recursos->fuel -= $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT'];
-                $recursos->ma -= $cargaDest[$dest]['ma'];
-                $recursos->municion -= $cargaDest[$dest]['municion'];
-                $recursos->creditos -= $cargaDest[$dest]['creditos'];
-                $recursos->save();
+                //Log::info("cargaQueda ".$cargaQueda." naves quedan: ");Log::info($navesEnPlaneta);
+                if ($cargaQueda < 1 && $totalNaves < 1) { //borramos la flota enterita
+                    $flotaOrigen->delete();
+                } else { //recalculamos el resto
+                    $valFlotaT = [];
+                    //reinicio valores
+                    $valFlotaT['carga'] = 0;
+                    $valFlotaT['municion'] = 0;
+                    $valFlotaT['fuel'] = 0;
+                    $valFlotaT['velocidad'] = 999;
+                    $valFlotaT['maniobra'] = 999;
+                    $valFlotaT['ataqueR'] = 0;
+                    $valFlotaT['defensaR'] = 0;
+                    $valFlotaT['ataqueV'] = 0;
+                    $valFlotaT['defensaV'] = 0;
+                    $valFlotaT['extraccion'] = 0;
+                    $valFlotaT['recoleccion'] = 0;
+                    $valFlotaT['fuelDestT'] = 0;
+                    $valFlotaT['atotal'] = 0;
+                    $valFlotaT['mantenimiento'] = 0;
 
-                //a la flota
-                $recursosEnFlota = new RecursosEnFlota();
-                $recursosEnFlota->personal = $cargaDest[$dest]['personal'];
-                $recursosEnFlota->mineral = $cargaDest[$dest]['mineral'];
-                $recursosEnFlota->cristal = $cargaDest[$dest]['cristal'];
-                $recursosEnFlota->gas = $cargaDest[$dest]['gas'];
-                $recursosEnFlota->plastico = $cargaDest[$dest]['plastico'];
-                $recursosEnFlota->ceramica = $cargaDest[$dest]['ceramica'];
-                $recursosEnFlota->liquido = $cargaDest[$dest]['liquido'];
-                $recursosEnFlota->micros = $cargaDest[$dest]['micros'];
-                $recursosEnFlota->fuel = $cargaDest[$dest]['fuel'];
-                $recursosEnFlota->ma = $cargaDest[$dest]['ma'];
-                $recursosEnFlota->municion = $cargaDest[$dest]['municion'];
-                $recursosEnFlota->creditos = $cargaDest[$dest]['creditos'];
-                $recursosEnFlota->en_vuelo_id = $flotax->id;
-                $recursosEnFlota->save();
-                //Log::info($recursosEnFlota);
+                    //Log::info("navesEnPlaneta ");Log::info($navesEnPlaneta);
+                    $result = Flotas::ValoresDiseniosFlota((array)$navesEnPlaneta, $diseniosJugador, $navesEnPlaneta, $flotaid); //recalculo las naves enflota y hangar que me quedaron
+                    $errores = $result[0];
+                    $disenios = $result[1];
 
-                if($flotaid!=null){ //recalculo flota que quede
+                    $result = Flotas::calculoFlota($disenios, $valFlotaT, null, $tablaHangares);
+                    $valFlotaT = $result[0];
 
-                    //verifico si borro la flota
-                    $cargaQueda=0;
-                    foreach ($recursosArray as $recurso) {
-                        $cargaQueda += $recursos[$recurso];
-                        if($cargaQueda>0){break;}
-                    }
-                    $totalNaves=0;
-                    foreach($navesEnPlaneta as $nave){
-                        $totalNaves+=$nave["enFlota"]+$nave["enHangar"];
-                        if($totalNaves>0){break;}
-                    }
-
-                    //Log::info("cargaQueda ".$cargaQueda." naves quedan: ");Log::info($navesEnPlaneta);
-                    if($cargaQueda < 1 && $totalNaves<1){ //borramos la flota enterita
-                        $flotaOrigen->delete();
-                    } else { //recalculamos el resto
-                        $valFlotaT = [];
-                        //reinicio valores
-                        $valFlotaT['carga'] = 0;
-                        $valFlotaT['municion'] = 0;
-                        $valFlotaT['fuel'] = 0;
-                        $valFlotaT['velocidad'] = 999;
-                        $valFlotaT['maniobra'] = 999;
-                        $valFlotaT['ataqueR'] = 0;
-                        $valFlotaT['defensaR'] = 0;
-                        $valFlotaT['ataqueV'] = 0;
-                        $valFlotaT['defensaV'] = 0;
-                        $valFlotaT['extraccion'] = 0;
-                        $valFlotaT['recoleccion'] = 0;
-                        $valFlotaT['fuelDestT'] = 0;
-                        $valFlotaT['atotal'] = 0;
-                        $valFlotaT['mantenimiento'] = 0;
-
-                        //Log::info("navesEnPlaneta ");Log::info($navesEnPlaneta);
-                        $result = Flotas::ValoresDiseniosFlota((array)$navesEnPlaneta,$diseniosJugador,$navesEnPlaneta,$flotaid);//recalculo las naves enflota y hangar que me quedaron
-                        $errores = $result[0];
-                        $disenios = $result[1];
-
-                        $result = Flotas::calculoFlota($disenios, $valFlotaT, null, $tablaHangares);
-                        $valFlotaT = $result[0];
-
-                        $flotaOrigen->ataqueReal = $valFlotaT['ataqueR'];
-                        $flotaOrigen->defensaReal = $valFlotaT['defensaR'];
-                        $flotaOrigen->ataqueVisible = $valFlotaT['ataqueV'];
-                        $flotaOrigen->defensaVisible = $valFlotaT['defensaV'];
-                        $flotaOrigen->creditos = $valFlotaT['mantenimiento'];
-                        $flotaOrigen->save();
-                    }
-
-                    //borrar la flota si queda vacia del todo
-
+                    $flotaOrigen->ataqueReal = $valFlotaT['ataqueR'];
+                    $flotaOrigen->defensaReal = $valFlotaT['defensaR'];
+                    $flotaOrigen->ataqueVisible = $valFlotaT['ataqueV'];
+                    $flotaOrigen->defensaVisible = $valFlotaT['defensaV'];
+                    $flotaOrigen->creditos = $valFlotaT['mantenimiento'];
+                    $flotaOrigen->save();
                 }
 
-                DB::commit();
-                //Log::info("Enviada");
-                try {
+                //borrar la flota si queda vacia del todo
+
+            }
+
+            DB::commit();
+            //Log::info("Enviada");
+            try {
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit de envio de flotas " . $e->getLine() . " " . $e->getFile() . $errores; //.$e;
@@ -976,8 +1498,8 @@ class FlotaController extends Controller
 
 
         if (strlen($errores) < 1) {
-            $tipoflota=$flotaResult['tipoflota'];
-            $flotaid=$flotaResult['id'];
+            $tipoflota = $flotaResult['tipoflota'];
+            $flotaid = $flotaResult['id'];
             //Log::info("flota datos ".$flotaid." ".$flotaResult['publico']);
 
             $jugadoryAlianza = [];
@@ -991,15 +1513,15 @@ class FlotaController extends Controller
 
             if ($tipoflota == "envuelo") {
                 $flota = EnVuelo::whereIn('jugadores_id', $jugadoryAlianza)
-                ->where([['id', $flotaid],['publico',$flotaResult['publico']]])
+                    ->where([['id', $flotaid], ['publico', $flotaResult['publico']]])
                     ->first();
             } else if ($tipoflota == "enrecoleccion") {
                 $flota = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)
-                ->where([['id', $flotaid],['publico',$flotaResult['publico']]])
+                    ->where([['id', $flotaid], ['publico', $flotaResult['publico']]])
                     ->first();
             } else if ($tipoflota == "enorbita") {
                 $flota = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)
-                    ->where([['id', $flotaid],['publico',$flotaResult['publico']]])
+                    ->where([['id', $flotaid], ['publico', $flotaResult['publico']]])
                     ->first();
             }
 
@@ -1007,7 +1529,7 @@ class FlotaController extends Controller
                 $errores = "No se encuentra la flota a modificar";
             }
 
-            foreach($prioridadesResult as $prioridad ){
+            foreach ($prioridadesResult as $prioridad) {
                 if (is_numeric($prioridad)) {
                     if ($prioridad < 0) {
                         $prioridad = 0;
@@ -1025,118 +1547,118 @@ class FlotaController extends Controller
         if (strlen($errores) < 3) {
 
 
-                DB::beginTransaction();
-                //Log::info(" ID= ".$flotaid);
+            DB::beginTransaction();
+            //Log::info(" ID= ".$flotaid);
 
-                if ($tipoflota == "envuelo") {
-                    EnVuelo::updateOrCreate([
-                        'id'   => $flotaid
-                    ], [
-                        'nombre'   => $flotaResult['nombre']
-                    ]);
-                } else if($tipoflota == "enorbita"){
-                    EnOrbita::updateOrCreate([
-                        'id'   => $flotaid
-                    ], [
-                        'nombre'   => $flotaResult['nombre']
-                    ]);
-                } else if($tipoflota == "enrecoleccion"){
-                    EnRecoleccion::updateOrCreate([
-                        'id'   => $flotaid,
-                    ], [
-                        'nombre'   => $flotaResult['nombre']
-                    ]);
+            if ($tipoflota == "envuelo") {
+                EnVuelo::updateOrCreate([
+                    'id'   => $flotaid
+                ], [
+                    'nombre'   => $flotaResult['nombre']
+                ]);
+            } else if ($tipoflota == "enorbita") {
+                EnOrbita::updateOrCreate([
+                    'id'   => $flotaid
+                ], [
+                    'nombre'   => $flotaResult['nombre']
+                ]);
+            } else if ($tipoflota == "enrecoleccion") {
+                EnRecoleccion::updateOrCreate([
+                    'id'   => $flotaid,
+                ], [
+                    'nombre'   => $flotaResult['nombre']
+                ]);
+            }
+
+            //cambio de destinos
+            if ($tipoflota == "envuelo") {
+                if ($cargaDest == null || empty($cargaDest)) {
+                    $errores = "Error en asignación de cargas";
+                    return compact('errores');
                 }
+                $dest = -1;
+                foreach ($flota->destinos as $destino) {
+                    $dest++;
+                    if ($destino['visitado'] == 0) {
 
-                //cambio de destinos
-                if ($tipoflota == "envuelo") {
-                    if ($cargaDest == null || empty($cargaDest)) {
-                        $errores = "Error en asignación de cargas";
-                        return compact('errores');
+                        RecursosEnFlota::updateOrCreate([
+                            'destinos_id'   => $destino->id
+                        ], [
+                            'personal' => $cargaDest[$dest]['personal'],
+                            'mineral' => $cargaDest[$dest]['mineral'],
+                            'cristal' => $cargaDest[$dest]['cristal'],
+                            'gas' => $cargaDest[$dest]['gas'],
+                            'plastico' => $cargaDest[$dest]['plastico'],
+                            'ceramica' => $cargaDest[$dest]['ceramica'],
+                            'liquido' => $cargaDest[$dest]['liquido'],
+                            'micros' => $cargaDest[$dest]['micros'],
+                            'fuel' => $cargaDest[$dest]['fuel'],
+                            'ma' => $cargaDest[$dest]['ma'],
+                            'municion' => $cargaDest[$dest]['municion'],
+                            'creditos' => $cargaDest[$dest]['creditos'],
+                        ]);
+
+                        PrioridadesEnFlota::updateOrCreate([
+                            'destinos_id'   => $destino->id
+                        ], [
+                            'personal' => $prioridadesResult[$dest]['personal'],
+                            'mineral' => $prioridadesResult[$dest]['mineral'],
+                            'cristal' => $prioridadesResult[$dest]['cristal'],
+                            'gas' => $prioridadesResult[$dest]['gas'],
+                            'plastico' => $prioridadesResult[$dest]['plastico'],
+                            'ceramica' => $prioridadesResult[$dest]['ceramica'],
+                            'liquido' => $prioridadesResult[$dest]['liquido'],
+                            'micros' => $prioridadesResult[$dest]['micros'],
+                            'fuel' => $prioridadesResult[$dest]['fuel'],
+                            'ma' => $prioridadesResult[$dest]['ma'],
+                            'municion' => $prioridadesResult[$dest]['municion'],
+                            'creditos' => $prioridadesResult[$dest]['creditos'],
+                        ]);
                     }
-                    $dest=-1;
-                    foreach ($flota->destinos as $destino) {
-                        $dest++;
-                        if ($destino['visitado'] == 0) {
-
-                            RecursosEnFlota::updateOrCreate([
-                                'destinos_id'   => $destino->id
-                            ], [
-                                'personal' => $cargaDest[$dest]['personal'],
-                                'mineral' => $cargaDest[$dest]['mineral'],
-                                'cristal' => $cargaDest[$dest]['cristal'],
-                                'gas' => $cargaDest[$dest]['gas'],
-                                'plastico' => $cargaDest[$dest]['plastico'],
-                                'ceramica' => $cargaDest[$dest]['ceramica'],
-                                'liquido' => $cargaDest[$dest]['liquido'],
-                                'micros' => $cargaDest[$dest]['micros'],
-                                'fuel' => $cargaDest[$dest]['fuel'],
-                                'ma' => $cargaDest[$dest]['ma'],
-                                'municion' => $cargaDest[$dest]['municion'],
-                                'creditos' => $cargaDest[$dest]['creditos'],
-                            ]);
-
-                            PrioridadesEnFlota::updateOrCreate([
-                                'destinos_id'   => $destino->id
-                            ], [
-                                'personal' => $prioridadesResult[$dest]['personal'],
-                                'mineral' => $prioridadesResult[$dest]['mineral'],
-                                'cristal' => $prioridadesResult[$dest]['cristal'],
-                                'gas' => $prioridadesResult[$dest]['gas'],
-                                'plastico' => $prioridadesResult[$dest]['plastico'],
-                                'ceramica' => $prioridadesResult[$dest]['ceramica'],
-                                'liquido' => $prioridadesResult[$dest]['liquido'],
-                                'micros' => $prioridadesResult[$dest]['micros'],
-                                'fuel' => $prioridadesResult[$dest]['fuel'],
-                                'ma' => $prioridadesResult[$dest]['ma'],
-                                'municion' => $prioridadesResult[$dest]['municion'],
-                                'creditos' => $prioridadesResult[$dest]['creditos'],
-                            ]);
-                        }
-                    }
-                } else if ($tipoflota == "enorbita") {
-                    $dest=0;
-                    PrioridadesEnFlota::updateOrCreate([
-                        'en_orbita_id'   => $flotaid
-                    ], [
-                        'personal' => $prioridadesResult[$dest]['personal'],
-                        'mineral' => $prioridadesResult[$dest]['mineral'],
-                        'cristal' => $prioridadesResult[$dest]['cristal'],
-                        'gas' => $prioridadesResult[$dest]['gas'],
-                        'plastico' => $prioridadesResult[$dest]['plastico'],
-                        'ceramica' => $prioridadesResult[$dest]['ceramica'],
-                        'liquido' => $prioridadesResult[$dest]['liquido'],
-                        'micros' => $prioridadesResult[$dest]['micros'],
-                        'fuel' => $prioridadesResult[$dest]['fuel'],
-                        'ma' => $prioridadesResult[$dest]['ma'],
-                        'municion' => $prioridadesResult[$dest]['municion'],
-                        'creditos' => $prioridadesResult[$dest]['creditos'],
-                    ]);
-                } else if ($tipoflota == "enrecoleccion") {
-                    $dest=0;
-                    PrioridadesEnFlota::updateOrCreate([
-                        'en_recoleccion_id'   => $flotaid
-                    ], [
-                        'personal' => $prioridadesResult[$dest]['personal'],
-                        'mineral' => $prioridadesResult[$dest]['mineral'],
-                        'cristal' => $prioridadesResult[$dest]['cristal'],
-                        'gas' => $prioridadesResult[$dest]['gas'],
-                        'plastico' => $prioridadesResult[$dest]['plastico'],
-                        'ceramica' => $prioridadesResult[$dest]['ceramica'],
-                        'liquido' => $prioridadesResult[$dest]['liquido'],
-                        'micros' => $prioridadesResult[$dest]['micros'],
-                        'fuel' => $prioridadesResult[$dest]['fuel'],
-                        'ma' => $prioridadesResult[$dest]['ma'],
-                        'municion' => $prioridadesResult[$dest]['municion'],
-                        'creditos' => $prioridadesResult[$dest]['creditos'],
-                    ]);
                 }
-                DB::commit();
-                Log::info("Modificada");
-                try {
+            } else if ($tipoflota == "enorbita") {
+                $dest = 0;
+                PrioridadesEnFlota::updateOrCreate([
+                    'en_orbita_id'   => $flotaid
+                ], [
+                    'personal' => $prioridadesResult[$dest]['personal'],
+                    'mineral' => $prioridadesResult[$dest]['mineral'],
+                    'cristal' => $prioridadesResult[$dest]['cristal'],
+                    'gas' => $prioridadesResult[$dest]['gas'],
+                    'plastico' => $prioridadesResult[$dest]['plastico'],
+                    'ceramica' => $prioridadesResult[$dest]['ceramica'],
+                    'liquido' => $prioridadesResult[$dest]['liquido'],
+                    'micros' => $prioridadesResult[$dest]['micros'],
+                    'fuel' => $prioridadesResult[$dest]['fuel'],
+                    'ma' => $prioridadesResult[$dest]['ma'],
+                    'municion' => $prioridadesResult[$dest]['municion'],
+                    'creditos' => $prioridadesResult[$dest]['creditos'],
+                ]);
+            } else if ($tipoflota == "enrecoleccion") {
+                $dest = 0;
+                PrioridadesEnFlota::updateOrCreate([
+                    'en_recoleccion_id'   => $flotaid
+                ], [
+                    'personal' => $prioridadesResult[$dest]['personal'],
+                    'mineral' => $prioridadesResult[$dest]['mineral'],
+                    'cristal' => $prioridadesResult[$dest]['cristal'],
+                    'gas' => $prioridadesResult[$dest]['gas'],
+                    'plastico' => $prioridadesResult[$dest]['plastico'],
+                    'ceramica' => $prioridadesResult[$dest]['ceramica'],
+                    'liquido' => $prioridadesResult[$dest]['liquido'],
+                    'micros' => $prioridadesResult[$dest]['micros'],
+                    'fuel' => $prioridadesResult[$dest]['fuel'],
+                    'ma' => $prioridadesResult[$dest]['ma'],
+                    'municion' => $prioridadesResult[$dest]['municion'],
+                    'creditos' => $prioridadesResult[$dest]['creditos'],
+                ]);
+            }
+            DB::commit();
+            Log::info("Modificada");
+            try {
             } catch (Exception $e) {
                 DB::rollBack();
-                $errores = "Error en Commit de modificacion de flotas ".$e->getFile()." ". $e->getLine() . $errores; //.$e;
+                $errores = "Error en Commit de modificacion de flotas " . $e->getFile() . " " . $e->getLine() . $errores; //.$e;
                 Log::info($errores . " " . $e);
             }
             //return redirect('/juego/flota');
@@ -1146,12 +1668,5 @@ class FlotaController extends Controller
         }
         //Log::info($errores);
         return compact('errores');
-
     }
-
-
-
-
-
-
 }
