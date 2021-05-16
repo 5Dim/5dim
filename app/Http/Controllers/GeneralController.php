@@ -19,8 +19,7 @@ class GeneralController extends Controller
 
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         return view('juego.general', compact(
             // Recursos

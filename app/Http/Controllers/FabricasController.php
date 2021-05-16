@@ -23,8 +23,7 @@ class FabricasController extends Controller
 {
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         return view('juego.fabrica', compact(
             // Recursos
@@ -59,6 +58,10 @@ class FabricasController extends Controller
 
         if (!empty($cola)) {
             $inicio = $cola->finished_at;
+        }
+
+        if ($cantidad < 1) {
+            $error = true;
         }
 
         //Comprobamos si hay recursos

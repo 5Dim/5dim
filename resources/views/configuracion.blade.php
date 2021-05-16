@@ -108,7 +108,7 @@
                 </select>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('actualizar usuario') }}</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('user.actualizar usuario') }}</button>
         </form>
 
         <form method="POST" action="{{ route('user-password.update') }}">

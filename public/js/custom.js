@@ -448,16 +448,88 @@ function recalculaCostos(id, coste) {
     $("#liquido" + id).text(formatNumber(Math.round(factor * cantidad * coste.liquido)));
     $("#micros" + id).text(formatNumber(Math.round(factor * cantidad * coste.micros)));
     $("#personal" + id).text(formatNumber(Math.round(factor * cantidad * coste.personal)));
+    let tengoRecursos = "text-light";
+    let noTengoRecursos = "text-danger";
+    let error = false;
 
     // Restantres
     $("#restantemineral" + id).text(formatNumber(Math.round(recursos.mineral - factor * cantidad * coste.mineral)));
+    if (recursos.mineral - factor * cantidad * coste.mineral < 0) {
+        $("#restantemineral" + id).removeClass(tengoRecursos);
+        $("#restantemineral" + id).addClass(noTengoRecursos);
+        error = true;
+    } else {
+        $("#restantemineral" + id).removeClass(noTengoRecursos);
+        $("#restantemineral" + id).addClass(tengoRecursos);
+    }
     $("#restantecristal" + id).text(formatNumber(Math.round(recursos.cristal - factor * cantidad * coste.cristal)));
+    if (recursos.cristal - factor * cantidad * coste.cristal < 0) {
+        $("#restantecristal" + id).removeClass(tengoRecursos);
+        $("#restantecristal" + id).addClass(noTengoRecursos);
+        error = true;
+    } else {
+        $("#restantecristal" + id).removeClass(noTengoRecursos);
+        $("#restantecristal" + id).addClass(tengoRecursos);
+    }
     $("#restantegas" + id).text(formatNumber(Math.round(recursos.gas - factor * cantidad * coste.gas)));
+    if (recursos.gas - factor * cantidad * coste.gas < 0) {
+        $("#restantegas" + id).removeClass(tengoRecursos);
+        $("#restantegas" + id).addClass(noTengoRecursos);
+        error = true;
+    } else {
+        $("#restantegas" + id).removeClass(noTengoRecursos);
+        $("#restantegas" + id).addClass(tengoRecursos);
+    }
     $("#restanteplastico" + id).text(formatNumber(Math.round(recursos.plastico - factor * cantidad * coste.plastico)));
+    if (recursos.plastico - factor * cantidad * coste.plastico < 0) {
+        $("#restanteplastico" + id).removeClass(tengoRecursos);
+        $("#restanteplastico" + id).addClass(noTengoRecursos);
+        error = true;
+    } else {
+        $("#restanteplastico" + id).removeClass(noTengoRecursos);
+        $("#restanteplastico" + id).addClass(tengoRecursos);
+    }
     $("#restanteceramica" + id).text(formatNumber(Math.round(recursos.ceramica - factor * cantidad * coste.ceramica)));
+    if (recursos.ceramica - factor * cantidad * coste.ceramica < 0) {
+        $("#restanteceramica" + id).removeClass(tengoRecursos);
+        $("#restanteceramica" + id).addClass(noTengoRecursos);
+        error = true;
+    } else {
+        $("#restanteceramica" + id).removeClass(noTengoRecursos);
+        $("#restanteceramica" + id).addClass(tengoRecursos);
+    }
     $("#restanteliquido" + id).text(formatNumber(Math.round(recursos.liquido - factor * cantidad * coste.liquido)));
+    if (recursos.liquido - factor * cantidad * coste.liquido < 0) {
+        $("#restanteliquido" + id).removeClass(tengoRecursos);
+        $("#restanteliquido" + id).addClass(noTengoRecursos);
+        error = true;
+    } else {
+        $("#restanteliquido" + id).removeClass(noTengoRecursos);
+        $("#restanteliquido" + id).addClass(tengoRecursos);
+    }
     $("#restantemicros" + id).text(formatNumber(Math.round(recursos.micros - factor * cantidad * coste.micros)));
+    if (recursos.micros - factor * cantidad * coste.micros < 0) {
+        $("#restantemicros" + id).removeClass(tengoRecursos);
+        $("#restantemicros" + id).addClass(noTengoRecursos);
+        error = true;
+    } else {
+        $("#restantemicros" + id).removeClass(noTengoRecursos);
+        $("#restantemicros" + id).addClass(tengoRecursos);
+    }
     $("#restantepersonal" + id).text(formatNumber(Math.round(recursos.personal - factor * cantidad * coste.personal)));
+    if (recursos.personal - factor * cantidad * coste.personal < 0) {
+        $("#restantepersonal" + id).removeClass(tengoRecursos);
+        $("#restantepersonal" + id).addClass(noTengoRecursos);
+        error = true;
+    } else {
+        $("#restantepersonal" + id).removeClass(noTengoRecursos);
+        $("#restantepersonal" + id).addClass(tengoRecursos);
+    }
+    if (error) {
+        $("#disenioConstruir" + id).attr('disabled', 'disabled');
+    } else {
+        $("#disenioConstruir" + id).removeAttr('disabled');
+    }
     tiempoBase = $.grep(mejoras, function(valorBase) {
         return valorBase.id == id;
     })[0]["tiempo"];
@@ -501,8 +573,9 @@ function calculaMaximo(costes, id) {
     recalculaCostos(id, costes);
 }
 
-function resetCantidad(id) {
+function resetCantidad(costes, id) {
     $("#disenio" + id).val(1);
+    recalculaCostos(id, costes);
 }
 
 function calcularDisenios(disenios, mejoras, investigaciones, constantes) {

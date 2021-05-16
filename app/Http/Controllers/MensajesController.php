@@ -22,8 +22,7 @@ class MensajesController extends Controller
 
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         //Todos los jugadores para la lista de envio
         $jugadores = Jugadores::orderBy("nombre")->get();

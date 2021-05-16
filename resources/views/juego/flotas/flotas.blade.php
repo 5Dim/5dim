@@ -55,6 +55,15 @@
 
 
     <script>
-        verFlotasEnVuelo()
+        @if ($tab == 'envuelo-tab')
+            verFlotasEnVuelo();
+        @endif
+        @if ($tab == 'orbita-tab')
+            verFlotasEnOrbita();
+        @endif
+        @if ($tab == 'recoleccion-tab')
+            verFlotasEnRecoleccion();
+        @endif
+        mostrarTab(@json($tab));
     </script>
 @endsection

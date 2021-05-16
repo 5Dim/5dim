@@ -21,8 +21,7 @@ class AlianzaController extends Controller
 {
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         //Listado de alianzas
         $alianzas = Alianzas::all();
@@ -186,12 +185,12 @@ class AlianzaController extends Controller
                 $miembro->alianzas_id = null;
                 $miembro->save();
             }
+            $jugadorAlianza = Alianzas::jugadorAlianza($alianza->id);
+            foreach ($jugadorAlianza->investigaciones as $investigacion) {
+                $investigacion->delete();
+            }
+            $jugadorAlianza->delete();
         }
-        $jugadorAlianza = Alianzas::jugadorAlianza($alianza->id);
-        foreach ($jugadorAlianza->investigaciones as $investigacion) {
-            $investigacion->delete();
-        }
-        $jugadorAlianza->delete();
 
         return redirect('/juego/alianza');
     }

@@ -19,8 +19,7 @@ class ComercioController extends Controller
 
     public function index()
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         return view('juego.layouts.recursosFrame', compact(
             // Recursos

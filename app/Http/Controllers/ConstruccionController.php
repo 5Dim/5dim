@@ -24,8 +24,7 @@ class ConstruccionController extends Controller
     //Acceso a construcciones
     public function index($tab = "mina-tab")
     {
-        $compact = $this->recursos();
-        extract($compact);
+        extract($this->recursos());
 
         // Sacamos el estado de las industrias
         $encendidoIndustrias = Industrias::where('planetas_id', session()->get('planetas_id'))->first();

@@ -22,18 +22,20 @@ class Astrometria extends Model
             foreach ($jugadorActual->alianzas->miembros as $miembro) {
                 $nivelObservacion = $miembro->investigaciones->where('codigo', 'invObservacion')->first()->nivel;
                 foreach ($miembro->planetas as $planeta) {
-                    $observatorio = $planeta->construcciones->where('codigo', 'observacion')->first();
-                    if ($observatorio != null && $observatorio->nivel > 0) {
-                        $nivelObservatorio = $observatorio->nivel;
-                        $radar = new Radares();
-                        $radar->estrella = $planeta->estrella;
-                        $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
-                        if ($planeta->jugadores_id == session()->get('jugadores_id')) {
-                            $radar->color = 1;
-                            array_push($misRadares, $radar);
-                        } else {
-                            $radar->color = 2;
-                            array_push($radares, $radar);
+                    if (!empty($planeta->construcciones->where('codigo', 'observacion')->first())) {
+                        $observatorio = $planeta->construcciones->where('codigo', 'observacion')->first();
+                        if ($observatorio != null && $observatorio->nivel > 0) {
+                            $nivelObservatorio = $observatorio->nivel;
+                            $radar = new Radares();
+                            $radar->estrella = $planeta->estrella;
+                            $radar->circulo = Astrometria::radioRadar(($nivelObservatorio + $nivelObservacion) * $constanteRadar);
+                            if ($planeta->jugadores_id == session()->get('jugadores_id')) {
+                                $radar->color = 1;
+                                array_push($misRadares, $radar);
+                            } else {
+                                $radar->color = 2;
+                                array_push($radares, $radar);
+                            }
                         }
                     }
                 }
@@ -392,7 +394,7 @@ class Astrometria extends Model
                     $radarRango = $luzdemallauniverso * $radar['circulo'] * $ajusteMapaFactor;
 
                     $dist =  (pow(($inicioActualx - $coordDestx) * ($inicioActualx - $coordDestx) + ($inicioActualy - $coordDesty) * ($inicioActualy - $coordDesty), 1 / 2)); //  /$luzdemallauniverso;
-                    if ( $dist < $radarRango) {
+                    if ($dist < $radarRango) {
                         $flota->origen = Astrometria::nombreDestino($destinoActual);
                         $flota->coordix = $inicioActualx;
                         $flota->coordiy = $inicioActualy;
@@ -401,7 +403,7 @@ class Astrometria extends Model
 
                     $dist =  (pow(($destinoActualx - $coordDestx) * ($destinoActualx - $coordDestx) + ($destinoActualy - $coordDesty) * ($destinoActualy - $coordDesty), 1 / 2)); // /$luzdemallauniverso;
                     if ($dist < $radarRango) {
-                        $flota->destino = Astrometria::nombreDestino($destinoActual,true);
+                        $flota->destino = Astrometria::nombreDestino($destinoActual, true);
                         $flota->coordfx = $destinoActualx;
                         $flota->coordfy = $destinoActualy;
                         $seveDestino = true;
@@ -437,7 +439,7 @@ class Astrometria extends Model
                     $flota->coordfx = $ptoFlota->coordx;
                     $flota->coordfy = $ptoFlota->coordy;
                 } else {
-                    $flota->destino = Astrometria::nombreDestino($destinoActual,true);
+                    $flota->destino = Astrometria::nombreDestino($destinoActual, true);
                     $flota->trestante = $trestante;
                 }
             } else if ($estado == "enrecoleccion" && $seveOrigen) {
@@ -465,7 +467,7 @@ class Astrometria extends Model
                 $flota->mision = $destinoActual['mision'];
                 $flota->misionregreso = $destinoActual['mision_regreso'];
                 $flota->fecha = $destinoActual['fin'];
-                $flota->destino = Astrometria::nombreDestino($destinoActual,true);
+                $flota->destino = Astrometria::nombreDestino($destinoActual, true);
             } else if ($estado == "enrecoleccion") {
                 $flota->mision = "Recolectando";
                 $flota->recoleccion = $flotaVisible->recoleccion;
@@ -514,7 +516,7 @@ class Astrometria extends Model
                 $flota->coordiy = $destinoActual->initcoordy;
                 $flota->coordfx = $destinoActual->fincoordx;
                 $flota->coordfy = $destinoActual->fincoordy;
-                $flota->destino = Astrometria::nombreDestino($destinoActual,true);
+                $flota->destino = Astrometria::nombreDestino($destinoActual, true);
                 $flota->mision = $destinoActual['mision'];
                 $flota->misionregreso = $destinoActual['mision_regreso'];
                 $flota->fecha = $destinoActual['fin'];
@@ -737,28 +739,28 @@ class Astrometria extends Model
             $tipodestino = "enrecoleccion";
         } else if ($destino->en_vuelo_id != null && $destino->enVuelo->id != null) {
             $tipodestino = "envuelo";
-        } else {//orbita sin planeta
+        } else { //orbita sin planeta
             $tipodestino = "otro";
         }
 
         return $tipodestino;
     }
 
-    public static function nombreDestino($destino,$anterior=false)
+    public static function nombreDestino($destino, $anterior = false)
     {
         $tipodestino = Astrometria::tipoDestino($destino);
         $nombreDestino = "";
-       // Log::info($destino);
+        // Log::info($destino);
         switch ($tipodestino) {
             case "planeta":
-                if($anterior){
-                    $nombreDestino =$destino->planetas->nombre." ".$destino->planetas->estrella . "x" . $destino->planetas->orbita;
+                if ($anterior) {
+                    $nombreDestino = $destino->planetas->nombre . " " . $destino->planetas->estrella . "x" . $destino->planetas->orbita;
                 } else {
                     $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
-                    if ($planetaAnterior!=null){
-                        $nombreDestino =$planetaAnterior->nombre." ".$planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
+                    if ($planetaAnterior != null) {
+                        $nombreDestino = $planetaAnterior->nombre . " " . $planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
                     } else {
-                        $nombreDestino =$destino['initestrella'] . "x" . $destino['initorbita'];
+                        $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
                     }
                 }
                 break;
@@ -772,10 +774,10 @@ class Astrometria extends Model
                 $nombreDestino = $destino->enVuelo["publico"];
                 break;
             default:
-            if($anterior){
-                    $nombreDestino =$destino['estrella'] . "x" . $destino['orbita'];
+                if ($anterior) {
+                    $nombreDestino = $destino['estrella'] . "x" . $destino['orbita'];
                 } else {
-                    $nombreDestino =$destino['initestrella'] . "x" . $destino['initorbita'];
+                    $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
                 }
                 break;
         }

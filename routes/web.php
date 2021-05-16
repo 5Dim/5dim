@@ -152,10 +152,14 @@ Route::middleware(
     // Flota
     Route::get('/juego/flotas/regresarFlota/{id}', [FlotaController::class, 'regresarFlota']);
     Route::get('/juego/flotas/traerRecursos/{estrella}/{orbita}', [FlotaController::class, 'traerRecursos']);
-    Route::get('/juego/flotas/{estrella?}/{orbita?}/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'index']);
+    Route::get('/juego/flotas/{tab?}', [FlotaController::class, 'index']);
+    Route::get('/juego/flotas/enviar/{estrella?}/{orbita?}/{tab?}', [FlotaController::class, 'astrometria']);
+    Route::get('/juego/flotas/editar/{nombreflota?}/{tipoflota?}/{tab?}', [FlotaController::class, 'index']);
     Route::post('/juego/flotas/enviarFlota/{id?}', [FlotaController::class, 'enviarFlota']);
     Route::post('/juego/flotas/modificarFlota/{id?}', [FlotaController::class, 'modificarFlota']);
 
+
+    // Route::get('/juego/flotas/{estrella?}/{orbita?}/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'index']);
 
     //Banco
     Route::get('/juego/banco', [BancoController::class, 'index']);

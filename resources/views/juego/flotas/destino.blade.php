@@ -103,11 +103,11 @@
                 </td>
                 <td class="text-light">
                     <input id="sistemaDest{{ $numero }}" type="text" class="form-control input ediciondestino"
-                        placeholder="Numero de sistema">
+                        placeholder="Numero de sistema" value="{{ $estrellaDestino }}">
                 </td>
                 <td class="text-light">
                     <input id="planetaDest{{ $numero }}" type="text" class="form-control input ediciondestino"
-                        type="number" pattern="[0-9]{1}" placeholder="Numero de orbita">
+                        type="number" pattern="[0-9]{1}" placeholder="Numero de orbita" value="{{ $orbitaDestino }}">
                 </td>
                 <td class="text-light">
                     <div id="selectorordenDest{{ $numero }}">
@@ -419,11 +419,10 @@
         });
 
         RecursosSiDestino({{ $numero }});
-    });
 
-    $('#sistemaDest{{ $numero }}').focusout(function() {
-        Calculoespacitiempo();
-    });
+        $('#sistemaDest{{ $numero }}').focusout(function() {
+            Calculoespacitiempo();
+        });
 
     $('#planetaDest{{ $numero }}').keyup(function() {
         if ($('#planetaDest{{ $numero }}').val() * 1 > 9) {
@@ -445,64 +444,65 @@
         Calculoespacitiempo();
     });
 
-    $('#listaPlanetas{{ $numero }}').change(function() {
-        SelectorDestinos({{ $numero }});
-        Calculoespacitiempo();
-    });
+        $('#listaPlanetas{{ $numero }}').change(function() {
+            SelectorDestinos({{ $numero }});
+            Calculoespacitiempo();
+        });
 
-    $('#personal{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'personal');
-    });
+        $('#personal{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'personal');
+        });
 
-    $('#mineral{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'mineral');
-    });
+        $('#mineral{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'mineral');
+        });
 
-    $('#cristal{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'cristal');
-    });
+        $('#cristal{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'cristal');
+        });
 
-    $('#gas{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'gas');
-    });
+        $('#gas{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'gas');
+        });
 
-    $('#plastico{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'plastico');
-    });
+        $('#plastico{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'plastico');
+        });
 
-    $('#ceramica{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'ceramica');
-    });
+        $('#ceramica{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'ceramica');
+        });
 
-    $('#liquido{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'liquido');
-    });
+        $('#liquido{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'liquido');
+        });
 
-    $('#micros{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'micros');
-    });
+        $('#micros{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'micros');
+        });
 
-    $('#fuel{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'fuel');
-    });
+        $('#fuel{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'fuel');
+        });
 
-    $('#ma{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'ma');
-    });
+        $('#ma{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'ma');
+        });
 
-    $('#municion{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'municion');
-    });
+        $('#municion{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'municion');
+        });
 
-    $('#creditos{{ $numero }}').keyup(function() {
-        ModificandoRecurso({{ $numero }}, 'creditos');
-    });
+        $('#creditos{{ $numero }}').keyup(function() {
+            ModificandoRecurso({{ $numero }}, 'creditos');
+        });
 
 
-    $('#ordenDest{{ $numero }}').change(function() {
-        var orden = $("#ordenDest{{ $numero }}").val();
-        destinos[{{ $numero }}].mision = orden;
-        Avisos();
+        $('#ordenDest{{ $numero }}').change(function() {
+            var orden = $("#ordenDest{{ $numero }}").val();
+            destinos[{{ $numero }}].mision = orden;
+            Avisos();
+        });
     });
 
 </script>

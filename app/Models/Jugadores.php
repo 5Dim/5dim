@@ -117,7 +117,7 @@ class Jugadores extends Model
         if (empty(Auth::user()->jugador)) {
             $jugador = new Jugadores();
             $jugador->nombre = Auth::user()->name;
-            $jugador->avatar = "/img/avatar.jpg";
+            $jugador->avatar = "http://161.97.143.51/img/avatar.png";
             $jugador->user_id = Auth::user()->id;
             $jugador->save();
         } else {

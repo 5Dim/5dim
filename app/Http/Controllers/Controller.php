@@ -91,9 +91,9 @@ class Controller extends BaseController
         );
     }
 
-    // public function flotaBase()
-    // {
-    //     //Cosas flotas
-    //     return compact();
-    // }
+    public function flotaBase()
+    {
+        //Cosas flotas
+        // return compact();
+    }
 }
