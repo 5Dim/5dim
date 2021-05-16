@@ -395,6 +395,7 @@ function Avisos() {
                     if (recursosDest[dest][res] == undefined) {
                         recursosDest[dest][res] = 0;
                     }
+
                     recursosDest[dest][res] =recursosEnDest[dest][res] + cargaDest[destAnt][res];
                     $("#boton" + res + dest).text(formatNumber(Math.round(1 * recursosDest[dest][res])));
                 });
@@ -762,6 +763,11 @@ function TraerRecursos(sistema, planeta, dest) {
                 });
                 recursosDest[dest]["imagen"]=data.recursos["imagen"];
                 $("#imagenDestino" + dest).attr("src", data.recursos["imagen"]);
+                recursosDest[dest]["estrella"]=sistema;
+                recursosDest[dest]["orbita"]=planeta;
+                destinos[dest]["estrella"] =sistema;
+                destinos[dest]["orbita"]=planeta;
+
                 MostrarRecursos(dest);
                 Avisos();
             },
@@ -1127,6 +1133,9 @@ function RellenarFlotasEnVuelo(data,prefix){
 
             nick=flota['nick'];
            // var img = origenImagenes + "/flotas/nada.jpg";
+            Columna1cabeza="";
+            Columna1contenido="";
+            AnchoColumnasMedio=3;
 
             fila++;
             if(flota['estado']=="envuelo"){
@@ -1150,6 +1159,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                 cabeza1="Tiempo restante: ";
                 cabeza2="tiempo regreso: ";
                 tregreso=formatHMS(1*flota['tregreso']);
+
             }  else if(flota['estado']=="enorbita") {
                 barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
                 <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
@@ -1160,10 +1170,14 @@ function RellenarFlotasEnVuelo(data,prefix){
             }else {
                 barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
                 <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
-                cabeza1="Recolección";
+                cabeza1="Recolección actual";
                 cabeza2="Carga Actual"
                 trestante=formatNumber(1*flota['recoleccion'])+" ud/h";
                 tregreso=formatNumber(1*flota['cargaT']);
+                AnchoColumnasMedio=2;
+                Columna1cabeza='<td colspan="'+AnchoColumnasMedio+'" class="text-warning">Máximo extracción</td>';
+                maximoPosible=formatNumber(1*flota['maximoPosible'])+" ud/h";
+                Columna1contenido='<td colspan="'+AnchoColumnasMedio+'" class="text-light">'+maximoPosible+'</td>';
             }
 
             ataque=formatNumber(1*flota['ataque']);
@@ -1206,16 +1220,18 @@ function RellenarFlotasEnVuelo(data,prefix){
                         </div>
                     </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="3" class="text-warning">`+cabeza1+`</td>
-                        <td colspan="3" class="text-warning">`+cabeza2+`</td>
-                        <td colspan="3" class="text-warning">Ataque:</td>
-                        <td colspan="3" class="text-warning">Defensa</td>
+                        `+Columna1cabeza+`
+                        <td colspan="`+AnchoColumnasMedio+`" class="text-warning">`+cabeza1+`</td>
+                        <td colspan="`+AnchoColumnasMedio+`" class="text-warning">`+cabeza2+`</td>
+                        <td colspan="`+AnchoColumnasMedio+`" class="text-warning">Ataque:</td>
+                        <td colspan="`+AnchoColumnasMedio+`" class="text-warning">Defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td id="trestantepropia`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
-                        <td id="tregresopropia`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
-                        <td colspan="3" class="text-light">`+ataque+`</td>
-                        <td colspan="3" class="text-light">`+defensa+`</td>
+                        `+Columna1contenido+`
+                        <td id="trestantepropia`+fila+`" colspan="`+AnchoColumnasMedio+`" class="text-light">`+trestante+`</td>
+                        <td id="tregresopropia`+fila+`" colspan="`+AnchoColumnasMedio+`" class="text-light">`+tregreso+`</td>
+                        <td colspan="`+AnchoColumnasMedio+`" class="text-light">`+ataque+`</td>
+                        <td colspan="`+AnchoColumnasMedio+`" class="text-light">`+defensa+`</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                     <td class="anchofijo text-warning">

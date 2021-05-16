@@ -389,6 +389,7 @@
     let origenImagenes = "{{ asset('img/juego/skin0/') }}";
     let destinos = @json($destinos);
     let cargaDest = @json($cargaDest); //cargado para cada destino
+    let recursosEnDest = @json($cargaDest);
     let prioridades = @json($prioridades);
     let flota = @json($flota);
     let linkFlota = "{{ url('/juego/flotas') }}";

@@ -524,6 +524,7 @@ class Astrometria extends Model
             } else if ($estado == "enrecoleccion") {
                 Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
                 $flota->recursos = RecursosEnFlota::where('en_recoleccion_id', $flotaVisible['id'])->first();
+                $flota->maximoPosible= Producciones::produccionRecoleccion($flotaVisible->planetas->id)->totalPosible;
                 $cargaT = 0;
                 foreach ($recursosArray as $recurso) {
                     $cargaT += $flota->recursos[$recurso];
@@ -536,6 +537,7 @@ class Astrometria extends Model
             } else if ($estado == "enextraccion") {
                 Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
                 $flota->recursos = RecursosEnFlota::where('en_recoleccion_id', $flotaVisible['id'])->first();
+                $flota->maximoPosible= Producciones::produccionRecoleccion($flotaVisible->planetas->id)->totalPosible;
                 $cargaT = 0;
                 foreach ($recursosArray as $recurso) {
                     $cargaT += $flota->recursos[$recurso];

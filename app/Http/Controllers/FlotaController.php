@@ -299,7 +299,7 @@ class FlotaController extends Controller
     {
         extract($this->recursos());
 
-        Log::info("estrella " . $estrella);
+        //Log::info("estrella " . $estrella);
 
         //variables universo
         $constantesU = Constantes::where('tipo', 'universo')->get();

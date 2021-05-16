@@ -245,7 +245,6 @@ class Disenios extends Model
                 $mejorasT +=  $mejoras->recolector * $multiplicador;
             }
         }
-        //Log::info("mejorasT2 ".$mejorasT);
         return $mejorasT;
     }
 

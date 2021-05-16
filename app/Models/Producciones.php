@@ -198,6 +198,7 @@ class Producciones extends Model
     {
         $cualidades = Planetas::find($idPlaneta)->cualidades;
         $mejoraInvestigacionRecoleccion = 1+(Investigaciones::where('codigo', 'invRecoleccion')->first()->nivel * Constantes::where('codigo', 'mejorainvRecoleccion')->first()->valor);
+
         $produccion = new Producciones();
         if ($calcular) {
             $produccion->mineral = Producciones::where('nivel', $cualidades->mineral)->first()->mineral * $mejoraInvestigacionRecoleccion;
@@ -212,7 +213,7 @@ class Producciones extends Model
             $produccion->plastico = Producciones::where('nivel', $cualidades->plastico)->first()->plastico;
             $produccion->ceramica = Producciones::where('nivel', $cualidades->ceramica)->first()->ceramica;
         }
-
+        $produccion->totalPosible=floor($produccion->mineral+$produccion->cristal+$produccion->gas+$produccion->plastico+$produccion->ceramica);
         return $produccion;
     }
 }
