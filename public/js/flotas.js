@@ -15,6 +15,8 @@ deboEsconderDestinosVacios = true;
 botonenviarAnulado=false;
 enviarEnOrbita=false;
 EnviarFlotaTxt="Enviar Flota";
+///   mostrarTab("enviar-tab")
+// poner boton pasar flota, boton  traspasar flota
 
 fuelDestT = 0; //fuel total a todos los destinos
 
@@ -36,6 +38,7 @@ function CargarFlotaEditada() {
         $("#botonModificar").attr("disabled", true);
     } else {
         //flota
+        mostrarTab("enviar-tab")
         enviarEnOrbita=true;
         if (destinos[0]["tipoflota"] == undefined) {
             EsconderPorId("listaPrioridades0");
@@ -392,7 +395,7 @@ function Avisos() {
                     if (recursosDest[dest][res] == undefined) {
                         recursosDest[dest][res] = 0;
                     }
-                    recursosDest[dest][res] += cargaDest[destAnt][res];
+                    recursosDest[dest][res] =recursosEnDest[dest][res] + cargaDest[destAnt][res];
                     $("#boton" + res + dest).text(formatNumber(Math.round(1 * recursosDest[dest][res])));
                 });
             }
@@ -456,14 +459,20 @@ function Avisos() {
 
         var hayErrorMision = false;
 
+        var img = origenImagenes + "/flotas/nada.jpg";
         if (orden != "") {
-
             var img = origenImagenes + "/flotas/" + orden + ".jpg";
-            if (recursosDest[dest]["imagen"]!= undefined){
-                img = recursosDest[dest]["imagen"];
+        }
+            if (recursosDest[dest]["estrella"] == destinos[dest]["estrella"] && recursosDest[dest]["orbita"] == destinos[dest]["orbita"]){
+                if (recursosDest[dest]["imagen"]!= undefined){
+                    img = recursosDest[dest]["imagen"];
+                }
+            } else {
+                recursosArray.forEach(res => {
+                    recursosEnDest[dest][res] = 0;
+                });
             }
-
-
+        if (orden != "") {
 
             var ordenAnt = $("#ordenDest" + destAnt).val();
             var ordenPost = $("#ordenDest" + destPost).val();
@@ -630,8 +639,22 @@ function Calculoespacitiempo() {
             //$("#municion" + dest).val(valFlotaT.municion);
             destAnt = dest - 1;
 
+
+
             destinos[dest].estrella = $("#sistemaDest" + dest).val();
             destinos[dest].orbita = $("#planetaDest" + dest).val();
+
+            if (recursosDest[dest]["estrella"] == destinos[dest]["estrella"] && recursosDest[dest]["orbita"] == destinos[dest]["orbita"]){
+
+            } else {
+                recursosArray.forEach(res => {
+                    recursosEnDest[dest][res] = 0;
+                });
+            }
+
+            recursosDest[dest]["estrella"]=destinos[dest].estrella;
+            recursosDest[dest]["orbita"]=destinos[dest].orbita;
+
 
             var distancia = DistanciaUniverso(destinos[destAnt], destinos[dest]);
             if (isNaN(distancia) || destinos[dest].estrella == "") {
@@ -671,6 +694,7 @@ function Calculoespacitiempo() {
         NoSeMueve(dest);
     }
     CargarMunicion();
+    Avisos();
 }
 
 function NoSeMueve(dest) {
@@ -730,22 +754,23 @@ function TraerRecursos(sistema, planeta, dest) {
             method: "GET",
             url: "/juego/flotas/traerRecursos/" + sistema + "/" + planeta,
             success: function(data) {
-                if(recursosDest[dest]==undefined){
-                    recursosDest[dest]=cargaDestVacia[dest];
+                if(recursosEnDest[dest]==undefined || data.recursos==undefined){
+                    recursosEnDest[dest]=cargaDestVacia[dest];
                 }
                 recursosArray.forEach(res => {
-                    recursosDest[dest][res] += 1*data.recursos[res];
+                    recursosEnDest[dest][res] = 1*data.recursos[res];
                 });
                 recursosDest[dest]["imagen"]=data.recursos["imagen"];
                 $("#imagenDestino" + dest).attr("src", data.recursos["imagen"]);
                 MostrarRecursos(dest);
+                Avisos();
             },
             error: function(xhr, textStatus, thrownError) {
                 console.log("status", xhr.status);
                 console.log("error", thrownError);
                 //$("#botontienes"+ dest).text("Tienes");
                 recursosArray.forEach(res => {
-                    recursosDest[dest][res] = 0;
+                    recursosEnDest[dest][res] = 0;
                 });
                 recursosDest[dest].total = 0;
                 MostrarRecursos(dest);

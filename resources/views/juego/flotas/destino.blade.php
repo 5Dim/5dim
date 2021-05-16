@@ -426,6 +426,12 @@
     });
 
     $('#planetaDest{{ $numero }}').keyup(function() {
+        if ($('#planetaDest{{ $numero }}').val() * 1 > 9) {
+            $('#planetaDest{{ $numero }}').val("9");
+        }
+        if ($('#planetaDest{{ $numero }}').val() * 1 < 1) {
+            $('#planetaDest{{ $numero }}').val("1");
+        }
         Calculoespacitiempo();
     });
 
@@ -433,7 +439,7 @@
         if ($('#porcentVDest{{ $numero }}').val() * 1 > 100) {
             $('#porcentVDest{{ $numero }}').val("100");
         }
-        if ($('#porcentVDest{{ $numero }}').val() * 1 < 0) {
+        if ($('#porcentVDest{{ $numero }}').val() * 1 < 1) {
             $('#porcentVDest{{ $numero }}').val("1");
         }
         Calculoespacitiempo();

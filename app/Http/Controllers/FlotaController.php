@@ -353,8 +353,9 @@ class FlotaController extends Controller
                     $recursos["imagen"]=asset('astrometria/img/sistema/planeta').$planet->imagen.".png";
                 }
             }
-
         }
+        $recursos["estrella"]=$estrella;
+        $recursos["orbita"]=$orbita;
 
         return compact('recursos');
     }
