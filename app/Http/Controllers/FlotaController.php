@@ -811,7 +811,7 @@ class FlotaController extends Controller
             'destinosVacia',
             'cargaDestVacia',
             'prioridadesVacia',
-
+            'tab',
         ));
     }
 
