@@ -159,7 +159,7 @@ Route::middleware(
     Route::post('/juego/flotas/modificarFlota/{id?}', [FlotaController::class, 'modificarFlota']);
 
 
-    Route::get('/juego/flotas/{estrella?}/{orbita?}/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'index']);
+    Route::get('/juego/flotas/{estrella?}/{orbita?}/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'editarFlota']);
 
     //Banco
     Route::get('/juego/banco', [BancoController::class, 'index']);
