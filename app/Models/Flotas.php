@@ -827,7 +827,7 @@ destino 0 con lo que sale
                     $consImperio = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
                     $puntosIMperioLibres=$nivelImperio * $consImperio + 10 - count($estaFlota->jugadores->planetas) * 10 ;
                     //Log::info("puntosIMperioLibres ".$puntosIMperioLibres);
-                    if ($puntosIMperioLibres-$adminImperioPuntos < $piminimoscolonizar){
+                    if (($puntosIMperioLibres-$adminImperioPuntos) < $piminimoscolonizar){
                         $errores = "Insuficientes puntos de imperio para colonizar ";
                     }
 
