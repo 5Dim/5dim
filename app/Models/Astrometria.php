@@ -178,7 +178,6 @@ class Astrometria extends Model
     //determina que flotas son visibles envuelo
     public static function flotasVisibles()
     {
-
         //Log::info("flotas visibles");
         $constantesU = Constantes::where('tipo', 'universo')->get();
         $anchoUniverso = $constantesU->where('codigo', 'anchouniverso')->first()->valor;
@@ -756,11 +755,11 @@ class Astrometria extends Model
         switch ($tipodestino) {
             case "planeta":
                 if ($anterior) {
-                    $nombreDestino = $destino->planetas->nombre . " " . $destino->planetas->estrella . "x" . $destino->planetas->orbita;
+                    $nombreDestino = $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ")";
                 } else {
                     $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
                     if ($planetaAnterior != null) {
-                        $nombreDestino = $planetaAnterior->nombre . " " . $planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
+                        $nombreDestino = $planetaAnterior->nombre . " (" . $planetaAnterior->estrella . "x" . $planetaAnterior-> orbita . ")";
                     } else {
                         $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
                     }

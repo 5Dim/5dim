@@ -75,7 +75,6 @@ class Flotas extends Model
         return [$valFlotaT, null, $tablaHangares];
     }
 
-
     public static function valoresValidos($cantidadDestinos, $cargaDest, $prioridades)
     {
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
@@ -1158,8 +1157,6 @@ destino 0 con lo que sale
             return $errores;
         }
     }
-
-
 
     public static function recolectarAsteroide($planeta, $flotax = null, $jugadorid = null)
     {
