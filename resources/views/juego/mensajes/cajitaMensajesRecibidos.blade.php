@@ -28,7 +28,9 @@
                         <a class="btn btn-link text-success" data-bs-toggle="collapse" href="#" role="button"
                             aria-expanded="false" data-bs-target=".mensajeRecibido{{ $mensaje->id }}"
                             aria-controls="mensajeRecibido{{ $mensaje->id }}">
-                            <big>{{ $mensaje->created_at }}<big>
+                            <big>
+                                {{ (new DateTime($mensaje->created_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone(Auth::user()->timezone))->format("Y-m-d H:i:s") }}
+                            <big>
                         </a>
                     </td>
                 </tr>
