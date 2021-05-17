@@ -541,7 +541,7 @@ class Flotas extends Model
                     $destino->fincoordy = $destino->initcoordy;
                     $destino->initcoordx = $puntoFlota->coordx;
                     $destino->initcoordy = $puntoFlota->coordy;
-                    $destino->init = $Tinit;
+                    //$destino->init = $Tinit;  //para que los mensajes se mantengan
                     $destino->fin = $Tfin;
                     $destino->flota_id = $flotax->id;
 

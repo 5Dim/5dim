@@ -1044,7 +1044,7 @@ class FlotaController extends Controller
             $ajusteMapaBase = 35; //ajuste 0,0 con mapa
             $ajusteMapaFactor = 7; //ajuste escala mapa
 
-            //try {
+            try {
 
             //construyendo flota
 
@@ -1433,7 +1433,7 @@ class FlotaController extends Controller
 
             DB::commit();
             //Log::info("Enviada");
-            try {
+            //try {
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit de envio de flotas " . $e->getLine() . " " . $e->getFile() . $errores; //.$e;
