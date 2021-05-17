@@ -175,6 +175,7 @@ class Flotas extends Model
 
 
             // Carga total
+            //Log::info("carga ".$cargaDestT." ". $valFlotaT['carga']);
             if (strlen($errores) < 1 && $cargaDestT > 1 * $valFlotaT['carga']) {
                 $errores = " Seleccionada mas carga de la capacidad";
             }
@@ -315,7 +316,12 @@ class Flotas extends Model
         $oriestrella = $origen['estrella'];
         $oriorbita = $origen['orbita'];
         $destiestrella = $destino['estrella'];
-        $destiorbita = $destino['orbita'];
+        if (isset($destino['orbita'])){
+            $destiorbita = $destino['orbita'];
+        } else {
+            $destiorbita = null;;
+        }
+
 
         $destino['planetas_id'] = null;
         $destino['en_vuelo_id'] = null;
@@ -645,8 +651,7 @@ destino 0 con lo que sale
                 $estaFlota = $destino->flota;
             } else if ($destino->enRecoleccion != null) {
                 $estaFlota = $destino->enRecoleccion;
-            }
-            if ($destino->enOrbita != null) {
+            } else if ($destino->enOrbita != null) {
                 $estaFlota = $destino->enOrbita;
             }
 
@@ -706,7 +711,8 @@ destino 0 con lo que sale
                     }
 
                     //Log::info($tipodestino."recursosDestino ".$recursosDestino);
-
+                    //Log::info("recursosDestino");Log::info($recursosDestino);
+                    //Log::info("recursosFlota");Log::info($recursosFlota);
 
                     //Log::info("estaFlota ".$estaFlota." diseños".$estaFlota->diseniosEnFlota);
                     //calcular capacidad carga
@@ -756,7 +762,7 @@ destino 0 con lo que sale
                     foreach ($recursosArray as $recurso) {
                         $cargaTotalLLevo += $recursosFlota[$recurso];
                     }
-
+                    //Log::info("recursosFlota2");Log::info($recursosFlota);
                     //Log::info($destinoEsMio . "prioridad " . $prioridadesDestino);
                     //carga por prioridades
                     if ($destinoEsMio == 1) {
@@ -776,6 +782,7 @@ destino 0 con lo que sale
                                     $recursosDestino[$recurso] -= $difCarga;
                                     $cargaTotalLLevo += $difCarga;
                                     $guardarCambios = true;
+                                    //Log::info("CARGA difCarga ".$difCarga." recursosQuieroCargar ".$recursosQuieroCargar[$recurso]."  recursosFlota[recurso] ".$recursosFlota[$recurso]."  recursosDestino[recurso] ".$recursosDestino[$recurso]);
                                 }
                             }
                         }
@@ -827,26 +834,31 @@ destino 0 con lo que sale
                     $consImperio = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
                     $puntosIMperioLibres=$nivelImperio * $consImperio + 10 - count($estaFlota->jugadores->planetas) * 10 ;
                     //Log::info("puntosIMperioLibres ".$puntosIMperioLibres);
+                    $hayerror=false;
                     if (($puntosIMperioLibres-$adminImperioPuntos) < $piminimoscolonizar){
-                        $errores = "Insuficientes puntos de imperio para colonizar ";
+                        $errores = " Insuficientes puntos de imperio para colonizar ";
+                        $hayerror=true;
+                    }
+                    if ($destino->planetas->jugadores_id != null) {
+                        $errores .= " El planeta a colonizar ya tiene dueño ";
+                        $hayerror=true;
+                    }
+                    if (!Astrometria::colonizarZonaPosible($destino->planetas->id)) {
+                        $errores .= "El planeta a colonizar está en el rango de colonización de otro jugador ";
+                        $hayerror=true;
+                    }
+                    if ($tipodestino != "planeta") {
+                        $errores .= "Sólo se pueden colonizar cuerpos tipo planeta ";
+                        $hayerror=true;
                     }
 
-                    if (!strlen($errores)>3 && $tipodestino == "planeta" && $destino->planetas->jugadores_id == null) {
-                        if (!Astrometria::colonizarZonaPosible($destino->planetas->id)) {
-                            $destinoAlcanzado = true;
-                            $errores = "El planeta a colonizar está en el rango de colonización de otro jugador ";
-                        } else if ($destino->planetas->tipo != "planeta" && $destino->planetas->imagen < 70) {
-                            $destinoAlcanzado = true;
-                            $errores = "Sólo se pueden colonizar cuerpos tipo planeta ";
-                        } else {
-                            //$destino['mision'] = "Transportar";
-                            $guardarCambiosColonizacion = true;
-                        }
-                    } else {
-                        //Log::info("tipodestino ".$tipodestino." dueño ".$destino->planetas->jugadores_id);
+                    if (!$hayerror) {
+                        $guardarCambiosColonizacion = true;
+                    }  else {
                         $destinoAlcanzado = true;
-                        $errores = "El planeta a colonizar ya tiene dueño ";
                     }
+
+                    //Log::info("destinoAlcanzado ".$destinoAlcanzado." ".$guardarCambiosColonizacion." errores: ".$errores);
                     break;
                 case "Recolectar":
                     $puedoRecolectar=false;
@@ -902,6 +914,7 @@ destino 0 con lo que sale
                     $destinoAlcanzado = true;
                     $recursosEnDestino = Flotas::recursosADestino($recursosFlota, $destino->recursos);
                     $recursosEnDestino->save();
+                    //Log::info("recursos result ");Log::info($recursosFlota);Log::info($recursosDestino);
                 }
 
                 if ($guardarCambiosTransferir) {
@@ -927,11 +940,13 @@ destino 0 con lo que sale
 
 
                 if ($guardarCambiosColonizacion) {
+                    //Log::info($destino->planetas);
                     $planetaColonizar = $destino->planetas;
                     $planetaColonizar['jugadores_id'] = $estaFlota->jugadores_id;
                     $planetaColonizar['nombre'] = "Nueva";
                     $planetaColonizar['creacion'] = time();
                     $planetaColonizar->save();
+                    //Log::info("hecho ");
 
                     Recursos::initRecursos($destino->planetas->id);
 

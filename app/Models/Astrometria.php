@@ -749,20 +749,20 @@ class Astrometria extends Model
 
     public static function nombreDestino($destino, $anterior = false)
     {
+        if(!$anterior){
+            $destino=Destinos::where([["fin",$destino->init],["flota_id",$destino->flota_id]])->first();
+        }
+
         $tipodestino = Astrometria::tipoDestino($destino);
         $nombreDestino = "";
         // Log::info($destino);
         switch ($tipodestino) {
             case "planeta":
-                if ($anterior) {
-                    $nombreDestino = $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ")";
+                $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
+                if ($planetaAnterior != null) {
+                    $nombreDestino = $planetaAnterior->nombre . " (" . $planetaAnterior->estrella . "x" . $planetaAnterior-> orbita . ")";
                 } else {
-                    $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
-                    if ($planetaAnterior != null) {
-                        $nombreDestino = $planetaAnterior->nombre . " (" . $planetaAnterior->estrella . "x" . $planetaAnterior-> orbita . ")";
-                    } else {
-                        $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
-                    }
+                    $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
                 }
                 break;
             case "enrecoleccion":
@@ -775,11 +775,7 @@ class Astrometria extends Model
                 $nombreDestino = $destino->enVuelo["publico"];
                 break;
             default:
-                if ($anterior) {
-                    $nombreDestino = $destino['estrella'] . "x" . $destino['orbita'];
-                } else {
-                    $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
-                }
+                $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
                 break;
         }
 

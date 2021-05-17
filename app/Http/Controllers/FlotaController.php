@@ -906,6 +906,7 @@ class FlotaController extends Controller
         // Log::info("flota");Log::info($flota);
         // Log::info("destinos");Log::info($destinos);
 
+        $destinoSalida = new destinos();
 
         $errores = "";
 
@@ -933,10 +934,12 @@ class FlotaController extends Controller
                 $flotaOrigen = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)
                     ->where([['id', $flotaid]])
                     ->first();
+                $destinoSalida->en_recoleccion_id=$flotaid;
             } else if ($tipoflota == "enorbita") {
                 $flotaOrigen = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)
                     ->where([['id', $flotaid]])
                     ->first();
+                $destinoSalida->en_orbita_id=$flotaid;
             }
 
             if ($flota == null && empty($flota)) {
@@ -945,6 +948,7 @@ class FlotaController extends Controller
             $navesEnPlaneta = $flotaOrigen->diseniosEnFlota;
         } else {
             $navesEnPlaneta = $planetaActual->estacionadas;
+            $destinoSalida->planetas_id = $planetaActual->id;
         }
         //Log::info("flotaOrigen ".$flotaOrigen);
         //Log::info("navesEnPlaneta ".$navesEnPlaneta);
@@ -1073,10 +1077,14 @@ class FlotaController extends Controller
 
             /// destino 0 de salida
             $dest = 0;
-            $destino = new destinos();
+            $destino = $destinoSalida;
+
             $destino->porcentVel = 100;
             $destino->mision = 'Salida';
             $destino->visitado = true;
+
+            //$result = Flotas::destinoTipoId($destino, $destinos[0]);
+            //$destino = $result[0];
 
             $destino->initestrella = 1 * $destinos[0]['estrella'];
             $destino->initorbita = 1 * $destinos[0]['orbita'];
@@ -1186,7 +1194,6 @@ class FlotaController extends Controller
                     $vectory = (1 * $destinos[$dest]['fincoordy'] - 1 * $destinos[$destAnt]['fincoordy']) / $duracion;
 
                     for ($tiempoPto = 0; $tiempoPto < $duracion / $tiempoPuntosFlotas; $tiempoPto++) {
-
                         $add_time = strtotime($Tinit) + ($tiempoPto * $tiempoPuntosFlotas);
                         $TfinPto = date('Y-m-d H:i:s', $add_time);
 
