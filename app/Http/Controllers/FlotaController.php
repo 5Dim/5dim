@@ -557,7 +557,7 @@ class FlotaController extends Controller
         ));
     }
 
-    public function editarFlota($estrella = "", $orbita = "", $nombreflota = "", $tipoflota = "envuelo", $tab = 'envuelo-tab')
+    public function editarFlota($estrella = "", $orbita = "", $nombreflota = "", $tipoflota = "envuelo", $tab = 'enviar-tab')
     {
         extract($this->recursos());
 

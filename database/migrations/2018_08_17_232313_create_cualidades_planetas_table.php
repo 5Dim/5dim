@@ -20,8 +20,6 @@ class CreateCualidadesPlanetasTable extends Migration
             $table->unsignedTinyInteger('gas');
             $table->unsignedTinyInteger('plastico');
             $table->unsignedTinyInteger('ceramica');
-            $table->unsignedMediumInteger('eje_x');
-            $table->unsignedMediumInteger('eje_y');
             $table->unsignedTinyInteger('enfriamiento');
             $table->unsignedBigInteger('planetas_id')->unsigned();
             $table->foreign('planetas_id')->references('id')->on('planetas');
