@@ -820,8 +820,8 @@ destino 0 con lo que sale
                 case "Colonizar":
 
                     //valorar la constante piminimoscolonizar
-                    $piminimoscolonizar = Constantes::where('codigo', 'piminimoscolonizar')->first();
-                    $adminImperioPuntos = Constantes::where('codigo', 'adminImperioPuntos')->first();
+                    $piminimoscolonizar = Constantes::where('codigo', 'piminimoscolonizar')->first()->valor;
+                    $adminImperioPuntos = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
 
                     $nivelImperio = Investigaciones::where([['codigo', 'invImperio'],["jugadores_id",$estaFlota->jugadores_id]])->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
                     $consImperio = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
