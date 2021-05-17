@@ -823,7 +823,7 @@ destino 0 con lo que sale
                     $piminimoscolonizar = Constantes::where('codigo', 'piminimoscolonizar')->first();
                     $adminImperioPuntos = Constantes::where('codigo', 'adminImperioPuntos')->first();
 
-                    $nivelImperio = Investigaciones::where([['codigo', 'invImperio'],["jugador_id",$estaFlota->jugadores_id]])->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+                    $nivelImperio = Investigaciones::where([['codigo', 'invImperio'],["jugadores_id",$estaFlota->jugadores_id]])->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
                     $consImperio = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
                     $puntosIMperioLibres=$nivelImperio * $consImperio + 10 - count($estaFlota->jugadores->planetas) * 10 ;
                     //Log::info("puntosIMperioLibres ".$puntosIMperioLibres);
