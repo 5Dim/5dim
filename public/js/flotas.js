@@ -36,6 +36,7 @@ function CargarFlotaEditada() {
         nombreorigen = "Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
         EsconderPorId("listaPrioridades0");
         $("#botonModificar").attr("disabled", true);
+        recursosDest[0]["personal"]-=personalOcupado;
     } else {
         //flota
         mostrarTab("enviar-tab")

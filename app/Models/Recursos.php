@@ -204,6 +204,20 @@ class Recursos extends Model
 
         //Guardamos los cambios
         $recursos->save();
+
+        // Personal ocupado
+        $personalOcupado = 0;
+        $colaConstruccion = EnConstrucciones::colaConstrucciones($planetaActual);
+        $colaInvestigacion = EnInvestigaciones::colaInvestigaciones($planetaActual);
+        foreach ($colaConstruccion as $cola) {
+            $personalOcupado += $cola->personal;
+        }
+        foreach ($colaInvestigacion as $cola) {
+            if ($cola->planetas->id == session()->get('planetas_id')) {
+                $personalOcupado += $cola->personal;
+            }
+        }
+        return $personalOcupado;
     }
 
     public static function initRecursos($idPlaneta)

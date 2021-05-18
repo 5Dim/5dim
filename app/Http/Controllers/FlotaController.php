@@ -946,9 +946,12 @@ class FlotaController extends Controller
                 $errores = "No se encuentra la flota a modificar";
             }
             $navesEnPlaneta = $flotaOrigen->diseniosEnFlota;
+
+            $recursos=$flotaOrigen->recursosEnFlota;
         } else {
             $navesEnPlaneta = $planetaActual->estacionadas;
             $destinoSalida->planetas_id = $planetaActual->id;
+            $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
         }
         //Log::info("flotaOrigen ".$flotaOrigen);
         //Log::info("navesEnPlaneta ".$navesEnPlaneta);
@@ -1032,7 +1035,7 @@ class FlotaController extends Controller
             $cargaDest = $valoresValidos[0];
             $prioridades = $valoresValidos[1];
 
-            $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
+
             $resultValidar = Flotas::validacionesFlota($destinos, $valFlotaT, $errores, $tablaHangares, $recursos, $cargaDest, $cantidadDestinos,$flotaid);
 
             //Log::info($resultValidar);

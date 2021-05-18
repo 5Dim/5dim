@@ -112,6 +112,60 @@ class Flotas extends Model
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $cargaDestT = 0;
 
+        $dest=0;
+        /// Carga en origen
+        //Log::info($cargaDest[$dest]);
+        //Log::info($recursos->personal." ".$cargaDest[$dest]['personal']);
+        if($flotaid==null){ //salimos de planeta
+            $personalOcupado=Recursos::calcularRecursos($recursos->planetas_id);//recalculamos el planeta, por si acaso
+            //Log::info($recursos->personal-$personalOcupado." ".$cargaDest[$dest]['personal']);
+            if ($recursos->personal-$personalOcupado < $cargaDest[$dest]['personal']) {
+                $errores = " No hay tanta cantidad en origen: personal ";
+            }
+        } else {
+            if ($recursos->personal < $cargaDest[$dest]['personal']) {
+                $errores = " No hay tanta cantidad en origen: personal ";
+            }
+        }
+        if ($recursos->mineral < $cargaDest[$dest]['mineral']) {
+            $errores = " No hay tanta cantidad en origen: mineral ";
+        }
+        if ($recursos->cristal < $cargaDest[$dest]['cristal']) {
+            $errores = " No hay tanta cantidad en origen: cristal ";
+        }
+        if ($recursos->gas < $cargaDest[$dest]['gas']) {
+            $errores = " No hay tanta cantidad en origen: gas ";
+        }
+        if ($recursos->plastico < $cargaDest[$dest]['plastico']) {
+            $errores = " No hay tanta cantidad en origen: plastico ";
+        }
+        if ($recursos->ceramica < $cargaDest[$dest]['ceramica']) {
+            $errores = " No hay tanta cantidad en origen: ceramica ";
+        }
+        if ($recursos->liquido < $cargaDest[$dest]['liquido']) {
+            $errores = " No hay tanta cantidad en origen: liquido ";
+        }
+        if ($recursos->micros < $cargaDest[$dest]['micros']) {
+            $errores = " No hay tanta cantidad en origen: micros ";
+        }
+        if($flotaid==null){ //salimos de planeta
+            if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']) { //$valFlotaT['fuel']
+                $requiere=$cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT'];
+                $errores = " No hay tanto fuel "." (".$requiere.")";
+            }
+        }
+
+        if ($recursos->ma < $cargaDest[$dest]['ma']) {
+            $errores = " No hay tanta cantidad en origen: ma ";
+        }
+        if ($recursos->municion < $cargaDest[$dest]['municion']) {
+            $errores = " No hay tanta cantidad en origen: municion";
+        }
+        if ($recursos->creditos < $cargaDest[$dest]['creditos']) {
+            $errores = " No hay tanta cantidad en origen: creditos";
+        }
+
+
         for ($dest = 1; $dest < $cantidadDestinos; $dest++) {
             //destino viable
             //Log::info($destinos[$dest]['viable']);
@@ -177,52 +231,9 @@ class Flotas extends Model
             // Carga total
             //Log::info("carga ".$cargaDestT." ". $valFlotaT['carga']);
             if (strlen($errores) < 1 && $cargaDestT > 1 * $valFlotaT['carga']) {
-                $errores = " Seleccionada mas carga de la capacidad";
+                $errores = " Seleccionada mas carga de la capacidad disponible";
             }
 
-            /// Carga en origen
-            if (strlen($errores) < 1 &&  $dest == 1) {
-                if ($recursos->personal < $cargaDest[$dest]['personal']) {
-                    $errores = " No hay tanta carga: personal destino " . $dest;
-                }
-                if ($recursos->mineral < $cargaDest[$dest]['mineral']) {
-                    $errores = " No hay tanta carga: mineral destino " . $dest;
-                }
-                if ($recursos->cristal < $cargaDest[$dest]['cristal']) {
-                    $errores = " No hay tanta carga: cristal destino " . $dest;
-                }
-                if ($recursos->gas < $cargaDest[$dest]['gas']) {
-                    $errores = " No hay tanta carga: gas destino " . $dest;
-                }
-                if ($recursos->plastico < $cargaDest[$dest]['plastico']) {
-                    $errores = " No hay tanta carga: plastico destino " . $dest;
-                }
-                if ($recursos->ceramica < $cargaDest[$dest]['ceramica']) {
-                    $errores = " No hay tanta carga: ceramica destino " . $dest;
-                }
-                if ($recursos->liquido < $cargaDest[$dest]['liquido']) {
-                    $errores = " No hay tanta carga: liquido destino " . $dest;
-                }
-                if ($recursos->micros < $cargaDest[$dest]['micros']) {
-                    $errores = " No hay tanta carga: micros destino " . $dest;
-                }
-                if($flotaid==null){ //salimos de planeta
-                    if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']) { //$valFlotaT['fuel']
-                        $requiere=$cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT'];
-                        $errores = " No hay tanto fuel destino " . $dest." (".$requiere.")";
-                    }
-                }
-
-                if ($recursos->ma < $cargaDest[$dest]['ma']) {
-                    $errores = " No hay tanta carga: ma destino " . $dest;
-                }
-                if ($recursos->municion < $cargaDest[$dest]['municion']) {
-                    $errores = " No hay tanta carga: municion";
-                }
-                if ($recursos->creditos < $cargaDest[$dest]['creditos']) {
-                    $errores = " No hay tanta carga: creditos";
-                }
-            }
         }
 
         if (strlen($errores) < 1 && $destinosViables < 1) {
@@ -497,7 +508,7 @@ class Flotas extends Model
         $errores = "";
         $flotax = EnVuelo::where('publico', $nombreflota)->where('jugadores_id', $jugadoryAlianza)->first();
         if ($flotax != null) {
-            //try {
+            try {
                 $ajusteMapaBase = 35; //ajuste 0,0 con mapa
                 $ajusteMapaFactor = 7; //ajuste escala mapa
 
@@ -605,7 +616,7 @@ class Flotas extends Model
                 } else {
                     $errores = "La flota ya viene de regreso o no existe destino de regreso";
                 }
-                try {
+               // try {
             } catch (Exception $e) {
                 DB::rollBack();
                 Log::info("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
@@ -625,7 +636,8 @@ destino 0 con lo que sale
 
 */
 
-    ///////////////  recepción de flotas   ////////////////////////
+    ///////////////  recepción de flotas   ///////////////////////////////////////////////////////////////
+
     public static function llegadaFlotas()
     {
         $constantesU = Constantes::where('tipo', 'universo')->get();
@@ -678,7 +690,7 @@ destino 0 con lo que sale
 
             switch ($destino->mision) {
                 case "Transportar":
-
+                    $personalOcupado=0;
                     switch ($tipodestino) {
                         case "planeta":
                             //Log::info("planeta destino".$destino->planeta);
@@ -686,7 +698,7 @@ destino 0 con lo que sale
                             if ($destino->planetas->jugadores_id != null) {
                                 //actualizamos sus recursos
                                 //Log::info("planeta".$destino->planeta->id);
-                                Recursos::calcularRecursos($destino->planetas->id);
+                                $personalOcupado=Recursos::calcularRecursos($destino->planetas->id);
                                 $recursosDestino = $destino->planetas->recursos;
                                 $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->planetas->jugadores_id);
 
@@ -746,6 +758,11 @@ destino 0 con lo que sale
                             //Log::info("0- difcarga borrada");
                         }
 
+                        if($recurso=="personal"){ //si hay gente construyendo no me la llevo
+                            $recursosDestino[$recurso]-=$personalOcupado;
+                           // Log::info(" personal: ".$recursosDestino[$recurso]);
+                        }
+
                         if ($difCarga < 0 && $destinoEsMio == 1 && $recursosDestino[$recurso] < -1 * $difCarga) { //no me llevo mas de lo que hay
                             $difCarga = $recursosDestino[$recurso];
                             //Log::info("1- difCarga ".$difCarga);
@@ -798,6 +815,7 @@ destino 0 con lo que sale
                             }
                         }
                     }
+                    $recursosDestino["personal"]+=$personalOcupado;
                     $destinoAlcanzado = true;
                     break;
                 case "Transferir":
