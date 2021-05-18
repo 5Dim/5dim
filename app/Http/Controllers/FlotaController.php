@@ -1033,7 +1033,7 @@ class FlotaController extends Controller
             $prioridades = $valoresValidos[1];
 
             $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-            $resultValidar = Flotas::validacionesFlota($destinos, $valFlotaT, $errores, $tablaHangares, $recursos, $cargaDest, $cantidadDestinos);
+            $resultValidar = Flotas::validacionesFlota($destinos, $valFlotaT, $errores, $tablaHangares, $recursos, $cargaDest, $cantidadDestinos,$flotaid);
 
             //Log::info($resultValidar);
 

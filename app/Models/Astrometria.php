@@ -731,18 +731,23 @@ class Astrometria extends Model
     public static function tipoDestino($destino)
     {
         //Log::info("destino ".$destino);
-        $tipodestino = null;
-        if ($destino->planetas_id != null && $destino->planetas->id != null) {
-            $tipodestino = "planeta";
-        } else if ($destino->en_orbita_id != null && $destino->enOrbita->id != null) {
-            $tipodestino = "enorbita";
-        } else if ($destino->en_recoleccion_id != null && $destino->enRecoleccion->id != null) {
-            $tipodestino = "enrecoleccion";
-        } else if ($destino->en_vuelo_id != null && $destino->enVuelo->id != null) {
-            $tipodestino = "envuelo";
-        } else { //orbita sin planeta
+        if ($destino!=null){
+            $tipodestino = null;
+            if ($destino->planetas_id != null && $destino->planetas->id != null) {
+                $tipodestino = "planeta";
+            } else if ($destino->en_orbita_id != null && $destino->enOrbita->id != null) {
+                $tipodestino = "enorbita";
+            } else if ($destino->en_recoleccion_id != null && $destino->enRecoleccion->id != null) {
+                $tipodestino = "enrecoleccion";
+            } else if ($destino->en_vuelo_id != null && $destino->enVuelo->id != null) {
+                $tipodestino = "envuelo";
+            } else { //orbita sin planeta
+                $tipodestino = "otro";
+            }
+        }else { //orbita sin planeta
             $tipodestino = "otro";
         }
+
 
         return $tipodestino;
     }
@@ -775,7 +780,12 @@ class Astrometria extends Model
                 $nombreDestino = $destino->enVuelo["publico"];
                 break;
             default:
-                $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
+                if ($destino!=null){
+                    $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
+                } else {
+                    $nombreDestino="Desconocido";
+                }
+
                 break;
         }
 

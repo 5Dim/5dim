@@ -104,7 +104,7 @@ class Flotas extends Model
         return [$cargaDest, $prioridades];
     }
 
-    public static function validacionesFlota($destinos, $valFlotaT, $errores, $tablaHangares, $recursos, $cargaDest, $cantidadDestinos) // calcula los valores de una flota
+    public static function validacionesFlota($destinos, $valFlotaT, $errores, $tablaHangares, $recursos, $cargaDest, $cantidadDestinos,$flotaid) // calcula los valores de una flota
     {
 
         // destinos
@@ -183,34 +183,38 @@ class Flotas extends Model
             /// Carga en origen
             if (strlen($errores) < 1 &&  $dest == 1) {
                 if ($recursos->personal < $cargaDest[$dest]['personal']) {
-                    $errores = " No hay tanta carga: personal destino " . [$dest];
+                    $errores = " No hay tanta carga: personal destino " . $dest;
                 }
                 if ($recursos->mineral < $cargaDest[$dest]['mineral']) {
-                    $errores = " No hay tanta carga: mineral destino " . [$dest];
+                    $errores = " No hay tanta carga: mineral destino " . $dest;
                 }
                 if ($recursos->cristal < $cargaDest[$dest]['cristal']) {
-                    $errores = " No hay tanta carga: cristal destino " . [$dest];
+                    $errores = " No hay tanta carga: cristal destino " . $dest;
                 }
                 if ($recursos->gas < $cargaDest[$dest]['gas']) {
-                    $errores = " No hay tanta carga: gas destino " . [$dest];
+                    $errores = " No hay tanta carga: gas destino " . $dest;
                 }
                 if ($recursos->plastico < $cargaDest[$dest]['plastico']) {
-                    $errores = " No hay tanta carga: plastico destino " . [$dest];
+                    $errores = " No hay tanta carga: plastico destino " . $dest;
                 }
                 if ($recursos->ceramica < $cargaDest[$dest]['ceramica']) {
-                    $errores = " No hay tanta carga: ceramica destino " . [$dest];
+                    $errores = " No hay tanta carga: ceramica destino " . $dest;
                 }
                 if ($recursos->liquido < $cargaDest[$dest]['liquido']) {
-                    $errores = " No hay tanta carga: liquido destino " . [$dest];
+                    $errores = " No hay tanta carga: liquido destino " . $dest;
                 }
                 if ($recursos->micros < $cargaDest[$dest]['micros']) {
-                    $errores = " No hay tanta carga: micros destino " . [$dest];
+                    $errores = " No hay tanta carga: micros destino " . $dest;
                 }
-                if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']) { //$valFlotaT['fuel']
-                    $errores = " No hay tanto fuel destino " . [$dest];
+                if($flotaid==null){ //salimos de planeta
+                    if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']) { //$valFlotaT['fuel']
+                        $requiere=$cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT'];
+                        $errores = " No hay tanto fuel destino " . $dest." (".$requiere.")";
+                    }
                 }
+
                 if ($recursos->ma < $cargaDest[$dest]['ma']) {
-                    $errores = " No hay tanta carga: ma destino " . [$dest];
+                    $errores = " No hay tanta carga: ma destino " . $dest;
                 }
                 if ($recursos->municion < $cargaDest[$dest]['municion']) {
                     $errores = " No hay tanta carga: municion";
@@ -493,7 +497,7 @@ class Flotas extends Model
         $errores = "";
         $flotax = EnVuelo::where('publico', $nombreflota)->where('jugadores_id', $jugadoryAlianza)->first();
         if ($flotax != null) {
-            try {
+            //try {
                 $ajusteMapaBase = 35; //ajuste 0,0 con mapa
                 $ajusteMapaFactor = 7; //ajuste escala mapa
 
@@ -535,6 +539,7 @@ class Flotas extends Model
                     $Tfin = date('Y-m-d H:i:s', $add_time);
 
                     //Log::info("duración: ".$duracion." Tinit: ".$Tinit." destino init: ".$destino['init']." Tfin: ".$Tfin);
+                    $destinoAnt=Destinos::where([["fin",$destino->init],["flota_id",$destino->flota_id]])->first();
 
                     $destino->porcentVel = "100";
                     $destino->mision = $destino->mision_regreso;
@@ -550,6 +555,7 @@ class Flotas extends Model
                     //$destino->init = $Tinit;  //para que los mensajes se mantengan
                     $destino->fin = $Tfin;
                     $destino->flota_id = $flotax->id;
+                    //si el destino anterior era salida de mi planeta, pues regreso a él
 
                     $result = Flotas::destinoTipoId($destino, $destino);
                     $destino = $result[0];
@@ -557,6 +563,10 @@ class Flotas extends Model
                     if (strlen($errores) > 3) {
                         Log::info("coso" . $errores);
                         throw new \Exception($errores);
+                    }
+
+                    if ($destinoAnt!= null && $destinoAnt->mision=="Salida" && $destinoAnt->planetas_id!=null){
+                        $destino->planetas_id=$destinoAnt->planetas_id;
                     }
 
                     $destino->save();
@@ -595,6 +605,7 @@ class Flotas extends Model
                 } else {
                     $errores = "La flota ya viene de regreso o no existe destino de regreso";
                 }
+                try {
             } catch (Exception $e) {
                 DB::rollBack();
                 Log::info("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
@@ -813,7 +824,14 @@ destino 0 con lo que sale
 
                             break;
                         case "enrecoleccion":
-                        case "enrecoleccion":
+                            $cambioMision = true;
+                            $destino['mision'] = "Recolectar";
+                            $destino['planetas_id'] = null;
+                            $destino['en_vuelo_id'] = null;
+                            $destino['en_recoleccion_id'] = null;
+                            $destino['en_orbita_id'] = null;
+                            break;
+                        case "enorbita":
                         case "envuelo":
                             $cambioMision = true;
                             $destino['mision'] = "Orbitar";
@@ -839,18 +857,27 @@ destino 0 con lo que sale
                         $errores = " Insuficientes puntos de imperio para colonizar ";
                         $hayerror=true;
                     }
-                    if ($destino->planetas->jugadores_id != null) {
+                    if (!$hayerror && $destino->planetas->jugadores_id != null) {
                         $errores .= " El planeta a colonizar ya tiene dueño ";
                         $hayerror=true;
                     }
-                    if (!Astrometria::colonizarZonaPosible($destino->planetas->id)) {
+                    if (!$hayerror && !Astrometria::colonizarZonaPosible($destino->planetas->id)) {
                         $errores .= "El planeta a colonizar está en el rango de colonización de otro jugador ";
                         $hayerror=true;
                     }
-                    if ($tipodestino != "planeta") {
+                    if (!$hayerror && $tipodestino != "planeta") {
                         $errores .= "Sólo se pueden colonizar cuerpos tipo planeta ";
                         $hayerror=true;
                     }
+                    if (!$hayerror) {
+                        $flotaExtrayendo=EnRecoleccion::where("planetas_id",$destino->planetas->id)->first();
+                        if ($flotaExtrayendo!=null) {
+                            $errores .= "El planeta no es habitable, flota en extracción ";
+                            $hayerror=true;
+                        }
+
+                    }
+
 
                     if (!$hayerror) {
                         $guardarCambiosColonizacion = true;
@@ -943,7 +970,7 @@ destino 0 con lo que sale
                     //Log::info($destino->planetas);
                     $planetaColonizar = $destino->planetas;
                     $planetaColonizar['jugadores_id'] = $estaFlota->jugadores_id;
-                    $planetaColonizar['nombre'] = "Nueva";
+                    $planetaColonizar['nombre'] = "Nueva Colonia";
                     $planetaColonizar['creacion'] = time();
                     $planetaColonizar->save();
                     //Log::info("hecho ");

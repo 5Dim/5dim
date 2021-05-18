@@ -640,17 +640,22 @@ function Calculoespacitiempo() {
             //$("#municion" + dest).val(valFlotaT.municion);
             destAnt = dest - 1;
 
-
-
             destinos[dest].estrella = $("#sistemaDest" + dest).val();
             destinos[dest].orbita = $("#planetaDest" + dest).val();
+
 
             if (recursosDest[dest]["estrella"] == destinos[dest]["estrella"] && recursosDest[dest]["orbita"] == destinos[dest]["orbita"]){
 
             } else {
+                if(recursosEnDest==undefined){
+                    recursosEnDest=cargaDestVacia;
+                }
+                recursosEnDest[dest]=cargaDestVacia[dest];
+                /*
                 recursosArray.forEach(res => {
                     recursosEnDest[dest][res] = 0;
                 });
+                */
             }
 
             recursosDest[dest]["estrella"]=destinos[dest].estrella;
