@@ -19,8 +19,6 @@ class CualidadesPlanetas extends Model
         $planeta = Planetas::find($IdPlaneta);
         $cualidades = new CualidadesPlanetas();
         $cualidades->planetas_id = $IdPlaneta;
-        $cualidades->eje_x = 0;
-        $cualidades->eje_y = 0;
         $cualidades->enfriamiento = 0;
         if ($planeta->tipo == "planeta") {
             $max = Constantes::where('codigo', 'yacimientosMaximos')->first()->valor;

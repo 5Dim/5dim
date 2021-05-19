@@ -733,13 +733,13 @@ class Astrometria extends Model
         //Log::info("destino ".$destino);
         if ($destino!=null){
             $tipodestino = null;
-            if ($destino->planetas_id != null && $destino->planetas->id != null) {
+            if ($destino->planetas_id != null && !empty($destino->planetas) && $destino->planetas->id != null) {
                 $tipodestino = "planeta";
-            } else if ($destino->en_orbita_id != null && $destino->enOrbita->id != null) {
+            } else if ($destino->en_orbita_id != null &&!empty($destino->enOrbita) && $destino->enOrbita->id != null) {
                 $tipodestino = "enorbita";
-            } else if ($destino->en_recoleccion_id != null && $destino->enRecoleccion->id != null) {
+            } else if ($destino->en_recoleccion_id != null &&!empty($destino->enRecoleccion) && $destino->enRecoleccion->id != null) {
                 $tipodestino = "enrecoleccion";
-            } else if ($destino->en_vuelo_id != null && $destino->enVuelo->id != null) {
+            } else if ($destino->en_vuelo_id != null &&!empty($destino->enVuelo) && $destino->enVuelo->id != null) {
                 $tipodestino = "envuelo";
             } else { //orbita sin planeta
                 $tipodestino = "otro";
