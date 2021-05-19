@@ -229,7 +229,7 @@ class Flotas extends Model
 
 
             // Carga total
-            Log::info("carga ".$cargaDestT." ". $valFlotaT['carga']);
+            // Log::info("carga " . $cargaDestT . " " . $valFlotaT['carga']);
             if (strlen($errores) < 1 && $cargaDestT > 1 * $valFlotaT['carga']) {
                 $errores = " Seleccionada mas carga de la capacidad disponible";
             }
