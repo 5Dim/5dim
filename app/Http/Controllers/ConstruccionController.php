@@ -174,7 +174,7 @@ class ConstruccionController extends Controller
             $error = true;
         } elseif ($construccion->planetas->recursos->micros < $costesConstrucciones[0]->micros) {
             $error = true;
-        } elseif (($construccion->planetas->recursos->personal - $personalUsado) < $personal) {
+        } elseif (($construccion->planetas->recursos->personal - $personalUsado) < $personal && $personal > 0) {
             $error = true;
         } elseif ($accion != "Construyendo") {
             $error = true;

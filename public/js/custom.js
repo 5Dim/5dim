@@ -19,6 +19,9 @@ $.fn.select2.defaults.set("theme", "bootstrap4");
 
 function sendConstruir(id, codigo, modal) {
     var personal = $("#personal" + codigo).val();
+    if (personal == "") {
+        personal = 0;
+    }
     window.location.href = "/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
 }
 

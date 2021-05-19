@@ -23,9 +23,9 @@
                                     </button>
                                 </span>
                             </div>
-                            <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input"
+                            <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 input" min="0"
                                 placeholder="personal" value="{{ number_format(floor($personal), 0, '', '') }}"
-                                onkeyup='calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo))'>
+                                onkeyup='calculaTiempo(@json($construccion->coste), @json($velocidadConst->valor), @json($construccion->codigo))' >
                         </div>
                     </td>
                 </tr>
