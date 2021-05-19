@@ -104,7 +104,7 @@ class Flotas extends Model
         return [$cargaDest, $prioridades];
     }
 
-    public static function validacionesFlota($destinos, $valFlotaT, $errores, $tablaHangares, $recursos, $cargaDest, $cantidadDestinos,$flotaid) // calcula los valores de una flota
+    public static function validacionesFlota($destinos, $valFlotaT, $errores, $tablaHangares, $recursos, $cargaDest, $cantidadDestinos, $flotaid) // calcula los valores de una flota
     {
 
         // destinos
@@ -112,14 +112,14 @@ class Flotas extends Model
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $cargaDestT = 0;
 
-        $dest=0;
+        $dest = 0;
         /// Carga en origen
         //Log::info($cargaDest[$dest]);
         //Log::info($recursos->personal." ".$cargaDest[$dest]['personal']);
-        if($flotaid==null){ //salimos de planeta
-            $personalOcupado=Recursos::calcularRecursos($recursos->planetas_id);//recalculamos el planeta, por si acaso
+        if ($flotaid == null) { //salimos de planeta
+            $personalOcupado = Recursos::calcularRecursos($recursos->planetas_id); //recalculamos el planeta, por si acaso
             //Log::info($recursos->personal-$personalOcupado." ".$cargaDest[$dest]['personal']);
-            if ($recursos->personal-$personalOcupado < $cargaDest[$dest]['personal']) {
+            if ($recursos->personal - $personalOcupado < $cargaDest[$dest]['personal']) {
                 $errores = " No hay tanta cantidad en origen: personal ";
             }
         } else {
@@ -148,10 +148,10 @@ class Flotas extends Model
         if ($recursos->micros < $cargaDest[$dest]['micros']) {
             $errores = " No hay tanta cantidad en origen: micros ";
         }
-        if($flotaid==null){ //salimos de planeta
+        if ($flotaid == null) { //salimos de planeta
             if ($recursos->fuel < $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT']) { //$valFlotaT['fuel']
-                $requiere=$cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT'];
-                $errores = " No hay tanto fuel "." (".$requiere.")";
+                $requiere = $cargaDest[$dest]['fuel'] + $valFlotaT['fuelDestT'];
+                $errores = " No hay tanto fuel " . " (" . $requiere . ")";
             }
         }
 
@@ -229,11 +229,10 @@ class Flotas extends Model
 
 
             // Carga total
-            //Log::info("carga ".$cargaDestT." ". $valFlotaT['carga']);
+            Log::info("carga ".$cargaDestT." ". $valFlotaT['carga']);
             if (strlen($errores) < 1 && $cargaDestT > 1 * $valFlotaT['carga']) {
                 $errores = " Seleccionada mas carga de la capacidad disponible";
             }
-
         }
 
         if (strlen($errores) < 1 && $destinosViables < 1) {
@@ -331,7 +330,7 @@ class Flotas extends Model
         $oriestrella = $origen['estrella'];
         $oriorbita = $origen['orbita'];
         $destiestrella = $destino['estrella'];
-        if (isset($destino['orbita'])){
+        if (isset($destino['orbita'])) {
             $destiorbita = $destino['orbita'];
         } else {
             $destiorbita = null;;
@@ -550,7 +549,7 @@ class Flotas extends Model
                     $Tfin = date('Y-m-d H:i:s', $add_time);
 
                     //Log::info("duración: ".$duracion." Tinit: ".$Tinit." destino init: ".$destino['init']." Tfin: ".$Tfin);
-                    $destinoAnt=Destinos::where([["fin",$destino->init],["flota_id",$destino->flota_id]])->first();
+                    $destinoAnt = Destinos::where([["fin", $destino->init], ["flota_id", $destino->flota_id]])->first();
 
                     $destino->porcentVel = "100";
                     $destino->mision = $destino->mision_regreso;
@@ -576,8 +575,8 @@ class Flotas extends Model
                         throw new \Exception($errores);
                     }
 
-                    if ($destinoAnt!= null && $destinoAnt->mision=="Salida" && $destinoAnt->planetas_id!=null){
-                        $destino->planetas_id=$destinoAnt->planetas_id;
+                    if ($destinoAnt != null && $destinoAnt->mision == "Salida" && $destinoAnt->planetas_id != null) {
+                        $destino->planetas_id = $destinoAnt->planetas_id;
                     }
 
                     $destino->save();
@@ -616,7 +615,7 @@ class Flotas extends Model
                 } else {
                     $errores = "La flota ya viene de regreso o no existe destino de regreso";
                 }
-               // try {
+                // try {
             } catch (Exception $e) {
                 DB::rollBack();
                 Log::info("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
@@ -690,7 +689,7 @@ destino 0 con lo que sale
 
             switch ($destino->mision) {
                 case "Transportar":
-                    $personalOcupado=0;
+                    $personalOcupado = 0;
                     switch ($tipodestino) {
                         case "planeta":
                             //Log::info("planeta destino".$destino->planeta);
@@ -698,7 +697,7 @@ destino 0 con lo que sale
                             if ($destino->planetas->jugadores_id != null) {
                                 //actualizamos sus recursos
                                 //Log::info("planeta".$destino->planeta->id);
-                                $personalOcupado=Recursos::calcularRecursos($destino->planetas->id);
+                                $personalOcupado = Recursos::calcularRecursos($destino->planetas->id);
                                 $recursosDestino = $destino->planetas->recursos;
                                 $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->planetas->jugadores_id);
 
@@ -758,9 +757,9 @@ destino 0 con lo que sale
                             //Log::info("0- difcarga borrada");
                         }
 
-                        if($recurso=="personal"){ //si hay gente construyendo no me la llevo
-                            $recursosDestino[$recurso]-=$personalOcupado;
-                           // Log::info(" personal: ".$recursosDestino[$recurso]);
+                        if ($recurso == "personal") { //si hay gente construyendo no me la llevo
+                            $recursosDestino[$recurso] -= $personalOcupado;
+                            // Log::info(" personal: ".$recursosDestino[$recurso]);
                         }
 
                         if ($difCarga < 0 && $destinoEsMio == 1 && $recursosDestino[$recurso] < -1 * $difCarga) { //no me llevo mas de lo que hay
@@ -815,7 +814,7 @@ destino 0 con lo que sale
                             }
                         }
                     }
-                    $recursosDestino["personal"]+=$personalOcupado;
+                    $recursosDestino["personal"] += $personalOcupado;
                     $destinoAlcanzado = true;
                     break;
                 case "Transferir":
@@ -866,53 +865,52 @@ destino 0 con lo que sale
                     $piminimoscolonizar = Constantes::where('codigo', 'piminimoscolonizar')->first()->valor;
                     $adminImperioPuntos = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
 
-                    $nivelImperio = Investigaciones::where([['codigo', 'invImperio'],["jugadores_id",$estaFlota->jugadores_id]])->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
+                    $nivelImperio = Investigaciones::where([['codigo', 'invImperio'], ["jugadores_id", $estaFlota->jugadores_id]])->first()->nivel; //Nivel de imperio, se usa para calcular los puntos de imperio (PI)
                     $consImperio = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
-                    $puntosIMperioLibres=$nivelImperio * $consImperio + 10 - count($estaFlota->jugadores->planetas) * 10 ;
+                    $puntosIMperioLibres = $nivelImperio * $consImperio + 10 - count($estaFlota->jugadores->planetas) * 10;
                     //Log::info("puntosIMperioLibres ".$puntosIMperioLibres);
-                    $hayerror=false;
-                    if (($puntosIMperioLibres-$adminImperioPuntos) < $piminimoscolonizar){
+                    $hayerror = false;
+                    if (($puntosIMperioLibres - $adminImperioPuntos) < $piminimoscolonizar) {
                         $errores = " Insuficientes puntos de imperio para colonizar ";
-                        $hayerror=true;
+                        $hayerror = true;
                     }
                     if (!$hayerror && $destino->planetas->jugadores_id != null) {
                         $errores .= " El planeta a colonizar ya tiene dueño ";
-                        $hayerror=true;
+                        $hayerror = true;
                     }
                     if (!$hayerror && !Astrometria::colonizarZonaPosible($destino->planetas->id)) {
                         $errores .= "El planeta a colonizar está en el rango de colonización de otro jugador ";
-                        $hayerror=true;
+                        $hayerror = true;
                     }
                     if (!$hayerror && $tipodestino != "planeta") {
                         $errores .= "Sólo se pueden colonizar cuerpos tipo planeta ";
-                        $hayerror=true;
+                        $hayerror = true;
                     }
                     if (!$hayerror) {
-                        $flotaExtrayendo=EnRecoleccion::where("planetas_id",$destino->planetas->id)->first();
-                        if ($flotaExtrayendo!=null) {
+                        $flotaExtrayendo = EnRecoleccion::where("planetas_id", $destino->planetas->id)->first();
+                        if ($flotaExtrayendo != null) {
                             $errores .= "El planeta no es habitable, flota en extracción ";
-                            $hayerror=true;
+                            $hayerror = true;
                         }
-
                     }
 
 
                     if (!$hayerror) {
                         $guardarCambiosColonizacion = true;
-                    }  else {
+                    } else {
                         $destinoAlcanzado = true;
                     }
 
                     //Log::info("destinoAlcanzado ".$destinoAlcanzado." ".$guardarCambiosColonizacion." errores: ".$errores);
                     break;
                 case "Recolectar":
-                    $puedoRecolectar=false;
+                    $puedoRecolectar = false;
                     if ($destino->planetas != null && $destino->planetas->tipo == "asteroide") {
-                        $puedoRecolectar=true;
-                    } else if ($destino->enRecoleccion!= null){ //destino es una flota que ya esta recolectando
-                        $puedoRecolectar=true;
+                        $puedoRecolectar = true;
+                    } else if ($destino->enRecoleccion != null) { //destino es una flota que ya esta recolectando
+                        $puedoRecolectar = true;
                     }
-                    if($puedoRecolectar){
+                    if ($puedoRecolectar) {
                         $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino, $anchoUniverso, $luzdemallauniverso, "recolectar");
                         if (strlen($errores) < 4) {
                             $destinoAlcanzado = true;
@@ -929,15 +927,15 @@ destino 0 con lo que sale
                     }
                     break;
                 case "Extraer":
-                    $puedoRecolectar=false;
+                    $puedoRecolectar = false;
                     //Log::info($destino->planetas);
-                    if ($destino->planetas != null && $destino->planetas->tipo == "planeta" && $destino->planetas->jugadores_id==null) {
-                        $puedoRecolectar=true;
-                    } else if ($destino->enRecoleccion!= null){ //destino es una flota que ya esta recolectando
-                        $puedoRecolectar=true;
+                    if ($destino->planetas != null && $destino->planetas->tipo == "planeta" && $destino->planetas->jugadores_id == null) {
+                        $puedoRecolectar = true;
+                    } else if ($destino->enRecoleccion != null) { //destino es una flota que ya esta recolectando
+                        $puedoRecolectar = true;
                     }
 
-                    if($puedoRecolectar){
+                    if ($puedoRecolectar) {
                         $errores = Flotas::flotaARecolectarOrbitar($estaFlota, $destino, $anchoUniverso, $luzdemallauniverso, "extraer");
                         if (strlen($errores) < 4) {
                             $destinoAlcanzado = true;
@@ -951,86 +949,86 @@ destino 0 con lo que sale
 
             DB::beginTransaction();
             //try {
-                //Log::info("guardar destinoAlcanzado: ".$destinoAlcanzado." guardarCambios ".$guardarCambios);
-                // Log::info($recursosFlota);Log::info($recursosDestino);
-                if ($guardarCambios) {
-                    $recursosFlota->save();
-                    $recursosDestino->save();
-                    $destinoAlcanzado = true;
-                    $recursosEnDestino = Flotas::recursosADestino($recursosFlota, $destino->recursos);
-                    $recursosEnDestino->save();
-                    //Log::info("recursos result ");Log::info($recursosFlota);Log::info($recursosDestino);
-                }
+            //Log::info("guardar destinoAlcanzado: ".$destinoAlcanzado." guardarCambios ".$guardarCambios);
+            // Log::info($recursosFlota);Log::info($recursosDestino);
+            if ($guardarCambios) {
+                $recursosFlota->save();
+                $recursosDestino->save();
+                $destinoAlcanzado = true;
+                $recursosEnDestino = Flotas::recursosADestino($recursosFlota, $destino->recursos);
+                $recursosEnDestino->save();
+                //Log::info("recursos result ");Log::info($recursosFlota);Log::info($recursosDestino);
+            }
 
-                if ($guardarCambiosTransferir) {
-                    $recursosDestino->save();
-                    //Log::info("Entregando Naves: ");
-                    foreach ($estaFlota->diseniosEnFlota as $diseno) {
-                        $cuantas = $diseno['enFlota'] + $diseno['enHangar'];
-                        //Log::info("cuantas= ".$cuantas);
-                        DiseniosEnFlota::updateOrCreate([
-                            'disenios_id'   => $diseno->disenios->id,
-                            'planetas_id'   => $destino->planetas->id
-                        ], [
-                            'cantidad'     => DB::raw("cantidad+" . $cuantas),
-                            'tipo'          => 'nave',
-                            'disenios_id'   => $diseno->disenios->id,
-                            'planetas_id'   => $destino->planetas->id,
-                            "en_vuelo_id"   => null
-                        ]);
+            if ($guardarCambiosTransferir) {
+                $recursosDestino->save();
+                //Log::info("Entregando Naves: ");
+                foreach ($estaFlota->diseniosEnFlota as $diseno) {
+                    $cuantas = $diseno['enFlota'] + $diseno['enHangar'];
+                    //Log::info("cuantas= ".$cuantas);
+                    DiseniosEnFlota::updateOrCreate([
+                        'disenios_id'   => $diseno->disenios->id,
+                        'planetas_id'   => $destino->planetas->id
+                    ], [
+                        'cantidad'     => DB::raw("cantidad+" . $cuantas),
+                        'tipo'          => 'nave',
+                        'disenios_id'   => $diseno->disenios->id,
+                        'planetas_id'   => $destino->planetas->id,
+                        "en_vuelo_id"   => null
+                    ]);
+                }
+                $estaFlota->delete();
+                $destinoAlcanzado = true;
+            }
+
+
+            if ($guardarCambiosColonizacion) {
+                //Log::info($destino->planetas);
+                $planetaColonizar = $destino->planetas;
+                $planetaColonizar['jugadores_id'] = $estaFlota->jugadores_id;
+                $planetaColonizar['nombre'] = "Nueva Colonia";
+                $planetaColonizar['creacion'] = time();
+                $planetaColonizar->save();
+                //Log::info("hecho ");
+
+                Recursos::initRecursos($destino->planetas->id);
+
+                $recursosDestino = $destino->planetas->recursos;
+                foreach ($recursosArray as $recurso) {
+                    $difCarga = $recursosFlota[$recurso] - $recursosQuieroCargar[$recurso]; //si es <1 me llevo cosas
+
+                    if ($difCarga < 0) {
+                        $difCarga = 0;
                     }
-                    $estaFlota->delete();
-                    $destinoAlcanzado = true;
-                }
 
-
-                if ($guardarCambiosColonizacion) {
-                    //Log::info($destino->planetas);
-                    $planetaColonizar = $destino->planetas;
-                    $planetaColonizar['jugadores_id'] = $estaFlota->jugadores_id;
-                    $planetaColonizar['nombre'] = "Nueva Colonia";
-                    $planetaColonizar['creacion'] = time();
-                    $planetaColonizar->save();
-                    //Log::info("hecho ");
-
-                    Recursos::initRecursos($destino->planetas->id);
-
-                    $recursosDestino = $destino->planetas->recursos;
-                    foreach ($recursosArray as $recurso) {
-                        $difCarga = $recursosFlota[$recurso] - $recursosQuieroCargar[$recurso]; //si es <1 me llevo cosas
-
-                        if ($difCarga < 0) {
-                            $difCarga = 0;
-                        }
-
-                        if ($difCarga > 0 && $recursosFlota[$recurso] < $difCarga) { //no dejo mas de lo que llevo
-                            $difCarga = $recursosFlota[$recurso];
-                        }
-
-                        if ($difCarga != 0) { //se hace el traspaso
-                            $recursosFlota[$recurso] -= $difCarga;
-                            $recursosDestino[$recurso] += $difCarga;
-                        }
+                    if ($difCarga > 0 && $recursosFlota[$recurso] < $difCarga) { //no dejo mas de lo que llevo
+                        $difCarga = $recursosFlota[$recurso];
                     }
-                    $recursosFlota->save();
-                    $recursosDestino->save();
-                    $destinoAlcanzado = true;
+
+                    if ($difCarga != 0) { //se hace el traspaso
+                        $recursosFlota[$recurso] -= $difCarga;
+                        $recursosDestino[$recurso] += $difCarga;
+                    }
                 }
+                $recursosFlota->save();
+                $recursosDestino->save();
+                $destinoAlcanzado = true;
+            }
 
 
-                if ($cambioMision) {
-                    $destino->save();
-                }
+            if ($cambioMision) {
+                $destino->save();
+            }
 
-                if ($destinoAlcanzado) {
-                    //Log::info("visitado ".$destino);
-                    $destino['visitado'] = 1;
-                    $destino->save();
-                }
+            if ($destinoAlcanzado) {
+                //Log::info("visitado ".$destino);
+                $destino['visitado'] = 1;
+                $destino->save();
+            }
 
-                DB::commit();
-                Log::info($errores);
-                Mensajes::enviarMensajeFlota($destino);
+            DB::commit();
+            Log::info($errores);
+            Mensajes::enviarMensajeFlota($destino);
             try {
             } catch (Exception $e) {
                 DB::rollBack();
@@ -1059,154 +1057,154 @@ destino 0 con lo que sale
         if (!empty($flotaLlega)) {
 
             try {
-            $planeta=null;
-            $ajusteMapaBase = 35; //ajuste 0,0 con mapa
-            $ajusteMapaFactor = 7; //ajuste escala mapa
-            if ($destino->planetas!=null){
-                $planeta = $destino->planetas;
-            }
-
-            //Log::info("quehacer: ".$quehacer);
-            if ($quehacer == "recolectar" || $quehacer == "extraer") {
-                //si ya existe una flota en recolección
-                if ($planeta==null){
-                    $planeta=Planetas::where("estrella", $destino->estrella)->where("orbita", $destino->orbita)->first();
+                $planeta = null;
+                $ajusteMapaBase = 35; //ajuste 0,0 con mapa
+                $ajusteMapaFactor = 7; //ajuste escala mapa
+                if ($destino->planetas != null) {
+                    $planeta = $destino->planetas;
                 }
-                //Log::info("s ".$destino->estrella." o " .$destino->orbita." p ".$planeta  );
-                $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
-                    ->where("planetas_id", $planeta->id)->first();
 
-                if ($flotaExiste != null) {
-                    Flotas::recolectarAsteroide($planeta, $flotaExiste,null);
-                }
-                //Log::info("quehacer1 ".$quehacer);
-                if($quehacer=="recolectar"){
-                    $recoleccionT = Disenios::recoleccionTotal($flotaLlega->diseniosEnFlota);
-                } else {
-                    $recoleccionT = Disenios::extraccionTotal($flotaLlega->diseniosEnFlota);
-                }
-                $columnNaves = "en_recoleccion_id";
-            } else {
-                $flotaExiste = EnOrbita::where("jugadores_id", $flotaLlega->jugadores_id)
-                    ->where("estrella", $destino->estrella)->where("orbita", $destino->orbita)->first();
-                $columnNaves = "en_orbita_id";
-                if ($planeta == null) {
-                    $planeta = new \stdClass();
-                    $planeta->estrella = $destino->estrella;
-                    $planeta->orbita = $destino->orbita;
-                    $planeta->id = null;
-                }
-                //Log::info($flotaExiste);
-            }
-
-            //Log::info($planeta->id . "jugador id " . $flotaLlega->jugadores_id . " flotaExiste " . $flotaExiste);
-            //construyendo flota
-            //$timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
-            DB::beginTransaction();
-            if (!empty($flotaExiste)) {
-
-                $flotaExiste->ataqueReal += $flotaLlega['ataqueReal'];
-                $flotaExiste->defensaReal += $flotaLlega['defensaReal'];
-                $flotaExiste->ataqueVisible += $flotaLlega['ataqueVisible'];
-                $flotaExiste->defensaVisible += $flotaLlega['defensaVisible'];
-                $flotaExiste->creditos += $flotaLlega['creditos'];
-
+                //Log::info("quehacer: ".$quehacer);
                 if ($quehacer == "recolectar" || $quehacer == "extraer") {
-                    $flotaExiste->recoleccion += $recoleccionT;
-                }
-                $flotaExiste->save();
-            } else {
-                $coordDestino = Flotas::coordenadasBySistema($planeta->estrella, $anchoUniverso, $luzdemallauniverso);
-                $coordDestx = $ajusteMapaFactor  * $coordDestino['x'] + $ajusteMapaBase;
-                $coordDesty = $ajusteMapaFactor  * $coordDestino['y'] + $ajusteMapaBase;
+                    //si ya existe una flota en recolección
+                    if ($planeta == null) {
+                        $planeta = Planetas::where("estrella", $destino->estrella)->where("orbita", $destino->orbita)->first();
+                    }
+                    //Log::info("s ".$destino->estrella." o " .$destino->orbita." p ".$planeta  );
+                    $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
+                        ->where("planetas_id", $planeta->id)->first();
 
-                if ($quehacer == "recolectar" || $quehacer == "extraer") {
-                    $flotax = new EnRecoleccion();
+                    if ($flotaExiste != null) {
+                        Flotas::recolectarAsteroide($planeta, $flotaExiste, null);
+                    }
+                    //Log::info("quehacer1 ".$quehacer);
+                    if ($quehacer == "recolectar") {
+                        $recoleccionT = Disenios::recoleccionTotal($flotaLlega->diseniosEnFlota);
+                    } else {
+                        $recoleccionT = Disenios::extraccionTotal($flotaLlega->diseniosEnFlota);
+                    }
+                    $columnNaves = "en_recoleccion_id";
                 } else {
-                    $flotax = new EnOrbita();
-                }
-                $flotax->nombre = $flotaLlega['nombre'];
-                $flotax->publico = $flotaLlega['publico'];
-                $flotax->ataqueReal = $flotaLlega['ataqueReal'];
-                $flotax->defensaReal = $flotaLlega['defensaReal'];
-                $flotax->ataqueVisible = $flotaLlega['ataqueVisible'];
-                $flotax->defensaVisible = $flotaLlega['defensaVisible'];
-                $flotax->creditos = $flotaLlega['creditos'];
-                $flotax->jugadores_id = $flotaLlega->jugadores_id;
-                $flotax->coordx = $coordDestx;
-                $flotax->coordy = $coordDesty;
-                if ($planeta->id != null) {
-                    $flotax->planetas_id = $planeta->id;
+                    $flotaExiste = EnOrbita::where("jugadores_id", $flotaLlega->jugadores_id)
+                        ->where("estrella", $destino->estrella)->where("orbita", $destino->orbita)->first();
+                    $columnNaves = "en_orbita_id";
+                    if ($planeta == null) {
+                        $planeta = new \stdClass();
+                        $planeta->estrella = $destino->estrella;
+                        $planeta->orbita = $destino->orbita;
+                        $planeta->id = null;
+                    }
+                    //Log::info($flotaExiste);
                 }
 
+                //Log::info($planeta->id . "jugador id " . $flotaLlega->jugadores_id . " flotaExiste " . $flotaExiste);
+                //construyendo flota
+                //$timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
+                DB::beginTransaction();
+                if (!empty($flotaExiste)) {
 
-                if ($quehacer == "recolectar" || $quehacer == "extraer") {
-                    $flotax->recoleccion = $recoleccionT;
+                    $flotaExiste->ataqueReal += $flotaLlega['ataqueReal'];
+                    $flotaExiste->defensaReal += $flotaLlega['defensaReal'];
+                    $flotaExiste->ataqueVisible += $flotaLlega['ataqueVisible'];
+                    $flotaExiste->defensaVisible += $flotaLlega['defensaVisible'];
+                    $flotaExiste->creditos += $flotaLlega['creditos'];
+
+                    if ($quehacer == "recolectar" || $quehacer == "extraer") {
+                        $flotaExiste->recoleccion += $recoleccionT;
+                    }
+                    $flotaExiste->save();
                 } else {
-                    $flotax->estrella = $planeta->estrella;
-                    $flotax->orbita = $planeta->orbita;
+                    $coordDestino = Flotas::coordenadasBySistema($planeta->estrella, $anchoUniverso, $luzdemallauniverso);
+                    $coordDestx = $ajusteMapaFactor  * $coordDestino['x'] + $ajusteMapaBase;
+                    $coordDesty = $ajusteMapaFactor  * $coordDestino['y'] + $ajusteMapaBase;
+
+                    if ($quehacer == "recolectar" || $quehacer == "extraer") {
+                        $flotax = new EnRecoleccion();
+                    } else {
+                        $flotax = new EnOrbita();
+                    }
+                    $flotax->nombre = $flotaLlega['nombre'];
+                    $flotax->publico = $flotaLlega['publico'];
+                    $flotax->ataqueReal = $flotaLlega['ataqueReal'];
+                    $flotax->defensaReal = $flotaLlega['defensaReal'];
+                    $flotax->ataqueVisible = $flotaLlega['ataqueVisible'];
+                    $flotax->defensaVisible = $flotaLlega['defensaVisible'];
+                    $flotax->creditos = $flotaLlega['creditos'];
+                    $flotax->jugadores_id = $flotaLlega->jugadores_id;
+                    $flotax->coordx = $coordDestx;
+                    $flotax->coordy = $coordDesty;
+                    if ($planeta->id != null) {
+                        $flotax->planetas_id = $planeta->id;
+                    }
+
+
+                    if ($quehacer == "recolectar" || $quehacer == "extraer") {
+                        $flotax->recoleccion = $recoleccionT;
+                    } else {
+                        $flotax->estrella = $planeta->estrella;
+                        $flotax->orbita = $planeta->orbita;
+                    }
+                    $flotax->save();
+                    //Log::info($flotax);Log::info(" hh ");
                 }
-                $flotax->save();
                 //Log::info($flotax);Log::info(" hh ");
-            }
-            //Log::info($flotax);Log::info(" hh ");
 
-            // naves a flota
-            if ($flotaExiste != null) {
-                foreach ($flotaLlega->diseniosEnFlota as $diseno) {
+                // naves a flota
+                if ($flotaExiste != null) {
+                    foreach ($flotaLlega->diseniosEnFlota as $diseno) {
+                        DiseniosEnFlota::updateOrCreate([
+                            'disenios_id'   => $diseno->disenios->id,
+                            $columnNaves   => $flotaExiste->id,
+                        ], [
+                            'enFlota'     => DB::raw("enFlota+" . $diseno['enFlota']),
+                            'enHangar'     => DB::raw("enHangar+" . $diseno['enHangar']),
+                            'tipo'          => 'nave',
+                            'disenios_id'   => $diseno->disenios->id,
+                            $columnNaves   => $flotaExiste->id,
+                            "en_vuelo_id"   => null
+                        ]);
+                    }
+                } else {
+                    //Log::info($flotaLlega->id);  Log::info($flotax->id); Log::info($columnNaves);
                     DiseniosEnFlota::updateOrCreate([
-                        'disenios_id'   => $diseno->disenios->id,
-                        $columnNaves   => $flotaExiste->id,
+                        'en_vuelo_id'   => $flotaLlega->id,
                     ], [
-                        'enFlota'     => DB::raw("enFlota+" . $diseno['enFlota']),
-                        'enHangar'     => DB::raw("enHangar+" . $diseno['enHangar']),
-                        'tipo'          => 'nave',
-                        'disenios_id'   => $diseno->disenios->id,
-                        $columnNaves   => $flotaExiste->id,
+                        $columnNaves   => $flotax->id,
+                        "en_vuelo_id"   => null
+                    ]);
+                    // DiseniosEnFlota::where("en_vuelo_id", $flotaLlega->id)->update(["en_recoleccion_id" =>  DB::raw($flotax->id), "en_vuelo_id" => DB::raw('null')]);
+
+
+                    PrioridadesEnFlota::updateOrCreate([
+                        'destinos_id'   => $flotaLlega->id,
+                    ], [
+                        $columnNaves   => $flotax->id,
+                        "destinos_id"   => null
+                    ]);
+                }
+
+                //recursos
+                if ($flotaExiste != null) {
+                    $recursosLlega = $flotaLlega->recursosEnFlota;
+                    $recursosExiste = $flotaExiste->recursosEnFlota;
+
+                    foreach ($recursosArray as $recurso) {
+                        //Log::info("recursos ".$recursosExiste[$recurso]." ".$recursosLlega[$recurso]);
+                        $recursosExiste[$recurso] += $recursosLlega[$recurso];
+                        //Log::info("recursos ".$recursosExiste[$recurso]." ".$recursosLlega[$recurso]);
+                    }
+                    $recursosExiste->save();
+                } else {
+                    RecursosEnFlota::updateOrCreate([
+                        'en_vuelo_id'   => $flotaLlega->id,
+                    ], [
+                        $columnNaves   => $flotax->id,
                         "en_vuelo_id"   => null
                     ]);
                 }
-            } else {
-                //Log::info($flotaLlega->id);  Log::info($flotax->id); Log::info($columnNaves);
-                DiseniosEnFlota::updateOrCreate([
-                    'en_vuelo_id'   => $flotaLlega->id,
-                ], [
-                    $columnNaves   => $flotax->id,
-                    "en_vuelo_id"   => null
-                ]);
-                // DiseniosEnFlota::where("en_vuelo_id", $flotaLlega->id)->update(["en_recoleccion_id" =>  DB::raw($flotax->id), "en_vuelo_id" => DB::raw('null')]);
 
-
-                PrioridadesEnFlota::updateOrCreate([
-                    'destinos_id'   => $flotaLlega->id,
-                ], [
-                    $columnNaves   => $flotax->id,
-                    "destinos_id"   => null
-                ]);
-            }
-
-            //recursos
-            if ($flotaExiste != null) {
-                $recursosLlega = $flotaLlega->recursosEnFlota;
-                $recursosExiste = $flotaExiste->recursosEnFlota;
-
-                foreach ($recursosArray as $recurso) {
-                    //Log::info("recursos ".$recursosExiste[$recurso]." ".$recursosLlega[$recurso]);
-                    $recursosExiste[$recurso] += $recursosLlega[$recurso];
-                    //Log::info("recursos ".$recursosExiste[$recurso]." ".$recursosLlega[$recurso]);
-                }
-                $recursosExiste->save();
-            } else {
-                RecursosEnFlota::updateOrCreate([
-                    'en_vuelo_id'   => $flotaLlega->id,
-                ], [
-                    $columnNaves   => $flotax->id,
-                    "en_vuelo_id"   => null
-                ]);
-            }
-
-            $flotaLlega->delete();
-            //try {
+                $flotaLlega->delete();
+                //try {
                 DB::commit();
                 //Log::info("Enviada");
             } catch (Exception $e) {
@@ -1240,10 +1238,10 @@ destino 0 con lo que sale
         $fechaCalculo = ($fechaFin - $fechaInicio) / 3600;
         // Log::info(" fechaCalculo " . $fechaCalculo);
         //Log::info("quehacer2 ".$quehacer);
-        $capacidadRecoleccion =0;
-        if($planeta->tipo=="asteroide"){
+        $capacidadRecoleccion = 0;
+        if ($planeta->tipo == "asteroide") {
             $capacidadRecoleccion = Disenios::recoleccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
-        } else if($planeta->tipo=="planeta"){
+        } else if ($planeta->tipo == "planeta") {
             $capacidadRecoleccion = Disenios::extraccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
         }
 
