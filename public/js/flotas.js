@@ -644,24 +644,17 @@ function Calculoespacitiempo() {
             destinos[dest].estrella = $("#sistemaDest" + dest).val();
             destinos[dest].orbita = $("#planetaDest" + dest).val();
 
-
             if (recursosDest[dest]["estrella"] == destinos[dest]["estrella"] && recursosDest[dest]["orbita"] == destinos[dest]["orbita"]){
 
             } else {
                 if(recursosEnDest==undefined){
-                    recursosEnDest=cargaDestVacia;
+                    recursosEnDest=JSON.parse(JSON.stringify(cargaDestVacia));
                 }
-                recursosEnDest[dest]=cargaDestVacia[dest];
-                /*
-                recursosArray.forEach(res => {
-                    recursosEnDest[dest][res] = 0;
-                });
-                */
+                recursosEnDest[dest]=JSON.parse(JSON.stringify(cargaDestVacia[dest]));
             }
 
             recursosDest[dest]["estrella"]=destinos[dest].estrella;
             recursosDest[dest]["orbita"]=destinos[dest].orbita;
-
 
             var distancia = DistanciaUniverso(destinos[destAnt], destinos[dest]);
             if (isNaN(distancia) || destinos[dest].estrella == "") {
@@ -762,7 +755,7 @@ function TraerRecursos(sistema, planeta, dest) {
             url: "/juego/flotas/traerRecursos/" + sistema + "/" + planeta,
             success: function(data) {
                 if(recursosEnDest[dest]==undefined || data.recursos==undefined){
-                    recursosEnDest[dest]=cargaDestVacia[dest];
+                    recursosEnDest[dest]=JSON.parse(JSON.stringify(cargaDestVacia[dest]));
                 }
                 recursosArray.forEach(res => {
                     recursosEnDest[dest][res] = 1*data.recursos[res];
@@ -910,7 +903,7 @@ function NaveGeneralAHangar(canti) {
 
 function AddValoresVacios(){
     //for (n = 1; n < cantidadDestinos + 1; n++) {
-        cargaDest=cargaDestVacia;
+        cargaDest=JSON.parse(JSON.stringify(cargaDestVacia));
         prioridades=prioridadesVacia;
         destinos=destinosVacia;
 }

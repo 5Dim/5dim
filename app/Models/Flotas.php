@@ -229,7 +229,7 @@ class Flotas extends Model
 
 
             // Carga total
-            // Log::info("carga " . $cargaDestT . " " . $valFlotaT['carga']);
+             Log::info("carga " . $cargaDestT . " " . $valFlotaT['carga']);
             if (strlen($errores) < 1 && $cargaDestT > 1 * $valFlotaT['carga']) {
                 $errores = " Seleccionada mas carga de la capacidad disponible";
             }
@@ -870,11 +870,15 @@ destino 0 con lo que sale
                     $puntosIMperioLibres = $nivelImperio * $consImperio + 10 - count($estaFlota->jugadores->planetas) * 10;
                     //Log::info("puntosIMperioLibres ".$puntosIMperioLibres);
                     $hayerror = false;
-                    if (($puntosIMperioLibres - $adminImperioPuntos) < $piminimoscolonizar) {
+                    if (empty($destino->planetas)) {
+                        $errores .= " No se encuentra el planeta";
+                        $hayerror = true;
+                    }
+                    if (!$hayerror && ($puntosIMperioLibres - $adminImperioPuntos) < $piminimoscolonizar) {
                         $errores = " Insuficientes puntos de imperio para colonizar ";
                         $hayerror = true;
                     }
-                    if (!$hayerror && !empty($destino->planetas) && !empty($destino->planetas->jugadoes_id) ) {
+                    if (!$hayerror && !empty($destino->planetas->jugadoes_id) ) {
                         $errores .= " El planeta a colonizar ya tiene dueño ";
                         $hayerror = true;
                     }
