@@ -874,7 +874,7 @@ destino 0 con lo que sale
                         $errores = " Insuficientes puntos de imperio para colonizar ";
                         $hayerror = true;
                     }
-                    if (!$hayerror && $destino->planetas->jugadores_id != null) {
+                    if (!$hayerror && !empty($destino->planetas) && !empty($destino->planetas->jugadoes_id) ) {
                         $errores .= " El planeta a colonizar ya tiene dueño ";
                         $hayerror = true;
                     }
