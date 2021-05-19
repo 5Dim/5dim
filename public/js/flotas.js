@@ -39,7 +39,7 @@ function CargarFlotaEditada() {
         recursosDest[0]["personal"]-=personalOcupado;
     } else {
         //flota
-        mostrarTab("enviar-tab")
+        // mostrarTab("enviar-tab")
         enviarEnOrbita=true;
         if (destinos[0]["tipoflota"] == undefined) {
             EsconderPorId("listaPrioridades0");

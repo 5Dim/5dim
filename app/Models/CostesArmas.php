@@ -813,7 +813,7 @@ class CostesArmas extends Model
         $coste->personal = $fccc * 0; //11
         $coste->masa = $fccc * 45000;    //12
         $coste->energia = 0 * $fccc;
-        $coste->tiempo = $fccc * 1000;       //14
+        $coste->tiempo = $fccc * 500;       //14
         $coste->mantenimiento = $fman * $fccc * 2;
         $coste->defensa = 0;
         $coste->ataque = 0;
@@ -841,7 +841,7 @@ class CostesArmas extends Model
         $coste->personal = $fccc * 0; //11
         $coste->masa = $fccc * 90000;    //12
         $coste->energia = 0 * $fccc;
-        $coste->tiempo = $fccc * 5000;       //14
+        $coste->tiempo = $fccc * 2500;       //14
         $coste->mantenimiento = $fman * $fccc * 4;
         $coste->defensa = 0;
         $coste->ataque = 0;
@@ -869,7 +869,7 @@ class CostesArmas extends Model
         $coste->personal = $fccc * 0; //11
         $coste->masa = $fccc * 450000;    //12
         $coste->energia = 0 * $fccc;
-        $coste->tiempo = $fccc * 10000;       //14
+        $coste->tiempo = $fccc * 5000;       //14
         $coste->mantenimiento = $fman * $fccc * 15;
         $coste->defensa = 0;
         $coste->ataque = 0;
@@ -897,7 +897,7 @@ class CostesArmas extends Model
         $coste->personal = $fccc * 0; //11
         $coste->masa = $fccc * 1125000;    //12
         $coste->energia = 0 * $fccc;
-        $coste->tiempo = $fccc * 12000;       //14
+        $coste->tiempo = $fccc * 6000;       //14
         $coste->mantenimiento = $fman * $fccc * 40;
         $coste->defensa = 0;
         $coste->ataque = 0;
@@ -925,7 +925,7 @@ class CostesArmas extends Model
         $coste->personal = $fccc * 0; //11
         $coste->masa = $fccc * 2250000;    //12
         $coste->energia = 0 * $fccc;
-        $coste->tiempo = $fccc * 20000;       //14
+        $coste->tiempo = $fccc * 10000;       //14
         $coste->mantenimiento = $fman * $fccc * 75;
         $coste->defensa = 0;
         $coste->ataque = 0;
@@ -954,7 +954,7 @@ class CostesArmas extends Model
         $coste->personal = $fccc * 0; //11
         $coste->masa = $fccc * 6750000;    //12
         $coste->energia = 0 * $fccc;
-        $coste->tiempo = $fccc * 25000;       //14
+        $coste->tiempo = $fccc * 12500;       //14
         $coste->mantenimiento = $fman * $fccc * 130;
         $coste->defensa = 0;
         $coste->ataque = 0;

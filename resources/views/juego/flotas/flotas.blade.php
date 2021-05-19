@@ -1,4 +1,6 @@
-@extends('juego.layouts.recursosFrame') @section('content')
+@extends('juego.layouts.recursosFrame')
+
+@section('content')
     <div class="container-fluid">
         <div class="container-fluid">
             <nav>
@@ -45,25 +47,25 @@
                     @include('juego.flotas.cajitaEnRecoleccion', [
                         'envuelo' => true
                         ])
-
                 </div>
-
-
             </div>
         </div>
     </div>
 
 
     <script>
-        @if ($tab == 'envuelo-tab')
-            verFlotasEnVuelo();
-        @endif
-        @if ($tab == 'orbita-tab')
-            verFlotasEnOrbita();
-        @endif
-        @if ($tab == 'recoleccion-tab')
-            verFlotasEnRecoleccion();
-        @endif
-        mostrarTab(@json($tab));
+        $(document).ready(function() {
+            @if ($tab == 'envuelo-tab')
+                verFlotasEnVuelo();
+            @endif
+            @if ($tab == 'orbita-tab')
+                verFlotasEnOrbita();
+            @endif
+            @if ($tab == 'recoleccion-tab')
+                verFlotasEnRecoleccion();
+            @endif
+            console.log(@json($tab));
+            mostrarTab(@json($tab));
+        });
     </script>
 @endsection
