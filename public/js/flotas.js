@@ -492,8 +492,8 @@ function Avisos() {
                     hayErrorMision = true;
                 }
             }
-            if (destinos.length == destPost) {
-                if ((orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && ordenAnt == "Extraer")) {
+            if (ordenPost.length<1 && orden.length>1) {
+                if ((orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar")) {
                     errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
                 }
@@ -644,19 +644,52 @@ function Calculoespacitiempo() {
             destinos[dest].estrella = $("#sistemaDest" + dest).val();
             destinos[dest].orbita = $("#planetaDest" + dest).val();
 
+            /*
             if (recursosDest[dest]["estrella"] == destinos[dest]["estrella"] && recursosDest[dest]["orbita"] == destinos[dest]["orbita"]){
 
             } else {
                 if(recursosEnDest==undefined){
                     recursosEnDest=JSON.parse(JSON.stringify(cargaDestVacia));
                 }
+                //recursosEnDest[dest]=JSON.parse(JSON.stringify(cargaDestVacia[dest]));
+            }
+            */
+
+            if(recursosEnDest[dest]==undefined){
                 recursosEnDest[dest]=JSON.parse(JSON.stringify(cargaDestVacia[dest]));
+            }
+            if(recursosEnDest[destAnt]==undefined){
+                recursosEnDest[destAnt]=JSON.parse(JSON.stringify(cargaDestVacia[destAnt]));
             }
 
             recursosDest[dest]["estrella"]=destinos[dest].estrella;
             recursosDest[dest]["orbita"]=destinos[dest].orbita;
 
-            var distancia = DistanciaUniverso(destinos[destAnt], destinos[dest]);
+            origenCalculo=[]
+            origenCalculo.estrella=destinos[destAnt].estrella;
+            origenCalculo.orbita=destinos[destAnt].orbita;
+            destinoCalculo=[]
+            destinoCalculo.estrella=destinos[dest].estrella;
+            destinoCalculo.orbita=destinos[dest].orbita;
+
+            if (recursosEnDest[destAnt]["estrella"]!=undefined){
+                origenCalculo.estrella=recursosEnDest[destAnt]["estrella"];
+                if (destinos[destAnt].orbita== 0){
+                    origenCalculo.orbita=recursosEnDest[destAnt]["orbita"];
+                }
+            }
+
+            if (recursosEnDest[dest]["estrella"]!=undefined){
+                destinoCalculo.estrella=recursosEnDest[dest]["estrella"];
+                if (destinos[dest].orbita== 0){
+                    destinoCalculo.orbita=recursosEnDest[dest]["orbita"];
+                }
+            } else {
+                recursosEnDest[dest]=JSON.parse(JSON.stringify(cargaDestVacia[dest]));
+            }
+
+            var distancia = DistanciaUniverso(origenCalculo, destinoCalculo);
+
             if (isNaN(distancia) || destinos[dest].estrella == "") {
                 NoSeMueve(dest);
             } else {
@@ -766,9 +799,12 @@ function TraerRecursos(sistema, planeta, dest) {
                 recursosDest[dest]["orbita"]=planeta;
                 destinos[dest]["estrella"] =sistema;
                 destinos[dest]["orbita"]=planeta;
+                recursosEnDest[dest]["estrella"] = data.recursos["estrella"];
+                recursosEnDest[dest]["orbita"] = data.recursos["orbita"];
 
                 MostrarRecursos(dest);
                 Avisos();
+                Calculoespacitiempo();
             },
             error: function(xhr, textStatus, thrownError) {
                 console.log("status", xhr.status);

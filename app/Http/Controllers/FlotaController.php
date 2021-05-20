@@ -820,7 +820,7 @@ class FlotaController extends Controller
         Recursos::calcularRecursos(session()->get('planetas_id'));
 
         $tipoNombre = "planeta";
-        if (strlen($estrella) > 6 || !is_numeric($estrella)) {
+        if (strlen($estrella) > 6 || !is_numeric($estrella)) { //es flota
             $tipoNombre = "flota";
             $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
             if ($flotaDestino == null) {
@@ -831,7 +831,7 @@ class FlotaController extends Controller
         //Log::info("tipoNombre ".$tipoNombre);
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
-        if ($jugadorActual->alianzas != null) {
+        if ($jugadorActual->alianzas != null) { //estoy en alianza
             $idJugadores = Alianzas::idMiembros($jugadorActual->alianzas->id);
             if ($tipoNombre == "flota") {  // es flota
                 $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->whereIn('jugadores_id', $idJugadores)->first();
@@ -850,7 +850,7 @@ class FlotaController extends Controller
                     $recursos["imagen"] = asset('astrometria/img/sistema/planeta') . $planet->imagen . ".png";
                 }
             }
-        } else {
+        } else {  //estoy solo
             if ($tipoNombre == "flota") {  // es flota
                 $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
                 if ($flotaDestino == null) {
@@ -870,8 +870,14 @@ class FlotaController extends Controller
                 }
             }
         }
-        $recursos["estrella"] = $estrella;
-        $recursos["orbita"] = $orbita;
+        if($tipoNombre=="planeta"){
+            $recursos["estrella"] = $estrella;
+            $recursos["orbita"] = $orbita;
+        } else {
+            $recursos["estrella"] = $flotaDestino->estrella;
+            $recursos["orbita"] = $flotaDestino->orbita;
+        }
+
 
         return compact('recursos');
     }

@@ -425,11 +425,13 @@
         });
 
     $('#planetaDest{{ $numero }}').keyup(function() {
-        if ($('#planetaDest{{ $numero }}').val() * 1 > 9) {
-            $('#planetaDest{{ $numero }}').val("9");
-        }
-        if ($('#planetaDest{{ $numero }}').val() * 1 < 1) {
-            $('#planetaDest{{ $numero }}').val("1");
+        if ($('#planetaDest{{ $numero }}').val()!=undefined ){
+            if ($('#planetaDest{{ $numero }}').val() * 1 > 9) {
+                $('#planetaDest{{ $numero }}').val("9");
+            }
+            if ($('#planetaDest{{ $numero }}').val() * 1 < 1) {
+                $('#planetaDest{{ $numero }}').val("1");
+            }
         }
         Calculoespacitiempo();
     });
