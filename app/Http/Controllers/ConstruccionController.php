@@ -250,15 +250,20 @@ class ConstruccionController extends Controller
         //Calculamos el coste para calcular el tiempo
         $costeTotal = $construccion->sumarCostes($construccionesMax[0]);
 
-        //Calcular el tiempo de construccion
-        $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
+        $error = false;
 
-        //Fecha prueba
-        $fechaFin = strtotime($inicio) + $tiempo;
+        if ($personal > 0) {
+            //Calcular el tiempo de construccion
+            $tiempo = $construccion->calcularTiempoConstrucciones($costeTotal, $personal);
+
+            //Fecha prueba
+            $fechaFin = strtotime($inicio) + $tiempo;
+        } else {
+            $error = true;
+        }
 
         //Comprobamos si tiene suficiente personal
-        $error = false;
-        if ($construccion->planetas->recursos->personal < $personal && $personal > 0) {
+        if ($construccion->planetas->recursos->personal < $personal) {
             $error = true;
         } elseif ($accion != "Reciclando") {
             $error = true;
