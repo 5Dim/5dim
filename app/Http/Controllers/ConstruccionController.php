@@ -258,7 +258,7 @@ class ConstruccionController extends Controller
 
         //Comprobamos si tiene suficiente personal
         $error = false;
-        if ($construccion->planetas->recursos->personal < $personal) {
+        if ($construccion->planetas->recursos->personal < $personal && $personal > 0) {
             $error = true;
         } elseif ($accion != "Reciclando") {
             $error = true;
