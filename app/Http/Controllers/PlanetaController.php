@@ -48,7 +48,7 @@ class PlanetaController extends Controller
         array_push($factoresIndustrias, $factorMunicion);
 
         //Datos de las armas que se desbloquean por tecnologia
-        $desbloqueos = Armas::whereIn('clase', ['invIa', 'invCarga', 'invHangar', 'invRecoleccion'])->get();
+        $desbloqueos = Armas::whereIn('clase', ['invIa', 'invCarga', 'invHangar', 'invRecoleccion'])->orderBy('clase', 'asc')->orderBy('niveltec', 'asc')->get();
 
         //Datos de las producciones
         $tablaProduccion = Producciones::all();

@@ -102,7 +102,7 @@ class CostesFuselajes extends Model
             case "DIANA":
                 $Tnave = "media";
                 $factn = 1;
-                $r1cce = [$codigo, 300000, 40000, 60000, 20000, 60000, 10000, 15000, 0, 60];
+                $r1cce = [$codigo, 750000, 300000, 150000, 90000, 150000, 120000, 130000, 0, 60];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -137,7 +137,7 @@ class CostesFuselajes extends Model
             case "SETH":
                 $Tnave = "media";
                 $factn = 1;
-                $r1cce = [$codigo, 280000, 80000, 10000, 40000, 50000, 20000, 35000, 0, 150];
+                $r1cce = [$codigo, 450000, 200000, 120000, 90000, 150000, 120000, 90000, 0, 150];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -165,7 +165,7 @@ class CostesFuselajes extends Model
             case "MOIRAS":
                 $Tnave = "pesada";
                 $factn = 1;
-                $r1cce = [$codigo, 1500000, 1000000, 350000, 60000, 100000, 130000, 400000, .5, 0, 750];
+                $r1cce = [$codigo, 2000000, 800000, 400000, 200000, 600000, 250000, 200000, .5, 0, 750];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -234,8 +234,8 @@ class CostesFuselajes extends Model
 
             case "ILLITÍA":
                 $Tnave = "pesada";
-                $factn = 2.5;
-                $r1cce = [$codigo, 2000000, 300000, 150000, 500000, 200000, 200000, 35000, .8, 0, 110];
+                $factn = 1;
+                $r1cce = [$codigo, 8000000, 5000000, 2000000, 1000000, 1000000, 500000, 450000, .8, 0, 110];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -290,15 +290,15 @@ class CostesFuselajes extends Model
 
             case "BACO":
                 $Tnave = "ligera";
-                $factn = .9;
+                $factn = 1;
                 $r1cce = [$codigo, 200000, 75000, 35000, 40000, 40000, 9000, 30000, .5, 0, 30];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
             case "HÉCATE":
                 $Tnave = "pesada";
-                $factn = 2.2;
-                $r1cce = [$codigo, 3000000, 1100000, 130000, 700000, 300000, 180000, 50000, 1, 0, 190];
+                $factn = 2;
+                $r1cce = [$codigo, 6000000, 2500000, 1000000, 1900000, 1000000, 400000, 350000, 1, 0, 190];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -339,8 +339,8 @@ class CostesFuselajes extends Model
 
             case "BALDER":
                 $Tnave = "pesada";
-                $factn = .9;
-                $r1cce = [$codigo, 6000000, 3000000, 300000, 880000, 200000, 220000, 75000, 1, 0, 240];
+                $factn = 1;
+                $r1cce = [$codigo, 5000000, 2500000, 300000, 800000, 500000, 250000, 175000, 1, 0, 240];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -367,8 +367,8 @@ class CostesFuselajes extends Model
 
             case "IRIS":
                 $Tnave = "media";
-                $factn = 1.5;
-                $r1cce = [$codigo, 180000, 110000, 57000, 85000, 35000, 13000, 35000, 1, 0, 340];
+                $factn = 1;
+                $r1cce = [$codigo, 1300000, 700000, 450000, 350000, 500000, 200000, 160000, 1, 0, 340];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -402,8 +402,8 @@ class CostesFuselajes extends Model
 
             case "ULL":
                 $Tnave = "pesada";
-                $factn = .9;
-                $r1cce = [$codigo, 10500000, 4200000, 220000, 600000, 350000, 250000, 125000, 1.5, 0, 2800];
+                $factn = 1;
+                $r1cce = [$codigo, 10000000, 4000000, 200000, 1500000, 1500000, 500000, 200000, 1.5, 0, 2800];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -451,8 +451,8 @@ class CostesFuselajes extends Model
 
             case "NUNET":
                 $Tnave = "media";
-                $factn = 1.5;
-                $r1cce = [$codigo, 250000, 120000, 155000, 180000, 50000, 25000, 50000, 1, 0, 1340];
+                $factn = 1;
+                $r1cce = [$codigo, 1500000, 600000, 450000, 400000, 450000, 210000, 150000, 1, 0, 1340];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -569,7 +569,7 @@ class CostesFuselajes extends Model
                 break;
 
 
-/*
+                /*
 
                 //DEFENSAS ORBITALES  ///////////////////////////////////////////
             case "YETI":
