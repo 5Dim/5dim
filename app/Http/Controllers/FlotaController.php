@@ -835,7 +835,7 @@ class FlotaController extends Controller
             $idJugadores = Alianzas::idMiembros($jugadorActual->alianzas->id);
             if ($tipoNombre == "flota") {  // es flota
                 $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->whereIn('jugadores_id', $idJugadores)->first();
-                if ($flotaDestino == null) {
+                if (empty($flotaDestino)) {
                     $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->whereIn('jugadores_id', $idJugadores)->first();
                 }
 
@@ -853,7 +853,7 @@ class FlotaController extends Controller
         } else {  //estoy solo
             if ($tipoNombre == "flota") {  // es flota
                 $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
-                if ($flotaDestino == null) {
+                if (empty($flotaDestino)) {
                     $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->first();
                 }
 
