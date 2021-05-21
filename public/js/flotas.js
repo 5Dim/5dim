@@ -481,14 +481,13 @@ function Avisos() {
 
             soyUltimoDestino = false;
             // soy la ultima y debe ser de cierre
-            if (destPost < 4 && (ordenPost != undefined || ordenPost.length < 1)) {
-                if (ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && orden == "Extraer") {
+            if (!!destPost && !!!ordenPost) {
+                if (!!!ordenPost && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && orden == "Extraer") {
                     errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
                 }
             }
-            console.log(orden);
-            if (ordenPost.length < 1 && orden.length > 1) {
+            if (!!!ordenPost && !!orden) {
                 if (orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") {
                     errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
