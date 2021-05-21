@@ -12,9 +12,9 @@ puedoCargarRecurso = [];
 deboCargarMunicion = true;
 deboAlertasF = true;
 deboEsconderDestinosVacios = true;
-botonenviarAnulado=false;
-enviarEnOrbita=false;
-EnviarFlotaTxt="Enviar Flota";
+botonenviarAnulado = false;
+enviarEnOrbita = false;
+EnviarFlotaTxt = "Enviar Flota";
 ///   mostrarTab("enviar-tab")
 // poner boton pasar flota, boton  traspasar flota
 
@@ -36,11 +36,11 @@ function CargarFlotaEditada() {
         nombreorigen = "Origen " + destinos[0]["estrella"] + "x" + destinos[0]["orbita"];
         EsconderPorId("listaPrioridades0");
         $("#botonModificar").attr("disabled", true);
-        recursosDest[0]["personal"]-=personalOcupado;
+        recursosDest[0]["personal"] -= personalOcupado;
     } else {
         //flota
         // mostrarTab("enviar-tab")
-        enviarEnOrbita=true;
+        enviarEnOrbita = true;
         if (destinos[0]["tipoflota"] == undefined) {
             EsconderPorId("listaPrioridades0");
         }
@@ -49,10 +49,10 @@ function CargarFlotaEditada() {
         puedoCargarRecurso[0] = false;
         EsconderPorId("envias0");
         EsconderPorId("porcentsimbol");
-        EnviarFlotaTxt="Editar para Enviar Flota";
+        EnviarFlotaTxt = "Editar para Enviar Flota";
 
-        if(flota.tipoflota=="envuelo"){
-            botonenviarAnulado=true;
+        if (flota.tipoflota == "envuelo") {
+            botonenviarAnulado = true;
             $(".distribuidorNaves").prop("disabled", true);
         }
 
@@ -62,24 +62,21 @@ function CargarFlotaEditada() {
 
         dest = 0;
         destinos.forEach(destino => {
-
             cargaT = 0;
             $("#sistemaDest" + dest).val(destino.estrella);
             $("#planetaDest" + dest).val(destino.orbita);
             destino.misionSEG = destino.mision; //se guarda
             $("#porcentVDest" + dest).val(Math.round(destino.porcentVel));
 
+            recursosArray.forEach(res => {
+                if (dest == 0) {
+                    recursosDest[dest][res] = flota["recursos_en_flota"][res];
+                }
+                $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
+                cargaT += cargaDest[dest][res];
 
-                recursosArray.forEach(res => {
-                    if(dest==0){
-                        recursosDest[dest][res]=flota["recursos_en_flota"][res];
-                    }
-                    $("#" + res + dest).val(formatNumber(cargaDest[dest][res]));
-                    cargaT += cargaDest[dest][res];
-
-                    $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
-
-                });
+                $("#prioridad" + res + dest).val(formatNumber(prioridades[dest][res]));
+            });
 
             cargaDest[dest].total = cargaT;
 
@@ -90,7 +87,7 @@ function CargarFlotaEditada() {
                 hacecuanto = difTiempos(destino.fin, horaServer);
                 $("#titulo" + dest).text("Destino " + dest + " alcanzado hace " + hacecuanto);
             } else {
-                if (dest > 0 && destino.fin!=undefined) {
+                if (dest > 0 && destino.fin != undefined) {
                     hacecuanto = difTiempos(horaServer, destino.fin);
                     $("#titulo" + dest).text("Destino " + dest + " alcanzado en " + hacecuanto);
                 }
@@ -114,7 +111,7 @@ function CargarFlotaEditada() {
     CrearOrigen(nombreorigen);
 }
 
-function MostrarDestinos(){
+function MostrarDestinos() {
     for (n = 1; n < cantidadDestinos + 1; n++) {
         MostrarPorId("cajitaDestino" + n);
     }
@@ -123,7 +120,6 @@ function MostrarDestinos(){
     EsconderPorId("listaPrioridades0");
     $("#botonModificar").prop("disabled", true);
 }
-
 
 function CrearOrigen(nombreorigen) {
     $("#titulo0").text(nombreorigen);
@@ -245,9 +241,9 @@ function RecalculoTotal() {
             return valor.iddisenio == nave.disenios_id;
         })[0];
 
-        cantidad =1* valnave.cantidad;
-        aflota =1* valnave.enflota;
-        ahangar =1* valnave.enhangar;
+        cantidad = 1 * valnave.cantidad;
+        aflota = 1 * valnave.enflota;
+        ahangar = 1 * valnave.enhangar;
         atotal = aflota + ahangar;
 
         var estacionada = $.grep(navesEstacionadas, function(valor) {
@@ -397,7 +393,7 @@ function Avisos() {
                         recursosDest[dest][res] = 0;
                     }
 
-                    recursosDest[dest][res] =recursosEnDest[dest][res] + cargaDest[destAnt][res];
+                    recursosDest[dest][res] = recursosEnDest[dest][res] + cargaDest[destAnt][res];
                     $("#boton" + res + dest).text(formatNumber(Math.round(1 * recursosDest[dest][res])));
                 });
             }
@@ -465,17 +461,16 @@ function Avisos() {
         if (orden != "") {
             var img = origenImagenes + "/flotas/" + orden + ".jpg";
         }
-            if (recursosDest[dest]["estrella"] == destinos[dest]["estrella"] && recursosDest[dest]["orbita"] == destinos[dest]["orbita"]){
-                if (recursosDest[dest]["imagen"]!= undefined){
-                    img = recursosDest[dest]["imagen"];
-                }
-            } else {
-                recursosArray.forEach(res => {
-                    recursosEnDest[dest][res] = 0;
-                });
+        if (recursosDest[dest]["estrella"] == destinos[dest]["estrella"] && recursosDest[dest]["orbita"] == destinos[dest]["orbita"]) {
+            if (recursosDest[dest]["imagen"] != undefined) {
+                img = recursosDest[dest]["imagen"];
             }
+        } else {
+            recursosArray.forEach(res => {
+                recursosEnDest[dest][res] = 0;
+            });
+        }
         if (orden != "") {
-
             var ordenAnt = $("#ordenDest" + destAnt).val();
             var ordenPost = $("#ordenDest" + destPost).val();
             // no se puede llegar
@@ -487,13 +482,14 @@ function Avisos() {
             soyUltimoDestino = false;
             // soy la ultima y debe ser de cierre
             if (destPost < 4 && (ordenPost != undefined || ordenPost.length < 1)) {
-                if ((ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && ordenAnt == "Extraer")) {
+                if (ordenPost.length < 1 && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && orden == "Extraer") {
                     errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
                 }
             }
-            if (ordenPost.length<1 && orden.length>1) {
-                if ((orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar")) {
+            console.log(orden);
+            if (ordenPost.length < 1 && orden.length > 1) {
+                if (orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") {
                     errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
                 }
@@ -565,7 +561,7 @@ function Avisos() {
     //falta velocidad
 
     /// se puede enviar o no
-    if(!botonenviarAnulado){
+    if (!botonenviarAnulado) {
         $("#botonEnviar").text(EnviarFlotaTxt);
         if (!sePuedeEnviar) {
             $("#botonEnviar").text(errores);
@@ -655,37 +651,37 @@ function Calculoespacitiempo() {
             }
             */
 
-            if(recursosEnDest[dest]==undefined){
-                recursosEnDest[dest]=JSON.parse(JSON.stringify(cargaDestVacia[dest]));
+            if (recursosEnDest[dest] == undefined) {
+                recursosEnDest[dest] = JSON.parse(JSON.stringify(cargaDestVacia[dest]));
             }
-            if(recursosEnDest[destAnt]==undefined){
-                recursosEnDest[destAnt]=JSON.parse(JSON.stringify(cargaDestVacia[destAnt]));
+            if (recursosEnDest[destAnt] == undefined) {
+                recursosEnDest[destAnt] = JSON.parse(JSON.stringify(cargaDestVacia[destAnt]));
             }
 
-            recursosDest[dest]["estrella"]=destinos[dest].estrella;
-            recursosDest[dest]["orbita"]=destinos[dest].orbita;
+            recursosDest[dest]["estrella"] = destinos[dest].estrella;
+            recursosDest[dest]["orbita"] = destinos[dest].orbita;
 
-            origenCalculo=[]
-            origenCalculo.estrella=destinos[destAnt].estrella;
-            origenCalculo.orbita=destinos[destAnt].orbita;
-            destinoCalculo=[]
-            destinoCalculo.estrella=destinos[dest].estrella;
-            destinoCalculo.orbita=destinos[dest].orbita;
+            origenCalculo = [];
+            origenCalculo.estrella = destinos[destAnt].estrella;
+            origenCalculo.orbita = destinos[destAnt].orbita;
+            destinoCalculo = [];
+            destinoCalculo.estrella = destinos[dest].estrella;
+            destinoCalculo.orbita = destinos[dest].orbita;
 
-            if (recursosEnDest[destAnt]["estrella"]!=undefined){
-                origenCalculo.estrella=recursosEnDest[destAnt]["estrella"];
-                if (destinos[destAnt].orbita== 0){
-                    origenCalculo.orbita=recursosEnDest[destAnt]["orbita"];
+            if (recursosEnDest[destAnt]["estrella"] != undefined) {
+                origenCalculo.estrella = recursosEnDest[destAnt]["estrella"];
+                if (destinos[destAnt].orbita == 0) {
+                    origenCalculo.orbita = recursosEnDest[destAnt]["orbita"];
                 }
             }
 
-            if (recursosEnDest[dest]["estrella"]!=undefined){
-                destinoCalculo.estrella=recursosEnDest[dest]["estrella"];
-                if (destinos[dest].orbita== 0){
-                    destinoCalculo.orbita=recursosEnDest[dest]["orbita"];
+            if (recursosEnDest[dest]["estrella"] != undefined) {
+                destinoCalculo.estrella = recursosEnDest[dest]["estrella"];
+                if (destinos[dest].orbita == 0) {
+                    destinoCalculo.orbita = recursosEnDest[dest]["orbita"];
                 }
             } else {
-                recursosEnDest[dest]=JSON.parse(JSON.stringify(cargaDestVacia[dest]));
+                recursosEnDest[dest] = JSON.parse(JSON.stringify(cargaDestVacia[dest]));
             }
 
             var distancia = DistanciaUniverso(origenCalculo, destinoCalculo);
@@ -787,18 +783,18 @@ function TraerRecursos(sistema, planeta, dest) {
             method: "GET",
             url: "/juego/flotas/traerRecursos/" + sistema + "/" + planeta,
             success: function(data) {
-                if(recursosEnDest[dest]==undefined || data.recursos==undefined){
-                    recursosEnDest[dest]=JSON.parse(JSON.stringify(cargaDestVacia[dest]));
+                if (recursosEnDest[dest] == undefined || data.recursos == undefined) {
+                    recursosEnDest[dest] = JSON.parse(JSON.stringify(cargaDestVacia[dest]));
                 }
                 recursosArray.forEach(res => {
-                    recursosEnDest[dest][res] = 1*data.recursos[res];
+                    recursosEnDest[dest][res] = 1 * data.recursos[res];
                 });
-                recursosDest[dest]["imagen"]=data.recursos["imagen"];
+                recursosDest[dest]["imagen"] = data.recursos["imagen"];
                 $("#imagenDestino" + dest).attr("src", data.recursos["imagen"]);
-                recursosDest[dest]["estrella"]=sistema;
-                recursosDest[dest]["orbita"]=planeta;
-                destinos[dest]["estrella"] =sistema;
-                destinos[dest]["orbita"]=planeta;
+                recursosDest[dest]["estrella"] = sistema;
+                recursosDest[dest]["orbita"] = planeta;
+                destinos[dest]["estrella"] = sistema;
+                destinos[dest]["orbita"] = planeta;
                 recursosEnDest[dest]["estrella"] = data.recursos["estrella"];
                 recursosEnDest[dest]["orbita"] = data.recursos["orbita"];
 
@@ -937,27 +933,27 @@ function NaveGeneralAHangar(canti) {
     }
 }
 
-function AddValoresVacios(){
+function AddValoresVacios() {
     //for (n = 1; n < cantidadDestinos + 1; n++) {
-        cargaDest=JSON.parse(JSON.stringify(cargaDestVacia));
-        prioridades=prioridadesVacia;
-        destinos=destinosVacia;
+    cargaDest = JSON.parse(JSON.stringify(cargaDestVacia));
+    prioridades = prioridadesVacia;
+    destinos = destinosVacia;
 }
 
 function enviarFlota() {
-    if(enviarEnOrbita){
-        if(destinos[0]["estrella"]!=undefined){
-            flota["estrella"]=destinos[0]["estrella"];
-            flota["orbita"]=destinos[0]["orbita"];
+    if (enviarEnOrbita) {
+        if (destinos[0]["estrella"] != undefined) {
+            flota["estrella"] = destinos[0]["estrella"];
+            flota["orbita"] = destinos[0]["orbita"];
         }
         MostrarDestinos();
-        EnviarFlotaTxt="Enviar Flota";
+        EnviarFlotaTxt = "Enviar Flota";
         $("#botonEnviar").text(EnviarFlotaTxt);
         AddValoresVacios();
         RecursosInicio();
-        destinos[0]["estrella"]=flota["estrella"];
-        destinos[0]["orbita"]=flota["orbita"];
-        enviarEnOrbita=false;
+        destinos[0]["estrella"] = flota["estrella"];
+        destinos[0]["orbita"] = flota["orbita"];
+        enviarEnOrbita = false;
         return;
     }
 
@@ -1005,9 +1001,7 @@ function enviarFlota() {
     }
 }
 
-
 function modificarFlota() {
-
     flota.nombre = $("#nombreFlota").val();
     for (dest = 0; dest < destinos.length; dest++) {
         recursosArray.forEach(res => {
@@ -1046,7 +1040,6 @@ function modificarFlota() {
             //alert(data.errores);
         },
     });
-
 }
 
 function formSuccess() {
@@ -1061,15 +1054,13 @@ function RecursosSiDestino(dest) {
         $("#listaPlanetas" + dest)
             .val(destinoF)
             .change();
-            if(destinos[dest]!=undefined){
-                $("#ordenDest" + dest)
+        if (destinos[dest] != undefined) {
+            $("#ordenDest" + dest)
                 .val(destinos[dest].misionSEG)
                 .change();
-            }
+        }
     }
 }
-
-
 
 /////////////////////////////////////******************* FLOTAS EN VUELO ********************************** //////////////////////////////////
 
@@ -1151,6 +1142,7 @@ function verFlotasEnOrbita() {
         });
     }
 }
+
 
 function RellenarFlotasEnVuelo(data,prefix){
 
@@ -1491,9 +1483,6 @@ function RellenarFlotasEnVuelo(data,prefix){
         }
 
     });
-
-
-
 }
 
 function regresarFlota(numeroflota) {
