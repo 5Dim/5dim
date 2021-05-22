@@ -4,7 +4,8 @@
     <div class="container">
         <div class="alert alert-dark" role="alert" style="margin-top: 100px">
             <h2 class="text-center fs-1">Ronda 2022</h2>
-            <table class="table table-striped table-secondary table-hover table-sm">
+            <hr>
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th scope="col">Opcion</th>
@@ -22,12 +23,27 @@
                     </tr>
                 </tbody>
             </table>
+            <hr>
             <p class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-dark me-md-2"
-                    onclick="location.href='{{ url('/juego/construccion') }}'">
+                <button type="button" class="btn btn-dark me-md-2" onclick="location.href='{{ url('/juego/construccion') }}'">
                     Entrar
                 </button>
             </p>
+        </div>
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well done!</h4>
+            <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer
+                so that you can see how spacing within an alert works with this kind of content.</p>
+        </div>
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Well done!</h4>
+            <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer
+                so that you can see how spacing within an alert works with this kind of content.</p>
+        </div>
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Well done!</h4>
+            <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer
+                so that you can see how spacing within an alert works with this kind of content.</p>
         </div>
     </div>
 @endsection
