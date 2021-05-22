@@ -8,7 +8,7 @@
                             aria-expanded="false" data-bs-target=".mensajeRecibido{{ $mensaje->id }}"
                             aria-controls="mensajeRecibido{{ $mensaje->id }}">
                             <img class="rounded"
-                                src="{{ !empty($mensaje->jugadores) ? $mensaje->jugadores->avatar : $imagenAvatar }}"
+                                src="{{ !empty($mensaje->jugadores) ? $mensaje->jugadores->avatar : asset($imagenAvatar) }}"
                                 width="50" height="50">
                         </a>
                         <a class="btn btn-link text-success" data-bs-toggle="collapse" href="#" role="button"
