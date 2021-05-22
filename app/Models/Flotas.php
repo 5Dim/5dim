@@ -229,7 +229,7 @@ class Flotas extends Model
 
 
             // Carga total
-             Log::info("carga " . $cargaDestT . " " . $valFlotaT['carga']);
+            // Log::info("carga " . $cargaDestT . " " . $valFlotaT['carga']);
             if (strlen($errores) < 1 && $cargaDestT > 1 * $valFlotaT['carga']) {
                 $errores = " Seleccionada mas carga de la capacidad disponible";
             }
@@ -341,6 +341,7 @@ class Flotas extends Model
         $destino['en_vuelo_id'] = null;
         $destino['en_recoleccion_id'] = null;
         $destino['en_orbita_id'] = null;
+        $destino["initflota"]=null;
 
 
         $anchoUniverso = $constantesU->where('codigo', 'anchouniverso')->first()->valor;
@@ -371,6 +372,7 @@ class Flotas extends Model
             $destiorbita = $flotaDestino->planetas['orbita'];
             $destino['estrella'] = $destiestrella;
             $destino['orbita'] = $destiorbita;
+            $destino["initflota"]=$flotaDestino->publico; //para pasarlo al destino posterior
         }
 
         // calculos
@@ -465,7 +467,7 @@ class Flotas extends Model
                         throw new \Exception($errores);
                     } else {
                         $destino->en_orbita_id = $destinosDest['en_orbita_id'];
-                        $destino->estrella = $destinosDest['estrella'];;
+                        $destino->estrella = $destinosDest['estrella'];
                         $destino->orbita = $destinosDest['orbita'];
                         return [$destino, $errores];
                     }

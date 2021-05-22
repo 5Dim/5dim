@@ -510,12 +510,12 @@ class Astrometria extends Model
         } else { //propio
             //Log::info($destinoActual);
             if ($ptoFlota != null || $estado == "envuelo") {
-                $flota->origen = Astrometria::nombreDestino($destinoActual);
+                $flota->origen = Astrometria::nombreDestino($destinoActual,false,true);
                 $flota->coordix = $destinoActual->initcoordx;
                 $flota->coordiy = $destinoActual->initcoordy;
                 $flota->coordfx = $destinoActual->fincoordx;
                 $flota->coordfy = $destinoActual->fincoordy;
-                $flota->destino = Astrometria::nombreDestino($destinoActual, true);
+                $flota->destino = Astrometria::nombreDestino($destinoActual, true,true);
                 $flota->mision = $destinoActual['mision'];
                 $flota->misionregreso = $destinoActual['mision_regreso'];
                 $flota->fecha = $destinoActual['fin'];
@@ -752,7 +752,7 @@ class Astrometria extends Model
         return $tipodestino;
     }
 
-    public static function nombreDestino($destino, $anterior = false)
+    public static function nombreDestino($destino, $anterior = false,$nombreprivado=false)
     {
         if(!$anterior){
             $destino=Destinos::where([["fin",$destino->init],["flota_id",$destino->flota_id]])->first();
@@ -772,12 +772,21 @@ class Astrometria extends Model
                 break;
             case "enrecoleccion":
                 $nombreDestino = $destino->enRecoleccion["publico"];
+                if($nombreprivado){
+                    $nombreDestino .="(".$destino->enRecoleccion["nombre"].")";
+                }
                 break;
             case "enorbita":
                 $nombreDestino = $destino->enOrbita["publico"];
+                if($nombreprivado){
+                    $nombreDestino .="(".$destino->enOrbita["nombre"].")";
+                }
                 break;
             case "envuelo":
                 $nombreDestino = $destino->enVuelo["publico"];
+                if($nombreprivado){
+                    $nombreDestino .="(".$destino->enVuelo["nombre"].")";
+                }
                 break;
             default:
                 if ($destino!=null){

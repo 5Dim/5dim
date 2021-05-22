@@ -1091,6 +1091,9 @@ class FlotaController extends Controller
                 $destino->porcentVel = 100;
                 $destino->mision = 'Salida';
                 $destino->visitado = true;
+                if ($flotaid !=null){
+                    $destino->initflota=$flota["publico"];
+                }
 
                 //$result = Flotas::destinoTipoId($destino, $destinos[0]);
                 //$destino = $result[0];
@@ -1176,6 +1179,13 @@ class FlotaController extends Controller
                         $result = Flotas::destinoTipoId($destino, $destinos[$dest]);
                         $destino = $result[0];
                         $errores = $result[1];
+                        //Log::info("destino");
+                        //Log::info($destinos[$dest]);
+                        //Log::info($destino);
+                        //Log::info($destinos[$destAnt]);
+                        if (isset($destinos[$destAnt]["initflota"])){
+                            $destino->initflota=$destinos[$destAnt]["initflota"];
+                        }
 
                         $destinos[$dest]['estrella'] = $destino->estrella;
                         $destinos[$dest]['orbita'] = $destino->orbita;
