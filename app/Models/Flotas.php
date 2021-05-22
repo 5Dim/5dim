@@ -1338,4 +1338,75 @@ destino 0 con lo que sale
 
         return [$errores, $disenios];
     }
+
+    public static function valoresVaciosFlotaController($planetaActual){
+
+        //prioridades
+        $prioridadesXDefecto = new Prioridades();
+        $prioridadesXDefecto->personal = 0;
+        $prioridadesXDefecto->mineral = 0;
+        $prioridadesXDefecto->cristal = 0;
+        $prioridadesXDefecto->gas = 0;
+        $prioridadesXDefecto->plastico = 0;
+        $prioridadesXDefecto->ceramica = 0;
+        $prioridadesXDefecto->liquido = 0;
+        $prioridadesXDefecto->micros = 0;
+        $prioridadesXDefecto->fuel = 0;
+        $prioridadesXDefecto->ma = 0;
+        $prioridadesXDefecto->municion = 0;
+        $prioridadesXDefecto->creditos = 0;
+
+
+        // recursos en destinos
+        $recursosDestino = new RecursosEnFlota();
+        $recursosDestino->personal = 0;
+        $recursosDestino->mineral = 0;
+        $recursosDestino->cristal = 0;
+        $recursosDestino->gas = 0;
+        $recursosDestino->plastico = 0;
+        $recursosDestino->ceramica = 0;
+        $recursosDestino->liquido = 0;
+        $recursosDestino->micros = 0;
+        $recursosDestino->fuel = 0;
+        $recursosDestino->ma = 0;
+        $recursosDestino->municion = 0;
+        $recursosDestino->creditos = 0;
+
+        $destino = new Destinos();
+        $destino->estrella = -1;
+        $destino->orbita = -1;
+        $destino->porcentVel = 100;
+        $destino->mision = "";
+
+        $origen = new Destinos();
+        $origen->estrella = $planetaActual->estrella;
+        $origen->orbita = $planetaActual->orbita;
+        $origen->porcentVel = 100;
+
+        return[$prioridadesXDefecto,$recursosDestino,$destino,$origen];
+    }
+
+    public static function valoresDiseniosFlotaController($navesEstacionadas){
+
+        $diseniosJugador = [];
+        foreach ($navesEstacionadas as $nave) {
+            $nave->disenios->mejoras;
+            $nave->disenios->tamanio = $nave->disenios->fuselajes->tamanio;
+
+            array_push($diseniosJugador, $nave->disenios);
+        }
+
+        $idsDiseno = array();
+        foreach ($navesEstacionadas as $diseno) {
+            $estedisenioj = Disenios::where('id', $diseno->disenios->id)->first();
+
+            array_push($idsDiseno, $diseno->disenios_id);
+            $diseno->fuselajes_id = $estedisenioj->fuselajes_id;
+            $diseno->skin = $estedisenioj->skin;
+        }
+        $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
+        //Log::info("message");Log::info($ViewDaniosDisenios);Log::info($idsDiseno);Log::info($navesEstacionadas);
+        return [$diseniosJugador,$ViewDaniosDisenios];
+    }
+
 }

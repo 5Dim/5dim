@@ -143,53 +143,11 @@ class FlotaController extends Controller
             $visionXDefecto = true;
         }
 
-        // valores vacios
-
-        //prioridades
-        $prioridadesXDefecto = new Prioridades();
-        $prioridadesXDefecto->personal = 0;
-        $prioridadesXDefecto->mineral = 0;
-        $prioridadesXDefecto->cristal = 0;
-        $prioridadesXDefecto->gas = 0;
-        $prioridadesXDefecto->plastico = 0;
-        $prioridadesXDefecto->ceramica = 0;
-        $prioridadesXDefecto->liquido = 0;
-        $prioridadesXDefecto->micros = 0;
-        $prioridadesXDefecto->fuel = 0;
-        $prioridadesXDefecto->ma = 0;
-        $prioridadesXDefecto->municion = 0;
-        $prioridadesXDefecto->creditos = 0;
-
-
-        // recursos en destinos
-        $recursosDestino = new RecursosEnFlota();
-        $recursosDestino->personal = 0;
-        $recursosDestino->mineral = 0;
-        $recursosDestino->cristal = 0;
-        $recursosDestino->gas = 0;
-        $recursosDestino->plastico = 0;
-        $recursosDestino->ceramica = 0;
-        $recursosDestino->liquido = 0;
-        $recursosDestino->micros = 0;
-        $recursosDestino->fuel = 0;
-        $recursosDestino->ma = 0;
-        $recursosDestino->municion = 0;
-        $recursosDestino->creditos = 0;
-
-        $recursosFlota = $recursos;
-
-        // destinos
-        $origen = new Destinos();
-        $origen->estrella = $planetaActual->estrella;
-        $origen->orbita = $planetaActual->orbita;
-        $origen->porcentVel = 100;
-
-
-        $destino = new Destinos();
-        $destino->estrella = -1;
-        $destino->orbita = -1;
-        $destino->porcentVel = 100;
-        $destino->mision = "";
+        $result=Flotas::valoresVaciosFlotaController($planetaActual);
+        $prioridadesXDefecto = $result[0];
+        $recursosDestino = $result[1];
+        $destino = $result[2];
+        $origen= $result[3];
 
         $cargaDestVacia = [];
         $prioridadesVacia = [];
@@ -200,6 +158,7 @@ class FlotaController extends Controller
             array_push($prioridadesVacia, $prioridadesXDefecto);
         }
 
+        $recursosFlota = $recursos;
 
         if ($visionXDefecto) {
 
@@ -223,24 +182,10 @@ class FlotaController extends Controller
 
         // $diseniosJugador = $jugadorActual->disenios;
 
-        $diseniosJugador = [];
-        foreach ($navesEstacionadas as $nave) {
-            $nave->disenios->mejoras;
-            $nave->disenios->tamanio = $nave->disenios->fuselajes->tamanio;
+        $result=Flotas::valoresDiseniosFlotaController($navesEstacionadas);
+        $diseniosJugador = $result[0];
+        $ViewDaniosDisenios = $result[1];
 
-            array_push($diseniosJugador, $nave->disenios);
-        }
-
-        $idsDiseno = array();
-        foreach ($navesEstacionadas as $diseno) {
-            $estedisenioj = Disenios::where('id', $diseno->disenios->id)->first();
-
-            array_push($idsDiseno, $diseno->disenios_id);
-            $diseno->fuselajes_id = $estedisenioj->fuselajes_id;
-            $diseno->skin = $estedisenioj->skin;
-        }
-        $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
-        //Log::info("message");Log::info($ViewDaniosDisenios);Log::info($idsDiseno);Log::info($navesEstacionadas);
 
         $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
         $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
