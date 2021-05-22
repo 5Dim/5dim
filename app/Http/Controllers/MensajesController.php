@@ -98,10 +98,13 @@ class MensajesController extends Controller
         if ($jugadorActual->alianzas) {
             $jugadorAlianza = Alianzas::jugadorAlianza($jugadorActual->alianzas->id);
         }
+
         if ($idJugador == session()->get('jugadores_id') || (!empty($jugadorAlianza) && $idJugador == $jugadorAlianza->id)) {
             $mensaje = Mensajes::find($idMensaje);
-            $mensaje->intervinientes->where('receptor', $idJugador)->first()->delete();
+            // dd($mensaje->intervinientes->whereIn('receptor', [$jugadorActual->id, $jugadorAlianza->id])->first());
+            $mensaje->intervinientes->whereIn('receptor', [$jugadorActual->id, $jugadorAlianza->id])->first()->delete();
         }
+
         return redirect('/juego/mensajes');
     }
 }
