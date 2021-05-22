@@ -46,7 +46,7 @@
     <div class="col-12 borderless">
         <div id="cuadro1" class="table-responsive ">
             <table id="mensajeRecibido{{ $mensaje->id }}3"
-                class="table table-sm table-borderless text-center anchofijo collapse mensajeRecibido{{ $mensaje->id }}">
+                class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
                         <a type="button" class="btn btn-outline-danger col-12" href="mensajes/borrar/{{ $mensaje->id }}/{{ Auth::user()->jugador->id }}">

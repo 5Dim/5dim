@@ -376,7 +376,7 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestIndustrias;
                         $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 1.99, 2, $nivel];
-                        $costosIniciales = [$codigo, 30000, 60000, 0, 0, 0, 0, 0, 0, 10000, 0];
+                        $costosIniciales = [$codigo, 30000, 60000, 0, 0, 0, 7000, 0, 0, 10000, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -389,7 +389,7 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestIndustrias;
                         $r1cce = [$codigo, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 0, 0, 40000, 0, 0, 0, 0, 0, 15000, 0];
+                        $costosIniciales = [$codigo, 0, 0, 40000, 0, 0, 0, 7000, 0, 15000, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -402,7 +402,7 @@ class CostesInvestigaciones extends Model
                         }
                         $costoIT = $costoInvestIndustrias;
                         $r1cce = [$codigo, 2, 2, 2, 1.6, 2, 2, 2, 2, 2, 2, $nivel];
-                        $costosIniciales = [$codigo, 0, 0, 0, 2500, 0, 0, 0, 0, 6000, 0];
+                        $costosIniciales = [$codigo, 0, 0, 0, 2500, 0, 0, 0, 7000, 6000, 0];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
 
@@ -427,8 +427,8 @@ class CostesInvestigaciones extends Model
                             $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
                         }
                         $costoIT = $costoInvestIndustrias;
-                        $r1cce = [$codigo, .8, 2, 2, .3, 2, 2, 2, 2, 2, .2, $nivel];
-                        $costosIniciales = [$codigo, 3000, 0, 0, 0, 15000, 0, 0, 0, 15000, 10000];
+                        $r1cce = [$codigo, .8, 2, 2, .3, 2, 2, 2, 2, 2, 2, $nivel];
+                        $costosIniciales = [$codigo, 3000, 0, 0, 0, 15000, 0, 0, 0, 15000, 7000];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
                 }

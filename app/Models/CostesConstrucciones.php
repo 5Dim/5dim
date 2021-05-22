@@ -130,7 +130,7 @@ class CostesConstrucciones extends Model
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
                 case "hangar":
-                    $r1cce = [$codigo, 3, 3, .2, 1.5, 1, .5, 1.5, $nivel];
+                    $r1cce = [$codigo, 3, 3, .2, 1.5, 1, .25, .15, $nivel];
                     $coste = $costesc->calculos($r1cce, $avelprodminas);
                     break;
                 case "laboratorio":
@@ -263,7 +263,7 @@ class CostesConstrucciones extends Model
                 $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
                 break;
             case "hangar":
-                $r1cce = [$codigo, 3, 3, .2, 1.5, 1, .5, 1.5, $nivel];
+                $r1cce = [$codigo, 3, 3, .2, 1.5, 1, .25, .15, $nivel];
                 $coste = $costesc->calculos($r1cce, $idConstruccion, $avelprodminas);
                 break;
             case "observacion":

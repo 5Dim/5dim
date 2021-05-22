@@ -46,27 +46,32 @@ class Mensajes extends Model
 
     public static function transporte($destino)
     {
+        $elDestino = "";
         $contenido = "<p>La flota <b class='text-success'>" . $destino->flota->nombre . "</b> ha llegado a <b class='text-success'>";
         if (!empty($destino->planetas_id)) {
             $recursosQueTienes = new Recursos();
             $recursosQueTienes = $destino->planetas->recursos;
-            $propietarioDestino = $destino->planetas->jugadores->id;;
+            $propietarioDestino = $destino->planetas->jugadores->id;
             $contenido .= $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
+            $elDestino = $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
         } elseif (!empty($destino->en_vuelo_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enVuelo->recursosEnFlota;
-            $propietarioDestino = $destino->enVuelo->jugadores->id;;
+            $propietarioDestino = $destino->enVuelo->jugadores->id;
             $contenido .= $destino->enVuelo->nombre;
+            $elDestino = $destino->enVuelo->nombre;
         } elseif (!empty($destino->en_recoleccion_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enRecoleccion->recursosEnFlota;
             $propietarioDestino = $destino->enRecoleccion->jugadores->id;;
             $contenido .= $destino->enRecoleccion->nombre;
+            $elDestino = $destino->enRecoleccion->nombre;
         } elseif (!empty($destino->en_orbita_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enOrbita->recursosEnFlota;
-            $propietarioDestino = $destino->enOrbita->jugadores->id;;
+            $propietarioDestino = $destino->enOrbita->jugadores->id;
             $contenido .= $destino->enOrbita->nombre;
+            $elDestino = $destino->enOrbita->nombre;
         }
         $duenioFlota = $destino->flota->jugadores->id;
         $jugadorAlianza = null;
@@ -189,7 +194,7 @@ class Mensajes extends Model
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;
-        $mensaje->asunto = "La flota " . $destino->flota->nombre . " ha llegado a transportar a su destino";
+        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> ha llegado a transportar a <b>" . $elDestino . "</b>";
         $mensaje->categoria = 'flotas';
         $mensaje->emisor = null;
         $mensaje->emisor_sys = 'Comandante';
@@ -204,23 +209,27 @@ class Mensajes extends Model
         if (!empty($destino->planetas_id)) {
             $recursosQueTienes = new Recursos();
             $recursosQueTienes = $destino->planetas->recursos;
-            $propietarioDestino = $destino->planetas->jugadores->id;;
+            $propietarioDestino = $destino->planetas->jugadores->id;
             $contenido .= $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
+            $elDestino = $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
         } elseif (!empty($destino->en_vuelo_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enVuelo->recursosEnFlota;
-            $propietarioDestino = $destino->enVuelo->jugadores->id;;
+            $propietarioDestino = $destino->enVuelo->jugadores->id;
             $contenido .= $destino->enVuelo->nombre;
+            $elDestino = $destino->enVuelo->nombre;
         } elseif (!empty($destino->en_recoleccion_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enRecoleccion->recursosEnFlota;
             $propietarioDestino = $destino->enRecoleccion->jugadores->id;;
             $contenido .= $destino->enRecoleccion->nombre;
+            $elDestino = $destino->enRecoleccion->nombre;
         } elseif (!empty($destino->en_orbita_id)) {
             $recursosQueTienes = new RecursosEnFlota();
             $recursosQueTienes = $destino->enOrbita->recursosEnFlota;
-            $propietarioDestino = $destino->enOrbita->jugadores->id;;
+            $propietarioDestino = $destino->enOrbita->jugadores->id;
             $contenido .= $destino->enOrbita->nombre;
+            $elDestino = $destino->enOrbita->nombre;
         }
         $duenioFlota = $destino->flota->jugadores->id;
         $jugadorAlianza = null;
@@ -294,7 +303,7 @@ class Mensajes extends Model
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;
-        $mensaje->asunto = "La flota " . $destino->flota->nombre . " ha llegado a su destino";
+        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> ha llegado a transferir a <b>" . $elDestino . "</b>";
         $mensaje->categoria = 'flotas';
         $mensaje->emisor = null;
         $mensaje->emisor_sys = 'Comandante';
@@ -377,7 +386,7 @@ class Mensajes extends Model
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;
-        $mensaje->asunto = "La flota " . $destino->flota->nombre . " ha llegado a colonizar";
+        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> ha llegado a colonizar a <b>" . "(" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')' . "</b>";
         $mensaje->categoria = 'flotas';
         $mensaje->emisor = null;
         $mensaje->emisor_sys = 'Comandante';
@@ -448,7 +457,7 @@ class Mensajes extends Model
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;
-        $mensaje->asunto = "La flota " . $destino->flota->nombre . " ha llegado a recolectar";
+        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> ha llegado a recolectar";
         $mensaje->categoria = 'flotas';
         $mensaje->emisor = null;
         $mensaje->emisor_sys = 'Comandante';
@@ -519,7 +528,7 @@ class Mensajes extends Model
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;
-        $mensaje->asunto = "La flota " . $destino->flota->nombre . " ha llegado a extraer";
+        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> ha llegado a extraer";
         $mensaje->categoria = 'flotas';
         $mensaje->emisor = null;
         $mensaje->emisor_sys = 'Comandante';
@@ -590,7 +599,7 @@ class Mensajes extends Model
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;
-        $mensaje->asunto = "La flota " . $destino->flota->nombre . " ha llegado a orbitar";
+        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> ha llegado a orbitar";
         $mensaje->categoria = 'flotas';
         $mensaje->emisor = null;
         $mensaje->emisor_sys = 'Comandante';
