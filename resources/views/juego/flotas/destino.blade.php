@@ -121,7 +121,6 @@
                             <option value="Extraer">Extraer</option>
                             <option value="Reciclar">Reciclar</option>
                             <option value="Colonizar">Colonizar</option>
-                            <option class="text-danger" value="atacar">Atacar</option>
                         </select>
                     </div>
                 </td>

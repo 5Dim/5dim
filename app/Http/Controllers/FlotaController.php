@@ -305,10 +305,12 @@ class FlotaController extends Controller
             $navesEnPlaneta = $flotaOrigen->diseniosEnFlota;
 
             $recursos = $flotaOrigen->recursosEnFlota;
+            $jugadorEnviador=$flotaOrigen->jugadores;
         } else {
             $navesEnPlaneta = $planetaActual->estacionadas;
             $destinoSalida->planetas_id = $planetaActual->id;
             $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
+            $jugadorEnviador=$planetaActual->jugadores;
         }
         //Log::info("flotaOrigen ".$flotaOrigen);
         //Log::info("navesEnPlaneta ".$navesEnPlaneta);
@@ -412,15 +414,16 @@ class FlotaController extends Controller
 
                 //construyendo flota
 
-                $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-                $nombreJugon = substr($jugadorActual['nombre'], 4);
+                //$jugadorEnviador = Jugadores::find(session()->get('jugadores_id'));
+
+                $nombreJugon = substr($jugadorEnviador['nombre'], 4);
                 $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
                 $publico = substr($nombreJugon, 0, 3) . substr($timestamp, 5);
                 if (strlen($flota['nombre']) < 1) {
                     $flota['nombre'] = $publico;
                 }
                 DB::beginTransaction();
-                //Log::info("Jugador ID= ".$jugadorActual->id);
+                //Log::info("Jugador ID= ".$jugadorEnviador->id);
                 $flotax = new EnVuelo;
                 $flotax->nombre = $flota['nombre'];;
                 $flotax->publico = $publico;
@@ -429,7 +432,7 @@ class FlotaController extends Controller
                 $flotax->ataqueVisible = $valFlotaT['ataqueV'];
                 $flotax->defensaVisible = $valFlotaT['defensaV'];
                 $flotax->creditos = $valFlotaT['mantenimiento'];
-                $flotax->jugadores_id = $jugadorActual->id;
+                $flotax->jugadores_id = $jugadorEnviador->id;
                 //Log::info($flotax);
                 $flotax->save();
 

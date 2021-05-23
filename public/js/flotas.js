@@ -67,8 +67,14 @@ function CargarFlotaEditada() {
         dest = 0;
         destinos.forEach(destino => {
             cargaT = 0;
-            $("#sistemaDest" + dest).val(destino.estrella);
-            $("#planetaDest" + dest).val(destino.orbita);
+            if (destino.initflota!=undefined ){
+                $("#sistemaDest" + dest).val(destino.initflota);
+                $("#planetaDest" + dest).val("");
+            } else {
+                $("#sistemaDest" + dest).val(destino.estrella);
+                $("#planetaDest" + dest).val(destino.orbita);
+            }
+
             destino.misionSEG = destino.mision; //se guarda
             $("#porcentVDest" + dest).val(Math.round(destino.porcentVel));
 
