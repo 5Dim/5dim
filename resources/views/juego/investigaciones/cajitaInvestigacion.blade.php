@@ -24,7 +24,7 @@
                                 </span>
                             </div>
                             <input id="{{ 'personal' . $investigacion->codigo }}" type="number" class="personal1 input"
-                            placeholder="personal" value="{{ number_format($personal - 1, 0, '', '') }}"
+                            placeholder="personal" value="{{ number_format(floor($personal), 0, '', '') }}"
                             onkeyup='calculaTiempoInvestigacion(@json($investigacion->coste), @json($velInvest->valor), @json($investigacion->codigo), @json($investigacion->nivel), @json($nivelLaboratorio->nivel))'>
                         </div>
                     </td>
