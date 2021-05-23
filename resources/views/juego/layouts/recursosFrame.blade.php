@@ -66,14 +66,14 @@
                             </a>
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="http://es.5dim.wikia.com/wiki/Wiki_5dim" target="_blank">
+                            {{-- <a href="http://es.5dim.wikia.com/wiki/Wiki_5dim" target="_blank"> --}}
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-wik.png') }}" title="Wikia" />
-                            </a>
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="http://quintadim.foroactivo.com/f21-ayudas-y-preguntas" target="_blank">
+                            {{-- <a href="http://quintadim.foroactivo.com/f21-ayudas-y-preguntas" target="_blank"> --}}
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}" title="Soporte" />
-                            </a>
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless">
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
@@ -116,9 +116,9 @@
                             {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="http://quintadim.foroactivo.com" target="_blank">
+                            {{-- <a href="http://quintadim.foroactivo.com" target="_blank"> --}}
                                 <img src="{{ asset('img/juego/skin0/icons/ico-barra-foro.png') }}" title="Foro" />
-                            </a>
+                            {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
                             <a href="{{ url('/juego/tienda') }}" target="_self">
