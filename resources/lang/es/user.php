@@ -11,5 +11,6 @@ return [
     'registrar' => 'Registrar',
     'cambiar contraseña' => 'Cambiar contraseña',
     'actualizar usuario' => 'Actualizar usuario',
-    'reset email' => 'Enviar mensaje para restaurar contraseña'
+    'reset email' => 'Enviar mensaje para restaurar contraseña',
+    'mensaje confirmacion' => 'Enviar mensaje de confirmación',
 ];
