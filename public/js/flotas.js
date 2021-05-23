@@ -37,6 +37,10 @@ function CargarFlotaEditada() {
         EsconderPorId("listaPrioridades0");
         $("#botonModificar").attr("disabled", true);
         recursosDest[0]["personal"] -= personalOcupado;
+
+        $("#sistemaDest" + 1).val(destinos[1].estrella);
+        $("#planetaDest" + 1).val(destinos[1].orbita);
+
     } else {
         //flota
         // mostrarTab("enviar-tab")
@@ -1344,7 +1348,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                         </td>
                         <td colspan="4">
                             <a class="btn btn-outline-primary col-12 text-primary" type="button"
-                            href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+"/"+flota['estado']+`">
+                            href="`+linkFlota+`/`+flota['numeroflota']+"/"+flota['estado']+`">
                             Editar
                             </a>
                         </td>
@@ -1461,7 +1465,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                         </td>
                         <td colspan="5">
                             <a type="button" class="disabled btn btn-outline-danger col-12 text-danger"
-                            href="`+linkFlota+`/-1/-1/`+flota['numeroflota']+`">
+                            href="`+linkFlota+`/`+flota['numeroflota']+`">
                             Atacar
                             </a>
                         </td>

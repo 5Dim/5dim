@@ -7,6 +7,8 @@ use App\Models\Constantes;
 use App\Models\Construcciones;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
+use App\Models\EnVuelo;
+use App\Models\Flotas;
 use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
@@ -91,9 +93,126 @@ class Controller extends BaseController
         );
     }
 
-    public function flotaBase()
+    public function flotaBase($estrella = "", $orbita = "", $nombreflota = "", $tipoflota = "envuelo")
     {
-        //Cosas flotas
-        // return compact();
+        extract($this->recursos());
+
+        //variables universo
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+        $cantidadDestinos = $constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
+        $constantes = Constantes::where('tipo', 'investigacion')->get();
+
+        $cargaDest = [];
+        $prioridades = [];
+        $destinos = [];
+        $visionXDefecto = true;
+
+        if (!empty($nombreflota) && !empty($tipoflota)) {
+            if ($tipoflota == "envuelo" || $tipoflota == "enorbita"  || $tipoflota == "enrecoleccion") {
+                $result=Flotas::valoresEdicionFlotasController($jugadorActual,$tipoflota,$nombreflota);
+                $visionXDefecto=$result[0];
+                $destinos=$result[1];
+                $flota=$result[2];
+                $navesEstacionadas=$result[3];
+                $recursosFlota=$result[4];
+                $prioridades=$result[5];
+            }
+        } else {
+            $visionXDefecto = true;
+        }
+
+        $result=Flotas::valoresVaciosFlotaController($planetaActual);
+        $prioridadesXDefecto = $result[0];
+        $recursosDestino = $result[1];
+        $destino = $result[2];
+        $origen= $result[3];
+
+        $cargaDestVacia = [];
+        $prioridadesVacia = [];
+        $destinosVacia = [];
+        for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
+            array_push($destinosVacia, $destino);
+            array_push($cargaDestVacia, $recursosDestino);
+            array_push($prioridadesVacia, $prioridadesXDefecto);
+        }
+
+        $recursosFlota = $recursos;
+
+        if ($visionXDefecto) {
+
+            array_push($prioridades, $prioridadesXDefecto);
+            array_push($cargaDest, $recursosDestino);
+            array_push($destinos, $origen);
+
+            for ($dest = 1; $dest < $cantidadDestinos + 1; $dest++) {
+                array_push($destinos, $destino);
+                array_push($cargaDest, $recursosDestino);
+                array_push($prioridades, $prioridadesXDefecto);
+            }
+
+            //Naves en el planeta
+            $navesEstacionadas = $planetaActual->estacionadas;
+
+            // datosFlota
+            $flota = new EnVuelo();
+            $flota->nombre = "";
+
+            $destinos[1]["estrella"]=$estrella;
+            $destinos[1]["orbita"]=$orbita;
+        }
+
+        // $diseniosJugador = $jugadorActual->disenios;
+
+        $result=Flotas::valoresDiseniosFlotaController($navesEstacionadas);
+        $diseniosJugador = $result[0];
+        $ViewDaniosDisenios = $result[1];
+
+
+        $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
+        $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
+
+        if (!empty($jugadorAlianza)) {
+            $flotasEnOrbitaAlianza = $jugadorAlianza->enOrbita;
+            $flotasEnRecoleccionAlianza = $jugadorAlianza->enRecoleccion;
+        } else {
+            $flotasEnOrbitaAlianza = null;
+            $flotasEnRecoleccionAlianza = null;
+        }
+
+        return compact(
+            'recursos',
+            'recursosFlota',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+            'mensajeNuevo',
+            'consImperio',
+
+            'cantidadDestinos',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
+            'investigaciones',
+            'constantesU',
+            'navesEstacionadas',
+            'diseniosJugador',
+            'constantes',
+            'ViewDaniosDisenios',
+            'destinos',
+            'cargaDest',
+            'prioridades',
+            'flota',
+            'flotasEnOrbitaPropias',
+            'flotasEnRecoleccionPropias',
+            'flotasEnOrbitaAlianza',
+            'flotasEnRecoleccionAlianza',
+            'destinosVacia',
+            'cargaDestVacia',
+            'prioridadesVacia',
+        );
     }
+
+
 }

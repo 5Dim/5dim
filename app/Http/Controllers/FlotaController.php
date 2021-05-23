@@ -39,72 +39,8 @@ class FlotaController extends Controller
 {
     public function index($tab = 'envuelo-tab')
     {
-        extract($this->recursos());
 
-        //variables universo
-        $constantesU = Constantes::where('tipo', 'universo')->get();
-        $cantidadDestinos = $constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
-        $constantes = Constantes::where('tipo', 'investigacion')->get();
-
-        $cargaDest = [];
-        $prioridades = [];
-        $destinos = [];
-        $visionXDefecto = true;
-
-        $result=Flotas::valoresVaciosFlotaController($planetaActual);
-        $prioridadesXDefecto = $result[0];
-        $recursosDestino = $result[1];
-        $destino = $result[2];
-        $origen= $result[3];
-
-        $cargaDestVacia = [];
-        $prioridadesVacia = [];
-        $destinosVacia = [];
-        for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
-            array_push($destinosVacia, $destino);
-            array_push($cargaDestVacia, $recursosDestino);
-            array_push($prioridadesVacia, $prioridadesXDefecto);
-        }
-
-        $recursosFlota = $recursos;
-
-        if ($visionXDefecto) {
-
-            array_push($prioridades, $prioridadesXDefecto);
-            array_push($cargaDest, $recursosDestino);
-            array_push($destinos, $origen);
-
-            for ($dest = 1; $dest < $cantidadDestinos + 1; $dest++) {
-                array_push($destinos, $destino);
-                array_push($cargaDest, $recursosDestino);
-                array_push($prioridades, $prioridadesXDefecto);
-            }
-
-            //Naves en el planeta
-            $navesEstacionadas = $planetaActual->estacionadas;
-
-            // datosFlota
-            $flota = new EnVuelo;
-            $flota->nombre = "";
-        }
-
-        // $diseniosJugador = $jugadorActual->disenios;
-
-        $result=Flotas::valoresDiseniosFlotaController($navesEstacionadas);
-        $diseniosJugador = $result[0];
-        $ViewDaniosDisenios = $result[1];
-
-
-        $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
-        $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
-
-        if (!empty($jugadorAlianza)) {
-            $flotasEnOrbitaAlianza = $jugadorAlianza->enOrbita;
-            $flotasEnRecoleccionAlianza = $jugadorAlianza->enRecoleccion;
-        } else {
-            $flotasEnOrbitaAlianza = null;
-            $flotasEnRecoleccionAlianza = null;
-        }
+        extract($this->flotaBase());
 
         return view('juego.flotas.flotas', compact(
             // Recursos
@@ -144,210 +80,8 @@ class FlotaController extends Controller
     }
 
     public function astrometria($estrella = "", $orbita = "", $tab = 'enviar-tab')
-    { extract($this->recursos());
-
-        //variables universo
-        $constantesU = Constantes::where('tipo', 'universo')->get();
-        $cantidadDestinos = $constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
-        $constantes = Constantes::where('tipo', 'investigacion')->get();
-
-        $cargaDest = [];
-        $prioridades = [];
-        $destinos = [];
-        $visionXDefecto = true;
-
-        $result=Flotas::valoresVaciosFlotaController($planetaActual);
-        $prioridadesXDefecto = $result[0];
-        $recursosDestino = $result[1];
-        $destino = $result[2];
-        $origen= $result[3];
-
-        $origen = new Destinos();
-        $origen->estrella = $estrella;
-        $origen->orbita = $orbita;
-        array_push($destinos, $origen);
-        Log::info("origen: ".$origen);
-        Log::info("destinos: ");
-        Log::info($destinos);
-
-        $cargaDestVacia = [];
-        $prioridadesVacia = [];
-        $destinosVacia = [];
-        for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
-            array_push($destinosVacia, $destino);
-            array_push($cargaDestVacia, $recursosDestino);
-            array_push($prioridadesVacia, $prioridadesXDefecto);
-        }
-
-        $recursosFlota = $recursos;
-
-        if ($visionXDefecto) {
-
-            array_push($prioridades, $prioridadesXDefecto);
-            array_push($cargaDest, $recursosDestino);
-            array_push($destinos, $origen);
-
-            for ($dest = 1; $dest < $cantidadDestinos + 1; $dest++) {
-                array_push($destinos, $destino);
-                array_push($cargaDest, $recursosDestino);
-                array_push($prioridades, $prioridadesXDefecto);
-            }
-
-            //Naves en el planeta
-            $navesEstacionadas = $planetaActual->estacionadas;
-
-            // datosFlota
-            $flota = new EnVuelo;
-            $flota->nombre = "";
-        }
-
-        // $diseniosJugador = $jugadorActual->disenios;
-
-        $result=Flotas::valoresDiseniosFlotaController($navesEstacionadas);
-        $diseniosJugador = $result[0];
-        $ViewDaniosDisenios = $result[1];
-
-
-        $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
-        $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
-
-        if (!empty($jugadorAlianza)) {
-            $flotasEnOrbitaAlianza = $jugadorAlianza->enOrbita;
-            $flotasEnRecoleccionAlianza = $jugadorAlianza->enRecoleccion;
-        } else {
-            $flotasEnOrbitaAlianza = null;
-            $flotasEnRecoleccionAlianza = null;
-        }
-
-        return view('juego.flotas.flotas', compact(
-            // Recursos
-            'recursos',
-            'recursosFlota',
-            'personalOcupado',
-            'capacidadAlmacenes',
-            'produccion',
-            'planetasJugador',
-            'planetasAlianza',
-            'mensajeNuevo',
-            'consImperio',
-
-            'cantidadDestinos',
-            'planetaActual',
-            'nivelImperio',
-            'nivelEnsamblajeFuselajes',
-            'investigaciones',
-            'constantesU',
-            'navesEstacionadas',
-            'diseniosJugador',
-            'constantes',
-            'ViewDaniosDisenios',
-            'destinos',
-            'cargaDest',
-            'prioridades',
-            'flota',
-            'flotasEnOrbitaPropias',
-            'flotasEnRecoleccionPropias',
-            'flotasEnOrbitaAlianza',
-            'flotasEnRecoleccionAlianza',
-            'destinosVacia',
-            'cargaDestVacia',
-            'prioridadesVacia',
-            'tab',
-        ));
-    }
-
-    public function editarFlota($estrella = "", $orbita = "", $nombreflota = "", $tipoflota = "envuelo", $tab = 'enviar-tab')
     {
-        extract($this->recursos());
-
-        //variables universo
-        $constantesU = Constantes::where('tipo', 'universo')->get();
-        $cantidadDestinos = $constantesU->where('codigo', 'cantidadDestinosFlotas')->first()->valor;
-
-        //constantes invest
-        $constantes = Constantes::where('tipo', 'investigacion')->get();
-
-        //$flotaOrigen = $request->input('nombreflota');
-        //Log::info('flota ver: '.$nombreflota);
-        //Log::info(empty($nombreflota));
-        $cargaDest = [];
-        $prioridades = [];
-        $destinos = [];
-        $visionXDefecto = true;
-
-        if (!empty($nombreflota) && !empty($tipoflota)) {
-            if ($tipoflota == "envuelo" || $tipoflota == "enorbita"  || $tipoflota == "enrecoleccion") {
-                $result=Flotas::valoresEdicionFlotasController($jugadorActual,$tipoflota,$nombreflota);
-                $visionXDefecto=$result[0];
-                $destinos=$result[1];
-                $flota=$result[2];
-                $navesEstacionadas=$result[3];
-                $recursosFlota=$result[4];
-                $prioridades=$result[5];
-            }
-        } else {
-            $visionXDefecto = true;
-        }
-
-        $result=Flotas::valoresVaciosFlotaController($planetaActual);
-        $prioridadesXDefecto = $result[0];
-        $recursosDestino = $result[1];
-        $destino = $result[2];
-        $origen= $result[3];
-
-        $cargaDestVacia = [];
-        $prioridadesVacia = [];
-        $destinosVacia = [];
-        for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++) {
-            array_push($destinosVacia, $destino);
-            array_push($cargaDestVacia, $recursosDestino);
-            array_push($prioridadesVacia, $prioridadesXDefecto);
-        }
-
-        $recursosFlota = $recursos;
-
-        if ($visionXDefecto) {
-
-            array_push($prioridades, $prioridadesXDefecto);
-            array_push($cargaDest, $recursosDestino);
-            array_push($destinos, $origen);
-
-            for ($dest = 1; $dest < $cantidadDestinos + 1; $dest++) {
-                array_push($destinos, $destino);
-                array_push($cargaDest, $recursosDestino);
-                array_push($prioridades, $prioridadesXDefecto);
-            }
-
-            //Naves en el planeta
-            $navesEstacionadas = $planetaActual->estacionadas;
-
-            // datosFlota
-            $flota = new EnVuelo;
-            $flota->nombre = "";
-        }
-
-        // $diseniosJugador = $jugadorActual->disenios;
-
-        $result=Flotas::valoresDiseniosFlotaController($navesEstacionadas);
-        $diseniosJugador = $result[0];
-        $ViewDaniosDisenios = $result[1];
-
-
-        $flotasEnOrbitaPropias = $jugadorActual->enOrbita;
-        $flotasEnRecoleccionPropias = $jugadorActual->enRecoleccion;
-
-        if (!empty($jugadorAlianza)) {
-            $flotasEnOrbitaAlianza = $jugadorAlianza->enOrbita;
-            $flotasEnRecoleccionAlianza = $jugadorAlianza->enRecoleccion;
-        } else {
-            $flotasEnOrbitaAlianza = null;
-            $flotasEnRecoleccionAlianza = null;
-        }
-
-        //Log::info($navesEstacionadas );
-        //Log::info($destinosP);
-
-        //$flotasVisibles=Astrometria::flotasVisibles();
+        extract($this->flotaBase($estrella,$orbita));
 
         return view('juego.flotas.flotas', compact(
             // Recursos
@@ -385,6 +119,52 @@ class FlotaController extends Controller
             'tab',
         ));
     }
+
+    public function editarFlota($nombreflota = "", $tipoflota = "envuelo", $tab = 'enviar-tab')
+    {
+        extract($this->flotaBase("","",$nombreflota,$tipoflota));
+
+        return view('juego.flotas.flotas', compact(
+            // Recursos
+            'recursos',
+            'recursosFlota',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+            'mensajeNuevo',
+            'consImperio',
+
+            'cantidadDestinos',
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
+            'investigaciones',
+            'constantesU',
+            'navesEstacionadas',
+            'diseniosJugador',
+            'constantes',
+            'ViewDaniosDisenios',
+            'destinos',
+            'cargaDest',
+            'prioridades',
+            'flota',
+            'flotasEnOrbitaPropias',
+            'flotasEnRecoleccionPropias',
+            'flotasEnOrbitaAlianza',
+            'flotasEnRecoleccionAlianza',
+            'destinosVacia',
+            'cargaDestVacia',
+            'prioridadesVacia',
+            'tab',
+        ));
+    }
+
+
+
+
+
 
     public function traerRecursos($estrella, $orbita)
     {

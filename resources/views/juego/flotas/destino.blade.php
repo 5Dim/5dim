@@ -103,11 +103,11 @@
                 </td>
                 <td class="text-light">
                     <input id="sistemaDest{{ $numero }}" type="text" class="form-control input ediciondestino"
-                        placeholder="Numero de sistema" value="{{ $estrellaDestino }}">
+                        placeholder="Numero de sistema" value="">
                 </td>
                 <td class="text-light">
                     <input id="planetaDest{{ $numero }}" type="text" class="form-control input ediciondestino"
-                        type="number" pattern="[0-9]{1}" placeholder="Numero de orbita" value="{{ $orbitaDestino }}">
+                        type="number" pattern="[0-9]{1}" placeholder="Numero de orbita" value="">
                 </td>
                 <td class="text-light">
                     <div id="selectorordenDest{{ $numero }}">

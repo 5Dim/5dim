@@ -369,11 +369,7 @@
             </table>
         </div>
         @for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++)
-            @if(!empty($estrella) && !empty($orbita) && $dest == 1)
-                @include('juego.flotas.destino', [ 'destino' => 'destino'.$dest, 'numero' => $dest, 'estrellaDestino' => $estrella, 'orbitaDestino' => $orbita])
-            @else
-                @include('juego.flotas.destino', [ 'destino' => 'destino'.$dest, 'numero' => $dest, 'estrellaDestino' => "", 'orbitaDestino' => ""])
-            @endif
+            @include('juego.flotas.destino', [ 'destino' => 'destino'.$dest, 'numero' => $dest, 'estrellaDestino' => "", 'orbitaDestino' => ""])
         @endfor
 
     </div>
