@@ -606,12 +606,12 @@ function NaveAflota(iddisenio, canti = 0) {
     if (canti == "x") {
         valnave.enflota = 1 * $("#enflota" + iddisenio).val();
     } else if (canti == "m") {
-        valnave.enflota = valnave.cantidad + valnave.enflota;
+        valnave.enflota =1* valnave.cantidad +1* valnave.enflota;
     } else {
         valnave.enflota = canti;
     }
 
-    if (valnave.enhangar + valnave.enflota > valnave.cantidadT) {
+    if (1*valnave.enhangar +1* valnave.enflota > valnave.cantidadT) {
         valnave.enflota = valnave.cantidadT - valnave.enhangar;
     }
     valnave.cantidad = valnave.cantidadT - valnave.enflota - valnave.enhangar;
@@ -631,7 +631,7 @@ function NaveAhangar(iddisenio, canti = 0) {
         valnave.enhangar = canti;
     }
 
-    if (valnave.enhangar + valnave.enflota > valnave.cantidadT) {
+    if (1*valnave.enhangar + 1*valnave.enflota > valnave.cantidadT) {
         valnave.enhangar = valnave.cantidadT - valnave.enflota;
     }
     valnave.cantidad = valnave.cantidadT - valnave.enflota - valnave.enhangar;
