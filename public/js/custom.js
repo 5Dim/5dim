@@ -423,6 +423,9 @@ function changeSkin(id) {
 }
 
 function formatNumber(num, prefix) {
+    if (num=="nada"){//si queremos que el retorno sea nada
+        return "";
+    }
     prefix = prefix || "";
     num += "";
     var splitStr = num.split(".");

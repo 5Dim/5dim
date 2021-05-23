@@ -1270,44 +1270,46 @@ function RellenarFlotasEnVuelo(data,prefix){
                         <td colspan="`+AnchoColumnasMedio+`" class="text-light">`+defensa+`</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                    <td class="anchofijo text-warning">
-                        Personal
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Mineral
-                    </td>
-                    <td class="anchofijo text-warning">
-                        cristal
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Gas
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Plástico
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Cerámica
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Liquido
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Micros
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Fuel
-                    </td>
-                    <td class="anchofijo text-warning">
-                        M-A
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Munición
-                    </td>
-                    <td class="anchofijo text-warning">
-                        Creditos
-                    </td>
+                        <td class="anchofijo text-warning"></td>
+                        <td class="anchofijo text-warning">
+                            Personal
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Mineral
+                        </td>
+                        <td class="anchofijo text-warning">
+                            cristal
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Gas
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Plástico
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Cerámica
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Liquido
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Micros
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Fuel
+                        </td>
+                        <td class="anchofijo text-warning">
+                            M-A
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Munición
+                        </td>
+                        <td class="anchofijo text-warning">
+                            Creditos
+                        </td>
                 </tr>
                     <tr id="info`+fila+`" name="cargadest0`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                        <td class="text-warning">Recursos</td>
                         <td class="text-light">
                         `+formatNumber(1*flota['recursos']['personal'])+`
                         </td>
@@ -1344,7 +1346,52 @@ function RellenarFlotasEnVuelo(data,prefix){
                         <td class="text-light">
                         `+formatNumber(1*flota['recursos']['creditos'])+`
                         </td>
-                </tr>
+                </tr>`;
+
+                if(flota['estado']=="enrecoleccion" || flota['estado']=="enextraccion"){
+
+                    tablaFlotasPropias += `
+                    <tr id="info`+fila+`" name="prioridades0`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
+                            <td class="text-warning">Prioridades</td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['personal'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['mineral'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['cristal'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['gas'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['plastico'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['ceramica'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['liquido'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['micros'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['fuel'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['ma'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['municion'])+`
+                            </td>
+                            <td class="text-light">
+                            `+formatNumber(flota['prioridades']['creditos'])+`
+                            </td>
+                    </tr>`;
+                }
+                    tablaFlotasPropias += `
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td colspan="4">
                             <a type="button" class="`+deshabilitarRegreso+` btn btn-outline-`+colorbotonRegreso+` col-12 text-`+colorbotonRegreso+`" id="botonregreso`+flota['numeroflota']+`"

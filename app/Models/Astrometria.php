@@ -501,7 +501,6 @@ class Astrometria extends Model
                 $flota->cargaT = $cargaT;
             }
 
-
             $flota->color = 2;
 
             $flota->tvuelo = $tiempovuelo;
@@ -525,14 +524,18 @@ class Astrometria extends Model
                 $flota->recursos = RecursosEnFlota::where('en_recoleccion_id', $flotaVisible['id'])->first();
                 $flota->maximoPosible= Producciones::produccionRecoleccion($flotaVisible->planetas->id)->totalPosible;
                 $cargaT = 0;
-                foreach ($recursosArray as $recurso) {
-                    $cargaT += $flota->recursos[$recurso];
-                }
-                $flota->cargaT = $cargaT;
+
                 $flota->mision = "Recolectando";
                 $flota->recoleccion = $flotaVisible->recoleccion;
                 $flota->origen = $flotaVisible->planetas->estrella . "x" . $flotaVisible->planetas->orbita;
                 $flota->destino = "";
+                $flota->prioridades=$flotaVisible->prioridadesEnFlota;
+                foreach ($recursosArray as $recurso) {
+                    $cargaT += $flota->recursos[$recurso];
+                    if($flota->prioridades[$recurso] <1){$flota->prioridades[$recurso]="nada";}
+                }
+                $flota->cargaT = $cargaT;
+
             } else if ($estado == "enextraccion") {
                 Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
                 $flota->recursos = RecursosEnFlota::where('en_recoleccion_id', $flotaVisible['id'])->first();
@@ -546,6 +549,8 @@ class Astrometria extends Model
                 $flota->recoleccion = $flotaVisible->extraccion;
                 $flota->origen = $flotaVisible->planetas->estrella . "x" . $flotaVisible->planetas->orbita;
                 $flota->destino = "";
+                $flota->prioridades=$flotaVisible->prioridadesEnFlota;
+
             } else if ($estado == "enorbita") {
                 $flota->recursos = RecursosEnFlota::where('en_orbita_id', $flotaVisible['id'])->first();
                 $cargaT = 0;
