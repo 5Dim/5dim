@@ -1,7 +1,7 @@
 <head>
     <style>
         body {
-            background-color: #000000; 
+            background-color: #000000;
             background-image: url({{ asset('astrometria/img/fondo.png') }});
             width: 100%;
             height: 100%
@@ -26,11 +26,11 @@
             transition: opacity 0.6s;
             margin-bottom: 15px;
             width: 50%;
-        }      
+        }
         .alert.success {background-color: #4CAF50;}
         .alert.info {background-color: #2196F3;}
         .alert.warning {background-color: #ff9800;}
-        
+
         #parrafo {
           margin: 1px;
           font-size: 15px;
@@ -54,13 +54,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    
+
   }
-  
-  #dragFlotas { 
-    width: 50px; 
-    height: 90px; 
-    padding: 4px;  
+
+  #dragFlotas {
+    width: 120px;
+    height: 90px;
+    padding: 4px;
     margin-top: 5px;
     background: none repeat scroll 0 0 #002224ab;
     border: 1px solid #686D79;
@@ -76,17 +76,17 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgb(5, 52, 73); 
+  background: rgb(5, 52, 73);
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #2c9dd1; 
+  background: #2c9dd1;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #20769e; 
+  background: #20769e;
 }
   #tituloDrag1{
     color: #2c9dd1;
@@ -116,7 +116,7 @@ label {
     font-size: 12px;
     font-family: sans-serif;
     padding: 15px;
-    
+
 }
 #forMarcarUno{color: red;}
 #forMarcarDos{color: rgb(255, 255, 0);}
@@ -131,7 +131,7 @@ input, select{
     text-align:center;
 }
 .boton_enviar{
-    
+
 }
     </style>
     <link rel="stylesheet" href="{{ asset('astrometria/css/jquery-ui.css') }}">
@@ -158,7 +158,7 @@ input, select{
 </head>
 <body>
   <div id="dragFlotas">
-    <p id=tituloDrag1>FLOTAS</p>
+    <p id=tituloDrag1>FLOTAS EN VUELO</p>
     <div id="contenedorFlotas">
       <p>Loading...</p>
     </div>
@@ -185,6 +185,6 @@ input, select{
       <p id="boton_contenedor">
           <input class="boton_enviar" type="submit" value="Enviar"/>
       </p>
-  </form>  
+  </form>
   </div>
 </body>

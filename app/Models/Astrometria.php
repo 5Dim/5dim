@@ -535,6 +535,8 @@ class Astrometria extends Model
                     if($flota->prioridades[$recurso] <1){$flota->prioridades[$recurso]="nada";}
                 }
                 $flota->cargaT = $cargaT;
+                $flota->coordx = $flotaVisible->coordx;
+                $flota->coordy = $flotaVisible->coordy;
 
             } else if ($estado == "enextraccion") {
                 Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
@@ -550,6 +552,8 @@ class Astrometria extends Model
                 $flota->origen = $flotaVisible->planetas->estrella . "x" . $flotaVisible->planetas->orbita;
                 $flota->destino = "";
                 $flota->prioridades=$flotaVisible->prioridadesEnFlota;
+                $flota->coordx = $flotaVisible->coordx;
+                $flota->coordy = $flotaVisible->coordy;
 
             } else if ($estado == "enorbita") {
                 $flota->recursos = RecursosEnFlota::where('en_orbita_id', $flotaVisible['id'])->first();
@@ -561,6 +565,8 @@ class Astrometria extends Model
                 $flota->mision = "Orbitando";
                 $flota->origen = $flotaVisible->estrella . "x" . $flotaVisible->orbita;
                 $flota->destino = "";
+                $flota->coordx = $flotaVisible->coordx;
+                $flota->coordy = $flotaVisible->coordy;
             }
 
             $flota->nombre = $flotaVisible->nombre;
