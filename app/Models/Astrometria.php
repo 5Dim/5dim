@@ -532,7 +532,7 @@ class Astrometria extends Model
                 $flota->prioridades=$flotaVisible->prioridadesEnFlota;
                 foreach ($recursosArray as $recurso) {
                     $cargaT += $flota->recursos[$recurso];
-                    if($flota->prioridades[$recurso] <1){$flota->prioridades[$recurso]="nada";}
+                    //if($flota->prioridades[$recurso] <1){$flota->prioridades[$recurso]="nada";}
                 }
                 $flota->cargaT = $cargaT;
                 $flota->coordx = $flotaVisible->coordx;

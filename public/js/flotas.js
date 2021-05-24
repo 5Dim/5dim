@@ -1153,7 +1153,7 @@ function verFlotasEnOrbita() {
 }
 
 
-function RellenarFlotasEnVuelo(data,prefix){
+function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
 
     $("#"+prefix+"Propias").empty();
     $("#"+prefix+"Aliadas").empty();
@@ -1353,40 +1353,40 @@ function RellenarFlotasEnVuelo(data,prefix){
                     tablaFlotasPropias += `
                     <tr id="info`+fila+`" name="prioridades0`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                             <td class="text-warning">Prioridades</td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['personal']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['personal'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['mineral']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['mineral'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['cristal']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['cristal'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['gas']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['gas'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['plastico']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['plastico'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['ceramica']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['ceramica'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['liquido']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['liquido'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['micros']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['micros'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['fuel']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['fuel'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['ma']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['ma'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['municion']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['municion'])+`
                             </td>
-                            <td class="text-light">
+                            <td class="`+ ((1*flota['prioridades']['creditos']==0) ? 'text-secondary' : 'text-light')+`">
                             `+formatNumber(flota['prioridades']['creditos'])+`
                             </td>
                     </tr>`;
