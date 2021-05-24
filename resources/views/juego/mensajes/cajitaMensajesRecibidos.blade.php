@@ -21,7 +21,7 @@
                         <a class="btn btn-link text-success" data-bs-toggle="collapse" href="#" role="button"
                             aria-expanded="false" data-bs-target=".mensajeRecibido{{ $mensaje->id }}"
                             aria-controls="mensajeRecibido{{ $mensaje->id }}">
-                            <big>Asunto: {{!! $mensaje->asunto !!}}<big>
+                            <big>Asunto: {!! $mensaje->asunto !!}<big>
                         </a>
                     </td>
                     <td colspan="1" class="text-success borderless align-middle">
