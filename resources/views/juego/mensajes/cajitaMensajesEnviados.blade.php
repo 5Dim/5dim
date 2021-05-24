@@ -49,31 +49,4 @@
             </table>
         </div>
     </div>
-    <div class="col-12 borderless">
-        <div id="cuadro1" class="table-responsive ">
-            <table id="mensajeEnviado{{ $mensaje->id }}3"
-                class="table table-sm table-borderless text-center anchofijo collapse mensajeEnviado{{ $mensaje->id }}">
-                <tr>
-                    <td>
-                        <button type="button" class="btn btn-outline-danger col-12 btn-sm " data-bs-toggle="modal"
-                            data-bs-target="#datosModal">
-                            <i class="fa fa-info-circle"></i> Eliminar
-                        </button>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-outline-primary col-12 btn-sm " data-bs-toggle="modal"
-                            data-bs-target="#datosModal">
-                            <i class="fa fa-info-circle"></i> Reportar
-                        </button>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-outline-success col-12 btn-sm " data-bs-toggle="modal"
-                            data-bs-target="#datosModal">
-                            <i class="fa fa-info-circle"></i> Responder
-                        </button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
 </div>
