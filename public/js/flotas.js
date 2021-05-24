@@ -1442,13 +1442,13 @@ function RellenarFlotasEnVuelo(data,prefix){
                         </div>
                     </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                    <td colspan="3" class="text-warning">`+cabeza1+`</td>
+                    <td colspan="4" class="text-warning">`+cabeza1+`</td>
                     <td colspan="3" class="text-warning">`+cabeza2+`</td>
-                        <td colspan="3" class="text-warning">ataque:</td>
-                        <td colspan="3" class="text-warning">defensa</td>
+                        <td colspan="3" class="text-warning">Ataque:</td>
+                        <td colspan="3" class="text-warning">Defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                    <td id="trestantealiada`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
+                    <td id="trestantealiada`+fila+`" colspan="4" class="text-light">`+trestante+`</td>
                     <td id="tregresoaliada`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
                         <td colspan="3" class="text-light">`+ataque+`</td>
                         <td colspan="3" class="text-light">`+defensa+`</td>
@@ -1500,13 +1500,13 @@ function RellenarFlotasEnVuelo(data,prefix){
                         </div>
                     </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                    <td colspan="3" class="text-warning">`+cabeza1+`</td>
+                    <td colspan="4" class="text-warning">`+cabeza1+`</td>
                     <td colspan="3" class="text-warning">`+cabeza2+`</td>
                         <td colspan="3" class="text-warning">ataque:</td>
                         <td colspan="3" class="text-warning">defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td id="trestanteajena`+fila+`" colspan="3" class="text-light">`+trestante+`</td>
+                        <td id="trestanteajena`+fila+`" colspan="4" class="text-light">`+trestante+`</td>
                         <td id="tregresoajena`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
                         <td colspan="3" class="text-light">`+ataque+`</td>
                         <td colspan="3" class="text-light">`+defensa+`</td>
