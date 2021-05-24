@@ -4,7 +4,7 @@
             <table class="table table-borderless borderless table-sm anchofijo">
                 <tr>
                     <td colspan="1" class="text-success text-center borderless align-middle">
-                        <a class="btn btn-link text-success" data-bs-toggle="collapse" href="" role="button"
+                        <a class="btn btn-link text-success text-decoration-none" data-bs-toggle="collapse" href="" role="button"
                             aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <img class="rounded" src="{{ $mensaje->jugadores->avatar }}" width="50" height="50">
@@ -12,24 +12,28 @@
                         </a>
                     </td>
                     <td colspan="7" class="text-success borderless align-middle">
-                        <a class="btn btn-link text-success" data-bs-toggle="collapse" href="" role="button"
+                        <a class="btn btn-link text-success text-decoration-none" data-bs-toggle="collapse" href="" role="button"
                             aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <big>Asunto: {{ $mensaje->asunto }}<big>
                         </a>
                     </td>
                     <td colspan="2" class="text-success borderless align-middle">
-                        Enviado a:
-                        @foreach ($mensaje->intervinientes as $intervinientes)
-                            @if($loop->last)
-                                <span class="text-light">{{ $intervinientes->jugadores->nombre }}.</span>
-                            @else
-                                <span class="text-light">{{ $intervinientes->jugadores->nombre }},</span>
-                            @endif
-                        @endforeach
+                        <a class="btn btn-link text-success text-decoration-none" data-bs-toggle="collapse" href="" role="button"
+                            aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
+                            aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
+                            Enviado a:
+                            @foreach ($mensaje->intervinientes as $intervinientes)
+                                @if($loop->last)
+                                    <span class="text-light">{{ $intervinientes->jugadores->nombre }}.</span>
+                                @else
+                                    <span class="text-light">{{ $intervinientes->jugadores->nombre }},</span>
+                                @endif
+                            @endforeach
+                        </a>
                     </td>
                     <td colspan="1" class="text-success text-center borderless align-middle">
-                        <a class="btn btn-link text-success" data-bs-toggle="collapse" href=""
+                        <a class="btn btn-link text-success text-decoration-none" data-bs-toggle="collapse" href=""
                             role="button" aria-expanded="false" data-bs-target=".mensajeEnviado{{ $mensaje->id }}"
                             aria-controls="mensajeEnviado{{ $mensaje->id }}1 mensajeEnviado{{ $mensaje->id }}2 mensajeEnviado{{ $mensaje->id }}3">
                             <big>
