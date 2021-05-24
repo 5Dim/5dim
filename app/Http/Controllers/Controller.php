@@ -116,6 +116,7 @@ class Controller extends BaseController
                 $navesEstacionadas=$result[3];
                 $recursosFlota=$result[4];
                 $prioridades=$result[5];
+                $cargaDest=$result[6];
             }
         } else {
             $visionXDefecto = true;

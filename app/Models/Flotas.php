@@ -1415,6 +1415,8 @@ destino 0 con lo que sale
         $prioridades = [];
         $destinos = [];
         $jugadoryAlianza = [];
+        $navesEstacionadas=null;
+        $recursosFlota=null;
         // Log::info($jugadorActual);
         if ($jugadorActual['alianzas_id'] != null) {
             array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
@@ -1488,14 +1490,16 @@ destino 0 con lo que sale
 
             //Log::info("flota: ".$flota);
             //Log::info("destinos: ".$destinos);
-            //Log::info("recursosDestino: ".$cargaDest);
+            //Log::info($cargaDest);
             //Log::info("prioridadDestino: ");Log::info($prioridades);
             //Log::info("recursos: ".$recursos);
         } else {
             $visionXDefecto = true;
         }
 
-        return [$visionXDefecto,$destinos,$flota,$navesEstacionadas,$recursosFlota,$prioridades];
+        //Log::info($cargaDest);
+
+        return [$visionXDefecto,$destinos,$flota,$navesEstacionadas,$recursosFlota,$prioridades,$cargaDest];
     }
 
 
