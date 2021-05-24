@@ -1187,7 +1187,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                 } else {
                     trestante="?";
                 }
-                barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">
+                barraytiempo=`<th colspan="4" class="text-success text-center borderless align-middle">
                 <div class="progress-bar bg-success" role="progressbar" style="width: `+progreso+`%;"
                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">`+progreso+`%</div>
                 </th>
@@ -1197,14 +1197,14 @@ function RellenarFlotasEnVuelo(data,prefix){
                 tregreso=formatHMS(1*flota['tregreso']);
 
             }  else if(flota['estado']=="enorbita") {
-                barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
+                barraytiempo=`<th colspan="4" class="text-success text-center borderless align-middle">`+nick+` </th>
                 <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
                 cabeza1="";
                 cabeza2="Carga Actual"
                 trestante="";
                 tregreso=formatNumber(1*flota['cargaT']);
             }else {
-                barraytiempo=`<th colspan="3" class="text-success text-center borderless align-middle">`+nick+` </th>
+                barraytiempo=`<th colspan="4" class="text-success text-center borderless align-middle">`+nick+` </th>
                 <th id="trestantepropia`+fila+`" colspan="1" class="text-light"></th>`;
                 cabeza1="Recolección actual";
                 cabeza2="Carga Actual"
@@ -1257,14 +1257,14 @@ function RellenarFlotasEnVuelo(data,prefix){
                     </tr>
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         `+Columna1cabeza+`
-                        <td colspan="`+AnchoColumnasMedio+`" class="text-warning">`+cabeza1+`</td>
+                        <td colspan="`+(AnchoColumnasMedio+1)+`" class="text-warning">`+cabeza1+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-warning">`+cabeza2+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-warning">Ataque:</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-warning">Defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         `+Columna1contenido+`
-                        <td id="trestantepropia`+fila+`" colspan="`+AnchoColumnasMedio+`" class="text-light">`+trestante+`</td>
+                        <td id="trestantepropia`+fila+`" colspan="`+(AnchoColumnasMedio+1)+`" class="text-light">`+trestante+`</td>
                         <td id="tregresopropia`+fila+`" colspan="`+AnchoColumnasMedio+`" class="text-light">`+tregreso+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-light">`+ataque+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-light">`+defensa+`</td>
@@ -1405,7 +1405,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                             Editar
                             </a>
                         </td>
-                        <td colspan="4">
+                        <td colspan="5">
                         <a type="button" class="btn btn-outline-success col-12 text-success"
                             href="{{ url('juego/disenio/borrarDisenio/x') }}">
                             <i class="fa fa-eye "></i> Ver
@@ -1461,7 +1461,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                         <td colspan="5">
 
                         </td>
-                        <td colspan="4">
+                        <td colspan="5">
                         <a type="button" class="btn btn-outline-success col-12 text-success"
                             href="{{ url('juego/disenio/borrarDisenio/x') }}">
                             <i class="fa fa-eye "></i> Ver
@@ -1522,7 +1522,7 @@ function RellenarFlotasEnVuelo(data,prefix){
                             Atacar
                             </a>
                         </td>
-                        <td colspan="4">
+                        <td colspan="5">
                         <a type="button" class="btn btn-outline-success col-12 text-success"
                             href="{{ url('juego/disenio/borrarDisenio/x') }}">
                             <i class="fa fa-eye "></i> Ver
