@@ -81,7 +81,7 @@ class FlotaController extends Controller
 
     public function astrometria($estrella = "", $orbita = "", $tab = 'enviar-tab')
     {
-        extract($this->flotaBase($estrella,$orbita));
+        extract($this->flotaBase($estrella, $orbita));
 
         return view('juego.flotas.flotas', compact(
             // Recursos
@@ -122,7 +122,7 @@ class FlotaController extends Controller
 
     public function editarFlota($nombreflota = "", $tipoflota = "envuelo", $tab = 'enviar-tab')
     {
-        extract($this->flotaBase("","",$nombreflota,$tipoflota));
+        extract($this->flotaBase("", "", $nombreflota, $tipoflota));
 
         return view('juego.flotas.flotas', compact(
             // Recursos
@@ -221,12 +221,12 @@ class FlotaController extends Controller
                 }
             }
         }
-        if($tipoNombre=="planeta"){
+        if ($tipoNombre == "planeta") {
             $recursos["estrella"] = $estrella;
             $recursos["orbita"] = $orbita;
         } else {
-            $recursos["estrella"] = $flotaDestino->estrella;
-            $recursos["orbita"] = $flotaDestino->orbita;
+            $recursos["estrella"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->estrella : $flotaDestino->estrella;
+            $recursos["orbita"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->orbita : $flotaDestino->orbita;
         }
 
 
@@ -305,12 +305,12 @@ class FlotaController extends Controller
             $navesEnPlaneta = $flotaOrigen->diseniosEnFlota;
 
             $recursos = $flotaOrigen->recursosEnFlota;
-            $jugadorEnviador=$flotaOrigen->jugadores;
+            $jugadorEnviador = $flotaOrigen->jugadores;
         } else {
             $navesEnPlaneta = $planetaActual->estacionadas;
             $destinoSalida->planetas_id = $planetaActual->id;
             $recursos = Recursos::where('planetas_id', $planetaActual->id)->first();
-            $jugadorEnviador=$planetaActual->jugadores;
+            $jugadorEnviador = $planetaActual->jugadores;
         }
         //Log::info("flotaOrigen ".$flotaOrigen);
         //Log::info("navesEnPlaneta ".$navesEnPlaneta);
@@ -445,8 +445,8 @@ class FlotaController extends Controller
                 $destino->porcentVel = 100;
                 $destino->mision = 'Salida';
                 $destino->visitado = true;
-                if ($flotaid !=null){
-                    $destino->initflota=$flota["publico"];
+                if ($flotaid != null) {
+                    $destino->initflota = $flota["publico"];
                 }
 
                 //$result = Flotas::destinoTipoId($destino, $destinos[0]);
@@ -537,8 +537,8 @@ class FlotaController extends Controller
                         //Log::info($destinos[$dest]);
                         //Log::info($destino);
                         //Log::info($destinos[$destAnt]);
-                        if (isset($destinos[$destAnt]["initflota"])){
-                            $destino->initflota=$destinos[$destAnt]["initflota"];
+                        if (isset($destinos[$destAnt]["initflota"])) {
+                            $destino->initflota = $destinos[$destAnt]["initflota"];
                         }
 
                         $destinos[$dest]['estrella'] = $destino->estrella;
