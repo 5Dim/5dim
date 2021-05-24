@@ -54,11 +54,6 @@
                         </a>
                     </td>
                     <td>
-                        <a type="button" class="btn btn-outline-primary col-12" href="">
-                            <i class="fa fa-info-circle"></i> Reportar
-                        </a>
-                    </td>
-                    <td>
                         <button type="button" class="btn btn-outline-success col-12" onclick="responderMensaje({{ $mensaje->emisor }})">
                             <i class="fa fa-info-circle"></i> Responder
                         </button>
