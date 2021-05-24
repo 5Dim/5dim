@@ -1260,14 +1260,14 @@ function RellenarFlotasEnVuelo(data,prefix){
                         <td colspan="`+(AnchoColumnasMedio+1)+`" class="text-warning">`+cabeza1+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-warning">`+cabeza2+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-warning">Ataque:</td>
-                        <td colspan="`+AnchoColumnasMedio+`" class="text-warning">Defensa</td>
+                        <td colspan="`+(AnchoColumnasMedio+1)+`" class="text-warning">Defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         `+Columna1contenido+`
                         <td id="trestantepropia`+fila+`" colspan="`+(AnchoColumnasMedio+1)+`" class="text-light">`+trestante+`</td>
                         <td id="tregresopropia`+fila+`" colspan="`+AnchoColumnasMedio+`" class="text-light">`+tregreso+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-light">`+ataque+`</td>
-                        <td colspan="`+AnchoColumnasMedio+`" class="text-light">`+defensa+`</td>
+                        <td colspan="`+(AnchoColumnasMedio+1)+`" class="text-light">`+defensa+`</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td class="anchofijo text-warning"></td>
@@ -1445,13 +1445,13 @@ function RellenarFlotasEnVuelo(data,prefix){
                     <td colspan="4" class="text-warning">`+cabeza1+`</td>
                     <td colspan="3" class="text-warning">`+cabeza2+`</td>
                         <td colspan="3" class="text-warning">Ataque:</td>
-                        <td colspan="3" class="text-warning">Defensa</td>
+                        <td colspan="4" class="text-warning">Defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                     <td id="trestantealiada`+fila+`" colspan="4" class="text-light">`+trestante+`</td>
                     <td id="tregresoaliada`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
                         <td colspan="3" class="text-light">`+ataque+`</td>
-                        <td colspan="3" class="text-light">`+defensa+`</td>
+                        <td colspan="4" class="text-light">`+defensa+`</td>
                     </tr>
 
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
@@ -1503,13 +1503,13 @@ function RellenarFlotasEnVuelo(data,prefix){
                     <td colspan="4" class="text-warning">`+cabeza1+`</td>
                     <td colspan="3" class="text-warning">`+cabeza2+`</td>
                         <td colspan="3" class="text-warning">ataque:</td>
-                        <td colspan="3" class="text-warning">defensa</td>
+                        <td colspan="4" class="text-warning">defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td id="trestanteajena`+fila+`" colspan="4" class="text-light">`+trestante+`</td>
                         <td id="tregresoajena`+fila+`" colspan="3" class="text-light">`+tregreso+`</td>
                         <td colspan="3" class="text-light">`+ataque+`</td>
-                        <td colspan="3" class="text-light">`+defensa+`</td>
+                        <td colspan="4" class="text-light">`+defensa+`</td>
                     </tr>
 
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
