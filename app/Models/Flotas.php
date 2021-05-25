@@ -341,7 +341,7 @@ class Flotas extends Model
         $destino['en_vuelo_id'] = null;
         $destino['en_recoleccion_id'] = null;
         $destino['en_orbita_id'] = null;
-        $destino["initflota"]=null;
+        $destino["initflota"] = null;
 
 
         $anchoUniverso = $constantesU->where('codigo', 'anchouniverso')->first()->valor;
@@ -372,7 +372,7 @@ class Flotas extends Model
             $destiorbita = $flotaDestino->planetas['orbita'];
             $destino['estrella'] = $destiestrella;
             $destino['orbita'] = $destiorbita;
-            $destino["initflota"]=$flotaDestino->publico; //para pasarlo al destino posterior
+            $destino["initflota"] = $flotaDestino->publico; //para pasarlo al destino posterior
         }
 
         // calculos
@@ -880,7 +880,7 @@ destino 0 con lo que sale
                         $errores = " Insuficientes puntos de imperio para colonizar ";
                         $hayerror = true;
                     }
-                    if (!$hayerror && !empty($destino->planetas->jugadoes_id) ) {
+                    if (!$hayerror && !empty($destino->planetas->jugadoes_id)) {
                         $errores .= " El planeta a colonizar ya tiene dueño ";
                         $hayerror = true;
                     }
@@ -1339,7 +1339,8 @@ destino 0 con lo que sale
         return [$errores, $disenios];
     }
 
-    public static function valoresVaciosFlotaController($planetaActual){
+    public static function valoresVaciosFlotaController($planetaActual)
+    {
 
         //prioridades
         $prioridadesXDefecto = new Prioridades();
@@ -1383,10 +1384,11 @@ destino 0 con lo que sale
         $origen->orbita = $planetaActual->orbita;
         $origen->porcentVel = 100;
 
-        return[$prioridadesXDefecto,$recursosDestino,$destino,$origen];
+        return [$prioridadesXDefecto, $recursosDestino, $destino, $origen];
     }
 
-    public static function valoresDiseniosFlotaController($navesEstacionadas){
+    public static function valoresDiseniosFlotaController($navesEstacionadas)
+    {
 
         $diseniosJugador = [];
         foreach ($navesEstacionadas as $nave) {
@@ -1406,17 +1408,18 @@ destino 0 con lo que sale
         }
         $ViewDaniosDisenios = ViewDaniosDisenios::whereIn('disenios_id', $idsDiseno)->get();
         //Log::info("message");Log::info($ViewDaniosDisenios);Log::info($idsDiseno);Log::info($navesEstacionadas);
-        return [$diseniosJugador,$ViewDaniosDisenios];
+        return [$diseniosJugador, $ViewDaniosDisenios];
     }
 
-    public static function valoresEdicionFlotasController($jugadorActual,$tipoflota,$nombreflota){
+    public static function valoresEdicionFlotasController($jugadorActual, $tipoflota, $nombreflota)
+    {
 
         $cargaDest = [];
         $prioridades = [];
         $destinos = [];
         $jugadoryAlianza = [];
-        $navesEstacionadas=null;
-        $recursosFlota=null;
+        $navesEstacionadas = null;
+        $recursosFlota = null;
         // Log::info($jugadorActual);
         if ($jugadorActual['alianzas_id'] != null) {
             array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
@@ -1499,9 +1502,6 @@ destino 0 con lo que sale
 
         //Log::info($cargaDest);
 
-        return [$visionXDefecto,$destinos,$flota,$navesEstacionadas,$recursosFlota,$prioridades,$cargaDest];
+        return [$visionXDefecto, $destinos, $flota, $navesEstacionadas, $recursosFlota, $prioridades, $cargaDest];
     }
-
-
-
 }

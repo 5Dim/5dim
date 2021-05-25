@@ -405,6 +405,8 @@ function createViewport() {
             /////////////////////////////////////////////////
         });
 
+    cargaTexturasGeneral(); // llamo a la carga de las animaciones
+
     barra1 = app.stage.addChild(new PIXI.Container()); // crea la capa botones
     auxImg = app.stage.addChild(new PIXI.Container()); // contenedor para dibujos temporales
     botones = app.stage.addChild(new PIXI.Container()); // crea la capa botones
@@ -425,8 +427,6 @@ function createViewport() {
 
     barraCarga = app.stage.addChild(new PIXI.Graphics());
     barraCarga.position.set(0, 0);
-
-    cargaTexturasGeneral(); // llamo a la carga de las animaciones
 
     /*
         Shockwave_Filter = new PIXI.filters.ShockwaveFilter();
