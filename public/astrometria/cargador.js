@@ -45,6 +45,7 @@ function cargaTexturasGeneral() {
 
     carga.load();
 }
+
 function verProgreso(e) {
     //log(e.progress);
     barraCarga.position.set(0, 0);
@@ -66,8 +67,8 @@ function cargaCompleta(e) {
     // efNaves = new PIXI.AnimatedSprite(ef_circulo.animations["ef_circulo"]);
     // nave = capa_flotas.addChild(efNaves);
 
-    // creaflotas();
-    // creaexflotas();
+    creaflotas();
+    creaexflotas();
     creasistemasolar();
 }
 

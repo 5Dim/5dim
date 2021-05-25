@@ -48,6 +48,7 @@ function flotasNuevas() {
     xmlhttp.open("GET", jsonFlotas, true);
     xmlhttp.send();
 }
+
 function exflotasNuevas() {
     var flotasAux = new Object();
     var flotasNuevas = 0;
@@ -1217,7 +1218,10 @@ function botonI2() {
     function onButtonOut() {}
 }
 
-function listaFlotas() {}
+function listaFlotas() {
+    //
+}
+
 function buscar(value) {
     var sis,
         flo = false;

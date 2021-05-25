@@ -57,14 +57,21 @@ function carga_universo() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            console.log("inicio");
             universo = JSON.parse(this.responseText);
             home = universo.inicio;
             createViewport();
+            console.log("createViewport");
             carga_influencias(); // carga las influencias
+            console.log("carga_influencias");
             createWorld();
+            console.log("createWorld");
             carga_flotas(); // carga las flotas
+            console.log("carga_flotas");
             carga_exflotas(); // carga las flotas recoleccion
+            console.log("carga_exflotas");
             carga_radares(); // carga los radares
+            console.log("carga_radares");
 
             // carga_rutas(); //dibuja unas rutas de prueba si no se cambia el valor de jsonRutas
             botonF(); // crea el botón de flotas en la parte superior. desactivado en lanzamiento
@@ -78,13 +85,13 @@ function carga_universo() {
             botones.position.set(window.innerWidth / 2 - botones.width / 2, 0);
 
             // lanzar timer para actualizar las flotas
-            timerFlotas = setInterval(tFlotas, 1000 * 60 * 5); //<-----------------------------
-        } //
-    }; //
-    xmlhttp.open("GET", jsonUniverso, true); //
-    xmlhttp.send(); //
-} //
-//
+            timerFlotas = setInterval(tFlotas, 1000 * 60 * 5);
+        }
+    };
+    xmlhttp.open("GET", jsonUniverso, true);
+    xmlhttp.send();
+}
+
 //función para cargar las flotas nuevas. hacer un timer y que llame a esta funcion  ------
 function tFlotas() {
     var d = new Date();
@@ -99,7 +106,7 @@ function carga_flotas() {
         if (this.readyState == 4 && this.status == 200) {
             flotas = JSON.parse(this.responseText);
             botonA(flotas.flotas.length);
-            creaflotas();
+            // creaflotas();
         } else {
             botonA(0);
         }
@@ -113,7 +120,7 @@ function carga_exflotas() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             exflotas = JSON.parse(this.responseText);
-            creaexflotas();
+            // creaexflotas();
             //botonA(exflotas.flotas.length);
         } else {
             //botonA(0);
