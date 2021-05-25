@@ -585,7 +585,6 @@ class Flotas extends Model
 
                     $destino->save();
 
-                    Log::info("INIT " . $destino->init);
                     // Log::info("destino final: " . $destino);
 
                     $vectorx = ($destino->fincoordx - $destino->initcoordx) / $duracion;
@@ -605,7 +604,6 @@ class Flotas extends Model
                         //Log::info($puntoFlota);
                         $puntoFlota->save();
                     }
-                    Log::info("MID " . $destino->init);
                     //ultimo punto siempre va
                     $puntoFlota = new PuntosEnFlota();
                     $puntoFlota->coordx = $destino->fincoordx;
@@ -614,10 +612,8 @@ class Flotas extends Model
                     $puntoFlota->en_vuelo_id = $flotax->id;
                     $puntoFlota->jugadores_id = $flotax->jugadores_id;
                     $puntoFlota->save();
-                    Log::info("FIN " . $destino->init);
 
                     DB::commit();
-                    Log::info("COMMIT " . $destino->init);
                     //Log::info("Regresando");
 
                 } else {
@@ -634,7 +630,6 @@ class Flotas extends Model
             $errores = ("No se encuentra la flota: " . $nombreflota);
         }
         //Log::info($errores);
-        Log::info("RETURN " . $destino->init);
         return compact('errores');
     }
 

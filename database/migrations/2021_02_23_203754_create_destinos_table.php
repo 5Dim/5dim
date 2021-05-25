@@ -28,7 +28,7 @@ class CreateDestinosTable extends Migration
             $table->unsignedDecimal('fincoordx', 8, 2, true);
             $table->unsignedDecimal('fincoordy', 8, 2, true);
             $table->unsignedTinyInteger('visitado')->default(0);
-            $table->timestamp('init');
+            $table->timestamp('init')->nullable();
             $table->timestamp('fin')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('flota_id');             // flota propietaria de la ruta
