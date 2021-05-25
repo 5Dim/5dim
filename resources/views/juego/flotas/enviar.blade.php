@@ -250,9 +250,9 @@
                         </td>
                         <td id="totalextraccionV" class="text-light align-middle">
                         </td>
-                        <td>
+                        <td style="width: 180px">
                             <input type="text" id="nombreFlota" class="form-control input" placeholder="Nombre privado"
-                                aria-label=" Recipient's username" aria-describedby="basic-addon2">
+                                aria-label=" Recipient's username" aria-describedby="basic-addon2" style="width: 180px; margin: auto;">
                         </td>
                     </tr>
                 </table>
