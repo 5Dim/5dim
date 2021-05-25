@@ -249,7 +249,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
 <div class="row rounded">
     <div class="col-12 borderless">
         <div id="cuadro1" class="" style="background-color: #000000 !important;">
-            <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin1/nave' . $disenio->id . '.jpg')}}') no-repeat  !important;">
+            <table id="tablaArmas" class="table table-borderless borderless table-sm text-center anchofijo" style="margin-top: 5px !important; background: url('{{ asset('img/fotos naves/skin' . $disenio->skin . '/nave' . $disenio->id . '.png')}}') no-repeat  !important;">
                 <tr>
                     <td>
                         <div class="row rounded">
@@ -317,12 +317,12 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
                             </tr>
                         </table>
                     </td>
-                    <td rowspan="5">
+                    <td id="botonesCabeza" rowspan="5">
                         <button type="button" class="btn btn-primary col-12 btn-sm" onclick="changeSkin('{{$disenio->id}}')">
                         <i class="fa fa-arrows-alt-h" id="imagen{{$disenio->id}}" data-skin="1"> Cambiar aspecto</i>
                         </button>
-                        <button type="button" class="btn btn-primary col-12 btn-sm" onclick="limpiar()">
-                        <i class="fa fa-recycle" data-skin="1"> Limpiar diseño</i>
+                        <button id="botonlimpiar" type="button" class="btn btn-primary col-12 btn-sm" onclick="limpiar()">
+                        <i class="fa fa-recycle" data-skin="1" id="botonlimpiartxt"> Limpiar diseño</i>
                         </button>
                     </td>
                     <td colspan="2">
@@ -1083,14 +1083,7 @@ for($n=0;$n<$cantidadCBombas;$n++){ array_push($armasBombas,$arrayObjetos['armas
 
 
 
-
-
-
-
-
-
-    <script>
-
+<script>
 
 
 var motores={!!json_encode($motores)!!};
@@ -1115,6 +1108,17 @@ var armasDispersion ={!!json_encode($arrayDispersion)!!};
 var energiaArmas={!!json_encode($arrayEnergiaArmas)!!};
 var esteDisenio={!!json_encode($esteDisenio)!!};
 var tamanoEstaNave={!!json_encode($disenio->tamanio)!!};
+
+var investigadasArmas={{$investNiveles["invEnergia"]+$investNiveles["invPlasma"]+$investNiveles["invBalistica"]}};
+var investigadasMotores={{$investNiveles["invPropQuimico"]+$investNiveles["invPropNuk"]+$investNiveles["invPropIon"]+$investNiveles["invPropPlasma"]+$investNiveles["invPropMa"]}};
+
+if (investigadasMotores<1){
+    $("#botonlimpiartxt").text("Se requieren investigaciones para diseñar");
+    $("#botonlimpiar")
+                .removeClass("btn-primary")
+                .addClass("btn-warning");
+    $("#crearDisenio").prop("disabled", true);
+}
 
     var armas={
         motor:motores,
@@ -1870,77 +1874,81 @@ energiaArmas={
 };
 
 n=0;
-porcentAcum=0;
-if (armasTengo['cantidadCLigeras']==0){energialigera=0;} else {
-    if (armasTengoT==1){
-        energiaArmas['armasLigera']=slider.noUiSlider.get()/100; // un solo slider no tiene array de datos
-    } else {
-        energiaArmas['armasLigera']=slider.noUiSlider.get()[n]/100;
-        n++;
+    porcentAcum=0;
+if(investigadasArmas>0){  // tengo investigadas armas
+    if (armasTengo['cantidadCLigeras']==0){energialigera=0;} else {
+        if (armasTengoT==1){
+            energiaArmas['armasLigera']=slider.noUiSlider.get()/100; // un solo slider no tiene array de datos
+        } else {
+            energiaArmas['armasLigera']=slider.noUiSlider.get()[n]/100;
+            n++;
+        }
+        porcentAcum=energiaArmas['armasLigera'];
+        armasAlcance['armasLigera']=alcanceArmasLigeras.noUiSlider.get();
+        armasDispersion['armasLigera']=dispersionArmasLigeras.noUiSlider.get();
     }
-    porcentAcum=energiaArmas['armasLigera'];
-    armasAlcance['armasLigera']=alcanceArmasLigeras.noUiSlider.get();
-    armasDispersion['armasLigera']=dispersionArmasLigeras.noUiSlider.get();
-}
-if (armasTengo['cantidadCMedias']==0){energiamedia=0;} else {
-    if (armasTengoT==1){
-        energiaArmas['armasMedia']=slider.noUiSlider.get()/100;
-    } else {
-        energiaArmas['armasMedia']=slider.noUiSlider.get()[n]/100;
-        n++;
+    if (armasTengo['cantidadCMedias']==0){energiamedia=0;} else {
+        if (armasTengoT==1){
+            energiaArmas['armasMedia']=slider.noUiSlider.get()/100;
+        } else {
+            energiaArmas['armasMedia']=slider.noUiSlider.get()[n]/100;
+            n++;
+        }
+        energiaArmas['armasMedia']-=porcentAcum;
+        porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia'];
+        armasAlcance['armasMedia']=alcanceArmasMedias.noUiSlider.get();
+        armasDispersion['armasMedia']=dispersionArmasMedias.noUiSlider.get();
     }
-    energiaArmas['armasMedia']-=porcentAcum;
-    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia'];
-    armasAlcance['armasMedia']=alcanceArmasMedias.noUiSlider.get();
-    armasDispersion['armasMedia']=dispersionArmasMedias.noUiSlider.get();
-}
-if (armasTengo['cantidadCPesadas']==0){energiapesada=0;} else {
-    if (armasTengoT==1){
-        energiaArmas['armasPesada']=slider.noUiSlider.get()/100;
-    } else {
-        energiaArmas['armasPesada']=slider.noUiSlider.get()[n]/100;
-        n++;
+    if (armasTengo['cantidadCPesadas']==0){energiapesada=0;} else {
+        if (armasTengoT==1){
+            energiaArmas['armasPesada']=slider.noUiSlider.get()/100;
+        } else {
+            energiaArmas['armasPesada']=slider.noUiSlider.get()[n]/100;
+            n++;
+        }
+        energiaArmas['armasPesada']-=porcentAcum;
+        porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada'];
+        armasAlcance['armasPesada']=alcanceArmasPesadas.noUiSlider.get();
+        armasDispersion['armasPesada']=dispersionArmasPesadas.noUiSlider.get();
     }
-    energiaArmas['armasPesada']-=porcentAcum;
-    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada'];
-    armasAlcance['armasPesada']=alcanceArmasPesadas.noUiSlider.get();
-    armasDispersion['armasPesada']=dispersionArmasPesadas.noUiSlider.get();
-}
-if (armasTengo['cantidadCInsertadas']==0){energiainsertada=0;} else {
-    if (armasTengoT==1){
-        energiaArmas['armasInsertada']=slider.noUiSlider.get()/100;
-    } else {
-        energiaArmas['armasInsertada']=slider.noUiSlider.get()[n]/100;
-        n++;
+    if (armasTengo['cantidadCInsertadas']==0){energiainsertada=0;} else {
+        if (armasTengoT==1){
+            energiaArmas['armasInsertada']=slider.noUiSlider.get()/100;
+        } else {
+            energiaArmas['armasInsertada']=slider.noUiSlider.get()[n]/100;
+            n++;
+        }
+        energiaArmas['armasInsertada']-=porcentAcum;
+        porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada'];
+        armasAlcance['armasInsertada']=alcanceArmasInsertadas.noUiSlider.get();
+        armasDispersion['armasInsertada']=dispersionArmasInsertadas.noUiSlider.get();
     }
-    energiaArmas['armasInsertada']-=porcentAcum;
-    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada'];
-    armasAlcance['armasInsertada']=alcanceArmasInsertadas.noUiSlider.get();
-    armasDispersion['armasInsertada']=dispersionArmasInsertadas.noUiSlider.get();
-}
-if (armasTengo['cantidadCMisiles']==0){energiamisil=0;} else {
-    if (armasTengoT==1){
-        energiaArmas['armasMisil']=slider.noUiSlider.get()/100;
-    } else {
-        energiaArmas['armasMisil']=slider.noUiSlider.get()[n]/100;
-        n++;
+    if (armasTengo['cantidadCMisiles']==0){energiamisil=0;} else {
+        if (armasTengoT==1){
+            energiaArmas['armasMisil']=slider.noUiSlider.get()/100;
+        } else {
+            energiaArmas['armasMisil']=slider.noUiSlider.get()[n]/100;
+            n++;
+        }
+        energiaArmas['armasMisil']-=porcentAcum;
+        porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada']+energiaArmas['armasMisil'];
+        armasAlcance['armasMisil']=alcanceArmasMisiles.noUiSlider.get();
+        armasDispersion['armasMisil']=dispersionArmasMisiles.noUiSlider.get();
     }
-    energiaArmas['armasMisil']-=porcentAcum;
-    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada']+energiaArmas['armasMisil'];
-    armasAlcance['armasMisil']=alcanceArmasMisiles.noUiSlider.get();
-    armasDispersion['armasMisil']=dispersionArmasMisiles.noUiSlider.get();
-}
-if (armasTengo['cantidadCBombas']==0){energiabomba=0;} else {
-    if (armasTengoT==1){
-        energiaArmas['armasBomba']=slider.noUiSlider.get()/100;
-    } else {
-        energiaArmas['armasBomba']=slider.noUiSlider.get()[n]/100;
-        n++;
+    if (armasTengo['cantidadCBombas']==0){energiabomba=0;} else {
+        if (armasTengoT==1){
+            energiaArmas['armasBomba']=slider.noUiSlider.get()/100;
+        } else {
+            energiaArmas['armasBomba']=slider.noUiSlider.get()[n]/100;
+            n++;
+        }
+        energiaArmas['armasBomba']-=porcentAcum;
+        porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada']+energiaArmas['armasMisil']+energiaArmas['armasBomba'];
+        armasAlcance['armasBomba']=alcanceArmasBombas.noUiSlider.get();
+        armasDispersion['armasBomba']=dispersionArmasBombas.noUiSlider.get();
     }
-    energiaArmas['armasBomba']-=porcentAcum;
-    porcentAcum=energiaArmas['armasLigera']+energiaArmas['armasMedia']+energiaArmas['armasPesada']+energiaArmas['armasInsertada']+energiaArmas['armasMisil']+energiaArmas['armasBomba'];
-    armasAlcance['armasBomba']=alcanceArmasBombas.noUiSlider.get();
-    armasDispersion['armasBomba']=dispersionArmasBombas.noUiSlider.get();
+} else {
+    EsconderPorId("slider-color");
 }
 
 $.each(tiposArmas,function(key,elemento){
@@ -2341,7 +2349,7 @@ $( document ).ready(function() {
         eval("imagen=imagen" + id + ";");
         sumask=esteDisenio['skin'];
         imagen.dataset.skin = sumask;
-        img = "background: url('/img/fotos naves/skin" + sumask + "/nave" + id + ".jpg') no-repeat center !important;";
+        img = "background: url('/img/fotos naves/skin" + sumask + "/nave" + id + ".png') no-repeat center  !important;";
         $("#tablaArmas").prop("style", img);
 
         encajarTodo(); //todas las armas que traigo
@@ -2351,31 +2359,33 @@ $( document ).ready(function() {
     @if($cantidadCLigeras+$cantidadCMedias+$cantidadCPesadas+$cantidadCInsertadas+$cantidadCMisiles+$cantidadCBombas >0)
         slider.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
     @endif
+    if(investigadasArmas){
 
-    @if($cantidadCLigeras>0){
-        alcanceArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-        dispersionArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    }@endif
-    @if($cantidadCMedias>0){
-        alcanceArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-        dispersionArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    }@endif
-    @if($cantidadCPesadas>0){
-        alcanceArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-        dispersionArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    }@endif
-    @if($cantidadCInsertadas>0){
-        alcanceArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-        dispersionArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    }@endif
-    @if($cantidadCMisiles>0){
-        alcanceArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-        dispersionArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    }@endif
-    @if($cantidadCBombas>0){
-        alcanceArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-        dispersionArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
-    }@endif
+        @if($cantidadCLigeras>0){
+            alcanceArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+            dispersionArmasLigeras.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        }@endif
+        @if($cantidadCMedias>0){
+            alcanceArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+            dispersionArmasMedias.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        }@endif
+        @if($cantidadCPesadas>0){
+            alcanceArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+            dispersionArmasPesadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        }@endif
+        @if($cantidadCInsertadas>0){
+            alcanceArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+            dispersionArmasInsertadas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        }@endif
+        @if($cantidadCMisiles>0){
+            alcanceArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+            dispersionArmasMisiles.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        }@endif
+        @if($cantidadCBombas>0){
+            alcanceArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+            dispersionArmasBombas.noUiSlider.on('update', function(){  'change',calculoTotalR();   });
+        }@endif
+    }
 
 });
 

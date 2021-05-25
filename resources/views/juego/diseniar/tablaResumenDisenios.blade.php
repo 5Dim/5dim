@@ -9,40 +9,40 @@
                     </th>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
                         Mineral
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
                         Cristal
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
                         Gas
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
                         Plastico
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
                         Ceramica
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
                         Liquido
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
                         Micros
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Cantidad que se toma como base para el cálculo del gasto al moverse según la distancia y el porcentaje de velocidad.">
                         Fuel
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Cantidad de que se gasta en combate según el daño causado. Debe llevarse como carga en esta u otras naves de la flota para que la nave cause daño en combate. Esta cantidad suele ser necesaria para dos combates completos.">
                         Municion
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
                         Personal
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Cantidad de recursos que puede llevar">
                         Carga
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" title="Capacidad de recolección de asteroides">
                         Recolección
                     </td>
                 </tr>
@@ -85,40 +85,40 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Energia generada por los motores">
                         Energía
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Tiempo en fabricarse en un hangar nivel 1">
                         Tiempo
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Creditos por unidad de tiempo">
                         Mantenimiento
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Daño por unidad de tiempo">
                         Ataque total
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Si en combate llega a 0 la nave es destruida">
                         Defensa
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Velocidad dentro de un sistema solar">
                         Vel. Impulso
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Velocidad entre estrellas">
                         Hypervelocidad
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Cantidad de cazas que puede llevar">
                         Hangar cazas
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless"  title="Cantidad de naves ligeras que puede llevar">
                         Hangar ligeras
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless"  title="Cantidad de naves medias que puede llevar">
                         Hangar medias
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless"  title="Cantidad de naves pesadas que puede llevar (sólo estaciones)">
                         Hangar pesadas
                     </td>
-                    <td class="anchofijo text-warning borderless">
+                    <td class="anchofijo text-warning borderless"  title="Capacidad de extracción de planetas (sólo estaciones)">
                         Extracción
                     </td>
                 </tr>
