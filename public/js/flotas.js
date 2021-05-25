@@ -49,6 +49,7 @@ function CargarFlotaEditada() {
             EsconderPorId("listaPrioridades0");
         }
 
+        $("#enviar-tab").text("Editar");
         nombreorigen = "Carga actual en la flota";
         puedoCargarRecurso[0] = false;
         EsconderPorId("envias0");
@@ -1265,14 +1266,14 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
                         <td colspan="`+(AnchoColumnasMedio+1)+`" class="text-warning">`+cabeza1+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-warning">`+cabeza2+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-warning">Ataque:</td>
-                        <td colspan="`+(AnchoColumnasMedio+1)+`" class="text-warning">Defensa</td>
+                        <td colspan="`+(AnchoColumnasMedio)+`" class="text-warning">Defensa</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         `+Columna1contenido+`
                         <td id="trestantepropia`+fila+`" colspan="`+(AnchoColumnasMedio+1)+`" class="text-light">`+trestante+`</td>
                         <td id="tregresopropia`+fila+`" colspan="`+AnchoColumnasMedio+`" class="text-light">`+tregreso+`</td>
                         <td colspan="`+AnchoColumnasMedio+`" class="text-light">`+ataque+`</td>
-                        <td colspan="`+(AnchoColumnasMedio+1)+`" class="text-light">`+defensa+`</td>
+                        <td colspan="`+(AnchoColumnasMedio)+`" class="text-light">`+defensa+`</td>
                     </tr>
                     <tr id="info`+fila+`" class=" accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
                         <td class="anchofijo text-warning"></td>
@@ -1404,15 +1405,14 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
                                 <i class="fa fa-times "></i> Regresar
                             </a>
                         </td>
-                        <td colspan="4">
+                        <td colspan="5">
                             <a class="btn btn-outline-primary col-12 text-primary" type="button"
                             href="`+linkFlota+`/`+flota['numeroflota']+"/"+flota['estado']+`">
                             Editar
                             </a>
                         </td>
-                        <td colspan="5">
-                        <a type="button" class="btn btn-outline-success col-12 text-success"
-                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                        <td colspan="4">
+                        <a type="button" class="btn btn-outline-success col-12 text-success disabled">
                             <i class="fa fa-eye "></i> Ver
                         </a>
                         </td>
@@ -1467,8 +1467,7 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
 
                         </td>
                         <td colspan="5">
-                        <a type="button" class="btn btn-outline-success col-12 text-success"
-                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                        <a type="button" class="btn btn-outline-success col-12 text-success disabled">
                             <i class="fa fa-eye "></i> Ver
                         </a>
                         </td>
@@ -1528,8 +1527,7 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
                             </a>
                         </td>
                         <td colspan="5">
-                        <a type="button" class="btn btn-outline-success col-12 text-success"
-                            href="{{ url('juego/disenio/borrarDisenio/x') }}">
+                        <a type="button" class="btn btn-outline-success col-12 text-success disabled">
                             <i class="fa fa-eye "></i> Ver
                         </a>
                         </td>

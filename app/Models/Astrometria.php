@@ -771,14 +771,20 @@ class Astrometria extends Model
 
         $tipodestino = Astrometria::tipoDestino($destino);
         $nombreDestino = "";
-        // Log::info($destino);
+        Log::info($destino);
+        Log::info($tipodestino);
+
         switch ($tipodestino) {
             case "planeta":
-                $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
-                if ($planetaAnterior != null) {
-                    $nombreDestino = $planetaAnterior->nombre . " (" . $planetaAnterior->estrella . "x" . $planetaAnterior-> orbita . ")";
+                if($anterior){
+                    $nombreDestino =$destino->planetas->nombre." ".$destino->planetas->estrella . "x" . $destino->planetas->orbita;
                 } else {
-                    $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
+                    $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
+                    if ($planetaAnterior!=null){
+                        $nombreDestino =$planetaAnterior->nombre." ".$planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
+                    } else {
+                        $nombreDestino =$destino['initestrella'] . "x" . $destino['initorbita'];
+                    }
                 }
                 break;
             case "enrecoleccion":

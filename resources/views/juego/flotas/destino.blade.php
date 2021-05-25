@@ -424,7 +424,7 @@
         });
 
         $('#planetaDest{{ $numero }}').keyup(function() {
-            if ($('#planetaDest{{ $numero }}').val() != undefined) {
+            if (!!$('#planetaDest{{ $numero }}').val() ) {
                 if ($('#planetaDest{{ $numero }}').val() * 1 > 9) {
                     $('#planetaDest{{ $numero }}').val("9");
                 }
