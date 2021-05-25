@@ -99,6 +99,7 @@ function carga_flotas() {
         if (this.readyState == 4 && this.status == 200) {
             flotas = JSON.parse(this.responseText);
             botonA(flotas.flotas.length);
+            creaflotas();
         } else {
             botonA(0);
         }
@@ -112,6 +113,7 @@ function carga_exflotas() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             exflotas = JSON.parse(this.responseText);
+            creaexflotas();
             //botonA(exflotas.flotas.length);
         } else {
             //botonA(0);
@@ -587,13 +589,12 @@ function creaflotas() {
 }
 
 function creaexflotas() {
-
     num_flotas = exflotas.length;
     for (var i = 0; i < exflotas.flotas.length; i++) {
         var y = exflotas.flotas[i].coordy;
         var x = exflotas.flotas[i].coordx;
 
-        exflota = new exFlota(exflotas.flotas[i].numeroflota+flotas.length, x, y);
+        exflota = new exFlota(exflotas.flotas[i].numeroflota + flotas.length, x, y);
     }
 }
 

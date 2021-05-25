@@ -378,7 +378,6 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
 
 //esta función crea las flotas en extraccion recoleccion
 function exFlota(n, x, y) {
-
     exNaves = new PIXI.AnimatedSprite(ex_circulo.animations["ex_circulo"]);
     this.nave = capa_flotas.addChild(exNaves);
 
@@ -397,7 +396,6 @@ function exFlota(n, x, y) {
     this.px = x; //posicion x
     this.py = y; //posicion y
 }
-
 
 //dibuja la ruta que sigue la flota
 function linea(points, lineSize, lineColor, alpha, conte, num) {

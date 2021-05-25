@@ -17,8 +17,8 @@ var textura_ef_circulo,textura_ef_transicion,textura_ef_energia;
 //var textura_ef_planeta;
 */
 
-let efNaves,exNaves, efTransicion, efEnergia, efGeneral, efPlanetas1, efNavesOrbitando, efEscudo;
-let ef_circulo,ex_circulo, ef_transicion, ef_energia, ef_general, ef_planetas1;
+let efNaves, exNaves, efTransicion, efEnergia, efGeneral, efPlanetas1, efNavesOrbitando, efEscudo;
+let ef_circulo, ex_circulo, ef_transicion, ef_energia, ef_general, ef_planetas1;
 
 let jsonNaves = "/astrometria/img/ef_circulo.json";
 let jsonExtracciones = "/astrometria/img/ex_circulo.json";
@@ -31,7 +31,7 @@ const carga = new PIXI.Loader();
 
 function cargaTexturasGeneral() {
     //carga.add('img/sistema/p1.json');
-    log("Inicio");
+    // log("Inicio");
     carga
         .add(jsonNaves)
         .add(jsonExtracciones)
@@ -54,7 +54,7 @@ function verProgreso(e) {
 }
 
 function cargaCompleta(e) {
-    log("Carga completa");
+    // log("Carga completa");
     barraCarga.visible = false;
 
     ef_circulo = carga.resources[jsonNaves].spritesheet;
@@ -66,8 +66,8 @@ function cargaCompleta(e) {
     // efNaves = new PIXI.AnimatedSprite(ef_circulo.animations["ef_circulo"]);
     // nave = capa_flotas.addChild(efNaves);
 
-    creaflotas();
-    creaexflotas();
+    // creaflotas();
+    // creaexflotas();
     creasistemasolar();
 }
 
