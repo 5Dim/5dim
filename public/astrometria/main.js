@@ -79,12 +79,12 @@ function carga_universo() {
 
             // lanzar timer para actualizar las flotas
             timerFlotas = setInterval(tFlotas, 1000 * 60 * 5); //<-----------------------------
-        } //      |
-    }; //      |
-    xmlhttp.open("GET", jsonUniverso, true); //      |
-    xmlhttp.send(); //      |
-} //      |
-//      |
+        } //
+    }; //
+    xmlhttp.open("GET", jsonUniverso, true); //
+    xmlhttp.send(); //
+} //
+//
 //función para cargar las flotas nuevas. hacer un timer y que llame a esta funcion  ------
 function tFlotas() {
     var d = new Date();
