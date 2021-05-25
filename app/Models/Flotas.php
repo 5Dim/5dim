@@ -569,6 +569,8 @@ class Flotas extends Model
                     $destino->flota_id = $flotax->id;
                     //si el destino anterior era salida de mi planeta, pues regreso a él
 
+                    // Log::info("INIT " . $destino->init);
+
                     $result = Flotas::destinoTipoId($destino, $destino);
                     $destino = $result[0];
                     $errores = $result[1];
@@ -583,7 +585,7 @@ class Flotas extends Model
 
                     $destino->save();
 
-                    //Log::info("destino final: ".$destino);
+                    // Log::info("destino final: " . $destino);
 
                     $vectorx = ($destino->fincoordx - $destino->initcoordx) / $duracion;
                     $vectory = ($destino->fincoordy - $destino->initcoordy) / $duracion;
