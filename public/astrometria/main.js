@@ -88,7 +88,7 @@ function carga_universo() {
             timerFlotas = setInterval(tFlotas, 1000 * 60 * 5);
         }
     };
-    xmlhttp.open("GET", jsonUniverso, true);
+    xmlhttp.open("GET", jsonUniverso, false);
     xmlhttp.send();
 }
 
