@@ -56,7 +56,7 @@ function verProgreso(e) {
 
 function cargaCompleta(e) {
     log("Carga completa");
-    barraCarga.visible = true;
+    barraCarga.visible = false;
 
     ef_circulo = carga.resources[jsonNaves].spritesheet;
     ex_circulo = carga.resources[jsonExtracciones].spritesheet;
