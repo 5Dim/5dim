@@ -4,8 +4,8 @@
             <table class="table table-borderless borderless table-sm text-center anchofijo align-middle"
                 style="margin-top: 5px !important">
                 <tr>
-                    <th colspan="10" class="text-success text-center borderless align-middle">
-                        Resumen del diseño {{ strtoupper($disenio->tamanio . ' ' . $disenio->codigo) }}
+                    <th colspan="12" class="text-success text-center borderless align-middle">
+                        Resumen del diseño {{ strtolower($disenio->tamanio) . ' ' . ucfirst(strtolower($disenio->codigo)) }}
                     </th>
                 </tr>
                 <tr>

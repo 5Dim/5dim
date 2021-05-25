@@ -42,11 +42,9 @@
                 </div>
                 <div class="tab-pane fade show active" id="recibidos" role="tabpanel" aria-labelledby="recibidos-tab">
                     @foreach ($recibidos as $recibido)
-                        @if ($recibido->categoria == 'recibidos')
-                            @include('juego.mensajes.cajitaMensajesRecibidos', [
-                            'mensaje' => $recibido,
-                            ])
-                        @endif
+                        @include('juego.mensajes.cajitaMensajesRecibidos', [
+                        'mensaje' => $recibido,
+                        ])
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="enviados" role="tabpanel" aria-labelledby="enviados-tab">
@@ -57,14 +55,15 @@
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="flotas" role="tabpanel" aria-labelledby="flotas-tab">
-                    @foreach ($recibidos as $recibido)
-                        @if ($recibido->categoria == 'flotas')
-                            @include('juego.mensajes.cajitaMensajesRecibidos', [
-                            'mensaje' => $recibido,
-                            'imagenAvatar' => 'img/juego/skin0/mensajes/comandante.jpg',
-                            ])
-                        @endif
+                    @foreach ($flotas as $flota)
+                        @include('juego.mensajes.cajitaMensajesRecibidos', [
+                        'mensaje' => $flota,
+                        'imagenAvatar' => 'img/juego/skin0/mensajes/comandante.jpg',
+                        ])
                     @endforeach
+                    {{-- <span>
+                        {{ $flotas->links() }}
+                    </span> --}}
                 </div>
                 <div class="tab-pane fade" id="combates" role="tabpanel" aria-labelledby="combates-tab">
 

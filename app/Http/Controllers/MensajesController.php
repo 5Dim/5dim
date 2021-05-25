@@ -30,14 +30,24 @@ class MensajesController extends Controller
         //Lista de mensajes recibidos
         if (!empty($jugadorActual->alianzas)) {
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorAlianza) {
-                $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id]);
+                $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])
+                ->where('categoria', 'recibidos');
             })->orderBy('id', 'desc')->get();
             $enviados = Mensajes::whereIn('emisor', [session()->get('jugadores_id'), $jugadorAlianza->id])->orderBy('id', 'desc')->get();
+            $flotas = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorAlianza) {
+                $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])
+                ->where('categoria', 'flotas');
+            })->orderBy('id', 'desc')->get();
         } else {
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) {
-                $query->where('receptor', session()->get('jugadores_id'));
+                $query->where('receptor', session()->get('jugadores_id'))
+                ->where('categoria', 'recibidos');
             })->orderBy('id', 'desc')->get();
             $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orderBy('id', 'desc')->get();
+            $flotas = Mensajes::whereHas('intervinientes', function (Builder $query) {
+                $query->where('receptor', session()->get('jugadores_id'))
+                ->where('categoria', 'flotas');
+            })->orderBy('id', 'desc');
         }
 
         $mios = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
@@ -46,8 +56,6 @@ class MensajesController extends Controller
             $recibido->leido = true;
             $recibido->save();
         }
-
-        // dd($recibidos);
 
         return view('juego.mensajes.mensajes', compact(
             // Recursos
@@ -67,6 +75,7 @@ class MensajesController extends Controller
             'jugadores',
             'recibidos',
             'enviados',
+            'flotas'
         ));
     }
 

@@ -1,7 +1,7 @@
 <div id="cajitaDestino{{ $numero }}" class="col-12 cajita-success rounded">
     <div id="cuadro1" class="table-responsive">
-        <table class="table table-borderless borderless table-sm text-center anchofijo"
-            style="margin-top: 5px !important">
+        <table class="table table-dark table-borderless text-center"
+            style="--bs-table-bg: transparent !important">
             <tr>
                 <th colspan="9" class="text-success">
                     <big id="titulo{{ $numero }}">
@@ -423,27 +423,27 @@
             Calculoespacitiempo();
         });
 
-    $('#planetaDest{{ $numero }}').keyup(function() {
-        if ($('#planetaDest{{ $numero }}').val()!=undefined ){
-            if ($('#planetaDest{{ $numero }}').val() * 1 > 9) {
-                $('#planetaDest{{ $numero }}').val("9");
+        $('#planetaDest{{ $numero }}').keyup(function() {
+            if ($('#planetaDest{{ $numero }}').val() != undefined) {
+                if ($('#planetaDest{{ $numero }}').val() * 1 > 9) {
+                    $('#planetaDest{{ $numero }}').val("9");
+                }
+                if ($('#planetaDest{{ $numero }}').val() * 1 < 1) {
+                    $('#planetaDest{{ $numero }}').val("1");
+                }
             }
-            if ($('#planetaDest{{ $numero }}').val() * 1 < 1) {
-                $('#planetaDest{{ $numero }}').val("1");
-            }
-        }
-        Calculoespacitiempo();
-    });
+            Calculoespacitiempo();
+        });
 
-    $('#porcentVDest{{ $numero }}').keyup(function() {
-        if ($('#porcentVDest{{ $numero }}').val() * 1 > 100) {
-            $('#porcentVDest{{ $numero }}').val("100");
-        }
-        if ($('#porcentVDest{{ $numero }}').val() * 1 < 1) {
-            $('#porcentVDest{{ $numero }}').val("1");
-        }
-        Calculoespacitiempo();
-    });
+        $('#porcentVDest{{ $numero }}').keyup(function() {
+            if ($('#porcentVDest{{ $numero }}').val() * 1 > 100) {
+                $('#porcentVDest{{ $numero }}').val("100");
+            }
+            if ($('#porcentVDest{{ $numero }}').val() * 1 < 1) {
+                $('#porcentVDest{{ $numero }}').val("1");
+            }
+            Calculoespacitiempo();
+        });
 
         $('#listaPlanetas{{ $numero }}').change(function() {
             SelectorDestinos({{ $numero }});

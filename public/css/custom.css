@@ -12,7 +12,7 @@ body.bg {
 }
 
 .dropdown-item:hover {
-    background:#292b2c
+    background: #292b2c;
 }
 
 #menuCuenta {
@@ -83,49 +83,50 @@ table > .accordion-collapse {
 .cajita {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid orange;
-    margin-top: 5px;
+    margin-top: 10px;
+    /* padding-top: 2px; */
 }
 
 .cajita-primary {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #0275d8;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .cajita-success {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #5cb85c;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .cajita-info {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #5bc0de;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .cajita-warning {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #f0ad4e;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .cajita-danger {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #d9534f;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .cajita-dark {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #292b2c;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .cajita-light {
     background-image: url("/img/juego/skin0/cons-fondo2.png");
     border: 1px solid #f7f7f7;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .modal-header-primary {
@@ -318,4 +319,38 @@ textarea {
 
 .noUi-active .noUi-tooltip {
     display: block !important;
+}
+
+/* PAGINACION */
+.pagination > li > a,
+.pagination > li > span {
+    color: #3195ec;
+    background-color: #292b2c;
+    border: none;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #292b2c;
+    border: none;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #292b2c;
+    border: none;
+}
+
+.page-item.disabled .page-link {
+    color: rgb(92, 92, 92);
+    background-color: #292b2c;
+    border: none;
+}
+
+.pagination {
+    padding: revert;
 }

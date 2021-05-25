@@ -229,7 +229,6 @@ class FlotaController extends Controller
             $recursos["orbita"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->orbita : $flotaDestino->orbita;
         }
 
-
         return compact('recursos');
     }
 

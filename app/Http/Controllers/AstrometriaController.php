@@ -153,6 +153,7 @@ class AstrometriaController extends Controller
                     $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : "";
                     $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : "";
                     $orbita->naves = !empty(EnOrbita::where([['estrella', $planetaActual->estrella], ['orbita', $planetaActual->orbita]])->first()) ? 1 : 0;
+                    $orbita->recoleccion = !empty($planetaActual->enRecoleccion) ? 1 : 0;
                     $orbita->b_observar = ""; // Posibilidad de incluirlo dentro del mapa
                     $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
                     $orbita->b_verorbita = "/juego/flotas/orbita-tab";
@@ -169,6 +170,7 @@ class AstrometriaController extends Controller
                     $orbita->plastico = "";
                     $orbita->ceramica = "";
                     $orbita->naves = 0;
+                    $orbita->recoleccion = 0;
                     $orbita->b_observar = "";
                     $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
                     $orbita->b_verorbita = "/juego/flotas/orbita-tab";
@@ -194,6 +196,7 @@ class AstrometriaController extends Controller
                 $orbita->plastico = "";
                 $orbita->ceramica = "";
                 $orbita->naves = 0;
+                $orbita->recoleccion = 0;
                 $orbita->b_observar = "";
                 $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
                 $orbita->b_verorbita = "/juego/flotas/orbita-tab";

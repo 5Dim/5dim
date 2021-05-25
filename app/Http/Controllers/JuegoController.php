@@ -45,10 +45,7 @@ class JuegoController extends Controller
         Jugadores::calcularPuntos(session()->get('jugadores_id'));
 
         //Lista de jugadores
-        $jugadores = DB::table('jugadores')
-            ->select('*')
-            ->orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion`"), 'desc')
-            ->get();
+        $jugadores = Jugadores::orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion`"), 'desc')->paginate(50);
 
         //Devolvemos todas las alianzas
         $alianzas = Alianzas::all();

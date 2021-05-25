@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <div class="col-12 cajita-info rounded">
             <div id="cuadro1" class="table-responsive">
-                <table class="table table-borderless table-sm text-center" style="margin-top: 5px !important">
+                <table class="table table-dark table-hover table-borderless text-center"
+                    style="--bs-table-bg: transparent !important">
                     <tr>
                         <th colspan="15" class="anchofijo text-success">
                             <big>
@@ -47,7 +48,7 @@
                             Cantidad
                         </th>
                         <th class="anchofijo text-warning align-middle" style="max-width: 180px">
-                            <div class="input-group mb-3 input-group-sm borderless">
+                            <div class="input-group input-group-sm borderless">
                                 <span class="input-group-text bg-dark text-light">
                                     <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                         onclick="NaveGeneralAFlota(0)">
@@ -66,7 +67,7 @@
                             </div>
                         </th>
                         <th class="anchofijo text-warning align-middle" style="max-width: 180px">
-                            <div class="input-group mb-3 input-group-sm borderless">
+                            <div class="input-group input-group-sm borderless">
                                 <span class="input-group-text bg-dark text-light">
                                     <button type="button" class="btn btn-dark btn-sm text-warning distribuidorNaves"
                                         onclick="NaveGeneralAHangar(0)">
@@ -128,34 +129,30 @@
                             </td>
                             <td id="selectaflota{{ $nave->disenios_id }}" class="anchofijo text-light"
                                 style="max-width: 180px">
-                                <div class="input-group mb-3 input-group-sm borderless">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light">
-                                            <button type="button"
-                                                class="btn btn-dark btn-sm text-warning distribuidorNaves"
-                                                onclick="NaveAflota({{ $nave->disenios_id }},0)">
-                                                0
-                                            </button>
-                                        </span>
-                                    </div>
+                                <div class="input-group input-group-sm borderless">
+                                    <span class="input-group-text bg-dark text-light">
+                                        <button type="button"
+                                            class="btn btn-dark btn-sm text-warning distribuidorNaves"
+                                            onclick="NaveAflota({{ $nave->disenios_id }},0)">
+                                            0
+                                        </button>
+                                    </span>
                                     <input id="enflota{{ $nave->disenios_id }}" type="text"
                                         class="form-control input distribuidorNaves" value="0" aria-label=""
                                         onKeyUp="NaveAflota({{ $nave->disenios_id }},'x')"
                                         aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-dark text-light">
-                                            <button type="button"
-                                                class="btn btn-dark btn-sm text-warning distribuidorNaves"
-                                                onclick="NaveAflota({{ $nave->disenios_id }},'m')">
-                                                M
-                                            </button>
-                                        </span>
-                                    </div>
+                                    <span class="input-group-text bg-dark text-light">
+                                        <button type="button"
+                                            class="btn btn-dark btn-sm text-warning distribuidorNaves"
+                                            onclick="NaveAflota({{ $nave->disenios_id }},'m')">
+                                            M
+                                        </button>
+                                    </span>
                                 </div>
                             </td>
                             <td id="selectahangar{{ $nave->disenios_id }}" class="anchofijo text-light"
                                 style="max-width: 180px">
-                                <div class="input-group mb-3 input-group-sm borderless">
+                                <div class="input-group input-group-sm borderless">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-dark text-light">
                                             <button type="button"
@@ -183,8 +180,8 @@
                         </tr>
                     @endforeach
                 </table>
-                <table class="table table-borderless borderless table-sm text-center anchofijo"
-                    style="margin-top: 5px !important">
+                <table class="table table-dark table-borderless text-center"
+                    style="--bs-table-bg: transparent !important">
                     <tr>
                         <th colspan="12" class="text-success">
                             <big>
@@ -254,13 +251,13 @@
                         <td id="totalextraccionV" class="text-light align-middle">
                         </td>
                         <td>
-                            <input type="text" id="nombreFlota" class="form-control input" placeholder="Nombre privado
+                            <input type="text" id="nombreFlota" class="form-control input" placeholder="Nombre privado"
                                 aria-label=" Recipient's username" aria-describedby="basic-addon2">
                         </td>
                     </tr>
                 </table>
-                <table class="table table-borderless borderless table-sm text-center"
-                    style="margin-top: 5px !important">
+                <table class="table table-dark table-hover table-borderless text-center anchofijo"
+                            style="--bs-table-bg: transparent !important">
                     <tr>
                         <th colspan="6" class="text-success">
                             <big>
@@ -369,7 +366,8 @@
             </table>
         </div>
         @for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++)
-            @include('juego.flotas.destino', [ 'destino' => 'destino'.$dest, 'numero' => $dest, 'estrellaDestino' => "", 'orbitaDestino' => ""])
+            @include('juego.flotas.destino', [ 'destino' => 'destino'.$dest, 'numero' => $dest, 'estrellaDestino' => "",
+            'orbitaDestino' => ""])
         @endfor
 
     </div>
