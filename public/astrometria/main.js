@@ -57,21 +57,21 @@ function carga_universo() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log("inicio");
+            // console.log("inicio");
             universo = JSON.parse(this.responseText);
             home = universo.inicio;
             createViewport();
-            console.log("createViewport");
+            // console.log("createViewport");
             carga_influencias(); // carga las influencias
-            console.log("carga_influencias");
+            // console.log("carga_influencias");
             createWorld();
-            console.log("createWorld");
+            // console.log("createWorld");
             carga_flotas(); // carga las flotas
-            console.log("carga_flotas");
+            // console.log("carga_flotas");
             carga_exflotas(); // carga las flotas recoleccion
-            console.log("carga_exflotas");
+            // console.log("carga_exflotas");
             carga_radares(); // carga los radares
-            console.log("carga_radares");
+            // console.log("carga_radares");
 
             // carga_rutas(); //dibuja unas rutas de prueba si no se cambia el valor de jsonRutas
             botonF(); // crea el botón de flotas en la parte superior. desactivado en lanzamiento
@@ -111,7 +111,7 @@ function carga_flotas() {
             botonA(0);
         }
     };
-    xmlhttp.open("GET", jsonFlotas, true);
+    xmlhttp.open("GET", jsonFlotas, false);
     xmlhttp.send();
 }
 
@@ -126,7 +126,7 @@ function carga_exflotas() {
             //botonA(0);
         }
     };
-    xmlhttp.open("GET", jsonexFlotas, true);
+    xmlhttp.open("GET", jsonexFlotas, false);
     xmlhttp.send();
 }
 
@@ -139,7 +139,7 @@ function carga_radares() {
             crearadares();
         }
     };
-    xmlhttp.open("GET", jsonRadares, true);
+    xmlhttp.open("GET", jsonRadares, false);
     xmlhttp.send();
 }
 
@@ -153,7 +153,7 @@ function carga_influencias() {
             creainfluencias();
         }
     };
-    xmlhttp.open("GET", jsonInfluencia, true);
+    xmlhttp.open("GET", jsonInfluencia, false);
     xmlhttp.send();
 }
 
@@ -169,7 +169,7 @@ function carga_rutas() {
             crearutas();
         }
     };
-    xmlhttp.open("GET", jsonRutas, true);
+    xmlhttp.open("GET", jsonRutas, false);
     xmlhttp.send();
 }
 
