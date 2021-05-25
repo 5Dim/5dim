@@ -617,6 +617,7 @@ class Flotas extends Model
                     Log::info("FIN " . $destino->init);
 
                     DB::commit();
+                    Log::info("COMMIT " . $destino->init);
                     //Log::info("Regresando");
 
                 } else {
@@ -633,6 +634,7 @@ class Flotas extends Model
             $errores = ("No se encuentra la flota: " . $nombreflota);
         }
         //Log::info($errores);
+        Log::info("RETURN " . $destino->init);
         return compact('errores');
     }
 
