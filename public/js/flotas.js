@@ -483,6 +483,11 @@ function Avisos() {
         if (orden != "") {
             var ordenAnt = $("#ordenDest" + destAnt).val();
             var ordenPost = $("#ordenDest" + destPost).val();
+            // console.log("PRE " + ordenAnt);
+            // console.log("CURRENT " + orden);
+            // console.log("POST " + ordenPost);
+            // console.log("DESTINO POST " + !!destPost);
+            // console.log("ORDEN POST " + !!!ordenPost);
             // no se puede llegar
             if (ordenAnt == "" || ordenAnt == "Transferir" || ordenAnt == "Recolectar" || ordenAnt == "Orbitar" || ordenAnt == "Extraer") {
                 errores += " No se alcanzará destino " + dest;
@@ -492,13 +497,13 @@ function Avisos() {
             soyUltimoDestino = false;
             // soy la ultima y debe ser de cierre
             if (!!destPost && !!!ordenPost) {
-                if (!!!ordenPost && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && orden == "Extraer") {
+                if (!!!ordenPost && orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && orden != "Extraer") {
                     errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
                 }
             }
             if (!!!ordenPost && !!orden) {
-                if (orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar") {
+                if (orden != "Transferir" && orden != "Recolectar" && orden != "Orbitar" && orden != "Extraer") {
                     errores += " la misión del último destino no es Transferir, Orbitar, Extraer o Recolectar";
                     hayErrorMision = true;
                 }
