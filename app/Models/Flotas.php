@@ -569,7 +569,7 @@ class Flotas extends Model
                     $destino->flota_id = $flotax->id;
                     //si el destino anterior era salida de mi planeta, pues regreso a él
 
-                    Log::info("INIT " . $destino->init);
+                    // Log::info("INIT " . $destino->init);
 
                     $result = Flotas::destinoTipoId($destino, $destino);
                     $destino = $result[0];
@@ -605,6 +605,7 @@ class Flotas extends Model
                         //Log::info($puntoFlota);
                         $puntoFlota->save();
                     }
+                    Log::info("MID " . $destino->init);
                     //ultimo punto siempre va
                     $puntoFlota = new PuntosEnFlota();
                     $puntoFlota->coordx = $destino->fincoordx;
@@ -613,6 +614,7 @@ class Flotas extends Model
                     $puntoFlota->en_vuelo_id = $flotax->id;
                     $puntoFlota->jugadores_id = $flotax->jugadores_id;
                     $puntoFlota->save();
+                    Log::info("FIN " . $destino->init);
 
                     DB::commit();
                     //Log::info("Regresando");
