@@ -427,7 +427,6 @@ function createViewport() {
     barraCarga.position.set(0, 0);
 
     cargaTexturasGeneral(); // llamo a la carga de las animaciones
-    cargaCompleta();
 
     /*
         Shockwave_Filter = new PIXI.filters.ShockwaveFilter();
