@@ -48,6 +48,29 @@ function flotasNuevas() {
     xmlhttp.open("GET", jsonFlotas, true);
     xmlhttp.send();
 }
+function exflotasNuevas() {
+    var flotasAux = new Object();
+    var flotasNuevas = 0;
+
+    flotasAux = exflotas;
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            exflotas = JSON.parse(this.responseText);
+
+            //botonF();
+            // log(flotas.flotas);
+            creaexflotas();
+
+            //actualizar el txt del numero de flotas
+            txt_num_flotas.text = " ";
+            txt_num_flotas.text = flotas.flotas.length;
+        }
+    };
+    xmlhttp.open("GET", jsonexFlotas, true);
+    xmlhttp.send();
+}
 
 //Crea una estrella. Se llama a esta función desde main para crear las estrellas
 function Sistema(n, x, y, habitado) {
@@ -353,6 +376,29 @@ function Flota(n, x, y, rotacion, nick, ataque, defensa, origen, destino, tiempo
     this.tiempo = tiempo;
 }
 
+//esta función crea las flotas en extraccion recoleccion
+function exFlota(n, x, y) {
+
+    exNaves = new PIXI.AnimatedSprite(ex_circulo.animations["ex_circulo"]);
+    this.nave = capa_flotas.addChild(exNaves);
+
+    // box.tint = Math.floor(Math.random() * 0xffffff)
+    // box.width = box.height = 70
+    this.nave.play();
+    this.nave.animationSpeed = 0.5;
+    this.nave.pivot.set(0.5);
+    this.nave.anchor.set(0.5);
+    this.nave.position.set(x, y);
+    //this.nave.rotation = rotacion;
+    this.nave.interactive = false;
+    this.nave.buttonMode = false;
+
+    this.n = n; //numero de sistema
+    this.px = x; //posicion x
+    this.py = y; //posicion y
+}
+
+
 //dibuja la ruta que sigue la flota
 function linea(points, lineSize, lineColor, alpha, conte, num) {
     log(lineColor);
@@ -557,6 +603,7 @@ function botonF() {
             capa_flotas.visible = true;
             elem = document.getElementById("dragFlotas");
             elem.style.visibility = "visible";
+            tFlotas();
         } else {
             this.texture = text_off;
             capa_flotas.visible = false;

@@ -383,6 +383,7 @@ class FlotaController extends Controller
             $tablaHangares = $result[2];
 
             //Log::info($valFlotaT);
+            //Log::info("cargaDest");
             //Log::info($cargaDest);
 
             $constantesU = Constantes::where('tipo', 'universo')->get();
@@ -393,8 +394,10 @@ class FlotaController extends Controller
             $cargaDest = $valoresValidos[0];
             $prioridades = $valoresValidos[1];
 
-
             $resultValidar = Flotas::validacionesFlota($destinos, $valFlotaT, $errores, $tablaHangares, $recursos, $cargaDest, $cantidadDestinos, $flotaid);
+
+            //Log::info("cargaDest");
+            //Log::info($cargaDest);
 
             //Log::info($resultValidar);
 
@@ -863,7 +866,7 @@ class FlotaController extends Controller
 
         //Log::info("id: ".$id);
         //Log::info("navesEstacionadas");Log::info($navesEstacionadasResult);
-        // Log::info("cargaDest");Log::info($cargaDest);
+        //Log::info("cargaDest");Log::info($cargaDest);
         //Log::info("prioridades");Log::info($prioridadesResult);
         //Log::info("flota");Log::info($flotaResult);
         //Log::info("destinos");Log::info($destinosResult);
@@ -953,7 +956,7 @@ class FlotaController extends Controller
 
             //cambio de destinos
             if ($tipoflota == "envuelo") {
-                if ($cargaDest == null || empty($cargaDest)) {
+                if (!!!$cargaDest) {
                     $errores = "Error en asignación de cargas";
                     return compact('errores');
                 }

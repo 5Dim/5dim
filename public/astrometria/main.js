@@ -2,6 +2,7 @@ const log = console.log;
 
 var universo = new Object();
 var flotas = new Object();
+var exflotas = new Object();
 var radares = new Object();
 var influencias = new Object();
 var rutas = new Object();
@@ -35,6 +36,8 @@ const jsonUniverso = "/juego/astrometria/ajax/universo";
 //const jsonFlotas ="/astrometria/data/flotas.json";
 const jsonFlotas = "/juego/astrometria/ajax/flotas";
 
+const jsonexFlotas = "/juego/flotas/ajax/verFlotasEnRecoleccion";
+
 //const jsonRadares ="/astrometria/data/radares.json";
 const jsonRadares = "/juego/astrometria/ajax/radares";
 
@@ -60,6 +63,7 @@ function carga_universo() {
             carga_influencias(); // carga las influencias
             createWorld();
             carga_flotas(); // carga las flotas
+            carga_exflotas(); // carga las flotas recoleccion
             carga_radares(); // carga los radares
 
             // carga_rutas(); //dibuja unas rutas de prueba si no se cambia el valor de jsonRutas
@@ -85,6 +89,7 @@ function carga_universo() {
 function tFlotas() {
     var d = new Date();
     flotasNuevas();
+    exflotasNuevas();
 }
 
 //lee los datos json de las flotas y crea el arreglo flotas
@@ -99,6 +104,20 @@ function carga_flotas() {
         }
     };
     xmlhttp.open("GET", jsonFlotas, true);
+    xmlhttp.send();
+}
+
+function carga_exflotas() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            exflotas = JSON.parse(this.responseText);
+            //botonA(exflotas.flotas.length);
+        } else {
+            //botonA(0);
+        }
+    };
+    xmlhttp.open("GET", jsonexFlotas, true);
     xmlhttp.send();
 }
 
@@ -415,7 +434,7 @@ function createViewport() {
         Shockwave_Filter.brightness = 5;
         Shockwave_Filter.speed = 1000;
         Shockwave_Filter.wavelength = 300;
-          cont_sistema.filters = [Shockwave_Filter];
+        cont_sistema.filters = [Shockwave_Filter];
         */
 
     // creabarra();
@@ -564,6 +583,17 @@ function creaflotas() {
             buscar(this.innerText);
         };
         list.appendChild(anchor);
+    }
+}
+
+function creaexflotas() {
+
+    num_flotas = exflotas.length;
+    for (var i = 0; i < exflotas.flotas.length; i++) {
+        var y = exflotas.flotas[i].coordy;
+        var x = exflotas.flotas[i].coordx;
+
+        exflota = new exFlota(exflotas.flotas[i].numeroflota+flotas.length, x, y);
     }
 }
 

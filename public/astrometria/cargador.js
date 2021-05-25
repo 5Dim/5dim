@@ -17,10 +17,11 @@ var textura_ef_circulo,textura_ef_transicion,textura_ef_energia;
 //var textura_ef_planeta;
 */
 
-let efNaves, efTransicion, efEnergia, efGeneral, efPlanetas1, efNavesOrbitando, efEscudo;
-let ef_circulo, ef_transicion, ef_energia, ef_general, ef_planetas1;
+let efNaves,exNaves, efTransicion, efEnergia, efGeneral, efPlanetas1, efNavesOrbitando, efEscudo;
+let ef_circulo,ex_circulo, ef_transicion, ef_energia, ef_general, ef_planetas1;
 
 let jsonNaves = "/astrometria/img/ef_circulo.json";
+let jsonExtracciones = "/astrometria/img/ex_circulo.json";
 let jsonTransicion = "/astrometria/img/efectos/transic.json";
 //let jsonEnergia = 'img/efectos/energia2.json';
 let jsonGeneral = "/astrometria/img/efectos-general.json";
@@ -33,6 +34,7 @@ function cargaTexturasGeneral() {
     log("Inicio");
     carga
         .add(jsonNaves)
+        .add(jsonExtracciones)
         .add(jsonTransicion)
         .add(jsonGeneral)
         .add(jsonPlanetas1);
@@ -56,6 +58,7 @@ function cargaCompleta(e) {
     barraCarga.visible = false;
 
     ef_circulo = carga.resources[jsonNaves].spritesheet;
+    ex_circulo = carga.resources[jsonExtracciones].spritesheet;
     ef_transicion = carga.resources[jsonTransicion].spritesheet;
     //ef_energia = carga.resources[jsonEnergia].spritesheet;
     ef_general = carga.resources[jsonGeneral].spritesheet;
@@ -64,6 +67,7 @@ function cargaCompleta(e) {
     // nave = capa_flotas.addChild(efNaves);
 
     creaflotas();
+    creaexflotas();
     creasistemasolar();
 }
 
