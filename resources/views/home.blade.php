@@ -31,7 +31,7 @@
             </p>
         </div>
         <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">Disponible en la versión actual alfa v0.1</h4>
+            <h4 class="alert-heading">Disponible en la versión actual alfa V0.1</h4>
             <ul >
                 <li >Construcción en planetas.</li>
                 <li>Investigaciones.</li>
@@ -42,7 +42,7 @@
             </ul>
         </div>
         <div class="alert alert-warning" role="alert">
-            <h4 class="alert-heading">Para la siguiente versión beta 0.9</h4>
+            <h4 class="alert-heading">Para la siguiente versión beta V0.9</h4>
             <ul>
                 <li >Todo lo relacionado con combates.</li>
                 <li>Aplicación de areas de influencia.</li>
@@ -53,7 +53,7 @@
             </ul>
         </div>
         <div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading">Versión final v1.0</h4>
+            <h4 class="alert-heading">Versión final V1.0</h4>
             <ul>
                 <li >Piratas gestionados por la IA.</li>
                 <li>Tutoriales.</li>
