@@ -525,7 +525,7 @@
     @yield('content')
 
     <!-- Personalizado -->
-    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/popover.js') }}"></script>
 </body>
 
 </html>
