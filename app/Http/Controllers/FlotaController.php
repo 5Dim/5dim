@@ -501,6 +501,9 @@ class FlotaController extends Controller
                 $prioridadex->destinos_id = $destino->id;
                 $prioridadex->save();
 
+                Log::info("prioridades 0 ");
+                Log::info($prioridadex);
+
                 //Log::info(" destino 0 creado ");
 
                 //construyendo destinos
@@ -626,6 +629,9 @@ class FlotaController extends Controller
                         $prioridadex->creditos = $prioridades[$dest]['creditos'];
                         $prioridadex->destinos_id = $destino->id;
                         $prioridadex->save();
+
+                        //Log::info("prioridades");
+                        //Log::info($prioridadex);
 
                         //Log::info("prioridadex " . $prioridadex . " prioridades ");
                         //Log::info($prioridades[$dest]);

@@ -119,7 +119,6 @@
                             <option value="Orbitar">Orbitar</option>
                             <option value="Recolectar">Recolectar</option>
                             <option value="Extraer">Extraer</option>
-                            <option value="Reciclar">Reciclar</option>
                             <option value="Colonizar">Colonizar</option>
                         </select>
                     </div>
@@ -145,6 +144,8 @@
                     --
                 </td>
             </tr>
+            <td  id="ayudaMision{{ $numero }}" class="text-secondary" colspan="10">
+            </td>
         </table>
         <table class="table table-borderless table-sm text-center anchofijo" style="margin-top: 5px !important">
             <tr>
