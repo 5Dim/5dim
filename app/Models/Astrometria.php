@@ -771,8 +771,8 @@ class Astrometria extends Model
 
         $tipodestino = Astrometria::tipoDestino($destino);
         $nombreDestino = "";
-        Log::info($destino);
-        Log::info($tipodestino);
+        //Log::info($destino);
+        //Log::info($tipodestino);
 
         switch ($tipodestino) {
             case "planeta":

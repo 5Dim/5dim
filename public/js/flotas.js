@@ -535,12 +535,16 @@ function Avisos() {
                 $(".enviarRecursos" + dest).attr("disabled", false);
                 $(".prioridadRecursos" + dest).attr("disabled", false);
             }
+
+
         } else if (dest == 1 && orden == "") {
             errores += " ,sin misión";
             hayErrorMision = true;
         } else {
             var img = origenImagenes + "/flotas/nada.jpg";
         }
+
+        TextoAyudaMision(dest,orden);
 
         $("#imagenDestino" + dest).attr("src", img);
 
@@ -602,6 +606,38 @@ function Avisos() {
     } else {
         $("#botonEnviar").prop("disabled", true);
     }
+}
+
+function TextoAyudaMision(dest,orden){
+    textoayuda="";
+    switch(orden) {
+        case "Transportar":
+            textoayuda="Se transportarán a este destino los recursos de la fila 'Tienes' (establecidos en el destino anterior) y nos llevaremos del destino la cantidad de la fila inferior a esta ('Enviar'). Primero se dejan recursos y luego se recogen, si no se indica nada en la fila 'enviar' los recursos de 'Tienes' se descargarán en el destino. Poner un número en la prioridad indica que nos queremos llevar todo lo que podamos de ese recurso, ordenando por numero empezando por el que pongamos un 1. Las prioridad 0 indica que no se usa la prioridad, las prioridades se aplican después de las cantidades.";
+          break;
+        case "Transferir":
+            textoayuda="Todas las naves de la flota y su carga se unen al destino ya sea otra flota o un planeta. Si el destino es de otro jugador se le entregará igualmente todo";
+          break;
+          case "Orbitar":
+            textoayuda="Todas las naves de la flota permanecerán en la orbita del planeta designado. Las flotas en órbita pueden almacenar una cantidad infinita de recursos. Si la flota en órbita dispone de combustible pueden enviarse naves a otro lugar en forma de otra flota. Pueden existir flotas en órbita sin naves pero con carga.";
+          break;
+          case "Recolectar":
+            textoayuda="La flota enviada permanecerá en los asteroides recolectando recursos durante un tiempo indefinido, el tipo de recursos que extraiga se determina según el numero indicado en las prioridades empezando por el 1. La cantidad extraida depende de los módulos de recoleccion de todas las naves de la flota. Si ya existe una flota propia recolectando en el destino, ambas se unirán. Al igual que una flota en órbita pueden sacarse naves de una flota en recolección, igualmente pueden cambiarse las prioridades editando la flota. La cantidad maxima que se puede extraer depende la riqueza del asteroide y no influye que otros jugadores extraigan a la vez.";
+          break;
+          case "Extraer":
+            textoayuda="Funciona igual que la recolección pero sólo puede hacerse sobre un planeta deshabitado. Se requiere un modulo de extracción que sólo puede se incorporado en una estación.";
+          break;
+          case "Colonizar":
+            textoayuda="El planeta de destino pasará a ser una colonia nuestra siempre que nuestros puntos de imperio (PI) no estén por debajo del nivel establecido por las políticas. Los recursos enviados a este detino serán los que se descarguen en la colonia nueva. La siguiente misión debería ser de transferir al origen.";
+          break;
+          case "Reciclar":
+            textoayuda="Para obtener recursos de los escombros de un combate.";
+          break;
+        default:
+            textoayuda="";
+      }
+
+    $("#ayudaMision"+dest).text(textoayuda);
+
 }
 
 function NaveAflota(iddisenio, canti = 0) {
