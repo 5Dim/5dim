@@ -60,14 +60,6 @@
                 {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <img src="img/principal/cons.png" class="" alt="..." style="height: 260px;">
-
-                <h2 class="text-light">Construccion</h2>
-                <p class="text-light">Podrás tener la flota más poderosa del universo, pero si no pagas a tus soldados, las
-                    flotas se quedarán en el puerto y los pilotos se negarán a acatar tus órdenes.</p>
-                {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
                 <img src="img/principal/flota.png" class="" alt="..." style="height: 260px;">
 
                 <h2 class="text-light">Flota</h2>
@@ -76,6 +68,16 @@
                     nodrizas son la culminación del de tecnología e investigación militar.</p>
                 {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
             </div><!-- /.col-lg-4 -->
+
+            <div class="col-lg-4">
+                <img src="img/principal/cons.png" class="" alt="..." style="height: 260px;">
+
+                <h2 class="text-light">Construccion</h2>
+                <p class="text-light">Podrás tener la flota más poderosa del universo, pero si no pagas a tus soldados, las
+                    flotas se quedarán en el puerto y los pilotos se negarán a acatar tus órdenes.</p>
+                {{-- <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> --}}
+            </div><!-- /.col-lg-4 -->
+
         </div><!-- /.row -->
 
 
@@ -85,20 +87,11 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Coloniza y expande tu imperio. <span class="text-muted">Todo lo que puedas
-                        ver.</span></h2>
-                <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose
-                    here.</p>
+                <h2 class="featurette-heading">&nbsp;&nbsp;Coloniza y expande tu imperio &nbsp;&nbsp; <span class="text-muted">No hay límites para tu ambición</span></h2>
+                <p class="lead">Establece tus base productivas en planetas, mina asteroides, fabrica productos y construye naves civiles para mover mercancías.</p>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                        dy=".3em">500x500</text>
-                </svg>
-
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/coloniza.jpg" >
             </div>
         </div>
 
@@ -106,21 +99,11 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Diseña tus propios fuselajes. <span class="text-muted">Naves de carga o de
-                        guerra?</span>
-                </h2>
-                <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this
-                    layout would work with some actual real-world content in place.</p>
+                <h2 class="featurette-heading">Comercia por todo el universo <span class="text-muted">Crea tus rutas comerciales</span></h2>
+                <p class="lead">Establece tus lineas de abastecimiento entre tus colonias, comercia con otros jugadores.</p>
             </div>
             <div class="col-md-5 order-md-1">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                        dy=".3em">500x500</text>
-                </svg>
-
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/comercio.jpg" >
             </div>
         </div>
 
@@ -128,22 +111,50 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Conquista el universo. <span class="text-muted">Elige tu camino.</span></h2>
-                <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
-                    intended to be actually read, simply here to give you a better view of what this would look like with
-                    some actual content. Your content.</p>
+                <h2 class="featurette-heading">&nbsp;&nbsp; Combate para expandirte &nbsp;&nbsp;&nbsp; <span class="text-muted">Lucha contra otros jugadores</span></h2>
+                <p class="lead">Defiende tus transportes o piratea las rutas de otros jugadores, intercepta flotas en tránsito y asalta planetas.</p>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                        dy=".3em">500x500</text>
-                </svg>
-
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/combate.jpg" >
             </div>
         </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">Construye megaestructuras <span class="text-muted">Y construcciones orbitales especiales</span></h2>
+                <p class="lead">Especializa tus colonias, construye enormes estructuras orbitales, combate por planetas únicos en la galaxia</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/nodriza.jpg" >
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Disfruta el juego con amigos <span class="text-muted">Sistema de alianzas único</span></h2>
+                <p class="lead">Comparte imvestigaciones, colonias y flotas con tus aliados, trabaja en equipo y ganad la ronda en equipo.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/explora.jpg" >
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">&nbsp;&nbsp;&nbsp; Modifica las reglas del juego &nbsp;&nbsp;&nbsp;<span class="text-muted">Cuando el poder es mas que una gran flota</span></h2>
+                <p class="lead">Modifica parámetros del juego mediante la proposición de politicas en un consejo galáctico, los jugadores mejor posicionados en las estadísticas poseen mas peso y poder en las votaciones</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/politica.jpg" >
+            </div>
+        </div>
+
 
         <hr class="featurette-divider">
         <!-- /END THE FEATURETTES -->
