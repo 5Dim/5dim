@@ -7,6 +7,9 @@ var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
     return new bootstrap.Popover(popoverTriggerEl);
 });
+var popover = new bootstrap.Popover(document.querySelector(".popover-dismiss"), {
+    trigger: "focus",
+});
 
 // Tooltip
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -423,7 +426,8 @@ function changeSkin(id) {
 }
 
 function formatNumber(num, prefix) {
-    if (num=="nada"){//si queremos que el retorno sea nada
+    if (num == "nada") {
+        //si queremos que el retorno sea nada
         return "";
     }
     prefix = prefix || "";
@@ -532,9 +536,9 @@ function recalculaCostos(id, coste) {
         $("#restantepersonal" + id).addClass(tengoRecursos);
     }
     if (error) {
-        $("#disenioConstruir" + id).attr('disabled', 'disabled');
+        $("#disenioConstruir" + id).attr("disabled", "disabled");
     } else {
-        $("#disenioConstruir" + id).removeAttr('disabled');
+        $("#disenioConstruir" + id).removeAttr("disabled");
     }
     tiempoBase = $.grep(mejoras, function(valorBase) {
         return valorBase.id == id;

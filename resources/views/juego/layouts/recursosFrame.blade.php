@@ -67,21 +67,21 @@
                         </th>
                         <th class="text-warning borderless ">
                             {{-- <a href="http://es.5dim.wikia.com/wiki/Wiki_5dim" target="_blank"> --}}
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-wik.png') }}" title="Wikia" />
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-wik.png') }}" title="Wikia" />
                             {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
                             {{-- <a href="http://quintadim.foroactivo.com/f21-ayudas-y-preguntas" target="_blank"> --}}
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}" title="Soporte" />
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}" title="Soporte" />
                             {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Puntos de imperio"
-                                data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir 15 por cada nivel de administracion de imperio (investigacion)">
+                            <a tabindex="0" type="button" class="btn btn-sm btn-dark"
+                                data-bs-toggle="popover" data-bs-trigger="focus" title="Puntos de imperio"
+                                data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir {{ (int) $consImperio }} por cada nivel de administracion de imperio (investigacion)">
                                 PI <span
                                     class="badge bg-warning text-dark">{{ $nivelImperio * $consImperio + 10 - count($planetasJugador) * 10 }}</span>
-                            </button>
+                            </a>
                         </th>
                         <th class="text-warning borderless ">
                             <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -97,11 +97,11 @@
                             </div>
                         </th>
                         <th class="text-warning borderless">
-                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Tienes 0 ataque(s) en curso"
+                            <a tabindex="0" type="button" class="btn btn-sm btn-dark popover-dismiss"
+                                data-bs-toggle="popover" data-bs-trigger="focus" title="Tienes 0 ataque(s) en curso"
                                 data-bs-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
                                 Ataques <span class="badge bg-warning text-dark">0</span>
-                            </button>
+                            </a>
                         </th>
                         {{-- <th class="text-warning borderless">
                             <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
@@ -117,7 +117,7 @@
                         </th>
                         <th class="text-warning borderless ">
                             {{-- <a href="http://quintadim.foroactivo.com" target="_blank"> --}}
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-foro.png') }}" title="Foro" />
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-foro.png') }}" title="Foro" />
                             {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
@@ -388,12 +388,14 @@
                                 <div class="dropdown">
                                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{ $planetaActual->nombre }} ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
+                                        {{ $planetaActual->nombre }}
+                                        ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         @foreach ($planetasJugador as $planeta)
                                             <a class="dropdown-item"
-                                                href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->nombre }} ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
+                                                href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->nombre }}
+                                                ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                                         @endforeach
                                         @if (!empty($planetasAlianza))
                                             @foreach ($planetasAlianza as $planeta)
@@ -401,7 +403,8 @@
                                                     <div class="dropdown-divider"></div>
                                                 @endif
                                                 <a class="dropdown-item text-primary"
-                                                    href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->nombre }} ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
+                                                    href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->nombre }}
+                                                    ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                                             @endforeach
                                         @endif
                                     </div>
@@ -518,7 +521,11 @@
         // $('select').selectpicker();
 
     </script>
+
     @yield('content')
+
+    <!-- Personalizado -->
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 
 </html>

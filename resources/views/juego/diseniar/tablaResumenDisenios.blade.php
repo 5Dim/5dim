@@ -5,45 +5,82 @@
                 style="margin-top: 5px !important">
                 <tr>
                     <th colspan="12" class="text-success text-center borderless align-middle">
-                        Resumen del diseño {{ strtolower($disenio->tamanio) . ' ' . ucfirst(strtolower($disenio->codigo)) }}
+                        Resumen del diseño
+                        {{ strtolower($disenio->tamanio) . ' ' . ucfirst(strtolower($disenio->codigo)) }}
                     </th>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
-                        Mineral
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Mineral" data-bs-content="Coste de fabricación de este recurso">
+                            Mineral
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
-                        Cristal
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Cristal" data-bs-content="Coste de fabricación de este recurso">
+                            Cristal
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
-                        Gas
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Gas" data-bs-content="Coste de fabricación de este recurso">
+                            Gas
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
-                        Plastico
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Plastico" data-bs-content="Coste de fabricación de este recurso">
+                            Plastico
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
-                        Ceramica
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Ceramica" data-bs-content="Coste de fabricación de este recurso">
+                            Ceramica
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
-                        Liquido
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Liquidos" data-bs-content="Coste de fabricación de este recurso">
+                            Liquidos
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
-                        Micros
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Micros" data-bs-content="Coste de fabricación de este recurso">
+                            Micros
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Cantidad que se toma como base para el cálculo del gasto al moverse según la distancia y el porcentaje de velocidad.">
-                        Fuel
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Fuel" data-bs-content="Cantidad que se toma como base para el cálculo del gasto al moverse según la distancia y el porcentaje de velocidad">
+                            Fuel
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Cantidad de que se gasta en combate según el daño causado. Debe llevarse como carga en esta u otras naves de la flota para que la nave cause daño en combate. Esta cantidad suele ser necesaria para dos combates completos.">
-                        Municion
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Fuel" data-bs-content="Cantidad de que se gasta en combate según el daño causado. Debe llevarse como carga en esta u otras naves de la flota para que la nave cause daño en combate. Esta cantidad suele ser necesaria para dos combates completos">
+                            Municion
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Coste de fabricación de este recurso">
-                        Personal
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Personal" data-bs-content="Cantidad de personal necesario para hacer funcionar la nave">
+                            Personal
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Cantidad de recursos que puede llevar">
-                        Carga
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Carga" data-bs-content="Cantidad de recursos que puede llevar">
+                            Carga
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" title="Capacidad de recolección de asteroides">
-                        Recolección
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Recolección" data-bs-content="Cantidad de recursos por hora que es capaz de recolectar esta nave de asteroides">
+                            Recolección
+                        </a>
                     </td>
                 </tr>
                 <tr>
@@ -85,41 +122,78 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Energia generada por los motores">
-                        Energía
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Energía" data-bs-content="Energia generada por los motores">
+                            Energía
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Tiempo en fabricarse en un hangar nivel 1">
-                        Tiempo
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Tiempo" data-bs-content="Tiempo en fabricarse en un hangar nivel 1">
+                            Tiempo
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Creditos por unidad de tiempo">
-                        Mantenimiento
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Mantenimiento" data-bs-content="Creditos por día que gasta la nave y la tripulación en su mantenimiento">
+                            Mantenimiento
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Daño por unidad de tiempo">
-                        Ataque total
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Ataque total" data-bs-content="Daño por unidad de tiempo">
+                            Ataque total
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Si en combate llega a 0 la nave es destruida">
-                        Defensa
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Defensa" data-bs-content="Si en combate llega a 0 la nave es destruida">
+                            Defensa
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Velocidad dentro de un sistema solar">
-                        Vel. Impulso
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Velocidad de impulso" data-bs-content="Esta velocidad es la que determina el movimiento dentro del sistema solar o en un combate">
+                            Vel. Impulso
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Velocidad entre estrellas">
-                        Hypervelocidad
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Hypervelocidad" data-bs-content="Esta velocidad es la que determina el movimiento fuera del sistema solar">
+                            Hypervelocidad
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless" data-toggle="tooltip" data-html="true" title="Cantidad de cazas que puede llevar">
-                        Hangar cazas
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Hangar cazas" data-bs-content="Cantidad de cazas que puede llevar">
+                            Hangar cazas
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless"  title="Cantidad de naves ligeras que puede llevar">
-                        Hangar ligeras
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Hangar ligeras" data-bs-content="Cantidad de ligeras que puede llevar">
+                            Hangar ligeras
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless"  title="Cantidad de naves medias que puede llevar">
-                        Hangar medias
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Hangar medias" data-bs-content="Cantidad de medias que puede llevar">
+                            Hangar medias
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless"  title="Cantidad de naves pesadas que puede llevar (sólo estaciones)">
-                        Hangar pesadas
+                    <td class="anchofijo text-warning borderless">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Hangar pesadas" data-bs-content="Cantidad de naves pesadas que puede llevar (sólo estaciones)">
+                            Hangar pesadas
+                        </a>
                     </td>
-                    <td class="anchofijo text-warning borderless"  title="Capacidad de extracción de planetas (sólo estaciones)">
-                        Extracción
+                    <td class="anchofijo text-warning borderless"
+                        title="Capacidad de extracción de planetas (sólo estaciones)">
+                        <a tabindex="0" type="button" class="btn btn-sm btn-dark text-warning" data-bs-toggle="popover" data-bs-trigger="focus"
+                            title="Extracción" data-bs-content="Cantidad de recursos por hora que es capaz de recolectar esta nave de planetas (sólo estaciones)">
+                            Extracción
+                        </a>
                     </td>
                 </tr>
                 <tr>
@@ -216,8 +290,19 @@
                         $texto = 'Se requiere el diseño';
                         $clase = 'btn-outline-light';
                         $deshabilitado = 'disabled';
-                        if (!empty(Auth::user()->jugador->fuselajes->where('id', $disenio->id)->first())) {
-                            if ($disenio->id == Auth::user()->jugador->fuselajes->where('id', $disenio->id)->first()->id) {
+                        if (
+                            !empty(
+                                Auth::user()
+                                    ->jugador->fuselajes->where('id', $disenio->id)
+                                    ->first()
+                            )
+                        ) {
+                            if (
+                                $disenio->id ==
+                                Auth::user()
+                                    ->jugador->fuselajes->where('id', $disenio->id)
+                                    ->first()->id
+                            ) {
                                 $texto = 'Crear diseño';
                                 $clase = 'btn-success';
                                 $deshabilitado = '';
@@ -225,9 +310,10 @@
                         }
                     @endphp
                     <td>
-                        <button id="crearDisenio" type="button" class="btn {{ $clase }} col-12" onclick="crearDisenio()" {{ $deshabilitado }}>
+                        <a id="crearDisenio" type="button" class="btn {{ $clase }} col-12"
+                            onclick="crearDisenio()" {{ $deshabilitado }}>
                             <i class="fa fa-cogs"></i> {{ $texto }}
-                        </button>
+                        </a>
                     </td>
                 </tr>
             </table>
