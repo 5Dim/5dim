@@ -84,11 +84,11 @@
             <img class="mb-4" src="{{ asset('favicon.png') }}" alt="">
 
             <div class="form-floating text-dark">
-                <input id="name" class="form-control" type="name" name="name" required autocomplete="current-name">
+                <input id="name" class="form-control" type="name" name="name" required autocomplete="current-name" autofocus>
                 <label for="name" value="{{ __('user.nombre') }}">{{ __('user.nombre') }}</label>
             </div>
             <div class="form-floating text-dark">
-                <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus>
+                <input id="email" class="form-control" type="email" name="email" :value="old('email')" required>
                 <label for="email" value="{{ __('user.email') }}">{{ __('user.email') }}</label>
             </div>
             <div class="form-floating text-dark">

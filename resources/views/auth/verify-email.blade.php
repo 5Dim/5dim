@@ -83,13 +83,13 @@
                 </div>
             @endif
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('user.reset email') }}</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('user.mensaje confirmacion') }}</button>
         </form>
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 
-            <button type="submit" class="w-100 btn btn-lg btn-warning">
+            <button type="submit" class="w-100 btn btn-warning">
                 {{ __('Logout') }}
             </button>
         </form>

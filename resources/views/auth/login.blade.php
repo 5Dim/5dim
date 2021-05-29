@@ -71,7 +71,7 @@
             @if (Route::has('password.request'))
                 <div class="checkbox mb-3">
                     <a class="underline text-sm text-white hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('olvidaste contraseña') }}
                     </a>
                 </div>
             @endif

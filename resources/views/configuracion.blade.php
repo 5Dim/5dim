@@ -120,7 +120,7 @@
             </div>
             <div class="form-floating text-dark">
                 <input id="password" name="password" type="password" class="form-control" wire:model.defer="state.password" autocomplete="new-password">
-                <label for="password" value="{{ __('user.contraseña') }}">{{ __('user.contraseña') }}</label>
+                <label for="password" value="{{ __('user.nueva contraseña') }}">{{ __('user.nueva contraseña') }}</label>
             </div>
             <div class="form-floating text-dark">
                 <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" wire:model.defer="state.password_confirmation" autocomplete="new-password">
