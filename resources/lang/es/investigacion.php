@@ -67,7 +67,8 @@ return [
     <br><br>Subir esta tecnologia desbloqueará nuevos fuselajes para ser diseñados en la pantalla de fuselajes.",
     'invImperioDescripcion' => "Conforme nuestro imperio coloniza o conquista nuevos planetas necesita ampliar su estructura administrativa. Cada nivel de esta investigación nos permite tener mas planetas, si sobrepasamos esta cantidad aumentarán también los gastos diarios en moneda.
     <br><br>Subir esta tecnologia otorga 10 puntos de imperio para colonizar planetas.
-    <br><br>Cada planeta colonizado tiene un coste de 10 puntos de imperio.",
+    <br><br>Cada planeta colonizado tiene un coste de 10 puntos de imperio.
+    <br><br>Puedes estar en negativo de puntos de imperio, pero solo hasta -30.",
     'invObservacionDescripcion' => "Esta tecnología nos permite ampliar nuestra distancia de observación para cada nivel de edificio de observatorio en cada planeta y flota órbita. El rango de observación para las flotas en órbita disminuye proporcionalmente según la cantidad de flotas.",
 
     'invPropQuimicoDescripcion' => "Basados en los mas antiguos principios estos motores proporcionan una gran cantidad de energía sin embargo sólo dan velocidad de impulso para desplazarse por el sistema. Cada nivel investigado mejora la velocidad. Es el motor ideal para los cazas (que no pueden viajar en ningún caso a velocidad hiperespacial)
