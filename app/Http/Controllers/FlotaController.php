@@ -501,8 +501,8 @@ class FlotaController extends Controller
                 $prioridadex->destinos_id = $destino->id;
                 $prioridadex->save();
 
-                Log::info("prioridades 0 ");
-                Log::info($prioridadex);
+                //Log::info("prioridades 0 ");
+                //Log::info($prioridadex);
 
                 //Log::info(" destino 0 creado ");
 

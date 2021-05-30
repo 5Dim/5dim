@@ -1118,7 +1118,7 @@ destino 0 con lo que sale
                     $flotaExiste->creditos += $flotaLlega['creditos'];
 
                     if ($quehacer == "recolectar" || $quehacer == "extraer") {
-                        $flotaExiste->recoleccion += $recoleccionT;
+                        $flotaExiste->recoleccion = $recoleccionT;
                     }
                     $flotaExiste->save();
                 } else {
@@ -1153,6 +1153,14 @@ destino 0 con lo que sale
                         $flotax->orbita = $planeta->orbita;
                     }
                     $flotax->save();
+
+                    PrioridadesEnFlota::updateOrCreate([
+                        'destinos_id'   => $destino->id,
+                    ], [
+                        "en_recoleccion:id"   => $flotax->id,
+                        "destinos_id"   => null
+                    ]);
+
                     //Log::info($flotax);Log::info(" hh ");
                 }
                 //Log::info($flotax);Log::info(" hh ");
@@ -1253,24 +1261,26 @@ destino 0 con lo que sale
             $capacidadRecoleccion = Disenios::extraccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
         }
 
+        if (empty($prioridadesDestino)){
+            for ($ordinal = 1; $ordinal < 16; $ordinal++) {
+                foreach ($recursosArray as $recurso) {
+                    //Log::info($prioridadesDestino);
+                    //Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
+                    if ($prioridadesDestino[$recurso] == $ordinal) {
+                        $extraido = 0;
+                        $producido = $recursosDestino[$recurso] * $fechaCalculo;
+                        //Log::info(" producido " . $producido);
+                        //Log::info(" capacidadRecoleccion " . $capacidadRecoleccion);
+                        if ($producido > $capacidadRecoleccion) {
+                            $extraido = $capacidadRecoleccion;
+                        } else {
+                            $extraido = $producido;
+                        }
+                        $recursosFlota[$recurso] +=  $extraido;
+                        $capacidadRecoleccion -= $extraido;
 
-        for ($ordinal = 1; $ordinal < 16; $ordinal++) {
-            foreach ($recursosArray as $recurso) {
-                // Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
-                if ($prioridadesDestino[$recurso] == $ordinal) {
-                    $extraido = 0;
-                    $producido = $recursosDestino[$recurso] * $fechaCalculo;
-                    //Log::info(" producido " . $producido);
-                    //Log::info(" capacidadRecoleccion " . $capacidadRecoleccion);
-                    if ($producido > $capacidadRecoleccion) {
-                        $extraido = $capacidadRecoleccion;
-                    } else {
-                        $extraido = $producido;
+                        // Log::info(" extraido " . $extraido);
                     }
-                    $recursosFlota[$recurso] +=  $extraido;
-                    $capacidadRecoleccion -= $extraido;
-
-                    // Log::info(" extraido " . $extraido);
                 }
             }
         }
