@@ -53,7 +53,7 @@ class MensajesController extends Controller
         if (empty($jugadorActual->alianzas)) {
             $mios = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
         } else {
-            $mios = MensajesIntervinientes::whereIn('emisor', [session()->get('jugadores_id'), $jugadorAlianza->id])->get();
+            $mios = MensajesIntervinientes::whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->get();
         }
 
         foreach ($mios as $recibido) {
