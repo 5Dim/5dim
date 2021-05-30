@@ -622,6 +622,17 @@ function TextoAyudaMision(dest,orden){
           break;
           case "Recolectar":
             textoayuda="La flota enviada permanecerá en los asteroides recolectando recursos durante un tiempo indefinido, el tipo de recursos que extraiga se determina según el numero indicado en las prioridades empezando por el 1. La cantidad extraida depende de los módulos de recoleccion de todas las naves de la flota. Si ya existe una flota propia recolectando en el destino, ambas se unirán. Al igual que una flota en órbita pueden sacarse naves de una flota en recolección, igualmente pueden cambiarse las prioridades editando la flota. La cantidad maxima que se puede extraer depende la riqueza del asteroide y no influye que otros jugadores extraigan a la vez.";
+            sumaprioridades=0;
+            recursosArray.forEach(res => {
+                sumaprioridades += 1 * $("#prioridad"+res + dest).val();
+            });
+            if (sumaprioridades<1){
+                $("#prioridadmineral" + dest).val(1);
+                $("#prioridadcristal" + dest).val(2);
+                $("#prioridadgas" + dest).val(3);
+                $("#prioridadplastico" + dest).val(4);
+                $("#prioridadceramica" + dest).val(5);
+            }
           break;
           case "Extraer":
             textoayuda="Funciona igual que la recolección pero sólo puede hacerse sobre un planeta deshabitado. Se requiere un modulo de extracción que sólo puede se incorporado en una estación.";
