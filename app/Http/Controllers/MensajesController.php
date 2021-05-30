@@ -50,11 +50,14 @@ class MensajesController extends Controller
             })->orderBy('id', 'desc');
         }
 
-        $mios = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
-
-        foreach ($mios as $recibido) {
+        foreach ($recibidos as $recibido) {
             $recibido->leido = true;
             $recibido->save();
+        }
+
+        foreach ($flotas as $flota) {
+            $flota->leido = true;
+            $flota->save();
         }
 
         return view('juego.mensajes.mensajes', compact(
