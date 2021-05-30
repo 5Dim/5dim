@@ -31,33 +31,34 @@ class MensajesController extends Controller
         if (!empty($jugadorActual->alianzas)) {
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorAlianza) {
                 $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])
-                ->where('categoria', 'recibidos');
+                    ->where('categoria', 'recibidos');
             })->orderBy('id', 'desc')->get();
             $enviados = Mensajes::whereIn('emisor', [session()->get('jugadores_id'), $jugadorAlianza->id])->orderBy('id', 'desc')->get();
             $flotas = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorAlianza) {
                 $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])
-                ->where('categoria', 'flotas');
+                    ->where('categoria', 'flotas');
             })->orderBy('id', 'desc')->get();
         } else {
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) {
                 $query->where('receptor', session()->get('jugadores_id'))
-                ->where('categoria', 'recibidos');
+                    ->where('categoria', 'recibidos');
             })->orderBy('id', 'desc')->get();
             $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orderBy('id', 'desc')->get();
             $flotas = Mensajes::whereHas('intervinientes', function (Builder $query) {
                 $query->where('receptor', session()->get('jugadores_id'))
-                ->where('categoria', 'flotas');
+                    ->where('categoria', 'flotas');
             })->orderBy('id', 'desc');
         }
 
-        foreach ($recibidos as $recibido) {
-            $recibido->leido = true;
-            $recibido->save();
+        if (empty($jugadorActual->alianzas)) {
+            $mios = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
+        } else {
+            $mios = MensajesIntervinientes::whereIn('emisor', [session()->get('jugadores_id'), $jugadorAlianza->id])->get();
         }
 
-        foreach ($flotas as $flota) {
-            $flota->leido = true;
-            $flota->save();
+        foreach ($mios as $recibido) {
+            $recibido->leido = true;
+            $recibido->save();
         }
 
         return view('juego.mensajes.mensajes', compact(
@@ -114,7 +115,7 @@ class MensajesController extends Controller
         if ($idJugador == session()->get('jugadores_id')) {
             $mensaje = Mensajes::find($idMensaje);
             $mensaje->intervinientes->where('receptor', $jugadorActual->id)->first()->delete();
-        }elseif (!empty($jugadorActual->alianzas)) {
+        } elseif (!empty($jugadorActual->alianzas)) {
             $mensaje = Mensajes::find($idMensaje);
             $mensaje->intervinientes->where('receptor', $jugadorAlianza->id)->first()->delete();
         }
