@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Constantes;
 use App\Models\Industrias;
+use Illuminate\Support\Facades\Log;
 
 class Producciones extends Model
 {
@@ -166,19 +167,6 @@ class Producciones extends Model
             $produccion->fuel = $produccion->fuel * $factorFuel;
             $produccion->ma = $produccion->ma * $factorMa;
             $produccion->municion = $produccion->municion * $factorMunicion;
-        } else {
-            $produccion->personal = $produccion->personal;
-            $produccion->mineral = $produccion->mineral;
-            $produccion->cristal = $produccion->cristal;
-            $produccion->gas = $produccion->gas;
-            $produccion->plastico = $produccion->plastico;
-            $produccion->ceramica = $produccion->ceramica;
-
-            $produccion->liquido = $produccion->liquido;
-            $produccion->micros = $produccion->micros;
-            $produccion->fuel = $produccion->fuel;
-            $produccion->ma = $produccion->ma;
-            $produccion->municion = $produccion->municion;
         }
 
         //calculo de niveles totales
