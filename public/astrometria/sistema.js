@@ -340,7 +340,7 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
         }),
     );
 
-    txt_recursos.text = "recursos";
+    txt_recursos.text = "yacimientos";
     txt_recursos.anchor.set(0.5);
     txt_recursos.position.set(n * 100 + 44, 140);
 
