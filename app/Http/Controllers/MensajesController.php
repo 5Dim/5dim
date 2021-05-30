@@ -38,6 +38,7 @@ class MensajesController extends Controller
                 $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])
                     ->where('categoria', 'flotas');
             })->orderBy('id', 'desc')->get();
+            $mios = MensajesIntervinientes::whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->get();
         } else {
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) {
                 $query->where('receptor', session()->get('jugadores_id'))
@@ -47,13 +48,8 @@ class MensajesController extends Controller
             $flotas = Mensajes::whereHas('intervinientes', function (Builder $query) {
                 $query->where('receptor', session()->get('jugadores_id'))
                     ->where('categoria', 'flotas');
-            })->orderBy('id', 'desc');
-        }
-
-        if (empty($jugadorActual->alianzas)) {
+            })->orderBy('id', 'desc')->get();
             $mios = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
-        } else {
-            $mios = MensajesIntervinientes::whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->get();
         }
 
         foreach ($mios as $recibido) {

@@ -6,6 +6,7 @@ use App\Models\Constantes;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class EnDisenios extends Model
 {
@@ -33,9 +34,10 @@ class EnDisenios extends Model
             ])->first();
 
             if (!empty($disenio)) {
-                $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
+
                 //En caso de reciclaje debe devolver los recursos
                 if ($cola->accion == "Reciclando") {
+                    $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
                     $coste = $cola->disenios->costes;
                     $recursos = $cola->planetas->recursos;
 
@@ -50,6 +52,7 @@ class EnDisenios extends Model
                     $recursos->save();
                 } else {
                     $disenio->cantidad += $cola->cantidad;
+                    $disenio->save();
                 }
             } else {
                 if ($cola->accion != "Reciclando") {
