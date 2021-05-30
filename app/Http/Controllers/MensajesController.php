@@ -84,7 +84,7 @@ class MensajesController extends Controller
         $mensaje = new Mensajes();
         $mensaje->mensaje = request()->input('descripcion');
         $mensaje->emisor = session()->get('jugadores_id');
-        $mensaje->asunto = request()->input('asunto');
+        $mensaje->asunto = !empty(request()->input('asunto')) ? request()->input('asunto') : "Sin asunto";
         $mensaje->categoria = "recibidos";
         $mensaje->save();
         $receptores = request()->input('listaJugadores');

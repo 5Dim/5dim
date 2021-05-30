@@ -891,5 +891,6 @@ function MostrarPorId(id) {
 function responderMensaje(emisor) {
     $("#listaJugadores").val(emisor);
     $("#listaJugadores").trigger("change");
+    $("#asunto").val("Respuesta");
     mostrarTab("nuevo-tab");
 }
