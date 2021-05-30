@@ -1262,9 +1262,9 @@ destino 0 con lo que sale
             $capacidadRecoleccion = Disenios::extraccionTotal($flotax->diseniosEnFlota) * $fechaCalculo;
         }
 
-        if (empty($prioridadesDestino)){
             for ($ordinal = 1; $ordinal < 16; $ordinal++) {
                 foreach ($recursosArray as $recurso) {
+                    //Log::info("message");
                     //Log::info($prioridadesDestino);
                     //Log::info($ordinal."-prioridad ".$recurso." ".$prioridadesDestino[$recurso]);
                     if ($prioridadesDestino[$recurso] == $ordinal) {
@@ -1284,7 +1284,7 @@ destino 0 con lo que sale
                     }
                 }
             }
-        }
+
 
         $flotax->updated_at = time();
         DB::beginTransaction();
