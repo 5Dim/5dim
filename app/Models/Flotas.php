@@ -826,7 +826,8 @@ destino 0 con lo que sale
 
                     switch ($tipodestino) {
                         case "planeta":
-                            if ($destino->planetas->jugadores_id != null) {
+                            if (!empty($destino->planetas)) {
+                                $personalOcupado = Recursos::calcularRecursos($destino->planetas->id);
                                 // entrego recursos
                                 $recursosDestino = $destino->planetas->recursos;
                                 foreach ($recursosArray as $recurso) {
