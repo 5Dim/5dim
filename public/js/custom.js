@@ -294,20 +294,36 @@ function calculaTiempoInvestigacion(costes, velocidadInvest, dnd, nivel, nivelLa
     velocidadInvest *= 100;
     if (personal > 0 && nivelLaboratorio > 0) {
         result = velocidadInvest * nivel * (precioTotal / (personal * nivelLaboratorio));
-        // result = result - premiun * 5 * 60;
         if (result < 1) {
             result = 0;
         }
-        // lhora = Math.floor(result / 3600);
-        // lminuto = Math.floor((result - lhora * 3600) / 60);
-        // lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
-
-        // horaImprimible =
-        //     "Tiempo: " + lhora + "h " + lminuto + "m " + lsegundo + "s";
+        let mucho = "text-danger";
+        let medio = "text-warning";
+        let poco = "text-success";
+        if (result > 3600 * 100) {
+            $("#tiempo" + dnd).removeClass(poco);
+            $("#tiempo" + dnd).removeClass(medio);
+            $("#tiempo" + dnd).addClass(mucho);
+            $("#termina" + dnd).removeClass(poco);
+            $("#termina" + dnd).removeClass(medio);
+            $("#termina" + dnd).addClass(mucho);
+        } else if (result > 3600 * 15) {
+            $("#tiempo" + dnd).removeClass(poco);
+            $("#tiempo" + dnd).addClass(medio);
+            $("#tiempo" + dnd).removeClass(mucho);
+            $("#termina" + dnd).removeClass(poco);
+            $("#termina" + dnd).addClass(medio);
+            $("#termina" + dnd).removeClass(mucho);
+        } else {
+            $("#tiempo" + dnd).addClass(poco);
+            $("#tiempo" + dnd).removeClass(medio);
+            $("#tiempo" + dnd).removeClass(mucho);
+            $("#termina" + dnd).addClass(poco);
+            $("#termina" + dnd).removeClass(medio);
+            $("#termina" + dnd).removeClass(mucho);
+        }
         timeDura(result, "tiempo" + dnd);
-        // $("#tiempo" + dnd).html(horaImprimible);
         timeg(result, "termina" + dnd);
-        // console.log(result);
     } else {
         $("#tiempo" + dnd).html(horaImprimible);
     }
