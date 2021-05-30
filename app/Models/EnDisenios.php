@@ -52,14 +52,16 @@ class EnDisenios extends Model
                     $disenio->cantidad += $cola->cantidad;
                 }
             } else {
-                $disenio = new DiseniosEnFlota();
-                $disenio->planetas_id = $cola->planetas_id;
-                $disenio->cantidad += $cola->cantidad;
-                $disenio->disenios_id = $cola->disenios_id;
-                $coste = $cola->disenios->costes;
-                $disenio->tipo = $cola->disenios->fuselajes->tipo;
+                if ($cola->accion != "Reciclando") {
+                    $disenio = new DiseniosEnFlota();
+                    $disenio->planetas_id = $cola->planetas_id;
+                    $disenio->cantidad += $cola->cantidad;
+                    $disenio->disenios_id = $cola->disenios_id;
+                    $coste = $cola->disenios->costes;
+                    $disenio->tipo = $cola->disenios->fuselajes->tipo;
+                    $disenio->save();
+                }
             }
-            $disenio->save();
             $cola->delete();
         }
     }

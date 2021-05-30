@@ -239,17 +239,35 @@ function calculaTiempo(costes, velocidadConst, codigo) {
     horaImprimible = "";
     if (personal > 1) {
         result = precioTotal * velocidadConst / personal;
-        // result = result - premiun * 5 * 60;
         if (result < 1) {
             result = 0;
         }
-        // lhora = Math.floor(result / 3600);
-        // lminuto = Math.floor((result - lhora * 3600) / 60);
-        // lsegundo = Math.floor(result - (lhora * 3600 + lminuto * 60));
 
-        // horaImprimible =
-        //     "Tiempo: " + lhora + ":" + lminuto + ":" + lsegundo + "";
-
+        let mucho = "text-danger";
+        let medio = "text-warning";
+        let poco = "text-success";
+        if (result > 3600 * 100) {
+            $("#tiempo" + codigo).removeClass(poco);
+            $("#tiempo" + codigo).removeClass(medio);
+            $("#tiempo" + codigo).addClass(mucho);
+            $("#termina" + codigo).removeClass(poco);
+            $("#termina" + codigo).removeClass(medio);
+            $("#termina" + codigo).addClass(mucho);
+        } else if (result > 3600 * 15) {
+            $("#tiempo" + codigo).removeClass(poco);
+            $("#tiempo" + codigo).addClass(medio);
+            $("#tiempo" + codigo).removeClass(mucho);
+            $("#termina" + codigo).removeClass(poco);
+            $("#termina" + codigo).addClass(medio);
+            $("#termina" + codigo).removeClass(mucho);
+        } else {
+            $("#tiempo" + codigo).addClass(poco);
+            $("#tiempo" + codigo).removeClass(medio);
+            $("#tiempo" + codigo).removeClass(mucho);
+            $("#termina" + codigo).addClass(poco);
+            $("#termina" + codigo).removeClass(medio);
+            $("#termina" + codigo).removeClass(mucho);
+        }
         timeDura(result, "tiempo" + codigo);
         $("#tiempo" + codigo).html(horaImprimible);
         timeg(result, "termina" + codigo);
