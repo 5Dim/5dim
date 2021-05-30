@@ -64,7 +64,11 @@ class Controller extends BaseController
         $consImperio = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
 
-        $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        if (!empty($jugadorActual->alianzas)) {
+            $emisorSinLeer = MensajesIntervinientes::where('leido', false)->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->first();
+        }else{
+            $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+        }
         $mensajeNuevo = false;
         if (!empty($emisorSinLeer)) {
             $mensajeNuevo = true;
@@ -109,24 +113,24 @@ class Controller extends BaseController
 
         if (!empty($nombreflota) && !empty($tipoflota)) {
             if ($tipoflota == "envuelo" || $tipoflota == "enorbita"  || $tipoflota == "enrecoleccion") {
-                $result=Flotas::valoresEdicionFlotasController($jugadorActual,$tipoflota,$nombreflota);
-                $visionXDefecto=$result[0];
-                $destinos=$result[1];
-                $flota=$result[2];
-                $navesEstacionadas=$result[3];
-                $recursosFlota=$result[4];
-                $prioridades=$result[5];
-                $cargaDest=$result[6];
+                $result = Flotas::valoresEdicionFlotasController($jugadorActual, $tipoflota, $nombreflota);
+                $visionXDefecto = $result[0];
+                $destinos = $result[1];
+                $flota = $result[2];
+                $navesEstacionadas = $result[3];
+                $recursosFlota = $result[4];
+                $prioridades = $result[5];
+                $cargaDest = $result[6];
             }
         } else {
             $visionXDefecto = true;
         }
 
-        $result=Flotas::valoresVaciosFlotaController($planetaActual);
+        $result = Flotas::valoresVaciosFlotaController($planetaActual);
         $prioridadesXDefecto = $result[0];
         $recursosDestino = $result[1];
         $destino = $result[2];
-        $origen= $result[3];
+        $origen = $result[3];
 
         $cargaDestVacia = [];
         $prioridadesVacia = [];
@@ -158,13 +162,13 @@ class Controller extends BaseController
             $flota = new EnVuelo();
             $flota->nombre = "";
 
-            $destinos[1]["estrella"]=$estrella;
-            $destinos[1]["orbita"]=$orbita;
+            $destinos[1]["estrella"] = $estrella;
+            $destinos[1]["orbita"] = $orbita;
         }
 
         // $diseniosJugador = $jugadorActual->disenios;
 
-        $result=Flotas::valoresDiseniosFlotaController($navesEstacionadas);
+        $result = Flotas::valoresDiseniosFlotaController($navesEstacionadas);
         $diseniosJugador = $result[0];
         $ViewDaniosDisenios = $result[1];
 
@@ -214,6 +218,4 @@ class Controller extends BaseController
             'prioridadesVacia',
         );
     }
-
-
 }
