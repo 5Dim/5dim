@@ -194,9 +194,7 @@
             </div>
         </div>
     </div>
-
     <script>
         mostrarTab(@json($tab));
-
     </script>
 @endsection

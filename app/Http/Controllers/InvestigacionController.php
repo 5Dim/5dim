@@ -20,7 +20,7 @@ use App\Models\MensajesIntervinientes;
 class InvestigacionController extends Controller
 {
 
-    public function index($tab = "militares-tab")
+    public function index($tab = "armamento-tab")
     {
         extract($this->recursos());
 
