@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use LengthException;
 
+use function PHPUnit\Framework\isEmpty;
+
 class Flotas extends Model
 {
 
@@ -493,21 +495,27 @@ class Flotas extends Model
         return [$destino, $errores];
     }
 
-    public static function regresarFlota($nombreflota)
+    public static function regresarFlota($nombreflota,$auto=false)
     {
+        $errores = "";
+        if($auto){
+            $flotax = EnVuelo::where('publico', $nombreflota)->first();
+        } else {
+            $jugadoryAlianza = [];
 
-        $jugadoryAlianza = [];
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Log::info($jugadorActual);
+            if ($jugadorActual['alianzas_id'] != null) {
+                array_push($jugadoryAlianza, $jugadorActual->alianzas_id);
+            }
 
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Log::info($jugadorActual);
-        if ($jugadorActual['alianzas_id'] != null) {
-            array_push($jugadoryAlianza, $jugadorActual->alianzas_id);
+            array_push($jugadoryAlianza, $jugadorActual->id);
+
+            //Log::info("nombreflota: ".$nombreflota);
+
+            $flotax = EnVuelo::where('publico', $nombreflota)->where('jugadores_id', $jugadoryAlianza)->first();
         }
 
-        array_push($jugadoryAlianza, $jugadorActual->id);
 
-        //Log::info("nombreflota: ".$nombreflota);
-        $errores = "";
-        $flotax = EnVuelo::where('publico', $nombreflota)->where('jugadores_id', $jugadoryAlianza)->first();
         if ($flotax != null) {
             try {
                 $ajusteMapaBase = 35; //ajuste 0,0 con mapa
@@ -562,8 +570,11 @@ class Flotas extends Model
                     $destino->orbita = $initorbita;
                     $destino->fincoordx = $destino->initcoordx;
                     $destino->fincoordy = $destino->initcoordy;
-                    $destino->initcoordx = $puntoFlota->coordx;
-                    $destino->initcoordy = $puntoFlota->coordy;
+                    if (!isEmpty($puntoFlota)){
+                        $destino->initcoordx = $puntoFlota->coordx;
+                        $destino->initcoordy = $puntoFlota->coordy;
+                    }
+
                     //$destino->init = $Tinit;  //para que los mensajes se mantengan
                     $destino->fin = $Tfin;
                     $destino->flota_id = $flotax->id;
@@ -925,8 +936,9 @@ destino 0 con lo que sale
                             $destinoAlcanzado = true;
                         }
                     } else {
-                        $destinoAlcanzado = true;
+                        //$destinoAlcanzado = true;
                         $errores = "Sólo se pueden recolectar cuerpos tipo asteroide ";
+                        Flotas::regresarFlota($estaFlota->publico,true);
                     }
                     break;
                 case "Orbitar":
