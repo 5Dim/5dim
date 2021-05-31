@@ -244,7 +244,7 @@ class CostesInvestigaciones extends Model
                             $factorRebajaXMaximo = max(1 - (($UmbralNivelRebaja - $nivel) * $porcentRebajaXNivel), 0);
                         }
                         $costoIT = $costoInvestDisenio;
-                        $r1cce = [$codigo, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, $nivel];
+                        $r1cce = [$codigo, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, $nivel];
                         $costosIniciales = [$codigo, 20000000, 10000000, 10000000, 5000000, 4000000, 200000, 0, 750000, 1000000, 750000];
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
