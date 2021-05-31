@@ -741,8 +741,9 @@ function CalculoDisenio(diseno) {
     rdiseno.cargaEnorme = Math.round(diseno.mejoras["cargaEnorme"] * baseHangar);
 
     rdiseno.carga = resultadoRealDiseno(diseno, "invCarga", "carga");
-    rdiseno.recoleccion = resultadoRealDiseno(diseno, "invRecoleccion", "recolector");
-    rdiseno.extraccion = resultadoRealDiseno(diseno, "invRecoleccion", "extractor");
+
+    rdiseno.recoleccion = resultadoRealDisenoSinInvest(diseno, "invRecoleccion", "recolector");
+    rdiseno.extraccion = resultadoRealDisenoSinInvest(diseno, "invRecoleccion", "extractor");
 
     // Varios
     rdiseno.municion = diseno.mejoras["municion"];
@@ -777,6 +778,13 @@ function resultadoRealDiseno(diseno, invest, invstobj = invest) {
                     })[0]["valor"]),
     );
 }
+
+function resultadoRealDisenoSinInvest(diseno, invest, invstobj = invest) {
+    return Math.round(
+        diseno.mejoras[invstobj]
+    );
+}
+
 
 valNaves = [];
 tamaniosArray = ["cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega"];
