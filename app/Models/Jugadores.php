@@ -124,6 +124,7 @@ class Jugadores extends Model
             $jugador = Auth::user()->jugador;
         }
         Planetas::nuevoPlaneta($jugador->id);
+        Mensajes::bienvenida($jugador->id);
 
         return $jugador;
     }

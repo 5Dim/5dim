@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class Mensajes extends Model
@@ -20,28 +21,49 @@ class Mensajes extends Model
         return $this->hasMany(MensajesIntervinientes::class);
     }
 
-    public static function enviarMensajeFlota($destino)
+    public static function enviarMensajeFlota($destino, $errores)
     {
-        switch ($destino->mision) {
-            case "Transportar":
-                Mensajes::transporte($destino);
-                break;
-            case "Transferir":
-                Mensajes::transferir($destino);
-                break;
-            case "Colonizar":
-                Mensajes::colonizar($destino);
-                break;
-            case "Recolectar":
-                Mensajes::recolectar($destino);
-                break;
-            case "Extraer":
-                Mensajes::extraer($destino);
-                break;
-            case "Orbitar":
-                Mensajes::orbitar($destino);
-                break;
+        if (empty($errores)) {
+            switch ($destino->mision) {
+                case "Transportar":
+                    Mensajes::transporte($destino);
+                    break;
+                case "Transferir":
+                    Mensajes::transferir($destino);
+                    break;
+                case "Colonizar":
+                    Mensajes::colonizar($destino);
+                    break;
+                case "Recolectar":
+                    Mensajes::recolectar($destino);
+                    break;
+                case "Extraer":
+                    Mensajes::extraer($destino);
+                    break;
+                case "Orbitar":
+                    Mensajes::orbitar($destino);
+                    break;
+            }
+        } else {
+            Mensajes::errorFlota($destino, $errores);
         }
+    }
+
+    public static function errorFlota($destino, $errores)
+    {
+        $contenido = "<p>La flota <b class='text-success'>" . $destino->flota->nombre . "</b> ha llegado con el siguiente mensaje de error <b class='text-danger'>";
+        $contenido .= strtolower($errores);
+        $contenido .= "</b>.</p>";
+
+        $mensaje = new Mensajes();
+        $mensaje->mensaje = $contenido;
+        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> ha llegado con error</b>";
+        $mensaje->categoria = 'flotas';
+        $mensaje->emisor = null;
+        $mensaje->emisor_sys = 'Comandante';
+        $mensaje->save();
+
+        MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
     }
 
     public static function transporte($destino)
@@ -606,5 +628,31 @@ class Mensajes extends Model
         $mensaje->save();
 
         MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
+    }
+
+    public static function bienvenida($idJugador)
+    {
+        $contenido = "<p>Bienvenido a la <b>Alfa 0.1</b> de 5dim.es. Ahí van unos consejos de inicio:
+            <br>- Todo lo relacionado con combates <b>NO está implementado</b>, de modo que no investigues ni diseñes con armas o blindajes.
+            <br>- Céntrate al inicio en subir las minas  de tu planeta inicial, priorizando el mineral.
+            <br>- Construir una nave y mandarla a recolectar en los asteroides que tienes al lado de tu planeta es una buena idea una vez puedas permitirte construir una nave.
+            <br>- Colonizar planetas cercanos es una buena opción, puedes hacerlo incluso con una sonda ya que es muy barata.
+            <br>- Además puedes mandar tu sonda (con combustible) a orbitar otras estrellas fuera de tu visión, ya que también da algo de visión.
+            <br>- Crear una alianza o aliarte con amigos es muy buena idea ya que las tecnologías se comparten de forma automática.
+            <br>- Además las naves se mejoran automaticamente cada vez que subes una tecnología.
+            <br>- Subir la tecnología de fuselajes es siempre muy rentable, pero ten en cuenta que las naves mas avanzadas son mas caras de construir.
+            <br>- Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/G29PADmkKg'>discord</a>.
+
+            <br><br>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>";
+
+        $mensaje = new Mensajes();
+        $mensaje->mensaje = $contenido;
+        $mensaje->asunto = "Bienvenido a 5Dim.";
+        $mensaje->categoria = 'recibidos';
+        $mensaje->emisor = null;
+        $mensaje->emisor_sys = 'Comandante';
+        $mensaje->save();
+
+        MensajesIntervinientes::intervinientesBienvenida($mensaje->id, $idJugador);
     }
 }

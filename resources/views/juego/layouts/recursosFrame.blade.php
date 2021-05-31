@@ -71,9 +71,9 @@
                             {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
-                            {{-- <a href="http://quintadim.foroactivo.com/f21-ayudas-y-preguntas" target="_blank"> --}}
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}" title="Soporte" />
-                            {{-- </a> --}}
+                            <a href="https://discord.gg/G29PADmkKg" target="_blank">
+                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}" title="Discord channel" />
+                            </a>
                         </th>
                         <th class="text-warning borderless">
                             <a tabindex="0" type="button" class="btn btn-sm btn-dark"

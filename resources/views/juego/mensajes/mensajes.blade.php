@@ -44,6 +44,7 @@
                     @foreach ($recibidos as $recibido)
                         @include('juego.mensajes.cajitaMensajesRecibidos', [
                         'mensaje' => $recibido,
+                        'imagenAvatar' => 'img/juego/skin0/mensajes/comandante.jpg',
                         ])
                     @endforeach
                 </div>

@@ -59,4 +59,13 @@ class MensajesIntervinientes extends Model
             $receptor->save();
         }
     }
+
+    public static function intervinientesBienvenida($idMensaje, $idJugador)
+    {
+        $receptor = new MensajesIntervinientes();
+        $receptor->leido = false;
+        $receptor->mensajes_id = $idMensaje;
+        $receptor->receptor = $idJugador;
+        $receptor->save();
+    }
 }

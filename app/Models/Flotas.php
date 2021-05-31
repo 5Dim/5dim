@@ -1047,7 +1047,7 @@ destino 0 con lo que sale
                         $destino->save();
                     }
                     Log::info($errores);
-                    Mensajes::enviarMensajeFlota($destino);
+                    Mensajes::enviarMensajeFlota($destino, $errores);
                 } catch (Exception $e) {
                     DB::rollBack();
                     $errores = "Error en Commit recepción de flotas " . $e->getLine() . " " . $errores; //.$e;
