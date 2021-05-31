@@ -325,10 +325,10 @@
             <table class="table table-sm table-borderless text-center anchofijo" style="margin-bottom: 5px !important;">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-outline-info col-12" data-bs-toggle="modal"
                             data-bs-target="#datosModal"
                             onclick="mostrarDatosInvestigacion('{{ $investigacion->codigo }}')">
-                            <i class="fa fa-info-circle"></i> Datos
+                            <i class="fa fa-info"></i> Información
                         </button>
                     </td>
                     <td>

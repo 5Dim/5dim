@@ -31,7 +31,7 @@
                     </td>
                     <td
                         class="anchofijo text-{{ $fuselaje->cualidades->cargaPequenia > 0 ? 'warning' : 'muted' }}">
-                        Carga pequenia</td>
+                        Carga pequeña</td>
                     <td
                         class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'warning' : 'muted' }}">
                         Carga media</td>
@@ -136,22 +136,22 @@
             <table class="table table-sm table-borderless text-center anchofijo" style="margin-bottom: 5px !important;">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12 " data-bs-toggle="modal"
+                        <button type="button" class="btn btn-outline-info col-12 " data-bs-toggle="modal"
                             data-bs-target="#datosModal" onclick="mostrarDatosFuselaje('{{ $fuselaje->id }}')">
-                            <i class="fa fa-info-circle"></i> Datos
+                            <i class="fa fa-info"></i> Información
                         </button>
                     </td>
                     @if(empty($fuselajesJugador->where('id', $fuselaje->id)->first()))
                         <td>
-                            <button type="button" class="btn btn-outline-info col-12"
+                            <button type="button" class="btn btn-outline-primary col-12"
                                 onclick="sendDiseniar('{{ $fuselaje->id }}')">
-                                <i class="fa fa-cogs"></i> Probar diseño
+                                <i class="fa fa-cog"></i> Probar diseño
                             </button>
                         </td>
                     @else
                         <td>
                             <button type="button" class="btn btn-outline-light col-12" disabled>
-                                <i class="fa fa-cogs"></i> Probar diseño
+                                <i class="fa fa-cog"></i> Probar diseño
                             </button>
                         </td>
                     @endif

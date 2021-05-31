@@ -271,12 +271,12 @@
                     <td>
                         @if ($nivelHangar < 1 || empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()) || $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad == 0)
                             <button type="button" class="btn btn-outline-light col-12" disabled>
-                                <i class="fa fa-info-circle"></i> Reciclar nave
+                                <i class="fa fa-recycle"></i> Reciclar nave
                             </button>
                         @else
                             <button type="button" class="btn btn-danger col-12"
                                 onclick="reciclarDisenio({{ $disenio->id }})">
-                                <i class="fa fa-info-circle"></i> Reciclar nave
+                                <i class="fa fa-recycle"></i> Reciclar nave
                             </button>
                         @endif
                     </td>
@@ -303,12 +303,12 @@
                     <td>
                         @if ($nivelHangar < 1 || $disenio->costes->mineral > $recursos->mineral || $disenio->costes->cristal > $recursos->cristal || $disenio->costes->gas > $recursos->gas || $disenio->costes->plastico > $recursos->plastico || $disenio->costes->ceramica > $recursos->ceramica || $disenio->costes->liquidos > $recursos->liquidos || $disenio->costes->micros > $recursos->micros || $disenio->costes->personal > $recursos->personal || empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
                             <button type="button" class="btn btn-outline-light col-12" disabled>
-                                <i class="fa fa-plus-circle"></i> Construir
+                                <i class="fa fa-plus"></i> Construir nave
                             </button>
                         @else
                             <button type="button" class="btn btn-success col-12"
                                 onclick="construirDisenio({{ $disenio->id }})" id="disenioConstruir{{ $disenio->id }}">
-                                <i class="fa fa-plus-circle"></i> Construir
+                                <i class="fa fa-plus"></i> Construir nave
                             </button>
                         @endif
                     </td>
@@ -317,12 +317,12 @@
                     <td>
                         @if (empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
                             <button type="button" class="btn btn-outline-light col-12" disabled>
-                                <i class="fa fa-times "></i> Diseño borrado
+                                <i class="fa fa-eraser "></i> Diseño borrado
                             </button>
                         @else
                             <a type="button" class="btn btn-outline-danger col-12 text-danger"
                                 href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
-                                <i class="fa fa-times "></i> Borrar diseño
+                                <i class="fa fa-eraser "></i> Borrar diseño
                             </a>
                         @endif
                     </td>
@@ -330,11 +330,11 @@
                         <div class="accordion accordion-flush" id="button{{ $disenio->id }}">
                             <div class="accordion-item bg-transparent">
                                 <h2 class="accordion-header" id="flush-headingOne" style="margin-bottom: 5px;">
-                                    <a class="btn btn-outline-primary col-12 text-primary" type="button"
+                                    <a class="btn btn-outline-info col-12" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#info{{ $disenio->id }}"
                                         aria-expanded="false" aria-controls="info{{ $disenio->id }}"
                                         onclick="MostrarResultadoDisenio({{ $disenio }})">
-                                        Datos
+                                        <i class="fa fa-info"></i> Información
                                     </a>
                                 </h2>
                             </div>
@@ -343,12 +343,12 @@
                     <td>
                         @if (empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
                             <button type="button" class="btn btn-outline-light col-12" disabled>
-                                <i class="fa fa-times "></i> Diseño borrado
+                                <i class="fa fa-edit "></i> Diseño borrado
                             </button>
                         @else
                             <a type="button" class="btn btn-outline-success col-12 text-success"
                                 href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
-                                <i class="fa fa-times "></i> Editar disenio
+                                <i class="fa fa-edit "></i> Editar disenio
                             </a>
                         @endif
                     </td>

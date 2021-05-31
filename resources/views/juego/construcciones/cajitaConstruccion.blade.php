@@ -265,10 +265,10 @@
                         @endif
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary col-12 " data-bs-toggle="modal"
+                        <button type="button" class="btn btn-outline-info col-12 " data-bs-toggle="modal"
                             data-bs-target="#datosModal"
                             onclick="mostrarDatosConstruccion('{{ $construccion->codigo }}')">
-                            <i class="fa fa-info-circle"></i> Datos
+                            <i class="fa fa-info"></i> Información
                         </button>
                     </td>
                     @if (substr($construccion->codigo, 0, 3) == 'ind' and substr($construccion->codigo, 3) != 'Personal')
