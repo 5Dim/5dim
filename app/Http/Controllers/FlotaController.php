@@ -807,6 +807,15 @@ class FlotaController extends Controller
                         $result = Flotas::calculoFlota($disenios, $valFlotaT, null, $tablaHangares);
                         $valFlotaT = $result[0];
 
+                        if ($tipoflota == "enrecoleccion") {
+
+                            $recoleccionT = Disenios::recoleccionTotal($flotaOrigen->diseniosEnFlota);
+                            if ($recoleccionT<1) { //si no recolecto quizas extraiga
+                                $recoleccionT = Disenios::extraccionTotal($flotaOrigen->diseniosEnFlota);
+                            }
+                            $flotaOrigen->recoleccion = $recoleccionT;
+                        }
+
                         $flotaOrigen->ataqueReal = $valFlotaT['ataqueR'];
                         $flotaOrigen->defensaReal = $valFlotaT['defensaR'];
                         $flotaOrigen->ataqueVisible = $valFlotaT['ataqueV'];

@@ -1102,12 +1102,14 @@ destino 0 con lo que sale
                     if ($flotaExiste != null) {
                         Flotas::recolectarAsteroide($planeta, $flotaExiste, null);
                     }
+                    /*
                     //Log::info("quehacer1 ".$quehacer);
                     if ($quehacer == "recolectar") {
                         $recoleccionT = Disenios::recoleccionTotal($flotaLlega->diseniosEnFlota);
                     } else {
                         $recoleccionT = Disenios::extraccionTotal($flotaLlega->diseniosEnFlota);
                     }
+                    */
                     $columnNaves = "en_recoleccion_id";
                 } else {
                     $flotaExiste = EnOrbita::where("jugadores_id", $flotaLlega->jugadores_id)
@@ -1133,10 +1135,11 @@ destino 0 con lo que sale
                     $flotaExiste->ataqueVisible += $flotaLlega['ataqueVisible'];
                     $flotaExiste->defensaVisible += $flotaLlega['defensaVisible'];
                     $flotaExiste->creditos += $flotaLlega['creditos'];
-
+                    /*
                     if ($quehacer == "recolectar" || $quehacer == "extraer") {
                         $flotaExiste->recoleccion = $recoleccionT;
                     }
+                    */
                     $flotaExiste->save();
                 } else {
                     $coordDestino = Flotas::coordenadasBySistema($planeta->estrella, $anchoUniverso, $luzdemallauniverso);
@@ -1164,7 +1167,7 @@ destino 0 con lo que sale
 
 
                     if ($quehacer == "recolectar" || $quehacer == "extraer") {
-                        $flotax->recoleccion = $recoleccionT;
+                        //$flotax->recoleccion = $recoleccionT;
                     } else {
                         $flotax->estrella = $planeta->estrella;
                         $flotax->orbita = $planeta->orbita;
@@ -1234,6 +1237,20 @@ destino 0 con lo que sale
                         $columnNaves   => $flotax->id,
                         "en_vuelo_id"   => null
                     ]);
+                }
+
+                if ($quehacer == "recolectar" || $quehacer == "extraer") {
+                    $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
+                    ->where("planetas_id", $planeta->id)->first();
+
+                    if ($quehacer == "recolectar") {
+                        $recoleccionT = Disenios::recoleccionTotal($flotaExiste->diseniosEnFlota);
+                    } else {
+                        $recoleccionT = Disenios::extraccionTotal($flotaExiste->diseniosEnFlota);
+                    }
+                    //Log::info("recoleccionT ". $recoleccionT);
+                    $flotaExiste->recoleccion = $recoleccionT;
+                    $flotaExiste->save();
                 }
 
                 $flotaLlega->delete();
