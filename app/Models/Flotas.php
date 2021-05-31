@@ -659,12 +659,13 @@ destino 0 con lo que sale
         $luzdemallauniverso = $constantesU->where('codigo', 'luzdemallauniverso')->first()->valor;
         $recursosArray = array("personal", "mineral", "cristal", "gas", "plastico", "ceramica", "liquido", "micros", "fuel", "ma", "municion", "creditos");
         $ahora = date("Y-m-d H:i:s");
-        $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init", "desc")->get(); //->unique('flota_id'); //
 
         //Log::info("listaDestinosEntrantes " . $listaDestinosEntrantes);
 
         try {
             DB::beginTransaction();
+            $listaDestinosEntrantes = Destinos::where('fin', '<', $ahora)->where("visitado", "0")->orderBy("init", "desc")->lockForUpdate()->get();
+
             foreach ($listaDestinosEntrantes as $destino) {
                 try {
                     $destinoAnterior = Destinos::destinoAnterior($destino);
