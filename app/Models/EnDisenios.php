@@ -36,23 +36,25 @@ class EnDisenios extends Model
             $coste = $cola->disenios->costes;
             $recursos = $cola->planetas->recursos;
 
-            //En caso de reciclaje debe devolver los recursos
-            if ($cola->accion == "Reciclando") {
-                //Restaurar beneficio por reciclaje
-                $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
-                $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
-                $recursos->gas += (($coste->gas * $cola->cantidad) * $reciclaje);
-                $recursos->plastico += (($coste->plastico * $cola->cantidad) * $reciclaje);
-                $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $reciclaje);
-                $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
-                $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
-                $recursos->save();
-            } else {
-                $disenio->cantidad += $cola->cantidad;
-                $disenio->save();
-            }
+            if (!empty($disenio)) {
 
-            if (empty($disenio)) {
+                //En caso de reciclaje debe devolver los recursos
+                if ($cola->accion == "Reciclando") {
+
+                    //Restaurar beneficio por reciclaje
+                    $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
+                    $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
+                    $recursos->gas += (($coste->gas * $cola->cantidad) * $reciclaje);
+                    $recursos->plastico += (($coste->plastico * $cola->cantidad) * $reciclaje);
+                    $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $reciclaje);
+                    $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
+                    $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
+                    $recursos->save();
+                } else {
+                    $disenio->cantidad += $cola->cantidad;
+                    $disenio->save();
+                }
+            } else {
                 if ($cola->accion != "Reciclando") {
                     $disenio = new DiseniosEnFlota();
                     $disenio->planetas_id = $cola->planetas_id;
@@ -60,8 +62,17 @@ class EnDisenios extends Model
                     $disenio->disenios_id = $cola->disenios_id;
                     $coste = $cola->disenios->costes;
                     $disenio->tipo = $cola->disenios->fuselajes->tipo;
-
                     $disenio->save();
+
+                    //Restaurar beneficio por reciclaje
+                    $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
+                    $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
+                    $recursos->gas += (($coste->gas * $cola->cantidad) * $reciclaje);
+                    $recursos->plastico += (($coste->plastico * $cola->cantidad) * $reciclaje);
+                    $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $reciclaje);
+                    $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
+                    $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
+                    $recursos->save();
                 }
             }
             $cola->delete();
