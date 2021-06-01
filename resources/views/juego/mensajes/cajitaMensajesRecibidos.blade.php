@@ -49,7 +49,7 @@
                 class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
-                        <a type="button" class="btn btn-outline-danger col-12" href="mensajes/borrar/{{ $mensaje->id }}/{{ Auth::user()->jugador->id }}">
+                        <a type="button" class="btn btn-outline-danger col-12" href="borrar/{{ $mensaje->id }}/{{ Auth::user()->jugador->id }}">
                             <i class="fa fa-info-circle"></i> Eliminar
                         </a>
                     </td>
