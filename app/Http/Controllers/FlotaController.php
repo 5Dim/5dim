@@ -453,6 +453,7 @@ class FlotaController extends Controller
 
                 //$result = Flotas::destinoTipoId($destino, $destinos[0]);
                 //$destino = $result[0];
+                $ahora = date("Y-m-d H:i:s");
 
                 $destino->initestrella = 1 * $destinos[0]['estrella'];
                 $destino->initorbita = 1 * $destinos[0]['orbita'];
@@ -464,8 +465,8 @@ class FlotaController extends Controller
                 $destino->fincoordx = 0;
                 $destino->fincoordy = 0;
 
-                $destino->init = date("Y-m-d H:i:s");
-                $destino->fin = date("Y-m-d H:i:s");
+                $destino->init = $ahora;
+                $destino->fin = $ahora;
                 $destino->flota_id = $flotax->id;
                 $destino->save();
 
@@ -507,7 +508,8 @@ class FlotaController extends Controller
                 //Log::info(" destino 0 creado ");
 
                 //construyendo destinos
-                $Tinit = date("Y-m-d H:i:s");
+
+                $Tinit=$ahora;
                 for ($dest = 1; $dest < count($destinos); $dest++) {
 
                     //Log::info($Tinit);

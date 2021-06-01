@@ -906,6 +906,10 @@ destino 0 con lo que sale
                                 $hayerror = true;
                             }
                             if (!$hayerror && $tipodestino != "planeta") {
+                                $errores .= "El destino no es un planeta";
+                                $hayerror = true;
+                            }
+                            if (!$hayerror &&  $destino->planetas->tipo != "planeta") {
                                 $errores .= "Sólo se pueden colonizar cuerpos tipo planeta ";
                                 $hayerror = true;
                             }
@@ -916,7 +920,6 @@ destino 0 con lo que sale
                                     $hayerror = true;
                                 }
                             }
-
 
                             if (!$hayerror) {
                                 $guardarCambiosColonizacion = true;

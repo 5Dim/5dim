@@ -51,13 +51,13 @@ class Mensajes extends Model
 
     public static function errorFlota($destino, $errores)
     {
-        $contenido = "<p>La flota <b class='text-success'>" . $destino->flota->nombre . "</b> ha llegado con el siguiente mensaje de error <b class='text-danger'>";
+        $contenido = "<p>La flota <b class='text-success'>" . $destino->flota->nombre . "</b> ha llegado con el siguiente mensaje: <b class='text-danger'>";
         $contenido .= strtolower($errores);
         $contenido .= "</b>.</p>";
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;
-        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> ha llegado con error</b>";
+        $mensaje->asunto = "La flota <b>" . $destino->flota->nombre . "</b> No ha podido cumplir su misión</b>";
         $mensaje->categoria = 'flotas';
         $mensaje->emisor = null;
         $mensaje->emisor_sys = 'Comandante';
