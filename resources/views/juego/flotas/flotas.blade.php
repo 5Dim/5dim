@@ -7,19 +7,19 @@
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
                     <a class="nav-item nav-link" id="enviar-tab" data-bs-toggle="tab" href="#enviar" role="tab"
-                        aria-controls="Enviar" aria-selected="true">
+                        aria-controls="Enviar" aria-selected="true" onclick="tabsFlotas('enviar-tab')">
                         Enviar
                     </a>
                     <a class="nav-item nav-link" id="envuelo-tab" data-bs-toggle="tab" href="#envuelo" role="tab"
-                        aria-controls="envuelo" aria-selected="false" onclick="verFlotasEnVuelo()">
+                        aria-controls="envuelo" aria-selected="false" onclick="verFlotasEnVuelo();tabsFlotas('envuelo-tab')">
                         En vuelo
                     </a>
                     <a class="nav-item nav-link" id="orbita-tab" data-bs-toggle="tab" href="#orbita" role="tab"
-                        aria-controls="orbita" aria-selected="false" onclick="verFlotasEnOrbita()">
+                        aria-controls="orbita" aria-selected="false" onclick="verFlotasEnOrbita();tabsFlotas('orbita-tab')">
                         En órbita
                     </a>
                     <a class="nav-item nav-link" id="recoleccion-tab" data-bs-toggle="tab" href="#recoleccion" role="tab"
-                        aria-controls="recoleccion" aria-selected="false" onclick="verFlotasEnRecoleccion()">
+                        aria-controls="recoleccion" aria-selected="false" onclick="verFlotasEnRecoleccion();tabsFlotas('recoleccion-tab')">
                         En recolección
                     </a>
 

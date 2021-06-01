@@ -90,7 +90,7 @@ Route::middleware(
 
     //Rutas generales
     Route::get('/juego', [JuegoController::class, 'index']);
-    Route::get('/planeta/{planeta}', [JuegoController::class, 'planeta']);
+    Route::get('/cambiarPlaneta/{planeta}', [JuegoController::class, 'planeta']);
     // Route::get('/jugador', [JuegoController::class, 'jugador']);
 
     Route::get('/juego/tienda', [JuegoController::class, 'tienda']);
@@ -112,7 +112,7 @@ Route::middleware(
     Route::get('/juego/investigacion/datos/{codigo}', [InvestigacionController::class, 'datos']);
 
     //Planeta
-    Route::get('/juego/planeta', [PlanetaController::class, 'index']);
+    Route::get('/juego/planeta/{tab?}', [PlanetaController::class, 'index']);
     Route::get('/juego/renombrarPlaneta/{nombre}', [PlanetaController::class, 'renombrarPlaneta']);
     Route::get('/juego/cederColonia/{nombre}', [PlanetaController::class, 'cederColonia']);
     Route::get('/juego/destruirColonia', [PlanetaController::class, 'destruirColonia']);
@@ -180,7 +180,7 @@ Route::middleware(
     Route::get('/juego/aceptarSolicitud/{id}', [AlianzaController::class, 'aceptarSolicitud']);
 
     //Mensajes
-    Route::get('/juego/mensajes', [MensajesController::class, 'index']);
+    Route::get('/juego/mensajes/{tab?}', [MensajesController::class, 'index']);
     Route::post('/juego/mensajes/enviarMensaje', [MensajesController::class, 'enviarMensaje']);
     Route::get('/juego/mensajes/borrar/{idMensaje}/{idJugador}', [MensajesController::class, 'borrarMensaje']);
 });

@@ -79,27 +79,27 @@
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
                     <a class="nav-item nav-link " id="armamento-tab" data-bs-toggle="tab" href="#armamento"
-                        role="tab" aria-controls="armamento" aria-selected="true">
+                        role="tab" aria-controls="armamento" aria-selected="true" onclick="tabsInvestigacion('armamento-tab')">
                         Armamento
                     </a>
                     <a class="nav-item nav-link" id="blindajes-tab" data-bs-toggle="tab" href="#blindajes" role="tab"
-                        aria-controls="blindajes" aria-selected="false">
+                        aria-controls="blindajes" aria-selected="false" onclick="tabsInvestigacion('blindajes-tab')">
                         Blindajes
                     </a>
                     <a class="nav-item nav-link" id="civiles-tab" data-bs-toggle="tab" href="#civiles" role="tab"
-                        aria-controls="civiles" aria-selected="false">
+                        aria-controls="civiles" aria-selected="false" onclick="tabsInvestigacion('civiles-tab')">
                         Civiles
                     </a>
                     <a class="nav-item nav-link" id="imperiales-tab" data-bs-toggle="tab" href="#imperiales" role="tab"
-                        aria-controls="imperiales" aria-selected="false">
+                        aria-controls="imperiales" aria-selected="false" onclick="tabsInvestigacion('imperiales-tab')">
                         Imperio
                     </a>
                     <a class="nav-item nav-link" id="motores-tab" data-bs-toggle="tab" href="#motores" role="tab"
-                        aria-controls="motores" aria-selected="false">
+                        aria-controls="motores" aria-selected="false" onclick="tabsInvestigacion('motores-tab')">
                         Motores
                     </a>
                     <a class="nav-item nav-link" id="industrias-tab" data-bs-toggle="tab" href="#industrias" role="tab"
-                        aria-controls="industrias" aria-selected="false">
+                        aria-controls="industrias" aria-selected="false" onclick="tabsInvestigacion('industrias-tab')">
                         Industriales
                     </a>
                 </div>

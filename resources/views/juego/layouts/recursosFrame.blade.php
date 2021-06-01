@@ -394,7 +394,7 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         @foreach ($planetasJugador as $planeta)
                                             <a class="dropdown-item"
-                                                href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->nombre }}
+                                                href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
                                                 ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                                         @endforeach
                                         @if (!empty($planetasAlianza))
@@ -403,7 +403,7 @@
                                                     <div class="dropdown-divider"></div>
                                                 @endif
                                                 <a class="dropdown-item text-primary"
-                                                    href="{{ url('/planeta/' . $planeta->id) }}">{{ $planeta->nombre }}
+                                                    href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
                                                     ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                                             @endforeach
                                         @endif

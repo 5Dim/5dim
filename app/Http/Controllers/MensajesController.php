@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Builder;
 class MensajesController extends Controller
 {
 
-    public function index()
+    public function index($tab = "recibidos-tab")
     {
         extract($this->recursos());
 
@@ -75,7 +75,8 @@ class MensajesController extends Controller
             'jugadores',
             'recibidos',
             'enviados',
-            'flotas'
+            'flotas',
+            'tab',
         ));
     }
 

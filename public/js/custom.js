@@ -780,11 +780,8 @@ function resultadoRealDiseno(diseno, invest, invstobj = invest) {
 }
 
 function resultadoRealDisenoSinInvest(diseno, invest, invstobj = invest) {
-    return Math.round(
-        diseno.mejoras[invstobj]
-    );
+    return Math.round(diseno.mejoras[invstobj]);
 }
-
 
 valNaves = [];
 tamaniosArray = ["cargaPequenia", "cargaMediana", "cargaGrande", "cargaEnorme", "cargaMega"];
@@ -901,4 +898,32 @@ function responderMensaje(emisor) {
     $("#listaJugadores").trigger("change");
     $("#asunto").val("Respuesta");
     mostrarTab("nuevo-tab");
+}
+
+function tabsConstruccion(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/construccion/" + tab);
+}
+
+function tabsDisenio(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/disenio/" + tab);
+}
+
+function tabsFlotas(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/flotas/" + tab);
+}
+
+function tabsFuselajes(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/fuselajes/" + tab);
+}
+
+function tabsInvestigacion(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/investigacion/" + tab);
+}
+
+function tabsMensajes(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/mensajes/" + tab);
+}
+
+function tabsPlanetas(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/planeta/" + tab);
 }

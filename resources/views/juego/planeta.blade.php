@@ -10,26 +10,26 @@
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link active" id="colonia-tab" data-bs-toggle="tab" href="#colonia" role="tab"
-                        aria-controls="colonia" aria-selected="true">
+                    <a class="nav-item nav-link" id="colonia-tab" data-bs-toggle="tab" href="#colonia" role="tab"
+                        aria-controls="colonia" aria-selected="true" onclick="tabsPlanetas('colonia-tab')">
                         Colonia
                     </a>
                     <a class="nav-item nav-link" id="producciones-tab" data-bs-toggle="tab" href="#producciones" role="tab"
-                        aria-controls="producciones" aria-selected="false">
+                        aria-controls="producciones" aria-selected="false" onclick="tabsPlanetas('producciones-tab')">
                         Producciones
                     </a>
                     <a class="nav-item nav-link" id="tecnologia-tab" data-bs-toggle="tab" href="#tecnologia" role="tab"
-                        aria-controls="tecnologia" aria-selected="false">
+                        aria-controls="tecnologia" aria-selected="false" onclick="tabsPlanetas('tecnologia-tab')">
                         Desbloqueo por tecnologia
                     </a>
                     <a class="nav-item nav-link" id="refugio-tab" data-bs-toggle="tab" href="#refugio" role="tab"
-                        aria-controls="refugio" aria-selected="false">
+                        aria-controls="refugio" aria-selected="false" onclick="tabsPlanetas('refugio-tab')">
                         Refugio
                     </a>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="colonia" role="tabpanel" aria-labelledby="colonia-tab">
+                <div class="tab-pane fade" id="colonia" role="tabpanel" aria-labelledby="colonia-tab">
                     <table class="table table-sm text-center table-borderless anchofijo cajita rounded align-middle">
                         <tr>
                             <th colspan="3" class="anchofijo text-success borderless">
@@ -78,6 +78,7 @@
                                             ],
                                             language: "es"
                                         });
+
                                     </script>
                                 </div>
                             </td>
@@ -97,7 +98,9 @@
                             </td>
                         </tr>
                     </table>
-                    <table class="table table-sm table-dark table-borderless text-center anchofijo cajita rounded align-middle" style="--bs-table-bg: transparent !important">
+                    <table
+                        class="table table-sm table-dark table-borderless text-center anchofijo cajita rounded align-middle"
+                        style="--bs-table-bg: transparent !important">
                         <tr>
                             <th colspan="6" class="anchofijo text-success ">
                                 <big>Yacimientos y terraformador</big>
@@ -196,7 +199,8 @@
                         </tr>
                     </table>
                     <div class="cajita rounded">
-                        <table class="table table-sm table-dark table-hover table-borderless text-center anchofijo align-middle"
+                        <table
+                            class="table table-sm table-dark table-hover table-borderless text-center anchofijo align-middle"
                             style="--bs-table-bg: transparent !important">
                             <tr>
                                 <th colspan="12" class="anchofijo text-success">
@@ -819,7 +823,8 @@
                 </div>
                 <div class="tab-pane fade show" id="producciones" role="tabpanel" aria-labelledby="producciones-tab">
                     <div class="cajita rounded">
-                        <table class="table table-dark table-hover table-borderless table text-center anchofijo align-middle"
+                        <table
+                            class="table table-dark table-hover table-borderless table text-center anchofijo align-middle"
                             style="--bs-table-bg: transparent !important">
                             <tr>
                                 <th colspan="12" class="anchofijo text-success">
@@ -957,7 +962,8 @@
                 </div>
                 <div class="tab-pane fade show" id="refugio" role="tabpanel" aria-labelledby="refugio-tab">
                     <div class="cajita rounded">
-                        <table class="table table-dark table-hover table-borderless table text-center anchofijo align-middle"
+                        <table
+                            class="table table-dark table-hover table-borderless table text-center anchofijo align-middle"
                             style="--bs-table-bg: transparent !important">
                             <tr>
                                 <th colspan="12" class="anchofijo text-success">
@@ -1098,5 +1104,7 @@
     </div>
 
     <script>
+        mostrarTab(@json($tab));
+
     </script>
 @endsection

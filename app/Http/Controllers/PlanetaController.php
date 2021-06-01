@@ -19,7 +19,7 @@ use App\Models\MensajesIntervinientes;
 class PlanetaController extends Controller
 {
 
-    public function index()
+    public function index($tab = "colonia-tab")
     {
         extract($this->recursos());
 
@@ -78,6 +78,7 @@ class PlanetaController extends Controller
             'jugadores',
             'tablaProduccion',
             'desbloqueos',
+            'tab',
         ));
     }
 

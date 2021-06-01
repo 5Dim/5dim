@@ -64,27 +64,27 @@
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
                     <a class="nav-item nav-link" id="mina-tab" data-bs-toggle="tab" href="#mina" role="tab"
-                        aria-controls="mina" aria-selected="true">
+                        aria-controls="mina" aria-selected="true" onclick="tabsConstruccion('mina-tab')">
                         Minas
                     </a>
                     <a class="nav-item nav-link" id="industria-tab" data-bs-toggle="tab" href="#industria" role="tab"
-                        aria-controls="industria" aria-selected="false">
+                        aria-controls="industria" aria-selected="false" onclick="tabsConstruccion('industria-tab')">
                         Industrias
                     </a>
                     <a class="nav-item nav-link" id="almacenes-tab" data-bs-toggle="tab" href="#almacenes" role="tab"
-                        aria-controls="almacenes" aria-selected="false">
+                        aria-controls="almacenes" aria-selected="false" onclick="tabsConstruccion('almacenes-tab')">
                         Almacenes
                     </a>
                     <a class="nav-item nav-link" id="militares-tab" data-bs-toggle="tab" href="#militares" role="tab"
-                        aria-controls="militares" aria-selected="false">
+                        aria-controls="militares" aria-selected="false" onclick="tabsConstruccion('militares-tab')">
                         Militares
                     </a>
                     <a class="nav-item nav-link" id="desarrollo-tab" data-bs-toggle="tab" href="#desarrollo" role="tab"
-                        aria-controls="desarrollo" aria-selected="false">
+                        aria-controls="desarrollo" aria-selected="false" onclick="tabsConstruccion('desarrollo-tab')">
                         Desarrollo
                     </a>
                     <a class="nav-item nav-link" id="observacion-tab" data-bs-toggle="tab" href="#observacion" role="tab"
-                        aria-controls="observacion" aria-selected="false">
+                        aria-controls="observacion" aria-selected="false" onclick="tabsConstruccion('observacion-tab')">
                         Observacion
                     </a>
                     {{-- <a class="nav-item nav-link" id="especialidad-tab" data-bs-toggle="tab" href="#especialidad"
@@ -198,6 +198,5 @@
 
         <script>
             mostrarTab(@json($tab));
-
         </script>
     @endsection

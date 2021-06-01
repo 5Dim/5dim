@@ -7,23 +7,23 @@
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
                     <a class="nav-item nav-link" id="cazas-tab" data-bs-toggle="tab" href="#cazas" role="tab"
-                        aria-controls="cazas" aria-selected="false">
+                        aria-controls="cazas" aria-selected="false" onclick="tabsFuselajes('cazas-tab')">
                         Naves cazas
                     </a>
                     <a class="nav-item nav-link" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
-                        aria-controls="ligeras" aria-selected="true">
+                        aria-controls="ligeras" aria-selected="true" onclick="tabsFuselajes('ligeras-tab')">
                         Naves Ligeras
                     </a>
                     <a class="nav-item nav-link" id="medias-tab" data-bs-toggle="tab" href="#medias" role="tab"
-                        aria-controls="medias" aria-selected="false">
+                        aria-controls="medias" aria-selected="false" onclick="tabsFuselajes('medias-tab')">
                         Naves Medias
                     </a>
                     <a class="nav-item nav-link" id="pesadas-tab" data-bs-toggle="tab" href="#pesadas" role="tab"
-                        aria-controls="pesadas" aria-selected="false">
+                        aria-controls="pesadas" aria-selected="false" onclick="tabsFuselajes('pesadas-tab')">
                         Naves Pesadas
                     </a>
                     <a class="nav-item nav-link" id="estaciones-tab" data-bs-toggle="tab" href="#estaciones" role="tab"
-                        aria-controls="estaciones" aria-selected="false">
+                        aria-controls="estaciones" aria-selected="false" onclick="tabsFuselajes('estaciones-tab')">
                         Estaciones espaciales
                     </a>
                     {{-- <a class="nav-item nav-link" id="novas-tab" data-bs-toggle="tab" href="#novas" role="tab"
