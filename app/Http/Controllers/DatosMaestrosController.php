@@ -34,19 +34,6 @@ class DatosMaestrosController extends Controller
         Armas::generarDatosArmas();
         CostesArmas::generarDatosCostesArmas();
         Tiendas::generarDatosTiendas();
-        // CostesDisenios::generarDatosCostesDisenios();
-
-        // $construccion = new CostesBasicosConstruccion();
-        // $construcciones = $construccion->generarDatosCostesBasicosConstruccion();
-
-        // $investigacion = new CostesBasicosInvestigacion();
-        // $investigaciones = $investigacion->generarDatosCostesBasicosInvestigacion();
-
-        // $disenios=new Disenios();
-        // $disenios=$disenios->generarDatosDisenios();
-
-        // $mejorasDisenios = new MejorasDisenios();
-        // $mejorasDisenios = $mejorasDisenios->generarDatosMejorasDisenios();
 
         $planetas = Planetas::all();
         foreach ($planetas as $planeta) {
