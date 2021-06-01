@@ -10,7 +10,7 @@
                         aria-controls="cazas" aria-selected="false">
                         Naves cazas
                     </a>
-                    <a class="nav-item nav-link active" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
+                    <a class="nav-item nav-link" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
                         aria-controls="ligeras" aria-selected="true">
                         Naves Ligeras
                     </a>
@@ -42,7 +42,7 @@
                         ])
                     @endforeach
                 </div>
-                <div class="tab-pane fade show active" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
+                <div class="tab-pane fade" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
                     @foreach ($ligeras as $ligera)
                         @include('juego.fuselajes.cajitaFuselajes', [
                             'fuselaje' => $ligera,

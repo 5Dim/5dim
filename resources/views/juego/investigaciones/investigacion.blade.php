@@ -78,7 +78,7 @@
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link  active" id="armamento-tab" data-bs-toggle="tab" href="#armamento"
+                    <a class="nav-item nav-link " id="armamento-tab" data-bs-toggle="tab" href="#armamento"
                         role="tab" aria-controls="armamento" aria-selected="true">
                         Armamento
                     </a>
@@ -105,7 +105,7 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="armamento" role="tabpanel" aria-labelledby="armamento-tab">
+                <div class="tab-pane fade" id="armamento" role="tabpanel" aria-labelledby="armamento-tab">
                     @foreach ($armamentos as $armamento)
                         @include('juego.investigaciones.cajitaInvestigacion', [
                         'investigacion'=> $armamento,

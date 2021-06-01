@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 class FuselajesController extends Controller
 {
 
-    public function index($tab = "")
+    public function index($tab = "ligeras-tab")
     {
         extract($this->recursos());
 

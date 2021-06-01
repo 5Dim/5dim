@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Log;
 
 class DisenioController extends Controller
 {
-    public function index($tab = 'cazas-tab')
+    public function index($tab = 'ligeras-tab')
     {
         extract($this->recursos());
 

@@ -58,11 +58,11 @@
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link " id="cazas-tab" data-bs-toggle="tab" href="#cazas" role="tab"
+                    <a class="nav-item nav-link" id="cazas-tab" data-bs-toggle="tab" href="#cazas" role="tab"
                         aria-controls="cazas" aria-selected="true">
                         Naves cazas
                     </a>
-                    <a class="nav-item nav-link active" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
+                    <a class="nav-item nav-link" id="ligeras-tab" data-bs-toggle="tab" href="#ligeras" role="tab"
                         aria-controls="ligeras" aria-selected="false">
                         Naves Ligeras
                     </a>
@@ -85,7 +85,7 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade " id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
+                <div class="tab-pane fade" id="cazas" role="tabpanel" aria-labelledby="cazas-tab">
                     @foreach ($cazas as $caza)
                         @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $caza,
@@ -93,7 +93,7 @@
                         ])
                     @endforeach
                 </div>
-                <div class="tab-pane fade show active" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
+                <div class="tab-pane fade" id="ligeras" role="tabpanel" aria-labelledby="ligeras-tab">
                     @foreach ($ligeras as $ligera)
                         @include('juego.disenio.cajitaDisenios', [
                         'disenio' => $ligera,
@@ -200,6 +200,7 @@
         var nivelHangar = @json($nivelHangar);
         var ViewDaniosDisenios = @json($ViewDaniosDisenios);
         //calcularDisenios(disenios, mejoras, investigaciones, constantes);
+        mostrarTab(@json($tab));
 
     </script>
 @endsection

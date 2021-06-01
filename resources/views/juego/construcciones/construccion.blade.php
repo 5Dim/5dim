@@ -63,7 +63,7 @@
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link  active" id="mina-tab" data-bs-toggle="tab" href="#mina" role="tab"
+                    <a class="nav-item nav-link" id="mina-tab" data-bs-toggle="tab" href="#mina" role="tab"
                         aria-controls="mina" aria-selected="true">
                         Minas
                     </a>
@@ -99,7 +99,7 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="mina" role="tabpanel" aria-labelledby="mina-tab">
+                <div class="tab-pane fade" id="mina" role="tabpanel" aria-labelledby="mina-tab">
                     @foreach ($minas as $mina)
                         @include('juego.construcciones.cajitaConstruccion', [
                         'construccion'=> $mina,
