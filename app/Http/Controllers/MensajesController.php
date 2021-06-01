@@ -110,11 +110,11 @@ class MensajesController extends Controller
         }
 
         if ($idJugador == session()->get('jugadores_id')) {
-            $mensaje = Mensajes::find($idMensaje);
-            $mensaje->intervinientes->where('receptor', $jugadorActual->id)->first()->delete();
-        } elseif (!empty($jugadorActual->alianzas)) {
-            $mensaje = Mensajes::find($idMensaje);
-            $mensaje->intervinientes->where('receptor', $jugadorAlianza->id)->first()->delete();
+            if (!empty($jugadorActual->alianzas)) {
+                MensajesIntervinientes::whereIn('receptor', [$jugadorActual->id, $jugadorAlianza->id])->where('mensajes_id', $idMensaje)->first()->delete();
+            }else {
+                MensajesIntervinientes::where([['mensajes_id', $idMensaje], ['receptor', $jugadorActual->id]])->first()->delete();
+            }
         }
 
         return redirect('/juego/mensajes');

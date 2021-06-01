@@ -49,9 +49,9 @@
                 class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
-                        <a type="button" class="btn btn-outline-danger col-12" href="borrar/{{ $mensaje->id }}/{{ Auth::user()->jugador->id }}">
+                        <button type="button" class="btn btn-outline-danger col-12" onclick="borrarMensaje({{ $mensaje->id }}, {{ Auth::user()->jugador->id }})">
                             <i class="fa fa-info-circle"></i> Eliminar
-                        </a>
+                        </button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-success col-12" onclick="responderMensaje({{ $mensaje->emisor }})">

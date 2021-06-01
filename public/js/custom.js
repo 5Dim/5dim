@@ -900,6 +900,10 @@ function responderMensaje(emisor) {
     mostrarTab("nuevo-tab");
 }
 
+function borrarMensaje(mensajeId, jugadorId) {
+    window.location.href = "http://" + window.location.hostname + "/juego/mensajes/borrar/" + mensajeId + "/" + jugadorId;
+}
+
 function tabsConstruccion(tab) {
     window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/construccion/" + tab);
 }
