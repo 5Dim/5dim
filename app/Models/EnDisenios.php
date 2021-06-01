@@ -47,9 +47,10 @@ class EnDisenios extends Model
                 $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
                 $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
                 $recursos->save();
+            } else {
+                $disenio->cantidad += $cola->cantidad;
+                $disenio->save();
             }
-            $disenio->cantidad += $cola->cantidad;
-            $disenio->save();
 
             if (empty($disenio)) {
                 if ($cola->accion != "Reciclando") {
