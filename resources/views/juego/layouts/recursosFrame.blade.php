@@ -402,7 +402,7 @@
                                                 @if ($loop->iteration == 1)
                                                     <div class="dropdown-divider"></div>
                                                 @endif
-                                                <a class="dropdown-item text-primary"
+                                                <a class="dropdown-item text-info"
                                                     href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
                                                     ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                                             @endforeach
@@ -528,7 +528,7 @@
     <div class="modal fade" id="datosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-dark text-light">
                 <div class="modal-header">
                     <h5 class="modal-title" id="ModalTitulo"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -536,8 +536,8 @@
                 </div>
                 <div class="modal-body" id="datosContenido">
                 </div>
-                <div class="modal-footer">
-                </div>
+                {{-- <div class="modal-footer">
+                </div> --}}
             </div>
         </div>
     </div>
