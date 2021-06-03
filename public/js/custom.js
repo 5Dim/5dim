@@ -900,8 +900,8 @@ function responderMensaje(emisor) {
     mostrarTab("nuevo-tab");
 }
 
-function borrarMensaje(mensajeId, jugadorId) {
-    window.location.href = "http://" + window.location.hostname + "/juego/mensajes/borrar/" + mensajeId + "/" + jugadorId;
+function borrarMensaje(mensajeId, jugadorId, tab) {
+    window.location.href = "http://" + window.location.hostname + "/juego/mensajes/borrar/" + mensajeId + "/" + jugadorId + "/" + tab;
 }
 
 function tabsConstruccion(tab) {

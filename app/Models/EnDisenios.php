@@ -6,6 +6,7 @@ use App\Models\Constantes;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class EnDisenios extends Model
@@ -25,57 +26,66 @@ class EnDisenios extends Model
     //Funcion para terminar las ordenes terminadas
     public static function terminarColaDisenios()
     {
-        $colas = EnDisenios::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
+        DB::beginTransaction();
+        try {
+            $colas = EnDisenios::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
 
-        foreach ($colas as $cola) {
-            $disenio = DiseniosEnFlota::where([
-                ['disenios_id', $cola->disenios_id],
-                ['planetas_id', $cola->planetas_id]
-            ])->first();
-            $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
-            $coste = $cola->disenios->costes;
-            $recursos = $cola->planetas->recursos;
+            foreach ($colas as $cola) {
+                $disenio = DiseniosEnFlota::where([
+                    ['disenios_id', $cola->disenios_id],
+                    ['planetas_id', $cola->planetas_id]
+                ])->first();
+                $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
+                $coste = $cola->disenios->costes;
+                $recursos = $cola->planetas->recursos;
 
-            if (!empty($disenio)) {
+                if (!empty($disenio)) {
 
-                //En caso de reciclaje debe devolver los recursos
-                if ($cola->accion == "Reciclando") {
+                    //En caso de reciclaje debe devolver los recursos
+                    if ($cola->accion == "Reciclando") {
 
-                    //Restaurar beneficio por reciclaje
-                    $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
-                    $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
-                    $recursos->gas += (($coste->gas * $cola->cantidad) * $reciclaje);
-                    $recursos->plastico += (($coste->plastico * $cola->cantidad) * $reciclaje);
-                    $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $reciclaje);
-                    $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
-                    $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
-                    $recursos->save();
+                        //Restaurar beneficio por reciclaje
+                        $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
+                        $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
+                        $recursos->gas += (($coste->gas * $cola->cantidad) * $reciclaje);
+                        $recursos->plastico += (($coste->plastico * $cola->cantidad) * $reciclaje);
+                        $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $reciclaje);
+                        $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
+                        $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
+                        $recursos->save();
+                    } else {
+                        $disenio->cantidad += $cola->cantidad;
+                        $disenio->save();
+                    }
                 } else {
-                    $disenio->cantidad += $cola->cantidad;
-                    $disenio->save();
-                }
-            } else {
-                if ($cola->accion != "Reciclando") {
-                    $disenio = new DiseniosEnFlota();
-                    $disenio->planetas_id = $cola->planetas_id;
-                    $disenio->cantidad += $cola->cantidad;
-                    $disenio->disenios_id = $cola->disenios_id;
-                    $coste = $cola->disenios->costes;
-                    $disenio->tipo = $cola->disenios->fuselajes->tipo;
-                    $disenio->save();
+                    if ($cola->accion != "Reciclando") {
+                        $disenio = new DiseniosEnFlota();
+                        $disenio->planetas_id = $cola->planetas_id;
+                        $disenio->cantidad += $cola->cantidad;
+                        $disenio->disenios_id = $cola->disenios_id;
+                        $coste = $cola->disenios->costes;
+                        $disenio->tipo = $cola->disenios->fuselajes->tipo;
+                        $disenio->save();
 
-                    //Restaurar beneficio por reciclaje
-                    $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
-                    $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
-                    $recursos->gas += (($coste->gas * $cola->cantidad) * $reciclaje);
-                    $recursos->plastico += (($coste->plastico * $cola->cantidad) * $reciclaje);
-                    $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $reciclaje);
-                    $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
-                    $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
-                    $recursos->save();
+                        //Restaurar beneficio por reciclaje
+                        $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
+                        $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
+                        $recursos->gas += (($coste->gas * $cola->cantidad) * $reciclaje);
+                        $recursos->plastico += (($coste->plastico * $cola->cantidad) * $reciclaje);
+                        $recursos->ceramica += (($coste->ceramica * $cola->cantidad) * $reciclaje);
+                        $recursos->liquido += (($coste->liquido * $cola->cantidad) * $reciclaje);
+                        $recursos->micros += (($coste->micros * $cola->cantidad) * $reciclaje);
+                        $recursos->save();
+                    }
                 }
+                $cola->delete();
             }
-            $cola->delete();
+            DB::commit();
+        } catch (\Throwable $e) {
+            //throw $e;
+            Log::error("ERROR EN DISEÑOS");
+            Log::error($e);
+            DB::rollBack();
         }
     }
 

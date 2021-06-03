@@ -182,5 +182,5 @@ Route::middleware(
     //Mensajes
     Route::get('/juego/mensajes/{tab?}', [MensajesController::class, 'index']);
     Route::post('/juego/mensajes/enviarMensaje', [MensajesController::class, 'enviarMensaje']);
-    Route::get('/juego/mensajes/borrar/{idMensaje}/{idJugador}', [MensajesController::class, 'borrarMensaje']);
+    Route::get('/juego/mensajes/borrar/{idMensaje}/{idJugador}/{tab?}', [MensajesController::class, 'borrarMensaje']);
 });

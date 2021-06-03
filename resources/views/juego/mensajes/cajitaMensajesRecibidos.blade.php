@@ -49,7 +49,7 @@
                 class="table table-sm table-borderless text-center anchofijo">
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-outline-danger col-12" onclick="borrarMensaje({{ $mensaje->id }}, {{ Auth::user()->jugador->id }})">
+                        <button type="button" class="btn btn-outline-danger col-12" onclick="borrarMensaje({{ $mensaje->id }}, {{ Auth::user()->jugador->id }}, '{{ $tab }}')">
                             <i class="fa fa-info-circle"></i> Eliminar
                         </button>
                     </td>

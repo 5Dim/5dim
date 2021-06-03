@@ -101,7 +101,7 @@ class MensajesController extends Controller
         return redirect('/juego/mensajes');
     }
 
-    public function borrarMensaje($idMensaje, $idJugador)
+    public function borrarMensaje($idMensaje, $idJugador, $tab = "recibidos-tab")
     {
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $jugadorAlianza = null;
@@ -117,6 +117,6 @@ class MensajesController extends Controller
             }
         }
 
-        return redirect('/juego/mensajes');
+        return redirect('/juego/mensajes/' . $tab);
     }
 }

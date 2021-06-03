@@ -10,7 +10,7 @@ $arrayNaves=['Cazas','Ligeras','Medias','Pesadas','Estaciones'];
                 style="margin-top: 5px !important">
                 <tr>
                     <th colspan="9" class="text-success text-center borderless align-middle">
-                        Danios por distancia
+                        Daños por distancia
                     </th>
                 </tr>
                 <tr>

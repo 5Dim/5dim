@@ -101,7 +101,7 @@ class CostesArmas extends Model
         $coste->municion = 0; //10
         $coste->personal = $fcmot * 1; //11
         $coste->masa = 1000;
-        $coste->energia = 310 * $fcenermot * 21;
+        $coste->energia = 320 * $fcenermot * 21;
         $coste->tiempo = $fcmot * 300;
         $coste->mantenimiento = $fman * $fcmot * 9;
         $coste->defensa = 0;
