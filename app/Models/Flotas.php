@@ -722,7 +722,7 @@ destino 0 con lo que sale
                                         //Log::info("recursosDestino ".$recursosDestino." destinoEsMio ".$destinoEsMio);
                                     } else {
                                         $destinoAlcanzado = true;
-                                        $errores = "El planeta al que transportar carece de dueño ";
+                                        $errores = "El planeta destino al que transportar carece de dueño ";
                                         break 2;
                                     }
 
@@ -753,7 +753,7 @@ destino 0 con lo que sale
                             //Log::info($tipodestino."recursosDestino ".$recursosDestino);
                             //Log::info("recursosDestino");Log::info($recursosDestino);
                             //Log::info("recursosFlota");Log::info($recursosFlota);
-
+                            //Log::info("message");
                             //Log::info("estaFlota ".$estaFlota." diseños".$estaFlota->diseniosEnFlota);
                             //calcular capacidad carga
                             $cargaMaxima = Disenios::cargaTotal($estaFlota->diseniosEnFlota);
@@ -976,6 +976,8 @@ destino 0 con lo que sale
                     //try {
                     //Log::info("guardar destinoAlcanzado: ".$destinoAlcanzado." guardarCambios ".$guardarCambios);
                     // Log::info($recursosFlota);Log::info($recursosDestino);
+                    //Log::info("dwdadad");
+
                     if ($guardarCambios) {
                         $recursosFlota->save();
                         $recursosDestino->save();
@@ -1045,6 +1047,7 @@ destino 0 con lo que sale
                         $destino->save();
                     }
 
+                    //Log::info(" ".$destinoAlcanzado."visitado ".$destino);
                     if ($destinoAlcanzado) {
                         //Log::info("visitado ".$destino);
                         $destino['visitado'] = 1;
