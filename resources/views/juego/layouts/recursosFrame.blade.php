@@ -71,7 +71,7 @@
                             {{-- </a> --}}
                         </th>
                         <th class="text-warning borderless ">
-                            <a href="https://discord.gg/G29PADmkKg" target="_blank">
+                            <a href="https://discord.gg/X4hRNCYyt8" target="_blank">
                             <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}" title="Discord channel" />
                             </a>
                         </th>
