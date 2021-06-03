@@ -2406,7 +2406,8 @@ function crearDisenio() {
     }
 
     if (error>0){
-        alert(elerror)
+        $("#datosContenido").html(elerror);
+        $("#ModalTitulo").html("Diseño no creado");
     } else {
 
     datosBasicos={
@@ -2435,10 +2436,13 @@ function crearDisenio() {
             $("#crearDisenio").prop("disabled", false);
             $("#crearDisenio").text("Crear Diseño");
             if (data.razonCorrecto=="") {
-                $('.modal').empty().append("Diseño creado").modal(); //data.payload
-                alert("Diseño creado");
+                //$('.modal').empty().append("Diseño creado").modal(); //data.payload
+                //alert("Diseño creado");
+                $("#ModalTitulo").html("Diseño creado");
+                $("#datosContenido").html("Diseño disponible para ser construido");
             } else {
-                alert(data.razonCorrecto);
+                $("#ModalTitulo").html("Diseño no creado");
+                $("#datosContenido").html(data.razonCorrecto);
             }
 
         },

@@ -46,7 +46,7 @@
             <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#recolecextrangeras" aria-expanded="false"
                 aria-controls="recolecextrangeras">
                 <th colspan="12" class="text-light text-center borderless align-middle">
-                Recolectando Extrangeras
+                Recolectando Extranjeras
                 </th>
             </tr>
         </table>

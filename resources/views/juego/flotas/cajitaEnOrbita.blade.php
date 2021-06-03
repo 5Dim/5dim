@@ -46,7 +46,7 @@
             <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#Orbitandoextrangeras" aria-expanded="false"
                 aria-controls="Orbitandoextrangeras">
                 <th colspan="12" class="text-light text-center borderless align-middle">
-                Orbitando Extrangeras
+                Orbitando Extranjeras
                 </th>
             </tr>
         </table>
