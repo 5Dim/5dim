@@ -880,19 +880,19 @@
                                         {{ number_format($prod->personal, 0, ',', '.') }}
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->mineral, 0, ',', '.') }}
+                                        {{ number_format($prod->mineral, 0, ',', '.') }} ({{ number_format($prod->mineral + ($prod->mineral * (($planetaActual->cualidades->mineral + $nivelTerraformador) / 100)), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->cristal, 0, ',', '.') }}
+                                        {{ number_format($prod->cristal, 0, ',', '.') }} ({{ number_format($prod->cristal + ($prod->cristal * (($planetaActual->cualidades->cristal + $nivelTerraformador) / 100)), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->gas, 0, ',', '.') }}
+                                        {{ number_format($prod->gas, 0, ',', '.') }} ({{ number_format($prod->gas + ($prod->gas * (($planetaActual->cualidades->gas + $nivelTerraformador) / 100)), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->plastico, 0, ',', '.') }}
+                                        {{ number_format($prod->plastico, 0, ',', '.') }} ({{ number_format($prod->plastico + ($prod->plastico * (($planetaActual->cualidades->plastico + $nivelTerraformador) / 100)), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->ceramica, 0, ',', '.') }}
+                                        {{ number_format($prod->ceramica, 0, ',', '.') }} ({{ number_format($prod->ceramica + ($prod->ceramica * (($planetaActual->cualidades->ceramica + $nivelTerraformador) / 100)), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
                                         {{ number_format($prod->liquido, 0, ',', '.') }}

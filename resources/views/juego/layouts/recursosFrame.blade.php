@@ -391,7 +391,7 @@
                                         {{ $planetaActual->nombre }}
                                         ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
                                         @foreach ($planetasJugador as $planeta)
                                             <a class="dropdown-item"
                                                 href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
