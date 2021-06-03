@@ -310,7 +310,7 @@
                         }
                     @endphp
                     <td>
-                        <a id="crearDisenio" type="button" class="btn {{ $clase }} col-12"
+                        <a id="crearDisenio" type="button" class="btn {{ $clase }} col-12" data-bs-toggle="modal" data-bs-target="#datosModal"
                             onclick="crearDisenio()" {{ $deshabilitado }}>
                             <i class="fa fa-cogs"></i> {{ $texto }}
                         </a>

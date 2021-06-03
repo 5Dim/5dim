@@ -46,7 +46,7 @@
             <tr class="col-12 text-primary" data-bs-toggle="collapse" data-bs-target="#fextrangeras" aria-expanded="false"
                 aria-controls="fextrangeras">
                 <th colspan="12" class="text-light text-center borderless align-middle">
-                    Flotas Extrangeras
+                    Flotas Extranjeras
                 </th>
             </tr>
         </table>

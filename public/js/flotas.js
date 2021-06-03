@@ -1020,7 +1020,8 @@ function enviarFlota() {
     }
 
     if (errores.length > 0) {
-        alert(errores);
+        $("#datosContenido").html(elerror);
+        $("#ModalTitulo").html("Flota no enviada");
     } else {
         flota.nombre = $("#nombreFlota").val();
         for (dest = 1; dest < destinos.length; dest++) {
@@ -1047,9 +1048,11 @@ function enviarFlota() {
                 $("#botonEnviar").text(EnviarFlotaTxt);
                 $("#botonEnviar").prop("disabled", false);
                 if (response.errores == "") {
-                    alert("Flota enviada");
+                    $("#ModalTitulo").html("Flota enviada");
                 } else {
-                    alert(response.errores);
+                    //alert(response.errores);
+                    $("#datosContenido").html(response.errores);
+                    $("#ModalTitulo").html("Flota no enviada");
                 }
             },
             error: function(xhr, textStatus, thrownError) {
@@ -1057,6 +1060,7 @@ function enviarFlota() {
                 $("#botonEnviar").prop("disabled", false);
                 console.log("status", xhr.status);
                 console.log("error", thrownError);
+                $("#ModalTitulo").html("Flota no enviada");
                 //alert(data.errores);
             },
         });
