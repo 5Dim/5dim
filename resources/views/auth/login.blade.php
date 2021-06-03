@@ -60,7 +60,7 @@
             <img class="mb-4" src="{{ asset('favicon.png') }}" alt="">
 
             <div class="form-floating text-dark">
-                <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus>
+                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus>
                 <label for="email" value="{{ __('user.email') }}">{{ __('user.email') }}</label>
             </div>
             <div class="form-floating text-dark">
