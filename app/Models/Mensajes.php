@@ -63,7 +63,7 @@ class Mensajes extends Model
         $mensaje->emisor_sys = 'Comandante';
         $mensaje->save();
 
-        MensajesIntervinientes::intervinientesDeFlotas($destino, $mensaje->id);
+        MensajesIntervinientes::intervinientesErrorFlotas($mensaje->id, $destino);
     }
 
     public static function transporte($destino)

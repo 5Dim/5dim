@@ -60,6 +60,15 @@ class MensajesIntervinientes extends Model
         }
     }
 
+    public static function intervinientesErrorFlotas($idMensaje, $destino)
+    {
+        $receptor = new MensajesIntervinientes();
+        $receptor->leido = false;
+        $receptor->mensajes_id = $idMensaje;
+        $receptor->receptor = $destino->flota->jugadores->id;
+        $receptor->save();
+    }
+
     public static function intervinientesBienvenida($idMensaje, $idJugador)
     {
         $receptor = new MensajesIntervinientes();
