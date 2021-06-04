@@ -1,4 +1,4 @@
-<div class="row rounded cajita">
+<div class="row rounded cajita-{{ $clase }}">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
             <table class="table table-borderless borderless table-sm anchofijo">

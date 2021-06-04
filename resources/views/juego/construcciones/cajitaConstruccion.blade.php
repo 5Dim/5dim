@@ -3,16 +3,21 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center align-middle anchofijo" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
-                    <td colspan="3" class="text-center align-middle">
-                        <span class="text-success fw-bold fs-5">{{ __('construccion.' . $construccion->codigo) }}</span> <span class="text-success">nivel {{ $construccion->nivel }}</span>
+                    <td rowspan="4" class="anchofijo text-warning align-middle">
+                        <img class="rounded"
+                            src="{{ asset('img/juego/skin0/edificios/' . $construccion->codigo . '.jpg') }}" width="120"
+                            height="120">
+                    </td>
+                    <td colspan="2" class="text-start align-middle">
+                        <span class="text-success fw-bold fs-5">{{ __('construccion.' . $construccion->codigo) }}</span> <span class="text-light">nivel {{ $construccion->nivel }}</span>
                         <span class="text-warning">
                             {{ count($construccion->enConstrucciones) > 0 ? 'En cola nivel: ' . $construccion->enConstrucciones[count($construccion->enConstrucciones) - 1]->nivel : '' }}
                         </span>
                     </td>
-                    <td colspan="1" class="text-success text-end align-middle fw-bold">Termina&nbsp;</td>
+                    <td colspan="1" class="text-light text-end align-middle fw-bold">Termina&nbsp;</td>
                     <td colspan="1" class="text-success text-start align-middle"
                         id="{{ 'termina' . $construccion->codigo }}"> </td>
-                    <td colspan="1" class="text-success text-end align-middle fw-bold">Tarda:&nbsp;</td>
+                    <td colspan="1" class="text-light text-end align-middle fw-bold">Tarda&nbsp;</td>
                     <td colspan="1" class="text-success text-start align-middle"
                         id="{{ 'tiempo' . $construccion->codigo }}"> </td>
                     <td colspan="1" class="text-success text-end">
@@ -27,13 +32,6 @@
                                 </span>
                             </div>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="4" class="anchofijo text-warning">
-                        <img class="rounded"
-                            src="{{ asset('img/juego/skin0/edificios/' . $construccion->codigo . '.jpg') }}" width="90"
-                            height="90">
                     </td>
                 </tr>
                 <tr>

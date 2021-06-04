@@ -46,6 +46,7 @@
                         'mensaje' => $recibido,
                         'imagenAvatar' => 'img/juego/skin0/mensajes/comandante.jpg',
                         'tab' => 'recibidos-tab',
+                        'clase' => 'warning',
                         ])
                     @endforeach
                 </div>
@@ -53,6 +54,7 @@
                     @foreach ($enviados as $mensaje)
                         @include('juego.mensajes.cajitaMensajesEnviados', [
                         'mensaje' => $mensaje,
+                        'clase' => 'success',
                         ])
                     @endforeach
                 </div>
@@ -62,6 +64,7 @@
                         'mensaje' => $flota,
                         'imagenAvatar' => 'img/juego/skin0/mensajes/comandante.jpg',
                         'tab' => 'flotas-tab',
+                        'clase' => 'info',
                         ])
                     @endforeach
                     {{-- <span>

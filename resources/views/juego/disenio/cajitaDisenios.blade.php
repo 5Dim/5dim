@@ -3,6 +3,11 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center anchofijo" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
+                    <td rowspan="4" class="anchofijo text-warning align-middle">
+                        <img class="rounded"
+                            src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/nave' . $disenio->fuselajes_id . '.png') }}"
+                            width="240" height="150">
+                    </td>
                     <td colspan="2" class="text-success text-center align-middle">
                         <span class="fw-bold fs-5">{{ $disenio->nombre }}</span>
                     </td>
@@ -15,16 +20,9 @@
                     <td colspan="2" class="text-success text-center align-middle">
                         <span class="">Creador: {{ $disenio->creador->nombre }}</span>
                     </td>
-                    <td colspan="2" class="text-success text-center align-middle">
+                    <td colspan="1" class="text-success text-center align-middle">
                         <span class="fw-bold">Cantidad:
                             {{ !empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()) ? number_format($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad, 0, ',', '.') : 0 }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="4" class="anchofijo text-warning">
-                        <img class="rounded"
-                            src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/nave' . $disenio->fuselajes_id . '.png') }}"
-                            width="180" height="119">
                     </td>
                 </tr>
                 <tr>

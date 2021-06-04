@@ -1,5 +1,5 @@
 @if(empty($fuselajesJugador->where('id', $fuselaje->id)->first()->id))
-    <div class="row rounded cajita-light">
+    <div class="row rounded cajita-warning">
 @else
     <div class="row rounded cajita-success">
 @endif
@@ -7,28 +7,29 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center anchofijo" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
+                    <td rowspan="5" class="anchofijo text-warning align-middle">
+                        <img class="rounded" data-skin="1" id="imagen{{ $fuselaje->id }}"
+                            src="{{ asset('img/fotos naves/skin1/nave' . $fuselaje->id . '.png') }}" width="240"
+                            height="150">
+                    </td>
                     @if(empty($fuselajesJugador->where('id', $fuselaje->id)->first()->id))
-                        <td colspan="4" class="text-light text-center align-middle">
+                        <td colspan="6" class="text-warning text-center align-middle fw-bold fs-5">
                             <span>Modelo: {{ ucfirst(strtolower($fuselaje->codigo)) }}</span>
                         </td>
-                        <td colspan="4" class="text-light text-center align-middle">
+                        {{-- <td colspan="4" class="text-warning text-center align-middle">
                             <span>Propiedad de {{ $fuselaje->categoria }}</span>
-                        </td>
+                        </td> --}}
                     @else
-                        <td colspan="4" class="text-success text-center align-middle">
+                        <td colspan="6" class="text-success text-center align-middle fw-bold fs-5">
                             <span class="fw-bold">Modelo: {{ ucfirst(strtolower($fuselaje->codigo)) }}</span>
                         </td>
-                        <td colspan="4" class="text-success text-center align-middle">
+                        {{-- <td colspan="4" class="text-success text-center align-middle">
                             <span>Propiedad de {{ $fuselaje->categoria }}</span>
-                        </td>
+                        </td> --}}
                     @endif
+                    <td></td>
                 </tr>
                 <tr>
-                    <td rowspan="4" class="anchofijo text-warning">
-                        <img class="rounded" data-skin="1" id="imagen{{ $fuselaje->id }}"
-                            src="{{ asset('img/fotos naves/skin1/nave' . $fuselaje->id . '.png') }}" width="180"
-                            height="119">
-                    </td>
                     <td
                         class="anchofijo text-{{ $fuselaje->cualidades->cargaPequenia > 0 ? 'warning' : 'muted' }}">
                         Carga pequeña</td>

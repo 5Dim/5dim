@@ -3,16 +3,21 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center anchofijo" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
-                    <td colspan="4" class="text-success text-center align-middle">
+                    <td rowspan="4" class="anchofijo text-warning align-middle">
+                        <img class="rounded"
+                            src="{{ asset('img/juego/skin0/investigaciones/' . $investigacion->codigo . '.jpg') }}"
+                            width="120" height="120">
+                    </td>
+                    <td colspan="3" class="text-success text-start align-middle">
                         <span class="text-success fw-bold fs-5">{{ __('investigacion.' . $investigacion->codigo) }}</span> <span class="text-success">nivel {{ $investigacion->nivel }}</span>
                         <span class="text-warning">
                             {{ count($investigacion->eninvestigaciones) > 0 ? 'En cola nivel: ' . $investigacion->eninvestigaciones[count($investigacion->eninvestigaciones) - 1]->nivel : '' }}
                         </span>
                     </td>
-                    <td colspan="1" class="text-success text-end align-middle fw-bold">Termina&nbsp;</td>
+                    <td colspan="1" class="text-text-light text-end align-middle fw-bold">Termina&nbsp;</td>
                     <td colspan="2" class="text-success text-start align-middle"
                         id="{{ 'termina' . $investigacion->codigo }}"> </td>
-                    <td colspan="1" class="text-success text-end align-middle fw-bold">Tarda:&nbsp;</td>
+                    <td colspan="1" class="text-text-light text-end align-middle fw-bold">Tarda&nbsp;</td>
                     <td colspan="2" class="text-success text-start align-middle"
                         id="{{ 'tiempo' . $investigacion->codigo }}"> </td>
                     <td colspan="1" class="text-success text-right align-middle">
@@ -27,11 +32,6 @@
                             </span>
                         </div>
                     </td>
-                </tr>
-                <tr>
-                    <td rowspan="4" class="anchofijo text-warning"><img class="rounded"
-                            src="{{ asset('img/juego/skin0/investigaciones/' . $investigacion->codigo . '.jpg') }}"
-                            width="90" height="90"></td>
                 </tr>
                 <tr>
                     <td
