@@ -9,7 +9,7 @@
                             width="120" height="120">
                     </td>
                     <td colspan="3" class="text-success text-start align-middle">
-                        <span class="text-success fw-bold fs-5">{{ __('investigacion.' . $investigacion->codigo) }}</span> <span class="text-success">nivel {{ $investigacion->nivel }}</span>
+                        <span class="text-success fw-bold fs-5">{{ __('investigacion.' . $investigacion->codigo) }}</span> <span class="text-light">nivel {{ $investigacion->nivel }}</span>
                         <span class="text-warning">
                             {{ count($investigacion->eninvestigaciones) > 0 ? 'En cola nivel: ' . $investigacion->eninvestigaciones[count($investigacion->eninvestigaciones) - 1]->nivel : '' }}
                         </span>
