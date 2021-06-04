@@ -17,6 +17,11 @@ class CualidadesPlanetas extends Model
     public static function agregarCualidades($IdPlaneta, $yacimientos)
     {
         $planeta = Planetas::find($IdPlaneta);
+        if (!empty($planeta->cualidades)) {
+            $cualidades = $planeta->cualidades;
+        } else {
+            $cualidades = new CualidadesPlanetas();
+        }
         $cualidades = new CualidadesPlanetas();
         $cualidades->planetas_id = $IdPlaneta;
         $cualidades->enfriamiento = 0;

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Planetas extends Model
 {
@@ -57,11 +58,33 @@ class Planetas extends Model
     // Nuevo planeta de inicio.
     public static function nuevoPlaneta($idJugador)
     {
-        $planetaElegido = Planetas::where('tipo', 'planeta')->inRandomOrder()->first();
-        $planetaElegido->jugadores_id = $idJugador;
-        if ($planetaElegido->nombre == '' || $planetaElegido->nombre == null) {
-            $planetaElegido->nombre = 'Planeta principal';
+        //
+        $i = 0;
+        $sistema = 0;
+        $planetaElegido = new Planetas();
+        while (!empty($planetaElegido) && $i < 500) {
+            $sistema = rand(0, 9999);
+            $planetaElegido = Planetas::where('estrella', $sistema)->first();
+            $i++;
+            Log::info("WHILE " . $sistema);
         }
+        if (!empty($planetaElegido)) {
+            Log::info("SISTEMA NO ENCONTRADO ");
+            $planetaElegido = Planetas::where([['tipo', 'planeta'], ['jugadores_id', null]])->inRandomOrder()->first();
+        } else {
+            Log::info("NUEVO SISTEMA ");
+            $orbita = rand(1, 6);
+            $planetaElegido = new Planetas();
+            $planetaElegido->estrella = $sistema;
+            $planetaElegido->orbita = $orbita;
+            $planetaElegido->imagen = random_int(10, 69);
+            $planetaElegido->tipo = "planeta";
+        }
+        $planetaElegido->jugadores_id = $idJugador;
+        $planetaElegido->nombre = 'Planeta principal';
+        $planetaElegido->creacion = time();
+        Log::info("PLANETA " . $planetaElegido);
+        Planetas::coordenadasBySistema($planetaElegido);
         $planetaElegido->save();
         CualidadesPlanetas::agregarCualidades($planetaElegido->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);
 
