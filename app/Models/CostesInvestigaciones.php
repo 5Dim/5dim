@@ -34,7 +34,7 @@ class CostesInvestigaciones extends Model
         return $costeAntiguo;
     }
 
-    public function generaCostesInvestigaciones($investigaciones)
+    public function generaCostesInvestigaciones($investigaciones, $calcularCola = true)
     {
         // $investigaciones = Investigaciones::where('jugadores_id', 1)->get();
 
@@ -68,7 +68,7 @@ class CostesInvestigaciones extends Model
 
             if (isset($investigacion->nivel)) {
                 $nivel = $investigacion->nivel;
-                if (!empty($investigacion->enInvestigaciones[0])) {
+                if (!empty($investigacion->enInvestigaciones[0]) && $calcularCola) {
                     $nivel = EnInvestigaciones::where('investigaciones_id', $investigacion->id)->orderBy('id', 'desc')->first()->nivel;
                 }
                 $codigo = $investigacion->codigo;
@@ -432,18 +432,14 @@ class CostesInvestigaciones extends Model
                         $coste = $costesi->calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT);
                         break;
                 }
-
                 array_push($costesInvestigacion, $coste);
             }
         }
-
         return $costesInvestigacion;
     }
 
     function calculos($factorRebajaXMaximo, $r1cce, $investCorrector, $costosIniciales, $Ifactor, $costoIT)
     {
-
-
         $coste = new CostesInvestigaciones();
         //$coste->codigo=$r1cce[0];
         $n = 1;
@@ -468,7 +464,6 @@ class CostesInvestigaciones extends Model
         $n++;
         $coste->municion = (int)((pow($nivel, ($r1cce[$n] * $Ifactor * $costoIT))) * $costosIniciales[$n]) * $investCorrector * $factorRebajaXMaximo;
         $n++;
-
 
         return ($coste);
     }
