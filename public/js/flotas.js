@@ -1049,10 +1049,11 @@ function enviarFlota() {
                 $("#botonEnviar").prop("disabled", false);
                 if (response.errores == "") {
                     $("#ModalTitulo").html("Flota enviada");
+                    $("#datosContenido").html("La flota " + $("#nombreFlota").val() + " ha sido enviada correctamente a su destino");
                 } else {
                     //alert(response.errores);
-                    $("#datosContenido").html(response.errores);
                     $("#ModalTitulo").html("Flota no enviada");
+                    $("#datosContenido").html(response.errores);
                 }
             },
             error: function(xhr, textStatus, thrownError) {
@@ -1061,6 +1062,7 @@ function enviarFlota() {
                 console.log("status", xhr.status);
                 console.log("error", thrownError);
                 $("#ModalTitulo").html("Flota no enviada");
+            $("#datosContenido").html(new Date() + " " + thrownError);
                 //alert(data.errores);
             },
         });
@@ -1093,9 +1095,12 @@ function modificarFlota() {
             $("#botonModificar").text("Modificar Flota");
             $("#botonModificar").prop("disabled", false);
             if (response.errores == "") {
-                alert("Flota modificada");
+                $("#ModalTitulo").html("Flota modificada");
+                $("#datosContenido").html("La flota " + $("#nombreFlota").val() + " se ha modificado y se han guardado los nuevos valores");
             } else {
-                alert(response.errores);
+                //alert(response.errores);
+                $("#ModalTitulo").html("Flota no modificada");
+                $("#datosContenido").html(response.errores);
             }
         },
         error: function(xhr, textStatus, thrownError) {
@@ -1104,6 +1109,8 @@ function modificarFlota() {
             console.log("status", xhr.status);
             console.log("error", thrownError);
             //alert(data.errores);
+            $("#ModalTitulo").html("Flota no modificada");
+            $("#datosContenido").html(new Date() + " " + thrownError);
         },
     });
 }
