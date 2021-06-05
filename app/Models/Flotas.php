@@ -743,7 +743,6 @@ destino 0 con lo que sale
                                     $recursosDestino = $destino->enRecoleccion->recursosEnFlota;
                                     $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enRecoleccion->jugadores_id);
                                     break;
-                                    break;
                                 case "envuelo":
                                     $destinoAlcanzado = true;
                                     $errores = "No se puede transportar a una flota en vuelo ";
