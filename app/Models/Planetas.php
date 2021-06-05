@@ -69,10 +69,8 @@ class Planetas extends Model
             Log::info("WHILE " . $sistema);
         }
         if (!empty($planetaElegido)) {
-            Log::info("SISTEMA NO ENCONTRADO ");
             $planetaElegido = Planetas::where([['tipo', 'planeta'], ['jugadores_id', null]])->inRandomOrder()->first();
         } else {
-            Log::info("NUEVO SISTEMA ");
             $orbita = rand(1, 6);
             $planetaElegido = new Planetas();
             $planetaElegido->estrella = $sistema;
@@ -83,7 +81,6 @@ class Planetas extends Model
         $planetaElegido->jugadores_id = $idJugador;
         $planetaElegido->nombre = 'Planeta principal';
         $planetaElegido->creacion = time();
-        Log::info("PLANETA " . $planetaElegido);
         Planetas::coordenadasBySistema($planetaElegido);
         $planetaElegido->save();
         CualidadesPlanetas::agregarCualidades($planetaElegido->id, Constantes::where('codigo', 'yacimientosIniciales')->first()->valor);

@@ -59,14 +59,12 @@ class AstrometriaController extends Controller
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
             if (count($sistema) > 0) {
                 foreach ($sistema as $planeta) {
-                    if ($planeta->jugadores_id != null) {
+                    if (!empty($planeta->jugadores)) {
                         if ($planeta->jugadores_id == session()->get('jugadores_id')) {
                             $propio = true;
-                        }
-                        if ($planeta->jugadores->alianza_id == $jugadorActual->alianzas_id) {
+                        } elseif ($planeta->jugadores->alianzas_id == $jugadorActual->alianzas_id) {
                             $aliado = true;
-                        }
-                        if ($planeta->jugadores_id > 0) {
+                        } elseif ($planeta->jugadores_id > 0) {
                             $ocupado = true;
                         }
                     }
