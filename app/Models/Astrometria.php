@@ -759,7 +759,7 @@ class Astrometria extends Model
             $tipodestino = "otro";
         }
 
-
+        //Log::info("tipodestino ".$tipodestino);
         return $tipodestino;
     }
 
