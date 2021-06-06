@@ -489,7 +489,7 @@ class Flotas extends Model
             $destino->estrella = $destinosDest['estrella'];;
             $destino->orbita = $destinosDest['orbita'];
         } catch (\Exception $e) {
-            Log::info($e);
+            Log::error($e);
             // return [$destino,$e->getMessage()];
         }
         return [$destino, $errores];
@@ -586,7 +586,7 @@ class Flotas extends Model
                     $destino = $result[0];
                     $errores = $result[1];
                     if (strlen($errores) > 3) {
-                        Log::info("coso" . $errores);
+                        // Log::info("coso" . $errores);
                         throw new \Exception($errores);
                     }
 
@@ -633,7 +633,7 @@ class Flotas extends Model
                 // try {
             } catch (Exception $e) {
                 DB::rollBack();
-                Log::info("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
+                Log::error("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
                 $errores = "No ha sido posible";
             }
             //return redirect('/juego/flota');
@@ -860,14 +860,14 @@ destino 0 con lo que sale
                                     break;
                                 case "enrecoleccion":
                                     $cambioMision = true;
-                                    $flotadestino=EnRecoleccion::where("id",$destino->en_recoleccion_id)->first();
-                                    if (!empty($flotadestino)){
+                                    $flotadestino = EnRecoleccion::where("id", $destino->en_recoleccion_id)->first();
+                                    if (!empty($flotadestino)) {
                                         $destino['mision'] = "Recolectar";
                                         $destino['planetas_id'] = $flotadestino->planetas->id;
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
-                                        $estaFlota["jugadores_id"]=$flotadestino["jugadores_id"];
+                                        $estaFlota["jugadores_id"] = $flotadestino["jugadores_id"];
                                     } else { //la flota esta linkada por FK, deberia existir siempre
                                         $destino['mision'] = "Orbitar";
                                         $destino['planetas_id'] = null;
@@ -880,15 +880,15 @@ destino 0 con lo que sale
                                 case "enorbita":
                                 case "envuelo":
                                     $cambioMision = true;
-                                    $flotadestino=EnOrbita::where("id",$destino->en_orbita_id)->first();
-                                    if (!empty($flotadestino)){
+                                    $flotadestino = EnOrbita::where("id", $destino->en_orbita_id)->first();
+                                    if (!empty($flotadestino)) {
                                         $destino['mision'] = "Orbitar";
                                         $destino['planetas_id'] = $flotadestino->planetas->id;
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
-                                        $estaFlota["jugadores_id"]=$flotadestino["jugadores_id"];
-                                    } else {//la flota esta linkada por FK, deberia existir siempre
+                                        $estaFlota["jugadores_id"] = $flotadestino["jugadores_id"];
+                                    } else { //la flota esta linkada por FK, deberia existir siempre
                                         $destino['mision'] = "Orbitar";
                                         $destino['planetas_id'] = null;
                                         $destino['en_vuelo_id'] = null;
@@ -996,7 +996,8 @@ destino 0 con lo que sale
                             }
                             break;
                     }
-                    //try {
+
+                    DB::beginTransaction(); // transacción
                     //Log::info("guardar destinoAlcanzado: ".$destinoAlcanzado." guardarCambios ".$guardarCambios);
                     // Log::info($recursosFlota);Log::info($recursosDestino);
                     //Log::info("dwdadad");
@@ -1077,19 +1078,22 @@ destino 0 con lo que sale
                         $destino['visitado'] = 1;
                         $destino->save();
                     }
-                    Log::info($errores);
+                    // Log::info($errores);
+                    DB::commit();
                     Mensajes::enviarMensajeFlota($destino, $errores);
                 } catch (Exception $e) {
                     DB::rollBack();
-                    $errores = "Error en Commit recepción de flotas " . $e->getLine() . " " . $errores; //.$e;
-                    Log::info($errores . " " . $e);
+                    Log::error("**********DESTINO FALLIDO: " . $destino->id);
+                    $errores = "[ERROR] Commit de destino " . $e->getLine() . " " . $errores; //.$e;
+                    Log::error($errores);
+                    Log::error($e);
                 }
             }
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            $errores = "Error en Commit recepción de flotas " . $e->getLine() . " " . $errores; //.$e;
-            Log::info($errores . " " . $e);
+            $errores = "[ERROR] Commit de flotas general " . $e->getLine() . " " . $errores; //.$e;
+            Log::error($errores . " " . $e);
         }
     }
 
@@ -1271,7 +1275,7 @@ destino 0 con lo que sale
 
                 if ($quehacer == "recolectar" || $quehacer == "extraer") {
                     $flotaExiste = EnRecoleccion::where("jugadores_id", $flotaLlega->jugadores_id)
-                    ->where("planetas_id", $planeta->id)->first();
+                        ->where("planetas_id", $planeta->id)->first();
 
                     if ($quehacer == "recolectar") {
                         $recoleccionT = Disenios::recoleccionTotal($flotaExiste->diseniosEnFlota);
@@ -1290,7 +1294,7 @@ destino 0 con lo que sale
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit de poner en " . $quehacer . " " . $e->getLine() . " " . $errores . $e;
-                Log::info($errores . " " . $e);
+                Log::error($errores . " " . $e);
             }
             return $errores;
         }
@@ -1359,7 +1363,7 @@ destino 0 con lo que sale
         } catch (Exception $e) {
             DB::rollBack();
             $errores = "Error en Commit ejecutar recolección flota " . $e->getLine() . " " . $flotax->publico . "  lugar " . $planeta->sistema . "x" . $planeta->orbita . "  " . $errores; //.$e;
-            Log::info($errores . " " . $e);
+            Log::error($errores . " " . $e);
         }
         return $errores;
     }
