@@ -336,7 +336,7 @@
                     </tbody>
                 </table>
             </div>
-            <div id="menuIconos" class="row d-flex overflow-auto">
+            <div id="menuIconos" class="row d-flex">
                 <table class="table table-borderless table-sm text-center">
                     <thead>
                         <tr>
