@@ -1311,6 +1311,12 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
                     colorbotonRegreso="light";
                 }
 
+                if(flota['nombre']==flota['numeroflota']){
+                    nombrevisible=flota['nombre'];
+                }else {
+                    nombrevisible=flota['nombre']+` (`+flota['numeroflota']+`)`;
+                }
+
                 var tablaFlotasPropias = `
                 <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
                     style="margin-top: 5px !important">
@@ -1321,7 +1327,7 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
                                 <big>`+flota['origen']+`<big>
                             </th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
-                                <big>`+flota['nombre']+`<big>
+                                <big>`+nombrevisible+`<big>
                             </th>
                             `+barraytiempo+`
                             <th colspan="2" class="text-success text-center borderless align-middle">
@@ -1496,6 +1502,12 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
             }
             else if (flota['tipo']=="aliada"){
 
+                if(flota['nombre']==flota['numeroflota']){
+                    nombrevisible=flota['nombre'];
+                }else {
+                    nombrevisible=flota['nombre']+` (`+flota['numeroflota']+`)`;
+                }
+
                 var tablaFlotasAliadas = `
                 <table class="table table-borderless  col-12 rounded cajita  table-sm text-center anchofijo"
                     style="margin-top: 5px !important">
@@ -1506,7 +1518,7 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
                                 <big>`+flota['origen']+`<big>
                             </th>
                             <th colspan="2" class="text-success text-center borderless align-middle">
-                                <big>`+flota['nombre']+`<big>
+                                <big>`+nombrevisible+`<big>
                             </th>
                             `+barraytiempo+`
                             <th colspan="2" class="text-success text-center borderless align-middle">

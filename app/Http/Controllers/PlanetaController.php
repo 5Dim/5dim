@@ -95,7 +95,7 @@ class PlanetaController extends Controller
     {
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
-        if (count($jugadorActual->planetas) > 1 && Planetas::otroPlaneta($idJugador)) {
+        if (count($jugadorActual->planetas) > 1 && Planetas::verificarPIPlaneta($idJugador)) {
             $planeta = Planetas::find(session()->get('planetas_id'));
             $planeta->jugadores_id = $idJugador;
             $planeta->save();
