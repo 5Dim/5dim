@@ -502,17 +502,19 @@ class Flotas extends Model
             $flotax = EnVuelo::where('publico', $nombreflota)->first();
         } else {
             $jugadoryAlianza = [];
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
-            $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Log::info($jugadorActual);
             if ($jugadorActual['alianzas_id'] != null) {
-                array_push($jugadoryAlianza, $jugadorActual->alianzas_id);
+                array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
             }
-
             array_push($jugadoryAlianza, $jugadorActual->id);
+
 
             //Log::info("nombreflota: ".$nombreflota);
 
-            $flotax = EnVuelo::where('publico', $nombreflota)->where('jugadores_id', $jugadoryAlianza)->first();
+            $flotax = EnVuelo::whereIn('jugadores_id', $jugadoryAlianza)->where('publico', $nombreflota)->first();
+
+            //Log::info($jugadoryAlianza);
         }
 
 
