@@ -4,9 +4,8 @@
             <table class="table table-sm table-dark table-borderless text-center anchofijo" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
                     <td rowspan="4" class="anchofijo text-warning align-middle">
-                        <img class="rounded"
-                            src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/nave' . $disenio->fuselajes_id . '.png') }}"
-                            width="240" height="150">
+                        <img class="img-fluid"
+                            src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/nave' . $disenio->fuselajes_id . '.png') }}">
                     </td>
                     <td colspan="2" class="text-success text-center align-middle">
                         <span class="fw-bold fs-5">{{ $disenio->nombre }}</span>

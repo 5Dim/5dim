@@ -8,7 +8,37 @@
 
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
 
-    <title>Quinta Dimension</title>
+    @if (strpos(Request::fullUrl(), 'construccion'))
+        <title>Construcciones - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'investigacion'))
+        <title>Investigaciones - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'planeta'))
+        <title>Planeta - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'fuselajes'))
+        <title>Fuselajes - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'fabricas'))
+        <title>Fabricas - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'astrometria'))
+        <title>Astrometria - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'flotas'))
+        <title>Flotas - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'banco'))
+        <title>Banco - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'comercio'))
+        <title>Comercio - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'general'))
+        <title>General - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'alianza'))
+        <title>Alianzas - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'mensajes'))
+        <title>Mensajes - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'estadisticas'))
+        <title>Estadisticas - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'tienda'))
+        <title>Tienda - Quinta Dimension</title>
+    @else
+        <title>Quinta Dimension</title>
+    @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL8GT18W0Q"></script>

@@ -28,7 +28,7 @@ class EnDisenios extends Model
     {
         DB::beginTransaction();
         try {
-            $colas = EnDisenios::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
+            $colas = EnDisenios::where('finished_at', '<=', date("Y-m-d H:i:s"))->lockForUpdate()->get();
 
             foreach ($colas as $cola) {
                 $disenio = DiseniosEnFlota::where([
