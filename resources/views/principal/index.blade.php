@@ -3,10 +3,12 @@
 @section('content')
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-                aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active img-fluid"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" class="active img-fluid"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" class="active img-fluid"
+                aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -87,11 +89,14 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">&nbsp;&nbsp;Coloniza y expande tu imperio &nbsp;&nbsp; <span class="text-muted">No hay límites para tu ambición</span></h2>
-                <p class="lead">Establece tus base productivas en planetas, mina asteroides, fabrica productos y construye naves civiles para mover mercancías.</p>
+                <h2 class="featurette-heading">&nbsp;&nbsp;Coloniza y expande tu imperio &nbsp;&nbsp; <span
+                        class="text-muted">No hay límites para tu ambición</span></h2>
+                <p class="lead">Establece tus base productivas en planetas, mina asteroides, fabrica productos y construye
+                    naves civiles para mover mercancías.</p>
             </div>
             <div class="col-md-5">
-                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/coloniza.jpg" >
+                <img class="featurette-image img-fluid mx-auto rounded-3 border border-3 border-dark" width="500"
+                    height="500" src="img/principal/coloniza.jpg">
             </div>
         </div>
 
@@ -99,11 +104,13 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Comercia por todo el universo <span class="text-muted">Crea tus rutas comerciales</span></h2>
+                <h2 class="featurette-heading">Comercia por todo el universo <span class="text-muted">Crea tus rutas
+                        comerciales</span></h2>
                 <p class="lead">Establece tus lineas de abastecimiento entre tus colonias, comercia con otros jugadores.</p>
             </div>
             <div class="col-md-5 order-md-1">
-                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/comercio.jpg" >
+                <img class="featurette-image img-fluid mx-auto rounded-3 border border-3 border-dark" width="500"
+                    height="500" src="img/principal/comercio.jpg">
             </div>
         </div>
 
@@ -111,11 +118,14 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">&nbsp;&nbsp; Combate para expandirte &nbsp;&nbsp;&nbsp; <span class="text-muted">Lucha contra otros jugadores</span></h2>
-                <p class="lead">Defiende tus transportes o piratea las rutas de otros jugadores, intercepta flotas en tránsito y asalta planetas.</p>
+                <h2 class="featurette-heading">&nbsp;&nbsp; Combate para expandirte &nbsp;&nbsp;&nbsp; <span
+                        class="text-muted">Lucha contra otros jugadores</span></h2>
+                <p class="lead">Defiende tus transportes o piratea las rutas de otros jugadores, intercepta flotas en
+                    tránsito y asalta planetas.</p>
             </div>
             <div class="col-md-5">
-                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/combate.jpg" >
+                <img class="featurette-image img-fluid mx-auto rounded-3 border border-3 border-dark" width="500"
+                    height="500" src="img/principal/combate.jpg">
             </div>
         </div>
 
@@ -123,11 +133,14 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Construye megaestructuras <span class="text-muted">Y construcciones orbitales especiales</span></h2>
-                <p class="lead">Especializa tus colonias, construye enormes estructuras orbitales, combate por planetas únicos en la galaxia</p>
+                <h2 class="featurette-heading">Construye megaestructuras <span class="text-muted">Y construcciones orbitales
+                        especiales</span></h2>
+                <p class="lead">Especializa tus colonias, construye enormes estructuras orbitales, combate por planetas
+                    únicos en la galaxia</p>
             </div>
             <div class="col-md-5 order-md-1">
-                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/nodriza.jpg" >
+                <img class="featurette-image img-fluid mx-auto rounded-3 border border-3 border-dark" width="500"
+                    height="500" src="img/principal/nodriza.jpg">
             </div>
         </div>
 
@@ -135,11 +148,14 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Disfruta el juego con amigos <span class="text-muted">Sistema de alianzas único</span></h2>
-                <p class="lead">Comparte imvestigaciones, colonias y flotas con tus aliados, trabaja en equipo y ganad la ronda en equipo.</p>
+                <h2 class="featurette-heading">Disfruta el juego con amigos <span class="text-muted">Sistema de alianzas
+                        único</span></h2>
+                <p class="lead">Comparte imvestigaciones, colonias y flotas con tus aliados, trabaja en equipo y ganad la
+                    ronda en equipo.</p>
             </div>
             <div class="col-md-5">
-                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/explora.jpg" >
+                <img class="featurette-image img-fluid mx-auto rounded-3 border border-3 border-dark" width="500"
+                    height="500" src="img/principal/explora.jpg">
             </div>
         </div>
 
@@ -147,11 +163,14 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">&nbsp;&nbsp;&nbsp; Modifica las reglas del juego &nbsp;&nbsp;&nbsp;<span class="text-muted">Cuando el poder es mas que una gran flota</span></h2>
-                <p class="lead">Modifica parámetros del juego mediante la proposición de politicas en un consejo galáctico, los jugadores mejor posicionados en las estadísticas poseen mas peso y poder en las votaciones</p>
+                <h2 class="featurette-heading">&nbsp;&nbsp;&nbsp; Modifica las reglas del juego &nbsp;&nbsp;&nbsp;<span
+                        class="text-muted">Cuando el poder es mas que una gran flota</span></h2>
+                <p class="lead">Modifica parámetros del juego mediante la proposición de politicas en un consejo galáctico,
+                    los jugadores mejor posicionados en las estadísticas poseen mas peso y poder en las votaciones</p>
             </div>
             <div class="col-md-5 order-md-1">
-                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="img/principal/politica.jpg" >
+                <img class="featurette-image img-fluid mx-auto rounded-3 border border-3 border-dark" width="500"
+                    height="500" src="img/principal/politica.jpg">
             </div>
         </div>
 
