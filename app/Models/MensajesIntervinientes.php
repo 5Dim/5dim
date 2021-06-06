@@ -29,7 +29,7 @@ class MensajesIntervinientes extends Model
         $duenioDestino = null;
         if ($destino->mision == "Recolectar" || $destino->mision == "Orbitar" || $destino->mision == "Extraer" || $destino->mision == "Colonizar") {
             $duenioDestino = $duenioFlota;
-        } elseif (!empty($destino->planetas_id)) {
+        } elseif (!empty($destino->planetas_id) && !empty($destino->planetas->jugadores)) {
             $duenioDestino = $destino->planetas->jugadores->id;
         } elseif (!empty($destino->en_vuelo_id)) {
             $duenioDestino = $destino->enVuelo->jugadores->id;
@@ -52,11 +52,13 @@ class MensajesIntervinientes extends Model
             $receptor->receptor = $duenioFlota;
             $receptor->save();
 
-            $receptor = new MensajesIntervinientes();
-            $receptor->leido = false;
-            $receptor->mensajes_id = $idMensaje;
-            $receptor->receptor = $duenioDestino;
-            $receptor->save();
+            if(!empty($duenioDestino)){
+                $receptor = new MensajesIntervinientes();
+                $receptor->leido = false;
+                $receptor->mensajes_id = $idMensaje;
+                $receptor->receptor = $duenioDestino;
+                $receptor->save();
+            }
         }
     }
 
