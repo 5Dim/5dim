@@ -1,9 +1,9 @@
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
-            <table class="table table-sm table-dark table-borderless text-center align-middle anchofijo" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
+            <table class="table table-sm table-dark table-borderless text-center align-middle " style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
-                    <td rowspan="4" class="anchofijo text-warning align-middle">
+                    <td rowspan="4" class=" text-warning align-middle">
                         <img class="rounded"
                             src="{{ asset('img/juego/skin0/edificios/' . $construccion->codigo . '.jpg') }}" width="120"
                             height="120">
@@ -20,7 +20,7 @@
                     <td colspan="1" class="text-light text-end align-middle fw-bold">Tarda&nbsp;</td>
                     <td colspan="1" class="text-success text-start align-middle"
                         id="{{ 'tiempo' . $construccion->codigo }}"> </td>
-                    <td colspan="1" class="text-success text-end">
+                    <td colspan="1" class="text-success text-end" style="max-width: 200px; width: 200px;">
                         <div class="input-group input-group-sm">
                             <input id="{{ 'personal' . $construccion->codigo }}" type="number" class="personal1 form-control input" min="0"
                                 placeholder="personal" value="{{ number_format(floor($personal), 0, '', '') }}"
@@ -36,213 +36,213 @@
                 </tr>
                 <tr>
                     <td
-                        class="anchofijo {{ $construccion->coste->mineral == 0 ? 'text-muted' : 'text-warning' }}">
+                        class=" {{ $construccion->coste->mineral == 0 ? 'text-muted' : 'text-warning' }}">
                         Mineral
                     </td>
                     <td
-                        class="anchofijo {{ $construccion->coste->cristal == 0 ? 'text-muted' : 'text-warning' }}">
+                        class=" {{ $construccion->coste->cristal == 0 ? 'text-muted' : 'text-warning' }}">
                         cristal
                     </td>
                     <td
-                        class="anchofijo {{ $construccion->coste->gas == 0 ? 'text-muted' : 'text-warning' }}">
+                        class=" {{ $construccion->coste->gas == 0 ? 'text-muted' : 'text-warning' }}">
                         Gas
                     </td>
                     <td
-                        class="anchofijo {{ $construccion->coste->plastico == 0 ? 'text-muted' : 'text-warning' }}">
+                        class=" {{ $construccion->coste->plastico == 0 ? 'text-muted' : 'text-warning' }}">
                         Plástico
                     </td>
                     <td
-                        class="anchofijo {{ $construccion->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }}">
+                        class=" {{ $construccion->coste->ceramica == 0 ? 'text-muted' : 'text-warning' }}">
                         Cerámica
                     </td>
                     <td
-                        class="anchofijo {{ $construccion->coste->liquido == 0 ? 'text-muted' : 'text-warning' }}">
+                        class=" {{ $construccion->coste->liquido == 0 ? 'text-muted' : 'text-warning' }}">
                         Liquido
                     </td>
                     <td
-                        class="anchofijo {{ $construccion->coste->micros == 0 ? 'text-muted' : 'text-warning' }}">
+                        class=" {{ $construccion->coste->micros == 0 ? 'text-muted' : 'text-warning' }}">
                         Micros
                     </td>
                 </tr>
                 <tr>
                     @if ($construccion->coste->mineral > 0 and $construccion->coste->mineral > $recursos->mineral)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->mineral == '' ? $construccion->coste->mineral : number_format($construccion->coste->mineral, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->mineral > 0 and $construccion->coste->mineral < $recursos->
                             mineral)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->mineral == '' ? $construccion->coste->mineral : number_format($construccion->coste->mineral, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->cristal > 0 and $construccion->coste->cristal > $recursos->cristal)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->cristal == '' ? $construccion->coste->cristal : number_format($construccion->coste->cristal, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->cristal > 0 and $construccion->coste->cristal < $recursos->
                             cristal)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->cristal == '' ? $construccion->coste->cristal : number_format($construccion->coste->cristal, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->gas > 0 and $construccion->coste->gas > $recursos->gas)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->gas == '' ? $construccion->coste->gas : number_format($construccion->coste->gas, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->gas > 0 and $construccion->coste->gas < $recursos->gas)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->gas == '' ? $construccion->coste->gas : number_format($construccion->coste->gas, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->plastico > 0 and $construccion->coste->plastico > $recursos->plastico)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->plastico == '' ? $construccion->coste->plastico : number_format($construccion->coste->plastico, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->plastico > 0 and $construccion->coste->plastico < $recursos->
                             plastico)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->plastico == '' ? $construccion->coste->plastico : number_format($construccion->coste->plastico, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->ceramica > 0 and $construccion->coste->ceramica > $recursos->ceramica)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->ceramica == '' ? $construccion->coste->ceramica : number_format($construccion->coste->ceramica, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->ceramica > 0 and $construccion->coste->ceramica < $recursos->
                             ceramica)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->ceramica == '' ? $construccion->coste->ceramica : number_format($construccion->coste->ceramica, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->liquido > 0 and $construccion->coste->liquido > $recursos->liquido)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->liquido == '' ? $construccion->coste->liquido : number_format($construccion->coste->liquido, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->liquido > 0 and $construccion->coste->liquido < $recursos->
                             liquido)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->liquido == '' ? $construccion->coste->liquido : number_format($construccion->coste->liquido, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->micros > 0 and $construccion->coste->micros > $recursos->micros)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->micros == '' ? $construccion->coste->micros : number_format($construccion->coste->micros, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->micros > 0 and $construccion->coste->micros < $recursos->micros)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->micros == '' ? $construccion->coste->micros : number_format($construccion->coste->micros, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                 </tr>
                 <tr>
                     @if ($construccion->coste->mineral > 0 and $construccion->coste->mineral > $recursos->mineral)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->mineral == '' ? $construccion->coste->mineral : number_format($recursos->mineral - $construccion->coste->mineral, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->mineral > 0 and $construccion->coste->mineral < $recursos->
                             mineral)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->mineral == '' ? $construccion->coste->mineral : number_format($recursos->mineral - $construccion->coste->mineral, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->cristal > 0 and $construccion->coste->cristal > $recursos->cristal)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->cristal == '' ? $construccion->coste->cristal : number_format($recursos->cristal - $construccion->coste->cristal, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->cristal > 0 and $construccion->coste->cristal < $recursos->
                             cristal)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->cristal == '' ? $construccion->coste->cristal : number_format($recursos->cristal - $construccion->coste->cristal, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->gas > 0 and $construccion->coste->gas > $recursos->gas)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->gas == '' ? $construccion->coste->gas : number_format($recursos->gas - $construccion->coste->gas, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->gas > 0 and $construccion->coste->gas < $recursos->gas)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->gas == '' ? $construccion->coste->gas : number_format($recursos->gas - $construccion->coste->gas, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->plastico > 0 and $construccion->coste->plastico > $recursos->plastico)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->plastico == '' ? $construccion->coste->plastico : number_format($recursos->plastico - $construccion->coste->plastico, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->plastico > 0 and $construccion->coste->plastico < $recursos->
                             plastico)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->plastico == '' ? $construccion->coste->plastico : number_format($recursos->plastico - $construccion->coste->plastico, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->ceramica > 0 and $construccion->coste->ceramica > $recursos->ceramica)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->ceramica == '' ? $construccion->coste->ceramica : number_format($recursos->ceramica - $construccion->coste->ceramica, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->ceramica > 0 and $construccion->coste->ceramica < $recursos->
                             ceramica)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->ceramica == '' ? $construccion->coste->ceramica : number_format($recursos->ceramica - $construccion->coste->ceramica, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->liquido > 0 and $construccion->coste->liquido > $recursos->liquido)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->liquido == '' ? $construccion->coste->liquido : number_format($recursos->liquido - $construccion->coste->liquido, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->liquido > 0 and $construccion->coste->liquido < $recursos->
                             liquido)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->liquido == '' ? $construccion->coste->liquido : number_format($recursos->liquido - $construccion->coste->liquido, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                     @if ($construccion->coste->micros > 0 and $construccion->coste->micros > $recursos->micros)
-                        <td class="anchofijo text-danger">
+                        <td class=" text-danger">
                             {{ $construccion->coste->micros == '' ? $construccion->coste->micros : number_format($recursos->micros - $construccion->coste->micros, 0, ',', '.') }}
                         </td>
                     @elseif($construccion->coste->micros > 0 and $construccion->coste->micros < $recursos->micros)
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                                 {{ $construccion->coste->micros == '' ? $construccion->coste->micros : number_format($recursos->micros - $construccion->coste->micros, 0, ',', '.') }}
                             </td>
                         @else
-                            <td class="anchofijo text-light">
+                            <td class=" text-light">
                             </td>
                     @endif
                 </tr>

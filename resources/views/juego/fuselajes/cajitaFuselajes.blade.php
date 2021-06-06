@@ -5,9 +5,9 @@
 @endif
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
-            <table class="table table-sm table-dark table-borderless text-center anchofijo" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
+            <table class="table table-sm table-dark table-borderless text-center " style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
-                    <td rowspan="5" class="anchofijo text-warning align-middle">
+                    <td rowspan="5" class=" text-warning align-middle" style="max-width: 110px">
                         <img class="img-fluid" data-skin="1" id="imagen{{ $fuselaje->id }}"
                             src="{{ asset('img/fotos naves/skin1/nave' . $fuselaje->id . '.png') }}">
                     </td>
@@ -30,105 +30,105 @@
                 </tr>
                 <tr>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->cargaPequenia > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->cargaPequenia > 0 ? 'warning' : 'muted' }}">
                         Carga pequeña</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'warning' : 'muted' }}">
                         Carga media</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->mejoras > 0 ? 'warning' : 'muted' }}">
                         Mejoras</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->blindajes > 0 ? 'warning' : 'muted' }}">
                         Blindaje</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'warning' : 'muted' }}">
                         Canión ligero</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasMedias > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasMedias > 0 ? 'warning' : 'muted' }}">
                         Canión medio</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'warning' : 'muted' }}">
                         Canión pesado</td>
                 </tr>
                 <tr>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->cargaPequenia > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->cargaPequenia > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->cargaPequenia }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->cargaMedia > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->cargaMedia }}
                     </td>
-                    <td class="anchofijo text-{{ $fuselaje->cualidades->mejoras > 0 ? 'light' : 'muted' }}">
+                    <td class=" text-{{ $fuselaje->cualidades->mejoras > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->mejoras }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->blindajes > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->blindajes > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->blindajes }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasLigeras > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->armasLigeras }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasMedias > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasMedias > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->armasMedias }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasPesadas > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->armasPesadas }}
                     </td>
                 </tr>
                 <tr>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'warning' : 'muted' }}">
                         Carga grande</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'warning' : 'muted' }}">
                         Carga Enorme</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'warning' : 'muted' }}">
                         </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->motores > 0 ? 'warning' : 'muted' }}">
                         Motores</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'warning' : 'muted' }}">
                         Canión insertado</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasBombas > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasBombas > 0 ? 'warning' : 'muted' }}">
                         Bombas</td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'warning' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'warning' : 'muted' }}">
                         Misiles</td>
                 </tr>
                 <tr>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->cargaGrande > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->cargaGrande }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->cargaEnorme > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->cargaEnorme }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->velocidadMax > 0 ? 'light' : 'muted' }}">
 
                     </td>
-                    <td class="anchofijo text-{{ $fuselaje->cualidades->motores > 0 ? 'light' : 'muted' }}">
+                    <td class=" text-{{ $fuselaje->cualidades->motores > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->motores }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasInsertadas > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->armasInsertadas }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasBombas > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasBombas > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->armasBombas }}
                     </td>
                     <td
-                        class="anchofijo text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'light' : 'muted' }}">
+                        class=" text-{{ $fuselaje->cualidades->armasMisiles > 0 ? 'light' : 'muted' }}">
                         {{ $fuselaje->cualidades->armasMisiles }}
                     </td>
                 </tr>

@@ -21,12 +21,12 @@ body.bg {
 
 #menuRecursos {
     background-color: rgba(0, 0, 0, 0.5);
-    padding-top: 5px !important;
+    /* padding-top: 5px !important; */
 }
 
 #menuIconos {
     /* background-color: rgba(0, 0, 0, 0.5); */
-    padding-top: 15px !important;
+    /* padding-top: 15px !important; */
 }
 
 .borderless {
