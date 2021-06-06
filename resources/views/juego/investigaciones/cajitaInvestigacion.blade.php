@@ -70,12 +70,14 @@
                 <tr>
                     @if ($investigacion->coste->mineral > 0 and $investigacion->coste->mineral > $recursos->mineral)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->mineral == '' ? $investigacion->coste->mineral : number_format($investigacion->coste->mineral, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->mineral == '' ? $investigacion->coste->mineral : number_format($investigacion->coste->mineral, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->mineral > 0 and $investigacion->coste->mineral < $recursos->
                             mineral)
                             <td class=" text-light">
-                                {{ $investigacion->coste->mineral == '' ? $investigacion->coste->mineral : number_format($investigacion->coste->mineral, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->mineral == '' ? $investigacion->coste->mineral : number_format($investigacion->coste->mineral, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -83,12 +85,14 @@
                     @endif
                     @if ($investigacion->coste->cristal > 0 and $investigacion->coste->cristal > $recursos->cristal)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->cristal == '' ? $investigacion->coste->cristal : number_format($investigacion->coste->cristal, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->cristal == '' ? $investigacion->coste->cristal : number_format($investigacion->coste->cristal, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->cristal > 0 and $investigacion->coste->cristal < $recursos->
                             cristal)
                             <td class=" text-light">
-                                {{ $investigacion->coste->cristal == '' ? $investigacion->coste->cristal : number_format($investigacion->coste->cristal, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->cristal == '' ? $investigacion->coste->cristal : number_format($investigacion->coste->cristal, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -96,11 +100,13 @@
                     @endif
                     @if ($investigacion->coste->gas > 0 and $investigacion->coste->gas > $recursos->gas)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->gas == '' ? $investigacion->coste->gas : number_format($investigacion->coste->gas, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->gas == '' ? $investigacion->coste->gas : number_format($investigacion->coste->gas, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->gas > 0 and $investigacion->coste->gas < $recursos->gas)
                             <td class=" text-light">
-                                {{ $investigacion->coste->gas == '' ? $investigacion->coste->gas : number_format($investigacion->coste->gas, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->gas == '' ? $investigacion->coste->gas : number_format($investigacion->coste->gas, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -108,12 +114,14 @@
                     @endif
                     @if ($investigacion->coste->plastico > 0 and $investigacion->coste->plastico > $recursos->plastico)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->plastico == '' ? $investigacion->coste->plastico : number_format($investigacion->coste->plastico, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->plastico == '' ? $investigacion->coste->plastico : number_format($investigacion->coste->plastico, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->plastico > 0 and $investigacion->coste->plastico < $recursos->
                             plastico)
                             <td class=" text-light">
-                                {{ $investigacion->coste->plastico == '' ? $investigacion->coste->plastico : number_format($investigacion->coste->plastico, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->plastico == '' ? $investigacion->coste->plastico : number_format($investigacion->coste->plastico, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -121,12 +129,14 @@
                     @endif
                     @if ($investigacion->coste->ceramica > 0 and $investigacion->coste->ceramica > $recursos->ceramica)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->ceramica == '' ? $investigacion->coste->ceramica : number_format($investigacion->coste->ceramica, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->ceramica == '' ? $investigacion->coste->ceramica : number_format($investigacion->coste->ceramica, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->ceramica > 0 and $investigacion->coste->ceramica < $recursos->
                             ceramica)
                             <td class=" text-light">
-                                {{ $investigacion->coste->ceramica == '' ? $investigacion->coste->ceramica : number_format($investigacion->coste->ceramica, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->ceramica == '' ? $investigacion->coste->ceramica : number_format($investigacion->coste->ceramica, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -134,12 +144,14 @@
                     @endif
                     @if ($investigacion->coste->liquido > 0 and $investigacion->coste->liquido > $recursos->liquido)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->liquido == '' ? $investigacion->coste->liquido : number_format($investigacion->coste->liquido, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->liquido == '' ? $investigacion->coste->liquido : number_format($investigacion->coste->liquido, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->liquido > 0 and $investigacion->coste->liquido < $recursos->
                             liquido)
                             <td class=" text-light">
-                                {{ $investigacion->coste->liquido == '' ? $investigacion->coste->liquido : number_format($investigacion->coste->liquido, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->liquido == '' ? $investigacion->coste->liquido : number_format($investigacion->coste->liquido, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -147,11 +159,13 @@
                     @endif
                     @if ($investigacion->coste->micros > 0 and $investigacion->coste->micros > $recursos->micros)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->micros == '' ? $investigacion->coste->micros : number_format($investigacion->coste->micros, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->micros == '' ? $investigacion->coste->micros : number_format($investigacion->coste->micros, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->micros > 0 and $investigacion->coste->micros < $recursos->micros)
                             <td class=" text-light">
-                                {{ $investigacion->coste->micros == '' ? $investigacion->coste->micros : number_format($investigacion->coste->micros, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->micros == '' ? $investigacion->coste->micros : number_format($investigacion->coste->micros, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -159,11 +173,13 @@
                     @endif
                     @if ($investigacion->coste->fuel > 0 and $investigacion->coste->fuel > $recursos->fuel)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->fuel == '' ? $investigacion->coste->fuel : number_format($investigacion->coste->fuel, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->fuel == '' ? $investigacion->coste->fuel : number_format($investigacion->coste->fuel, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->fuel > 0 and $investigacion->coste->fuel < $recursos->fuel)
                             <td class=" text-light">
-                                {{ $investigacion->coste->fuel == '' ? $investigacion->coste->fuel : number_format($investigacion->coste->fuel, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->fuel == '' ? $investigacion->coste->fuel : number_format($investigacion->coste->fuel, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -171,11 +187,13 @@
                     @endif
                     @if ($investigacion->coste->ma > 0 and $investigacion->coste->ma > $recursos->ma)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->ma == '' ? $investigacion->coste->ma : number_format($investigacion->coste->ma, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->ma == '' ? $investigacion->coste->ma : number_format($investigacion->coste->ma, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->ma > 0 and $investigacion->coste->ma < $recursos->ma)
                             <td class=" text-light">
-                                {{ $investigacion->coste->ma == '' ? $investigacion->coste->ma : number_format($investigacion->coste->ma, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->ma == '' ? $investigacion->coste->ma : number_format($investigacion->coste->ma, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -183,11 +201,13 @@
                     @endif
                     @if ($investigacion->coste->municion > 0 and $investigacion->coste->municion > $recursos->municion)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($investigacion->coste->municion, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($investigacion->coste->municion, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->municion > 0 and $investigacion->coste->municion < $recursos->municion)
                             <td class=" text-light">
-                                {{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($investigacion->coste->municion, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para esta investigación">{{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($investigacion->coste->municion, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -197,12 +217,14 @@
                 <tr>
                     @if ($investigacion->coste->mineral > 0 and $investigacion->coste->mineral > $recursos->mineral)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->mineral == '' ? $investigacion->coste->mineral : number_format($recursos->mineral - $investigacion->coste->mineral, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->mineral == '' ? $investigacion->coste->mineral : number_format($recursos->mineral - $investigacion->coste->mineral, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->mineral > 0 and $investigacion->coste->mineral < $recursos->
                             mineral)
                             <td class=" text-light">
-                                {{ $investigacion->coste->mineral == '' ? $investigacion->coste->mineral : number_format($recursos->mineral - $investigacion->coste->mineral, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->mineral == '' ? $investigacion->coste->mineral : number_format($recursos->mineral - $investigacion->coste->mineral, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -210,12 +232,14 @@
                     @endif
                     @if ($investigacion->coste->cristal > 0 and $investigacion->coste->cristal > $recursos->cristal)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->cristal == '' ? $investigacion->coste->cristal : number_format($recursos->cristal - $investigacion->coste->cristal, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->cristal == '' ? $investigacion->coste->cristal : number_format($recursos->cristal - $investigacion->coste->cristal, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->cristal > 0 and $investigacion->coste->cristal < $recursos->
                             cristal)
                             <td class=" text-light">
-                                {{ $investigacion->coste->cristal == '' ? $investigacion->coste->cristal : number_format($recursos->cristal - $investigacion->coste->cristal, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->cristal == '' ? $investigacion->coste->cristal : number_format($recursos->cristal - $investigacion->coste->cristal, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -223,11 +247,13 @@
                     @endif
                     @if ($investigacion->coste->gas > 0 and $investigacion->coste->gas > $recursos->gas)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->gas == '' ? $investigacion->coste->gas : number_format($recursos->gas - $investigacion->coste->gas, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->gas == '' ? $investigacion->coste->gas : number_format($recursos->gas - $investigacion->coste->gas, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->gas > 0 and $investigacion->coste->gas < $recursos->gas)
                             <td class=" text-light">
-                                {{ $investigacion->coste->gas == '' ? $investigacion->coste->gas : number_format($recursos->gas - $investigacion->coste->gas, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->gas == '' ? $investigacion->coste->gas : number_format($recursos->gas - $investigacion->coste->gas, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -235,12 +261,14 @@
                     @endif
                     @if ($investigacion->coste->plastico > 0 and $investigacion->coste->plastico > $recursos->plastico)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->plastico == '' ? $investigacion->coste->plastico : number_format($recursos->plastico - $investigacion->coste->plastico, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->plastico == '' ? $investigacion->coste->plastico : number_format($recursos->plastico - $investigacion->coste->plastico, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->plastico > 0 and $investigacion->coste->plastico < $recursos->
                             plastico)
                             <td class=" text-light">
-                                {{ $investigacion->coste->plastico == '' ? $investigacion->coste->plastico : number_format($recursos->plastico - $investigacion->coste->plastico, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->plastico == '' ? $investigacion->coste->plastico : number_format($recursos->plastico - $investigacion->coste->plastico, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -248,12 +276,14 @@
                     @endif
                     @if ($investigacion->coste->ceramica > 0 and $investigacion->coste->ceramica > $recursos->ceramica)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->ceramica == '' ? $investigacion->coste->ceramica : number_format($recursos->ceramica - $investigacion->coste->ceramica, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->ceramica == '' ? $investigacion->coste->ceramica : number_format($recursos->ceramica - $investigacion->coste->ceramica, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->ceramica > 0 and $investigacion->coste->ceramica < $recursos->
                             ceramica)
                             <td class=" text-light">
-                                {{ $investigacion->coste->ceramica == '' ? $investigacion->coste->ceramica : number_format($recursos->ceramica - $investigacion->coste->ceramica, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->ceramica == '' ? $investigacion->coste->ceramica : number_format($recursos->ceramica - $investigacion->coste->ceramica, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -261,12 +291,14 @@
                     @endif
                     @if ($investigacion->coste->liquido > 0 and $investigacion->coste->liquido > $recursos->liquido)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->liquido == '' ? $investigacion->coste->liquido : number_format($recursos->liquido - $investigacion->coste->liquido, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->liquido == '' ? $investigacion->coste->liquido : number_format($recursos->liquido - $investigacion->coste->liquido, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->liquido > 0 and $investigacion->coste->liquido < $recursos->
                             liquido)
                             <td class=" text-light">
-                                {{ $investigacion->coste->liquido == '' ? $investigacion->coste->liquido : number_format($recursos->liquido - $investigacion->coste->liquido, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->liquido == '' ? $investigacion->coste->liquido : number_format($recursos->liquido - $investigacion->coste->liquido, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -274,11 +306,13 @@
                     @endif
                     @if ($investigacion->coste->micros > 0 and $investigacion->coste->micros > $recursos->micros)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->micros == '' ? $investigacion->coste->micros : number_format($recursos->micros - $investigacion->coste->micros, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->micros == '' ? $investigacion->coste->micros : number_format($recursos->micros - $investigacion->coste->micros, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->micros > 0 and $investigacion->coste->micros < $recursos->micros)
                             <td class=" text-light">
-                                {{ $investigacion->coste->micros == '' ? $investigacion->coste->micros : number_format($recursos->micros - $investigacion->coste->micros, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->micros == '' ? $investigacion->coste->micros : number_format($recursos->micros - $investigacion->coste->micros, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -286,11 +320,13 @@
                     @endif
                     @if ($investigacion->coste->fuel > 0 and $investigacion->coste->fuel > $recursos->fuel)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->fuel == '' ? $investigacion->coste->fuel : number_format($recursos->fuel - $investigacion->coste->fuel, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->fuel == '' ? $investigacion->coste->fuel : number_format($recursos->fuel - $investigacion->coste->fuel, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->fuel > 0 and $investigacion->coste->fuel < $recursos->fuel)
                             <td class=" text-light">
-                                {{ $investigacion->coste->fuel == '' ? $investigacion->coste->fuel : number_format($recursos->fuel - $investigacion->coste->fuel, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->fuel == '' ? $investigacion->coste->fuel : number_format($recursos->fuel - $investigacion->coste->fuel, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -298,11 +334,13 @@
                     @endif
                     @if ($investigacion->coste->ma > 0 and $investigacion->coste->ma > $recursos->ma)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->ma == '' ? $investigacion->coste->ma : number_format($recursos->ma - $investigacion->coste->ma, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->ma == '' ? $investigacion->coste->ma : number_format($recursos->ma - $investigacion->coste->ma, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->ma > 0 and $investigacion->coste->ma < $recursos->ma)
                             <td class=" text-light">
-                                {{ $investigacion->coste->ma == '' ? $investigacion->coste->ma : number_format($recursos->ma - $investigacion->coste->ma, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->ma == '' ? $investigacion->coste->ma : number_format($recursos->ma - $investigacion->coste->ma, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
@@ -310,11 +348,13 @@
                     @endif
                     @if ($investigacion->coste->municion > 0 and $investigacion->coste->municion > $recursos->municion)
                         <td class=" text-danger">
-                            {{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($recursos->municion - $investigacion->coste->municion, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($recursos->municion - $investigacion->coste->municion, 0, ',', '.') }}
                         </td>
                     @elseif($investigacion->coste->municion > 0 and $investigacion->coste->municion < $recursos->municion)
                             <td class=" text-light">
-                                {{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($recursos->municion - $investigacion->coste->municion, 0, ',', '.') }}
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de investigar">{{ $investigacion->coste->municion == '' ? $investigacion->coste->municion : number_format($recursos->municion - $investigacion->coste->municion, 0, ',', '.') }}
                             </td>
                         @else
                             <td class=" text-light">
