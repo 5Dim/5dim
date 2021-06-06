@@ -31,7 +31,7 @@ class EnInvestigaciones extends Model
             $colas = EnInvestigaciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->lockForUpdate()->get();
             foreach ($colas as $cola) {
                 $cola->investigaciones->nivel = $cola->nivel;
-                if (empty($cola->investigaciones->jugador->alianzas)) {
+                if (!empty($cola->investigaciones->jugador->alianzas)) {
                     $jugadoresDeAlianza = Jugadores::where('alianzas_id', $cola->investigaciones->jugadores->alianzas_id)->get();
                     foreach ($jugadoresDeAlianza as $jugador) {
                         $invest = $jugador->investigaciones->where('codigo', $cola->investigaciones->codigo)->first();
