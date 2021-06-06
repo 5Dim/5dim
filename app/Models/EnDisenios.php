@@ -82,10 +82,9 @@ class EnDisenios extends Model
             }
             DB::commit();
         } catch (\Throwable $e) {
-            //throw $e;
-            Log::error("ERROR EN DISEÑOS");
-            Log::error($e);
             DB::rollBack();
+            Log::error("ERROR COLA DISEÑOS");
+            Log::error($e);
         }
     }
 
