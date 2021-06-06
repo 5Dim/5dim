@@ -10,6 +10,19 @@
 
     <title>Quinta Dimension</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL8GT18W0Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FL8GT18W0Q');
+
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -72,12 +85,13 @@
                         </th>
                         <th class="text-warning borderless ">
                             <a href="https://discord.gg/X4hRNCYyt8" target="_blank">
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}" title="Discord channel" />
+                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}"
+                                    title="Discord channel" />
                             </a>
                         </th>
                         <th class="text-warning borderless">
-                            <a tabindex="0" type="button" class="btn btn-sm btn-dark"
-                                data-bs-toggle="popover" data-bs-trigger="focus" title="Puntos de imperio"
+                            <a tabindex="0" type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
+                                data-bs-trigger="focus" title="Puntos de imperio"
                                 data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir {{ (int) $consImperio }} por cada nivel de administracion de imperio (investigacion)">
                                 PI <span
                                     class="badge bg-warning text-dark">{{ $nivelImperio * $consImperio + 10 - count($planetasJugador) * 10 }}</span>
@@ -531,7 +545,8 @@
             <div class="modal-content bg-dark text-light">
                 <div class="modal-header">
                     <h5 class="modal-title" id="ModalTitulo"></h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                     </button>
                 </div>
                 <div class="modal-body" id="datosContenido">
