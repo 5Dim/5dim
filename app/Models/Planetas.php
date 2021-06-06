@@ -123,4 +123,22 @@ class Planetas extends Model
         $planeta->coordy = $cy;
         $planeta->save();
     }
+
+    public static function otroPlaneta($idJugador)
+    {
+        $jugador = Jugadores::find($idJugador);
+        $piMinimosColonizar = Constantes::where('codigo', 'piminimoscolonizar')->first()->valor;
+        $adminImperioPuntos = Constantes::where('codigo', 'adminImperioPuntos')->first()->valor;
+        $piPorPlanetaColonizado = Constantes::where('codigo', 'piporplaneta')->first()->valor;
+        $nivelImperio = Investigaciones::where([['codigo', 'invImperio'], ["jugadores_id", $jugador->id]])->first()->nivel;
+
+        $puntosImperioLibres = $nivelImperio * $adminImperioPuntos + $piPorPlanetaColonizado - count($jugador->planetas) * $piPorPlanetaColonizado;
+
+        $boolPlaneta= false;
+        if ($puntosImperioLibres > $piMinimosColonizar) {
+            $boolPlaneta = true;
+        }
+
+        return $boolPlaneta;
+    }
 }

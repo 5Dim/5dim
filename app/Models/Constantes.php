@@ -213,15 +213,6 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = -30;
-        $constante->minimo = -20;
-        $constante->maximo = 0;
-        $constante->codigo = 'piminimoscolonizar';
-        $constante->descripcion = 'puntos de imperio mínimos para colonizar';
-        $constante->tipo = 'investigacion';
-        array_push($producciones, $constante);
-
-        $constante = new Constantes();
         $constante->valor = .03;
         $constante->minimo = .02;
         $constante->maximo = .04;
@@ -1031,6 +1022,23 @@ class Constantes extends Model
 
         ////// UNIVERSO ///
 
+        $constante = new Constantes();
+        $constante->valor = -30;
+        $constante->minimo = -20;
+        $constante->maximo = 0;
+        $constante->codigo = 'piminimoscolonizar';
+        $constante->descripcion = 'puntos de imperio mínimos para colonizar';
+        $constante->tipo = 'universo';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 10;
+        $constante->minimo = 5;
+        $constante->maximo = 15;
+        $constante->codigo = 'piporplaneta';
+        $constante->descripcion = 'puntos de imperio por planeta colonizado';
+        $constante->tipo = 'universo';
+        array_push($producciones, $constante);
 
         $constante = new Constantes();
         $constante->valor = 100;

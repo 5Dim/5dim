@@ -94,7 +94,8 @@ class PlanetaController extends Controller
     public function cederColonia($idJugador)
     {
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        if (count($jugadorActual->planetas) > 1) {
+
+        if (count($jugadorActual->planetas) > 1 && Planetas::otroPlaneta($idJugador)) {
             $planeta = Planetas::find(session()->get('planetas_id'));
             $planeta->jugadores_id = $idJugador;
             $planeta->save();
