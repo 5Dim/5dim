@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Investigaciones;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class EnInvestigaciones extends Model
 {
@@ -24,19 +26,27 @@ class EnInvestigaciones extends Model
     //Funcion para terminar las ordenes terminadas
     public static function terminarColaInvestigaciones()
     {
-        $colas = EnInvestigaciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->get();
-        foreach ($colas as $cola) {
-            $cola->investigaciones->nivel = $cola->nivel;
-            if (empty($cola->investigaciones->jugador->alianzas_id)) {
-                $jugadoresDeAlianza = Jugadores::where('alianzas_id', $cola->investigaciones->jugadores->alianzas_id)->get();
-                foreach ($jugadoresDeAlianza as $jugador) {
-                    $invest = $jugador->investigaciones->where('codigo', $cola->investigaciones->codigo)->first();
-                    $invest->nivel = $cola->nivel;
-                    $invest->save();
+        DB::beginTransaction();
+        try {
+            $colas = EnInvestigaciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->lockForUpdate()->get();
+            foreach ($colas as $cola) {
+                $cola->investigaciones->nivel = $cola->nivel;
+                if (empty($cola->investigaciones->jugador->alianzas)) {
+                    $jugadoresDeAlianza = Jugadores::where('alianzas_id', $cola->investigaciones->jugadores->alianzas_id)->get();
+                    foreach ($jugadoresDeAlianza as $jugador) {
+                        $invest = $jugador->investigaciones->where('codigo', $cola->investigaciones->codigo)->first();
+                        $invest->nivel = $cola->nivel;
+                        $invest->save();
+                    }
                 }
+                $cola->investigaciones->save();
+                $cola->delete();
             }
-            $cola->investigaciones->save();
-            $cola->delete();
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::error("ERROR COLA INVESTIGACIONES");
+            Log::error($e);
         }
     }
 
@@ -47,7 +57,7 @@ class EnInvestigaciones extends Model
         $colaInvestigaciones2 = [];
         if (!empty($jugadorActual->alianzas)) {
             $miembros = Alianzas::idMiembros($jugadorActual->alianzas->id);
-        }else {
+        } else {
             $miembros = [session()->get('jugadores_id')];
         }
         $investigaciones = Investigaciones::whereIn('jugadores_id', $miembros)->get();

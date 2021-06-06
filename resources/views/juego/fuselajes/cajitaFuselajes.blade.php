@@ -8,9 +8,8 @@
             <table class="table table-sm table-dark table-borderless text-center anchofijo" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
                     <td rowspan="5" class="anchofijo text-warning align-middle">
-                        <img class="rounded" data-skin="1" id="imagen{{ $fuselaje->id }}"
-                            src="{{ asset('img/fotos naves/skin1/nave' . $fuselaje->id . '.png') }}" width="240"
-                            height="150">
+                        <img class="img-fluid" data-skin="1" id="imagen{{ $fuselaje->id }}"
+                            src="{{ asset('img/fotos naves/skin1/nave' . $fuselaje->id . '.png') }}">
                     </td>
                     @if(empty($fuselajesJugador->where('id', $fuselaje->id)->first()->id))
                         <td colspan="6" class="text-warning text-center align-middle fw-bold fs-5">
