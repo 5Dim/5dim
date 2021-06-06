@@ -66,7 +66,7 @@ class Planetas extends Model
             $sistema = rand(0, 9999);
             $planetaElegido = Planetas::where('estrella', $sistema)->first();
             $i++;
-            Log::info("WHILE " . $sistema);
+            //Log::info("WHILE " . $sistema);
         }
         if (!empty($planetaElegido)) {
             $planetaElegido = Planetas::where([['tipo', 'planeta'], ['jugadores_id', null]])->inRandomOrder()->first();

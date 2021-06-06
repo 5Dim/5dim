@@ -60,10 +60,14 @@ class Alianzas extends Model
     public static function idSoyYoOMiAlianza($idMio, $idDestino)
     {
         $miJugador = Jugadores::where("id", $idMio)->first();
+        //Log::info("alianza lio: ".$miJugador->alianzas->id." ".Alianzas::jugadorAlianza($idDestino)->alianzas->id ." idDestino ".$idDestino);
+
         if ($idMio == $idDestino) {
             return true;
         } elseif (!empty($miJugador->alianzas)) {
             if (Alianzas::jugadorAlianza($miJugador->alianzas->id)->id == $idDestino) {
+                return true;
+            } else if ($miJugador->user_id==null && $miJugador->alianzas->id== Alianzas::jugadorAlianza($idDestino)->alianzas->id ){//soy la alianza y puedo
                 return true;
             }
         } else {

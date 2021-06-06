@@ -43,7 +43,10 @@ function CargarFlotaEditada() {
 
     } else {
         //flota
-        // mostrarTab("enviar-tab")
+
+        $("#botonEnviar").attr("data-bs-toggle", "");
+        $("#botonEnviar").attr("data-bs-target", "");
+
         enviarEnOrbita = true;
         if (destinos[0]["tipoflota"] == undefined) {
             EsconderPorId("listaPrioridades0");
@@ -1016,6 +1019,10 @@ function enviarFlota() {
         destinos[0]["estrella"] = flota["estrella"];
         destinos[0]["orbita"] = flota["orbita"];
         enviarEnOrbita = false;
+
+        $("#botonEnviar").attr("data-bs-toggle", "modal");
+        $("#botonEnviar").attr("data-bs-target", "#datosModal");
+
         return;
     }
 
@@ -1049,7 +1056,7 @@ function enviarFlota() {
                 $("#botonEnviar").prop("disabled", false);
                 if (response.errores == "") {
                     $("#ModalTitulo").html("Flota enviada");
-                    $("#datosContenido").html("La flota " + $("#nombreFlota").val() + " ha sido enviada correctamente a su destino");
+                    $("#datosContenido").html("La flota " + $("#nombreFlota").val() + " ha sido enviada correctamente a sus destinos");
                 } else {
                     //alert(response.errores);
                     $("#ModalTitulo").html("Flota no enviada");

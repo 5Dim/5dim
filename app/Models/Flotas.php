@@ -743,7 +743,6 @@ destino 0 con lo que sale
                                     $recursosDestino = $destino->enRecoleccion->recursosEnFlota;
                                     $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enRecoleccion->jugadores_id);
                                     break;
-                                    break;
                                 case "envuelo":
                                     $destinoAlcanzado = true;
                                     $errores = "No se puede transportar a una flota en vuelo ";
@@ -861,20 +860,42 @@ destino 0 con lo que sale
                                     break;
                                 case "enrecoleccion":
                                     $cambioMision = true;
-                                    $destino['mision'] = "Recolectar";
-                                    $destino['planetas_id'] = null;
-                                    $destino['en_vuelo_id'] = null;
-                                    $destino['en_recoleccion_id'] = null;
-                                    $destino['en_orbita_id'] = null;
+                                    $flotadestino=EnRecoleccion::where("id",$destino->en_recoleccion_id)->first();
+                                    if (!empty($flotadestino)){
+                                        $destino['mision'] = "Recolectar";
+                                        $destino['planetas_id'] = $flotadestino->planetas->id;
+                                        $destino['en_vuelo_id'] = null;
+                                        $destino['en_recoleccion_id'] = null;
+                                        $destino['en_orbita_id'] = null;
+                                        $estaFlota["jugadores_id"]=$flotadestino["jugadores_id"];
+                                    } else { //la flota esta linkada por FK, deberia existir siempre
+                                        $destino['mision'] = "Orbitar";
+                                        $destino['planetas_id'] = null;
+                                        $destino['en_vuelo_id'] = null;
+                                        $destino['en_recoleccion_id'] = null;
+                                        $destino['en_orbita_id'] = null;
+                                    }
+
                                     break;
                                 case "enorbita":
                                 case "envuelo":
                                     $cambioMision = true;
-                                    $destino['mision'] = "Orbitar";
-                                    $destino['planetas_id'] = null;
-                                    $destino['en_vuelo_id'] = null;
-                                    $destino['en_recoleccion_id'] = null;
-                                    $destino['en_orbita_id'] = null;
+                                    $flotadestino=EnOrbita::where("id",$destino->en_orbita_id)->first();
+                                    if (!empty($flotadestino)){
+                                        $destino['mision'] = "Orbitar";
+                                        $destino['planetas_id'] = $flotadestino->planetas->id;
+                                        $destino['en_vuelo_id'] = null;
+                                        $destino['en_recoleccion_id'] = null;
+                                        $destino['en_orbita_id'] = null;
+                                        $estaFlota["jugadores_id"]=$flotadestino["jugadores_id"];
+                                    } else {//la flota esta linkada por FK, deberia existir siempre
+                                        $destino['mision'] = "Orbitar";
+                                        $destino['planetas_id'] = null;
+                                        $destino['en_vuelo_id'] = null;
+                                        $destino['en_recoleccion_id'] = null;
+                                        $destino['en_orbita_id'] = null;
+                                    }
+
                                     break;
                             }
                             break;
@@ -931,6 +952,8 @@ destino 0 con lo que sale
                             break;
                         case "Recolectar":
                             $puedoRecolectar = false;
+                            //Log::info("va destrino");
+                            //Log::info($destino);
                             if ($destino->planetas != null && $destino->planetas->tipo == "asteroide") {
                                 $puedoRecolectar = true;
                             } else if ($destino->enRecoleccion != null) { //destino es una flota que ya esta recolectando
@@ -1045,6 +1068,7 @@ destino 0 con lo que sale
 
                     if ($cambioMision) {
                         $destino->save();
+                        $estaFlota->save();
                     }
 
                     //Log::info(" ".$destinoAlcanzado."visitado ".$destino);

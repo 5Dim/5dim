@@ -231,7 +231,12 @@ class Mensajes extends Model
         if (!empty($destino->planetas_id)) {
             $recursosQueTienes = new Recursos();
             $recursosQueTienes = $destino->planetas->recursos;
-            $propietarioDestino = $destino->planetas->jugadores->id;
+            if(!empty($destino->planetas->jugadores)){
+                $propietarioDestino = $destino->planetas->jugadores->id;
+            } else {
+                $propietarioDestino=0;
+            }
+
             $contenido .= $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
             $elDestino = $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
         } elseif (!empty($destino->en_vuelo_id)) {
