@@ -914,10 +914,17 @@ destino 0 con lo que sale
                                 $errores .= " No se encuentra el planeta";
                                 $hayerror = true;
                             }
+                            /*
                             if (!$hayerror && ($puntosIMperioLibres - $adminImperioPuntos) < $piminimoscolonizar) {
                                 $errores = " Insuficientes puntos de imperio para colonizar ";
                                 $hayerror = true;
                             }
+                            */
+                            if(!Planetas::verificarPIPlaneta($estaFlota->jugadores_id)){
+                                $errores = " Insuficientes puntos de imperio para colonizar ";
+                                $hayerror = true;
+                            }
+
                             if (!$hayerror && !empty($destino->planetas->jugadoes_id)) {
                                 $errores .= " El planeta a colonizar ya tiene dueño ";
                                 $hayerror = true;

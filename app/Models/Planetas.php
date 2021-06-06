@@ -124,7 +124,7 @@ class Planetas extends Model
         $planeta->save();
     }
 
-    public static function otroPlaneta($idJugador)
+    public static function verificarPIPlaneta($idJugador)
     {
         $jugador = Jugadores::find($idJugador);
         $piMinimosColonizar = Constantes::where('codigo', 'piminimoscolonizar')->first()->valor;
