@@ -358,7 +358,7 @@
                         </button>
                     </td>
                     <td>
-                        <button id="botonEnviar" type="button" class="btn btn-success  col-12" onclick="enviarFlota()" data-bs-toggle="modal" data-bs-target="#datosModal">
+                        <button id="botonEnviar" type="button" class="btn btn-success  col-12" onclick="enviarFlota()">
                             Enviar flota
                         </button>
                     </td>

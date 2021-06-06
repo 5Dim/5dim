@@ -1036,6 +1036,7 @@ function enviarFlota() {
                 prioridades[dest][res] = $("#prioridad" + res + dest).val();
             });
         }
+        var modal = new bootstrap.Modal(document.getElementById('datosModal'))
 
         $.ajax({
             type: "post",
@@ -1052,6 +1053,7 @@ function enviarFlota() {
                 $("#botonEnviar").html(spinner);
             },
             success: function(response) {
+                modal.show();
                 $("#botonEnviar").text(EnviarFlotaTxt);
                 $("#botonEnviar").prop("disabled", false);
                 if (response.errores == "") {
@@ -1064,6 +1066,7 @@ function enviarFlota() {
                 }
             },
             error: function(xhr, textStatus, thrownError) {
+                modal.show();
                 $("#botonEnviar").text(EnviarFlotaTxt);
                 $("#botonEnviar").prop("disabled", false);
                 console.log("status", xhr.status);
@@ -1083,6 +1086,7 @@ function modificarFlota() {
             prioridades[dest][res] = $("#prioridad" + res + dest).val();
         });
     }
+    var modal = new bootstrap.Modal(document.getElementById('datosModal'))
 
     $.ajax({
         type: "post",
@@ -1099,6 +1103,7 @@ function modificarFlota() {
             $("#botonModificar").html(spinner);
         },
         success: function(response) {
+            modal.show();
             $("#botonModificar").text("Modificar Flota");
             $("#botonModificar").prop("disabled", false);
             if (response.errores == "") {
@@ -1111,6 +1116,7 @@ function modificarFlota() {
             }
         },
         error: function(xhr, textStatus, thrownError) {
+            modal.show();
             $("#botonModificar").text("Modificar Flota");
             $("#botonModificar").prop("disabled", false);
             console.log("status", xhr.status);
