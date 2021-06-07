@@ -71,6 +71,7 @@
     <main class="form-signin">
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
             <img class="mb-4" src="{{ asset('favicon.png') }}" alt="">
             <div class="form-floating text-dark">
                 <input id="email" class="form-control" type="email" name="email" value="{{ old('email', $request->email) }}" required autofocus>
