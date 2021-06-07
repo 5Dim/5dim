@@ -54,7 +54,7 @@ class FabricasController extends Controller
         $inicio = date("Y-m-d H:i:s");
         $error = false;
 
-        $cola = EnDisenios::where('planetas_id', session()->get('planetas_id'))->get()->last();
+        $cola = EnDisenios::where([['planetas_id', session()->get('planetas_id')], ['accion', 'Construyendo']])->get()->last();
 
         if (!empty($cola)) {
             $inicio = $cola->finished_at;
@@ -210,6 +210,8 @@ class FabricasController extends Controller
             $recursos->micros += (($coste->micros * $cola->cantidad) * $cancelar);
             $recursos->save();
         }
+        $cola->motivo_delete = "Cancelado";
+        $cola->save();
         $cola->delete();
 
 

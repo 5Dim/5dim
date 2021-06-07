@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EnDisenios extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public function disenios()
     {
@@ -76,12 +78,14 @@ class EnDisenios extends Model
                         $recursos->save();
                     }
                 }
+                $cola->motivo_delete = "Finalizado";
+                $cola->save();
                 $cola->delete();
             }
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
-            Log::error("ERROR COLA DISEÑOS");
+            Log::error("[ERROR] COLA DISEÑOS");
             Log::error($e);
         }
     }

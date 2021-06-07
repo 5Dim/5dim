@@ -261,6 +261,8 @@ class InvestigacionController extends Controller
             $recursos->liquido += ($costesInvestigaciones[0]->liquido * $reciclaje);
             $recursos->micros += ($costesInvestigaciones[0]->micros * $reciclaje);
             $recursos->save();
+            $listaCola[$i]->motivo_delete = "Cancelado";
+            $listaCola[$i]->save();
             $listaCola[$i]->delete();
         }
 

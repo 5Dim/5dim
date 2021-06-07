@@ -1,7 +1,7 @@
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
-            <table class="table table-sm table-dark table-borderless text-center " style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
+            <table class="table table-sm table-dark table-borderless text-center " style="--bs-table-bg: transparent !important; margin-bottom: 0px !important">
                 <tr>
                     <td rowspan="4" class=" text-warning align-middle">
                         <img class="rounded"

@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Construcciones;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EnConstrucciones extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public function construcciones()
     {
@@ -45,12 +47,14 @@ class EnConstrucciones extends Model
                     $recursos->save();
                 }
                 $cola->construcciones->save();
+                $cola->motivo_delete = "Finalizado";
+                $cola->save();
                 $cola->delete();
             }
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
-            Log::error("ERROR COLA CONSTRUCCIONES");
+            Log::error("[ERROR] COLA CONSTRUCCIONES");
             Log::error($e);
         }
     }

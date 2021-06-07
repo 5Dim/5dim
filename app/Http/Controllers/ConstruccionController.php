@@ -320,6 +320,8 @@ class ConstruccionController extends Controller
                 $recursos->micros += ($costesConstrucciones->micros * $reciclaje);
                 $recursos->save();
             }
+            $colita->motivo_delete = "Cancelado";
+            $colita->save();
             $colita->delete();
         }
         //En caso de ser una construccion debe devolver parte de los recursos
@@ -338,6 +340,8 @@ class ConstruccionController extends Controller
             $recursos->micros += ($costesConstrucciones->micros * $reciclaje);
             $recursos->save();
         }
+        $cola->motivo_delete = "Cancelado";
+        $cola->save();
         $cola->delete();
 
         return redirect('/juego/construccion');

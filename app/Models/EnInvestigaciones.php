@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Investigaciones;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EnInvestigaciones extends Model
 {
     use HasFactory;
-
+    use SoftDeletes;
 
     public function investigaciones()
     {
@@ -40,12 +41,14 @@ class EnInvestigaciones extends Model
                     }
                 }
                 $cola->investigaciones->save();
+                $cola->motivo_delete = "Finalizado";
+                $cola->save();
                 $cola->delete();
             }
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
-            Log::error("ERROR COLA INVESTIGACIONES");
+            Log::error("[ERROR] COLA INVESTIGACIONES");
             Log::error($e);
         }
     }

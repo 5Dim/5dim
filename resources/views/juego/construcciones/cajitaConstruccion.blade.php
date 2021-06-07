@@ -2,7 +2,7 @@
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center align-middle "
-                style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
+                style="--bs-table-bg: transparent !important; margin-bottom: 0px !important">
                 <tr>
                     <td rowspan="4" class=" text-warning align-middle">
                         <img class="rounded"
@@ -35,9 +35,9 @@
                                 </button>
                             </span>
                         </div>
-        </div>
-        </td>
-        </tr>
+                    </div>
+                </td>
+            </tr>
         <tr>
             <td class=" {{ $construccion->coste->mineral == 0 ? 'text-muted' : 'text-warning' }}">
                 Mineral
