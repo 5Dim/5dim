@@ -7,7 +7,7 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center " style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
-                    <td rowspan="5" class=" text-warning align-middle" style="max-width: 110px">
+                    <td rowspan="5" class=" text-warning align-middle" style="max-width: 230px; width: 230px;">
                         <img class="img-fluid" data-skin="1" id="imagen{{ $fuselaje->id }}"
                             src="{{ asset('img/fotos naves/skin1/nave' . $fuselaje->id . '.png') }}">
                     </td>

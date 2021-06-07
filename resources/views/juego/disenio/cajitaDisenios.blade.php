@@ -3,7 +3,7 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center overflow-auto" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
                 <tr>
-                    <td rowspan="4" class=" text-warning align-middle" style="max-width: 110px">
+                    <td rowspan="4" class=" text-warning align-middle" style="max-width: 230px; width: 230px;">
                         <img class="img-fluid"
                             src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/nave' . $disenio->fuselajes_id . '.png') }}">
                     </td>
