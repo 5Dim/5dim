@@ -44,9 +44,6 @@ function CargarFlotaEditada() {
     } else {
         //flota
 
-        $("#botonEnviar").attr("data-bs-toggle", "");
-        $("#botonEnviar").attr("data-bs-target", "");
-
         enviarEnOrbita = true;
         if (destinos[0]["tipoflota"] == undefined) {
             EsconderPorId("listaPrioridades0");
@@ -1019,9 +1016,6 @@ function enviarFlota() {
         destinos[0]["estrella"] = flota["estrella"];
         destinos[0]["orbita"] = flota["orbita"];
         enviarEnOrbita = false;
-
-        $("#botonEnviar").attr("data-bs-toggle", "modal");
-        $("#botonEnviar").attr("data-bs-target", "#datosModal");
 
         return;
     }

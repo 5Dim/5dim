@@ -370,8 +370,13 @@ class Flotas extends Model
             } else {
                 $destino['en_recoleccion_id'] = $flotaDestino->id;
             }
-            $destiestrella = $flotaDestino->planetas['estrella'];
-            $destiorbita = $flotaDestino->planetas['orbita'];
+            if(!empty($flotaDestino->planetas)){
+                $destiestrella = $flotaDestino->planetas['estrella'];
+                $destiorbita = $flotaDestino->planetas['orbita'];
+            } else {
+                $destiestrella = $flotaDestino['estrella'];
+                $destiorbita = $flotaDestino['orbita'];
+            }
             $destino['estrella'] = $destiestrella;
             $destino['orbita'] = $destiorbita;
             $destino["initflota"] = $flotaDestino->publico; //para pasarlo al destino posterior
@@ -885,7 +890,13 @@ destino 0 con lo que sale
                                     $flotadestino = EnOrbita::where("id", $destino->en_orbita_id)->first();
                                     if (!empty($flotadestino)) {
                                         $destino['mision'] = "Orbitar";
-                                        $destino['planetas_id'] = $flotadestino->planetas->id;
+
+                                        if(!empty($flotadestino->planetas)){
+                                            $destino['planetas_id'] = $flotadestino->planetas->id;
+                                        } else {
+                                            $destino['planetas_id'] = null;
+                                        }
+
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
