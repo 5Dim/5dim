@@ -39,12 +39,9 @@ class EnDisenios extends Model
                 $coste = $cola->disenios->costes;
                 Recursos::calcularRecursos($cola->planetas->id);
                 $recursos = $cola->planetas->recursos;
-
                 if (!empty($disenio)) {
-
                     //En caso de reciclaje debe devolver los recursos
                     if ($cola->accion == "Reciclando") {
-
                         //Restaurar beneficio por reciclaje
                         $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
                         $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
@@ -67,7 +64,7 @@ class EnDisenios extends Model
                         $coste = $cola->disenios->costes;
                         $disenio->tipo = $cola->disenios->fuselajes->tipo;
                         $disenio->save();
-
+                    } else {
                         //Restaurar beneficio por reciclaje
                         $recursos->mineral += (($coste->mineral * $cola->cantidad) * $reciclaje);
                         $recursos->cristal += (($coste->cristal * $cola->cantidad) * $reciclaje);
