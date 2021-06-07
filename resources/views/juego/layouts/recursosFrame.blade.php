@@ -83,7 +83,7 @@
 <body class="bg" id="recursosFrame">
     <div id="menuC" class="container-fluid ">
         <div id="menuCuenta" class="row d-flex overflow-auto ">
-            <table class="table table-borderless table-sm text-center anchofijo" style="margin: 0px;">
+            <table class="table table-borderless table-sm text-center borderless anchofijo" style="margin: 0px;">
                 <thead>
                     <tr>
                         <th class="text-warning">
@@ -192,62 +192,62 @@
         <div id="menuRecursos" class=" ">
             <div id="flush-collapseOne" class="accordion-collapse collapse show overflow-auto"
                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <table class="table table-borderless table-sm text-center ">
+                <table class="table table-borderless table-sm text-center borderless">
                     <thead>
                         <tr>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Personal
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Mineral
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Cristal
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Gas
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Plástico
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Cerámica
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Liquido
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Micros
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Fuel
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 M-A
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Munición
                             </th>
-                            <th class="text-warning">
+                            <th class="text-warning borderless">
                                 Creditos
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-danger">
+                            <td class="text-danger borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Personal ocupado en el planeta">({{ number_format($personalOcupado, 0, ',', '.') }})</span>
                             </td>
-                            <td class="text-danger">
+                            <td class="text-danger borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="El almacenamiento de mineral es ilimitado">Ilimitado</span>
                             </td>
-                            <td class="text-danger">
+                            <td class="text-danger borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="El almacenamiento de cristal es ilimitado">Ilimitado</span>
                             </td>
                             @foreach ($capacidadAlmacenes as $almacen)
                                 @if ($loop->index == 3)
                                 @endif
-                                <td class="text-danger" data-bs-toggle="tooltip">
+                                <td class="text-danger borderless" data-bs-toggle="tooltip">
                                     @if ($almacen->capacidad != 'Almacen')
                                         <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cantidad de este recurso que puedes almacenar en el planeta">{{ number_format($almacen->capacidad, 0, ',', '.') }}</span>
                                     @else
@@ -255,81 +255,81 @@
                                     @endif
                                 </td>
                             @endforeach
-                            <td class="text-danger"></td>
+                            <td class="text-danger borderless"></td>
                         </tr>
                         <tr>
-                            <td id="personal" class="text-warning">
+                            <td id="personal" class="text-warning borderless">
                                 {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
                             </td>
-                            <td id="mineral" class="text-warning">
+                            <td id="mineral" class="text-warning borderless">
                                 {{ number_format($recursos->mineral, 0, ',', '.') }}
                             </td>
-                            <td id="cristal" class="text-warning">
+                            <td id="cristal" class="text-warning borderless">
                                 {{ number_format($recursos->cristal, 0, ',', '.') }}
                             </td>
-                            <td id="gas" class="text-warning">
+                            <td id="gas" class="text-warning borderless">
                                 {{ number_format($recursos->gas, 0, ',', '.') }}
                             </td>
-                            <td id="plastico" class="text-warning">
+                            <td id="plastico" class="text-warning borderless">
                                 {{ number_format($recursos->plastico, 0, ',', '.') }}
                             </td>
-                            <td id="ceramica" class="text-warning">
+                            <td id="ceramica" class="text-warning borderless">
                                 {{ number_format($recursos->ceramica, 0, ',', '.') }}
                             </td>
-                            <td id="liquido" class="text-warning">
+                            <td id="liquido" class="text-warning borderless">
                                 {{ number_format($recursos->liquido, 0, ',', '.') }}
                             </td>
-                            <td id="micros" class="text-warning">
+                            <td id="micros" class="text-warning borderless">
                                 {{ number_format($recursos->micros, 0, ',', '.') }}
                             </td>
-                            <td id="fuel" class="text-warning">
+                            <td id="fuel" class="text-warning borderless">
                                 {{ number_format($recursos->fuel, 0, ',', '.') }}
                             </td>
-                            <td id="ma" class="text-warning">
+                            <td id="ma" class="text-warning borderless">
                                 {{ number_format($recursos->ma, 0, ',', '.') }}
                             </td>
-                            <td id="municion" class="text-warning">
+                            <td id="municion" class="text-warning borderless">
                                 {{ number_format($recursos->municion, 0, ',', '.') }}
                             </td>
-                            <td class="text-warning">
+                            <td class="text-warning borderless">
                                 {{ number_format($recursos->creditos, 0, ',', '.') }}
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->personal, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->mineral, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->cristal, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->gas, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->plastico, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->ceramica, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->liquido, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->micros, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->fuel, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->ma, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->municion, 0, ',', '.') }}</span>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-primary borderless">
                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->creditos / 24, 0, ',', '.') }}</span>
                             </td>
                         </tr>
@@ -337,7 +337,7 @@
                 </table>
             </div>
             <div id="menuIconos" class="row d-flex">
-                <table class="table table-borderless table-sm text-center">
+                <table class="table table-borderless table-sm text-center borderless">
                     <thead>
                         <tr>
                             <th class="text-warning ">
