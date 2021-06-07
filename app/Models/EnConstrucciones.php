@@ -22,29 +22,30 @@ class EnConstrucciones extends Model
     {
         DB::beginTransaction();
         try {
-        $colas = EnConstrucciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->lockForUpdate()->get();
-        foreach ($colas as $cola) {
-            $cola->construcciones->nivel = $cola->nivel;
+            $colas = EnConstrucciones::where('finished_at', '<=', date("Y-m-d H:i:s"))->lockForUpdate()->get();
+            foreach ($colas as $cola) {
+                Recursos::calcularRecursos($cola->construcciones->planetas->id);
+                $cola->construcciones->nivel = $cola->nivel;
 
-            //En caso de reciclaje debe devolver los recursos
-            if ($cola->accion == "Reciclando") {
-                $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
-                $coste = CostesConstrucciones::generarDatosCostesConstruccion($cola->construcciones->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
-                // $coste = $cola->construcciones->coste;
-                $recursos = $cola->construcciones->planetas->recursos;
+                //En caso de reciclaje debe devolver los recursos
+                if ($cola->accion == "Reciclando") {
+                    $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
+                    $coste = CostesConstrucciones::generarDatosCostesConstruccion($cola->construcciones->nivel, $cola->construcciones->codigo, $cola->construcciones->id);
+                    // $coste = $cola->construcciones->coste;
+                    $recursos = $cola->construcciones->planetas->recursos;
 
-                //Restaurar beneficio por reciclaje
-                $recursos->mineral += ($coste->mineral * $reciclaje);
-                $recursos->cristal += ($coste->cristal * $reciclaje);
-                $recursos->gas += ($coste->gas * $reciclaje);
-                $recursos->plastico += ($coste->plastico * $reciclaje);
-                $recursos->ceramica += ($coste->ceramica * $reciclaje);
-                $recursos->liquido += ($coste->liquido * $reciclaje);
-                $recursos->micros += ($coste->micros * $reciclaje);
-                $recursos->save();
-            }
-            $cola->construcciones->save();
-            $cola->delete();
+                    //Restaurar beneficio por reciclaje
+                    $recursos->mineral += ($coste->mineral * $reciclaje);
+                    $recursos->cristal += ($coste->cristal * $reciclaje);
+                    $recursos->gas += ($coste->gas * $reciclaje);
+                    $recursos->plastico += ($coste->plastico * $reciclaje);
+                    $recursos->ceramica += ($coste->ceramica * $reciclaje);
+                    $recursos->liquido += ($coste->liquido * $reciclaje);
+                    $recursos->micros += ($coste->micros * $reciclaje);
+                    $recursos->save();
+                }
+                $cola->construcciones->save();
+                $cola->delete();
             }
             DB::commit();
         } catch (\Throwable $e) {

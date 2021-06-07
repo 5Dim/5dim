@@ -37,6 +37,7 @@ class EnDisenios extends Model
                 ])->first();
                 $reciclaje = Constantes::where('codigo', 'perdidaReciclar')->first()->valor;
                 $coste = $cola->disenios->costes;
+                Recursos::calcularRecursos($cola->planetas->id);
                 $recursos = $cola->planetas->recursos;
 
                 if (!empty($disenio)) {
