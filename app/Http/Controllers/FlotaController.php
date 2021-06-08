@@ -646,7 +646,6 @@ class FlotaController extends Controller
                 // naves a flota
 
                 foreach ($disenios as $navex) {
-
                     //Log::info($navex);
 
                     $naveSale = new DiseniosEnFlota();

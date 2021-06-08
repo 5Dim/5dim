@@ -1032,6 +1032,27 @@ destino 0 con lo que sale
                         //Log::info("Entregando Naves: ");
                         foreach ($estaFlota->diseniosEnFlota as $diseno) {
                             $cuantas = $diseno['enFlota'] + $diseno['enHangar'];
+
+                            /*
+                            $naveEnDestino=DiseniosEnFlota::where([['disenios_id',$diseno->disenios->id],['planetas_id',$destino->planetas->id]])->first();
+                            if(empty($naveEnDestino)){
+
+                                $naveNueva = new DiseniosEnFlota();
+                                //$naveNueva->enFlota = $navex['enflota'];
+                                //$naveNueva->enHangar = $navex['enhangar'];
+                                $naveNueva->cantidad = $cuantas;
+                                $naveNueva->disenios_id = $diseno->disenios->id;
+                                $naveNueva->planetas_id = $destino->planetas->id;
+                                $naveNueva->tipo = "nave";
+                                $naveNueva->save();
+
+                            } else {
+                                $naveEnDestino->cantidad+=$cuantas;
+                                $naveEnDestino->save();
+                            }
+                            */
+
+
                             //Log::info("cuantas= ".$cuantas);
                             DiseniosEnFlota::updateOrCreate([
                                 'disenios_id'   => $diseno->disenios->id,
@@ -1043,6 +1064,7 @@ destino 0 con lo que sale
                                 'planetas_id'   => $destino->planetas->id,
                                 "en_vuelo_id"   => null
                             ]);
+                            *
                         }
                         $estaFlota->delete();
                         $destinoAlcanzado = true;
