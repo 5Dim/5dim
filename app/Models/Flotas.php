@@ -879,7 +879,7 @@ destino 0 con lo que sale
                                         $estaFlota["jugadores_id"] = $flotadestino["jugadores_id"];
                                     } else { //la flota esta linkada por FK, deberia existir siempre
                                         $destino['mision'] = "Orbitar";
-                                        $destino['planetas_id'] = null;
+                                       // $destino['planetas_id'] = null;
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
@@ -905,7 +905,7 @@ destino 0 con lo que sale
                                         $estaFlota["jugadores_id"] = $flotadestino["jugadores_id"];
                                     } else { //la flota esta linkada por FK, deberia existir siempre
                                         $destino['mision'] = "Orbitar";
-                                        $destino['planetas_id'] = null;
+                                        //$destino['planetas_id'] = null;
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
