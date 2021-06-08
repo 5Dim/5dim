@@ -735,8 +735,6 @@ destino 0 con lo que sale
 
                                     break;
                                 case "enrecoleccion":
-                                    //actualizamos sus recursos
-                                    //Log::info("frecolect ".$destino->enRecoleccion->planetas);
                                     Flotas::recolectarAsteroide($destino->enRecoleccion->planetas, null, $estaFlota->jugadores_id);
                                     $recursosDestino = $destino->enRecoleccion->recursosEnFlota;
                                     $destinoEsMio = Alianzas::idSoyYoOMiAlianza($estaFlota->jugadores_id, $destino->enRecoleccion->jugadores_id);
@@ -766,11 +764,7 @@ destino 0 con lo que sale
                             $cargaTotalLLevo = Disenios::cargaTotalRecursos($recursosFlota);
 
                             //Log::info("cargaTotalLLevo ".$cargaTotalLLevo."  cargaMaxima ".$cargaMaxima. " recursosQuieroCargar ".$recursosQuieroCargar);
-                            // carga total que llevo ahora
 
-                            //primero cantiddaes, luego prioridades (solo si es tuyo)
-
-                            // traspaso de recursos por cantidad
                             foreach ($recursosArray as $recurso) {
 
                                 $difCarga = $recursosFlota[$recurso] - $recursosQuieroCargar[$recurso]; //si es <1 me llevo cosas

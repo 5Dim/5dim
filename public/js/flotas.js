@@ -470,7 +470,7 @@ function Avisos() {
 
         var img = origenImagenes + "/flotas/nada.jpg";
         if (orden != "") {
-            var img = origenImagenes + "/flotas/" + orden + ".jpg";
+            var img = origenImagenes + "/flotas/" + strtolower(orden) + ".jpg";
         }
         if (recursosDest[dest]["estrella"] == destinos[dest]["estrella"] && recursosDest[dest]["orbita"] == destinos[dest]["orbita"]) {
             if (recursosDest[dest]["imagen"] != undefined) {
