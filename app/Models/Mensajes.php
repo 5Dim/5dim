@@ -297,7 +297,7 @@ class Mensajes extends Model
             <td class='text-success'>" . number_format($destinoAnterior->recursos->municion, 0, ',', '.') . "</td>
             <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos, 0, ',', '.') . "</td>
         </tr>";
-        if ($propietarioDestino == $duenioFlota || $propietarioDestino == $jugadorAlianza->id) {
+        if ($propietarioDestino == $duenioFlota || (!empty($jugadorAlianza) && $propietarioDestino == $jugadorAlianza->id)) {
             $contenido .= "<tr>
                 <td class='text-warning'> En destino </td>
                 <td class='text-light'>" . number_format($recursosQueTienes->personal, 0, ',', '.') . "</td>
