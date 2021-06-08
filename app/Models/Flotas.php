@@ -846,22 +846,24 @@ destino 0 con lo que sale
 
                             switch ($tipodestino) {
                                 case "planeta":
-                                    if (!empty($destino->planetas)) {
+                                    if (!empty($destino->planetas) && $destino->planetas->tipo=="planeta" && $destino->planetas->jugadores_id!=null) {
                                         $personalOcupado = Recursos::calcularRecursos($destino->planetas->id);
                                         // entrego recursos
                                         $recursosDestino = $destino->planetas->recursos;
-                                        foreach ($recursosArray as $recurso) {
-                                            $recursosDestino[$recurso] += $recursosFlota[$recurso];
+                                        if (!empty($recursosDestino)){
+                                            foreach ($recursosArray as $recurso) {
+                                                $recursosDestino[$recurso] += $recursosFlota[$recurso];
+                                            }
                                         }
                                         $guardarCambiosTransferir = true;
                                     } else {
                                         $cambioMision = true;
                                         $destino['mision'] = "Orbitar";
-                                        $destino['planetas_id'] = null;
+                                        //$destino['planetas_id'] = null;
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
-                                        $errores = "No se ha podido encontrar el destino al que transferir ";
+                                        $errores = "No se ha podido encontrar el destino adecuado al que transferir ";
                                     }
 
                                     break;
@@ -877,7 +879,7 @@ destino 0 con lo que sale
                                         $estaFlota["jugadores_id"] = $flotadestino["jugadores_id"];
                                     } else { //la flota esta linkada por FK, deberia existir siempre
                                         $destino['mision'] = "Orbitar";
-                                        $destino['planetas_id'] = null;
+                                       // $destino['planetas_id'] = null;
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
@@ -903,7 +905,7 @@ destino 0 con lo que sale
                                         $estaFlota["jugadores_id"] = $flotadestino["jugadores_id"];
                                     } else { //la flota esta linkada por FK, deberia existir siempre
                                         $destino['mision'] = "Orbitar";
-                                        $destino['planetas_id'] = null;
+                                        //$destino['planetas_id'] = null;
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
