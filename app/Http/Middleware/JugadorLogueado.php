@@ -30,9 +30,32 @@ class JugadorLogueado
         if (empty(Auth::user()->jugador)) {
             $jugador = Jugadores::nuevoJugador();
             session()->put('jugadores_id', $jugador->id);
-        }else {
+        } else {
             $jugador = Auth::user()->jugador;
         }
+        // Control usuario
+        $jugador->ultima_actividad = date("Y-m-d H:i:s");
+        $jugador->navegador = $request->server('HTTP_USER_AGENT');
+        $existe = false;
+        if ($jugador->ip1 == $request->ip()) {
+            $existe = true;
+        } elseif ($jugador->ip2 == $request->ip()) {
+            $existe = true;
+        } elseif ($jugador->ip3 == $request->ip()) {
+            $existe = true;
+        } elseif ($jugador->ip4 == $request->ip()) {
+            $existe = true;
+        }
+
+        if (!$existe) {
+            $jugador->ip4 = $jugador->ip3;
+            $jugador->ip3 = $jugador->ip2;
+            $jugador->ip2 = $jugador->ip1;
+            $jugador->ip1 = $request->ip();
+        }
+
+        $jugador->save();
+
         // Añadimos el jugador
         if (!session()->has('jugadores_id')) {
             session()->put('jugadores_id', $jugador->id);
