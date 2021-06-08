@@ -165,7 +165,7 @@ class Investigaciones extends Model
         $nivelLaboratorio = Construcciones::where([
             ['planetas_id', $planetaActual->id],
             ['codigo', 'laboratorio'],
-        ])->first()->nivel;
+        ])->first()->nivel + 1;
         if ($personal > 0 && $nivelLaboratorio > 0) {
             $result = ($factinvest * ($nivel) * (($preciototal) / ($personal * $nivelLaboratorio)));
             if ($result == 0) {
@@ -174,7 +174,6 @@ class Investigaciones extends Model
         } else {
             $result = false;
         }
-        // dd($result);
         return $result;
     }
 }
