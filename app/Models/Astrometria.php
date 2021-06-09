@@ -41,6 +41,11 @@ class Astrometria extends Model
                 }
                 $flotasOrbitando = EnOrbita::where('jugadores_id', session()->get('jugadores_id'))->get();
                 $cantidadFlotas = count($flotasOrbitando);
+                if ($cantidadFlotas > 3) {
+                    $cantidadFlotas - 3;
+                } else {
+                    $cantidadFlotas = 0;
+                }
                 foreach ($flotasOrbitando as $flota) {
                     $radar = new Radares();
                     $radar->estrella = $flota->estrella;
@@ -69,6 +74,11 @@ class Astrometria extends Model
             }
             $flotasOrbitando = EnOrbita::where('jugadores_id', session()->get('jugadores_id'))->get();
             $cantidadFlotas = count($flotasOrbitando);
+            if ($cantidadFlotas > 3) {
+                $cantidadFlotas - 3;
+            } else {
+                $cantidadFlotas = 1;
+            }
             foreach ($flotasOrbitando as $flota) {
                 $radar = new Radares();
                 $radar->estrella = $flota->estrella;
@@ -509,12 +519,12 @@ class Astrometria extends Model
         } else { //propio
             //Log::info($destinoActual);
             if ($ptoFlota != null || $estado == "envuelo") {
-                $flota->origen = Astrometria::nombreDestino($destinoActual,false,true);
+                $flota->origen = Astrometria::nombreDestino($destinoActual, false, true);
                 $flota->coordix = $destinoActual->initcoordx;
                 $flota->coordiy = $destinoActual->initcoordy;
                 $flota->coordfx = $destinoActual->fincoordx;
                 $flota->coordfy = $destinoActual->fincoordy;
-                $flota->destino = Astrometria::nombreDestino($destinoActual, true,true);
+                $flota->destino = Astrometria::nombreDestino($destinoActual, true, true);
                 $flota->mision = $destinoActual['mision'];
                 $flota->misionregreso = $destinoActual['mision_regreso'];
                 $flota->fecha = $destinoActual['fin'];
@@ -522,14 +532,14 @@ class Astrometria extends Model
             } else if ($estado == "enrecoleccion") {
                 Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
                 $flota->recursos = RecursosEnFlota::where('en_recoleccion_id', $flotaVisible['id'])->first();
-                $flota->maximoPosible= Producciones::produccionRecoleccion($flotaVisible->planetas->id)->totalPosible;
+                $flota->maximoPosible = Producciones::produccionRecoleccion($flotaVisible->planetas->id)->totalPosible;
                 $cargaT = 0;
 
                 $flota->mision = "Recolectando";
                 $flota->recoleccion = $flotaVisible->recoleccion;
                 $flota->origen = $flotaVisible->planetas->estrella . "x" . $flotaVisible->planetas->orbita;
                 $flota->destino = "";
-                $flota->prioridades=$flotaVisible->prioridadesEnFlota;
+                $flota->prioridades = $flotaVisible->prioridadesEnFlota;
                 foreach ($recursosArray as $recurso) {
                     $cargaT += $flota->recursos[$recurso];
                     //if($flota->prioridades[$recurso] <1){$flota->prioridades[$recurso]="nada";}
@@ -537,11 +547,10 @@ class Astrometria extends Model
                 $flota->cargaT = $cargaT;
                 $flota->coordx = $flotaVisible->coordx;
                 $flota->coordy = $flotaVisible->coordy;
-
             } else if ($estado == "enextraccion") {
                 Flotas::recolectarAsteroide($flotaVisible->planetas, $flotaVisible);
                 $flota->recursos = RecursosEnFlota::where('en_recoleccion_id', $flotaVisible['id'])->first();
-                $flota->maximoPosible= Producciones::produccionRecoleccion($flotaVisible->planetas->id)->totalPosible;
+                $flota->maximoPosible = Producciones::produccionRecoleccion($flotaVisible->planetas->id)->totalPosible;
                 $cargaT = 0;
                 foreach ($recursosArray as $recurso) {
                     $cargaT += $flota->recursos[$recurso];
@@ -551,10 +560,9 @@ class Astrometria extends Model
                 $flota->recoleccion = $flotaVisible->extraccion;
                 $flota->origen = $flotaVisible->planetas->estrella . "x" . $flotaVisible->planetas->orbita;
                 $flota->destino = "";
-                $flota->prioridades=$flotaVisible->prioridadesEnFlota;
+                $flota->prioridades = $flotaVisible->prioridadesEnFlota;
                 $flota->coordx = $flotaVisible->coordx;
                 $flota->coordy = $flotaVisible->coordy;
-
             } else if ($estado == "enorbita") {
                 $flota->recursos = RecursosEnFlota::where('en_orbita_id', $flotaVisible['id'])->first();
                 $cargaT = 0;
@@ -742,7 +750,7 @@ class Astrometria extends Model
     public static function tipoDestino($destino)
     {
         //Log::info("destino ".$destino);
-        if ($destino!=null){
+        if ($destino != null) {
             $tipodestino = null;
             if (!empty($destino->planetas_id) && !empty($destino->planetas) && !empty($destino->planetas->id)) {
                 $tipodestino = "planeta";
@@ -755,7 +763,7 @@ class Astrometria extends Model
             } else { //orbita sin planeta
                 $tipodestino = "otro";
             }
-        }else { //orbita sin planeta
+        } else { //orbita sin planeta
             $tipodestino = "otro";
         }
 
@@ -763,10 +771,10 @@ class Astrometria extends Model
         return $tipodestino;
     }
 
-    public static function nombreDestino($destino, $anterior = false,$nombreprivado=false)
+    public static function nombreDestino($destino, $anterior = false, $nombreprivado = false)
     {
-        if(!$anterior){
-            $destino=Destinos::where([["fin",$destino->init],["flota_id",$destino->flota_id]])->first();
+        if (!$anterior) {
+            $destino = Destinos::where([["fin", $destino->init], ["flota_id", $destino->flota_id]])->first();
         }
 
         $tipodestino = Astrometria::tipoDestino($destino);
@@ -776,40 +784,40 @@ class Astrometria extends Model
 
         switch ($tipodestino) {
             case "planeta":
-                if($anterior){
-                    $nombreDestino =$destino->planetas->nombre." ".$destino->planetas->estrella . "x" . $destino->planetas->orbita;
+                if ($anterior) {
+                    $nombreDestino = $destino->planetas->nombre . " " . $destino->planetas->estrella . "x" . $destino->planetas->orbita;
                 } else {
                     $planetaAnterior = Planetas::where([['estrella', $destino['initestrella']], ['orbita', $destino['initorbita']]])->first();
-                    if ($planetaAnterior!=null){
-                        $nombreDestino =$planetaAnterior->nombre." ".$planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
+                    if ($planetaAnterior != null) {
+                        $nombreDestino = $planetaAnterior->nombre . " " . $planetaAnterior->estrella . "x" . $planetaAnterior->orbita;
                     } else {
-                        $nombreDestino =$destino['initestrella'] . "x" . $destino['initorbita'];
+                        $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
                     }
                 }
                 break;
             case "enrecoleccion":
                 $nombreDestino = $destino->enRecoleccion["publico"];
-                if($nombreprivado){
-                    $nombreDestino .="(".$destino->enRecoleccion["nombre"].")";
+                if ($nombreprivado) {
+                    $nombreDestino .= "(" . $destino->enRecoleccion["nombre"] . ")";
                 }
                 break;
             case "enorbita":
                 $nombreDestino = $destino->enOrbita["publico"];
-                if($nombreprivado){
-                    $nombreDestino .="(".$destino->enOrbita["nombre"].")";
+                if ($nombreprivado) {
+                    $nombreDestino .= "(" . $destino->enOrbita["nombre"] . ")";
                 }
                 break;
             case "envuelo":
                 $nombreDestino = $destino->enVuelo["publico"];
-                if($nombreprivado){
-                    $nombreDestino .="(".$destino->enVuelo["nombre"].")";
+                if ($nombreprivado) {
+                    $nombreDestino .= "(" . $destino->enVuelo["nombre"] . ")";
                 }
                 break;
             default:
-                if ($destino!=null){
+                if ($destino != null) {
                     $nombreDestino = $destino['initestrella'] . "x" . $destino['initorbita'];
                 } else {
-                    $nombreDestino="Desconocido";
+                    $nombreDestino = "Desconocido";
                 }
 
                 break;
