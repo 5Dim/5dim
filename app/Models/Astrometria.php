@@ -44,7 +44,7 @@ class Astrometria extends Model
                 if ($cantidadFlotas > 3) {
                     $cantidadFlotas - 3;
                 } else {
-                    $cantidadFlotas = 0;
+                    $cantidadFlotas = 1;
                 }
                 foreach ($flotasOrbitando as $flota) {
                     $radar = new Radares();
