@@ -54,10 +54,10 @@ return [
     <br>El coste de produccion de la micros es de 10 de cristal por cada unidad de micros",
     'indFuelDescripcion' => "Procesando todo tipo de materiales de origen orgánico, químico o incluso radioactivo obtenemos una amplia gama de combustibles, todos ellos enfocados sobretodo a la propulsión de naves espaciales.
     <br><br>Esta industria puede ser activada o desactivada manualmente.
-    <br>El coste de produccion de la fuel es de 10 de gas por cada unidad de fuel",
+    <br>El coste de produccion  es de 10 de gas por cada unidad de fuel",
     'indMADescripcion' => "los aceleradores de partículas son instrumentos que se encargan de inducir incrementos de velocidad sobre las partículas cargadas hasta alcanzar velocidades muy cercanas a la de la luz y en consecuencia, aumentos de energía. Mediante la colisión de estas partículas podemos obtener otras nuevas que no se encuentran en la naturaleza, además nos permite crear Antimateria. La antimateria está compuesta de antipartículas de las partículas que constituyen la materia normal.La Antimateria producida por esta industria tiene multitud de aplicaciones, tanto en asuntos militares, investigación o propulsión.
     <br><br>Esta industria puede ser activada o desactivada manualmente.
-    <br>El coste de produccion de la fuel es de 10 de plastico por cada unidad de fuel",
+    <br>El coste de produccion es de 10 de plastico por cada unidad de fuel",
     'indMunicionDescripcion' => "a pesar de los avances científicos, las armas de proyectiles han sabido avanzar con los nuevos tiempos, así aún están en uso en variedades cada vez mas letales. Las Armarias fabrican la munición para las armas de todo tipo.
     <br><br>Esta industria puede ser activada o desactivada manualmente.
     <br>El coste de produccion de la munición es de 2 de cerámica por cada unidad de munición",

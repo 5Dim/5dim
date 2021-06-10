@@ -837,7 +837,7 @@ destino 0 con lo que sale
                             break;
                         case "Transferir":
                             //si los ids de todos los destinos es nulo es orbitar el planeta
-
+                            //Log::info("tipodestino ".$tipodestino);
                             switch ($tipodestino) {
                                 case "planeta":
                                     if (!empty($destino->planetas) && $destino->planetas->tipo=="planeta" && $destino->planetas->jugadores_id!=null) {
@@ -858,6 +858,7 @@ destino 0 con lo que sale
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
                                         $errores = "No se ha podido encontrar el destino adecuado al que transferir ";
+                                        //Log::info($errores);
                                     }
 
                                     break;
@@ -1029,30 +1030,68 @@ destino 0 con lo que sale
 
                     if ($guardarCambiosTransferir) {
                         $recursosDestino->save();
-                        //Log::info("Entregando Naves: ");
+
+                        switch ($tipodestino) {
+                            case "planeta":
+                                $navesEnDestino=DiseniosEnFlota::where([['planetas_id',$destino->planetas->id]])->get();
+                                break;
+                            case "enorbita":
+                                $navesEnDestino=DiseniosEnFlota::where([['em_orbita_id',$destino->enOrbita->id]])->get();
+                                break;
+                            case "enrecoleccion":
+                                $navesEnDestino=DiseniosEnFlota::where([['en_recoleccion_id',$destino->enRecoleccion->id]])->get();
+                                break;
+                            }
+
+                            //Log::info("Entregando Naves: ".$tipodestino);
+                            //Log::info($navesEnDestino);
+
                         foreach ($estaFlota->diseniosEnFlota as $diseno) {
                             $cuantas = $diseno['enFlota'] + $diseno['enHangar'];
 
-                            /*
-                            $naveEnDestino=DiseniosEnFlota::where([['disenios_id',$diseno->disenios->id],['planetas_id',$destino->planetas->id]])->first();
-                            if(empty($naveEnDestino)){
+                            foreach ($navesEnDestino as $naveEnDestino) {
+                                //Log::info($naveEnDestino);
+                                if ($naveEnDestino->disenios_id == $diseno->disenios->id){
+                                    break;
+                                }
+                            }
 
+                            //Log::info("navesnDestino");
+                            //Log::info($naveEnDestino);
+
+                            if(empty($naveEnDestino)){
                                 $naveNueva = new DiseniosEnFlota();
-                                //$naveNueva->enFlota = $navex['enflota'];
-                                //$naveNueva->enHangar = $navex['enhangar'];
-                                $naveNueva->cantidad = $cuantas;
+                                if ($tipodestino=="planeta"){
+                                    $naveNueva->cantidad = $cuantas;
+                                } else {
+                                    $naveNueva->enFlota = $diseno['enFlota'];
+                                    $naveNueva->enHangar = $diseno['enHangar'];
+                                }
+
+                                if(!empty($destino->planetas)){
+                                    $naveNueva->planetas_id = $destino->planetas->id;
+                                }
+
                                 $naveNueva->disenios_id = $diseno->disenios->id;
-                                $naveNueva->planetas_id = $destino->planetas->id;
                                 $naveNueva->tipo = "nave";
                                 $naveNueva->save();
+                                //Log::info("nueva");
+                                //Log::info($naveNueva);
 
                             } else {
-                                $naveEnDestino->cantidad+=$cuantas;
+                                if ($tipodestino=="planeta"){
+                                    $naveEnDestino->cantidad+=$cuantas;
+                                } else {
+                                    $naveEnDestino->enFlota += $diseno['enFlota'];
+                                    $naveEnDestino->enHangar += $diseno['enHangar'];
+                                }
+
                                 $naveEnDestino->save();
+                                //Log::info("viejas");
+                                //Log::info($naveEnDestino);
                             }
-                            */
 
-
+                            /*
                             //Log::info("cuantas= ".$cuantas);
                             DiseniosEnFlota::updateOrCreate([
                                 'disenios_id'   => $diseno->disenios->id,
@@ -1064,7 +1103,7 @@ destino 0 con lo que sale
                                 'planetas_id'   => $destino->planetas->id,
                                 "en_vuelo_id"   => null
                             ]);
-                            *
+                            */
                         }
                         $estaFlota->delete();
                         $destinoAlcanzado = true;
@@ -1119,6 +1158,7 @@ destino 0 con lo que sale
                     // Log::info($errores);
                     DB::commit();
                     Mensajes::enviarMensajeFlota($destino, $errores);
+                    //try {
                 } catch (Exception $e) {
                     DB::rollBack();
                     Log::error("**********DESTINO FALLIDO: " . $destino->id);
@@ -1161,7 +1201,7 @@ destino 0 con lo que sale
                     $planeta = $destino->planetas;
                 }
 
-                //Log::info("quehacer: ".$quehacer);
+                //Log::info("quehacer: ".$quehacer." ".$planeta );
                 if ($quehacer == "recolectar" || $quehacer == "extraer") {
                     //si ya existe una flota en recolección
                     if ($planeta == null) {
@@ -1174,6 +1214,7 @@ destino 0 con lo que sale
                     if ($flotaExiste != null) {
                         Flotas::recolectarAsteroide($planeta, $flotaExiste, null);
                     }
+
                     /*
                     //Log::info("quehacer1 ".$quehacer);
                     if ($quehacer == "recolectar") {
@@ -1258,8 +1299,33 @@ destino 0 con lo que sale
                 //Log::info($flotax);Log::info(" hh ");
 
                 // naves a flota
+
                 if ($flotaExiste != null) {
+
                     foreach ($flotaLlega->diseniosEnFlota as $diseno) {
+                        //Log::info("columnNaves ".$columnNaves);
+                        $naveEnDestino=DiseniosEnFlota::where([['disenios_id',$diseno->disenios->id],[$columnNaves,$flotaExiste->id]])->first();
+                        //Log::info($naveEnDestino);
+                        if(empty($naveEnDestino)){
+                            //Log::info("añado nueva ");
+                            $naveNueva = new DiseniosEnFlota();
+                            $naveNueva->enFlota = $diseno['enFlota'];
+                            $naveNueva->enHangar = $diseno['enHangar'];
+                            //$naveNueva->cantidad = $cuantas;
+                            $naveNueva->disenios_id = $diseno->disenios->id;
+                            $naveNueva->$columnNaves = $flotaExiste->id;
+                            $naveNueva->tipo = "nave";
+                            $naveNueva->save();
+
+                        } else {
+                            //Log::info("sumo n");
+                            $naveEnDestino->enFlota += $diseno['enFlota'];
+                            $naveEnDestino->enHangar += $diseno['enHangar'];
+                            $naveEnDestino->save();
+                        }
+
+
+                        /*
                         DiseniosEnFlota::updateOrCreate([
                             'disenios_id'   => $diseno->disenios->id,
                             $columnNaves   => $flotaExiste->id,
@@ -1271,6 +1337,7 @@ destino 0 con lo que sale
                             $columnNaves   => $flotaExiste->id,
                             "en_vuelo_id"   => null
                         ]);
+                        */
                     }
                 } else {
                     //Log::info($flotaLlega->id);  Log::info($flotax->id); Log::info($columnNaves);
@@ -1329,6 +1396,7 @@ destino 0 con lo que sale
                 //try {
                 DB::commit();
                 //Log::info("Enviada");
+               // try {
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit de poner en " . $quehacer . " " . $e->getLine() . " " . $errores . $e;

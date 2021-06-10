@@ -225,8 +225,18 @@ class FlotaController extends Controller
             $recursos["estrella"] = $estrella;
             $recursos["orbita"] = $orbita;
         } else {
-            $recursos["estrella"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->estrella : $flotaDestino->estrella;
-            $recursos["orbita"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->orbita : $flotaDestino->orbita;
+            $flotaDestino = EnRecoleccion::where("publico", $estrella)->orWhere("nombre", $estrella)->where('jugadores_id', $jugadorActual->id)->first();
+            if (empty($flotaDestino)) {
+                $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->where('jugadores_id', $jugadorActual->id)->first();
+            }
+            if(!empty($flotaDestino->planetas)){
+                $recursos["estrella"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->estrella : $flotaDestino->estrella;
+                $recursos["orbita"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->orbita : $flotaDestino->orbita;
+            } else {
+                $recursos["estrella"] = 0;
+                $recursos["orbita"] = 0;
+            }
+
         }
 
         return compact('recursos');
@@ -1054,7 +1064,7 @@ class FlotaController extends Controller
                 ]);
             }
             DB::commit();
-            Log::info("Modificada");
+            //Log::info("Modificada");
             try {
             } catch (Exception $e) {
                 DB::rollBack();
