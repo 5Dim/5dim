@@ -1287,20 +1287,23 @@ destino 0 con lo que sale
                     }
                     $flotax->save();
 
+                    /*
                     PrioridadesEnFlota::updateOrCreate([
                         'destinos_id'   => $destino->id,
                     ], [
                         "en_recoleccion:id"   => $flotax->id,
                         "destinos_id"   => null
                     ]);
+                    */
 
                     //Log::info($flotax);Log::info(" hh ");
                 }
                 //Log::info($flotax);Log::info(" hh ");
+                //Log::info($flotaExiste);Log::info(" hhxx ");
 
                 // naves a flota
 
-                if ($flotaExiste != null) {
+                if ( !empty($flotaExiste)) {
 
                     foreach ($flotaLlega->diseniosEnFlota as $diseno) {
                         //Log::info("columnNaves ".$columnNaves);
@@ -1312,10 +1315,14 @@ destino 0 con lo que sale
                             $naveNueva->enFlota = $diseno['enFlota'];
                             $naveNueva->enHangar = $diseno['enHangar'];
                             //$naveNueva->cantidad = $cuantas;
+
                             $naveNueva->disenios_id = $diseno->disenios->id;
                             $naveNueva->$columnNaves = $flotaExiste->id;
                             $naveNueva->tipo = "nave";
                             $naveNueva->save();
+
+                            //Log::info("flota: ".$diseno['enFlota']);
+                            //Log::info("enHangar: ".$diseno['enHangar']);
 
                         } else {
                             //Log::info("sumo n");
@@ -1339,7 +1346,33 @@ destino 0 con lo que sale
                         ]);
                         */
                     }
-                } else {
+                } else { //no hay flota allí
+                    foreach ($flotaLlega->diseniosEnFlota as $diseno) {
+                        $naveNueva = new DiseniosEnFlota();
+                        $naveNueva->enFlota = $diseno['enFlota'];
+                        $naveNueva->enHangar = $diseno['enHangar'];
+                        //$naveNueva->cantidad = $cuantas;
+
+                        $naveNueva->disenios_id = $diseno->disenios->id;
+                        $naveNueva->$columnNaves = $flotax->id;
+                        $naveNueva->tipo = "nave";
+                        $naveNueva->save();
+                    }
+
+                    $prioridadAnt=$destino->prioridades;
+
+                    $prioridades=new PrioridadesEnFlota();
+                    $prioridades->$columnNaves = $flotax->id;
+
+                    if (!empty($prioridadAnt)){
+                        foreach ($recursosArray as $recurso) {
+                            $prioridades[$recurso] = $prioridadAnt[$recurso];
+                        }
+                    }
+                    //Log::info("prioridades ".$prioridades);
+                    $prioridades->save();
+
+                    /*
                     //Log::info($flotaLlega->id);  Log::info($flotax->id); Log::info($columnNaves);
                     DiseniosEnFlota::updateOrCreate([
                         'en_vuelo_id'   => $flotaLlega->id,
@@ -1356,6 +1389,7 @@ destino 0 con lo que sale
                         $columnNaves   => $flotax->id,
                         "destinos_id"   => null
                     ]);
+                    */
                 }
 
                 //recursos
