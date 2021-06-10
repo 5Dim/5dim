@@ -370,7 +370,7 @@ class Flotas extends Model
             } else {
                 $destino['en_recoleccion_id'] = $flotaDestino->id;
             }
-            if(!empty($flotaDestino->planetas)){
+            if (!empty($flotaDestino->planetas)) {
                 $destiestrella = $flotaDestino->planetas['estrella'];
                 $destiorbita = $flotaDestino->planetas['orbita'];
             } else {
@@ -840,11 +840,11 @@ destino 0 con lo que sale
                             //Log::info("tipodestino ".$tipodestino);
                             switch ($tipodestino) {
                                 case "planeta":
-                                    if (!empty($destino->planetas) && $destino->planetas->tipo=="planeta" && $destino->planetas->jugadores_id!=null) {
+                                    if (!empty($destino->planetas) && $destino->planetas->tipo == "planeta" && $destino->planetas->jugadores_id != null) {
                                         $personalOcupado = Recursos::calcularRecursos($destino->planetas->id);
                                         // entrego recursos
                                         $recursosDestino = $destino->planetas->recursos;
-                                        if (!empty($recursosDestino)){
+                                        if (!empty($recursosDestino)) {
                                             foreach ($recursosArray as $recurso) {
                                                 $recursosDestino[$recurso] += $recursosFlota[$recurso];
                                             }
@@ -874,7 +874,7 @@ destino 0 con lo que sale
                                         $estaFlota["jugadores_id"] = $flotadestino["jugadores_id"];
                                     } else { //la flota esta linkada por FK, deberia existir siempre
                                         $destino['mision'] = "Orbitar";
-                                       // $destino['planetas_id'] = null;
+                                        // $destino['planetas_id'] = null;
                                         $destino['en_vuelo_id'] = null;
                                         $destino['en_recoleccion_id'] = null;
                                         $destino['en_orbita_id'] = null;
@@ -888,7 +888,7 @@ destino 0 con lo que sale
                                     if (!empty($flotadestino)) {
                                         $destino['mision'] = "Orbitar";
 
-                                        if(!empty($flotadestino->planetas)){
+                                        if (!empty($flotadestino->planetas)) {
                                             $destino['planetas_id'] = $flotadestino->planetas->id;
                                         } else {
                                             $destino['planetas_id'] = null;
@@ -930,7 +930,7 @@ destino 0 con lo que sale
                                 $hayerror = true;
                             }
                             */
-                            if(!Planetas::verificarPIPlaneta($estaFlota->jugadores_id)){
+                            if (!Planetas::verificarPIPlaneta($estaFlota->jugadores_id)) {
                                 $errores = " Insuficientes puntos de imperio para colonizar ";
                                 $hayerror = true;
                             }

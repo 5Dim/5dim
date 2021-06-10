@@ -3,7 +3,7 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center " style="--bs-table-bg: transparent !important; margin-bottom: 0px !important">
                 <tr>
-                    <td rowspan="4" class=" text-warning align-middle">
+                    <td rowspan="4" class=" text-warning align-middle" style="max-width: 230px; width: 230px;">
                         <img class="rounded"
                             src="{{ asset('img/juego/skin0/investigaciones/' . $investigacion->codigo . '.jpg') }}"
                             width="120" height="120">
