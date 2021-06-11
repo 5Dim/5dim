@@ -1048,16 +1048,21 @@ destino 0 con lo que sale
 
                         foreach ($estaFlota->diseniosEnFlota as $diseno) {
                             $cuantas = $diseno['enFlota'] + $diseno['enHangar'];
-
+                            $naveEnDestino=null;
                             foreach ($navesEnDestino as $naveEnDestino) {
                                 //Log::info($naveEnDestino);
+                                //Log::info($naveEnDestino->disenios_id);
+                                //Log::info($diseno->disenios);
                                 if ($naveEnDestino->disenios_id == $diseno->disenios->id){
                                     break;
+                                } else {
+                                    $naveEnDestino=null;
                                 }
                             }
 
                             //Log::info("navesnDestino");
                             //Log::info($naveEnDestino);
+                            //Log::info("cuantas: ".$cuantas);
 
                             if(empty($naveEnDestino)){
                                 $naveNueva = new DiseniosEnFlota();
