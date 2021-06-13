@@ -195,6 +195,9 @@ class InvestigacionController extends Controller
             $recurso->ceramica -= $costeInvestigacion[0]->ceramica;
             $recurso->liquido -= $costeInvestigacion[0]->liquido;
             $recurso->micros -= $costeInvestigacion[0]->micros;
+            $recurso->fuel -= $costeInvestigacion[0]->fuel;
+            $recurso->ma -= $costeInvestigacion[0]->ma;
+            $recurso->municion -= $costeInvestigacion[0]->municion;
             $recurso->save();
 
             //Generamos la cola
@@ -260,6 +263,9 @@ class InvestigacionController extends Controller
             $recursos->ceramica += ($costesInvestigaciones[0]->ceramica * $reciclaje);
             $recursos->liquido += ($costesInvestigaciones[0]->liquido * $reciclaje);
             $recursos->micros += ($costesInvestigaciones[0]->micros * $reciclaje);
+            $recursos->fuel += ($costesInvestigaciones[0]->fuel * $reciclaje);
+            $recursos->ma += ($costesInvestigaciones[0]->ma * $reciclaje);
+            $recursos->municion += ($costesInvestigaciones[0]->municion * $reciclaje);
             $recursos->save();
             $listaCola[$i]->motivo_delete = "Cancelado";
             $listaCola[$i]->save();
