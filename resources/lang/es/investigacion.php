@@ -31,7 +31,7 @@ return [
 
     'invIndLiquido' => "Mejora industria de liquidos",
     'invIndMicros' => "Mejora industria de micros",
-    'invIndFuel' => "Mejora industria de fuél",
+    'invIndFuel' => "Mejora industria de fuel",
     'invIndMa' => "Mejora industria  de MA",
     'invIndMunicion' => "Mejora industria  de munición",
 

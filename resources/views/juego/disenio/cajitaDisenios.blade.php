@@ -377,7 +377,7 @@
                         @else
                             <a type="button" class="btn btn-outline-success col-12 text-success"
                                 href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
-                                <i class="fa fa-edit "></i> Editar disenio
+                                <i class="fa fa-edit "></i> Editar diseño
                             </a>
                         @endif
                     </td>
