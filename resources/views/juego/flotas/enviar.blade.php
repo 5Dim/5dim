@@ -194,7 +194,7 @@
                             Carga
                         </th>
                         <th class="text-warning align-middle">
-                            Municion
+                            Munición
                         </th>
                         <th class="text-warning align-middle">
                             Fuel
@@ -234,9 +234,9 @@
                         </td>
                         <td id="totalfuel" class="text-light align-middle">
                         </td>
-                        <td id="totalvelocidad" class="text-light align-middle">
-                        </td>
                         <td id="totalmaniobra" class="text-light align-middle">
+                        </td>
+                        <td id="totalvelocidad" class="text-light align-middle">
                         </td>
                         <td id="totalataqueR" class="text-light align-middle">
                         </td>
