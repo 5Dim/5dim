@@ -875,10 +875,15 @@ class FlotaController extends Controller
         return $flotas;
     }
 
-
     public function regresarFlota(Request $request, $id = null)
     {
         $result = Flotas::regresarFlota($id);
+        return $result;
+    }
+
+    public function eliminarFlota(Request $request, $id = null)
+    {
+        $result = Flotas::eliminarFlota($id);
         return $result;
     }
 

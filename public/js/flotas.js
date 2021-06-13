@@ -1029,7 +1029,7 @@ function enviarFlota() {
             recursosArray.forEach(res => {
                 prioridades[dest][res] = $("#prioridad" + res + dest).val();
             });
-        }
+    }
         var modal = new bootstrap.Modal(document.getElementById('datosModal'))
 
         $.ajax({
@@ -1295,14 +1295,19 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
             if (flota['tipo']=="propia"){
                 deshabilitarRegreso="";
                 colorbotonRegreso="danger";
+                deshabilitarEliminar="disabled";
+                colorbotonEliminar="danger";
 
                 if(flota['misionregreso']==null && flota['estado']=="envuelo"){
                     tregreso="Ya regresando";
                     deshabilitarRegreso="disabled";
                     colorbotonRegreso="light";
+                    colorbotonEliminar="light";
                 } else if(flota['estado']!="envuelo"){
                     deshabilitarRegreso="disabled";
+                    deshabilitarEliminar="enable";
                     colorbotonRegreso="light";
+                    colorbotonEliminar="danger";
                 }
 
                 if(flota['nombre']==flota['numeroflota']){
@@ -1470,19 +1475,25 @@ function RellenarFlotasEnVuelo(data,prefix){ // viene de flotaValoresVisibles
                 }
                     tablaFlotasPropias += `
                     <tr id="info`+fila+`" class="accordion-collapse collapse" aria-labelledby="info`+fila+`" data-bs-parent="#cuadro`+fila+`">
-                        <td colspan="4">
+                        <td colspan="3">
+                            <a type="button" class="`+deshabilitarEliminar+` btn btn-outline-`+colorbotonEliminar+` col-12 text-`+colorbotonEliminar+`" id="botoneliminar`+flota['numeroflota']+`"
+                            onclick="eliminarFlota('`+flota['numeroflota']+`')">
+                                <i class="fa fa-times "></i> Eliminar
+                            </a>
+                        </td>
+                        <td colspan="3">
                             <a type="button" class="`+deshabilitarRegreso+` btn btn-outline-`+colorbotonRegreso+` col-12 text-`+colorbotonRegreso+`" id="botonregreso`+flota['numeroflota']+`"
                             onclick="regresarFlota('`+flota['numeroflota']+`')">
                                 <i class="fa fa-times "></i> Regresar
                             </a>
                         </td>
-                        <td colspan="5">
+                        <td colspan="4">
                             <a class="btn btn-outline-primary col-12 text-primary" type="button"
                             href="`+linkFlota+`/`+flota['numeroflota']+"/"+flota['estado']+`">
                             Editar
                             </a>
                         </td>
-                        <td colspan="4">
+                        <td colspan="3">
                         <a type="button" class="btn btn-outline-success col-12 text-success disabled">
                             <i class="fa fa-eye "></i> Ver
                         </a>
@@ -1641,6 +1652,54 @@ function regresarFlota(numeroflota) {
                 $("#botonregreso" + numeroflota).prop("disabled", false);
                 $("#botonregreso" + numeroflota).text("Regresar");
                 alert(response.errores);
+            }
+        },
+    });
+}
+
+function eliminarFlota(numeroflota) {
+    primeraActualizacionEnVuelo = true;
+
+    botonsi=`<a type="button" class="btn btn-danger col-6 text-light" onclick="sieliminar('`+numeroflota+`')"><i class="fa fa-times "></i> Si, eliminar</a>`;
+    botonno=`<a type="button" class="btn btn-success col-6 text-light" onclick="$('.btn-close').click()"><i class="fa fa-check "></i> No, mantener</a>`
+
+
+    $("#datosContenido").html("¿Seguro que desea eliminar la flota con todas sus naves y su carga? <br><br> "+botonsi+botonno);
+    $("#ModalTitulo").html("Eliminar flota");
+    var modal = new bootstrap.Modal(document.getElementById('datosModal'));
+    modal.show();
+}
+
+
+
+function sieliminar(numeroflota){
+    $('.btn-close').click();
+    $.ajax({
+        type: "GET",
+        //dataType: "json",
+        url: "/juego/flotas/eliminarFlota/" + numeroflota,
+        beforeSend: function() {
+            $("#botoneliminar" + numeroflota).prop("disabled", true);
+            var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Eliminando....';
+            $("#botoneliminar" + numeroflota).html(spinner);
+        },
+        success: function(response) {
+            $("#botoneliminar" + numeroflota).text("Eliminando...");
+            if (response.errores == "") {
+               // alert("Flota Eliminada");
+                $("#datosContenido").html("Flota eliminada");
+                $("#ModalTitulo").html("Eliminar flota");
+                var modal = new bootstrap.Modal(document.getElementById('datosModal'));
+                modal.show();
+                verFlotasEnOrbita();
+            } else {
+                $("#botoneliminar" + numeroflota).prop("disabled", false);
+                $("#botoneliminar" + numeroflota).text("Eliminar");
+                //alert(response.errores);
+                $("#datosContenido").html("No se pudo eliminar, "+response.errores);
+                $("#ModalTitulo").html("Eliminar flota");
+                var modal = new bootstrap.Modal(document.getElementById('datosModal'));
+                modal.show();
             }
         },
     });

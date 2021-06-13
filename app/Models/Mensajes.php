@@ -241,22 +241,34 @@ class Mensajes extends Model
             $elDestino = $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
         } elseif (!empty($destino->en_vuelo_id)) {
             $recursosQueTienes = new RecursosEnFlota();
-            $recursosQueTienes = $destino->enVuelo->recursosEnFlota;
-            $propietarioDestino = $destino->enVuelo->jugadores->id;
-            $contenido .= $destino->enVuelo->nombre;
-            $elDestino = $destino->enVuelo->nombre;
+            $propietarioDestino=null;
+            $elDestino=null;
+            if (!empty($destino->enVuelo)){
+                $recursosQueTienes = $destino->enVuelo->recursosEnFlota;
+                $propietarioDestino = $destino->enVuelo->jugadores->id;
+                $contenido .= $destino->enVuelo->nombre;
+                $elDestino = $destino->enVuelo->nombre;
+            }
         } elseif (!empty($destino->en_recoleccion_id)) {
             $recursosQueTienes = new RecursosEnFlota();
-            $recursosQueTienes = $destino->enRecoleccion->recursosEnFlota;
-            $propietarioDestino = $destino->enRecoleccion->jugadores->id;;
-            $contenido .= $destino->enRecoleccion->nombre;
-            $elDestino = $destino->enRecoleccion->nombre;
+            $propietarioDestino=null;
+            $elDestino=null;
+            if (!empty($destino->enRecoleccion)){
+                $recursosQueTienes = $destino->enRecoleccion->recursosEnFlota;
+                $propietarioDestino = $destino->enRecoleccion->jugadores->id;;
+                $contenido .= $destino->enRecoleccion->nombre;
+                $elDestino = $destino->enRecoleccion->nombre;
+            }
         } elseif (!empty($destino->en_orbita_id)) {
             $recursosQueTienes = new RecursosEnFlota();
-            $recursosQueTienes = $destino->enOrbita->recursosEnFlota;
-            $propietarioDestino = $destino->enOrbita->jugadores->id;
-            $contenido .= $destino->enOrbita->nombre;
-            $elDestino = $destino->enOrbita->nombre;
+            $propietarioDestino=null;
+            $elDestino=null;
+            if (!empty($destino->enOrbita)){
+                $recursosQueTienes = $destino->enOrbita->recursosEnFlota;
+                $propietarioDestino = $destino->enOrbita->jugadores->id;
+                $contenido .= $destino->enOrbita->nombre;
+                $elDestino = $destino->enOrbita->nombre;
+            }
         }
         $duenioFlota = $destino->flota->jugadores->id;
         $jugadorAlianza = null;
@@ -297,7 +309,7 @@ class Mensajes extends Model
             <td class='text-success'>" . number_format($destinoAnterior->recursos->municion, 0, ',', '.') . "</td>
             <td class='text-success'>" . number_format($destinoAnterior->recursos->creditos, 0, ',', '.') . "</td>
         </tr>";
-        if ($propietarioDestino == $duenioFlota || (!empty($jugadorAlianza) && $propietarioDestino == $jugadorAlianza->id)) {
+        if (!empty($recursosQueTienes) && $propietarioDestino == $duenioFlota || (!empty($jugadorAlianza) && $propietarioDestino == $jugadorAlianza->id)) {
             $contenido .= "<tr>
                 <td class='text-warning'> En destino </td>
                 <td class='text-light'>" . number_format($recursosQueTienes->personal, 0, ',', '.') . "</td>

@@ -651,11 +651,66 @@ class Flotas extends Model
         return compact('errores');
     }
 
-    /*
-los recuirsos realmente movidos se guardan en su destino
-destino 0 con lo que sale
 
-*/
+    public static function eliminarFlota($nombreflota, $auto = false)
+    {
+        $errores = "";
+        $posicion="enorbita";
+        if ($auto) {
+            $flotax = EnOrbita::where('publico', $nombreflota)->first();
+            if (empty($flotax)){
+                $flotax = EnRecoleccion::where('publico', $nombreflota)->first();
+                $posicion="enrecoleccion";
+            };
+        } else {
+            $jugadoryAlianza = [];
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+            if ($jugadorActual['alianzas_id'] != null) {
+                array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
+            }
+            array_push($jugadoryAlianza, $jugadorActual->id);
+
+
+            //Log::info("nombreflota: ".$nombreflota);
+
+            $flotax = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)->where('publico', $nombreflota)->first();
+            if (empty($flotax)){
+                $flotax = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)->where('publico', $nombreflota)->first();
+                $posicion="enrecoleccion";
+            };
+
+            //Log::info($jugadoryAlianza);
+        }
+
+
+
+
+        if ($flotax != null) {
+            try {
+                //existen flotas que vienen:
+                $flotaLlega=Destinos::where("en_recoleccion_id",$flotax->id)->orWhere("en_orbita_id",$flotax->id)->get();
+                if (!empty($flotaLlega)){
+                    $errores = ("Esta flota es destino de otras ");
+                } else {
+                    $flotax->delete();
+                }
+
+
+            // try {
+            } catch (Exception $e) {
+                DB::rollBack();
+                Log::error("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
+                $errores = "No ha sido posible, la flota es destino de otra flota";
+            }
+        //return redirect('/juego/flota');
+    } else {
+        $errores = ("No se encuentra la flota: " . $nombreflota);
+    }
+    //Log::info("errores de eliminar flota ".$errores);
+    return compact('errores');
+}
+
 
     ///////////////  recepción de flotas   ///////////////////////////////////////////////////////////////
 
@@ -906,6 +961,14 @@ destino 0 con lo que sale
                                         $destino['en_orbita_id'] = null;
                                     }
 
+                                    break;
+                                    default:
+                                        $cambioMision = true;
+                                        $destino['mision'] = "Orbitar";
+                                        //$destino['planetas_id'] = null;
+                                        $destino['en_vuelo_id'] = null;
+                                        $destino['en_recoleccion_id'] = null;
+                                        $destino['en_orbita_id'] = null;
                                     break;
                             }
                             break;

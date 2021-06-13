@@ -35,7 +35,7 @@ class MensajesIntervinientes extends Model
             $duenioDestino = $destino->enVuelo->jugadores->id;
         } elseif (!empty($destino->en_recoleccion_id)) {
             $duenioDestino = $destino->enRecoleccion->jugadores->id;
-        } elseif (!empty($destino->en_orbita_id)) {
+        } elseif (!empty($destino->en_orbita_id && !empty($destino->enOrbita))) {
             $duenioDestino = $destino->enOrbita->jugadores->id;
         }
 

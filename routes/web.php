@@ -151,6 +151,7 @@ Route::middleware(
 
     // Flota
     Route::get('/juego/flotas/regresarFlota/{id}', [FlotaController::class, 'regresarFlota']);
+    Route::get('/juego/flotas/eliminarFlota/{id}', [FlotaController::class, 'eliminarFlota']);
     Route::get('/juego/flotas/traerRecursos/{estrella}/{orbita}', [FlotaController::class, 'traerRecursos']);
     Route::get('/juego/flotas/{tab?}', [FlotaController::class, 'index']);
     Route::get('/juego/flotas/enviar/{estrella?}/{orbita?}/{tab?}', [FlotaController::class, 'astrometria']);
