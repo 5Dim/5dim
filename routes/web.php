@@ -37,7 +37,6 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-// TST
 Route::get('/', [PrincipalController::class, 'index'])->name('root')->withoutMiddleware([JugadorLogueado::class]);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home')->withoutMiddleware([JugadorLogueado::class]);
