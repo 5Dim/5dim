@@ -369,13 +369,14 @@ function creainfoRutas() {
     panelRuta.addChild(b_borrar);
 }
 
-function createViewport() {
+function createViewport() {  /// https://www.pixiplayground.com/#/edit/47~W4JKeToE8KP34Z6YeP
+
     viewport = app.stage.addChild(
-        new PIXI.extras.Viewport({
-            screenWidth: window.innerWidth,
-            screenHeight: window.innerHeight,
-            worldWidth: universo.ancho * 70,
-            worldHeight: universo.global / universo.ancho * 70,
+        new Viewport.Viewport({
+        screenWidth: window.innerWidth,
+        screenHeight: window.innerHeight,
+        worldWidth: universo.ancho * 70,
+        worldHeight: universo.global / universo.ancho * 70,
         }),
     );
 
@@ -411,6 +412,8 @@ function createViewport() {
             }
             /////////////////////////////////////////////////
         });
+
+
 
     barra1 = app.stage.addChild(new PIXI.Container()); // crea la capa botones
     auxImg = app.stage.addChild(new PIXI.Container()); // contenedor para dibujos temporales
@@ -454,6 +457,8 @@ function createViewport() {
     //resize();
     PIXI.Ticker.shared.add(function(dt) {
         app.render();
+
+        viewport.zlevel=viewport.scale.x*100;
 
         mueve_sis(sis_posfinalx, sis_posfinaly);
         ajusta_zoom(viewport.zlevel);

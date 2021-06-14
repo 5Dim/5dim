@@ -173,10 +173,10 @@
     <link rel="stylesheet" href="{{ asset('astrometria/css/jquery-ui.css') }}">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="{{ asset('astrometria/pixi.min.js') }}"></script>
-    <script src="{{ asset('astrometria/pixi-filters.js') }}"></script>
+    <script src="{{ asset('js/pixi/pixi.min.js') }}"></script>
+    <script src="{{ asset('js/pixi/pixi-filters.js') }}"></script>
     <script src="{{ asset('astrometria/js/dat.gui.js') }}"></script>
-    <script src="{{ asset('astrometria/pixi-viewport.js') }}"></script>
+    <script src="{{ asset('js/pixi/viewport.min.js') }}"></script>
     <script src="{{ asset('astrometria/sistema.js') }}"></script>
     <script src="{{ asset('astrometria/cargador.js') }}"></script>
     <script src="{{ asset('astrometria/general.js') }}"></script>
