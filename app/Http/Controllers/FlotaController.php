@@ -542,9 +542,9 @@ class FlotaController extends Controller
                         $destino->mision = ucfirst($destinos[$dest]['mision']);
 
                         if ($id == false &&  $dest == 1) {
-                            $destino->mision_regreso = ucfirst("Transferir");
+                            $destino->mision_regreso = "Transferir";
                         } else {
-                            $destino->mision_regreso = ucfirst("Orbitar");
+                            $destino->mision_regreso = "Orbitar";
                         }
 
                         $result = Flotas::destinoTipoId($destino, $destinos[$dest]);
