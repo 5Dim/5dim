@@ -461,6 +461,7 @@ class Flotas extends Model
         $planetas_id = null;
         $errores = "";
 
+        //Log::info($destinosDest);
         try {
             if ($destinosDest['en_vuelo_id'] == null && $destinosDest['en_recoleccion_id'] == null && $destinosDest['en_orbita_id'] == null && $destinosDest['orbita'] != null) { //destino es planeta
 
@@ -486,12 +487,12 @@ class Flotas extends Model
                     throw new \Exception($errores);
                 }
             }
-
+            //Log::info("planetas_id ".$planetas_id);
             $destino->planetas_id = $planetas_id;
             $destino->en_vuelo_id = $destinosDest['en_vuelo_id'];
             $destino->en_orbita_id = $destinosDest['en_orbita_id'];
             $destino->en_recoleccion_id = $destinosDest['en_recoleccion_id'];
-            $destino->estrella = $destinosDest['estrella'];;
+            $destino->estrella = $destinosDest['estrella'];
             $destino->orbita = $destinosDest['orbita'];
         } catch (\Exception $e) {
             Log::error($e);
@@ -1071,7 +1072,7 @@ class Flotas extends Model
                                 }
                             } else {
                                 //$destinoAlcanzado = true;
-                                $errores = "Sólo se pueden recolectar cuerpos tipo asteroide ";
+                                $errores = "Sólo se pueden extraer cuerpos tipo planeta deshabitado ";
                                 Flotas::regresarFlota($estaFlota->publico, true);
                             }
                             break;
