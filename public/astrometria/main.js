@@ -691,6 +691,7 @@ function resize() {
     var nueva_pos = window.innerWidth / 2 - botones.width / 2;
     app.renderer.resize(window.innerWidth, window.innerHeight);
     botones.position.set(nueva_pos, 0);
+    document.body.style.overflow = 'hidden'; // vaya mierda no?
     //openFullscreen()
     // You can use the 'screen' property as the renderer visible
     // area, this is more useful than view.width/height because
@@ -705,6 +706,7 @@ function resize() {
 var app, viewport;
 
 window.onload = function() {
+    document.body.style.overflow = 'hidden'; // vaya mierda no?
     app = new PIXI.Application({
         transparent: true,
         width: window.innerWidth,
@@ -716,15 +718,20 @@ window.onload = function() {
     });
     document.body.appendChild(app.view);
     // app.view.style.position = 'fixed';
+    //document.getElementById('astrom').appendChild(app.view);
+
     app.view.style.width = "100vw";
     app.view.style.height = "100vh";
     app.view.style.top = 0;
     app.view.style.left = 0;
+    app.view.style.backgroundImage = "url('"+backgroundAstrometria+"')";
+
 
     // todo empieza con esta función, solo se empieza a generar el universo cuando se ha cargado la página por completo
     // y estamos seguros que todos los ficheros javascript están cargados y disponibles
     // empieza la magia...
     carga_universo();
+
 };
 
 var docu = document.documentElement;
