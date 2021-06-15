@@ -1046,8 +1046,9 @@ class Flotas extends Model
                                     $destinoAlcanzado = true;
                                 }
                             } else {
-                                $destinoAlcanzado = true;
+                                //$destinoAlcanzado = true;
                                 $errores = "Sólo se pueden recolectar cuerpos tipo asteroide ";
+                                Flotas::regresarFlota($estaFlota->publico, true);
                             }
                             break;
                         case "Orbitar":
