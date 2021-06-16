@@ -19,7 +19,7 @@ class CreateInvestigacionesTable extends Migration
             $table->string('categoria')->nullable();
             $table->unsignedTinyInteger('nivel')->default(0);
             $table->unsignedBigInteger('jugadores_id')->unsigned();
-            $table->foreign('jugadores_id')->references('id')->on('jugadores');
+            $table->foreign('jugadores_id')->references('id')->on('jugadores')->onDelete('cascade');
         });
     }
 
