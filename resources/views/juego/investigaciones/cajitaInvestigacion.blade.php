@@ -39,7 +39,7 @@
                         Mineral</td>
                     <td
                         class=" {{ $investigacion->coste->cristal == 0 ? 'text-muted' : 'text-warning' }}">
-                        cristal</td>
+                        Cristal</td>
                     <td
                         class=" {{ $investigacion->coste->gas == 0 ? 'text-muted' : 'text-warning' }}">
                         Gas</td>
