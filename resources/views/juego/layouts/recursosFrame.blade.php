@@ -443,7 +443,7 @@
                                 </div>
                             </th>
                             <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/astrometria') }}" target="_blank">
+                                <a id="constr" href="{{ url('/juego/astrometria') }}">
                                     @if (strpos(Request::fullUrl(), 'astrometria'))
                                         <img title="Astrometría"
                                             src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}" />
