@@ -225,6 +225,9 @@ class Flotas extends Model
                     if (Flotas::existeSistema($destinos[$dest]['estrella']) == false) {
                         $errores .= " Sistema " . $destinos[$dest]['estrella'] . " no existe ";
                     }
+
+                    //Log::info("destino ");
+                    //Log::info($destinos[$dest]);
                     //flotas
                 }
             }
@@ -461,25 +464,28 @@ class Flotas extends Model
         $planetas_id = null;
         $errores = "";
 
-        //Log::info($destinosDest);
+        //Log::info("message destinos: ");Log::info($destinosDest);
         try {
             if ($destinosDest['en_vuelo_id'] == null && $destinosDest['en_recoleccion_id'] == null && $destinosDest['en_orbita_id'] == null && $destinosDest['orbita'] != null) { //destino es planeta
-
+                //Log::info("planeta s ");
                 $planeta = Planetas::where('estrella', $destinosDest['estrella'])->where('orbita', $destinosDest['orbita'])->first();
                 if ($planeta != null) {
                     $planetas_id = $planeta->id;
                 } else {
-                    if (!$destinosDest['orbita']) {
-                        $errores = "No existe planeta destino " . $destinosDest['estrella'] . "x" . $destinosDest['orbita'];
+                    if (!$destinosDest['orbita'] || $destinosDest['mision']=="Recolectar" ||  $destinosDest['mision']=="Extraer" || $destinosDest['mision']=="Transferir"  || $destinosDest['mision']=="Transportar") {
+                        $errores = "En el destino no hay un planeta: " . $destinosDest['estrella'] . "x" . $destinosDest['orbita'];
                         //Log::info($errores);
                         throw new \Exception($errores);
                     } else {
-                        $destino->en_orbita_id = $destinosDest['en_orbita_id'];
+                        //$destino->en_orbita_id = $destinosDest['en_orbita_id'];
+                        //Log::info("miasion ".$destinosDest['mision']);
                         $destino->estrella = $destinosDest['estrella'];
                         $destino->orbita = $destinosDest['orbita'];
                         return [$destino, $errores];
                     }
                 }
+
+
             } else { //destino flota
 
                 if ($destinosDest['en_vuelo_id'] == null && $destinosDest['en_recoleccion_id'] == null && $destinosDest['en_orbita_id'] == null) {
@@ -488,6 +494,7 @@ class Flotas extends Model
                 }
             }
             //Log::info("planetas_id ".$planetas_id);
+
             $destino->planetas_id = $planetas_id;
             $destino->en_vuelo_id = $destinosDest['en_vuelo_id'];
             $destino->en_orbita_id = $destinosDest['en_orbita_id'];

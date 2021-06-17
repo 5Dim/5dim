@@ -534,6 +534,7 @@ class FlotaController extends Controller
                     //Log::info($Tfin);
 
                     //Log::info($destinos[$destAnt]);
+                    //Log::info("destinosM: ");
                     //Log::info($destinos[$dest]);
 
                     if ($destinos[$dest]['viable'] == true) {
@@ -844,7 +845,7 @@ class FlotaController extends Controller
                 //try {
             } catch (Exception $e) {
                 DB::rollBack();
-                $errores = "Error en Commit de envio de flotas " . $e->getLine() . " " . $e->getFile() . $errores; //.$e;
+                $errores = "Error en Commit de envio de flotas " . $e->getLine() . " " . $e->getFile() ."<br>". $errores; //.$e;
                 Log::info($errores . " " . $e);
             }
             //return redirect('/juego/flota');

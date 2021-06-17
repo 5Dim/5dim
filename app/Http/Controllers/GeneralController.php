@@ -16,8 +16,7 @@ use App\Models\MensajesIntervinientes;
 
 class GeneralController extends Controller
 {
-
-    public function index()
+    public function index($tab = 'envuelo-tab')
     {
         extract($this->recursos());
 
