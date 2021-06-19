@@ -369,7 +369,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 15;
+                    $fuselaje->coste = 9;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;
@@ -567,7 +567,7 @@ class Fuselajes extends Model
                     $fuselaje->tamanio = "media";
                     $fuselaje->tipo = "nave";
                     $fuselaje->tnave = "2";
-                    $fuselaje->coste = 9;
+                    $fuselaje->coste = 15;
                     $fuselaje->categoria = "jugador";
                     array_push($fuselajes, $fuselaje);
                     break;

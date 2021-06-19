@@ -621,8 +621,8 @@ class CualidadesFuselajes extends Model
                 $inirec14 = 1; //tiempo
                 $inirec15 = 1; //moneda
                 $inirec16 = 1; ////defensa ya tiene en cuenta el tamanio y cuando sale
-                $inirec18 = 18;   //factor de velocidad base
-                $inirec19 = 17;
+                $inirec18 = 30;   //factor de velocidad base
+                $inirec19 = 29;
                 $maxvel = 19; // indica la velocidad máxima que puede tener este disenio,
 
                 $CRnave1 = 3;     // caniones ligeros, cantidad por tipo
@@ -632,8 +632,8 @@ class CualidadesFuselajes extends Model
                 $CRnave5 = 0;     // DEFENSAS, cantidad por tipo
                 $CRnave6 = 0;     // BOMBAS, cantidad por tipo  ***  selectedA1 *
                 $CRnave7 = 2;     // caniones Misiles, cantidad por tipo
-                $CRnave8 = 30;     // CARGA PEQUEniA, cantidad por tipo
-                $CRnave9 = 2;     // MEDIANA, cantidad por tipo
+                $CRnave8 = 40;     // CARGA PEQUEniA, cantidad por tipo
+                $CRnave9 = 4;     // MEDIANA, cantidad por tipo
                 $CRnave10 = 0;     //CARGA GRANDE, cantidad por tipo
                 $CRnave14 = 0;    //Carga ENorme
                 $CRnave15 = 0;    //Carga Mega(estaciones)
