@@ -1041,31 +1041,11 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 100;
-        $constante->minimo = 100;
-        $constante->maximo = 600;
-        $constante->codigo = 'anchouniverso';
-        $constante->descripcion = 'ancho del universo';
-        $constante->tipo = 'universo';
-        $constante->votable = 0;
-        array_push($producciones, $constante);
-
-        $constante = new Constantes();
         $constante->valor = 10;
         $constante->minimo = 5;
         $constante->maximo = 20;
         $constante->codigo = 'luzdemallauniverso';
         $constante->descripcion = 'distancia entre dos sistemas adyacentes';
-        $constante->tipo = 'universo';
-        $constante->votable = 0;
-        array_push($producciones, $constante);
-
-        $constante = new Constantes();
-        $constante->valor = 7500;
-        $constante->minimo = 6000;
-        $constante->maximo = 10000;
-        $constante->codigo = 'estrellasinicio';
-        $constante->descripcion = 'cantidad sistemas que se general al inicio';
         $constante->tipo = 'universo';
         $constante->votable = 0;
         array_push($producciones, $constante);
@@ -1214,49 +1194,6 @@ class Constantes extends Model
         $constante->votable = 0;
         array_push($producciones, $constante);
 
-
-        $constante = new Constantes();
-        $constante->valor = 30;
-        $constante->minimo = 20;
-        $constante->maximo = 80;
-        $constante->codigo = 'cantidadporplanetaasteroides';
-        $constante->descripcion = 'cantidad 1/x de asteroides por planeta';
-        $constante->tipo = 'universo';
-        $constante->votable = 0;
-        array_push($producciones, $constante);
-
-
-        $constante = new Constantes();
-        $constante->valor = 30;
-        $constante->minimo = 20;
-        $constante->maximo = 80;
-        $constante->codigo = 'cantidadporplanetasoles';
-        $constante->descripcion = 'cantidad 1/x de asteroides por planeta';
-        $constante->tipo = 'universo';
-        $constante->votable = 0;
-        array_push($producciones, $constante);
-
-        $constante = new Constantes();
-        $constante->valor = 80;
-        $constante->minimo = 20;
-        $constante->maximo = 180;
-        $constante->codigo = 'cantidadporplanetaruinas';
-        $constante->descripcion = 'cantidad 1/x de ruinas por planeta';
-        $constante->tipo = 'universo';
-        $constante->votable = 0;
-        array_push($producciones, $constante);
-
-        $constante = new Constantes();
-        $constante->valor = 5000;
-        $constante->minimo = 1000;
-        $constante->maximo = 4000;
-        $constante->codigo = 'cantidadplanetas';
-        $constante->descripcion = 'cantidad planetas de inicio';
-        $constante->tipo = 'universo';
-        $constante->votable = 0;
-        array_push($producciones, $constante);
-
-
         $constante = new Constantes();
         $constante->valor = 200000;
         $constante->minimo = 30000;
@@ -1266,7 +1203,6 @@ class Constantes extends Model
         $constante->tipo = 'universo';
         $constante->votable = 0;
         array_push($producciones, $constante);
-
 
         $constante = new Constantes();
         $constante->valor = 1;
@@ -1304,6 +1240,88 @@ class Constantes extends Model
         $constante->maximo = 60*15;
         $constante->codigo = 'tiempoPuntosFlotas';
         $constante->descripcion = 'cada cuanto tiempo del viaje hay un punto de flota';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        //GENERACION UNIVERSO
+
+        $constante = new Constantes();
+        $constante->valor = 1800;
+        $constante->minimo = 1000;
+        $constante->maximo = 10000;
+        $constante->codigo = 'cantidadestrellas';
+        $constante->descripcion = 'Cantidad total de estrellas en el universo';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 70;
+        $constante->minimo = 60;
+        $constante->maximo = 80;
+        $constante->codigo = 'cantidadplanetas';
+        $constante->descripcion = 'cantidad planetas de inicio';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 20;
+        $constante->minimo = 20;
+        $constante->maximo = 80;
+        $constante->codigo = 'cantidadporplanetaasteroides';
+        $constante->descripcion = 'cantidad 1/x de asteroides por planeta';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 10;
+        $constante->minimo = 20;
+        $constante->maximo = 80;
+        $constante->codigo = 'cantidadporplanetasoles';
+        $constante->descripcion = 'cantidad 1/x de asteroides por planeta';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 5;
+        $constante->minimo = 0;
+        $constante->maximo = 10;
+        $constante->codigo = 'cantidadporplanetaruinas';
+        $constante->descripcion = 'cantidad 1/x de ruinas por planeta';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 3;
+        $constante->minimo = 1;
+        $constante->maximo = 4;
+        $constante->codigo = 'cantidadobjetossistema';
+        $constante->descripcion = 'cantidad de objetos por estrella';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 100;
+        $constante->minimo = 100;
+        $constante->maximo = 600;
+        $constante->codigo = 'anchouniverso';
+        $constante->descripcion = 'ancho del universo';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 9999;
+        $constante->minimo = 1000;
+        $constante->maximo = 100000;
+        $constante->codigo = 'estrellamaxima';
+        $constante->descripcion = 'ultima estrella universo';
         $constante->tipo = 'universo';
         $constante->votable = 0;
         array_push($producciones, $constante);

@@ -119,6 +119,11 @@ class Jugadores extends Model
             $jugador->nombre = Auth::user()->name;
             $jugador->avatar = "http://161.97.143.51/img/avatar.png";
             $jugador->user_id = Auth::user()->id;
+
+            $nombreJugon = substr($jugador->nombre, 4);
+            $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
+            $jugador->baliza = substr($nombreJugon, 0, 3) . substr($timestamp, 5);
+
             $jugador->save();
         } else {
             $jugador = Auth::user()->jugador;

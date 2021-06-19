@@ -20,6 +20,7 @@ class CreateJugadoresTable extends Migration
             $table->unsignedMediumInteger('puntos_construccion')->default(0);
             $table->unsignedMediumInteger('puntos_investigacion')->default(0);
             $table->unsignedMediumInteger('puntos_flotas')->default(0);
+            $table->string('baliza')->unique();
             $table->timestamp('premiun_at')->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');

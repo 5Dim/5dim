@@ -831,6 +831,62 @@ class Astrometria extends Model
     {
         return true;
     }
+
+    public static function generarUniverso()
+    {
+        // Estrellas
+        $cantidadEstrellas = Constantes::where("codigo", 'cantidadestrellas')->first()->valor;
+        $estrellaMaxima = Constantes::where('codigo', 'estrellamaxima')->first()->valor;
+
+        // Cantidad objetos
+        $objetosMax = Constantes::where("codigo", 'cantidadobjetossistema')->first()->maximo;
+        $objetosMin = Constantes::where("codigo", 'cantidadobjetossistema')->first()->minimo;
+
+        // Porcentajes de cada objeto
+        $probabilidadPlanetas = Constantes::where("codigo", 'cantidadplanetas')->first()->valor;
+        $probabilidadAsteroides = Constantes::where("codigo", 'cantidadporplanetaasteroides')->first()->valor;
+        $probabilidadSoles = Constantes::where("codigo", 'cantidadporplanetasoles')->first()->valor;
+
+        for ($i = 0; $i < $cantidadEstrellas; $i++) {
+            // Constrol de sistema
+            $planetaElegido = new Planetas();
+            $sistema = 0;
+            $intentos = 0;
+            while (!empty($planetaElegido) && $intentos < 500) {
+                $sistema = rand(0, $estrellaMaxima);
+                $planetaElegido = Planetas::where('estrella', $sistema)->first();
+                $intentos++;
+            }
+            $cantidadObjetos = rand($objetosMin, $objetosMax);
+            $posiciones = [];
+            for ($j = 0; $j < $cantidadObjetos; $j++) {
+                //Control de orbita
+                $orbita = rand(1, 9);
+                $intentos = 0;
+                while (in_array($orbita, $posiciones) && $intentos < 15) {
+                    $orbita = rand(1, 9);
+                    $intentos++;
+                }
+                array_push($posiciones, $orbita);
+
+                $planetaElegido = new Planetas();
+                $planetaElegido->estrella = $sistema;
+                $planetaElegido->orbita = $orbita;
+                $objeto = rand(0, 100);
+                if ($objeto >= 0 && $objeto < 70) {
+                    $planetaElegido->tipo = "planeta";
+                    $planetaElegido->imagen = random_int(10, 69);
+                } elseif ($objeto >= 70 && $objeto < 90) {
+                    $planetaElegido->tipo = "asteroide";
+                    $planetaElegido->imagen = random_int(70, 79);
+                } elseif ($objeto >= 90 && $objeto <= 100) {
+                    $planetaElegido->tipo = "sol";
+                    $planetaElegido->imagen = random_int(80, 89);
+                }
+                $planetaElegido->save();
+            }
+        }
+    }
 }
 
 

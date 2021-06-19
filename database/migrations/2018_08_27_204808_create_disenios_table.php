@@ -19,6 +19,8 @@ class CreateDiseniosTable extends Migration
             $table->string('descripcion')->default("");
             $table->integer('posicion')->default(9);
             $table->string('codigo');
+            $table->string('publico');
+            $table->string('privado');
             $table->unsignedTinyInteger('skin')->default(1);
             $table->unsignedBigInteger('jugadores_id')->unsigned();
             $table->foreign('jugadores_id')->references('id')->on('jugadores');

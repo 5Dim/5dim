@@ -43,12 +43,12 @@ class MensajesController extends Controller
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) {
                 $query->where('receptor', session()->get('jugadores_id'))
                     ->where('categoria', 'recibidos');
-            })->orderBy('id', 'desc')->get();
-            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orderBy('id', 'desc')->get();
+            })->orderBy('id', 'desc')->paginate(15);
+            $enviados = Mensajes::where('emisor', session()->get('jugadores_id'))->orderBy('id', 'desc')->paginate(15);
             $flotas = Mensajes::whereHas('intervinientes', function (Builder $query) {
                 $query->where('receptor', session()->get('jugadores_id'))
                     ->where('categoria', 'flotas');
-            })->orderBy('id', 'desc')->get();
+            })->orderBy('id', 'desc')->paginate(15);
             $mios = MensajesIntervinientes::where('receptor', session()->get('jugadores_id'))->get();
         }
 

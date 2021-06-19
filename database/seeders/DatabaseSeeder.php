@@ -42,21 +42,21 @@ class DatabaseSeeder extends Seeder
             'timezone' => 'Europe/Madrid',
             'idioma' => 'es',
         ]);
-        Planetas::factory()->times(1200)->create([
-            'tipo' => 'planeta',
-        ]);
-        for ($i = 0; $i < 500; $i++) {
-            Planetas::factory()->create([
-                'tipo' => 'asteroide',
-                'imagen' => $faker->numberBetween(70, 79),
-            ]);
-        }
-        for ($i = 0; $i < 200; $i++) {
-            Planetas::factory()->create([
-                'tipo' => 'sol',
-                'imagen' => $faker->numberBetween(80, 89),
-            ]);
-        }
+        // Planetas::factory()->times(1200)->create([
+        //     'tipo' => 'planeta',
+        // ]);
+        // for ($i = 0; $i < 500; $i++) {
+        //     Planetas::factory()->create([
+        //         'tipo' => 'asteroide',
+        //         'imagen' => $faker->numberBetween(70, 79),
+        //     ]);
+        // }
+        // for ($i = 0; $i < 200; $i++) {
+        //     Planetas::factory()->create([
+        //         'tipo' => 'sol',
+        //         'imagen' => $faker->numberBetween(80, 89),
+        //     ]);
+        // }
         // for ($i = 0; $i < 5; $i++) {
         //     Planetas::factory()->create([
         //         'tipo' => 'nodriza',

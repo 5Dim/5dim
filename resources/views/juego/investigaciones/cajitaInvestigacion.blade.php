@@ -406,4 +406,10 @@
     calculaTiempoInvestigacion(@json($investigacion->coste), @json($velInvest->valor), @json($investigacion->
         codigo), @json($investigacion->nivel), @json($nivelLaboratorio->nivel));
 
+    // Tooltip
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
 </script>

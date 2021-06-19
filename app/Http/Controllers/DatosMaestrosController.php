@@ -8,6 +8,7 @@ use App\Models\Producciones;
 use App\Models\Dependencias;
 use App\Models\Fuselajes;
 use App\Models\Armas;
+use App\Models\Astrometria;
 use App\Models\CostesArmas;
 use App\Models\Tiendas;
 use App\Models\CostesDisenios;
@@ -23,7 +24,6 @@ class DatosMaestrosController extends Controller
         return redirect('/juego/construccion');
     }
 
-
     public function DatosMaestros()
     {
         Constantes::generarDatosConstantes();
@@ -34,6 +34,7 @@ class DatosMaestrosController extends Controller
         Armas::generarDatosArmas();
         CostesArmas::generarDatosCostesArmas();
         Tiendas::generarDatosTiendas();
+        Astrometria::generarUniverso();
 
         $planetas = Planetas::all();
         foreach ($planetas as $planeta) {

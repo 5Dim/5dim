@@ -59,9 +59,9 @@ class Planetas extends Model
     public static function nuevoPlaneta($idJugador)
     {
         //
-        $i = 0;
-        $sistema = 0;
         $planetaElegido = new Planetas();
+        $sistema = 0;
+        $i = 0;
         while (!empty($planetaElegido) && $i < 500) {
             $sistema = rand(0, 9999);
             $planetaElegido = Planetas::where('estrella', $sistema)->first();
@@ -78,6 +78,7 @@ class Planetas extends Model
             $planetaElegido->imagen = random_int(10, 69);
             $planetaElegido->tipo = "planeta";
         }
+        $planetaElegido->movimientos = 1;
         $planetaElegido->jugadores_id = $idJugador;
         $planetaElegido->nombre = 'Planeta principal';
         $planetaElegido->creacion = time();

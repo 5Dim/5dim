@@ -13,9 +13,12 @@ use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Alianzas;
+use App\Models\EnDisenios;
+use App\Models\Flotas;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
 use App\Models\Tiendas;
+use Illuminate\Support\Facades\Log;
 
 class JuegoController extends Controller
 {
@@ -127,5 +130,13 @@ class JuegoController extends Controller
         }
         return back();
         // return redirect('/juego/calcularPuntos');
+    }
+
+    public function terminarColas()
+    {
+        EnConstrucciones::terminarColaConstrucciones();
+        EnInvestigaciones::terminarColaInvestigaciones();
+        EnDisenios::terminarColaDisenios();
+        Flotas::llegadaFlotas();
     }
 }

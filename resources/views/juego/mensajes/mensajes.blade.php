@@ -67,9 +67,9 @@
                         'clase' => 'info',
                         ])
                     @endforeach
-                    {{-- <span>
+                    <span>
                         {{ $flotas->links() }}
-                    </span> --}}
+                    </span>
                 </div>
                 <div class="tab-pane fade" id="combates" role="tabpanel" aria-labelledby="combates-tab">
 
