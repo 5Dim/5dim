@@ -21,6 +21,7 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Middleware\JugadorLogueado;
 use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\TerminarColas;
+use App\Http\Controllers\GruposNavesController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\MailtrapExample;
 use Illuminate\Support\Facades\Mail;
@@ -184,4 +185,7 @@ Route::middleware(
     Route::get('/juego/mensajes/{tab?}', [MensajesController::class, 'index']);
     Route::post('/juego/mensajes/enviarMensaje', [MensajesController::class, 'enviarMensaje']);
     Route::get('/juego/mensajes/borrar/{idMensaje}/{idJugador}/{tab?}', [MensajesController::class, 'borrarMensaje']);
+
+    //Grupos Naves
+    Route::get('/juego/gruposNaves/{tab?}', [GruposNavesController::class, 'index']);
 });
