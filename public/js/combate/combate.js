@@ -228,7 +228,10 @@ window.onload = function () {
     interactive: true
   })
   //document.body.appendChild(app.view)
-  document.getElementById("combate").appendChild(app.view)
+  document.getElementById("combate").appendChild(app.view);
+
+  app.view.style.width = "100%";
+  app.view.style.height = "100";
 
   app.stage.addChild(fondoImg);
   app.stage.addChild(paralax4);
@@ -243,6 +246,10 @@ window.onload = function () {
   camera.addChild(naves);
 
   app.stage.addChild(interface);
+
+  if(cantidadRondas>1){
+    CrearBarraTiempo();
+  }
 
   //camera.interactive=true;
   //camera.on('click',SeleccionNada);
@@ -265,7 +272,7 @@ function preloadAssets() {
     preloadsImages.add('planetaG71', './Astrometria2020/img/sistema/planetaG71.png')
     preloadsImages.add('satelite2', './Astrometria2020/img/sistema/satelite2.png')
     */
-  //preloadsImages.add('starTexture', './Astrometria2020/img/estrella-blanca.png');
+  preloadsImages.add('starTexture',imgStartexture); // {{ asset("img/combate/starTexture.png") }}
 
   preloadsImages.load((loader, resources) => {
     CrearFondo();

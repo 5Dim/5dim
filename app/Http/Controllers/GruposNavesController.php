@@ -8,6 +8,7 @@ use App\Models\Almacenes;
 use App\Models\Planetas;
 use App\Models\Producciones;
 use App\Models\Construcciones;
+use App\Models\Disenios;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
@@ -21,6 +22,9 @@ class GruposNavesController extends Controller
     {
         extract($this->recursos());
 
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        $diseniosJugador = $jugadorActual->disenios;
+        $disenios = Disenios::calculaMejoras($diseniosJugador);
 
         return view('juego.gruposNaves.gruposNaves', compact(
             // Recursos
@@ -37,6 +41,8 @@ class GruposNavesController extends Controller
             'nivelImperio',
             'nivelEnsamblajeFuselajes',
             'tab',
+            'jugadorActual',
+            'disenios'
         ));
     }
 }

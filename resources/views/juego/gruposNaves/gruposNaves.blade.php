@@ -43,9 +43,74 @@
         </div>
     </div>
 
+    <div id="combate" name="combate"></div>
+
 
 
     <script>
         mostrarTab(@json($tab));
+
+        let jugadorActual = @json($jugadorActual);
+        let disenios=@json($disenios);
+
+                //imgfondoparalax1="{{ asset('astrometria/img/sistema/planeta51.png')}}";
+        //imgfondoparalax2="{{ asset('astrometria/img/sistema/planeta51.png')}}";
+        imgNada="{{ asset('img/combate/nada.png') }}";
+        imgStartexture="{{ asset('img/combate/starTexture.png') }}";
+        imgfondoparalax1=imgNada;
+        imgfondoparalax2=imgNada;
+
+
     </script>
+
+<script src="{{ asset('js/pixi/pixi.min.js') }}"></script>
+<script src="{{ asset('js/pixi/pixi-filters.js') }}"></script>
+<script src="{{ asset('js/combate/cargasInicio.js') }}"></script>
+<script src="{{ asset('js/combate/gruposNaves.js') }}"></script>
+<script src="{{ asset('js/combate/combate.js') }}"></script>
+<script src="{{ asset('js/combate/controles.js') }}"></script>
+
+<script src="{{ asset('js/combate/interface.js') }}"></script>
+<script>
+
+    //////////////////////////////
+    // datos de jugador
+
+        var alianzas=new Array();
+        var alianza=new Array();
+        alianza.nombre="ninguna";
+        alianzas[0]=alianza;
+
+        var valoresjugador=new Array();
+
+        valoresjugador.escudo=imgNada; //log de la alianza
+        valoresjugador.DefensaInicial=0; //se calcula dinamicamente
+        valoresjugador.nombre=jugadorActual.nombre;
+        valoresjugador.njugador=jugadorActual.id;
+        valoresjugador.ordenjugador=0;
+        valoresjugador.bando=1;
+        valoresjugador.alianza=0;
+        valoresJugadores[jugadorActual.id]=valoresjugador;
+
+    //////////////////////////////
+    // datos de diseños naves
+
+    var valoresDisenos=new Array();
+    disenios.forEach(disenio => {
+        var diseno=new Array();
+        ndiseno=disenio['id'];
+        diseno.nimagen=disenio['fuselajes_id'];
+        diseno.skin=disenio['skin'];
+        diseno.ataque=disenio['datos']['ataque'];
+        diseno.defensa=disenio['datos']['defensa'];
+        diseno.denominacion=disenio['codigo'];
+        diseno.nombre=disenio['nombre'];
+
+        valoresDisenos[ndiseno]=diseno;
+
+    });
+
+
+</script>
+
 @endsection

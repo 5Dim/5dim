@@ -4,6 +4,7 @@ const menugeneral = new PIXI.Container();
 const menunaveseleccionada = new PIXI.Container();
 const menuGruposeleccionada = new PIXI.Container();
 const menuTiempo = new PIXI.Container();
+const menuGruposNaves = new PIXI.Container();
 
 const barrasJugador = new Array();
 const porcentJugador = new Array();
@@ -12,6 +13,7 @@ interface.addChild(menugeneral);
 interface.addChild(menunaveseleccionada);
 interface.addChild(menuGruposeleccionada);
 interface.addChild(menuTiempo);
+interface.addChild(menuGruposNaves);
 
 const extensionBarras = 3; //multiplica el % para su longitud
 var lineaJugador = 0; //linea de barra para cada jugador
@@ -55,6 +57,7 @@ fondoMenuGeneral.alpha = .5;
 fondoMenuGeneral.endFill();
 menugeneral.addChild(fondoMenuGeneral);
 
+function CrearFondoMenuTiempo(){
 /// fondo menu tiempo
 fondoMenuTiempo = new PIXI.Graphics();
 fondoMenuTiempo.lineStyle(2, 0xffffff, 1);
@@ -63,6 +66,20 @@ fondoMenuTiempo.drawRect(470, 0, 200+tiempoTurnos.length*120, 65);
 fondoMenuTiempo.alpha = .5;
 fondoMenuTiempo.endFill();
 menuTiempo.addChild(fondoMenuTiempo);
+}
+function CrearFondoGruposNaves(){
+    anchoDespliegue=1600;
+    altoDespliege=400;
+    margenIzq=(window.innerWidth-anchoDespliegue)/2;
+    recuadroGruposNaves = new PIXI.Graphics();
+    recuadroGruposNaves.lineStyle(2, 0xffd700, 1);
+    recuadroGruposNaves.beginFill(0x000000);
+    recuadroGruposNaves.drawRect(margenIzq, 0, anchoDespliegue, altoDespliege);
+    recuadroGruposNaves.alpha = 0.9;
+    recuadroGruposNaves.endFill();
+    menuGruposNaves.addChild(recuadroGruposNaves);
+    }
+
 
 
 /// fondo de info del grupo
@@ -244,21 +261,25 @@ function CrearTextosGrupos() {
 
 }
 
-CrearBarraTiempo();
+//CrearBarraTiempo();
+function CrearCirculoTiempo(){
+    const circulosTiempo = new Array();
 
-const circulosTiempo = new Array();
+    circuloTiempo = new PIXI.Graphics();
+    circuloTiempo.lineStyle(2, 0xffffff, 1);
+    circuloTiempo.beginFill(0x3500FA, 1);
+    circuloTiempo.drawCircle(700, 30, 10);
+    circuloTiempo.endFill();
+    menuTiempo.addChild(circuloTiempo);
+}
 
-circuloTiempo = new PIXI.Graphics();
-circuloTiempo.lineStyle(2, 0xffffff, 1);
-circuloTiempo.beginFill(0x3500FA, 1);
-circuloTiempo.drawCircle(700, 30, 10);
-circuloTiempo.endFill();
-menuTiempo.addChild(circuloTiempo);
 
-CrearBotonPausa();
+//CrearBotonPausa();
 
 
 function CrearBarraTiempo() {
+
+    CrearFondoMenuTiempo();
 
     const circulosT = new Array();
 
@@ -286,6 +307,9 @@ function CrearBarraTiempo() {
         menuTiempo.addChild(circuloT);
         circulosT[i] = circuloT;
     }
+    CrearCirculoTiempo();
+    CrearBotonPausa();
+
 }
 
 
@@ -341,5 +365,10 @@ function CrearSimboloPausar() {
     pausar.endFill();
 
 }
+
+if (PantallaGruposNaves){
+    CrearFondoGruposNaves();
+}
+
 
 
