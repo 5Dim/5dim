@@ -337,7 +337,7 @@
                         <i class="fas fa-chart-bar"></i> Estadisticas</a>
                 @endif
 
-                <hr class="text-light">
+                {{-- <hr class="text-light"> --}}
                 <footer class="footer mt-auto">
                     <div class="container">
                         <ul class="list-inline">
