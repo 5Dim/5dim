@@ -197,7 +197,8 @@
                 <div class="card bg-dark align-middle" style="max-width: 100%; border: 0;">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ Auth::user()->jugador->avatar }}" alt="..." width="100px" height="100px" class="" style="padding-left: 5px; padding-top: 10px">
+                            <img src="{{ Auth::user()->jugador->avatar }}" alt="..." width="100px" height="100px"
+                                class="" style="padding-left: 5px; padding-top: 10px">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
@@ -257,7 +258,7 @@
                         <i class="fas fa-atom"></i> Investigación</a>
                 @else
                     <a href="{{ url('/juego/investigacion') }}" class="align-middle">
-                        <i class="fas fa-atom"></i> investigacion</a>
+                        <i class="fas fa-atom"></i> Investigación</a>
                 @endif
                 @if (strpos(Request::fullUrl(), 'planeta'))
                     <a href="{{ url('/juego/planeta') }}" class="align-middle text-warning">
