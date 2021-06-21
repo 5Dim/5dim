@@ -21,8 +21,8 @@ const HEIGHT = 0;
 var width = 0,
     height = 0;
 var cambios = 0;
-var sis_posfinaly = window.innerHeight + 100; //posición y de la vista planetaria
-var sis_posfinalx = window.innerWidth / 2 - 512; //posición x de la vista planetaria
+var sis_posfinaly = window.innerHeight ; //posición y de la vista planetaria
+var sis_posfinalx = (window.innerWidth-240) / 2 - 512; //posición x de la vista planetaria
 var txt_fps = "";
 var txt_num_flotas = "";
 var txt_zoom = "";
@@ -716,9 +716,10 @@ window.onload = function() {
         autoResize: true,
         resolution: devicePixelRatio,
     });
-    document.body.appendChild(app.view);
+
+    //document.body.appendChild(app.view);
     // app.view.style.position = 'fixed';
-    //document.getElementById('astrom').appendChild(app.view);
+    document.getElementById('astrometria').appendChild(app.view);
 
     app.view.style.width = "100vw";
     app.view.style.height = "100vh";

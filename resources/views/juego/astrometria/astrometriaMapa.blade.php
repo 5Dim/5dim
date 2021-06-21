@@ -60,6 +60,7 @@
             height: 90px;
             padding: 4px;
             margin-top: 5px;
+            left: 305px;
             background: none repeat scroll 0 0 #002224ab;
             border: 1px solid #686D79;
             position: absolute;
@@ -152,13 +153,15 @@
             text-align: center;
         }
         .dg.ac{
-            top:200px !important;
+            top:120px !important;
         }
 
 
         .boton_enviar {}
 
     </style>
+
+
     <link rel="stylesheet" href="{{ asset('astrometria/css/jquery-ui.css') }}">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -215,4 +218,6 @@
             </p>
         </form>
     </div>
+
+    <div id="astrometria" name="astrometria"></div>
 

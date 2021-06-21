@@ -25,7 +25,7 @@ var loader = PIXI.loader.add('cloudstars',"img/botones/atacar0.png")
 */
 
 function versistema(texto) {
-    sis_posfinaly = window.innerHeight - 400;
+    sis_posfinaly = window.innerHeight - 320;
     txtsistema.text = "";
     txtsistema.text = texto.n;
 
