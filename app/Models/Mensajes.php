@@ -658,7 +658,7 @@ class Mensajes extends Model
             <br>- Crear una alianza o aliarte con amigos es muy buena idea ya que las tecnologías se comparten de forma automática.
             <br>- Además las naves se mejoran automaticamente cada vez que subes una tecnología.
             <br>- Subir la tecnología de fuselajes es siempre muy rentable, pero ten en cuenta que las naves mas avanzadas son mas caras de construir.
-            <br>- Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/X4hRNCYyt8'>discord</a>.
+            <br>- Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/2BB7JV48'>discord</a>.
 
             <br><br>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>";
 

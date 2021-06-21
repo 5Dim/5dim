@@ -51,7 +51,6 @@
         gtag('js', new Date());
 
         gtag('config', 'G-FL8GT18W0Q');
-
     </script>
 
     <!-- Fonts -->
@@ -78,483 +77,520 @@
 
     <!-- Custom -->
     <link href="{{ asset('css/custom.css') }}" media="all" rel="stylesheet" type="text/css" />
+
+
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 100vh !important;
+            width: 300px;
+            position: relative;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            overflow-y: auto;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav>a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .card-text>a {
+            text-decoration: none;
+            /* font-size: 20px; */
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav footer a {
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav button {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            /* font-size: 20px; */
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .boton-menu {
+            font-size: 30px;
+            cursor: pointer;
+            position: fixed;
+            padding: 10px;
+        }
+
+        @media screen and (max-width: 1500px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav>a {
+                font-size: 18px;
+            }
+
+            .sidenav {
+                height: 100vh !important;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: #111;
+                overflow-x: hidden;
+                transition: 0.5s;
+                padding-top: 60px;
+            }
+        }
+
+        .notification {
+            position: relative;
+            font-size: 14px;
+            top: -22px;
+            left: -15px;
+        }
+
+    </style>
 </head>
 
 <body class="bg" id="recursosFrame">
-    <div id="menuC" class="container-fluid ">
-        <div id="menuCuenta" class="row d-flex overflow-auto ">
-            <table class="table table-borderless table-sm text-center borderless anchofijo" style="margin: 0px;">
-                <thead>
-                    <tr>
-                        <th class="text-warning">
-                            <a href="{{ url('/juego/mensajes') }}" target="_self">
-                                @if ($mensajeNuevo)
-                                    <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men2.png') }}"
-                                        title="Mensajes" />
-                                @else
-                                    <img class="" src="{{ asset('img/juego/skin0/icons/ico-barra-men.png') }}"
-                                        title="Mensajes" />
-                                @endif
-                            </a>
-                        </th>
-                        <th class="text-warning  ">
-                            {{-- <a href="misiones.php?tipo=1" target="_self"> --}}
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-mis.png') }}" title="Misiones" />
-                            {{-- </a> --}}
-                        </th>
-                        <th class="text-warning  ">
-                            <a href="{{ url('/juego/estadisticas') }}" target="_self">
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-est.png') }}"
-                                    title="Estadisticas" />
-                            </a>
-                        </th>
-                        <th class="text-warning  ">
-                            {{-- <a href="http://es.5dim.wikia.com/wiki/Wiki_5dim" target="_blank"> --}}
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-wik.png') }}" title="Wikia" />
-                            {{-- </a> --}}
-                        </th>
-                        <th class="text-warning  ">
-                            <a href="https://discord.gg/X4hRNCYyt8" target="_blank">
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-sop.png') }}"
-                                    title="Discord channel" />
-                            </a>
-                        </th>
-                        <th class="text-warning " style="max-width: 120px;">
-                            <a tabindex="0" type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-bs-trigger="focus" title="Puntos de imperio"
-                                data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir {{ (int) $consImperio }} por cada nivel de administracion de imperio (investigacion)">
-                                PI <span
-                                    class="badge bg-warning text-dark">{{ $nivelImperio * $consImperio + 10 - count($planetasJugador) * 10 }}</span>
-                            </a>
-                        </th>
-                        <th class="text-warning  " style="max-width: 120px;">
-                            <div class="accordion accordion-flush" id="accordionFlushExample">
-                                <div class="accordion-item bg-transparent">
-                                    <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="btn btn-sm btn-dark" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                            aria-controls="flush-collapseOne">
-                                            Recursos
-                                        </button>
-                                    </h2>
-                                </div>
+    <div class="d-flex flex-row">
+        <div class="">
+            <span class="text-white boton-menu" onclick="openNav()">
+                <i class="fas fa-bars"></i>
+            </span>
+            <div id="mySidenav" class="sidenav d-flex flex-column bd-highlight bg-dark text-muted">
+                <a href="javascript:void(0)" class="closebtn text-white" onclick="closeNav()">
+                    <i class="far fa-times-circle"></i>
+                </a>
+                <div class="card bg-dark align-middle" style="max-width: 100%; border: 0;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="{{ Auth::user()->jugador->avatar }}" alt="..." width="100px" height="100px" class="" style="padding-left: 5px; padding-top: 10px">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">{{ Auth::user()->jugador->nombre }}</h5>
+                                <p class="card-text">
+                                    @if (strpos(Request::fullUrl(), 'opciones'))
+                                        <a href="{{ url('/juego/opciones') }}" class="align-middle text-warning">
+                                            <i class="fas fa-user-cog"></i> Opciones</a>
+                                    @else
+                                        <a href="{{ url('/juego/opciones') }}" class="align-middle">
+                                            <i class="fas fa-user-cog"></i> Opciones</a>
+                                    @endif
+                                    <a href="https://discord.gg/2BB7JV48" class="">
+                                        <i class="fab fa-discord"></i> Discord
+                                    </a>
+                                </p>
                             </div>
-                        </th>
-                        <th class="text-warning ">
-                            <a tabindex="0" type="button" class="btn btn-sm btn-dark popover-dismiss"
-                                data-bs-toggle="popover" data-bs-trigger="focus" title="Tienes 0 ataque(s) en curso"
-                                data-bs-content="Una o varias flotas enemigas se dirigen a nuestros planetas o flotas">
-                                Ataques <span class="badge bg-warning text-dark">0</span>
-                            </a>
-                        </th>
-                        {{-- <th class="text-warning " style="max-width: 120px;">
-                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="popover"
-                                data-trigger="focus" title="Novas"
-                                data-bs-content="Las novas se usan para adquirir fuselajes especiales, modo premium y algunos packs de defensa, están disponibles en la tienda">
-                                Novas <span class="badge bg-warning text-dark">{{ Auth::user()->novas }}</span>
-                            </button>
-                        </th> --}}
-                        <th class="text-warning  ">
-                            {{-- <a href="cuenta.php" target="_self"> --}}
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-opc.png') }}" title="Opciones" />
-                            {{-- </a> --}}
-                        </th>
-                        <th class="text-warning  ">
-                            {{-- <a href="http://quintadim.foroactivo.com" target="_blank"> --}}
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-foro.png') }}" title="Foro" />
-                            {{-- </a> --}}
-                        </th>
-                        <th class="text-warning  ">
-                            <a href="{{ url('/juego/tienda') }}" target="_self">
-                                <img src="{{ asset('img/juego/skin0/icons/ico-barra-shop.png') }}" title="Tienda" />
-                            </a>
-                        </th>
-                        <th class="text-warning  ">
-                            {{-- <a href="mensajeC.php?adm=1" target="_self"> --}}
-                            <img src="{{ asset('img/juego/skin0/icons/ico-barra-rep.png') }}"
-                                title="Reportar Admin" />
-                            {{-- </a> --}}
-                        </th>
-                        <th class="text-warning  ">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a href="{{ url('/logout') }}" target="_self"
-                                    onclick="event.preventDefault(); this.closest('form').submit();">
-                                    <img src="{{ asset('img/juego/skin0/icons/ico-barra-salir2.png') }}"
-                                        title="Salir" />
-                            </form>
-                            </a>
-                        </th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <div id="menuRecursos" class=" ">
-            <div id="flush-collapseOne" class="accordion-collapse collapse show overflow-auto"
-                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <table class="table table-borderless table-sm text-center borderless">
-                    <thead>
-                        <tr>
-                            <th class="text-warning borderless">
-                                Personal
-                            </th>
-                            <th class="text-warning borderless">
-                                Mineral
-                            </th>
-                            <th class="text-warning borderless">
-                                Cristal
-                            </th>
-                            <th class="text-warning borderless">
-                                Gas
-                            </th>
-                            <th class="text-warning borderless">
-                                Plástico
-                            </th>
-                            <th class="text-warning borderless">
-                                Cerámica
-                            </th>
-                            <th class="text-warning borderless">
-                                Liquido
-                            </th>
-                            <th class="text-warning borderless">
-                                Micros
-                            </th>
-                            <th class="text-warning borderless">
-                                Fuel
-                            </th>
-                            <th class="text-warning borderless">
-                                M-A
-                            </th>
-                            <th class="text-warning borderless">
-                                Munición
-                            </th>
-                            <th class="text-warning borderless">
-                                Creditos
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-danger borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Personal ocupado en el planeta">({{ number_format($personalOcupado, 0, ',', '.') }})</span>
-                            </td>
-                            <td class="text-danger borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="El almacenamiento de mineral es ilimitado">Ilimitado</span>
-                            </td>
-                            <td class="text-danger borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="El almacenamiento de cristal es ilimitado">Ilimitado</span>
-                            </td>
-                            @foreach ($capacidadAlmacenes as $almacen)
-                                @if ($loop->index == 3)
+                        </div>
+                    </div>
+                </div>
+                <hr class="text-light">
+                <div class="dropdown">
+                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ $planetaActual->nombre }}
+                        ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
+                        @foreach ($planetasJugador as $planeta)
+                            <a class="dropdown-item" style="font-size: inherit;"
+                                href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
+                                ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
+                        @endforeach
+                        @if (!empty($planetasAlianza))
+                            @foreach ($planetasAlianza as $planeta)
+                                @if ($loop->iteration == 1)
+                                    <div class="dropdown-divider"></div>
                                 @endif
-                                <td class="text-danger borderless" data-bs-toggle="tooltip">
-                                    @if ($almacen->capacidad != 'Almacen')
-                                        <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cantidad de este recurso que puedes almacenar en el planeta">{{ number_format($almacen->capacidad, 0, ',', '.') }}</span>
-                                    @else
-                                        <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cantidad de este recurso que puedes almacenar en el planeta">{{ $almacen->capacidad }}</span>
-                                    @endif
-                                </td>
+                                <a class="dropdown-item text-info"
+                                    href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
+                                    ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                             @endforeach
-                            <td class="text-danger borderless"></td>
-                        </tr>
-                        <tr>
-                            <td id="personal" class="text-warning borderless">
-                                {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
-                            </td>
-                            <td id="mineral" class="text-warning borderless">
-                                {{ number_format($recursos->mineral, 0, ',', '.') }}
-                            </td>
-                            <td id="cristal" class="text-warning borderless">
-                                {{ number_format($recursos->cristal, 0, ',', '.') }}
-                            </td>
-                            <td id="gas" class="text-warning borderless">
-                                {{ number_format($recursos->gas, 0, ',', '.') }}
-                            </td>
-                            <td id="plastico" class="text-warning borderless">
-                                {{ number_format($recursos->plastico, 0, ',', '.') }}
-                            </td>
-                            <td id="ceramica" class="text-warning borderless">
-                                {{ number_format($recursos->ceramica, 0, ',', '.') }}
-                            </td>
-                            <td id="liquido" class="text-warning borderless">
-                                {{ number_format($recursos->liquido, 0, ',', '.') }}
-                            </td>
-                            <td id="micros" class="text-warning borderless">
-                                {{ number_format($recursos->micros, 0, ',', '.') }}
-                            </td>
-                            <td id="fuel" class="text-warning borderless">
-                                {{ number_format($recursos->fuel, 0, ',', '.') }}
-                            </td>
-                            <td id="ma" class="text-warning borderless">
-                                {{ number_format($recursos->ma, 0, ',', '.') }}
-                            </td>
-                            <td id="municion" class="text-warning borderless">
-                                {{ number_format($recursos->municion, 0, ',', '.') }}
-                            </td>
-                            <td class="text-warning borderless">
-                                {{ number_format($recursos->creditos, 0, ',', '.') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->personal, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->mineral, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->cristal, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->gas, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->plastico, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->ceramica, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->liquido, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->micros, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->fuel, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->ma, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->municion, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-primary borderless">
-                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Producción de este recurso por hora">{{ number_format($produccion->creditos / 24, 0, ',', '.') }}</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div id="menuIconos" class="row d-flex">
-                <table class="table table-borderless table-sm text-center borderless">
-                    <thead>
-                        <tr>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/construccion') }}" title="Construye tu imperio"
-                                    target="_self">
-                                    @if (strpos(Request::fullUrl(), 'construccion'))
-                                        <img title="Construcción"
-                                            src="{{ asset('img/juego/skin0/icons/ico-cons1.png') }}" />
-                                    @else
-                                        <img title="Construcción"
-                                            src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-cons1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-cons0.png') }}" />
-                                    @endif
+                        @endif
+                    </div>
+                </div>
+                <hr class="text-light">
+
+                @if (strpos(Request::fullUrl(), 'construccion'))
+                    <a href="{{ url('/juego/construccion') }}" class="align-middle text-warning">
+                        <i class="fas fa-warehouse"></i> Construcción</a>
+                @else
+                    <a href="{{ url('/juego/construccion') }}" class="align-middle">
+                        <i class="fas fa-warehouse"></i> Construcción</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'investigacion'))
+                    <a href="{{ url('/juego/investigacion') }}" class="align-middle text-warning">
+                        <i class="fas fa-atom"></i> Investigación</a>
+                @else
+                    <a href="{{ url('/juego/investigacion') }}" class="align-middle">
+                        <i class="fas fa-atom"></i> investigacion</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'planeta'))
+                    <a href="{{ url('/juego/planeta') }}" class="align-middle text-warning">
+                        <i class="fas fa-globe-europe"></i> Planeta</a>
+                @else
+                    <a href="{{ url('/juego/planeta') }}" class="align-middle">
+                        <i class="fas fa-globe-europe"></i> Planeta</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'fuselajes'))
+                    <a href="{{ url('/juego/fuselajes') }}" class="align-middle text-warning">
+                        <i class="fas fa-pencil-ruler"></i> Fuselajes</a>
+                @else
+                    <a href="{{ url('/juego/fuselajes') }}" class="align-middle">
+                        <i class="fas fa-pencil-ruler"></i> Fuselajes</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'disenio'))
+                    <a href="{{ url('/juego/disenio') }}" class="align-middle text-warning">
+                        <i class="fas fa-industry"></i> Hangar</a>
+                @else
+                    <a href="{{ url('/juego/disenio') }}" class="align-middle">
+                        <i class="fas fa-industry"></i> Hangar</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'politica'))
+                    <a href="{{ url('/juego/politica') }}" class="align-middle text-warning">
+                        <i class="far fa-handshake"></i> Politica</a>
+                @else
+                    <a href="{{ url('/juego/politica') }}" class="align-middle">
+                        <i class="far fa-handshake"></i> Politica</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'astrometria'))
+                    <a href="{{ url('/juego/astrometria') }}" class="align-middle text-warning">
+                        <i class="fas fa-map-marked-alt"></i> Astrometria</a>
+                @else
+                    <a href="{{ url('/juego/astrometria') }}" class="align-middle">
+                        <i class="fas fa-map-marked-alt"></i> Astrometria</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'flotas'))
+                    <a href="{{ url('/juego/flotas') }}" class="align-middle text-warning">
+                        <i class="fas fa-space-shuttle"></i> Flotas</a>
+                @else
+                    <a href="{{ url('/juego/flotas') }}" class="align-middle">
+                        <i class="fas fa-space-shuttle"></i> Flotas</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'banco'))
+                    <a href="{{ url('/juego/banco') }}" class="align-middle text-warning">
+                        <i class="fas fa-money-bill-alt"></i> Banco</a>
+                @else
+                    <a href="{{ url('/juego/banco') }}" class="align-middle">
+                        <i class="fas fa-money-bill-alt"></i> Banco</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'comercio'))
+                    <a href="{{ url('/juego/comercio') }}" class="align-middle text-warning">
+                        <i class="fas fa-industry"></i> Comercio</a>
+                @else
+                    <a href="{{ url('/juego/comercio') }}" class="align-middle">
+                        <i class="fas fa-industry"></i> Comercio</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'general'))
+                    <a href="{{ url('/juego/general') }}" class="align-middle text-warning">
+                        <i class="far fa-object-group"></i> General</a>
+                @else
+                    <a href="{{ url('/juego/general') }}" class="align-middle">
+                        <i class="far fa-object-group"></i> General</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'alianza'))
+                    <a href="{{ url('/juego/alianza') }}" class="align-middle text-warning">
+                        <i class="fas fa-users"></i> Alianza</a>
+                @else
+                    <a href="{{ url('/juego/alianza') }}" class="align-middle">
+                        <i class="fas fa-users"></i> Alianza</a>
+                @endif
+                @if (strpos(Request::fullUrl(), 'estadisticas'))
+                    <a href="{{ url('/juego/estadisticas') }}" class="align-middle text-warning">
+                        <i class="fas fa-chart-bar"></i> Estadisticas</a>
+                @else
+                    <a href="{{ url('/juego/estadisticas') }}" class="align-middle">
+                        <i class="fas fa-chart-bar"></i> Estadisticas</a>
+                @endif
+
+                <hr class="text-light">
+                <footer class="footer mt-auto">
+                    <div class="container">
+                        <ul class="list-inline">
+                            <li class="list-inline-item ">
+                                @if (strpos(Request::fullUrl(), 'mensajes'))
+                                    <a href="{{ url('/juego/mensajes') }}" class="text-warning">
+                                        <i class="far fa-envelope fs-3"></i>
+                                        <span class="badge rounded-pill bg-warning text-dark notification">3</span>
+                                    </a>
+                                @else
+                                    <a href="{{ url('/juego/mensajes') }}">
+                                        <i class="far fa-envelope fs-3"></i>
+                                        <span class="badge rounded-pill bg-warning text-dark notification">3</span>
+                                    </a>
+                                @endif
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="">
+                                    <i class="fas fa-tasks fs-3"></i>
+                                    <span class="badge rounded-pill bg-success notification">3</span>
                                 </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/investigacion') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'investigacion'))
-                                        <img title="Investigación"
-                                            src="{{ asset('img/juego/skin0/icons/ico-inv1.png') }}" />
-                                    @else
-                                        <img title="Investigación"
-                                            src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-inv1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-inv0.png') }}" />
-                                    @endif
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{ url('/juego/flotas') }}">
+                                    <i class="fas fa-crosshairs fs-3"></i></i>
+                                    <span class="badge rounded-pill bg-info text-dark notification">0</span>
                                 </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/planeta') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'planeta'))
-                                        <img title="Planeta"
-                                            src="{{ asset('img/juego/skin0/icons/ico-pla1.png') }}" />
-                                    @else
-                                        <img title="Planeta" src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-pla1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-pla0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/fuselajes') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'fuselajes'))
-                                        <img title="Fuselajes"
-                                            src="{{ asset('img/juego/skin0/icons/ico-dis1.png') }}" />
-                                    @else
-                                        <img title="Fuselajes"
-                                            src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-dis1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-dis0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/disenio') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'disenio'))
-                                        <img title="Diseños"
-                                            src="{{ asset('img/juego/skin0/icons/ico-prod1.png') }}" />
-                                    @else
-                                        <img title="Diseños" src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-prod1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-prod0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/fabricas') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'fabricas'))
-                                        <img title="Politica"
-                                            src="{{ asset('img/juego/skin0/icons/ico-def1.png') }}" />
-                                    @else
-                                        <img title="Politica" src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-def1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-def0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <div class="dropdown">
-                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{ $planetaActual->nombre }}
-                                        ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
-                                        @foreach ($planetasJugador as $planeta)
-                                            <a class="dropdown-item"
-                                                href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
-                                                ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
-                                        @endforeach
-                                        @if (!empty($planetasAlianza))
-                                            @foreach ($planetasAlianza as $planeta)
-                                                @if ($loop->iteration == 1)
-                                                    <div class="dropdown-divider"></div>
-                                                @endif
-                                                <a class="dropdown-item text-info"
-                                                    href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
-                                                    ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/astrometria') }}">
-                                    @if (strpos(Request::fullUrl(), 'astrometria'))
-                                        <img title="Astrometría"
-                                            src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}" />
-                                    @else
-                                        <img title="Astrometría"
-                                            src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ast1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ast0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/flotas') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'flotas'))
-                                        <img title="Flotas"
-                                            src="{{ asset('img/juego/skin0/icons/ico-flo1.png') }}" />
-                                    @else
-                                        <img title="Flotas" src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-flo1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-flo0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/banco') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'banco'))
-                                        <img title="Banco"
-                                            src="{{ asset('img/juego/skin0/icons/ico-ban1.png') }}" />
-                                    @else
-                                        <img title="Banco" src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ban1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ban0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/comercio') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'comercio'))
-                                        <img title="Comercio"
-                                            src="{{ asset('img/juego/skin0/icons/ico-com1.png') }}" />
-                                    @else
-                                        <img title="Comercio"
-                                            src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-com1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-com0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/general') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'general'))
-                                        <img title="General"
-                                            src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}" />
-                                    @else
-                                        <img title="General" src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-gen1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-gen0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-warning ">
-                                <a id="constr" href="{{ url('/juego/alianza') }}" target="_self">
-                                    @if (strpos(Request::fullUrl(), 'alianza'))
-                                        <img title="Alianza"
-                                            src="{{ asset('img/juego/skin0/icons/ico-ali1.png') }}" />
-                                    @else
-                                        <img title="Alianza" src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}"
-                                            onmouseover=this.src="{{ asset('img/juego/skin0/icons/ico-ali1.png') }}"
-                                            onmouseout=this.src="{{ asset('img/juego/skin0/icons/ico-ali0.png') }}" />
-                                    @endif
-                                </a>
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
+                            </li>
+                            <li class="list-inline-item">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a href="{{ url('/logout') }}" target="_self"
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <i class="fas fa-power-off fs-3"></i>
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </footer>
             </div>
         </div>
+        <div class="" style="height: 100vh !important; overflow: overlay">
+            <div id="menuC" class="container-fluid ">
+                <div id="menuCuenta" class="row d-flex overflow-auto ">
+                    <table class="table table-borderless table-sm text-center borderless anchofijo"
+                        style="margin: 0px;">
+                        <thead>
+                            <tr>
+                                <th class="text-warning ">
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="menuRecursos" class="py-1">
+                    <table class="table table-borderless table-sm text-center borderless">
+                        <thead>
+                            <tr>
+                                <th class="text-warning borderless">
+                                    Personal
+                                </th>
+                                <th class="text-warning borderless">
+                                    Mineral
+                                </th>
+                                <th class="text-warning borderless">
+                                    Cristal
+                                </th>
+                                <th class="text-warning borderless">
+                                    Gas
+                                </th>
+                                <th class="text-warning borderless">
+                                    Plástico
+                                </th>
+                                <th class="text-warning borderless">
+                                    Cerámica
+                                </th>
+                                <th class="text-warning borderless">
+                                    Liquido
+                                </th>
+                                <th class="text-warning borderless">
+                                    Micros
+                                </th>
+                                <th class="text-warning borderless">
+                                    Fuel
+                                </th>
+                                <th class="text-warning borderless">
+                                    M-A
+                                </th>
+                                <th class="text-warning borderless">
+                                    Munición
+                                </th>
+                                <th class="text-warning borderless">
+                                    Creditos
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-danger borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Personal ocupado en el planeta">({{ number_format($personalOcupado, 0, ',', '.') }})</span>
+                                </td>
+                                <td class="text-danger borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="El almacenamiento de mineral es ilimitado">Ilimitado</span>
+                                </td>
+                                <td class="text-danger borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="El almacenamiento de cristal es ilimitado">Ilimitado</span>
+                                </td>
+                                @foreach ($capacidadAlmacenes as $almacen)
+                                    @if ($loop->index == 3)
+                                    @endif
+                                    <td class="text-danger borderless" data-bs-toggle="tooltip">
+                                        @if ($almacen->capacidad != 'Almacen')
+                                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                title="Cantidad de este recurso que puedes almacenar en el planeta">{{ number_format($almacen->capacidad, 0, ',', '.') }}</span>
+                                        @else
+                                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                title="Cantidad de este recurso que puedes almacenar en el planeta">{{ $almacen->capacidad }}</span>
+                                        @endif
+                                    </td>
+                                @endforeach
+                                <td class="text-danger borderless"></td>
+                            </tr>
+                            <tr>
+                                <td id="personal" class="text-warning borderless">
+                                    {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
+                                </td>
+                                <td id="mineral" class="text-warning borderless">
+                                    {{ number_format($recursos->mineral, 0, ',', '.') }}
+                                </td>
+                                <td id="cristal" class="text-warning borderless">
+                                    {{ number_format($recursos->cristal, 0, ',', '.') }}
+                                </td>
+                                <td id="gas" class="text-warning borderless">
+                                    {{ number_format($recursos->gas, 0, ',', '.') }}
+                                </td>
+                                <td id="plastico" class="text-warning borderless">
+                                    {{ number_format($recursos->plastico, 0, ',', '.') }}
+                                </td>
+                                <td id="ceramica" class="text-warning borderless">
+                                    {{ number_format($recursos->ceramica, 0, ',', '.') }}
+                                </td>
+                                <td id="liquido" class="text-warning borderless">
+                                    {{ number_format($recursos->liquido, 0, ',', '.') }}
+                                </td>
+                                <td id="micros" class="text-warning borderless">
+                                    {{ number_format($recursos->micros, 0, ',', '.') }}
+                                </td>
+                                <td id="fuel" class="text-warning borderless">
+                                    {{ number_format($recursos->fuel, 0, ',', '.') }}
+                                </td>
+                                <td id="ma" class="text-warning borderless">
+                                    {{ number_format($recursos->ma, 0, ',', '.') }}
+                                </td>
+                                <td id="municion" class="text-warning borderless">
+                                    {{ number_format($recursos->municion, 0, ',', '.') }}
+                                </td>
+                                <td class="text-warning borderless">
+                                    {{ number_format($recursos->creditos, 0, ',', '.') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->personal, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->mineral, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->cristal, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->gas, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->plastico, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->ceramica, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->liquido, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->micros, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->fuel, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->ma, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->municion, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-primary borderless">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Producción de este recurso por hora">{{ number_format($produccion->creditos / 24, 0, ',', '.') }}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- jQuery -->
+            <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
+
+            <!-- Bootstrap -->
+            <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+
+            <!-- sliders -->
+            <script src="{{ asset('js/nouislider/nouislider.min.js') }}"></script>
+
+            <!-- Select2 -->
+            <script src="{{ asset('js/select2/select2.min.js') }}"></script>
+
+            <!-- Easy Timer JS -->
+            <script src="{{ asset('js/easytimer/easytimer.min.js') }}"></script>
+
+            <!-- Personalizado -->
+            <script src="{{ asset('js/custom.js') }}"></script>
+
+            <script>
+                var recursos = @json($recursos);
+                recursos.personal -= @json($personalOcupado);
+                //console.log(recursos);
+                var produccion = @json($produccion);
+                //console.log(produccion);
+                var almacenes = @json($capacidadAlmacenes);
+                // console.log(almacenes);
+                activarIntervalo(recursos, almacenes, produccion, 250);
+                // $('select').selectpicker();
+            </script>
+
+            @yield('content')
+        </div>
+
     </div>
-
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
-
-    <!-- Bootstrap -->
-    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- sliders -->
-    <script src="{{ asset('js/nouislider/nouislider.min.js') }}"></script>
-
-    <!-- Select2 -->
-    <script src="{{ asset('js/select2/select2.min.js') }}"></script>
-
-    <!-- Easy Timer JS -->
-    <script src="{{ asset('js/easytimer/easytimer.min.js') }}"></script>
-
-    <!-- Personalizado -->
-    <script src="{{ asset('js/custom.js') }}"></script>
-
-    <script>
-        var recursos = @json($recursos);
-        recursos.personal -= @json($personalOcupado);
-        //console.log(recursos);
-        var produccion = @json($produccion);
-        //console.log(produccion);
-        var almacenes = @json($capacidadAlmacenes);
-        // console.log(almacenes);
-        activarIntervalo(recursos, almacenes, produccion, 250);
-        // $('select').selectpicker();
-
-    </script>
-
-    @yield('content')
 
     <!-- Modal -->
     <div class="modal fade" id="datosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -577,6 +613,15 @@
 
     <!-- Personalizado -->
     <script src="{{ asset('js/popover.js') }}"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "300px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
 </body>
 
 </html>
