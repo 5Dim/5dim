@@ -13,7 +13,7 @@ interface.addChild(menugeneral);
 interface.addChild(menunaveseleccionada);
 interface.addChild(menuGruposeleccionada);
 interface.addChild(menuTiempo);
-interface.addChild(menuGruposNaves);
+fondoImg.addChild(menuGruposNaves);
 
 const extensionBarras = 3; //multiplica el % para su longitud
 var lineaJugador = 0; //linea de barra para cada jugador
@@ -364,10 +364,6 @@ function CrearSimboloPausar() {
     pausar.closePath();
     pausar.endFill();
 
-}
-
-if (PantallaGruposNaves){
-    CrearFondoGruposNaves();
 }
 
 

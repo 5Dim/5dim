@@ -316,12 +316,12 @@
                     <a href="{{ url('/juego/comercio') }}" class="align-middle">
                         <i class="fas fa-industry"></i> Comercio</a>
                 @endif
-                @if (strpos(Request::fullUrl(), 'general'))
-                    <a href="{{ url('/juego/general') }}" class="align-middle text-warning">
-                        <i class="far fa-object-group"></i> General</a>
+                @if (strpos(Request::fullUrl(), 'gruposNaves'))
+                    <a href="{{ url('/juego/gruposNaves') }}" class="align-middle text-warning">
+                        <i class="far fa-object-group"></i> Grupos</a>
                 @else
-                    <a href="{{ url('/juego/general') }}" class="align-middle">
-                        <i class="far fa-object-group"></i> General</a>
+                    <a href="{{ url('/juego/gruposNaves') }}" class="align-middle">
+                        <i class="far fa-object-group"></i> Grupos</a>
                 @endif
                 @if (strpos(Request::fullUrl(), 'alianza'))
                     <a href="{{ url('/juego/alianza') }}" class="align-middle text-warning">

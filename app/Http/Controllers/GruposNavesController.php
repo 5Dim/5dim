@@ -26,6 +26,8 @@ class GruposNavesController extends Controller
         $diseniosJugador = $jugadorActual->disenios;
         $disenios = Disenios::calculaMejoras($diseniosJugador);
 
+
+
         return view('juego.gruposNaves.gruposNaves', compact(
             // Recursos
             'recursos',

@@ -15,7 +15,6 @@ const naves = new PIXI.Container(); //naves
 
 const interface = new PIXI.Container();
 
-
 var texture;
 
 gnave = new Array(); //grupo de naves
@@ -149,7 +148,9 @@ function Creagrupo(grupoacrear) { // crea el grupo con su circulo
           valoresJugador.color = coloresEquipos[c];
           coloresEquipos[c] = bando;
           participantes[bando] = valoresJugador;
-          crearBarrasJugadore(valoresJugadores[jugador]);
+          if(interfaceCombate){
+            crearBarrasJugadore(valoresJugadores[jugador]);
+          }
           break;
         }
       }
@@ -268,7 +269,7 @@ function Creanave(naveaCrear,ngrupo) {
   nnave=naveaCrear.nnave;
   velmax=naveaCrear.velmax;
   diseno=naveaCrear.diseno;
-  imagen="Combate/fotos naves/skin"+valoresDisenos[diseno].skin+"/naveLTH"+valoresDisenos[diseno].nimagen+".png";  ///'Combate/fotos naves/skin0/naveLTH1.png'
+  imagen=directorioImgNaves+"/skin"+valoresDisenos[diseno].skin+"/naveLTH"+valoresDisenos[diseno].nimagen+".png";
   cantidad=naveaCrear.cantidad;
 
   if (typeof nave[nnave] == 'undefined') {

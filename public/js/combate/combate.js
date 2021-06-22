@@ -206,7 +206,17 @@ function vwork() {
     ShockWaveAnimation();
 
     MoverCirculoTiempo();
-  };
+  }
+
+  else if (pause < 1 && cantidadRondas==0)
+  {
+    tiempoanime += 1;
+    CargarParticipantes(tiempo);
+    animate();
+    MueveGrupos(tiempocalculo);
+  }
+
+
   MostrarOcultarMenuNaves();
   MostrarOcultarMenuGrupos();
 };
@@ -247,14 +257,15 @@ window.onload = function () {
 
   app.stage.addChild(interface);
 
-  if(cantidadRondas>1){
+  if(interfaceCombate){
     CrearBarraTiempo();
+    preloadAssets();
   }
 
   //camera.interactive=true;
   //camera.on('click',SeleccionNada);
 
-  preloadAssets();
+
 
   setInterval(function () {
     vwork();
