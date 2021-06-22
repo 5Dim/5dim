@@ -192,7 +192,7 @@
             </span>
             <div id="mySidenav" class="sidenav d-flex flex-column bd-highlight bg-dark text-muted">
                 <a href="javascript:void(0)" class="closebtn text-white" onclick="closeNav()">
-                    <i class="far fa-times-circle"></i>
+                    <i class="fas fa-angle-double-left"></i>
                 </a>
                 <div class="card bg-dark align-middle" style="max-width: 100%; border: 0;">
                     <div class="row">
@@ -219,14 +219,13 @@
                         </div>
                     </div>
                 </div>
-                <hr class="text-light">
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 300px">
                         {{ $planetaActual->nombre }}
                         ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
                     </button>
-                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton" style="width: 300px">
                         @foreach ($planetasJugador as $planeta)
                             <a class="dropdown-item" style="font-size: inherit;"
                                 href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}

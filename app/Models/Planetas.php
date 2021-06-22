@@ -78,7 +78,6 @@ class Planetas extends Model
             $planetaElegido->imagen = random_int(10, 69);
             $planetaElegido->tipo = "planeta";
         }
-        $planetaElegido->movimientos = 1;
         $planetaElegido->jugadores_id = $idJugador;
         $planetaElegido->nombre = 'Planeta principal';
         $planetaElegido->creacion = time();

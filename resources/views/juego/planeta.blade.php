@@ -30,13 +30,21 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade" id="colonia" role="tabpanel" aria-labelledby="colonia-tab">
-                    <table class="table table-sm text-center table-borderless anchofijo cajita rounded align-middle">
+                    <table class="table table-sm text-center table-borderless cajita rounded align-middle">
                         <tr>
-                            <th colspan="3" class="anchofijo text-success borderless">
+                            <th colspan="5" class="anchofijo text-success borderless">
                                 <big>Resumen de la colonia</big>
                             </th>
                         </tr>
                         <tr>
+                            <td class="text-warning " style="max-width: 240px;">
+                                <a tabindex="0" type="button" class="btn btn-dark" data-bs-toggle="popover"
+                                    data-bs-trigger="focus" title="Puntos de imperio"
+                                    data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir {{ (int) $consImperio }} por cada nivel de administracion de imperio (investigacion)">
+                                    Puntos de imperio <span
+                                        class="badge bg-warning text-dark">{{ $nivelImperio * $consImperio + 10 - count($planetasJugador) * 10 }}</span>
+                                </a>
+                            </td>
                             <td>
                                 @if (count(Auth::user()->jugador->planetas) > 1)
                                     <button type="button" class="btn btn-outline-danger col-12"
@@ -78,7 +86,6 @@
                                             ],
                                             language: "es"
                                         });
-
                                     </script>
                                 </div>
                             </td>
@@ -94,6 +101,20 @@
                                     <input id="nombreColonia" type="text" class="form-control input"
                                         placeholder="Nombre de la colonia" aria-label="Recipient's username"
                                         aria-describedby="basic-addon2">
+                                </div>
+                            </td>
+                            <td class="anchofijo text-secondary borderless">
+                                <div class="input-group mb-3 borderless"
+                                    style="padding-left: 10px !important; padding-right: 5px !important">
+                                    <span class="input-group-text bg-dark text-light" style="padding: 0px">
+                                        <button type="button" class="btn btn-dark text-light"
+                                            onclick="sendMoverColonia()">
+                                            Mover colonia
+                                        </button>
+                                    </span>
+                                    <input id="localizacion" type="text" class="form-control input"
+                                        placeholder="Posición vacía" aria-label="localizacion"
+                                        aria-describedby="basic-addon3">
                                 </div>
                             </td>
                         </tr>
@@ -880,19 +901,24 @@
                                         {{ number_format($prod->personal, 0, ',', '.') }}
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->mineral, 0, ',', '.') }} ({{ number_format($prod->mineral + ($prod->mineral * (($planetaActual->cualidades->mineral + $nivelTerraformador) / 100)), 0, ',', '.') }})
+                                        {{ number_format($prod->mineral, 0, ',', '.') }}
+                                        ({{ number_format($prod->mineral + $prod->mineral * (($planetaActual->cualidades->mineral + $nivelTerraformador) / 100), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->cristal, 0, ',', '.') }} ({{ number_format($prod->cristal + ($prod->cristal * (($planetaActual->cualidades->cristal + $nivelTerraformador) / 100)), 0, ',', '.') }})
+                                        {{ number_format($prod->cristal, 0, ',', '.') }}
+                                        ({{ number_format($prod->cristal + $prod->cristal * (($planetaActual->cualidades->cristal + $nivelTerraformador) / 100), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->gas, 0, ',', '.') }} ({{ number_format($prod->gas + ($prod->gas * (($planetaActual->cualidades->gas + $nivelTerraformador) / 100)), 0, ',', '.') }})
+                                        {{ number_format($prod->gas, 0, ',', '.') }}
+                                        ({{ number_format($prod->gas + $prod->gas * (($planetaActual->cualidades->gas + $nivelTerraformador) / 100), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->plastico, 0, ',', '.') }} ({{ number_format($prod->plastico + ($prod->plastico * (($planetaActual->cualidades->plastico + $nivelTerraformador) / 100)), 0, ',', '.') }})
+                                        {{ number_format($prod->plastico, 0, ',', '.') }}
+                                        ({{ number_format($prod->plastico + $prod->plastico * (($planetaActual->cualidades->plastico + $nivelTerraformador) / 100), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
-                                        {{ number_format($prod->ceramica, 0, ',', '.') }} ({{ number_format($prod->ceramica + ($prod->ceramica * (($planetaActual->cualidades->ceramica + $nivelTerraformador) / 100)), 0, ',', '.') }})
+                                        {{ number_format($prod->ceramica, 0, ',', '.') }}
+                                        ({{ number_format($prod->ceramica + $prod->ceramica * (($planetaActual->cualidades->ceramica + $nivelTerraformador) / 100), 0, ',', '.') }})
                                     </td>
                                     <td class="anchofijo text-light">
                                         {{ number_format($prod->liquido, 0, ',', '.') }}
@@ -1105,6 +1131,5 @@
 
     <script>
         mostrarTab(@json($tab));
-
     </script>
 @endsection
