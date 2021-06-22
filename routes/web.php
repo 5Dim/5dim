@@ -115,6 +115,7 @@ Route::middleware(
     //Planeta
     Route::get('/juego/planeta/{tab?}', [PlanetaController::class, 'index']);
     Route::get('/juego/renombrarPlaneta/{nombre}', [PlanetaController::class, 'renombrarPlaneta']);
+    Route::get('/juego/moverPlaneta/{posicion}', [PlanetaController::class, 'moverPlaneta']);
     Route::get('/juego/cederColonia/{nombre}', [PlanetaController::class, 'cederColonia']);
     Route::get('/juego/destruirColonia', [PlanetaController::class, 'destruirColonia']);
 

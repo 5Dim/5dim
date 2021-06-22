@@ -32,12 +32,12 @@
                 <div class="tab-pane fade" id="colonia" role="tabpanel" aria-labelledby="colonia-tab">
                     <table class="table table-sm text-center table-borderless cajita rounded align-middle">
                         <tr>
-                            <th colspan="4" class="anchofijo text-success borderless">
+                            <th colspan="5" class="anchofijo text-success borderless">
                                 <big>Resumen de la colonia</big>
                             </th>
                         </tr>
                         <tr>
-                            <td class="text-warning " style="max-width: 120px;">
+                            <td class="text-warning " style="max-width: 240px;">
                                 <a tabindex="0" type="button" class="btn btn-dark" data-bs-toggle="popover"
                                     data-bs-trigger="focus" title="Puntos de imperio"
                                     data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir {{ (int) $consImperio }} por cada nivel de administracion de imperio (investigacion)">
@@ -101,6 +101,20 @@
                                     <input id="nombreColonia" type="text" class="form-control input"
                                         placeholder="Nombre de la colonia" aria-label="Recipient's username"
                                         aria-describedby="basic-addon2">
+                                </div>
+                            </td>
+                            <td class="anchofijo text-secondary borderless">
+                                <div class="input-group mb-3 borderless"
+                                    style="padding-left: 10px !important; padding-right: 5px !important">
+                                    <span class="input-group-text bg-dark text-light" style="padding: 0px">
+                                        <button type="button" class="btn btn-dark text-light"
+                                            onclick="sendMoverColonia()">
+                                            Mover colonia
+                                        </button>
+                                    </span>
+                                    <input id="localizacion" type="text" class="form-control input"
+                                        placeholder="Posición vacía" aria-label="localizacion"
+                                        aria-describedby="basic-addon3">
                                 </div>
                             </td>
                         </tr>

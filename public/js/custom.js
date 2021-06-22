@@ -77,6 +77,11 @@ function sendRenombrarColonia() {
     window.location.href = "/juego/renombrarPlaneta/" + nombre;
 }
 
+function sendMoverColonia() {
+    let sistema = $("#localizacion").val();
+    window.location.href = "/juego/moverPlaneta/" + sistema;
+}
+
 function sendCederColonia() {
     let idJugador = $("#listaJugadores").val();
     window.location.href = "/juego/cederColonia/" + idJugador;
