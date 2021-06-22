@@ -53,6 +53,7 @@
         let jugadorActual = @json($jugadorActual);
         let disenios=@json($disenios);
         let directorioImgNaves="{{ asset('/img/fotos naves/') }}";
+        let directorioImgCombate="{{ asset('/img/combate/') }}";
 
         PantallaGruposNaves=true;
 

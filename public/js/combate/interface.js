@@ -4,7 +4,7 @@ const menugeneral = new PIXI.Container();
 const menunaveseleccionada = new PIXI.Container();
 const menuGruposeleccionada = new PIXI.Container();
 const menuTiempo = new PIXI.Container();
-const menuGruposNaves = new PIXI.Container();
+
 
 const barrasJugador = new Array();
 const porcentJugador = new Array();
@@ -19,6 +19,8 @@ const extensionBarras = 3; //multiplica el % para su longitud
 var lineaJugador = 0; //linea de barra para cada jugador
 var cantidadRondas = tiempoTurnos.length - 2;
 var distanciaPuntosTurno = 200;
+var anchoDespliegue=1600;
+var altoDespliege=400;
 
 
 
@@ -67,9 +69,8 @@ fondoMenuTiempo.alpha = .5;
 fondoMenuTiempo.endFill();
 menuTiempo.addChild(fondoMenuTiempo);
 }
+
 function CrearFondoGruposNaves(){
-    anchoDespliegue=1600;
-    altoDespliege=400;
     margenIzq=(window.innerWidth-anchoDespliegue)/2;
     recuadroGruposNaves = new PIXI.Graphics();
     recuadroGruposNaves.lineStyle(2, 0xffd700, 1);

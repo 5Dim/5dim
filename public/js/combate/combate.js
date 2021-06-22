@@ -43,7 +43,7 @@ function CreateLaser(origen, destino, vida) {
 
   return function () {
     var color = participantes[nave[origen].bando].color.circuloVida;
-    var laser = new PIXI.Sprite.fromImage("Combate/images/laser" + color + ".png");
+    var laser = new PIXI.Sprite.fromImage(directorioImgCombate+"/laser" + color + ".png");
 
     laser.life = 0;
 
@@ -102,7 +102,7 @@ function ActualizarCirculoVida(destino){
 
     ngrupo = nave[destino].grupo;
     migrupo = gnave[ngrupo];
-    imagenFlecha = 'Combate/images/flecha' + participantes[migrupo.bando].color.circuloVida + imagenCirculo;
+    imagenFlecha = directorioImgCombate+'/flecha' + participantes[migrupo.bando].color.circuloVida + imagenCirculo;
     var textura = new PIXI.Sprite.from(imagenFlecha);
     nave[destino].circulovida.texture = textura.texture;
 
@@ -252,8 +252,14 @@ window.onload = function () {
   app.stage.addChild(camera);
 
   camera.addChild(container);
-  camera.addChild(grupos);
-  camera.addChild(naves);
+
+  if(PantallaGruposNaves){
+    menuGruposNaves.addChild(grupos);
+    menuGruposNaves.addChild(naves);
+  } else {
+    camera.addChild(grupos);
+    camera.addChild(naves);
+  }
 
   app.stage.addChild(interface);
 

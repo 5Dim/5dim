@@ -1,4 +1,8 @@
 CrearFondoGruposNaves();
+margenIzqDespliegue=((window.innerWidth-anchoDespliegue)/2);
+
+
+
 interfaceCombate=false;
 cantidadRondas=0;
 tiempoTurnos[1]=100;//fin del turno 1 en sec/10
@@ -92,8 +96,8 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
     respawgrupo=new Array();
     respawgrupodatos=new Array();
     respawgrupodatos.ngrupo=0;
-    respawgrupodatos.x=200;
-    respawgrupodatos.y=250;
+    respawgrupodatos.x=margenIzqDespliegue+0;
+    respawgrupodatos.y=0;
     respawgrupodatos.jugador=jugadorActual.id;
     respawgrupodatos.nombregrupo="grupo1";
     respawgrupodatos.actitud="agresiva";
@@ -105,6 +109,6 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
     respawGrupos[0]=respawgrupo; //creo el respaw para el segundo 0
     //posicion incio grupos
 
-    movGrupo[0]=[0,0];  //coords de incio
+    movGrupo[0]=[respawgrupodatos.x,respawgrupodatos.y];  //coords de incio
     movGrupos[0]=movGrupo;
 

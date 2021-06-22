@@ -14,6 +14,7 @@ const grupos = new PIXI.Container(); //container de grupos
 const naves = new PIXI.Container(); //naves
 
 const interface = new PIXI.Container();
+const menuGruposNaves = new PIXI.Container();
 
 var texture;
 
@@ -27,8 +28,12 @@ const navengrupo = new Array();  // lista de naves del grupo
 const participantes = new Array();
 const stars = [];
 const vidaNaves=new Array(); //la vida a cada segundo
+if (PantallaGruposNaves){
+    tamagrupo = 50; // tamaño del grupo
+} else {
+    tamagrupo = 200; // tamaño del grupo
+}
 
-tamagrupo = 200; // tamaño del grupo
 var escala = 1; //escala, zoom
 var tiempo = 0; //tiempo incial
 var tiempoanime = 0;
@@ -186,7 +191,10 @@ function Creagrupo(grupoacrear) { // crea el grupo con su circulo
     Creanave(grupoacrear[1][n],ngrupo);
   }
 
-  animateShockwave(ngrupo);
+if(!PantallaGruposNaves){
+    animateShockwave(ngrupo);
+}
+
 
 };
 
@@ -228,17 +236,20 @@ function CrearEscudoJugador(ngrupo){
 
 }
 
+tamatextogrupo=tamagrupo/10;
+if (tamagrupo<10){tamatextogrupo=10;}
+
 const textStyleNombreGrupoBlanco = new PIXI.TextStyle({
   align: "center",
   fill: "#d7d7d7",
-  fontSize: 20,
+  fontSize: tamatextogrupo,
   fontWeight: "bold"
 });
 
 function CrearNombreGrupo(ngrupo){
   basicText = new PIXI.Text(gnave[ngrupo].nombregrupo, textStyleNombreGrupoBlanco);
   basicText.x = -gnave[ngrupo].nombregrupo.length*5;
-  basicText.y = 100;
+  basicText.y = tamagrupo*.5;
   gcirculo[ngrupo].addChild(basicText);
 
 }
@@ -274,13 +285,13 @@ function Creanave(naveaCrear,ngrupo) {
 
   if (typeof nave[nnave] == 'undefined') {
     // create a texture from an image path
-    var texture = PIXI.Texture.fromImage(imagen);
+    var texture = PIXI.Texture.from(imagen);
 
     // create a new Sprite using the texture
     nave[nnave] = new PIXI.Sprite(texture);
 
     nave[nnave].rand = Math.random() * 100;
-    nave[nnave].scale.x = nave[nnave].scale.y = .4 + (cantidad / 500);//escalado
+    nave[nnave].scale.x = nave[nnave].scale.y = (tamagrupo * 0.002) + (cantidad / 500);//escalado
     //nave[nnave].anguloi = angulo; ///angulo de inicio
     nave[nnave].velmax = velmax;
     nave[nnave].diseno = diseno;
@@ -335,7 +346,7 @@ function ActualizarVidaNave(nnave,primeraCarga){
 function CreaCirculoVida(nnave) {
 
   migrupo = gnave[nave[nnave].grupo];
-  imagenFlecha = 'Combate/images/flecha' + participantes[migrupo.bando].color.circuloVida + '100.png';
+  imagenFlecha = directorioImgCombate+'/flecha' + participantes[migrupo.bando].color.circuloVida + '100.png';
   var textura=new PIXI.Sprite.from(imagenFlecha);
 
   nave[nnave].circulovida = textura;
