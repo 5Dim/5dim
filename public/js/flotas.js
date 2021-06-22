@@ -698,6 +698,7 @@ function Calculoespacitiempo() {
         for (dest = 1; dest < destinos.length; dest++) {
             //$("#municion" + dest).val(valFlotaT.municion);
             destAnt = dest - 1;
+            fuelDest=0;
 
             destinos[dest].estrella = $("#sistemaDest" + dest).val();
             destinos[dest].orbita = $("#planetaDest" + dest).val();
