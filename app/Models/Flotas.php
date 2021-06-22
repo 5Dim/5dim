@@ -1181,6 +1181,7 @@ class Flotas extends Model
 
                     if ($guardarCambiosColonizacion) {
                         //Log::info($destino->planetas);
+                        //poner jugador movientos a true para que no mueva el planeta
                         $planetaColonizar = $destino->planetas;
                         $planetaColonizar['jugadores_id'] = $estaFlota->jugadores_id;
                         $planetaColonizar['nombre'] = "Nueva Colonia";
