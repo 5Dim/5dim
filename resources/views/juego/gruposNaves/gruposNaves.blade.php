@@ -43,8 +43,8 @@
         </div>
     </div>
 
-    <div id="controles" name="controles" style=" width: 100%; background-color: rgba(0, 0, 0, 0.9); ">
-        <table class="table table-sm table-borderless text-center anchofijo" style="margin-bottom: 5px !important;">
+    <div id="controles" name="controles" style=" width: 100%; " class="borderless">
+        <table class="table table-sm table-borderless text-center anchofijo borderless">
             <tbody>
                 <tr>
                     <td class=" col-8" >
@@ -68,7 +68,7 @@
             </tbody>
         </table>
     </div>
-    <div id="combate" name="combate" style="height: 400px;  width: 100%; background-color: rgba(0, 0, 0, 0.9); " class="">
+    <div id="combate" name="combate" style="height: 400px;  width: 100%; background-color: rgba(0, 0, 0, 0.9); position: relative; top:-50px;  z-index:-1  " >
 
 
         </div>
