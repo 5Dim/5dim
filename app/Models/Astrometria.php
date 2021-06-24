@@ -846,6 +846,7 @@ class Astrometria extends Model
         $probabilidadPlanetas = Constantes::where("codigo", 'cantidadplanetas')->first()->valor;
         $probabilidadAsteroides = Constantes::where("codigo", 'cantidadporplanetaasteroides')->first()->valor;
         $probabilidadSoles = Constantes::where("codigo", 'cantidadporplanetasoles')->first()->valor;
+        $probabilidadEnclaves = Constantes::where("codigo", 'cantidadplanetasenclave')->first()->valor;
 
         for ($i = 0; $i < $cantidadEstrellas; $i++) {
             // Constrol de sistema
@@ -853,18 +854,18 @@ class Astrometria extends Model
             $sistema = 0;
             $intentos = 0;
             while (!empty($planetaElegido) && $intentos < 500) {
-                $sistema = rand(0, $estrellaMaxima);
+                $sistema = random_int(0, $estrellaMaxima);
                 $planetaElegido = Planetas::where('estrella', $sistema)->first();
                 $intentos++;
             }
-            $cantidadObjetos = rand($objetosMin, $objetosMax);
+            $cantidadObjetos = random_int($objetosMin, $objetosMax);
             $posiciones = [];
             for ($j = 0; $j < $cantidadObjetos; $j++) {
                 //Control de orbita
-                $orbita = rand(1, 9);
+                $orbita = random_int(1, 9);
                 $intentos = 0;
                 while (in_array($orbita, $posiciones) && $intentos < 15) {
-                    $orbita = rand(1, 9);
+                    $orbita = random_int(1, 9);
                     $intentos++;
                 }
                 array_push($posiciones, $orbita);
@@ -872,16 +873,19 @@ class Astrometria extends Model
                 $planetaElegido = new Planetas();
                 $planetaElegido->estrella = $sistema;
                 $planetaElegido->orbita = $orbita;
-                $objeto = rand(0, 100);
-                if ($objeto >= 0 && $objeto < 70) {
+                $objeto = random_int(0, $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves);
+                if ($objeto >= 0 && $objeto < $probabilidadPlanetas) {
                     $planetaElegido->tipo = "planeta";
                     $planetaElegido->imagen = random_int(10, 69);
-                } elseif ($objeto >= 70 && $objeto < 90) {
+                } elseif ($objeto >= $probabilidadPlanetas && $objeto < $probabilidadPlanetas + $probabilidadAsteroides) {
                     $planetaElegido->tipo = "asteroide";
                     $planetaElegido->imagen = random_int(70, 79);
-                } elseif ($objeto >= 90 && $objeto <= 100) {
+                } elseif ($probabilidadPlanetas + $probabilidadAsteroides >= 90 && $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles) {
                     $planetaElegido->tipo = "sol";
                     $planetaElegido->imagen = random_int(80, 89);
+                } elseif ($probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles >= 90 && $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves) {
+                    $planetaElegido->tipo = "sol";
+                    $planetaElegido->imagen = 9;
                 }
                 $planetaElegido->save();
             }

@@ -1257,7 +1257,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 70;
+        $constante->valor = 699;
         $constante->minimo = 60;
         $constante->maximo = 80;
         $constante->codigo = 'cantidadplanetas';
@@ -1267,7 +1267,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 20;
+        $constante->valor = 200;
         $constante->minimo = 20;
         $constante->maximo = 80;
         $constante->codigo = 'cantidadporplanetaasteroides';
@@ -1277,11 +1277,21 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 10;
+        $constante->valor = 100;
         $constante->minimo = 20;
         $constante->maximo = 80;
         $constante->codigo = 'cantidadporplanetasoles';
         $constante->descripcion = 'cantidad 1/x de asteroides por planeta';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 1;
+        $constante->minimo = 1;
+        $constante->maximo = 5;
+        $constante->codigo = 'cantidadplanetasenclave';
+        $constante->descripcion = 'cantidad planetas de inicio';
         $constante->tipo = 'universo';
         $constante->votable = 0;
         array_push($producciones, $constante);
