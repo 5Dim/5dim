@@ -1,13 +1,15 @@
 CrearFondoGruposNaves();
 margenIzqDespliegue=((window.innerWidth-anchoDespliegue)/2);
-
+zoom(-10, 0,0);zoom(-10, 0,0);zoom(-10, 0,0);zoom(-10, 0,0);
+camera.x=($('#combate').width() /4)+$('#combate').offset().left;
+camera.y=50;
 
 
 interfaceCombate=false;
 cantidadRondas=0;
 tiempoTurnos[1]=100;//fin del turno 1 en sec/10
 
-/*
+
         //  Fondos y decoracion
 
         const imagenFondo=imgNada;
@@ -32,7 +34,7 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
 
         planetasFondo.fondoParalax1=fondoParalax1;
         planetasFondo.fondoParalax2=fondoParalax2;
-        */
+
 
 
 
@@ -83,7 +85,7 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
         respawdatosnave.nnave=i;
         respawdatosnave.velmax=1;
         respawdatosnave.diseno=disenio['id'];
-        respawdatosnave.cantidad=1;
+        respawdatosnave.cantidad=100;
         vidaNaves[i]=new Array();
         vidaNaves[i][turnoinicial]=100; ///vida al iniciar el turno
 
@@ -96,8 +98,8 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
     respawgrupo=new Array();
     respawgrupodatos=new Array();
     respawgrupodatos.ngrupo=0;
-    respawgrupodatos.x=margenIzqDespliegue+0;
-    respawgrupodatos.y=0;
+    respawgrupodatos.x=margenIzqDespliegue+200;
+    respawgrupodatos.y=200;
     respawgrupodatos.jugador=jugadorActual.id;
     respawgrupodatos.nombregrupo="grupo1";
     respawgrupodatos.actitud="agresiva";

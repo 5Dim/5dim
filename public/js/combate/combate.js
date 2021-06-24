@@ -229,19 +229,20 @@ window.onload = function () {
 
   app = new PIXI.Application({
     transparent: true,
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: window.innerWidth-300,
+    height: 400,
     resolution: window.devicePixelRatio,
     antialias: true,
-    autoResize: true,
+    //autoResize: true,
     resolution: devicePixelRatio,
     interactive: true
+
   })
   //document.body.appendChild(app.view)
   document.getElementById("combate").appendChild(app.view);
 
-  app.view.style.width = "100%";
-  app.view.style.height = "100";
+  //app.view.style.width = "100%";
+  //app.view.style.height = "100";
 
   app.stage.addChild(fondoImg);
   app.stage.addChild(paralax4);
@@ -253,20 +254,16 @@ window.onload = function () {
 
   camera.addChild(container);
 
-  if(PantallaGruposNaves){
-    menuGruposNaves.addChild(grupos);
-    menuGruposNaves.addChild(naves);
-  } else {
-    camera.addChild(grupos);
-    camera.addChild(naves);
-  }
+ camera.addChild(grupos);
+ camera.addChild(naves);
+
 
   app.stage.addChild(interface);
 
   if(interfaceCombate){
     CrearBarraTiempo();
-    preloadAssets();
   }
+  preloadAssets();
 
   //camera.interactive=true;
   //camera.on('click',SeleccionNada);

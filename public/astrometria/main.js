@@ -689,7 +689,7 @@ function resize() {
     // Resize the renderer
 
     var nueva_pos = window.innerWidth / 2 - botones.width / 2;
-    app.renderer.resize(window.innerWidth, window.innerHeight);
+    app.renderer.resize(window.innerWidth-300, window.innerHeight);
     botones.position.set(nueva_pos, 0);
     document.body.style.overflow = 'hidden'; // vaya mierda no?
     //openFullscreen()

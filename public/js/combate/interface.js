@@ -5,7 +5,6 @@ const menunaveseleccionada = new PIXI.Container();
 const menuGruposeleccionada = new PIXI.Container();
 const menuTiempo = new PIXI.Container();
 
-
 const barrasJugador = new Array();
 const porcentJugador = new Array();
 
@@ -13,14 +12,14 @@ interface.addChild(menugeneral);
 interface.addChild(menunaveseleccionada);
 interface.addChild(menuGruposeleccionada);
 interface.addChild(menuTiempo);
-fondoImg.addChild(menuGruposNaves);
+camera.addChild(menuGruposNaves);
 
 const extensionBarras = 3; //multiplica el % para su longitud
 var lineaJugador = 0; //linea de barra para cada jugador
 var cantidadRondas = tiempoTurnos.length - 2;
 var distanciaPuntosTurno = 200;
-var anchoDespliegue=1600;
-var altoDespliege=400;
+var anchoDespliegue=tamagrupo*20;
+var altoDespliege=tamagrupo*6;
 
 
 
@@ -49,15 +48,16 @@ valoresJugadores.forEach(element => {
     cuantasbarrasTotal++;
 });
 
-
-/// fondo de las barras vida
-fondoMenuGeneral = new PIXI.Graphics();
-fondoMenuGeneral.lineStyle(2, 0xffffff, 1);
-fondoMenuGeneral.beginFill(0x000000);
-fondoMenuGeneral.drawRect(-10, 0, 470, cuantasbarrasTotal * 30);
-fondoMenuGeneral.alpha = .5;
-fondoMenuGeneral.endFill();
-menugeneral.addChild(fondoMenuGeneral);
+function crearFondoMenuVidas(){
+    /// fondo de las barras vida
+    fondoMenuGeneral = new PIXI.Graphics();
+    fondoMenuGeneral.lineStyle(2, 0xffffff, 1);
+    fondoMenuGeneral.beginFill(0x000000);
+    fondoMenuGeneral.drawRect(-10, 0, 470, cuantasbarrasTotal * 30);
+    fondoMenuGeneral.alpha = .5;
+    fondoMenuGeneral.endFill();
+    menugeneral.addChild(fondoMenuGeneral);
+}
 
 function CrearFondoMenuTiempo(){
 /// fondo menu tiempo
@@ -145,6 +145,8 @@ function MostrarOcultarMenuNaves() {
 
 
 function crearBarrasJugadore(valoresjugador) {
+    crearFondoMenuVidas();
+
     var nombrejugador = "";
     if (alianzas[valoresjugador.alianza] == 0) {
         nombrejugador = valoresjugador.nombre;

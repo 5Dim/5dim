@@ -28,11 +28,8 @@ const navengrupo = new Array();  // lista de naves del grupo
 const participantes = new Array();
 const stars = [];
 const vidaNaves=new Array(); //la vida a cada segundo
-if (PantallaGruposNaves){
-    tamagrupo = 50; // tamaño del grupo
-} else {
-    tamagrupo = 200; // tamaño del grupo
-}
+
+tamagrupo = 200; // tamaño del grupo
 
 var escala = 1; //escala, zoom
 var tiempo = 0; //tiempo incial
@@ -242,13 +239,13 @@ if (tamagrupo<10){tamatextogrupo=10;}
 const textStyleNombreGrupoBlanco = new PIXI.TextStyle({
   align: "center",
   fill: "#d7d7d7",
-  fontSize: tamatextogrupo,
+  fontSize: tamatextogrupo*1.5,
   fontWeight: "bold"
 });
 
 function CrearNombreGrupo(ngrupo){
   basicText = new PIXI.Text(gnave[ngrupo].nombregrupo, textStyleNombreGrupoBlanco);
-  basicText.x = -gnave[ngrupo].nombregrupo.length*5;
+  basicText.x = -gnave[ngrupo].nombregrupo.length*15;
   basicText.y = tamagrupo*.5;
   gcirculo[ngrupo].addChild(basicText);
 

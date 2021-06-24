@@ -55,16 +55,16 @@ var browser = (function (agent) {
 })(window.navigator.userAgent.toLowerCase());
 
 function onMouseWheel(event) {
-	var delta = 0;
-	if (event.wheelDelta !== undefined) { // WebKit / Opera / Explorer 9
-		delta = event.wheelDelta;
-	} else if (event.detail !== undefined) { // Firefox
-		delta = - event.detail;
-	}
-	zoom(delta, event.offsetX, event.offsetY)
-
-	//if ( delta > 0 ) {dollyOut(delta);} else {dollyIn(delta);}	
-
+    if (!PantallaGruposNaves){
+        var delta = 0;
+        if (event.wheelDelta !== undefined) { // WebKit / Opera / Explorer 9
+            delta = event.wheelDelta;
+        } else if (event.detail !== undefined) { // Firefox
+            delta = - event.detail;
+        }
+        zoom(delta, event.offsetX, event.offsetY)
+        //if ( delta > 0 ) {dollyOut(delta);} else {dollyIn(delta);}
+    }
 };
 
 function onDoublickClick(event) {
@@ -78,19 +78,19 @@ function SeleccionNave(event) {
 	diseno = event.currentTarget.diseno;
 	nnave=event.currentTarget.nnave;
 	//imagen="Combate/fotos naves/skin"+valoresDisenos[diseno].skin+"/naveMT"+valoresDisenos[diseno].nimagen+".jpg";
-	imagen="Combate/fotos naves/skin"+valoresDisenos[diseno].skin+"/naveLTH"+valoresDisenos[diseno].nimagen+".png"; 
+	imagen="Combate/fotos naves/skin"+valoresDisenos[diseno].skin+"/naveLTH"+valoresDisenos[diseno].nimagen+".png";
 	//$('#imagenNave').attr('src', imagen);
-	ataque=valoresDisenos[diseno].ataque; 
+	ataque=valoresDisenos[diseno].ataque;
 	defensa=valoresDisenos[diseno].defensa
 
-	if (ataque>1000){ 
+	if (ataque>1000){
 		ataque=Math.round(ataque/1000,0);
 		ataqueF=ataque.toLocaleString('de-DE')+"K";
 	} else {
 		ataqueF=ataque.toLocaleString('de-DE');
 	}
 
-	if (defensa>1000){ 
+	if (defensa>1000){
 		defensa=Math.round(defensa/1000,0);
 		defensaF=defensa.toLocaleString('de-DE')+"K";
 	} else {
@@ -99,13 +99,13 @@ function SeleccionNave(event) {
 
 	atadef=ataqueF+" / "+defensaF;
 
-	basicTextTipo.text = "Tipo: "+valoresDisenos[diseno].denominacion; 
+	basicTextTipo.text = "Tipo: "+valoresDisenos[diseno].denominacion;
 	basicTextDiseño.text  = "Diseño: "+valoresDisenos[diseno].nombre;
-	basicTextAtaDef.text  = "Ata/Def:: "+atadef;  
+	basicTextAtaDef.text  = "Ata/Def:: "+atadef;
 	basicTextCantidad.text  = "Cantidad: "+event.currentTarget.cantidad;
-	basicTextEstado.text  = "Estado: "+event.currentTarget.vida;   
+	basicTextEstado.text  = "Estado: "+event.currentTarget.vida;
 
-	
+
 	imagengrande.texture=nave[nnave].texture;
 	imagengrande.scale.x = imagengrande.scale.y = 2;//escalado
     imagengrande.anchor.x = 0.5;
@@ -142,7 +142,7 @@ function SeleccionGrupo(event) {
 }
 
 function SeleccionNada(event) {
-	console.log("nada");
+	//console.log("nada");
 	DeselectGrupo();
 }
 
@@ -164,7 +164,7 @@ var dtouch = 0; //distancia incial
 function touchmove(event) {
 	switch (event.touches.length) {
 
-		case 1: // one-fingered touch: 
+		case 1: // one-fingered touch:
 			seleccion();
 			break;
 
@@ -183,7 +183,7 @@ function touchmove(event) {
 			}
 			break;
 
-		case 3: // three-fingered touch: 
+		case 3: // three-fingered touch:
 			//alert (3333);
 			break;
 	};
@@ -213,7 +213,7 @@ function zoom(s, x, y) {
 	camera.scale.x = newScale.x;
 	camera.scale.y = newScale.y;
 	/*
-		for (var i = 0; i < shockwaves.length; i++) {    
+		for (var i = 0; i < shockwaves.length; i++) {
 			shockwaves[i].center.x -= newScreenPos.x - x;
 			shockwaves[i].center.y -= newScreenPos.y - y;
 		  }
@@ -234,15 +234,15 @@ $("canvas").mousemove(function(e) {
 
 
 function click(event) {
-	console.log('Picked up');
+	//console.log('Picked up');
 	DeselectGrupo();
 };
 
 
 function mousedown(event) {
-	//console.log('mousedown');	
-	prevX = event.offsetX;
-	prevY = event.offsetY;
+	//console.log('mousedown');
+	prevX = event.offsetX+$('#combate').offset().left;
+	prevY = event.offsetY+$('#combate').offset().top;
 	isDragging = true;
 	DeselectGrupo();
 };
@@ -259,10 +259,12 @@ jQuery(document).ready(function () {
 
 function PanBordes() { //cosa mas molesta para programar
 	/*
-	if  (valorY>viewHeight-50) {pan(0,-1);}
-	else if (valorY<50) {pan(0,+1);}
-	else if (valorX>viewWidth-50) {pan(-1,0);}
-	else if (valorX<50) {pan(+1,0);};
+    if (!PantallaGruposNaves){
+        if  (valorY>viewHeight-50) {pan(0,-1);}
+        else if (valorY<50) {pan(0,+1);}
+        else if (valorX>viewWidth-50) {pan(-1,0);}
+        else if (valorX<50) {pan(+1,0);};
+    }
 	*/
 }
 
@@ -271,7 +273,7 @@ function mousemove(event) {
 	//valorX=event.offsetX;
 	//valorY=event.offsety;
 
-	// pan por el border  
+	// pan por el border
 
 
 	if (!isDragging) {
@@ -316,7 +318,7 @@ function mousemove(event) {
 	paralax4.x += dx / 60;
 	paralax4.y += dy / 60;
 	/*
-		for (var i = 0; i < shockwaves.length; i++) {    
+		for (var i = 0; i < shockwaves.length; i++) {
 			shockwaves[i].center.x += dx;
 			shockwaves[i].center.y += dy;
 		  }
@@ -337,7 +339,7 @@ function SeleccionTiempo(event) {
 	for (ngrupo in gnave) {
 		if (typeof movGrupos[ngrupo] != 'undefined' && typeof movGrupos[ngrupo][turnoMarcado] != 'undefined') {
 		  gnave[ngrupo].x = movGrupos[ngrupo][turnoMarcado*segundosEntreTurno][0] ;
-		  gnave[ngrupo].y = movGrupos[ngrupo][turnoMarcado*segundosEntreTurno][1] ;		 
+		  gnave[ngrupo].y = movGrupos[ngrupo][turnoMarcado*segundosEntreTurno][1] ;
 		}
 	}
 
@@ -352,7 +354,7 @@ function SeleccionTiempo(event) {
 			nave[nnave].vida=vidaNaves[nnave][turnoMarcado*segundosEntreTurno];
 			nave[nnave].visible=true;
 		}
-		
+
 		ActualizarCirculoVida(nnave)
 		ActualizaInterface();
 	}
@@ -361,14 +363,17 @@ function SeleccionTiempo(event) {
 
 
 function Pausar(){
+    BotonPausa();
+	pausar.clear();
+	CrearSimboloPausar();
+}
+
+function BotonPausa(){
     if (pause>0){
 		pause=0;
     } else {
 		pause=1;
 	}
-	
-	pausar.clear();
-	CrearSimboloPausar();
 }
 
 

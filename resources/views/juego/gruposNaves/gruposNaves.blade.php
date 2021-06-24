@@ -43,7 +43,35 @@
         </div>
     </div>
 
-    <div id="combate" name="combate"></div>
+    <div id="controles" name="controles" style=" width: 100%; background-color: rgba(0, 0, 0, 0.9); ">
+        <table class="table table-sm table-borderless text-center anchofijo" style="margin-bottom: 5px !important;">
+            <tbody>
+                <tr>
+                    <td class=" col-8" >
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success col-12" onclick="BotonPausa()">
+                            <i class="fas fa-play-circle"></i> Play
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success col-12" onclick="zoom(-10, camera.x,camera.y);">
+                            <i class="fas fa-search-minus"></i> Zoom -
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success col-12" onclick="zoom(20, camera.x,camera.y);">
+                            <i class="fas fa-search-plus"></i> Zoom +
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="combate" name="combate" style="height: 400px;  width: 100%; background-color: rgba(0, 0, 0, 0.9); " class="">
+
+
+        </div>
 
 
 
