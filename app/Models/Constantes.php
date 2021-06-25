@@ -1023,7 +1023,7 @@ class Constantes extends Model
         ////// UNIVERSO ///
 
         $constante = new Constantes();
-        $constante->valor = -30;
+        $constante->valor = -10;
         $constante->minimo = -20;
         $constante->maximo = 0;
         $constante->codigo = 'piminimoscolonizar';
@@ -1334,6 +1334,17 @@ class Constantes extends Model
         $constante->descripcion = 'ultima estrella universo';
         $constante->tipo = 'universo';
         $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        // UNIVERSO
+
+        $constante = new Constantes();
+        $constante->valor = 0;
+        $constante->minimo = 0;
+        $constante->maximo = 1;
+        $constante->codigo = 'jugadoralianza';
+        $constante->descripcion = 'Se genera jugador de la alianza';
+        $constante->tipo = 'universo';
         array_push($producciones, $constante);
 
 
