@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Recursos;
 use App\Models\Almacenes;
+use App\Models\Constantes;
 use App\Models\Planetas;
 use App\Models\Producciones;
 use App\Models\Construcciones;
@@ -26,6 +27,11 @@ class GruposNavesController extends Controller
         $diseniosJugador = $jugadorActual->disenios;
         $disenios = Disenios::calculaMejoras($diseniosJugador);
 
+        $constantesU = Constantes::where('tipo', 'universo')->get();
+        $tamagrupo = $constantesU->where('codigo', 'tamagruponaves')->first()->valor * 1;
+        $anchodespliegue = $constantesU->where('codigo', 'anchodespliegue')->first()->valor * $tamagrupo;
+        $altodespliegue = $constantesU->where('codigo', 'altodespliegue')->first()->valor * $tamagrupo;
+
 
 
         return view('juego.gruposNaves.gruposNaves', compact(
@@ -44,7 +50,10 @@ class GruposNavesController extends Controller
             'nivelEnsamblajeFuselajes',
             'tab',
             'jugadorActual',
-            'disenios'
+            'disenios',
+            'tamagrupo',
+            'anchodespliegue',
+            'altodespliegue'
         ));
     }
 }

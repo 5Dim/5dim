@@ -1336,8 +1336,6 @@ class Constantes extends Model
         $constante->votable = 0;
         array_push($producciones, $constante);
 
-        // UNIVERSO
-
         $constante = new Constantes();
         $constante->valor = 0;
         $constante->minimo = 0;
@@ -1345,6 +1343,38 @@ class Constantes extends Model
         $constante->codigo = 'jugadoralianza';
         $constante->descripcion = 'Se genera jugador de la alianza';
         $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+
+        $constante = new Constantes();
+        $constante->valor = 200;
+        $constante->minimo = 100;
+        $constante->maximo = 400;
+        $constante->codigo = 'tamagruponaves';
+        $constante->descripcion = 'tamaño del grupo de naves, determina proporcion espacial de combate';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 20;
+        $constante->minimo = 10;
+        $constante->maximo = 40;
+        $constante->codigo = 'anchodespliegue';
+        $constante->descripcion = 'ancho de la zona de despliegue de grupos en combate medido en radios de grupo';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 6;
+        $constante->minimo = 2;
+        $constante->maximo = 20;
+        $constante->codigo = 'altodespliegue';
+        $constante->descripcion = 'alto de la zona de despliegue de grupos en combate medido en radios de grupo';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 

@@ -18,8 +18,8 @@ const extensionBarras = 3; //multiplica el % para su longitud
 var lineaJugador = 0; //linea de barra para cada jugador
 var cantidadRondas = tiempoTurnos.length - 2;
 var distanciaPuntosTurno = 200;
-var anchoDespliegue=tamagrupo*20;
-var altoDespliege=tamagrupo*6;
+//var anchoDespliegue=tamagrupo*20;  //por constante variable
+//var altoDespliegue=tamagrupo*6; //por constante variable
 
 
 
@@ -75,7 +75,7 @@ function CrearFondoGruposNaves(){
     recuadroGruposNaves = new PIXI.Graphics();
     recuadroGruposNaves.lineStyle(2, 0xffd700, 1);
     recuadroGruposNaves.beginFill(0x000000);
-    recuadroGruposNaves.drawRect(margenIzq, 0, anchoDespliegue, altoDespliege);
+    recuadroGruposNaves.drawRect(margenIzq, 0, anchoDespliegue, altoDespliegue);
     recuadroGruposNaves.alpha = 0.9;
     recuadroGruposNaves.endFill();
     menuGruposNaves.addChild(recuadroGruposNaves);

@@ -43,8 +43,8 @@
         </div>
     </div>
 
-    <div id="controles" name="controles" style=" width: 100%; " class="borderless">
-        <table class="table table-sm table-borderless text-center anchofijo borderless">
+    <div id="controles" name="controles" style=" width: 100%; " class="borderless " >
+        <table class="table table-sm table-borderless text-center anchofijo borderless" style="background-color: rgba(0, 0, 0, 0.9);  ">
             <tbody>
                 <tr>
                     <td class=" col-8" >
@@ -68,7 +68,7 @@
             </tbody>
         </table>
     </div>
-    <div id="combate" name="combate" style="height: 400px;  width: 100%; background-color: rgba(0, 0, 0, 0.9); position: relative; top:-50px;  z-index:-1  " >
+    <div id="combate" name="combate" style="height: 400px;  width: 100%; background-color: rgba(0, 0, 0, 0.9);   z-index:-1  " >
 
 
         </div>
@@ -82,6 +82,9 @@
         let disenios=@json($disenios);
         let directorioImgNaves="{{ asset('/img/fotos naves/') }}";
         let directorioImgCombate="{{ asset('/img/combate/') }}";
+        let tamagrupo =@json($tamagrupo);
+        let anchoDespliegue =@json($anchodespliegue);
+        let altoDespliegue =@json($altodespliegue);
 
         PantallaGruposNaves=true;
 

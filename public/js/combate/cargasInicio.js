@@ -29,7 +29,7 @@ const participantes = new Array();
 const stars = [];
 const vidaNaves=new Array(); //la vida a cada segundo
 
-tamagrupo = 200; // tamaño del grupo
+//tamagrupo = 200; // tamaño del grupo viene por constante
 
 var escala = 1; //escala, zoom
 var tiempo = 0; //tiempo incial
