@@ -12,6 +12,7 @@ use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Alianzas;
+use App\Models\Constantes;
 use App\Models\Jugadores;
 use App\Models\SolicitudesAlianzas;
 use App\Models\Mensajes;
@@ -114,10 +115,13 @@ class AlianzaController extends Controller
         $alianza->jugadores_id = session()->get('jugadores_id');
         $alianza->save();
 
-        $jugador = new Jugadores();
-        $jugador->nombre = request()->input('nombre');
-        $jugador->alianzas_id = $alianza->id;
-        $jugador->save();
+        $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->get();
+        if ($jugadorAlianza == 1) {
+            $jugador = new Jugadores();
+            $jugador->nombre = request()->input('nombre');
+            $jugador->alianzas_id = $alianza->id;
+            $jugador->save();
+        }
 
         $listaInvestigaciones = [];
         foreach ($jugadorActual->investigaciones as $investigacion) {

@@ -884,7 +884,7 @@ class Astrometria extends Model
                     $planetaElegido->tipo = "sol";
                     $planetaElegido->imagen = random_int(80, 89);
                 } elseif ($probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles >= 90 && $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves) {
-                    $planetaElegido->tipo = "sol";
+                    $planetaElegido->tipo = "enclave";
                     $planetaElegido->imagen = 9;
                 }
                 $planetaElegido->save();

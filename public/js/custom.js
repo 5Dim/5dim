@@ -25,6 +25,10 @@ function sendConstruir(id, codigo, modal) {
     if (personal == "") {
         personal = 0;
     }
+    var botones = $(".btn");
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].disabled = true;
+    }
     window.location.href = "/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
 }
 
@@ -43,6 +47,10 @@ function sendIndustria(industria) {
 
 function sendInvestigar(id, codigo, tab) {
     var personal = $("#personal" + codigo).val();
+    var botones = $(".btn");
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].disabled = true;
+    }
     window.location.href = "/juego/investigacion/construir/" + id + "/" + personal + "/" + tab;
 }
 

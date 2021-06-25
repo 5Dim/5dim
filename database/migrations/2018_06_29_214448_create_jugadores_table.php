@@ -25,6 +25,12 @@ class CreateJugadoresTable extends Migration
             $table->timestamp('premiun_at')->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamp("ultima_actividad")->useCurrent();
+            $table->string("navegador")->nullable()->default(null);
+            $table->string("ip1")->nullable()->default(null);
+            $table->string("ip2")->nullable()->default(null);
+            $table->string("ip3")->nullable()->default(null);
+            $table->string("ip4")->nullable()->default(null);
             $table->timestamps();
         });
     }
