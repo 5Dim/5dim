@@ -84,7 +84,7 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
     disenios.forEach(disenio => {
         respawdatosnave=new Array();
         respawdatosnave.nnave=i;
-        respawdatosnave.velmax=1;
+        respawdatosnave.velmax=disenio['datos']['maniobra'];
         respawdatosnave.diseno=disenio['id'];
         respawdatosnave.cantidad=0;
         respawdatosnave.grupo=disenio['posicion'];
@@ -158,4 +158,6 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
 
     movGrupo[0]=[respawgrupodatos.x,respawgrupodatos.y];  //coords de incio
     movGrupos[0]=movGrupo;
+
+
 

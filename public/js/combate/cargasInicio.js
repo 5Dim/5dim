@@ -246,7 +246,7 @@ const textStyleNombreGrupoBlanco = new PIXI.TextStyle({
 
 function CrearNombreGrupo(ngrupo){
   basicText = new PIXI.Text(gnave[ngrupo].nombregrupo, textStyleNombreGrupoBlanco);
-  basicText.x = -gnave[ngrupo].nombregrupo.length*15;
+  basicText.x = -gnave[ngrupo].nombregrupo.length*5;
   basicText.y = tamagrupo*.5;
   gcirculo[ngrupo].addChild(basicText);
 

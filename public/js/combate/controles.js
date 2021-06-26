@@ -149,6 +149,26 @@ function SeleccionNada(event) {
 
 function DeselectGrupo() {
 	if (gruposSeleccionados.length > 0) {
+        if (isDragging) {
+            //circulo destino
+            if(PantallaGruposNaves){
+                movGrupo=new Array();
+                esteGrupo=gnave[gruposSeleccionados[0].ngrupo];
+                posifinalx=esteGrupo.x+circuloDestino.x;
+                posifinaly=esteGrupo.y+circuloDestino.y;
+                if(posifinalx<margenIzq){posifinalx=margenIzq;}
+                if(posifinalx>anchoDespliegue+margenIzq){posifinalx=anchoDespliegue+margenIzq;}
+                if(posifinaly<0){posifinaly=0;}
+                if(posifinaly>altoDespliegue){posifinaly=altoDespliegue;}
+
+                esteGrupo.x=posifinalx;
+                esteGrupo.y=posifinaly;
+                //movGrupo[Math.round(tiempo)+1]=[posifinalx,posifinaly];
+                //movGrupos[gruposSeleccionados[0].ngrupo]=movGrupo;
+            }
+
+        }
+
 		gcirculo[gruposSeleccionados[0].ngrupo].alpha = 1;
 		gruposSeleccionados = new Array();
 		grupoSeleccionado = new Array();
@@ -156,6 +176,8 @@ function DeselectGrupo() {
 		circuloDestino.clear();
 		lineaDestino.clear();
 	}
+
+
 }
 
 

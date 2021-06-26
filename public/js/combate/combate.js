@@ -303,7 +303,7 @@ function animate() {
   /// no se solapan
   for (x in nave) {
     tama = 2; // distancia de separacion entre naves
-    velmax = 3; // velocidad dentro del grupo
+    velmax = nave[x].velmax/10; // velocidad dentro del grupo
     if (nave[x].vida > 0) {
       migrupo = nave[x].grupo;
 
