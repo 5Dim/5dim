@@ -225,7 +225,8 @@
                         {{ $planetaActual->nombre }}
                         ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
                     </button>
-                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton" style="width: 300px">
+                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton"
+                        style="width: 300px">
                         @foreach ($planetasJugador as $planeta)
                             <a class="dropdown-item" style="font-size: inherit;"
                                 href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
@@ -345,12 +346,14 @@
                                 @if (strpos(Request::fullUrl(), 'mensajes'))
                                     <a href="{{ url('/juego/mensajes') }}" class="text-warning">
                                         <i class="far fa-envelope fs-3"></i>
-                                        <span class="badge rounded-pill bg-warning text-dark notification">{{ $mensajeNuevo }}</span>
+                                        <span
+                                            class="badge rounded-pill bg-warning text-dark notification">{{ $mensajeNuevo }}</span>
                                     </a>
                                 @else
                                     <a href="{{ url('/juego/mensajes') }}">
                                         <i class="far fa-envelope fs-3"></i>
-                                        <span class="badge rounded-pill bg-warning text-dark notification">{{ $mensajeNuevo }}</span>
+                                        <span
+                                            class="badge rounded-pill bg-warning text-dark notification">{{ $mensajeNuevo }}</span>
                                     </a>
                                 @endif
                             </li>

@@ -90,26 +90,26 @@ class Jugadores extends Model
         }
         $jugador->puntos_investigacion = $puntosJugador * 1000;
         $jugador->save();
-        if (!empty($jugador->alianzas)) {
-            $puntosJugador = 0;
-            $jugador = Jugadores::where('nombre', $jugador->alianzas->nombre)->first();
-            foreach ($jugador->planetas as $planeta) {
-                if (!empty($planeta)) {
-                    foreach ($planeta->construcciones as $construccion) {
-                        $puntosJugador += $construccion->nivel;
-                    }
-                }
-            }
-            $jugador->puntos_construccion = $puntosJugador * 1000;
-            $puntosJugador = 0;
-            foreach ($jugador->investigaciones as $investigacion) {
-                if (!empty($investigacion)) {
-                    $puntosJugador += $investigacion->nivel;
-                }
-            }
-            $jugador->puntos_investigacion = $puntosJugador * 1000;
-            $jugador->save();
-        }
+        // if (!empty($jugador->alianzas)) {
+        //     $puntosJugador = 0;
+        //     $jugador = Jugadores::where('nombre', $jugador->alianzas->nombre)->first();
+        //     foreach ($jugador->planetas as $planeta) {
+        //         if (!empty($planeta)) {
+        //             foreach ($planeta->construcciones as $construccion) {
+        //                 $puntosJugador += $construccion->nivel;
+        //             }
+        //         }
+        //     }
+        //     $jugador->puntos_construccion = $puntosJugador * 1000;
+        //     $puntosJugador = 0;
+        //     foreach ($jugador->investigaciones as $investigacion) {
+        //         if (!empty($investigacion)) {
+        //             $puntosJugador += $investigacion->nivel;
+        //         }
+        //     }
+        //     $jugador->puntos_investigacion = $puntosJugador * 1000;
+        //     $jugador->save();
+        // }
     }
 
     public static function nuevoJugador()
