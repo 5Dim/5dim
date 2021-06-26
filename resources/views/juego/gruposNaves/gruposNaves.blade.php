@@ -80,6 +80,7 @@
 
         let jugadorActual = @json($jugadorActual);
         let disenios=@json($disenios);
+        let listaGruposNaves = @json($listaGruposNaves);
         let directorioImgNaves="{{ asset('/img/fotos naves/') }}";
         let directorioImgCombate="{{ asset('/img/combate/') }}";
         let tamagrupo =@json($tamagrupo);

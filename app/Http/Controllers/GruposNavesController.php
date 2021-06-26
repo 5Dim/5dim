@@ -12,9 +12,11 @@ use App\Models\Construcciones;
 use App\Models\Disenios;
 use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
+use App\Models\GruposNaves;
 use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
+use Illuminate\Support\Facades\Log;
 
 class GruposNavesController extends Controller
 {
@@ -31,6 +33,9 @@ class GruposNavesController extends Controller
         $tamagrupo = $constantesU->where('codigo', 'tamagruponaves')->first()->valor * 1;
         $anchodespliegue = $constantesU->where('codigo', 'anchodespliegue')->first()->valor * $tamagrupo;
         $altodespliegue = $constantesU->where('codigo', 'altodespliegue')->first()->valor * $tamagrupo;
+
+        $listaGruposNaves=GruposNaves::where("jugadores_id",$jugadorActual->id)->get();
+        //Log::info("listaGruposNaves ".$listaGruposNaves);
 
 
 
@@ -53,7 +58,8 @@ class GruposNavesController extends Controller
             'disenios',
             'tamagrupo',
             'anchodespliegue',
-            'altodespliegue'
+            'altodespliegue',
+            'listaGruposNaves'
         ));
     }
 }

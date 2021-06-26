@@ -46,6 +46,7 @@ const disparar=new Array();  //array de disparos para cada tiempo
 const respawGrupos=new Array(); //cuando aparece un grupo  para cada tiempo
 var respawNave=new Array(); //naves que hacen respaw
 const segundosEntreTurno=10;
+var pdestino=new Array();pdestino[0]=0;pdestino[1]=0;pdestino[2]=0;pdestino[3]=0;
 
 /////valores de la batalla
 var tiempoTurnos=new Array();
@@ -251,7 +252,7 @@ function CrearNombreGrupo(ngrupo){
 
 }
 
-/*
+
 function CreaCirculoDestino(x, y, colorselect) {
   circuloDestino = new PIXI.Graphics();
   circuloDestino.lineStyle(3, colorselect, 1); // filete borde, color borde, gamma
@@ -267,11 +268,11 @@ const lineaDestino = new PIXI.Graphics();
 function CreaLineaDestino() {
   let p = [pdestino[0], pdestino[1], pdestino[2], pdestino[3]];
   let polygon = new PIXI.Polygon(p);
-  lineaDestino.lineStyle(4.0, 0xffffff);
+  lineaDestino.lineStyle(4.0, 0x467F3C);
   lineaDestino.drawShape(polygon);
   grupos.addChild(lineaDestino);
 }
-*/
+
 
 function Creanave(naveaCrear,ngrupo) {
   nnave=naveaCrear.nnave;

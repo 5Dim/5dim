@@ -76,6 +76,7 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
 
 
 
+
     ///naves del un jugador segun diseños
     respawnave=new Array();
 
@@ -86,27 +87,71 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
         respawdatosnave.velmax=1;
         respawdatosnave.diseno=disenio['id'];
         respawdatosnave.cantidad=0;
+        respawdatosnave.grupo=disenio['posicion'];
+        respawdatosnave.grupoPorDefecto=1;
         vidaNaves[i]=new Array();
         vidaNaves[i][turnoinicial]=100; ///vida al iniciar el turno
 
         respawnave.push(respawdatosnave);
+        i++;
     });
 
+        // crear grupos y naves
+        respawgrupo=new Array();
+        var ngr=0;
+        listaGruposNaves.forEach(grupo => {
+            if (grupo["pordefecto"]!=1){
+                respawgrupodatos=new Array();
+                respawgrupodatos.id=grupo['id'];
+                respawgrupodatos.ngrupo=ngr;
+                respawgrupodatos.x=margenIzqDespliegue+1*grupo['coordx']; //margenIzqDespliegue
+                respawgrupodatos.y=1*grupo['coordy'];
+                respawgrupodatos.jugador=jugadorActual.id;
+                respawgrupodatos.nombregrupo=grupo['nombre'];
+                respawgrupodatos.actitud=grupo['actitud'];
+                respawgrupodatos.tipogrupo=grupo['objetivo'];
+                respawgrupodatos.bando=valoresJugadores[respawgrupodatos.jugador].bando;
+
+                //cogiendo diseños de este grupo
+                navesEsteGrupo= $.grep(respawnave, function(nave) {
+                    return nave.grupo == grupo['id'];
+                    });
+
+                ///estos diseños no estan en por defecto
+                navesEsteGrupo.forEach(disenio => {
+                    disenio.grupoPorDefecto=0;
+                });
+
+                respawgrupo.push([respawgrupodatos,navesEsteGrupo]); //añado naves
+
+                ngr++;
+            } else {
+                grupoPorDefectoInicio=grupo;
+            }
+        });
+
+        //naves quedaron sin grupo van al por defecto
+        navesSinGrupo= $.grep(respawnave, function(nave) {
+            return nave.grupoPorDefecto == 1;
+            });
+
+            grupo=grupoPorDefectoInicio;
+            respawgrupodatos=new Array();
+            respawgrupodatos.id=grupo['id'];
+            respawgrupodatos.ngrupo=ngr;
+            respawgrupodatos.x=margenIzqDespliegue+1*grupo['coordx']; //margenIzqDespliegue
+            respawgrupodatos.y=1*grupo['coordy'];
+            respawgrupodatos.jugador=jugadorActual.id;
+            respawgrupodatos.nombregrupo=grupo['nombre'];
+            respawgrupodatos.actitud=grupo['actitud'];
+            respawgrupodatos.tipogrupo=grupo['objetivo'];
+            respawgrupodatos.bando=valoresJugadores[respawgrupodatos.jugador].bando;
+            respawgrupo.push([respawgrupodatos,navesSinGrupo]); //añado naves
 
 
-// crear grupos y naves
-    respawgrupo=new Array();
-    respawgrupodatos=new Array();
-    respawgrupodatos.ngrupo=0;
-    respawgrupodatos.x=margenIzqDespliegue+0;
-    respawgrupodatos.y=0;
-    respawgrupodatos.jugador=jugadorActual.id;
-    respawgrupodatos.nombregrupo="grupo1";
-    respawgrupodatos.actitud="agresiva";
-    respawgrupodatos.tipogrupo="vanguardia";
-    respawgrupodatos.bando=valoresJugadores[respawgrupodatos.jugador].bando;
 
-    respawgrupo.push([respawgrupodatos,respawnave]); //añado naves
+
+
 
     respawGrupos[0]=respawgrupo; //creo el respaw para el segundo 0
     //posicion incio grupos

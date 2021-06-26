@@ -133,7 +133,7 @@ function SeleccionGrupo(event) {
 	grupoSelecionado.x = gnave[grupoSelecionado.ngrupo].x;
 	grupoSelecionado.y = gnave[grupoSelecionado.ngrupo].y;
 	gruposSeleccionados.push(grupoSelecionado);
-	//CreaCirculoDestino(gnave[ngrupo].x, gnave[ngrupo].y, gnave[ngrupo].colorBase);
+	CreaCirculoDestino(gnave[ngrupo].x, gnave[ngrupo].y, gnave[ngrupo].colorBase);
 
 	basicTextGrupoNombre.text="Grupo: "+gnave[grupoSelecionado.ngrupo].nombregrupo;
 	basicTextGrupoActitud.text="Actitud: "+gnave[grupoSelecionado.ngrupo].actitud;
@@ -152,9 +152,9 @@ function DeselectGrupo() {
 		gcirculo[gruposSeleccionados[0].ngrupo].alpha = 1;
 		gruposSeleccionados = new Array();
 		grupoSeleccionado = new Array();
-		//circuloDestino.visible=false;
-		//circuloDestino.clear();
-		//lineaDestino.clear();
+		circuloDestino.visible=false;
+		circuloDestino.clear();
+		lineaDestino.clear();
 	}
 }
 
@@ -278,22 +278,23 @@ function mousemove(event) {
 
 	if (!isDragging) {
 		//circulo destino
-		/*
-		if (gruposSeleccionados.length > 0) {
-			circuloDestino.visible = true;
+        if(PantallaGruposNaves){
+            if (gruposSeleccionados.length > 0) {
+                circuloDestino.visible = true;
 
-			circuloDestino.x = ((valorX - prevX) / newScale.x);
-			circuloDestino.y = ((valorY - prevY) / newScale.y);
+                circuloDestino.x = ((valorX - prevX) / newScale.x);
+                circuloDestino.y = ((valorY - prevY) / newScale.y);
 
-			lineaDestino.clear();
-			CreaLineaDestino();
+                lineaDestino.clear();
+                CreaLineaDestino();
 
-			pdestino[0] = (gnave[gruposSeleccionados[0].ngrupo].x);
-			pdestino[1] = (gnave[gruposSeleccionados[0].ngrupo].y);
-			pdestino[2] = circuloDestino.x + grupoSelecionado.x;
-			pdestino[3] = circuloDestino.y + grupoSelecionado.y;
-		}
-		*/
+                pdestino[0] = (gnave[gruposSeleccionados[0].ngrupo].x);
+                pdestino[1] = (gnave[gruposSeleccionados[0].ngrupo].y);
+                pdestino[2] = circuloDestino.x + grupoSelecionado.x;
+                pdestino[3] = circuloDestino.y + grupoSelecionado.y;
+            }
+        }
+
 
 		return;
 	}
