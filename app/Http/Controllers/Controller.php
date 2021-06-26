@@ -65,13 +65,13 @@ class Controller extends BaseController
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
 
         if (!empty($jugadorActual->alianzas)) {
-            $emisorSinLeer = MensajesIntervinientes::where('leido', false)->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->first();
+            $emisorSinLeer = MensajesIntervinientes::where('leido', false)->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->get();
         }else{
-            $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+            $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->get();
         }
-        $mensajeNuevo = false;
+        $mensajeNuevo = 0;
         if (!empty($emisorSinLeer)) {
-            $mensajeNuevo = true;
+            $mensajeNuevo = count($emisorSinLeer);
         }
         // Fin obligatorio por recursos
 

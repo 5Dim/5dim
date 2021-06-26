@@ -4,14 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Alianzas;
 use Illuminate\Http\Request;
-use App\Models\Recursos;
-use App\Models\Almacenes;
-use App\Models\Planetas;
-use App\Models\Producciones;
-use App\Models\Construcciones;
-use App\Models\EnConstrucciones;
-use App\Models\EnInvestigaciones;
-use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\Mensajes;
 use App\Models\MensajesIntervinientes;
@@ -19,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class MensajesController extends Controller
 {
-
     public function index($tab = "recibidos-tab")
     {
         extract($this->recursos());
@@ -32,12 +23,12 @@ class MensajesController extends Controller
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorAlianza) {
                 $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])
                     ->where('categoria', 'recibidos');
-            })->orderBy('id', 'desc')->get();
-            $enviados = Mensajes::whereIn('emisor', [session()->get('jugadores_id'), $jugadorAlianza->id])->orderBy('id', 'desc')->get();
+            })->orderBy('id', 'desc')->paginate(15);
+            $enviados = Mensajes::whereIn('emisor', [session()->get('jugadores_id'), $jugadorAlianza->id])->orderBy('id', 'desc')->paginate(15);
             $flotas = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorAlianza) {
                 $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])
                     ->where('categoria', 'flotas');
-            })->orderBy('id', 'desc')->get();
+            })->orderBy('id', 'desc')->paginate(15);
             $mios = MensajesIntervinientes::whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->get();
         } else {
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) {

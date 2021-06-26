@@ -345,19 +345,19 @@
                                 @if (strpos(Request::fullUrl(), 'mensajes'))
                                     <a href="{{ url('/juego/mensajes') }}" class="text-warning">
                                         <i class="far fa-envelope fs-3"></i>
-                                        <span class="badge rounded-pill bg-warning text-dark notification">3</span>
+                                        <span class="badge rounded-pill bg-warning text-dark notification">{{ $mensajeNuevo }}</span>
                                     </a>
                                 @else
                                     <a href="{{ url('/juego/mensajes') }}">
                                         <i class="far fa-envelope fs-3"></i>
-                                        <span class="badge rounded-pill bg-warning text-dark notification">3</span>
+                                        <span class="badge rounded-pill bg-warning text-dark notification">{{ $mensajeNuevo }}</span>
                                     </a>
                                 @endif
                             </li>
                             <li class="list-inline-item">
                                 <a href="">
                                     <i class="fas fa-tasks fs-3"></i>
-                                    <span class="badge rounded-pill bg-success notification">3</span>
+                                    <span class="badge rounded-pill bg-success notification">0</span>
                                 </a>
                             </li>
                             <li class="list-inline-item">
