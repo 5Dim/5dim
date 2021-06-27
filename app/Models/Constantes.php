@@ -26,6 +26,7 @@ class Constantes extends Model
         $constante->codigo = 'avelprodminas';
         $constante->descripcion = 'produccion de recursos en minas';
         $constante->tipo = 'construccion';
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -121,15 +122,6 @@ class Constantes extends Model
 
 
         ////////  investigaciones  ////////////////////////////////////////////////////////////////
-
-        $constante = new Constantes();
-        $constante->valor = 3;
-        $constante->minimo = 1;
-        $constante->maximo = 6;
-        $constante->codigo = 'colaInvest';
-        $constante->descripcion = 'investigaciones simultaneas';
-        $constante->tipo = 'investigacion';
-        array_push($producciones, $constante);
 
         $constante = new Constantes();
         $constante->valor = 10;
@@ -457,16 +449,6 @@ class Constantes extends Model
 
 
         /////// FUSELAJES  ///////////////////////////////////////////////////
-        //Naves//////////////////////////////////////////////////////////////////////////7
-
-        $constante = new Constantes();
-        $constante->valor = 0;
-        $constante->minimo = -20;
-        $constante->maximo = 20;
-        $constante->codigo = 'fuselajenaveCostoPuntosTodas';
-        $constante->descripcion = 'variación de puntos para todos los fuselajes de naves, es suma ';
-        $constante->tipo = 'fuselajes';
-        array_push($producciones, $constante);
 
         //tiempo
         $constante = new Constantes();
