@@ -117,8 +117,8 @@
                             <option value="Transportar">Transportar</option>
                             <option value="Transferir">Transferir</option>
                             <option value="Orbitar">Orbitar</option>
-                            <option value="Recolectar">Recolectar</option>
-                            <option value="Extraer">Extraer</option>
+                            <option value="Recolectar">Recolectar(asteroides)</option>
+                            <option value="Extraer">Extraer(planeta)</option>
                             <option value="Colonizar">Colonizar</option>
                         </select>
                     </div>

@@ -83,9 +83,8 @@
         let listaGruposNaves = @json($listaGruposNaves);
         let directorioImgNaves="{{ asset('/img/fotos naves/') }}";
         let directorioImgCombate="{{ asset('/img/combate/') }}";
-        let tamagrupo =@json($tamagrupo);
-        let anchoDespliegue =@json($anchodespliegue);
-        let altoDespliegue =@json($altodespliegue);
+        let constantesC =@json($constantesC);
+
 
         PantallaGruposNaves=true;
 

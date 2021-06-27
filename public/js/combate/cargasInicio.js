@@ -24,7 +24,7 @@ valoresJugador = new Array(); //propiedades de cada contendiente
 //navengrupo[ngrupo] = new Array(); //creo el listado de naves
 
 const nave = new Array(); // cada nave en stage
-const navengrupo = new Array();  // lista de naves del grupo
+//const navengrupo = new Array();  // lista de naves del grupo
 const participantes = new Array();
 const stars = [];
 const vidaNaves=new Array(); //la vida a cada segundo
@@ -55,7 +55,23 @@ tiempoTurnos[turnoinicial]=0;
 let valoresJugadores=new Array();
 
 
-// rutas de recursos
+//valores constantes de combate:
+tamagrupo= $.grep(constantesC, function(valor) {
+    return valor.codigo == 'tamagruponaves';
+    })[0].valor * 1;
+
+anchoDespliegue= $.grep(constantesC, function(valor) {
+    return valor.codigo == 'anchodespliegue';
+    })[0].valor * tamagrupo;
+
+altoDespliegue= $.grep(constantesC, function(valor) {
+    return valor.codigo == 'altodespliegue';
+    })[0].valor * tamagrupo;
+
+factorvelocidadcombate= $.grep(constantesC, function(valor) {
+    return valor.codigo == 'factorvelocidadcombate';
+    })[0].valor * 1;
+
 
 
 
@@ -171,6 +187,11 @@ function Creagrupo(grupoacrear) { // crea el grupo con su circulo
     gnave[ngrupo].nombregrupo=grupoacrear[0].nombregrupo;
     gnave[ngrupo].actitud=grupoacrear[0].actitud;
     gnave[ngrupo].tipogrupo=grupoacrear[0].tipogrupo;
+    //para gruposnaves
+    gnave[ngrupo].moverse=false;//si debe moverse hasata unas x,y
+    gnave[ngrupo].destinox=posix;
+    gnave[ngrupo].destinoy=posiy;
+    gnave[ngrupo].velmax=0;
 
     grupos.addChild(gnave[ngrupo]);
     Creacirculo(ngrupo, participantes[bando].color.color, participantes[bando].color.color)
@@ -246,7 +267,7 @@ const textStyleNombreGrupoBlanco = new PIXI.TextStyle({
 
 function CrearNombreGrupo(ngrupo){
   basicText = new PIXI.Text(gnave[ngrupo].nombregrupo, textStyleNombreGrupoBlanco);
-  basicText.x = -gnave[ngrupo].nombregrupo.length*5;
+  basicText.x = -gnave[ngrupo].nombregrupo.length*6;
   basicText.y = tamagrupo*.5;
   gcirculo[ngrupo].addChild(basicText);
 

@@ -29,10 +29,7 @@ class GruposNavesController extends Controller
         $diseniosJugador = $jugadorActual->disenios;
         $disenios = Disenios::calculaMejoras($diseniosJugador);
 
-        $constantesU = Constantes::where('tipo', 'universo')->get();
-        $tamagrupo = $constantesU->where('codigo', 'tamagruponaves')->first()->valor * 1;
-        $anchodespliegue = $constantesU->where('codigo', 'anchodespliegue')->first()->valor * $tamagrupo;
-        $altodespliegue = $constantesU->where('codigo', 'altodespliegue')->first()->valor * $tamagrupo;
+        $constantesC = Constantes::where('tipo', 'combate')->get();
 
         $listaGruposNaves=GruposNaves::where("jugadores_id",$jugadorActual->id)->get();
         //Log::info("listaGruposNaves ".$listaGruposNaves);
@@ -56,10 +53,8 @@ class GruposNavesController extends Controller
             'tab',
             'jugadorActual',
             'disenios',
-            'tamagrupo',
-            'anchodespliegue',
-            'altodespliegue',
-            'listaGruposNaves'
+            'listaGruposNaves',
+            'constantesC'
         ));
     }
 }
