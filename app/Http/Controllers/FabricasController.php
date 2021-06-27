@@ -86,6 +86,9 @@ class FabricasController extends Controller
         if ($recursos->micros < ($costes->micros * $cantidad)) {
             $error = true;
         }
+        if ($recursos->personal < ($costes->personal * $cantidad)) {
+            $error = true;
+        }
 
         if (!$error) {
             $cadenaProduccion = 1; //factor de ahorro por cantidad de produccion
@@ -98,6 +101,7 @@ class FabricasController extends Controller
             $recursos->ceramica -= (($costes->ceramica * $cantidad) * $cadenaProduccion);
             $recursos->liquido -= (($costes->liquido * $cantidad) * $cadenaProduccion);
             $recursos->micros -= (($costes->micros * $cantidad) * $cadenaProduccion);
+            $recursos->personal -= (($costes->personal * $cantidad) * $cadenaProduccion);
             $recursos->save();
 
             $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();

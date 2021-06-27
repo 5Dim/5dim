@@ -66,7 +66,7 @@ class Controller extends BaseController
 
         if (!empty($jugadorActual->alianzas)) {
             $emisorSinLeer = MensajesIntervinientes::where('leido', false)->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->get();
-        }else{
+        } else {
             $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->get();
         }
         $mensajeNuevo = 0;
