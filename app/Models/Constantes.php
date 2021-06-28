@@ -1239,7 +1239,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 749;
+        $constante->valor = 744;
         $constante->minimo = 60;
         $constante->maximo = 80;
         $constante->codigo = 'cantidadplanetas';
@@ -1273,6 +1273,36 @@ class Constantes extends Model
         $constante->minimo = 1;
         $constante->maximo = 5;
         $constante->codigo = 'cantidadplanetasenclave';
+        $constante->descripcion = 'cantidad planetas de inicio';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 2;
+        $constante->minimo = 1;
+        $constante->maximo = 5;
+        $constante->codigo = 'cantidadagujerosrojos';
+        $constante->descripcion = 'cantidad planetas de inicio';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 2;
+        $constante->minimo = 1;
+        $constante->maximo = 5;
+        $constante->codigo = 'cantidadagujerosazul';
+        $constante->descripcion = 'cantidad planetas de inicio';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 1;
+        $constante->minimo = 1;
+        $constante->maximo = 5;
+        $constante->codigo = 'cantidadagujerosnegros';
         $constante->descripcion = 'cantidad planetas de inicio';
         $constante->tipo = 'universo';
         $constante->votable = 0;
@@ -1328,6 +1358,7 @@ class Constantes extends Model
         $constante->votable = 0;
         array_push($producciones, $constante);
 
+        // COMBATES
 
         $constante = new Constantes();
         $constante->valor = 200;

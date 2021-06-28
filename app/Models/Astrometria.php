@@ -847,6 +847,9 @@ class Astrometria extends Model
         $probabilidadAsteroides = Constantes::where("codigo", 'cantidadporplanetaasteroides')->first()->valor;
         $probabilidadSoles = Constantes::where("codigo", 'cantidadporplanetasoles')->first()->valor;
         $probabilidadEnclaves = Constantes::where("codigo", 'cantidadplanetasenclave')->first()->valor;
+        $probabilidadAgujeroRojo = Constantes::where("codigo", 'cantidadagujerosrojos')->first()->valor;
+        $probabilidadAgujeroAzul = Constantes::where("codigo", 'cantidadagujerosazul')->first()->valor;
+        $probabilidadAgujeroNegro = Constantes::where("codigo", 'cantidadagujerosnegros')->first()->valor;
 
         for ($i = 0; $i < $cantidadEstrellas; $i++) {
             // Constrol de sistema
@@ -873,19 +876,49 @@ class Astrometria extends Model
                 $planetaElegido = new Planetas();
                 $planetaElegido->estrella = $sistema;
                 $planetaElegido->orbita = $orbita;
-                $objeto = random_int(0, $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves);
-                if ($objeto >= 0 && $objeto < $probabilidadPlanetas) {
+                $objeto = random_int(0, $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo + $probabilidadAgujeroAzul + $probabilidadAgujeroNegro);
+                if (
+                    $objeto >= 0 &&
+                    $objeto < $probabilidadPlanetas
+                ) {
                     $planetaElegido->tipo = "planeta";
                     $planetaElegido->imagen = random_int(10, 69);
-                } elseif ($objeto >= $probabilidadPlanetas && $objeto < $probabilidadPlanetas + $probabilidadAsteroides) {
+                } elseif (
+                    $objeto >= $probabilidadPlanetas &&
+                    $objeto < $probabilidadPlanetas + $probabilidadAsteroides
+                ) {
                     $planetaElegido->tipo = "asteroide";
                     $planetaElegido->imagen = random_int(70, 79);
-                } elseif ($probabilidadPlanetas + $probabilidadAsteroides >= 90 && $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles) {
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles
+                ) {
                     $planetaElegido->tipo = "sol";
                     $planetaElegido->imagen = random_int(80, 89);
-                } elseif ($probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles >= 90 && $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves) {
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves
+                ) {
                     $planetaElegido->tipo = "enclave";
-                    $planetaElegido->imagen = 9;
+                    $planetaElegido->imagen = random_int(90, 92);
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo
+                ) {
+                    $planetaElegido->tipo = "agujero rojo";
+                    $planetaElegido->imagen = 3;
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo + $probabilidadAgujeroAzul
+                ) {
+                    $planetaElegido->tipo = "agujero azul";
+                    $planetaElegido->imagen = 2;
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo + $probabilidadAgujeroAzul &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo + $probabilidadAgujeroAzul + $probabilidadAgujeroNegro
+                ) {
+                    $planetaElegido->tipo = "agujero negro";
+                    $planetaElegido->imagen = 4;
                 }
                 $planetaElegido->save();
             }

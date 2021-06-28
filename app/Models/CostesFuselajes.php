@@ -896,7 +896,7 @@ class CostesFuselajes extends Model
 
         $factorCostoT = $constantes->where('codigo', 'fuselaje' . $tipo . 'RecursosTodas')->first()->valor;
         $factorCosto = $constantes->where('codigo', 'fuselaje' . $tipo . 'Recursos' . $tamano)->first()->valor;
-        $factorPuntos = $constantes->where('codigo', 'fuselajenaveCostoPuntosTodas')->first()->valor;
+        $factorPuntos = 1; //$constantes->where('codigo', 'fuselajenaveCostoPuntosTodas')->first()->valor;
 
         $n = 1;
 
