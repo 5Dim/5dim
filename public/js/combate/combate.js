@@ -157,8 +157,8 @@ function ShockWaveAnimation() {
 //shockwave.time =  shockwave.time + 0.01;
 
 function MueveGrupos(t) {
-  c = Math.round(Math.random(1, 5));
-  c = 2;
+  //c = Math.round(Math.random(1, 5));
+  //c = 2;
   for (ngrupo in gnave) {
     movUltimoGrupo[ngrupo] = [0, 0];
     if (typeof movGrupos[ngrupo] != 'undefined' && typeof movGrupos[ngrupo][t] != 'undefined') {
@@ -167,8 +167,38 @@ function MueveGrupos(t) {
       movUltimoGrupo[ngrupo] = [(movGrupos[ngrupo][t][0] - gnave[ngrupo].x) / factorTiempoMovimiento, (movGrupos[ngrupo][t][1] - gnave[ngrupo].y) / factorTiempoMovimiento];
     }
   }
+}
 
+function mueveGruposXY(){
+    gruposMueven= $.grep(gnave, function(valor) {
+        return valor.moverse == true;
+        });
+    gruposMueven.forEach(element => {
+        if (element.x == element.destinox && element.y == element.destinoy){
+            element.moverse=false;
+        } else {
+            velmax = element.velmax/factorvelocidadcombate;
+            dx=(element.destinox - element.x);
+            dy=(element.destinoy - element.y);
+            dist = Math.sqrt(dx * dx + dy * dy);
+            element.x += (dx/dist) * velmax;
+            element.y += (dy/dist) * velmax;
+            if (dist<1){
+                element.moverse=false;
+            }
+        }
+   });
+}
 
+function calculoVelmaxGrupo(grupo){
+    var navesNgrupo = nave.filter(function(el) {
+        return el.grupo == grupo.ngrupo;
+    })
+    velmaxGrupo=999;
+    navesNgrupo.forEach(element => {
+        velmaxGrupo=Math.min(element.velmax,velmaxGrupo);
+    });
+    grupo.velmax=velmaxGrupo;
 }
 
 
@@ -202,7 +232,10 @@ function vwork() {
 
     Disparar(tiempo);
     animate();
-    MueveGrupos(tiempocalculo);
+
+        MueveGrupos(tiempocalculo);
+
+
     ShockWaveAnimation();
 
     MoverCirculoTiempo();
@@ -213,7 +246,12 @@ function vwork() {
     tiempoanime += 1;
     CargarParticipantes(tiempo);
     animate();
-    MueveGrupos(tiempocalculo);
+    if (PantallaGruposNaves){
+        mueveGruposXY();
+        MueveGrupos(tiempocalculo);
+    } else {
+        MueveGrupos(tiempocalculo);
+    }
   }
 
 
@@ -303,7 +341,7 @@ function animate() {
   /// no se solapan
   for (x in nave) {
     tama = 2; // distancia de separacion entre naves
-    velmax = nave[x].velmax/10; // velocidad dentro del grupo
+    velmax = nave[x].velmax/factorvelocidadcombate; // velocidad dentro del grupo
     if (nave[x].vida > 0) {
       migrupo = nave[x].grupo;
 

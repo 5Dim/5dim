@@ -1335,7 +1335,7 @@ class Constantes extends Model
         $constante->maximo = 400;
         $constante->codigo = 'tamagruponaves';
         $constante->descripcion = 'tamaño del grupo de naves, determina proporcion espacial de combate';
-        $constante->tipo = 'universo';
+        $constante->tipo = 'combate';
         $constante->votable = 0;
         array_push($producciones, $constante);
 
@@ -1345,7 +1345,7 @@ class Constantes extends Model
         $constante->maximo = 40;
         $constante->codigo = 'anchodespliegue';
         $constante->descripcion = 'ancho de la zona de despliegue de grupos en combate medido en radios de grupo';
-        $constante->tipo = 'universo';
+        $constante->tipo = 'combate';
         $constante->votable = 0;
         array_push($producciones, $constante);
 
@@ -1355,7 +1355,17 @@ class Constantes extends Model
         $constante->maximo = 20;
         $constante->codigo = 'altodespliegue';
         $constante->descripcion = 'alto de la zona de despliegue de grupos en combate medido en radios de grupo';
-        $constante->tipo = 'universo';
+        $constante->tipo = 'combate';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 50;
+        $constante->minimo = 20;
+        $constante->maximo = 200;
+        $constante->codigo = 'factorvelocidadcombate';
+        $constante->descripcion = 'factor reductor velocidad de naves en combate';
+        $constante->tipo = 'combate';
         $constante->votable = 0;
         array_push($producciones, $constante);
 

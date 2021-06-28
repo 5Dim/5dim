@@ -148,8 +148,10 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
             respawgrupodatos.bando=valoresJugadores[respawgrupodatos.jugador].bando;
             respawgrupo.push([respawgrupodatos,navesSinGrupo]); //añado naves
 
-
-
+            //asigno las naves sin grupo al por defecto
+            navesSinGrupo.forEach(nave => {
+                nave.grupo=grupo['id'];
+            });
 
 
 
