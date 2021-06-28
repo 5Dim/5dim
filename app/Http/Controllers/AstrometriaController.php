@@ -138,7 +138,7 @@ class AstrometriaController extends Controller
                     $orbita->nom_pla = !empty($planetaActual->nombre) ? $planetaActual->nombre : "";
                     $orbita->nom_jug = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->nombre) ? $planetaActual->jugadores->nombre : "";
                     $orbita->alianza = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->alianzas) && !empty($planetaActual->jugadores->alianzas->nombre) ? $planetaActual->jugadores->alianzas->nombre : "";
-                    $orbita->img_planeta = !empty($planetaActual->imagen) ? "planeta" . $planetaActual->imagen . ".png" : "";
+                    $orbita->img_planeta = !empty($planetaActual->imagen) ? "planetaG" . $planetaActual->imagen . ".png" : "";
                     $orbita->mineral = !empty($planetaActual->cualidades->mineral) ? $planetaActual->cualidades->mineral : "";
                     $orbita->cristal = !empty($planetaActual->cualidades->cristal) ? $planetaActual->cualidades->cristal : "";
                     $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : "";

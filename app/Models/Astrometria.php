@@ -900,7 +900,7 @@ class Astrometria extends Model
                     $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves
                 ) {
                     $planetaElegido->tipo = "enclave";
-                    $planetaElegido->imagen = random_int(90, 92);
+                    $planetaElegido->imagen = random_int(90, 95);
                 } elseif (
                     $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves &&
                     $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo
