@@ -1239,7 +1239,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 699;
+        $constante->valor = 749;
         $constante->minimo = 60;
         $constante->maximo = 80;
         $constante->codigo = 'cantidadplanetas';
@@ -1249,7 +1249,7 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 200;
+        $constante->valor = 150;
         $constante->minimo = 20;
         $constante->maximo = 80;
         $constante->codigo = 'cantidadporplanetaasteroides';
