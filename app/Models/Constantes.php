@@ -101,6 +101,15 @@ class Constantes extends Model
         $constante->tipo = 'construccion';
         array_push($producciones, $constante);
 
+        $constante = new Constantes();
+        $constante->valor = .3;
+        $constante->minimo = .3;
+        $constante->maximo = 1;
+        $constante->codigo = 'tiempoReciclar';
+        $constante->descripcion = 'Disminución de tiempo por reciclar';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
 
         $constante = new Constantes();
         $constante->valor = 1;

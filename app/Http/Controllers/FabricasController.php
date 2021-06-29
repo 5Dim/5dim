@@ -159,7 +159,8 @@ class FabricasController extends Controller
             $nivelHangar = $planetaActual->construcciones->where('codigo', 'hangar')->first()->nivel;
             $constanteVelocidad = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
             $cadenaProduccion = 1;
-            $final = (strtotime($inicio) + ((($tiempo * $cantidad) * $cadenaProduccion)) / (1 + ($constanteVelocidad * $nivelHangar / 100)));
+            $tiempoReciclaje = Constantes::where('codigo', 'tiempoReciclar')->first()->valor;
+            $final = (strtotime($inicio) + (((($tiempo * $cantidad) * $cadenaProduccion)) / (1 + ($constanteVelocidad * $nivelHangar / 100)) * $tiempoReciclaje));
 
             //Generamos la cola
             $cola = new EnDisenios();
