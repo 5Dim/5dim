@@ -98,19 +98,10 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
 
         // crear grupos y naves
         respawgrupo=new Array();
-        var ngr=0;
+
         listaGruposNaves.forEach(grupo => {
             if (grupo["pordefecto"]!=1){
-                respawgrupodatos=new Array();
-                respawgrupodatos.id=grupo['id'];
-                respawgrupodatos.ngrupo=ngr;
-                respawgrupodatos.x=margenIzqDespliegue+1*grupo['coordx']; //margenIzqDespliegue
-                respawgrupodatos.y=1*grupo['coordy'];
-                respawgrupodatos.jugador=jugadorActual.id;
-                respawgrupodatos.nombregrupo=grupo['nombre'];
-                respawgrupodatos.actitud=grupo['actitud'];
-                respawgrupodatos.tipogrupo=grupo['objetivo'];
-                respawgrupodatos.bando=valoresJugadores[respawgrupodatos.jugador].bando;
+                var respawgrupodatos=CrearGrupoNaves(grupo);
 
                 //cogiendo diseños de este grupo
                 navesEsteGrupo= $.grep(respawnave, function(nave) {
@@ -123,8 +114,6 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
                 });
 
                 respawgrupo.push([respawgrupodatos,navesEsteGrupo]); //añado naves
-
-                ngr++;
             } else {
                 grupoPorDefectoInicio=grupo;
             }
@@ -138,7 +127,7 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
             grupo=grupoPorDefectoInicio;
             respawgrupodatos=new Array();
             respawgrupodatos.id=grupo['id'];
-            respawgrupodatos.ngrupo=ngr;
+            respawgrupodatos.ngrupo=respawgrupo.length;
             respawgrupodatos.x=margenIzqDespliegue+1*grupo['coordx']; //margenIzqDespliegue
             respawgrupodatos.y=1*grupo['coordy'];
             respawgrupodatos.jugador=jugadorActual.id;
@@ -162,4 +151,48 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
     movGrupos[0]=movGrupo;
 
 
+////funciones propias de pantalla grupos de naves
 
+function CrearGrupoNaves(grupo,ngrupo=respawgrupo.length){
+    respawgrupodatos=new Array();
+    respawgrupodatos.id=grupo['id'];
+    respawgrupodatos.ngrupo=ngrupo;
+    respawgrupodatos.x=margenIzqDespliegue+1*grupo['coordx']; //margenIzqDespliegue
+    respawgrupodatos.y=1*grupo['coordy'];
+    respawgrupodatos.jugador=jugadorActual.id;
+    respawgrupodatos.nombregrupo=grupo['nombre'];
+    respawgrupodatos.actitud=grupo['actitud'];
+    respawgrupodatos.tipogrupo=grupo['objetivo'];
+    respawgrupodatos.bando=valoresJugadores[respawgrupodatos.jugador].bando;
+
+    return respawgrupodatos;
+}
+
+function CrearGrupoYa(nombre="",actitud="huida",objetivo="dhago"){
+    respawgrupo=new Array();
+    grupo=new Array();
+
+    grupo['id']=-1*gnave.length;
+    grupo['coordx']=50+10*gnave.length;
+    grupo['coordy']=50+10*gnave.length;
+    if (nombre.length<1){nombre="grupo"+gnave.length;}
+    grupo['nombre']=nombre;
+    grupo['actitud']=actitud;
+    grupo['objetivo']=objetivo;
+    yamismo=Math.round(tiempo+1);
+
+    var respawgrupodatos=CrearGrupoNaves(grupo,gnave.length);
+    respawgrupo.push([respawgrupodatos,null]);
+   // respawGrupos[Math.round(tiempo+1)]=respawgrupo;
+    Creagrupo(respawgrupo[0]);
+}
+
+function CambiarNaveGrupo(nnave,grupo){
+    if (nave[nnave].velmax<40){
+        nave[nnave].x=gnave[grupo].x;
+        nave[nnave].y=gnave[grupo].y;
+    }
+    nave[nnave].grupo=grupo;
+
+
+}

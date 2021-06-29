@@ -50,6 +50,11 @@
                     <td class=" col-8" >
                     </td>
                     <td>
+                        <button type="button" class="btn btn-outline-success col-12" onclick="CrearGrupoYa()">
+                            <i class="fas fa-play-circle"></i> Crear grupete
+                        </button>
+                    </td>
+                    <td>
                         <button type="button" class="btn btn-outline-success col-12" onclick="BotonPausa()">
                             <i class="fas fa-play-circle"></i> Play
                         </button>

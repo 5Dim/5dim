@@ -194,12 +194,9 @@ function Creagrupo(grupoacrear) { // crea el grupo con su circulo
     gnave[ngrupo].velmax=0;
 
     grupos.addChild(gnave[ngrupo]);
-    Creacirculo(ngrupo, participantes[bando].color.color, participantes[bando].color.color)
 
+    Creacirculo(ngrupo, participantes[bando].color.color, participantes[bando].color.color);
 
-    if (crearParticipante){
-
-    }
 
   } // ya existe
   else {

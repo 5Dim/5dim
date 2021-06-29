@@ -181,8 +181,16 @@ function mueveGruposXY(){
             dx=(element.destinox - element.x);
             dy=(element.destinoy - element.y);
             dist = Math.sqrt(dx * dx + dy * dy);
-            element.x += (dx/dist) * velmax;
-            element.y += (dy/dist) * velmax;
+            avancex=(dx/dist) * velmax;
+            avancey=(dy/dist) * velmax;
+            if(dist<avancex){//freno al final y ajusto
+                avancex=dx;
+            }
+            if(dist<avancey){//freno al final y ajusto
+                avancey=dy;
+            }
+            element.x += avancex;
+            element.y += avancey;
             if (dist<1){
                 element.moverse=false;
             }
