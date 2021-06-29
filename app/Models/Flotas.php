@@ -1142,7 +1142,6 @@ class Flotas extends Model
                                 }
 
                                 $naveNueva->disenios_id = $diseno->disenios->id;
-                                $naveNueva->tipo = "nave";
                                 $naveNueva->save();
                                 //Log::info("nueva");
                                 //Log::info($naveNueva);
@@ -1388,7 +1387,6 @@ class Flotas extends Model
 
                             $naveNueva->disenios_id = $diseno->disenios->id;
                             $naveNueva->$columnNaves = $flotaExiste->id;
-                            $naveNueva->tipo = "nave";
                             $naveNueva->save();
 
                             //Log::info("flota: ".$diseno['enFlota']);
@@ -1425,7 +1423,6 @@ class Flotas extends Model
 
                         $naveNueva->disenios_id = $diseno->disenios->id;
                         $naveNueva->$columnNaves = $flotax->id;
-                        $naveNueva->tipo = "nave";
                         $naveNueva->save();
                     }
 

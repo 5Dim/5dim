@@ -64,7 +64,6 @@ class EnDisenios extends Model
                         $disenio->cantidad += $cola->cantidad;
                         $disenio->disenios_id = $cola->disenios_id;
                         $coste = $cola->disenios->costes;
-                        $disenio->tipo = $cola->disenios->fuselajes->tipo;
                         $disenio->save();
                     } else {
                         //Restaurar beneficio por reciclaje

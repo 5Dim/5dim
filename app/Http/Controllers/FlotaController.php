@@ -663,7 +663,6 @@ class FlotaController extends Controller
                     $naveSale->enHangar = $navex['enhangar'];
                     $naveSale->disenios_id = $navex['id'];
                     $naveSale->en_vuelo_id = $flotax->id;
-                    $naveSale->tipo = "nave";
                     $naveSale->save();
 
                     $naveP = $navesEnPlaneta->firstWhere('disenios_id', $navex['id']);
