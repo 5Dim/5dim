@@ -93,7 +93,6 @@ class AstrometriaController extends Controller
         return $planetoide;
     }
 
-
     public function generarRadares() // http://homestead.test/juego/astrometria/ajax/radares
     {
         $radares = Astrometria::radares();
@@ -110,7 +109,6 @@ class AstrometriaController extends Controller
 
     public function generarFlotas() // http://homestead.test/juego/astrometria/ajax/flotas
     {
-
         $flotas = [];
         $flotas = Astrometria::flotasVisibles();
         return $flotas;
@@ -118,85 +116,6 @@ class AstrometriaController extends Controller
 
     public function sistema($numeroSistema) // http://homestead.test/juego/astrometria/ajax/sistema/123
     {
-        $seVe = Astrometria::sistemaEnRadares($numeroSistema);
-        $sistema = new Planetas();
-        $sistema->idioma = 0;
-        $sistema->sistema = (int)$numeroSistema;
-        $sistema->imgsol = '/astrometria/img/sistema/sol1.png';
-        $sistema->imgfondo = '/astrometria/img/sistema/f1.png';
-        $planetas = [];
-        if ($seVe) { // Si se ve mandamos los datos reales
-            for ($i = 1; $i < 10; $i++) {
-                $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
-                $orbita = new \stdClass();
-                if (!empty($planetaActual)) {
-                    if (empty($planetaActual->cualidades)) {
-                        CualidadesPlanetas::agregarCualidades($planetaActual->id, 0);
-                        $planetaActual->cualidades = CualidadesPlanetas::where('planetas_id', $planetaActual->id)->first();
-                    }
-                    $orbita->planeta = $i;
-                    $orbita->nom_pla = !empty($planetaActual->nombre) ? $planetaActual->nombre : "";
-                    $orbita->nom_jug = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->nombre) ? $planetaActual->jugadores->nombre : "";
-                    $orbita->alianza = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->alianzas) && !empty($planetaActual->jugadores->alianzas->nombre) ? $planetaActual->jugadores->alianzas->nombre : "";
-                    $orbita->img_planeta = !empty($planetaActual->imagen) ? "planetaG" . $planetaActual->imagen . ".png" : "";
-                    $orbita->mineral = !empty($planetaActual->cualidades->mineral) ? $planetaActual->cualidades->mineral : 0;
-                    $orbita->cristal = !empty($planetaActual->cualidades->cristal) ? $planetaActual->cualidades->cristal : 0;
-                    $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : 0;
-                    $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : 0;
-                    $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : 0;
-                    $orbita->naves = !empty(EnOrbita::where([['estrella', $planetaActual->estrella], ['orbita', $planetaActual->orbita]])->first()) ? 1 : 0;
-                    $orbita->recoleccion = !empty($planetaActual->enRecoleccion) ? 1 : 0;
-                    $orbita->b_observar = ""; // Posibilidad de incluirlo dentro del mapa
-                    $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
-                    $orbita->b_verorbita = "/juego/flotas/orbita-tab";
-                } else {
-                    $orbita = new \stdClass();
-                    $orbita->planeta = $i;
-                    $orbita->nom_pla = "";
-                    $orbita->nom_jug = "";
-                    $orbita->alianza = "";
-                    $orbita->img_planeta = "";
-                    $orbita->mineral = "";
-                    $orbita->cristal = "";
-                    $orbita->gas = "";
-                    $orbita->plastico = "";
-                    $orbita->ceramica = "";
-                    $orbita->naves = 0;
-                    $orbita->recoleccion = 0;
-                    $orbita->b_observar = "";
-                    $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
-                    $orbita->b_verorbita = "/juego/flotas/orbita-tab";
-                }
-                array_push($planetas, $orbita);
-            }
-        } else { // Si no se ve mandamos los datos ocultos
-            for ($i = 1; $i < 10; $i++) {
-                $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
-                $orbita = new \stdClass();
-                $orbita->planeta = $i;
-                $orbita->nom_pla = "";
-                $orbita->nom_jug = "";
-                $orbita->alianza = "";
-                if (empty($planetaActual)) {
-                    $orbita->img_planeta = "";
-                } else {
-                    $orbita->img_planeta = "planeta0.png";
-                }
-                $orbita->mineral = "";
-                $orbita->cristal = "";
-                $orbita->gas = "";
-                $orbita->plastico = "";
-                $orbita->ceramica = "";
-                $orbita->naves = 0;
-                $orbita->recoleccion = 0;
-                $orbita->b_observar = "";
-                $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
-                $orbita->b_verorbita = "/juego/flotas/orbita-tab";
-                array_push($planetas, $orbita);
-            }
-        }
-        $sistema->planetas = $planetas;
-
-        return $sistema;
+        return Astrometria::sistema($numeroSistema);
     }
 }
