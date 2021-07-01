@@ -86,7 +86,7 @@ function CreateLaser(origen, destino, vida) {
 
 function ActualizarCirculoVida(destino){
   vida=nave[destino].vida;
-  if (vida > 0) {
+  if (vida > -1) {
     var imagenCirculo = "100.png";
     switch (true) {
       case vida <= 40:
@@ -124,7 +124,12 @@ function GruposSinNaves() {
       gcirculo[grupo.ngrupo].visible = true;
     }
   });
+}
 
+function NavesFusion(naveorigen,navedestino){ //fusiona mismos diseños en mismo grupo
+    nave[naveorigen].cantidad+=1*nave[navedestino].cantidad;
+    nave[navedestino].visible=false;
+    nave[navedestino].vida=-1;
 
 }
 
@@ -350,7 +355,7 @@ function animate() {
   for (x in nave) {
     tama = 2; // distancia de separacion entre naves
     velmax = nave[x].velmax/factorvelocidadcombate; // velocidad dentro del grupo
-    if (nave[x].vida > 0) {
+    if (nave[x].vida > -1) {
       migrupo = nave[x].grupo;
 
       for (r in nave) {  //respecto a otros
@@ -358,15 +363,25 @@ function animate() {
           var dx = .1 + (nave[r].x) - (nave[x].x);
           var dy = .1 + (nave[r].y) - (nave[x].y);
           var d = (.01 + Math.sqrt(dx * dx + dy * dy));
-          if (d < tama * 5) {
-            a = 1 / d;
+          amor=1;
+          distamor=5;
+          if (PantallaGruposNaves && nave[r].vida > -1 && nave[r].visible == true && nave[r].diseno==nave[x].diseno ){
+                amor=-1; //se junta en vez de separarse
+                distamor=50;//a que distanmcia afecta
+              if (d<tamagrupo/5 ){
+                NavesFusion(x,r);
+              }
+          }
+
+          if (d < tama * distamor) {
+            a = amor / d;
             nave[x].vx += Math.random() * (-a * dx) * .1 * velmax;
             nave[x].vy += Math.random() * (-a * dy) * .1 * velmax;
 
             //nave[r].vx += Math.random() * (d * dx) * .5;
             //nave[r].vy += Math.random() * (d * dy) * .5;
-
           }
+
         }
       }
 

@@ -186,7 +186,8 @@ function Creagrupo(grupoacrear) { // crea el grupo con su circulo
 
     gnave[ngrupo].nombregrupo=grupoacrear[0].nombregrupo;
     gnave[ngrupo].actitud=grupoacrear[0].actitud;
-    gnave[ngrupo].tipogrupo=grupoacrear[0].tipogrupo;
+    gnave[ngrupo].objetivo=grupoacrear[0].objetivo;
+    gnave[ngrupo].relacion=grupoacrear[0].relacion;
     //para gruposnaves
     gnave[ngrupo].moverse=false;//si debe moverse hasata unas x,y
     gnave[ngrupo].destinox=posix;
