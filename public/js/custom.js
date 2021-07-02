@@ -944,3 +944,7 @@ function tabsMensajes(tab) {
 function tabsPlanetas(tab) {
     window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/planeta/" + tab);
 }
+
+function tabsGeneral(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/general/" + tab);
+}

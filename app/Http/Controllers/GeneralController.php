@@ -17,7 +17,7 @@ use App\Models\MensajesIntervinientes;
 class GeneralController extends Controller
 {
 
-    public function index()
+    public function index($tab = "anuncios-tab")
     {
         extract($this->recursos());
 
@@ -38,6 +38,7 @@ class GeneralController extends Controller
             'colaConstruccion',
             'colaInvestigacion',
             'investigaciones',
+            'tab',
         ));
     }
 }

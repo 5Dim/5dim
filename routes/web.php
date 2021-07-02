@@ -169,7 +169,7 @@ Route::middleware(
     Route::get('/juego/comercio', [ComercioController::class, 'index']);
 
     //General
-    Route::get('/juego/general', [GeneralController::class, 'index']);
+    Route::get('/juego/general/{tab?}', [GeneralController::class, 'index']);
 
     //Alianza
     Route::get('/juego/alianza', [AlianzaController::class, 'index']);

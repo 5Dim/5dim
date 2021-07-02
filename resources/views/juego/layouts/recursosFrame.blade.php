@@ -245,7 +245,13 @@
                     </div>
                 </div>
                 <hr class="text-light">
-
+                @if (strpos(Request::fullUrl(), 'general'))
+                    <a href="{{ url('/juego/general') }}" class="align-middle text-warning">
+                        <i class="fas fa-bullhorn"></i> General</a>
+                @else
+                    <a href="{{ url('/juego/general') }}" class="align-middle">
+                        <i class="fas fa-bullhorn"></i> General</a>
+                @endif
                 @if (strpos(Request::fullUrl(), 'construccion'))
                     <a href="{{ url('/juego/construccion') }}" class="align-middle text-warning">
                         <i class="fas fa-warehouse"></i> Construcción</a>

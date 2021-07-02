@@ -2,48 +2,29 @@
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
-
-            @include('juego.gruposNaves.cajitaGrupos', [
-                ])
-
-
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="datosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalTitulo"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <nav>
+                <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
+                    align="center">
+                    <a class="nav-item nav-link" id="anuncios-tab" data-bs-toggle="tab" href="#anuncios" role="tab"
+                        aria-controls="anuncios" aria-selected="false" onclick="tabsGeneral('anuncios-tab')">
+                        Anuncios
+                    </a>
+                    <a class="nav-item nav-link" id="eventos-tab" data-bs-toggle="tab" href="#eventos" role="tab"
+                        aria-controls="eventos" aria-selected="true" onclick="tabsGeneral('eventos-tab')">
+                        Eventos y misiones
+                    </a>
                 </div>
-                <div class="modal-body" id="datosContenido">
-                    ...
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade" id="anuncios" role="tabpanel" aria-labelledby="anuncios-tab">
                 </div>
-                <div class="modal-footer">
+                <div class="tab-pane fade" id="eventos" role="tabpanel" aria-labelledby="eventos-tab">
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="combate" name="combate"></div>
-
-<script src="{{ asset('js/pixi/pixi.min.js') }}"></script>
-<script src="{{ asset('js/pixi/pixi-filters.js') }}"></script>
-<script src="{{ asset('js/combate/cargasInicio.js') }}"></script>
-<script src="{{ asset('js/combate/gruposNaves.js') }}"></script>
-<script src="{{ asset('js/combate/combate.js') }}"></script>
-<script src="{{ asset('js/combate/controles.js') }}"></script>
-
-<script src="{{ asset('js/combate/interface.js') }}"></script>
-
-
-
     <script>
+        mostrarTab(@json($tab));
     </script>
 @endsection
