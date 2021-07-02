@@ -44,6 +44,7 @@ class EnInvestigaciones extends Model
                 $cola->motivo_delete = "Finalizado";
                 $cola->save();
                 $cola->delete();
+                Jugadores::calcularPuntos($cola->planetas->jugadores->id);
             }
             DB::commit();
         } catch (\Throwable $e) {

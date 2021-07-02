@@ -129,6 +129,60 @@ class Constantes extends Model
         $constante->tipo = 'construccion';
         array_push($producciones, $constante);
 
+        $constante = new Constantes();
+        $constante->valor = 1000;
+        $constante->minimo = 700;
+        $constante->maximo = 1500;
+        $constante->codigo = 'recursosPorPuntos';
+        $constante->descripcion = 'Cantidad de recursos para conseguir un punto en estadisticas';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 1;
+        $constante->minimo = 200;
+        $constante->maximo = 600;
+        $constante->codigo = 'multiplicadorMineral';
+        $constante->descripcion = 'Multiplicador de puntos por mineral';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 2;
+        $constante->minimo = 1;
+        $constante->maximo = 5;
+        $constante->codigo = 'multiplicadorCristal';
+        $constante->descripcion = 'Multiplicador de puntos por cristal';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 3;
+        $constante->minimo = 1;
+        $constante->maximo = 5;
+        $constante->codigo = 'multiplicadorGas';
+        $constante->descripcion = 'Multiplicador de puntos por gas';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 4;
+        $constante->minimo = 1;
+        $constante->maximo = 5;
+        $constante->codigo = 'multiplicadorPlastico';
+        $constante->descripcion = 'Multiplicador de puntos por plastico';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 5;
+        $constante->minimo = 1;
+        $constante->maximo = 5;
+        $constante->codigo = 'multiplicadorCeramica';
+        $constante->descripcion = 'Multiplicador de puntos por ceramica';
+        $constante->tipo = 'construccion';
+        array_push($producciones, $constante);
+
 
         ////////  investigaciones  ////////////////////////////////////////////////////////////////
 

@@ -72,44 +72,69 @@ class Jugadores extends Model
 
     public static function calcularPuntos($idJugador)
     {
-        $puntosJugador = 0;
-        $jugador = Jugadores::find($idJugador);
-        foreach ($jugador->planetas as $planeta) {
-            if (!empty($planeta)) {
-                foreach ($planeta->construcciones as $construccion) {
-                    $puntosJugador += $construccion->nivel;
+        $jugador = Auth::user()->jugador;
+        if (!empty($jugador->planetas)) {
+            // Multiplicador costes recursos
+            $multiplicadorMineral = Constantes::where('codigo', 'multiplicadorMineral')->first()->valor;
+            $multiplicadorCristal = Constantes::where('codigo', 'multiplicadorCristal')->first()->valor;
+            $multiplicadorGas = Constantes::where('codigo', 'multiplicadorGas')->first()->valor;
+            $multiplicadorPlastico = Constantes::where('codigo', 'multiplicadorPlastico')->first()->valor;
+            $multiplicadorCeramica = Constantes::where('codigo', 'multiplicadorCeramica')->first()->valor;
+
+            //Multiplicador industrias
+            $costoLiquido = Constantes::where('codigo', 'costoLiquido')->first()->valor;
+            $costoMicros = Constantes::where('codigo', 'costoMicros')->first()->valor;
+            $costoFuel = Constantes::where('codigo', 'costoFuel')->first()->valor;
+            $costoMa = Constantes::where('codigo', 'costoMa')->first()->valor;
+            $costoMunicion = Constantes::where('codigo', 'costoMunicion')->first()->valor;
+
+            // Puntos
+            $puntosConstruccion = 0;
+            foreach ($jugador->planetas as $planeta) {
+                if (!empty($planeta)) {
+                    $costesConstrucciones = CostesConstrucciones::generaCostesConstrucciones($planeta->construcciones);
+                    foreach ($costesConstrucciones as $coste) {
+                        $costeTotal = 0;
+                        $costeTotal += ($coste->mineral * $multiplicadorMineral) +
+                            ($coste->cristal * $multiplicadorCristal) +
+                            ($coste->gas * $multiplicadorGas) +
+                            ($coste->plastico * $multiplicadorPlastico) +
+                            ($coste->ceramica * $multiplicadorCeramica) +
+
+                            ($coste->liquido * ($multiplicadorMineral * $costoLiquido)) +
+                            ($coste->micros * ($multiplicadorCristal * $costoMicros));
+                        $puntosConstruccion += $costeTotal;
+                    }
                 }
             }
-        }
-        $jugador->puntos_construccion = $puntosJugador * 1000;
-        $puntosJugador = 0;
-        foreach ($jugador->investigaciones as $investigacion) {
-            if (!empty($investigacion)) {
-                $puntosJugador += $investigacion->nivel;
+
+            $puntosInvestigacion = 0;
+            $investiga = new CostesInvestigaciones();
+            $costeInvestigaciones = $investiga->generaCostesInvestigaciones($jugador->investigaciones);
+            foreach ($costeInvestigaciones as $coste) {
+                if (!empty($coste)) {
+                    $costeTotal = 0;
+                    $costeTotal += ($coste->mineral * $multiplicadorMineral) +
+                        ($coste->cristal * $multiplicadorCristal) +
+                        ($coste->gas * $multiplicadorGas) +
+                        ($coste->plastico * $multiplicadorPlastico) +
+                        ($coste->ceramica * $multiplicadorCeramica) +
+
+                        ($coste->liquido * ($multiplicadorMineral * $costoLiquido)) +
+                        ($coste->micros * ($multiplicadorCristal * $costoMicros)) +
+                        ($coste->fuel * ($multiplicadorGas * $costoFuel)) +
+                        ($coste->ma * ($multiplicadorPlastico * $costoMa)) +
+                        ($coste->municion * ($multiplicadorCeramica * $costoMunicion));
+                    $puntosInvestigacion += $costeTotal;
+                }
             }
+
+            $recursosPorPuntos = Constantes::where('codigo', 'recursosPorPuntos')->first()->valor;
+            $jugador->puntos_construccion = $puntosConstruccion / $recursosPorPuntos;
+            $jugador->puntos_investigacion = $puntosInvestigacion / $recursosPorPuntos;
+            // dd($puntosConstruccion);
+            $jugador->save();
         }
-        $jugador->puntos_investigacion = $puntosJugador * 1000;
-        $jugador->save();
-        // if (!empty($jugador->alianzas)) {
-        //     $puntosJugador = 0;
-        //     $jugador = Jugadores::where('nombre', $jugador->alianzas->nombre)->first();
-        //     foreach ($jugador->planetas as $planeta) {
-        //         if (!empty($planeta)) {
-        //             foreach ($planeta->construcciones as $construccion) {
-        //                 $puntosJugador += $construccion->nivel;
-        //             }
-        //         }
-        //     }
-        //     $jugador->puntos_construccion = $puntosJugador * 1000;
-        //     $puntosJugador = 0;
-        //     foreach ($jugador->investigaciones as $investigacion) {
-        //         if (!empty($investigacion)) {
-        //             $puntosJugador += $investigacion->nivel;
-        //         }
-        //     }
-        //     $jugador->puntos_investigacion = $puntosJugador * 1000;
-        //     $jugador->save();
-        // }
     }
 
     public static function nuevoJugador()

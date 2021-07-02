@@ -17,6 +17,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\CostesConstrucciones;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ConstruccionController extends Controller
@@ -56,6 +57,11 @@ class ConstruccionController extends Controller
 
         // vemos las dependencias
         $dependencias = Dependencias::where('tipo', 'construccion')->get();
+
+        // dd();
+        if (empty(Auth::user()->jugador)) {
+            return redirect('/juego/construccion/' . $tab);
+        }
 
         //Devolvemos la vista con todas las variables
         return view('juego.construcciones.construccion', compact(

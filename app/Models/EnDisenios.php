@@ -80,6 +80,7 @@ class EnDisenios extends Model
                 $cola->motivo_delete = "Finalizado";
                 $cola->save();
                 $cola->delete();
+                Jugadores::calcularPuntos($cola->planetas->jugadores->id);
             }
             DB::commit();
         } catch (\Throwable $e) {
@@ -87,6 +88,7 @@ class EnDisenios extends Model
             Log::error("[ERROR] COLA DISEÑOS");
             Log::error($e);
         }
+        Jugadores::calcularPuntos(session()->get('jugadores_id'));
     }
 
 
