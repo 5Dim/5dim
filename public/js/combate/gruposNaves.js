@@ -189,6 +189,12 @@ function CrearGrupoYa(nombre="",actitud="huida",objetivo="dhago"){
     Creagrupo(respawgrupo[0]);
 }
 
+function BorrarGrupo(ngrupo){
+    gnave[ngrupo].visible=false;
+    gnave[ngrupo].destroy=true;
+
+}
+
 function CambiarNaveGrupo(nnave,ngrupo){
     if (nave[nnave].velmax<40){
         nave[nnave].x=gnave[ngrupo].x;
@@ -209,3 +215,5 @@ function DivideNavesGrupoNave(nnave,ngrupo,cantidad){
     Creanave(naveaCrear,ngrupo);
     nave[nnave].cantidad-=cantidad;
 }
+
+

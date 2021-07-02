@@ -510,6 +510,16 @@ class Constantes extends Model
         $constante->tipo = 'investigacion';
         array_push($producciones, $constante);
 
+        $constante = new Constantes();
+        $constante->valor = 2.6;
+        $constante->minimo = 1;
+        $constante->maximo = 3;
+        $constante->codigo = 'factoraumentocostoalianza';
+        $constante->descripcion = 'factor de aumento de costo de tecnologias por numero de miembros';
+        $constante->tipo = 'investigaciones';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
 
         /////// FUSELAJES  ///////////////////////////////////////////////////
 
@@ -1462,6 +1472,7 @@ class Constantes extends Model
         $constante->tipo = 'combate';
         $constante->votable = 0;
         array_push($producciones, $constante);
+
 
 
         foreach ($producciones as $estaproduccion) {

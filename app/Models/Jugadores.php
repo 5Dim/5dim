@@ -156,6 +156,7 @@ class Jugadores extends Model
         }
         Planetas::nuevoPlaneta($jugador->id);
         Mensajes::bienvenida($jugador->id);
+        GruposNaves::crearGrupoPorDefecto($jugador->id);
 
         return $jugador;
     }

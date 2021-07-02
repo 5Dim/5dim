@@ -75,4 +75,10 @@ class Alianzas extends Model
         }
         return false;
     }
+
+    public static function sobrecostoInvestigacionAlianza($numeroMiembros)
+    {
+        $factorAumentoCostoAlianza = Constantes::where('codigo', 'factoraumentocostoalianza')->first()->valor;
+        return pow(2,$numeroMiembros/($factorAumentoCostoAlianza+($numeroMiembros/10)))-0.2;
+    }
 }

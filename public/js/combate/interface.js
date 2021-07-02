@@ -141,7 +141,9 @@ function MostrarOcultarMenuNaves() {
     menunaveseleccionada.x += (menunaveseleccionadaObjetivo - menunaveseleccionada.x) / 10;
 }
 
-
+function OcultarMenuNaves(){
+    menunaveseleccionadaObjetivo = -anchomenunaves; //ocultar menu
+}
 
 
 function crearBarrasJugadore(valoresjugador) {

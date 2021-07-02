@@ -6,6 +6,7 @@ var viewWidth = window.innerWidth - 10;
 var viewHeight = window.innerHeight - 10;
 var valorY = 0; var valorX = 0; //valores del puntero
 var imagengrande= new PIXI.Sprite(texture);
+var naveSeleccionada=null;
 
 //stage.click = function(){alert (666);};
 
@@ -32,6 +33,9 @@ function onKeyDown(event) {
 			pan(-2, 0); break;
 		case 37: //izq
 			pan(2, 0); break;
+        case 27: //scape
+        DeselectGrupo();
+        DeselectNave();
 	};
 };
 
@@ -75,48 +79,56 @@ function onDoublickClick(event) {
 };
 
 function SeleccionNave(event) {
+    DeselectGrupo();
 	diseno = event.currentTarget.diseno;
 	nnave=event.currentTarget.nnave;
-	//imagen="Combate/fotos naves/skin"+valoresDisenos[diseno].skin+"/naveMT"+valoresDisenos[diseno].nimagen+".jpg";
-	imagen="Combate/fotos naves/skin"+valoresDisenos[diseno].skin+"/naveLTH"+valoresDisenos[diseno].nimagen+".png";
-	//$('#imagenNave').attr('src', imagen);
-	ataque=valoresDisenos[diseno].ataque;
-	defensa=valoresDisenos[diseno].defensa
+    naveSeleccionada=nnave;
+    if (!PantallaGruposNaves){
+        //imagen="Combate/fotos naves/skin"+valoresDisenos[diseno].skin+"/naveMT"+valoresDisenos[diseno].nimagen+".jpg";
+        imagen="Combate/fotos naves/skin"+valoresDisenos[diseno].skin+"/naveLTH"+valoresDisenos[diseno].nimagen+".png";
+        //$('#imagenNave').attr('src', imagen);
+        ataque=valoresDisenos[diseno].ataque;
+        defensa=valoresDisenos[diseno].defensa
 
-	if (ataque>1000){
-		ataque=Math.round(ataque/1000,0);
-		ataqueF=ataque.toLocaleString('de-DE')+"K";
-	} else {
-		ataqueF=ataque.toLocaleString('de-DE');
-	}
+        if (ataque>1000){
+            ataque=Math.round(ataque/1000,0);
+            ataqueF=ataque.toLocaleString('de-DE')+"K";
+        } else {
+            ataqueF=ataque.toLocaleString('de-DE');
+        }
 
-	if (defensa>1000){
-		defensa=Math.round(defensa/1000,0);
-		defensaF=defensa.toLocaleString('de-DE')+"K";
-	} else {
-		defensaF=defensa.toLocaleString('de-DE');
-	}
+        if (defensa>1000){
+            defensa=Math.round(defensa/1000,0);
+            defensaF=defensa.toLocaleString('de-DE')+"K";
+        } else {
+            defensaF=defensa.toLocaleString('de-DE');
+        }
 
-	atadef=ataqueF+" / "+defensaF;
+        atadef=ataqueF+" / "+defensaF;
 
-	basicTextTipo.text = "Tipo: "+valoresDisenos[diseno].denominacion;
-	basicTextDiseño.text  = "Diseño: "+valoresDisenos[diseno].nombre;
-	basicTextAtaDef.text  = "Ata/Def:: "+atadef;
-	basicTextCantidad.text  = "Cantidad: "+event.currentTarget.cantidad;
-	basicTextEstado.text  = "Estado: "+event.currentTarget.vida;
+        basicTextTipo.text = "Tipo: "+valoresDisenos[diseno].denominacion;
+        basicTextDiseño.text  = "Diseño: "+valoresDisenos[diseno].nombre;
+        basicTextAtaDef.text  = "Ata/Def:: "+atadef;
+        basicTextCantidad.text  = "Cantidad: "+event.currentTarget.cantidad;
+        basicTextEstado.text  = "Estado: "+event.currentTarget.vida;
 
 
-	imagengrande.texture=nave[nnave].texture;
-	imagengrande.scale.x = imagengrande.scale.y = 2;//escalado
-    imagengrande.anchor.x = 0.5;
-	imagengrande.anchor.y = 0.5;
-	imagengrande.x=100;
-	imagengrande.y=20;
-	menunaveseleccionada.addChild(imagengrande);
+        imagengrande.texture=nave[nnave].texture;
+        imagengrande.scale.x = imagengrande.scale.y = 2;//escalado
+        imagengrande.anchor.x = 0.5;
+        imagengrande.anchor.y = 0.5;
+        imagengrande.x=100;
+        imagengrande.y=20;
+        menunaveseleccionada.addChild(imagengrande);
 
-	//menunaveseleccionada.visible=true;
-	menunaveseleccionadaObjetivo=0; //muestra menu naves
+        //menunaveseleccionada.visible=true;
+        menunaveseleccionadaObjetivo=0; //muestra menu naves
+    }
+}
 
+function DeselectNave(){
+    naveSeleccionada=null;
+    OcultarMenuNaves();
 }
 
 
@@ -126,6 +138,7 @@ grupoSelecionado = new Array();
 
 function SeleccionGrupo(event) {
 	//console.log("grupo");
+    DeselectNave();
 	DeselectGrupo();
 	ngrupo = event.currentTarget.ngrupo;
 	event.currentTarget.alpha = 2;
@@ -141,10 +154,12 @@ function SeleccionGrupo(event) {
 	menuGruposeleccionadaObjetivo=0;
 }
 
+/*
 function SeleccionNada(event) {
 	//console.log("nada");
 	DeselectGrupo();
 }
+*/
 
 
 function DeselectGrupo() {
