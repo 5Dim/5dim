@@ -1376,7 +1376,7 @@ class CualidadesFuselajes extends Model
                 $CRnave15 = 0;    //Carga Mega(estaciones)
                 $CRnave11 = 2;         //mejoras
                 $CRnave12 = 1;         // blindajes
-                $CRnave13 = 1;         // motores
+                $CRnave13 = 2;         // motores
 
 
 
