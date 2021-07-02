@@ -75,25 +75,13 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
         });
 
 
-
-
     ///naves del un jugador segun diseños
     respawnave=new Array();
 
-    var i=0;
-    disenios.forEach(disenio => {
-        respawdatosnave=new Array();
-        respawdatosnave.nnave=i;
-        respawdatosnave.velmax=disenio['datos']['maniobra'];
-        respawdatosnave.diseno=disenio['id'];
-        respawdatosnave.cantidad=0;
-        respawdatosnave.grupo=disenio['posicion'];
-        respawdatosnave.grupoPorDefecto=1;
-        vidaNaves[i]=new Array();
-        vidaNaves[i][turnoinicial]=100; ///vida al iniciar el turno
 
+    disenios.forEach(disenio => {
+        respawdatosnave=CrearNaveGrupoNaves(disenio);
         respawnave.push(respawdatosnave);
-        i++;
     });
 
         // crear grupos y naves
@@ -133,7 +121,8 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
             respawgrupodatos.jugador=jugadorActual.id;
             respawgrupodatos.nombregrupo=grupo['nombre'];
             respawgrupodatos.actitud=grupo['actitud'];
-            respawgrupodatos.tipogrupo=grupo['objetivo'];
+            respawgrupodatos.objetivo=grupo['objetivo'];
+            respawgrupodatos.relacion=grupo['relacion'];
             respawgrupodatos.bando=valoresJugadores[respawgrupodatos.jugador].bando;
             respawgrupo.push([respawgrupodatos,navesSinGrupo]); //añado naves
 
@@ -168,6 +157,19 @@ function CrearGrupoNaves(grupo,ngrupo=respawgrupo.length){
     return respawgrupodatos;
 }
 
+function CrearNaveGrupoNaves(disenio,cantidad=0,turno=turnoinicial,i=respawnave.length){
+    respawdatosnave=new Array();
+    respawdatosnave.nnave=i;
+    respawdatosnave.velmax=disenio['datos']['maniobra'];
+    respawdatosnave.diseno=disenio['id'];
+    respawdatosnave.cantidad=cantidad;
+    respawdatosnave.grupo=disenio['posicion'];
+    respawdatosnave.grupoPorDefecto=1;
+    vidaNaves[i]=new Array();
+    vidaNaves[i][turno]=100; ///vida al iniciar el turno
+    return respawdatosnave;
+}
+
 function CrearGrupoYa(nombre="",actitud="huida",objetivo="dhago"){
     respawgrupo=new Array();
     grupo=new Array();
@@ -187,12 +189,23 @@ function CrearGrupoYa(nombre="",actitud="huida",objetivo="dhago"){
     Creagrupo(respawgrupo[0]);
 }
 
-function CambiarNaveGrupo(nnave,grupo){
+function CambiarNaveGrupo(nnave,ngrupo){
     if (nave[nnave].velmax<40){
-        nave[nnave].x=gnave[grupo].x;
-        nave[nnave].y=gnave[grupo].y;
+        nave[nnave].x=gnave[ngrupo].x;
+        nave[nnave].y=gnave[ngrupo].y;
     }
-    nave[nnave].grupo=grupo;
+    nave[nnave].grupo=ngrupo;
+}
 
+function DivideNavesGrupoNave(nnave,ngrupo,cantidad){
 
+    var ndiseno=nave[nnave].diseno;
+    var disenio= $.grep(disenios, function(nave) {
+        return nave.id == ndiseno;
+        })[0];
+
+    turnoactual=Math.round(((tiempoanime / factorTiempoMovimiento) ),0);
+    naveaCrear=CrearNaveGrupoNaves(disenio,cantidad,turnoactual,nave.length);
+    Creanave(naveaCrear,ngrupo);
+    nave[nnave].cantidad-=cantidad;
 }
