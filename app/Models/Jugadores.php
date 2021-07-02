@@ -129,10 +129,47 @@ class Jugadores extends Model
                 }
             }
 
+            $puntosFlotas = 0;
+            $enOrbita = $jugador->enOrbita;
+            foreach ($enOrbita as $flota) {
+                if (!empty($flota)) {
+                    $costeTotal = 0;
+                    $costeTotal += $flota->creditos;
+                    $puntosFlotas += $costeTotal;
+                }
+            }
+            $enVuelo = $jugador->enVuelo;
+            foreach ($enVuelo as $flota) {
+                if (!empty($flota)) {
+                    $costeTotal = 0;
+                    $costeTotal += $flota->creditos;
+                    $puntosFlotas += $costeTotal;
+                }
+            }
+            $enRecoleccion = $jugador->enRecoleccion;
+            foreach ($enRecoleccion as $flota) {
+                if (!empty($flota)) {
+                    $costeTotal = 0;
+                    $costeTotal += $flota->creditos;
+                    $puntosFlotas += $costeTotal;
+                }
+            }
+            $planetas = $jugador->planetas;
+            foreach ($planetas as $planeta) {
+                foreach ($planeta->estacionadas as $disenio) {
+                    if (!empty($disenio)) {
+                        $costeTotal = 0;
+                        $costeTotal += $disenio->disenios->mejoras->mantenimiento * $disenio->cantidad;
+                        $puntosFlotas += $costeTotal;
+                    }
+                }
+            }
+
             $recursosPorPuntos = Constantes::where('codigo', 'recursosPorPuntos')->first()->valor;
             $jugador->puntos_construccion = $puntosConstruccion / $recursosPorPuntos;
             $jugador->puntos_investigacion = $puntosInvestigacion / $recursosPorPuntos;
-            // dd($puntosConstruccion);
+            $jugador->puntos_flotas = $puntosFlotas;
+            // dd($puntosFlotas);
             $jugador->save();
         }
     }

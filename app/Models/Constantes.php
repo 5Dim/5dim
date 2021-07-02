@@ -130,9 +130,9 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 1000;
-        $constante->minimo = 700;
-        $constante->maximo = 1500;
+        $constante->valor = 10000;
+        $constante->minimo = 7000;
+        $constante->maximo = 15000;
         $constante->codigo = 'recursosPorPuntos';
         $constante->descripcion = 'Cantidad de recursos para conseguir un punto en estadisticas';
         $constante->tipo = 'construccion';
