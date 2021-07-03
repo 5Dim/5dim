@@ -8,6 +8,7 @@ camera.y=50;
 interfaceCombate=false;
 cantidadRondas=0;
 tiempoTurnos[1]=100;//fin del turno 1 en sec/10
+var grupoPorDefecto=null; //numero de grupo por defecto
 
 
         //  Fondos y decoracion
@@ -126,6 +127,8 @@ tiempoTurnos[1]=100;//fin del turno 1 en sec/10
             respawgrupodatos.bando=valoresJugadores[respawgrupodatos.jugador].bando;
             respawgrupo.push([respawgrupodatos,navesSinGrupo]); //añado naves
 
+            grupoPorDefecto=grupo['id'];;
+
             //asigno las naves sin grupo al por defecto
             navesSinGrupo.forEach(nave => {
                 nave.grupo=grupo['id'];
@@ -190,9 +193,15 @@ function CrearGrupoYa(nombre="",actitud="huida",objetivo="dhago"){
 }
 
 function BorrarGrupo(ngrupo){
-    gnave[ngrupo].visible=false;
-    gnave[ngrupo].destroy=true;
-
+    if (ngrupo!=grupoPorDefecto){
+        gnave[ngrupo].visible=false;
+        gnave[ngrupo].destroy=true;
+        nave.forEach(element => {
+            if (element.grupo==ngrupo){
+                element.grupo=grupoPorDefecto;
+            }
+        });
+    }
 }
 
 function CambiarNaveGrupo(nnave,ngrupo){
