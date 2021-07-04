@@ -231,19 +231,19 @@ class Mensajes extends Model
         if (!empty($destino->planetas_id)) {
             $recursosQueTienes = new Recursos();
             $recursosQueTienes = $destino->planetas->recursos;
-            if(!empty($destino->planetas->jugadores)){
+            if (!empty($destino->planetas->jugadores)) {
                 $propietarioDestino = $destino->planetas->jugadores->id;
             } else {
-                $propietarioDestino=0;
+                $propietarioDestino = 0;
             }
 
             $contenido .= $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
             $elDestino = $destino->planetas->nombre . " (" . $destino->planetas->estrella . "x" . $destino->planetas->orbita . ')';
         } elseif (!empty($destino->en_vuelo_id)) {
             $recursosQueTienes = new RecursosEnFlota();
-            $propietarioDestino=null;
-            $elDestino=null;
-            if (!empty($destino->enVuelo)){
+            $propietarioDestino = null;
+            $elDestino = null;
+            if (!empty($destino->enVuelo)) {
                 $recursosQueTienes = $destino->enVuelo->recursosEnFlota;
                 $propietarioDestino = $destino->enVuelo->jugadores->id;
                 $contenido .= $destino->enVuelo->nombre;
@@ -251,9 +251,9 @@ class Mensajes extends Model
             }
         } elseif (!empty($destino->en_recoleccion_id)) {
             $recursosQueTienes = new RecursosEnFlota();
-            $propietarioDestino=null;
-            $elDestino=null;
-            if (!empty($destino->enRecoleccion)){
+            $propietarioDestino = null;
+            $elDestino = null;
+            if (!empty($destino->enRecoleccion)) {
                 $recursosQueTienes = $destino->enRecoleccion->recursosEnFlota;
                 $propietarioDestino = $destino->enRecoleccion->jugadores->id;;
                 $contenido .= $destino->enRecoleccion->nombre;
@@ -261,9 +261,9 @@ class Mensajes extends Model
             }
         } elseif (!empty($destino->en_orbita_id)) {
             $recursosQueTienes = new RecursosEnFlota();
-            $propietarioDestino=null;
-            $elDestino=null;
-            if (!empty($destino->enOrbita)){
+            $propietarioDestino = null;
+            $elDestino = null;
+            if (!empty($destino->enOrbita)) {
                 $recursosQueTienes = $destino->enOrbita->recursosEnFlota;
                 $propietarioDestino = $destino->enOrbita->jugadores->id;
                 $contenido .= $destino->enOrbita->nombre;
@@ -649,18 +649,44 @@ class Mensajes extends Model
 
     public static function bienvenida($idJugador)
     {
-        $contenido = "<p>Bienvenido a la <b>Alfa 0.1</b> de 5dim.es. Ahí van unos consejos de inicio:
-            <br>- Todo lo relacionado con combates <b>NO está implementado</b>, de modo que no investigues ni diseñes con armas o blindajes.
-            <br>- Céntrate al inicio en subir las minas  de tu planeta inicial, priorizando el mineral.
-            <br>- Construir una nave y mandarla a recolectar en los asteroides que tienes al lado de tu planeta es una buena idea una vez puedas permitirte construir una nave.
-            <br>- Colonizar planetas cercanos es una buena opción, puedes hacerlo incluso con una sonda ya que es muy barata.
-            <br>- Además puedes mandar tu sonda (con combustible) a orbitar otras estrellas fuera de tu visión, ya que también da algo de visión.
-            <br>- Crear una alianza o aliarte con amigos es muy buena idea ya que las tecnologías se comparten de forma automática.
-            <br>- Además las naves se mejoran automaticamente cada vez que subes una tecnología.
-            <br>- Subir la tecnología de fuselajes es siempre muy rentable, pero ten en cuenta que las naves mas avanzadas son mas caras de construir.
-            <br>- Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/2BB7JV48'>discord</a>.
+        $contenido = "<p>Bienvenido a la <b>Alfa 0.1</b> de 5dim.es. Ahí van unos consejos de inicio:</p>
+                            <ul>
+                                <li>
+                                    Todo lo relacionado con combates NO está implementado, de modo que no investigues ni
+                                    diseñes con armas o blindajes.
+                                </li>
+                                <li>
+                                    Céntrate al inicio en subir las minas de tu planeta inicial, priorizando el mineral.
+                                </li>
+                                <li>
+                                    Construir una nave y mandarla a recolectar en los asteroides que tienes al lado de tu
+                                    planeta es una buena idea una vez puedas permitirte construir una nave.
+                                </li>
+                                <li>
+                                    Colonizar planetas cercanos es una buena opción, puedes hacerlo incluso con una sonda
+                                    ya que es muy barata.
+                                </li>
+                                <li>
+                                    Además puedes mandar tu sonda (con combustible) a orbitar otras estrellas fuera de tu
+                                    visión, ya que también da algo de visión.
+                                </li>
+                                <li>
+                                    Crear una alianza o aliarte con amigos es muy buena idea ya que las tecnologías se
+                                    comparten de forma automática.
+                                </li>
+                                <li>
+                                    Además las naves se mejoran automaticamente cada vez que subes una tecnología.
+                                </li>
+                                <li>
+                                    Subir la tecnología de fuselajes es siempre muy rentable, pero ten en cuenta que las
+                                    naves mas avanzadas son mas caras de construir.
+                                </li>
+                                <li>
+                                    Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/2BB7JV48'>discord</a>.
+                                </li>
+                            </ul>
 
-            <br><br>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>";
+            <p>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>";
 
         $mensaje = new Mensajes();
         $mensaje->mensaje = $contenido;

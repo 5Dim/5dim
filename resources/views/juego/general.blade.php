@@ -9,22 +9,74 @@
                         aria-controls="anuncios" aria-selected="false" onclick="tabsGeneral('anuncios-tab')">
                         Anuncios
                     </a>
-                    <a class="nav-item nav-link" id="eventos-tab" data-bs-toggle="tab" href="#eventos" role="tab"
+                    {{-- <a class="nav-item nav-link" id="eventos-tab" data-bs-toggle="tab" href="#eventos" role="tab"
                         aria-controls="eventos" aria-selected="true" onclick="tabsGeneral('eventos-tab')">
                         Eventos y misiones
-                    </a>
+                    </a> --}}
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade" id="anuncios" role="tabpanel" aria-labelledby="anuncios-tab">
+                    @if (false)
+                        <div class="alert alert-danger cajita-danger" role="alert">
+                            <h4 class="alert-heading">Final de la ronda</h4>
+                            <p>La ronda terminará el dia 10 de julio de 2021.</p>
+                            <p>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>
+                        </div>
+                    @else
+                        <div class="alert alert-success cajita-success" role="alert">
+                            <h4 class="alert-heading">Bienvenidos a una version en desarrollo de 5Dim.es</h4>
+                            <p> Ahí van unos consejos de inicio:</p>
+                            <ul>
+                                <li>
+                                    Todo lo relacionado con combates NO está implementado, de modo que no investigues ni
+                                    diseñes con armas o blindajes.
+                                </li>
+                                <li>
+                                    Céntrate al inicio en subir las minas de tu planeta inicial, priorizando el mineral.
+                                </li>
+                                <li>
+                                    Construir una nave y mandarla a recolectar en los asteroides que tienes al lado de tu
+                                    planeta es una buena idea una vez puedas permitirte construir una nave.
+                                </li>
+                                <li>
+                                    Colonizar planetas cercanos es una buena opción, puedes hacerlo incluso con una sonda
+                                    ya que es muy barata.
+                                </li>
+                                <li>
+                                    Además puedes mandar tu sonda (con combustible) a orbitar otras estrellas fuera de tu
+                                    visión, ya que también da algo de visión.
+                                </li>
+                                <li>
+                                    Crear una alianza o aliarte con amigos es muy buena idea ya que las tecnologías se
+                                    comparten de forma automática.
+                                </li>
+                                <li>
+                                    Además las naves se mejoran automaticamente cada vez que subes una tecnología.
+                                </li>
+                                <li>
+                                    Subir la tecnología de fuselajes es siempre muy rentable, pero ten en cuenta que las
+                                    naves mas avanzadas son mas caras de construir.
+                                </li>
+                                <li>
+                                    Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/2BB7JV48'class="btn btn-success btn-sm">Discord</a>.
+                                </li>
+                            </ul>
+
+                            <p>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>
+                        </div>
+                    @endif
                 </div>
-                <div class="tab-pane fade" id="eventos" role="tabpanel" aria-labelledby="eventos-tab">
-                </div>
+                {{-- <div class="tab-pane fade" id="eventos" role="tabpanel" aria-labelledby="eventos-tab">
+                    <div class="alert alert-info cajita-info" role="alert">
+                        <h4 class="alert-heading">Versión final V1.0</h4>
+                        <p>Piratas gestionados por la IA.</p>
+                    </div>
+                </div> --}}
             </div>
         </div>
-    </div>
 
-    <script>
-        mostrarTab(@json($tab));
-    </script>
-@endsection
+        <script>
+            mostrarTab(@json($tab));
+        </script>
+    @endsection

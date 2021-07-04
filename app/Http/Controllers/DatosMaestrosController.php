@@ -16,12 +16,12 @@ use App\Models\Planetas;
 
 class DatosMaestrosController extends Controller
 {
-    public function index()
-    {   // http://localhost/admin/DatosMaestros
+    public function index() // http://localhost/admin/DatosMaestros
+    {
         $datosM = new DatosMaestrosController();
         $datosM->DatosMaestros();
 
-        return redirect('/juego/construccion');
+        return redirect('/juego/general');
     }
 
     public function DatosMaestros()
