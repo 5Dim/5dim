@@ -18,9 +18,9 @@ class CreateGruposNavesTable extends Migration
             $table->unsignedMediumInteger('coordx')->default(0);
             $table->unsignedMediumInteger('coordy')->default(0);
             $table->string('nombre');
-            $table->string('actitud')->default("huida");
-            $table->string('objetivo')->default("dhago");
-            $table->string('relacion')->nullable()->default(null);
+            $table->string('actitud')->default("Huida");
+            $table->string('objetivo')->default("MasHace");
+            $table->string('relacion')->nullable()->default("Ninguna");
             $table->boolean('pordefecto')->default(false);
             $table->timestamps();
             $table->unsignedBigInteger('jugadores_id');
