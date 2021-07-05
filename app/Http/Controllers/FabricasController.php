@@ -21,27 +21,27 @@ use Illuminate\Support\Facades\Log;
 
 class FabricasController extends Controller
 {
-    public function index()
-    {
-        extract($this->recursos());
+    // public function index()
+    // {
+    //     extract($this->recursos());
 
-        return view('juego.fabrica', compact(
-            // Recursos
-            'recursos',
-            'personalOcupado',
-            'capacidadAlmacenes',
-            'produccion',
-            'planetasJugador',
-            'planetasAlianza',
-            'mensajeNuevo',
-            'consImperio',
+    //     return view('juego.fabrica', compact(
+    //         // Recursos
+    //         'recursos',
+    //         'personalOcupado',
+    //         'capacidadAlmacenes',
+    //         'produccion',
+    //         'planetasJugador',
+    //         'planetasAlianza',
+    //         'mensajeNuevo',
+    //         'consImperio',
 
-            'planetaActual',
-            'nivelImperio',
-            'nivelEnsamblajeFuselajes',
-            'investigaciones',
-        ));
-    }
+    //         'planetaActual',
+    //         'nivelImperio',
+    //         'nivelEnsamblajeFuselajes',
+    //         'investigaciones',
+    //     ));
+    // }
 
     public function construir($idDisenio, $cantidad)
     {

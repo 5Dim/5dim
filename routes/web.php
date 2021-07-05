@@ -22,6 +22,7 @@ use App\Http\Middleware\JugadorLogueado;
 use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\TerminarColas;
 use App\Http\Controllers\GruposNavesController;
+use App\Http\Controllers\PoliticasController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\MailtrapExample;
 use Illuminate\Support\Facades\Mail;
@@ -133,7 +134,7 @@ Route::middleware(
     Route::get('/juego/disenio/editarDisenio/{id}', [DisenioController::class, 'editarDisenio']);
 
     //Fabricas
-    Route::get('/juego/fabricas', [FabricasController::class, 'index']);
+    // Route::get('/juego/fabricas', [FabricasController::class, 'index']);
     Route::get('/juego/fabricar/construir/{id}/{cantidad}', [FabricasController::class, 'construir']);
     Route::get('/juego/fabricar/reciclar/{id}/{cantidad}', [FabricasController::class, 'reciclar']);
     Route::get('/juego/fabricar/cancelar/{id}', [FabricasController::class, 'cancelar']);
@@ -164,6 +165,11 @@ Route::middleware(
 
     //Banco
     Route::get('/juego/banco', [BancoController::class, 'index']);
+
+    //Politica
+    Route::get('/juego/politica/{tab?}', [PoliticasController::class, 'index']);
+    Route::get('/juego/politica/proponer/{codigo}/{accion}', [PoliticasController::class, 'proponer']);
+    Route::get('/juego/politica/votar/{codigo}', [PoliticasController::class, 'votar']);
 
     //Comercio
     Route::get('/juego/comercio', [ComercioController::class, 'index']);

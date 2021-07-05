@@ -36,6 +36,8 @@
         <title>Estadisticas - Quinta Dimension</title>
     @elseif(strpos(Request::fullUrl(), 'tienda'))
         <title>Tienda - Quinta Dimension</title>
+    @elseif(strpos(Request::fullUrl(), 'politica'))
+        <title>Politicas - Quinta Dimension</title>
     @else
         <title>Quinta Dimension</title>
     @endif
@@ -197,8 +199,9 @@
                 <div class="card bg-dark align-middle" style="max-width: 100%; border: 0;">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ !empty(Auth::user()->jugador->avatar) ?  Auth::user()->jugador->avatar : '' }}" alt="..." width="100px" height="100px"
-                                class="" style="padding-left: 5px; padding-top: 10px">
+                            <img src="{{ !empty(Auth::user()->jugador->avatar) ? Auth::user()->jugador->avatar : '' }}"
+                                alt="..." width="100px" height="100px" class=""
+                                style="padding-left: 5px; padding-top: 10px">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
