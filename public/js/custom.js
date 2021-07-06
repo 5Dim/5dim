@@ -95,6 +95,23 @@ function sendCederColonia() {
     window.location.href = "/juego/cederColonia/" + idJugador;
 }
 
+function sendProponer(codigo) {
+    var accion = $("#accion" + codigo).val();
+    var botones = $(".btn");
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].disabled = true;
+    }
+    window.location.href = "/juego/politica/proponer/" + codigo + '/' + accion;
+}
+
+function sendVotar(codigo) {
+    var botones = $(".btn");
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].disabled = true;
+    }
+    window.location.href = "/juego/politica/votar/" + codigo;
+}
+
 function formatTimestamp(timestamp) {
     if (timestamp > 0) {
         lhora = Math.floor(timestamp / 3600);
@@ -947,4 +964,8 @@ function tabsPlanetas(tab) {
 
 function tabsGeneral(tab) {
     window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/general/" + tab);
+}
+
+function tabsPolitica(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/politica/" + tab);
 }

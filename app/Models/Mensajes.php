@@ -649,7 +649,7 @@ class Mensajes extends Model
 
     public static function bienvenida($idJugador)
     {
-        $contenido = "<p>Bienvenido a la <b>Alfa 0.1</b> de 5dim.es. Ahí van unos consejos de inicio:</p>
+        $contenido = "<p>Bienvenido a la <b>Alfa 0.5</b> de 5dim.es. Ahí van unos consejos de inicio:</p>
                             <ul>
                                 <li>
                                     Todo lo relacionado con combates NO está implementado, de modo que no investigues ni

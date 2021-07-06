@@ -13,6 +13,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
+use Illuminate\Support\Facades\Auth;
 
 class GeneralController extends Controller
 {
@@ -20,6 +21,11 @@ class GeneralController extends Controller
     public function index($tab = "anuncios-tab")
     {
         extract($this->recursos());
+
+        // dd();
+        if (empty(Auth::user()->jugador)) {
+            return redirect('/juego/general/' . $tab);
+        }
 
         return view('juego.general', compact(
             // Recursos

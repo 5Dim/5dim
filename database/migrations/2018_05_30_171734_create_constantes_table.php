@@ -19,9 +19,12 @@ class CreateConstantesTable extends Migration
             $table->decimal('valor', 12, 3);
             $table->decimal('minimo', 12, 3);
             $table->decimal('maximo', 12, 3);
+            $table->boolean('votable')->default(true);
+            $table->boolean('propuesta')->default(false);
+            $table->unsignedTinyInteger('estado')->default(0);
+            $table->string('accion')->nullable();
             $table->string('descripcion');
             $table->string('tipo')->index();
-            $table->boolean('votable')->default(1);
         });
     }
 
