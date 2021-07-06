@@ -48,21 +48,27 @@
         <table class="table table-sm table-borderless text-center anchofijo borderless" style="background-color: rgba(0, 0, 0, 0.9);  ">
             <tbody>
                 <tr>
-                    <td class=" col-8" >
+                    <td class=" col-6" >
                     </td>
+
                     <td>
-                        <button type="button" class="btn btn-outline-success col-12" onclick="BotonPausa()">
+                        <button type="button" class="btn btn-outline-primary col-12" onclick="BotonPausa()">
                             <i class="fas fa-play-circle"></i> Play
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success col-12" onclick="zoom(-10, camera.x,camera.y);">
+                        <button type="button" class="btn btn-outline-primary col-12" onclick="zoom(-10, camera.x,camera.y);">
                             <i class="fas fa-search-minus"></i> Zoom -
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success col-12" onclick="zoom(20, camera.x,camera.y);">
+                        <button type="button" class="btn btn-outline-primary col-12" onclick="zoom(20, camera.x,camera.y);">
                             <i class="fas fa-search-plus"></i> Zoom +
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success col-12" onclick="BotonPausa()">
+                            <i class="fas fa-arrow-alt-circle-up"></i> Guardar Todo
                         </button>
                     </td>
                 </tr>
@@ -115,6 +121,15 @@ window.Handlebars.registerHelper('select', function( value, options ){
         $el.find('[value="' + value + '"]').attr({'selected':'selected'});
         return $el.html();
     });
+
+
+/// to do:
+// cada vez que se cree un grupo o se quite deberia hacerse en listaGruposNaves por si no se manda bien gnave por ajax, si no pues todo con gnave
+// que carge el gruposnaves.js un listaGruposNaves actualizado
+// cada vez que se cambia un selector que se guarde en su listaGruposNaves
+// cada vez que se crea o borra un grupo que se llame a cargarGruposNavesExistentes()
+
+
 
 (function(){ //de inicio cargo grupos existentes
     cargarGruposNavesExistentes();

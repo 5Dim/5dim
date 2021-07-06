@@ -888,8 +888,23 @@ class Flotas extends Model
                                     }
                                 }
                             }
+
+                            foreach ($recursosArray as $recurso) {//jamas nos quedamos en negativo
+
+                                if ($recursosDestino[$recurso]<0){
+                                    Log::info("PELIGRO, recurso ".$recurso." quieren ser negativos en destino ".$recursosDestino[$recurso] ." Destino id: ".$destino->id);
+                                    $recursosDestino[$recurso]=0;
+
+                                }
+                                if ($recursosFlota[$recurso]<0){
+                                    Log::info("PELIGRO, recurso ".$recurso." quieren ser negativos en flota ".$recursosFlota[$recurso] ." Destino id: ".$destino->id);
+                                    $recursosFlota[$recurso]=0;
+                                }
+                            }
+
                             $recursosDestino["personal"] += $personalOcupado;
                             $destinoAlcanzado = true;
+
                             break;
                         case "Transferir":
                             //si los ids de todos los destinos es nulo es orbitar el planeta

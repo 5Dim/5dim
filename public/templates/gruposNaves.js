@@ -1,5 +1,5 @@
 <script type="text/x-handlebars-template" id="cajitaGruposExisten">
-    {{#each listaGruposNaves}}
+
         <div class="row rounded cajita">
             <div class="col-12">
                 <div id="grupoNaves{{id}}" class="table-responsive">
@@ -13,6 +13,7 @@
                                 <td class=" text-warning">...con el grupo</td>
                                 <td class=" text-warning"></td>
                             </tr>
+                            {{#each listaGruposNaves}}
                             <tr>
                                 <td class="text-light">
                                     <input id="nombreGrupo" type="text" class="form-control input"
@@ -75,11 +76,12 @@
                                     </button>
                                 </td>
                             </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-{{/each}}
+
 </script>
 

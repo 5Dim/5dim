@@ -652,6 +652,7 @@ class FlotaController extends Controller
                 }
 
                 // Log::info("todos los destinos done");
+                //Log::info("navesEnPlaneta ".$navesEnPlaneta);
 
                 // naves a flota
 
@@ -674,6 +675,8 @@ class FlotaController extends Controller
                             $naveP->save();
                         }
                     } else { //restar de la flota
+                        $totalNaves=$naveP->enFlota+$naveP->enHangar+$naveP->cantidad;
+
                         if ($navex['enflota'] < 0) {
                             $navex['enflota'] = 0;
                         }
@@ -681,30 +684,25 @@ class FlotaController extends Controller
                             $navex['enhangar'] = 0;
                         }
 
+
                         $restarAFlota = $navex['enflota'];
                         $restarAHangar = $navex['enhangar'];
                         //Log::info("messageI ".$restarAFlota." ".$restarAHangar);
+                        //Log::info("navex ".$navex);
+                        //Log::info("naveP ".$naveP);
 
                         if ($naveP->enFlota < $navex['enflota']) { //tengo menos en flota de las que me llevo
                             $restarAHangar += -$naveP->enFlota + $navex['enflota'];
-                        }
+                            $restarAFlota = $naveP->enFlota;
+                            //Log::info("restarAFlota1 ");
 
-                        if ($naveP->enhangar < $navex['enhangar']) { //tengo menos  en hangar de las que me llevo
+                        } else if ($naveP->enHangar < $navex['enhangar']) { //tengo menos  en hangar de las que me llevo
                             $restarAFlota += -$naveP->enHangar + $navex['enhangar'];
+                            $restarAHangar = $naveP->enHangar ;
+                            //Log::info("restarAFlota2 ");
                         }
 
-                        if ($naveP->enFlota - $restarAFlota < 0) { // la cantidad que queda no puede ser negativa
-                            $restarAHangar += -1 * ($naveP->enFlota - $restarAFlota);
-                            $restarAFlota = $naveP->enFlota;
-                        }
-                        if ($naveP->enHangar - $restarAHangar < 0) { // la cantidad que queda no puede ser negativa
-                            $restarAFlota = -1 * ($naveP->enHangar - $restarAHangar);
-                            $restarAHangar = $naveP->enHangar;
-                        }
-                        if ($naveP->enFlota - $restarAFlota < 0) { // (segunda vuelta necesaria) la cantidad que queda no puede ser negativa
-                            $restarAHangar += -1 * ($naveP->enFlota - $restarAFlota);
-                            $restarAFlota = $naveP->enFlota;
-                        }
+                        //Log::info("messageF ".$restarAFlota." ".$restarAHangar);
 
                         $naveP->enFlota -= $restarAFlota;
                         $naveP->enHangar -= $restarAHangar;

@@ -881,19 +881,19 @@ class Astrometria extends Model
             case "enrecoleccion":
                 $nombreDestino = $destino->enRecoleccion["publico"];
                 if ($nombreprivado) {
-                    $nombreDestino .= "(" . $destino->enRecoleccion["nombre"] . ")";
+                    $nombreDestino .= " (" . $destino->enRecoleccion["nombre"] . ")";
                 }
                 break;
             case "enorbita":
                 $nombreDestino = $destino->enOrbita["publico"];
                 if ($nombreprivado) {
-                    $nombreDestino .= "(" . $destino->enOrbita["nombre"] . ")";
+                    $nombreDestino .= " (" . $destino->enOrbita["nombre"] . ")";
                 }
                 break;
             case "envuelo":
                 $nombreDestino = $destino->enVuelo["publico"];
                 if ($nombreprivado) {
-                    $nombreDestino .= "(" . $destino->enVuelo["nombre"] . ")";
+                    $nombreDestino .= " (" . $destino->enVuelo["nombre"] . ")";
                 }
                 break;
             default:
