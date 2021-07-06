@@ -34,9 +34,13 @@
                         {{ $politica->accion }}
                     </td>
                     <td>
-                        @if ($politica->propuesta)
+                        @if ($politica->id == Auth::user()->jugador->constantes_id)
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="far fa-thumbs-up"></i> Ya votada
+                            </button>
+                        @elseif (!empty(Auth::user()->jugador->constantes_id))
+                            <button type="button" class="btn btn-outline-light col-12" disabled>
+                                <i class="far fa-thumbs-up"></i> Ya has votado una politica
                             </button>
                         @else
                             <button type="button" class="btn btn-outline-success col-12"

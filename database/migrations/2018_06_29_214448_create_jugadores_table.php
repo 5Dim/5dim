@@ -26,6 +26,8 @@ class CreateJugadoresTable extends Migration
             $table->timestamp('premiun_at')->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('constantes_id')->unsigned()->nullable();
+            $table->foreign('constantes_id')->references('id')->on('constantes');
             $table->timestamps();
         });
     }
