@@ -25,9 +25,15 @@ use App\Models\DiseniosEnFlota;
 use App\Models\PuntosEnFlota;
 use App\Models\RecursosEnFlota;
 use App\Models\Astrometria;
+use App\Models\DestinosEnRuta;
+use App\Models\DiseniosEnRuta;
 use App\Models\EnOrbita;
 use App\Models\EnRecoleccion;
 use App\Models\MensajesIntervinientes;
+use App\Models\PrioridadesEnRutas;
+use App\Models\RecursosEnRuta;
+use App\Models\RutasPredefinidas;
+use App\Models\RecursosEnRutas;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -257,7 +263,6 @@ class FlotaController extends Controller
 
     public function enviarFlota(Request $request, $id = false) //$id es de la flota en orbita de la que salimos
     {
-
         $turboAtaque = 0; //trampas gordas, tiempo de llegar al destino
 
         $navesEstacionadas = $request->input('navesEstacionadas');
@@ -1080,5 +1085,155 @@ class FlotaController extends Controller
         }
         //Log::info($errores);
         return compact('errores');
+    }
+
+//////////////////////   RUTAS   //////////////////////////////////////////////////
+
+    public function cargarListaRutas(Request $request){
+
+        Log::info("lista rutas ya");
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->get();
+        return $jugadorActual->rutasPredefinidas();
+    }
+
+
+    public function guardarRuta(Request $request) //
+    {
+        $navesEstacionadas = $request->input('navesEstacionadas');
+        $cargaDest = $request->input('cargaDest');
+        $prioridades = $request->input('prioridades');
+        $flota = $request->input('flota');
+        $destinos = $request->input('destinos');
+
+        // Log::info("navesEstacionadas");Log::info($navesEstacionadas);
+        //Log::info("cargaDest");Log::info($cargaDest);
+        // Log::info("prioridades");Log::info($prioridades);
+        // Log::info("flota");Log::info($flota);
+        // Log::info("destinos");Log::info($destinos);
+
+        $errores = "";
+
+        //se envia la ruta  ////////////////////
+
+        try {
+            //construyendo flota
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+
+            DB::beginTransaction();
+            //Log::info("Jugador ID= ".$jugadorEnviador->id);
+            $flotax = new RutasPredefinidas();
+            $flotax->nombre = $flota['nombre'];
+            $flotax->jugadores_id = $jugadorActual->id;
+            //Log::info($flotax);
+            $flotax->save();
+
+            //Log::info($flota);
+
+            //construyendo destinos
+
+            for ($dest = 1; $dest < count($destinos); $dest++) {
+
+                if (isset($destinos[$dest]['estrella'])){
+
+                    $destAnt = $dest - 1;
+
+                    $destino = new DestinosEnRuta();
+                    $destino->porcentVel = $destinos[$dest]['porcentVel'];
+                    $destino->mision = ucfirst($destinos[$dest]['mision']);
+                    $destino->estrella=$destinos[$dest]['estrella'];
+                    $destino->orbita=$destinos[$dest]['orbita'];
+
+                    $destino->rutas_predefinidas_id = $flotax->id;
+                    $destino->save(); //Log::info("coso".$dest." ".$flotax->id);
+
+                    //Log::info("destino ".$dest." ".$destino);
+
+                    //Log::info($cargaDest[$dest]);
+
+                    $recursosDestino = new RecursosEnRuta();
+                    $recursosDestino->personal = $cargaDest[$dest]['personal'];
+                    $recursosDestino->mineral = $cargaDest[$dest]['mineral'];
+                    $recursosDestino->cristal = $cargaDest[$dest]['cristal'];
+                    $recursosDestino->gas = $cargaDest[$dest]['gas'];
+                    $recursosDestino->plastico = $cargaDest[$dest]['plastico'];
+                    $recursosDestino->ceramica = $cargaDest[$dest]['ceramica'];
+                    $recursosDestino->liquido = $cargaDest[$dest]['liquido'];
+                    $recursosDestino->micros = $cargaDest[$dest]['micros'];
+                    $recursosDestino->fuel = $cargaDest[$dest]['fuel'];
+                    $recursosDestino->ma = $cargaDest[$dest]['ma'];
+                    $recursosDestino->municion = $cargaDest[$dest]['municion'];
+                    $recursosDestino->creditos = $cargaDest[$dest]['creditos'];
+                    $recursosDestino->destinos_en_rutas_id = $destino->id;
+                    $recursosDestino->save();
+
+                    $prioridadex = new PrioridadesEnRutas();
+                    $prioridadex->personal = $prioridades[$dest]['personal'];
+                    $prioridadex->mineral = $prioridades[$dest]['mineral'];
+                    $prioridadex->cristal = $prioridades[$dest]['cristal'];
+                    $prioridadex->gas = $prioridades[$dest]['gas'];
+                    $prioridadex->plastico = $prioridades[$dest]['plastico'];
+                    $prioridadex->ceramica = $prioridades[$dest]['ceramica'];
+                    $prioridadex->liquido = $prioridades[$dest]['liquido'];
+                    $prioridadex->micros = $prioridades[$dest]['micros'];
+                    $prioridadex->fuel = $prioridades[$dest]['fuel'];
+                    $prioridadex->ma = $prioridades[$dest]['ma'];
+                    $prioridadex->municion = $prioridades[$dest]['municion'];
+                    $prioridadex->creditos = $prioridades[$dest]['creditos'];
+                    $prioridadex->destinos_en_rutas_id = $destino->id;
+                    $prioridadex->save();
+
+                    //Log::info("prioridades");
+                    //Log::info($prioridadex);
+
+                    //Log::info("prioridadex " . $prioridadex . " prioridades ");
+                    //Log::info($prioridades[$dest]);
+                    // Log::info("hecho destino ".$dest );
+                }
+
+            }
+
+            // Log::info("todos los destinos done");
+            //Log::info("navesEnPlaneta ".$navesEnPlaneta);
+
+            // naves a flota
+
+            foreach ($navesEstacionadas as $navex) {
+                //Log::info($navex);
+                if ($navex['enflota']>0 || $navex['enhangar']>0){
+
+                    $naveSale = new DiseniosEnRuta();
+                    $naveSale->enFlota = $navex['enflota'];
+                    $naveSale->enHangar = $navex['enhangar'];
+                    $naveSale->disenios_id = $navex['id'];
+                    $naveSale->rutas_predefinidas_id = $flotax->id;
+                    $naveSale->save();
+                }
+            }
+
+            //Log::info($recursosEnFlota);
+
+            DB::commit();
+            //Log::info("Enviada");
+            //try {
+        } catch (Exception $e) {
+            DB::rollBack();
+            $errores = "Error en Commit de creación de ruta " . $e->getLine() . " " . $e->getFile() . $errores; //.$e;
+            Log::info($errores . " " . $e);
+        }
+        //return redirect('/juego/flota');
+
+        //Log::info($errores);
+        return compact('errores');
+    }
+
+
+    public function borrarRuta($id = null)
+    {
+
+    }
+
+    public function traerRuta($id = null)
+    {
+
     }
 }

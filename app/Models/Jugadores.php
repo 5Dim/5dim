@@ -70,6 +70,11 @@ class Jugadores extends Model
         return $this->hasMany(EnRecoleccion::class);
     }
 
+    public function rutasPredefinidas()
+    {
+        return $this->hasMany(RutasPredefinidas::class);
+    }
+
     public static function calcularPuntos($idJugador)
     {
         $jugador = Auth::user()->jugador;
