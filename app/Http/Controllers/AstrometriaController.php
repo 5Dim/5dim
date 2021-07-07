@@ -33,7 +33,6 @@ class AstrometriaController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
-            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 

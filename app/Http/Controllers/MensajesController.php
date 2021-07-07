@@ -55,7 +55,6 @@ class MensajesController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
-            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 

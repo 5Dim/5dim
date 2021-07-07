@@ -32,7 +32,6 @@ class PoliticasController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
-            'planetasAlianza',
             'planetaActual',
             'mensajeNuevo',
             'colaConstruccion',

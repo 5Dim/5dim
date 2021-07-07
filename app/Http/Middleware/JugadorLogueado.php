@@ -64,11 +64,6 @@ class JugadorLogueado
 
         //Comprobamos que el planeta que tiene asignado sea propio
         $jugadorActual = $jugador;
-        if (!empty($jugadorActual->alianzas)) {
-            $idAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first()->id;
-        } else {
-            $idAlianza = "nulo";
-        }
         if (session()->has('planetas_id')) {
             $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         }
@@ -76,8 +71,7 @@ class JugadorLogueado
         // Comprobar si el planeta pertenece a un jugador
         if (!empty($planetaActual->jugadores)) {
             if (
-                $planetaActual->jugadores->id != $jugadorActual->id and
-                $planetaActual->jugadores->id != $idAlianza
+                $planetaActual->jugadores->id != $jugadorActual->id
             ) {
                 //Si el planeta coincide con la alianza o el jugador
                 session()->forget('planetas_id');
