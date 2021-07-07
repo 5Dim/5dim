@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RecursosEnFlota extends Model
+class RecursosEnRuta extends Model
 {
     use HasFactory;
 
@@ -15,9 +15,6 @@ class RecursosEnFlota extends Model
      * @var array
      */
     protected $fillable = [
-        'en_recoleccion_id',
-        'en_vuelo_id',
-        'en_orbita_id',
         'personal',
         'mineral',
         'cristal',
@@ -32,24 +29,8 @@ class RecursosEnFlota extends Model
         'creditos'
     ];
 
-    public function envuelo()
-    {
-        return $this->hasOne(EnVuelo::class);
-    }
-
-    public function enrecoleccion()
-    {
-        return $this->hasOne(EnRecoleccion::class);
-    }
-
-    public function enorbita()
-    {
-        return $this->hasOne(EnOrbita::class);
-    }
-
     public function destino()
     {
-        return $this->hasOne(Destinos::class);
+        return $this->hasOne(DestinosEnRuta::class);
     }
-
 }
