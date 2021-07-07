@@ -144,7 +144,7 @@ class CostesFuselajes extends Model
             case "AFRODITA":
                 $Tnave = "ligera";
                 $factn = 1;
-                $r1cce = [$codigo, 200000, 50000, 20000, 20000, 20000, 25000, 33000, 0, 190];
+                $r1cce = [$codigo,100000, 35000, 30000, 25000, 20000, 15000, 20000, .3, 0, 100];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
