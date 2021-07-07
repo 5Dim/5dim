@@ -58,6 +58,7 @@ class FuselajesController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 

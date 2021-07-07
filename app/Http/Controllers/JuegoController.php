@@ -60,6 +60,7 @@ class JuegoController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 
@@ -85,6 +86,7 @@ class JuegoController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 

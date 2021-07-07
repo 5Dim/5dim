@@ -32,12 +32,15 @@ class Controller extends BaseController
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
         $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->orderBy('creacion')->get();
-        // $planetasAlianza = null;
-        // $jugadorAlianza = null;
-        // if (!empty($jugadorActual->alianzas)) {
-        //     $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-        //     $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->orderBy('creacion')->get();
-        // }
+        $planetasAlianza = null;
+        $jugadorAlianza = null;
+        if (
+            !empty($jugadorActual->alianzas) &&
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor == 1
+        ) {
+            $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->orderBy('creacion')->get();
+        }
 
 
         //Recursos
@@ -76,16 +79,13 @@ class Controller extends BaseController
         }
         // Fin obligatorio por recursos
 
-        if (empty(Auth::user()->jugador)) {
-            return redirect('/juego/general/');
-        }
-
         return compact(
             'recursos',
             'personalOcupado',
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'planetaActual',
             'mensajeNuevo',
             'construcciones',
@@ -194,6 +194,7 @@ class Controller extends BaseController
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 

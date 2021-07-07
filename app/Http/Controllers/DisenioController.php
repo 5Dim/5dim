@@ -167,6 +167,7 @@ class DisenioController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 
@@ -329,6 +330,7 @@ class DisenioController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 
@@ -487,6 +489,7 @@ class DisenioController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 

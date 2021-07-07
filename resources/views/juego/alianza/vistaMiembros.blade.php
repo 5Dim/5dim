@@ -3,8 +3,8 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-borderless table-sm text-center">
                 <tr>
-                    <th colspan="6" class="text-success text-center align-middle">
-                        Solicitudes pendientes
+                    <th colspan="7" class="text-success text-center align-middle">
+                        Miembros
                     </th>
                 </tr>
                 <tr>
@@ -25,6 +25,9 @@
                     </th>
                     <th class="text-success text-center align-middle">
                         Puntos totales
+                    </th>
+                    <th class="text-success text-center align-middle">
+                        Puntos de victoria
                     </th>
                     <th class="text-success text-center align-middle">
 
@@ -49,6 +52,9 @@
                     </td>
                     <td class="text-light text-center align-middle">
                         {{ number_format(($miembro->puntos_construccion + $miembro->puntos_investigacion + $miembro->puntos_flotas), 0,",",".") }}
+                    </td>
+                    <td class="text-light text-center align-middle">
+                        {{ number_format($miembro->puntos_victoria, 0,",",".") }}
                     </td>
                     <td class="text-light text-center align-middle">
                         @if($jugadorActual->id == $alianzaActual->creador->id)

@@ -37,6 +37,7 @@ class AlianzaController extends Controller
                 'capacidadAlmacenes',
                 'produccion',
                 'planetasJugador',
+                'planetasAlianza',
                 'mensajeNuevo',
                 'consImperio',
 
@@ -55,6 +56,7 @@ class AlianzaController extends Controller
                 'capacidadAlmacenes',
                 'produccion',
                 'planetasJugador',
+                'planetasAlianza',
                 'mensajeNuevo',
                 'consImperio',
 
@@ -197,6 +199,7 @@ class AlianzaController extends Controller
                 $jugadorAlianza->delete();
             }
         }
+        $alianza->delete();
 
         return redirect('/juego/alianza');
     }

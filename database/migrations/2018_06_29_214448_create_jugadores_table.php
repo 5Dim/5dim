@@ -20,6 +20,7 @@ class CreateJugadoresTable extends Migration
             $table->unsignedBigInteger('puntos_construccion')->default(0);
             $table->unsignedBigInteger('puntos_investigacion')->default(0);
             $table->unsignedBigInteger('puntos_flotas')->default(0);
+            $table->unsignedBigInteger('puntos_victoria')->default(0);
             $table->unsignedTinyInteger('movimientos')->default(0);
             $table->unsignedTinyInteger('propuestas')->default(1);
             $table->string('baliza')->unique();

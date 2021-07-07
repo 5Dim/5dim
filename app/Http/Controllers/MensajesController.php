@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alianzas;
+use App\Models\Constantes;
 use Illuminate\Http\Request;
 use App\Models\Jugadores;
 use App\Models\Mensajes;
@@ -19,7 +20,10 @@ class MensajesController extends Controller
         $jugadores = Jugadores::orderBy("nombre")->get();
 
         //Lista de mensajes recibidos
-        if (!empty($jugadorActual->alianzas)) {
+        if (
+            !empty($jugadorActual->alianzas) &&
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor == 1
+        ) {
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorAlianza) {
                 $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])
                     ->where('categoria', 'recibidos');
@@ -55,6 +59,7 @@ class MensajesController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'mensajeNuevo',
             'consImperio',
 

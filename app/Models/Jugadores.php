@@ -110,7 +110,7 @@ class Jugadores extends Model
 
             $puntosInvestigacion = 0;
             $investiga = new CostesInvestigaciones();
-            $costeInvestigaciones = $investiga->generaCostesInvestigaciones($jugador->investigaciones);
+            $costeInvestigaciones = $investiga->generaCostesInvestigaciones($jugador->investigaciones, false, false);
             foreach ($costeInvestigaciones as $coste) {
                 if (!empty($coste)) {
                     $costeTotal = 0;

@@ -66,6 +66,7 @@ class ConstruccionController extends Controller
             'capacidadAlmacenes',
             'produccion',
             'planetasJugador',
+            'planetasAlianza',
             'planetaActual',
             'mensajeNuevo',
             'colaConstruccion',
