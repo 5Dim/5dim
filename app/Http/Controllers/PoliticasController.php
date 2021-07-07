@@ -12,7 +12,7 @@ class PoliticasController extends Controller
     {
         extract($this->recursos());
 
-        if (date('l') == 'Mondaya') {
+        if (date('l') == 'Monday') {
             $politicaConstruccion = Constantes::where([['votable', 1], ['tipo', 'construccion']])->get();
             $politicaInvestigacion = Constantes::where([['votable', 1], ['tipo', 'investigacion']])->get();
             $politicaFuselajes = Constantes::where([['votable', 1], ['tipo', 'fuselajes']])->get();
