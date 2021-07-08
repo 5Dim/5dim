@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 class GeneralController extends Controller
 {
 
-    public function index($tab = "anuncios-tab")
+    public function index($tab = "general-tab")
     {
         extract($this->recursos());
 

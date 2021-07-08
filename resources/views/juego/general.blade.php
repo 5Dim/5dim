@@ -5,9 +5,9 @@
             <nav>
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
-                    <a class="nav-item nav-link" id="anuncios-tab" data-bs-toggle="tab" href="#anuncios" role="tab"
-                        aria-controls="anuncios" aria-selected="false" onclick="tabsGeneral('anuncios-tab')">
-                        Anuncios
+                    <a class="nav-item nav-link" id="general-tab" data-bs-toggle="tab" href="#general" role="tab"
+                        aria-controls="general" aria-selected="false" onclick="tabsGeneral('general-tab')">
+                        General
                     </a>
                     <a class="nav-item nav-link" id="eventos-tab" data-bs-toggle="tab" href="#eventos" role="tab"
                         aria-controls="eventos" aria-selected="true" onclick="tabsGeneral('eventos-tab')">
@@ -16,7 +16,7 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade" id="anuncios" role="tabpanel" aria-labelledby="anuncios-tab">
+                <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
                     @if (false)
                         <div class="alert alert-danger cajita-danger" role="alert">
                             <h4 class="alert-heading">Final de la ronda</h4>
