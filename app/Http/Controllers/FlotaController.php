@@ -1091,7 +1091,6 @@ class FlotaController extends Controller
 
     public function cargarListaRutas(Request $request)
     {
-        Log::info("lista rutas ya");
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->first();
         return $jugadorActual->rutasPredefinidas;
     }
@@ -1226,11 +1225,45 @@ class FlotaController extends Controller
     }
 
 
-    public function borrarRuta($id = null)
+    public function borrarRuta(Request $request, $id = null)
     {
+        //Log::info("idf ".$id);
+        if (isset($id)){
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->first();
+            $rutaBorrar=RutasPredefinidas::where([
+                ['id', $id],
+                ['jugadores_id', $jugadorActual->id]
+            ])->first();
+
+            if (isset($rutaBorrar)){
+                $rutaBorrar->delete();
+                return "true";
+            }
+
+        }
+        return "false";
     }
 
     public function traerRuta($id = null)
     {
+        Log::info("idruta ").$id ;
+        if (isset($id)){
+            $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->first();
+            $rutaSeleccionada=RutasPredefinidas::where([
+                ['id', $id],
+                ['jugadores_id', $jugadorActual->id]
+            ])->first();
+
+            $rutaSeleccionada["destinos"]=$rutaSeleccionada->destinos;
+            $rutaSeleccionada["recursos"]=$rutaSeleccionada->recursos;
+            $rutaSeleccionada["disenios"]=$rutaSeleccionada->disenios;
+
+            return $rutaSeleccionada;
+
+        } else {
+            $errores="Ruta no encontrada ";
+        }
+
+        return compact('errores');
     }
 }

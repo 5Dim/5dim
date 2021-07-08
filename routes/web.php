@@ -162,10 +162,10 @@ Route::middleware(
     Route::post('/juego/flotas/enviarFlota/{id?}', [FlotaController::class, 'enviarFlota']);
     Route::post('/juego/flotas/modificarFlota/{id?}', [FlotaController::class, 'modificarFlota']);
     Route::get('/juego/flotas/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'editarFlota']);
-    Route::post('/juego/flotas/guardarRuta', [FlotaController::class, 'guardarRuta']);
-    Route::post('/juego/flotas/borrarRuta/{id?}', [FlotaController::class, 'borrarRuta']);
-    Route::post('/juego/flotas/traerRuta/{id?}', [FlotaController::class, 'traerRuta']);
-    Route::post('/juego/flotas/cargarListaRutas', [FlotaController::class, 'cargarListaRutas']);
+    Route::post('/juego/flotas/rutas/guardarRuta', [FlotaController::class, 'guardarRuta']);
+    Route::post('/juego/flotas/rutas/borrarRuta/{id?}', [FlotaController::class, 'borrarRuta']);
+    Route::post('/juego/flotas/rutas/traerRuta/{id?}', [FlotaController::class, 'traerRuta']);
+    Route::post('/juego/flotas/rutas/cargarListaRutas', [FlotaController::class, 'cargarListaRutas']);
 
     //Banco
     Route::get('/juego/banco', [BancoController::class, 'index']);

@@ -6,7 +6,7 @@ $(document).ready(function() {
     });
 
     $('#listaRutas').change(function() {
-        cargarRuta();
+        traerRuta();
     });
 
     cargarListaRutas();
@@ -17,15 +17,16 @@ function cargarListaRutas(){
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/juego/flotas/cargarListaRutas",
+        url: "/juego/flotas/rutas/cargarListaRutas",
         //contentType: 'application/json; charset=utf-8',
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
-        success: function(response) {
+        success: function(data) {
 
             var sel = $("#listaRutas");
             sel.empty();
+            sel.append('<option value="-1">Selecciona una ruta</option>');
             for (var i=0; i<data.length; i++) {
             sel.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
             }
@@ -77,7 +78,7 @@ function guardarRuta(){
         $.ajax({
             type: "post",
             dataType: "json",
-            url: "/juego/flotas/guardarRuta",
+            url: "/juego/flotas/rutas/guardarRuta",
             //contentType: 'application/json; charset=utf-8',
             data: { navesEstacionadas: navesEstacionadas, destinos: destinos, cargaDest: cargaDest, prioridades: prioridades, flota: flota },
             headers: {
@@ -95,6 +96,7 @@ function guardarRuta(){
                 if (response.errores == "") {
                     $("#ModalTitulo").html("Flota enviada");
                     $("#datosContenido").html("La ruta " + $("#nombreFlota").val() + " se ha guardado");
+                    cargarListaRutas();
                 } else {
                     //alert(response.errores);
                     $("#ModalTitulo").html("ruta no guardada");
@@ -112,18 +114,23 @@ function guardarRuta(){
                 //alert(data.errores);
             },
         });
+
     }
 
 
 }
 
-function cargarRuta(){
-    idRuta=$('#listaRutas').val();
+function traerRuta(){
+    id=$('#listaRutas').val();
 
-    if (idRuta != "none") {
+    if (id != "none") {
         $.ajax({
-            method: "GET",
-            url: "/juego/flotas/traerRuta/" + idRuta,
+            type: "post",
+            dataType: "json",
+            url: "/juego/flotas/rutas/traerRuta/"+ id,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
             success: function(data) {
                 if (recursosEnDest[dest] == undefined || data.recursos == undefined) {
                     recursosEnDest[dest] = JSON.parse(JSON.stringify(cargaDestVacia[dest]));
@@ -163,5 +170,36 @@ function cargarRuta(){
         MostrarRecursos(dest);
         Avisos();
     }
+
+}
+
+function borrarRuta(){
+    id=$('#listaRutas').val();
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "/juego/flotas/rutas/borrarRuta/"+ id,
+        //contentType: 'application/json; charset=utf-8',
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        beforeSend: function() {
+            $("#botonBorrarRuta").prop("disabled", true);
+            var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Borrando....';
+            $("#botonBorrarRuta").html(spinner);
+        },
+        success: function(response) {
+            $("#botonBorrarRuta").text("Borrar Ruta Seleccionada");
+            $("#botonBorrarRuta").prop("disabled", false);
+            if (response) {
+                cargarListaRutas();
+            }
+        },
+        error: function(xhr, textStatus, thrownError) {
+            console.log("status", xhr.status);
+            console.log("error", thrownError);
+        },
+    });
 
 }
