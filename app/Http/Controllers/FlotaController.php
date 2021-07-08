@@ -1091,7 +1091,7 @@ class FlotaController extends Controller
     public function cargarListaRutas(Request $request)
     {
         Log::info("lista rutas ya");
-        $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->get();
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->first();
         return $jugadorActual->rutasPredefinidas;
     }
 
@@ -1105,7 +1105,7 @@ class FlotaController extends Controller
         $destinos = $request->input('destinos');
 
         // Log::info("navesEstacionadas");Log::info($navesEstacionadas);
-        //Log::info("cargaDest");Log::info($cargaDest);
+        // Log::info("cargaDest");Log::info($cargaDest);
         // Log::info("prioridades");Log::info($prioridades);
         // Log::info("flota");Log::info($flota);
         // Log::info("destinos");Log::info($destinos);
