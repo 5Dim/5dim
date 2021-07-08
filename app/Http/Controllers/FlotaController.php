@@ -1089,16 +1089,11 @@ class FlotaController extends Controller
 
     //////////////////////   RUTAS   //////////////////////////////////////////////////
 
-<<<<<<< HEAD
-        $listarutas=Auth::user()->jugador->rutasPredefinidas();
-        return $listarutas;
-=======
     public function cargarListaRutas(Request $request)
     {
         Log::info("lista rutas ya");
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->first();
         return $jugadorActual->rutasPredefinidas;
->>>>>>> 51e8457cefdde4c13209b707a9506d90abc9fc73
     }
 
 
