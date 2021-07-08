@@ -1093,7 +1093,7 @@ class FlotaController extends Controller
 
         Log::info("lista rutas ya");
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->get();
-        return $jugadorActual->rutasPredefinidas();
+        return $jugadorActual->rutasPredefinidas;
     }
 
 
