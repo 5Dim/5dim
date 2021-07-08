@@ -235,14 +235,13 @@ class FlotaController extends Controller
             if (empty($flotaDestino)) {
                 $flotaDestino = EnOrbita::where("publico", $estrella)->orWhere("nombre", $estrella)->where('jugadores_id', $jugadorActual->id)->first();
             }
-            if(!empty($flotaDestino->planetas)){
+            if (!empty($flotaDestino->planetas)) {
                 $recursos["estrella"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->estrella : $flotaDestino->estrella;
                 $recursos["orbita"] = !empty($flotaDestino->planetas) ? $flotaDestino->planetas->orbita : $flotaDestino->orbita;
             } else {
                 $recursos["estrella"] = 0;
                 $recursos["orbita"] = 0;
             }
-
         }
 
         return compact('recursos');
@@ -524,7 +523,7 @@ class FlotaController extends Controller
 
                 //construyendo destinos
 
-                $Tinit=$ahora;
+                $Tinit = $ahora;
                 for ($dest = 1; $dest < count($destinos); $dest++) {
 
                     //Log::info($Tinit);
@@ -680,7 +679,7 @@ class FlotaController extends Controller
                             $naveP->save();
                         }
                     } else { //restar de la flota
-                        $totalNaves=$naveP->enFlota+$naveP->enHangar+$naveP->cantidad;
+                        $totalNaves = $naveP->enFlota + $naveP->enHangar + $naveP->cantidad;
 
                         if ($navex['enflota'] < 0) {
                             $navex['enflota'] = 0;
@@ -703,7 +702,7 @@ class FlotaController extends Controller
 
                         } else if ($naveP->enHangar < $navex['enhangar']) { //tengo menos  en hangar de las que me llevo
                             $restarAFlota += -$naveP->enHangar + $navex['enhangar'];
-                            $restarAHangar = $naveP->enHangar ;
+                            $restarAHangar = $naveP->enHangar;
                             //Log::info("restarAFlota2 ");
                         }
 
@@ -823,7 +822,7 @@ class FlotaController extends Controller
                         if ($tipoflota == "enrecoleccion") {
 
                             $recoleccionT = Disenios::recoleccionTotal($flotaOrigen->diseniosEnFlota);
-                            if ($recoleccionT<1) { //si no recolecto quizas extraiga
+                            if ($recoleccionT < 1) { //si no recolecto quizas extraiga
                                 $recoleccionT = Disenios::extraccionTotal($flotaOrigen->diseniosEnFlota);
                             }
                             $flotaOrigen->recoleccion = $recoleccionT;
@@ -1087,10 +1086,10 @@ class FlotaController extends Controller
         return compact('errores');
     }
 
-//////////////////////   RUTAS   //////////////////////////////////////////////////
+    //////////////////////   RUTAS   //////////////////////////////////////////////////
 
-    public function cargarListaRutas(Request $request){
-
+    public function cargarListaRutas(Request $request)
+    {
         Log::info("lista rutas ya");
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->get();
         return $jugadorActual->rutasPredefinidas;
@@ -1133,15 +1132,15 @@ class FlotaController extends Controller
 
             for ($dest = 1; $dest < count($destinos); $dest++) {
 
-                if (isset($destinos[$dest]['estrella'])){
+                if (isset($destinos[$dest]['estrella'])) {
 
                     $destAnt = $dest - 1;
 
                     $destino = new DestinosEnRuta();
                     $destino->porcentVel = $destinos[$dest]['porcentVel'];
                     $destino->mision = ucfirst($destinos[$dest]['mision']);
-                    $destino->estrella=$destinos[$dest]['estrella'];
-                    $destino->orbita=$destinos[$dest]['orbita'];
+                    $destino->estrella = $destinos[$dest]['estrella'];
+                    $destino->orbita = $destinos[$dest]['orbita'];
 
                     $destino->rutas_predefinidas_id = $flotax->id;
                     $destino->save(); //Log::info("coso".$dest." ".$flotax->id);
@@ -1189,7 +1188,6 @@ class FlotaController extends Controller
                     //Log::info($prioridades[$dest]);
                     // Log::info("hecho destino ".$dest );
                 }
-
             }
 
             // Log::info("todos los destinos done");
@@ -1199,7 +1197,7 @@ class FlotaController extends Controller
 
             foreach ($navesEstacionadas as $navex) {
                 //Log::info($navex);
-                if ($navex['enflota']>0 || $navex['enhangar']>0){
+                if ($navex['enflota'] > 0 || $navex['enhangar'] > 0) {
 
                     $naveSale = new DiseniosEnRuta();
                     $naveSale->enFlota = $navex['enflota'];
@@ -1229,11 +1227,9 @@ class FlotaController extends Controller
 
     public function borrarRuta($id = null)
     {
-
     }
 
     public function traerRuta($id = null)
     {
-
     }
 }
