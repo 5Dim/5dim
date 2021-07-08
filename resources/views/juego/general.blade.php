@@ -9,10 +9,10 @@
                         aria-controls="anuncios" aria-selected="false" onclick="tabsGeneral('anuncios-tab')">
                         Anuncios
                     </a>
-                    {{-- <a class="nav-item nav-link" id="eventos-tab" data-bs-toggle="tab" href="#eventos" role="tab"
+                    <a class="nav-item nav-link" id="eventos-tab" data-bs-toggle="tab" href="#eventos" role="tab"
                         aria-controls="eventos" aria-selected="true" onclick="tabsGeneral('eventos-tab')">
                         Eventos y misiones
-                    </a> --}}
+                    </a>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -67,12 +67,12 @@
                         </div>
                     @endif
                 </div>
-                {{-- <div class="tab-pane fade" id="eventos" role="tabpanel" aria-labelledby="eventos-tab">
+                <div class="tab-pane fade" id="eventos" role="tabpanel" aria-labelledby="eventos-tab">
                     <div class="alert alert-info cajita-info" role="alert">
                         <h4 class="alert-heading">Versión final V1.0</h4>
                         <p>Piratas gestionados por la IA.</p>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
 
