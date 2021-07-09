@@ -10,7 +10,7 @@ class DestinosEnRuta extends Model
     use HasFactory;
     public function recursos()
     {
-        return $this->hasOne(RecursosEnRuta::class);
+        return $this->hasOne(RecursosEnRuta::class, 'destinos_en_rutas_id');
     }
 
     public function prioridades()
