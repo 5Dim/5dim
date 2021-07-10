@@ -25,7 +25,7 @@
             </table>
             <hr>
             <p class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-dark me-md-2" onclick="location.href='{{ url('/juego/construccion') }}'">
+                <button type="button" class="btn btn-dark me-md-2" onclick="location.href='{{ url('/juego/general') }}'">
                     Entrar
                 </button>
             </p>
