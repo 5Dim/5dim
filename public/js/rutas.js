@@ -123,7 +123,7 @@ function guardarRuta(){
 function traerRuta(){
     id=$('#listaRutas').val();
 
-    if (id != "none") {
+    if (id != "none" || id>-1) {
         $.ajax({
             type: "post",
             dataType: "json",
@@ -132,22 +132,27 @@ function traerRuta(){
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function(data) {
-                if (recursosEnDest[dest] == undefined || data.recursos == undefined) {
-                    recursosEnDest[dest] = JSON.parse(JSON.stringify(cargaDestVacia[dest]));
-                }
-                recursosArray.forEach(res => {
-                    recursosEnDest[dest][res] = 1 * data.recursos[res];
-                });
-                recursosDest[dest]["imagen"] = data.recursos["imagen"];
-                $("#imagenDestino" + dest).attr("src", data.recursos["imagen"]);
-                recursosDest[dest]["estrella"] = sistema;
-                recursosDest[dest]["orbita"] = planeta;
-                destinos[dest]["estrella"] = sistema;
-                destinos[dest]["orbita"] = planeta;
-                recursosEnDest[dest]["estrella"] = data.recursos["estrella"];
-                recursosEnDest[dest]["orbita"] = data.recursos["orbita"];
+                dest=0;
+                data.destinos.forEach(destino=>{
+                    recursosArray.forEach(res => {
+                        $("#"+res + dest).val(1  * destino.recursos[res]);
+                        $("#prioridad" + res + dest).val(1 * destino.prioridades[res]);
+                    });
+                    $("#sistemaDest" + dest).val(destino.estrella);
+                    $("#planetaDest" + dest).val(destino.orbita);
+                    $("#porcentVDest" + dest).val(destino.porcentVel);
+                    $("#ordenDest" + dest).val(destino.mision).change();
 
-                MostrarRecursos(dest);
+                    dest++;
+                })
+
+                data.disenios.forEach(disenio=>{
+                    NaveAflota(disenio.disenios_id,1*disenio.enFlota);
+                    NaveAhangar(disenio.disenios_id,1*disenio.enHangar);
+                });
+
+                $("#nombreFlota").val("Ruta "+data.nombre);
+
                 Avisos();
                 Calculoespacitiempo();
             },
@@ -163,12 +168,7 @@ function traerRuta(){
             },
         });
     } else {
-        recursosArray.forEach(res => {
-            recursosDest[dest][res] = 0;
-        });
-        recursosDest[dest].total = 0;
-        MostrarRecursos(dest);
-        Avisos();
+
     }
 
 }

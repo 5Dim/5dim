@@ -1130,7 +1130,7 @@ class FlotaController extends Controller
 
             //construyendo destinos
 
-            for ($dest = 1; $dest < count($destinos); $dest++) {
+            for ($dest = 0; $dest < count($destinos); $dest++) {
 
                 if (isset($destinos[$dest]['estrella'])) {
 
@@ -1252,12 +1252,9 @@ class FlotaController extends Controller
             $rutaSeleccionada=RutasPredefinidas::where([
                 ['id', $id],
                 ['jugadores_id', $jugadorActual->id]
-            ])->first();
+            ])->with("destinos.prioridades","destinos.recursos","disenios")->first();
 
-            $rutaSeleccionada["destinos"]=$rutaSeleccionada->destinos;
-            $rutaSeleccionada["recursos"]=$rutaSeleccionada->recursos;
-            $rutaSeleccionada["disenios"]=$rutaSeleccionada->disenios;
-
+            //Log::info($rutaSeleccionada);
             return $rutaSeleccionada;
 
         } else {

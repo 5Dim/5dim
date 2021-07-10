@@ -15,7 +15,7 @@ class DestinosEnRuta extends Model
 
     public function prioridades()
     {
-        return $this->hasOne(PrioridadesEnRuta::class);
+        return $this->hasOne(PrioridadesEnRutas::class, 'destinos_en_rutas_id');
     }
 
     public function ruta()
