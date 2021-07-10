@@ -40,6 +40,9 @@ function cargarListaRutas(){
 
 
 function nombrarRuta(){
+    valorActual=$("#listaRutas").select2('data')[0].text;
+    idActual=1*$("#listaRutas").select2('data')[0].id
+
     botonsi=`<button id="botonCrearRuta" type="button" class="btn btn-success  col-12"  onclick="guardarRuta()">Guardar Ruta</button>`;
     nombreruta=`<td class="anchofijo text-light">
         <input id="nombreruranueva" type="text"
@@ -50,6 +53,9 @@ function nombrarRuta(){
 
     $("#datosContenido").html("Pon un nombre a la ruta <br><br> "+nombreruta+botonsi);
     $("#ModalTitulo").html("Crear ruta");
+    if (idActual>0){
+        $("#nombreruranueva").val(valorActual);
+    }
     var modal = new bootstrap.Modal(document.getElementById('datosModal'));
     modal.show();
 }

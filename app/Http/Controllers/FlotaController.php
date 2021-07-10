@@ -1111,6 +1111,8 @@ class FlotaController extends Controller
         // Log::info("destinos");Log::info($destinos);
 
         $errores = "";
+        $modificarRuta=false;
+
 
         //se envia la ruta  ////////////////////
 
@@ -1118,13 +1120,26 @@ class FlotaController extends Controller
             //construyendo flota
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
+            $rutaExistente=RutasPredefinidas::where([
+                ['nombre', $flota['nombre']],
+                ['jugadores_id', $jugadorActual->id]
+            ])->with("destinos.prioridades","destinos.recursos","disenios")->first();
+
+            //Log::info($rutaExistente);
+
             DB::beginTransaction();
             //Log::info("Jugador ID= ".$jugadorEnviador->id);
-            $flotax = new RutasPredefinidas();
-            $flotax->nombre = $flota['nombre'];
-            $flotax->jugadores_id = $jugadorActual->id;
-            //Log::info($flotax);
-            $flotax->save();
+            if (isset($rutaExistente)){
+                $flotax =$rutaExistente;
+                //$modificarRuta=true;
+            }
+                $flotax = new RutasPredefinidas();
+                $flotax->nombre = $flota['nombre'];
+                $flotax->jugadores_id = $jugadorActual->id;
+                //Log::info($flotax);
+                $flotax->save();
+            }
+
 
             //Log::info($flota);
 
@@ -1135,8 +1150,14 @@ class FlotaController extends Controller
                 if (isset($destinos[$dest]['estrella'])) {
 
                     $destAnt = $dest - 1;
+                    //Log::info("flotax ".$flotax);
 
-                    $destino = new DestinosEnRuta();
+                    if ( $modificarRuta){
+                        $destino = $flotax->destinos[$dest];
+                    } else {
+                        $destino = new DestinosEnRuta();
+                    }
+
                     $destino->porcentVel = $destinos[$dest]['porcentVel'];
                     $destino->mision = ucfirst($destinos[$dest]['mision']);
                     $destino->estrella = $destinos[$dest]['estrella'];
@@ -1148,8 +1169,14 @@ class FlotaController extends Controller
                     //Log::info("destino ".$dest." ".$destino);
 
                     //Log::info($cargaDest[$dest]);
+                    if ( $modificarRuta){
+                        $recursosDestino = $destino->recursos;
+                    } else {
+                        $recursosDestino = new RecursosEnRuta();
+                    }
+                   // Log::info("recursono ".$destino);
+                   // Log::info("recuDestino ".$destino->RecursosEnRuta);
 
-                    $recursosDestino = new RecursosEnRuta();
                     $recursosDestino->personal = $cargaDest[$dest]['personal'];
                     $recursosDestino->mineral = $cargaDest[$dest]['mineral'];
                     $recursosDestino->cristal = $cargaDest[$dest]['cristal'];
@@ -1165,7 +1192,12 @@ class FlotaController extends Controller
                     $recursosDestino->destinos_en_rutas_id = $destino->id;
                     $recursosDestino->save();
 
-                    $prioridadex = new PrioridadesEnRutas();
+                    if ( $modificarRuta){
+                        $prioridadex = $destino->prioridades;
+                    } else {
+                        $prioridadex = new PrioridadesEnRutas();
+                    }
+
                     $prioridadex->personal = $prioridades[$dest]['personal'];
                     $prioridadex->mineral = $prioridades[$dest]['mineral'];
                     $prioridadex->cristal = $prioridades[$dest]['cristal'];
@@ -1194,6 +1226,12 @@ class FlotaController extends Controller
             //Log::info("navesEnPlaneta ".$navesEnPlaneta);
 
             // naves a flota
+
+            if ( $modificarRuta){
+                $diseniosRuta=$rutaExistente->disenios;
+                Log::info("disnios ".$diseniosRuta);
+                $diseniosRuta->delete();
+            }
 
             foreach ($navesEstacionadas as $navex) {
                 //Log::info($navex);
@@ -1246,7 +1284,7 @@ class FlotaController extends Controller
 
     public function traerRuta($id = null)
     {
-        Log::info("idruta ").$id ;
+        //Log::info("idruta ").$id ;
         if (isset($id)){
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->first();
             $rutaSeleccionada=RutasPredefinidas::where([
