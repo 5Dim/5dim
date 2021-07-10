@@ -1130,18 +1130,14 @@ class FlotaController extends Controller
             DB::beginTransaction();
             //Log::info("Jugador ID= ".$jugadorEnviador->id);
             if (isset($rutaExistente)){
-                $flotax =$rutaExistente;
-                //$modificarRuta=true;
-            }
-                $flotax = new RutasPredefinidas();
-                $flotax->nombre = $flota['nombre'];
-                $flotax->jugadores_id = $jugadorActual->id;
-                //Log::info($flotax);
-                $flotax->save();
+                $rutaExistente->delete();
             }
 
-
-            //Log::info($flota);
+            $flotax = new RutasPredefinidas();
+            $flotax->nombre = $flota['nombre'];
+            $flotax->jugadores_id = $jugadorActual->id;
+            //Log::info($flotax);
+            $flotax->save();
 
             //construyendo destinos
 
@@ -1152,12 +1148,7 @@ class FlotaController extends Controller
                     $destAnt = $dest - 1;
                     //Log::info("flotax ".$flotax);
 
-                    if ( $modificarRuta){
-                        $destino = $flotax->destinos[$dest];
-                    } else {
-                        $destino = new DestinosEnRuta();
-                    }
-
+                    $destino = new DestinosEnRuta();
                     $destino->porcentVel = $destinos[$dest]['porcentVel'];
                     $destino->mision = ucfirst($destinos[$dest]['mision']);
                     $destino->estrella = $destinos[$dest]['estrella'];
@@ -1166,16 +1157,8 @@ class FlotaController extends Controller
                     $destino->rutas_predefinidas_id = $flotax->id;
                     $destino->save(); //Log::info("coso".$dest." ".$flotax->id);
 
-                    //Log::info("destino ".$dest." ".$destino);
 
-                    //Log::info($cargaDest[$dest]);
-                    if ( $modificarRuta){
-                        $recursosDestino = $destino->recursos;
-                    } else {
-                        $recursosDestino = new RecursosEnRuta();
-                    }
-                   // Log::info("recursono ".$destino);
-                   // Log::info("recuDestino ".$destino->RecursosEnRuta);
+                    $recursosDestino = new RecursosEnRuta();
 
                     $recursosDestino->personal = $cargaDest[$dest]['personal'];
                     $recursosDestino->mineral = $cargaDest[$dest]['mineral'];
@@ -1192,12 +1175,8 @@ class FlotaController extends Controller
                     $recursosDestino->destinos_en_rutas_id = $destino->id;
                     $recursosDestino->save();
 
-                    if ( $modificarRuta){
-                        $prioridadex = $destino->prioridades;
-                    } else {
-                        $prioridadex = new PrioridadesEnRutas();
-                    }
 
+                    $prioridadex = new PrioridadesEnRutas();
                     $prioridadex->personal = $prioridades[$dest]['personal'];
                     $prioridadex->mineral = $prioridades[$dest]['mineral'];
                     $prioridadex->cristal = $prioridades[$dest]['cristal'];
@@ -1212,13 +1191,6 @@ class FlotaController extends Controller
                     $prioridadex->creditos = $prioridades[$dest]['creditos'];
                     $prioridadex->destinos_en_rutas_id = $destino->id;
                     $prioridadex->save();
-
-                    //Log::info("prioridades");
-                    //Log::info($prioridadex);
-
-                    //Log::info("prioridadex " . $prioridadex . " prioridades ");
-                    //Log::info($prioridades[$dest]);
-                    // Log::info("hecho destino ".$dest );
                 }
             }
 
@@ -1226,12 +1198,6 @@ class FlotaController extends Controller
             //Log::info("navesEnPlaneta ".$navesEnPlaneta);
 
             // naves a flota
-
-            if ( $modificarRuta){
-                $diseniosRuta=$rutaExistente->disenios;
-                Log::info("disnios ".$diseniosRuta);
-                $diseniosRuta->delete();
-            }
 
             foreach ($navesEstacionadas as $navex) {
                 //Log::info($navex);
