@@ -21,7 +21,7 @@ class Constantes extends Model
 
         $constante = new Constantes(); //  /10
         $constante->valor = 1.6;
-        $constante->minimo = 1;
+        $constante->minimo = 0.2;
         $constante->maximo = 3;
         $constante->codigo = 'avelprodminas';
         $constante->descripcion = 'produccion de recursos en minas';
@@ -31,7 +31,7 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 330;
-        $constante->minimo = 200;
+        $constante->minimo = 60;
         $constante->maximo = 600;
         $constante->codigo = 'velocidadConst';
         $constante->descripcion = 'velocidad de construccion (mas a menos numero)';
@@ -40,8 +40,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 8;
-        $constante->minimo = 3;
-        $constante->maximo = 15;
+        $constante->minimo = 4;
+        $constante->maximo = 12;
         $constante->codigo = 'costoLiquido';
         $constante->descripcion = 'costo en mineral de ind liqu';
         $constante->tipo = 'construccion';
@@ -94,7 +94,7 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = .7;
-        $constante->minimo = .3;
+        $constante->minimo = .4;
         $constante->maximo = 1;
         $constante->codigo = 'perdidaReciclar';
         $constante->descripcion = 'lo que te queda por reciclar construccion o naves';
@@ -103,8 +103,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = .3;
-        $constante->minimo = .3;
-        $constante->maximo = 1;
+        $constante->minimo = .1;
+        $constante->maximo = .5;
         $constante->codigo = 'tiempoReciclar';
         $constante->descripcion = 'Disminución de tiempo por reciclar';
         $constante->tipo = 'construccion';
@@ -113,8 +113,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 1;
-        $constante->minimo = .5;
-        $constante->maximo = 2;
+        $constante->minimo = .2;
+        $constante->maximo = 1.8;
         $constante->codigo = 'monedaPorNivel';
         $constante->descripcion = 'multiplicador de moneda por nivel de edificio';
         $constante->tipo = 'construccion';
@@ -122,8 +122,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 100;
-        $constante->minimo = 50;
-        $constante->maximo = 200;
+        $constante->minimo = 20;
+        $constante->maximo = 180;
         $constante->codigo = 'velocidadHangar';
         $constante->descripcion = 'velocidad de fabricación de naves por nivel de edificio en tanto por ciento';
         $constante->tipo = 'construccion';
@@ -131,7 +131,7 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 10000;
-        $constante->minimo = 7000;
+        $constante->minimo = 5000;
         $constante->maximo = 15000;
         $constante->codigo = 'recursosPorPuntos';
         $constante->descripcion = 'Cantidad de recursos para conseguir un punto en estadisticas';
@@ -140,8 +140,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 1;
-        $constante->minimo = 200;
-        $constante->maximo = 600;
+        $constante->minimo = .5;
+        $constante->maximo = 2;
         $constante->codigo = 'multiplicadorMineral';
         $constante->descripcion = 'Multiplicador de puntos por mineral';
         $constante->tipo = 'construccion';
@@ -149,8 +149,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 2;
-        $constante->minimo = 1;
-        $constante->maximo = 5;
+        $constante->minimo = .5;
+        $constante->maximo = 3;
         $constante->codigo = 'multiplicadorCristal';
         $constante->descripcion = 'Multiplicador de puntos por cristal';
         $constante->tipo = 'construccion';
@@ -167,8 +167,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 4;
-        $constante->minimo = 1;
-        $constante->maximo = 5;
+        $constante->minimo = 2;
+        $constante->maximo = 6;
         $constante->codigo = 'multiplicadorPlastico';
         $constante->descripcion = 'Multiplicador de puntos por plastico';
         $constante->tipo = 'construccion';
@@ -176,8 +176,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 5;
-        $constante->minimo = 1;
-        $constante->maximo = 5;
+        $constante->minimo = 2;
+        $constante->maximo = 8;
         $constante->codigo = 'multiplicadorCeramica';
         $constante->descripcion = 'Multiplicador de puntos por ceramica';
         $constante->tipo = 'construccion';
@@ -189,7 +189,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 10;
         $constante->minimo = 2;
-        $constante->maximo = 12;
+        $constante->maximo = 18;
         $constante->codigo = 'velInvest';
         $constante->descripcion = 'velocidad de investigaciones';
         $constante->tipo = 'investigacion';
@@ -216,7 +216,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1.03;
         $constante->minimo = 1;
-        $constante->maximo = 1.1;
+        $constante->maximo = 1.06;
         $constante->codigo = 'costoInvestArmas';
         $constante->descripcion = 'costo investigaciones armas es EXPONENCIAL aprox 1.1 aumenta el 100%';
         $constante->tipo = 'investigacion';
@@ -234,7 +234,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1.03;
         $constante->minimo = 1;
-        $constante->maximo = 1.1;
+        $constante->maximo = 1.06;
         $constante->codigo = 'costoInvestIndustrias';
         $constante->descripcion = 'costo investigaciones industrias es EXPONENCIAL aprox 1.1 aumenta el 100%';
         $constante->tipo = 'investigacion';
@@ -243,7 +243,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1.1;
         $constante->minimo = 1.03;
-        $constante->maximo = 1.2;
+        $constante->maximo = 1.17;
         $constante->codigo = 'costoInvestImperio';
         $constante->descripcion = 'costo investigaciones imperio es EXPONENCIAL aprox 1.1 aumenta el 100%';
         $constante->tipo = 'investigacion';
@@ -252,16 +252,16 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1.03;
         $constante->minimo = 1;
-        $constante->maximo = 1.1;
+        $constante->maximo = 1.06;
         $constante->codigo = 'costoInvestDisenio';
         $constante->descripcion = 'costo investigaciones disenio es EXPONENCIAL aprox 1.1 aumenta el 100%';
         $constante->tipo = 'investigacion';
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 10;
+        $constante->valor = 5;
         $constante->minimo = 10;
-        $constante->maximo = 20;
+        $constante->maximo = 15;
         $constante->codigo = 'adminImperioPuntos';
         $constante->descripcion = 'puntos de imperio por nivel';
         $constante->tipo = 'investigacion';
@@ -414,7 +414,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .09;
         $constante->codigo = 'mejorainvTitanio';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
         $constante->tipo = 'investigacion';
@@ -423,7 +423,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .09;
         $constante->codigo = 'mejorainvReactivo';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
         $constante->tipo = 'investigacion';
@@ -432,7 +432,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .09;
         $constante->codigo = 'mejorainvResinas';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
         $constante->tipo = 'investigacion';
@@ -441,7 +441,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .09;
         $constante->codigo = 'mejorainvPlacas';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
         $constante->tipo = 'investigacion';
@@ -450,7 +450,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .09;
         $constante->codigo = 'mejorainvCarbonadio';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion blindajes';
         $constante->tipo = 'investigacion';
@@ -459,7 +459,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .09;
         $constante->codigo = 'mejorainvCarga';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion carga y transporte';
         $constante->tipo = 'investigacion';
@@ -468,7 +468,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .03;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .05;
         $constante->codigo = 'mejorainvHangar';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion hangares de naves';
         $constante->tipo = 'investigacion';
@@ -477,7 +477,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .09;
         $constante->codigo = 'mejorainvRecoleccion';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel la recoleccion';
         $constante->tipo = 'investigacion';
@@ -495,7 +495,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .05;
         $constante->minimo = .01;
-        $constante->maximo = .2;
+        $constante->maximo = .09;
         $constante->codigo = 'mejorainvIndustrias';
         $constante->descripcion = 'porcentaje que aumenta en disenio cada nivel investigacion mejoras industrias';
         $constante->tipo = 'investigacion';
@@ -503,8 +503,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 1;
-        $constante->minimo = .5;
-        $constante->maximo = 2;
+        $constante->minimo = .2;
+        $constante->maximo = 1.8;
         $constante->codigo = 'amplitudObservacion';
         $constante->descripcion = 'factor por lo que se multiplica la observacion para dar un radio de vision de flotas en curso, sobre el nivel de investigacion';
         $constante->tipo = 'investigacion';
@@ -512,8 +512,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 2.6;
-        $constante->minimo = 1;
-        $constante->maximo = 3;
+        $constante->minimo = 2.2;
+        $constante->maximo = 4.2;
         $constante->codigo = 'factoraumentocostoalianza';
         $constante->descripcion = 'factor de aumento de costo de tecnologias por numero de miembros';
         $constante->tipo = 'investigaciones';
@@ -527,7 +527,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveConstruccionTiempoTodas';
         $constante->descripcion = 'variación de la velocidad de construccion fuselaje naves ';
         $constante->tipo = 'fuselajes';
@@ -536,7 +536,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveConstruccionTiempoligera';
         $constante->descripcion = 'variación de la velocidad de construccion fuselaje naves ligera';
         $constante->tipo = 'fuselajes';
@@ -545,7 +545,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveConstruccionTiempocaza';
         $constante->descripcion = 'variación de la velocidad de construccion fuselaje naves caza';
         $constante->tipo = 'fuselajes';
@@ -554,7 +554,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveConstruccionTiempomedia';
         $constante->descripcion = 'variación de la velocidad de construccion fuselaje naves media';
         $constante->tipo = 'fuselajes';
@@ -563,7 +563,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveConstruccionTiempopesada';
         $constante->descripcion = 'variación de la velocidad de construccion fuselaje naves pesada';
         $constante->tipo = 'fuselajes';
@@ -572,7 +572,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveConstruccionTiempoestacion';
         $constante->descripcion = 'variación de la velocidad de construccion fuselaje naves estacion';
         $constante->tipo = 'fuselajes';
@@ -582,7 +582,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveRecursosTodas';
         $constante->descripcion = 'variación de los costes de  fuselaje naves ';
         $constante->tipo = 'fuselajes';
@@ -591,7 +591,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveRecursoscaza';
         $constante->descripcion = 'variación de los costes de fuselaje naves caza';
         $constante->tipo = 'fuselajes';
@@ -600,7 +600,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveRecursosligera';
         $constante->descripcion = 'variación de los costes de fuselaje naves ligera';
         $constante->tipo = 'fuselajes';
@@ -609,7 +609,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveRecursosmedia';
         $constante->descripcion = 'variación de los costes de fuselaje naves media';
         $constante->tipo = 'fuselajes';
@@ -618,7 +618,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveRecursospesada';
         $constante->descripcion = 'variación de los costes de  fuselaje naves pesada';
         $constante->tipo = 'fuselajes';
@@ -627,7 +627,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .3;
-        $constante->maximo = 3;
+        $constante->maximo = 1.7;
         $constante->codigo = 'fuselajenaveRecursosestacion';
         $constante->descripcion = 'variación de los costes de  fuselaje naves estacion';
         $constante->tipo = 'fuselajes';
@@ -637,7 +637,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 3;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveDefensaTodas';
         $constante->descripcion = 'variación de los defensa de  fuselaje naves ';
         $constante->tipo = 'fuselajes';
@@ -646,7 +646,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 3;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveDefensacaza';
         $constante->descripcion = 'variación de los defensa de fuselaje naves caza';
         $constante->tipo = 'fuselajes';
@@ -655,7 +655,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 3;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveDefensaligera';
         $constante->descripcion = 'variación de los defensa de fuselaje naves ligera';
         $constante->tipo = 'fuselajes';
@@ -664,7 +664,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 3;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveDefensamedia';
         $constante->descripcion = 'variación de los defensa de fuselaje naves media';
         $constante->tipo = 'fuselajes';
@@ -673,7 +673,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 3;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveDefensapesada';
         $constante->descripcion = 'variación de los defensa de  fuselaje naves pesada';
         $constante->tipo = 'fuselajes';
@@ -682,7 +682,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 3;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveDefensaestacion';
         $constante->descripcion = 'variación de los defensa de  fuselaje naves estacion';
         $constante->tipo = 'fuselajes';
@@ -692,7 +692,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveEnergiaTodas';
         $constante->descripcion = 'variación de los Energia de fuselaje naves ';
         $constante->tipo = 'fuselajes';
@@ -701,7 +701,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveEnergiacaza';
         $constante->descripcion = 'variación de los Energia de fuselaje naves caza';
         $constante->tipo = 'fuselajes';
@@ -710,7 +710,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveEnergialigera';
         $constante->descripcion = 'variación de los Energia de fuselaje naves ligera';
         $constante->tipo = 'fuselajes';
@@ -719,7 +719,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveEnergiamedia';
         $constante->descripcion = 'variación de los Energia de fuselaje naves media';
         $constante->tipo = 'fuselajes';
@@ -728,7 +728,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveEnergiapesada';
         $constante->descripcion = 'variación de los Energia de fuselaje naves pesada';
         $constante->tipo = 'fuselajes';
@@ -737,7 +737,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveEnergiaestacion';
         $constante->descripcion = 'variación de los Energia de fuselaje naves estacion';
         $constante->tipo = 'fuselajes';
@@ -747,7 +747,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveCombustibleTodas';
         $constante->descripcion = 'variación de los Combustible de fuselaje naves ';
         $constante->tipo = 'fuselajes';
@@ -756,7 +756,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveCombustiblecaza';
         $constante->descripcion = 'variación de los Combustible de fuselaje naves caza';
         $constante->tipo = 'fuselajes';
@@ -765,7 +765,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveCombustibleligera';
         $constante->descripcion = 'variación de los Combustible de fuselaje naves ligera';
         $constante->tipo = 'fuselajes';
@@ -774,7 +774,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveCombustiblemedia';
         $constante->descripcion = 'variación de los Combustible de fuselaje naves media';
         $constante->tipo = 'fuselajes';
@@ -783,7 +783,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveCombustiblepesada';
         $constante->descripcion = 'variación de los Combustible de fuselaje naves pesada';
         $constante->tipo = 'fuselajes';
@@ -792,7 +792,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveCombustibleestacion';
         $constante->descripcion = 'variación de los Combustible de fuselaje naves estacion';
         $constante->tipo = 'fuselajes';
@@ -802,7 +802,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveMantenimientoTodas';
         $constante->descripcion = 'variación de los Mantenimiento de fuselaje naves ';
         $constante->tipo = 'fuselajes';
@@ -811,7 +811,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveMantenimientocaza';
         $constante->descripcion = 'variación de los Mantenimiento de fuselaje naves caza';
         $constante->tipo = 'fuselajes';
@@ -820,7 +820,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveMantenimientoligera';
         $constante->descripcion = 'variación de los Mantenimiento de fuselaje naves ligera';
         $constante->tipo = 'fuselajes';
@@ -829,7 +829,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveMantenimientomedia';
         $constante->descripcion = 'variación de los Mantenimiento de fuselaje naves media';
         $constante->tipo = 'fuselajes';
@@ -838,7 +838,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveMantenimientopesada';
         $constante->descripcion = 'variación de los Mantenimiento de fuselaje naves pesada';
         $constante->tipo = 'fuselajes';
@@ -847,7 +847,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveMantenimientoestacion';
         $constante->descripcion = 'variación de los Mantenimiento de fuselaje naves estacion';
         $constante->tipo = 'fuselajes';
@@ -857,7 +857,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveVelocidadTodas';
         $constante->descripcion = 'variación de los Velocidad de fuselaje naves ';
         $constante->tipo = 'fuselajes';
@@ -866,7 +866,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveVelocidadcaza';
         $constante->descripcion = 'variación de los Velocidad de fuselaje naves caza';
         $constante->tipo = 'fuselajes';
@@ -875,7 +875,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveVelocidadligera';
         $constante->descripcion = 'variación de los Velocidad de fuselaje naves ligera';
         $constante->tipo = 'fuselajes';
@@ -884,7 +884,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveVelocidadmedia';
         $constante->descripcion = 'variación de los Velocidad de fuselaje naves media';
         $constante->tipo = 'fuselajes';
@@ -893,7 +893,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveVelocidadpesada';
         $constante->descripcion = 'variación de los Velocidad de fuselaje naves pesada';
         $constante->tipo = 'fuselajes';
@@ -902,7 +902,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveVelocidadestacion';
         $constante->descripcion = 'variación de los Velocidad de fuselaje naves estacion';
         $constante->tipo = 'fuselajes';
@@ -911,7 +911,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveTiempoTodas';
         $constante->descripcion = 'variación de los Tiempo de fuselaje naves ';
         $constante->tipo = 'fuselajes';
@@ -920,7 +920,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveTiempocaza';
         $constante->descripcion = 'variación de los Tiempo de fuselaje naves caza';
         $constante->tipo = 'fuselajes';
@@ -929,7 +929,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveTiempoligera';
         $constante->descripcion = 'variación de los Tiempo de fuselaje naves ligera';
         $constante->tipo = 'fuselajes';
@@ -938,7 +938,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveTiempomedia';
         $constante->descripcion = 'variación de los Tiempo de fuselaje naves media';
         $constante->tipo = 'fuselajes';
@@ -947,7 +947,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveTiempopesada';
         $constante->descripcion = 'variación de los Tiempo de fuselaje naves pesada';
         $constante->tipo = 'fuselajes';
@@ -956,7 +956,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .2;
-        $constante->maximo = 5;
+        $constante->maximo = 1.8;
         $constante->codigo = 'fuselajenaveTiempoestacion';
         $constante->descripcion = 'variación de los Tiempo de fuselaje naves estacion';
         $constante->tipo = 'fuselajes';
@@ -1098,7 +1098,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 10;
         $constante->minimo = 5;
-        $constante->maximo = 20;
+        $constante->maximo = 15;
         $constante->codigo = 'luzdemallauniverso';
         $constante->descripcion = 'distancia entre dos sistemas adyacentes';
         $constante->tipo = 'universo';
@@ -1148,7 +1148,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = .5;
         $constante->minimo = .1;
-        $constante->maximo = 2;
+        $constante->maximo = .9;
         $constante->codigo = 'fuelpordistancia';
         $constante->descripcion = 'factor de gasto de fuel por unidad de distancia';
         $constante->tipo = 'universo';
@@ -1158,7 +1158,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 0.4;
         $constante->minimo = 0;
-        $constante->maximo = .7;
+        $constante->maximo = .8;
         $constante->codigo = 'fuelfactorreduccionpordistancia';
         $constante->descripcion = 'cuanto se rebaja el gasto de fuel al reducir la velocidad del vuelo';
         $constante->tipo = 'universo';
@@ -1168,7 +1168,7 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 36000;
-        $constante->minimo = 20000;
+        $constante->minimo = 12000;
         $constante->maximo = 60000;
         $constante->codigo = 'factortiempoviaje';
         $constante->descripcion = 'factor de tiempo en recorer una distancia';
@@ -1180,7 +1180,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .5;
-        $constante->maximo = 2;
+        $constante->maximo = 1.5;
         $constante->codigo = 'distanciaentresistemas';
         $constante->descripcion = 'factor de espacio entre dos sistemas adyacentes';
         $constante->tipo = 'universo';
@@ -1191,7 +1191,7 @@ class Constantes extends Model
         $constante = new Constantes();
         $constante->valor = 1;
         $constante->minimo = .5;
-        $constante->maximo = 2;
+        $constante->maximo = 1.5;
         $constante->codigo = 'distanciaentreplanetas';
         $constante->descripcion = 'factor de espacio entre dos planetas adyacentes';
         $constante->tipo = 'universo';
@@ -1251,8 +1251,8 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 200000;
-        $constante->minimo = 30000;
-        $constante->maximo = 200000;
+        $constante->minimo = 50000;
+        $constante->maximo = 350000;
         $constante->codigo = 'cantidadrecursosinicio';
         $constante->descripcion = 'cantidad recurso mineral de planeta de inicio';
         $constante->tipo = 'universo';
@@ -1271,7 +1271,7 @@ class Constantes extends Model
 
         $constante = new Constantes();
         $constante->valor = 14;
-        $constante->minimo = 10;
+        $constante->minimo = 8;
         $constante->maximo = 20;
         $constante->codigo = 'factorexpansionzonainfluencia';
         $constante->descripcion = 'factor para multiplicar el area de zona influencia';

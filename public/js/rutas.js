@@ -163,14 +163,7 @@ function traerRuta(){
                 Calculoespacitiempo();
             },
             error: function(xhr, textStatus, thrownError) {
-                console.log("status", xhr.status);
-                console.log("error", thrownError);
-                //$("#botontienes"+ dest).text("Tienes");
-                recursosArray.forEach(res => {
-                    recursosEnDest[dest][res] = 0;
-                });
-                recursosDest[dest].total = 0;
-                MostrarRecursos(dest);
+
             },
         });
     } else {
