@@ -1521,8 +1521,12 @@ class Constantes extends Model
             ['votos', 'desc'],
         ]);
 
-        $cantidadPoliticas = 2; //Constantes::where('codigo', 'cantidadPoliticasAceptadas')->first()->valor;
+        $cantidadPoliticas = Constantes::where('codigo', 'cantidadPoliticasAceptadas')->first()->valor;
         $orden = collect($ordenado->values()->all());
+        if (count($orden) < $cantidadPoliticas) {
+            $cantidadPoliticas = count($orden);
+        }
+
         for ($i = 0; $i < $cantidadPoliticas; $i++) {
             $politica = Constantes::find($orden[$i]->id);
             if ($politica->accion == "Aumentar" && $politica->valor < $politica->maximo && $politica->valor >= $politica->minimo) {
@@ -1543,11 +1547,6 @@ class Constantes extends Model
             $propuesta->accion = null;
             $propuesta->save();
         }
-        $jugadores = Jugadores::all()->update(['propuestas' => 1]);
-        // foreach ($jugadores as $jugador) {
-        //     $jugador->propuestas = 1;
-        //     $jugador->save();
-        // }
-        Log::info();
+        $jugadores = Jugadores::where('propuestas', '>', -1)->update(['propuestas' => 1], ['constantes_id' => null]);
     }
 }

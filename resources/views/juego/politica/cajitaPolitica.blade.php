@@ -22,10 +22,10 @@
                 </tr>
                 <tr>
                     <td>
-                        {{ __($politica->codigo) }}
+                        {{ __('constantes.' . $politica->codigo) }}
                     </td>
                     <td>
-                        {{ __($politica->codigo . 'Desc') }}
+                        {{ __('constantes.' . $politica->codigo . 'Desc') }}
                     </td>
                     <td>
                         {{ $politica->estado }}
