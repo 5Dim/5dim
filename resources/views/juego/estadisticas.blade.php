@@ -8,7 +8,7 @@
         <table class="table table-dark table-borderless text-center"
             style="--bs-table-bg: transparent !important">
                         <tr>
-                            <th colspan="5" class=" text-success">
+                            <th colspan="6" class=" text-success">
                                 <big>
                                     Estadisticas
                                 </big>
@@ -28,16 +28,62 @@
                                 Alianza
                             </th>
                             <th class=" text-warning align-middle">
-                                Puntos
+                                Puntos totales
+                            </th>
+                            <th class=" text-warning align-middle">
+                                Puntos de victoria
                             </th>
                         </tr>
                         @foreach ($jugadores as $jugador)
+                        @if (Auth::user()->jugador->id == $jugador->id)
+                            <tr>
+                                <td class=" text-info align-middle">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class=" text-info align-middle">
+                                    <img class="rounded" src="{{ $jugador->avatar }}" width="50" height="50">
+                                </td>
+                                <td class=" text-info align-middle">
+                                    {{ $jugador->nombre }}
+                                </td>
+                                <td class=" text-info align-middle">
+                                    {{ !empty($jugador->alianzas_id) ? '[' . $alianzas->where('id', $jugador->alianzas_id)->first()->tag . '] ' . $alianzas->where('id', $jugador->alianzas_id)->first()->nombre : '' }}
+                                </td>
+                                <td class=" text-info align-middle">
+                                    {{ number_format($jugador->puntos_construccion + $jugador->puntos_investigacion + $jugador->puntos_flotas, 0, ',', '.') }}
+                                </td>
+                                <td class=" text-info align-middle">
+                                    {{ number_format($jugador->puntos_victoria, 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @elseif (Auth::user()->jugador->alianzas_id == $jugador->alianzas_id && !empty($jugador->alianzas))
+                            <tr>
+                                <td class=" text-success align-middle">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class=" text-success align-middle">
+                                    <img class="rounded" src="{{ $jugador->avatar }}" width="50" height="50">
+                                </td>
+                                <td class=" text-success align-middle">
+                                    {{ $jugador->nombre }}
+                                </td>
+                                <td class=" text-success align-middle">
+                                    {{ !empty($jugador->alianzas_id) ? '[' . $alianzas->where('id', $jugador->alianzas_id)->first()->tag . '] ' . $alianzas->where('id', $jugador->alianzas_id)->first()->nombre : '' }}
+                                </td>
+                                <td class=" text-success align-middle">
+                                    {{ number_format($jugador->puntos_construccion + $jugador->puntos_investigacion + $jugador->puntos_flotas, 0, ',', '.') }}
+                                </td>
+                                <td class=" text-success align-middle">
+                                    {{ number_format($jugador->puntos_victoria, 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @else
                             <tr>
                                 <td class=" text-light align-middle">
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class=" text-light align-middle">
-                                    <img class="rounded" src="{{ $jugador->avatar }}" width="60" height="60">
+                                    <img class="rounded" src="{{ $jugador->avatar }}" width="50" height="50">
                                 </td>
                                 <td class=" text-light align-middle">
                                     {{ $jugador->nombre }}
@@ -46,9 +92,13 @@
                                     {{ !empty($jugador->alianzas_id) ? '[' . $alianzas->where('id', $jugador->alianzas_id)->first()->tag . '] ' . $alianzas->where('id', $jugador->alianzas_id)->first()->nombre : '' }}
                                 </td>
                                 <td class=" text-light align-middle">
-                                    {{ number_format($jugador->puntos_construccion + $jugador->puntos_investigacion, 0, ',', '.') }}
+                                    {{ number_format($jugador->puntos_construccion + $jugador->puntos_investigacion + $jugador->puntos_flotas, 0, ',', '.') }}
+                                </td>
+                                <td class=" text-light align-middle">
+                                    {{ number_format($jugador->puntos_victoria, 0, ',', '.') }}
                                 </td>
                             </tr>
+                        @endif
                         @endforeach
                     </table>
                     <span>

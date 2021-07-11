@@ -13,6 +13,7 @@ use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Alianzas;
+use App\Models\Constantes;
 use App\Models\EnDisenios;
 use App\Models\Flotas;
 use App\Models\Jugadores;
@@ -48,7 +49,7 @@ class JuegoController extends Controller
         Jugadores::calcularPuntos(session()->get('jugadores_id'));
 
         //Lista de jugadores
-        $jugadores = Jugadores::orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion`"), 'desc')->paginate(50);
+        $jugadores = Jugadores::orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion` + `puntos_flotas`"), 'desc')->paginate(50);
 
         //Devolvemos todas las alianzas
         $alianzas = Alianzas::all();
@@ -126,10 +127,8 @@ class JuegoController extends Controller
             session()->put('planetas_id', $planeta);
         } else {
             return back();
-            // return redirect('/juego/construccion');
         }
         return back();
-        // return redirect('/juego/calcularPuntos');
     }
 
     public function terminarColas()
@@ -138,5 +137,15 @@ class JuegoController extends Controller
         EnInvestigaciones::terminarColaInvestigaciones();
         EnDisenios::terminarColaDisenios();
         Flotas::llegadaFlotas();
+    }
+
+    public function sumarPuntosDeVictoria()
+    {
+        Jugadores::calcularPuntosInversos();
+    }
+
+    public function aplicarPoliticas()
+    {
+        Constantes::votacionPolitica();
     }
 }

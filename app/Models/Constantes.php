@@ -4,13 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class Constantes extends Model
 {
     use HasFactory;
 
-
     public $timestamps = false;
+
+    public function creador()
+    {
+        return $this->hasOne(Jugadores::class);
+    }
 
     public static function generarDatosConstantes($universo = 0)
     {
@@ -1290,9 +1296,9 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
-        $constante->valor = 60*10;
-        $constante->minimo = 60*5;
-        $constante->maximo = 60*15;
+        $constante->valor = 60 * 10;
+        $constante->minimo = 60 * 5;
+        $constante->maximo = 60 * 15;
         $constante->codigo = 'tiempoPuntosFlotas';
         $constante->descripcion = 'cada cuanto tiempo del viaje hay un punto de flota';
         $constante->tipo = 'universo';
@@ -1473,10 +1479,75 @@ class Constantes extends Model
         $constante->votable = 0;
         array_push($producciones, $constante);
 
+        // VARIOS
 
+        $constante = new Constantes();
+        $constante->valor = 2;
+        $constante->minimo = 1;
+        $constante->maximo = 3;
+        $constante->codigo = 'cantidadPoliticasAceptadas';
+        $constante->descripcion = 'Cantidad de votaciones que se tienen en cuenta';
+        $constante->tipo = 'varios';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
 
         foreach ($producciones as $estaproduccion) {
             $estaproduccion->save();
         }
+    }
+
+    public static function votacionPolitica()
+    {
+        $jugadores = Jugadores::orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion` + `puntos_flotas`"), 'desc')->get();
+        $cantidadJugadores = count($jugadores);
+        $votaciones = collect([]);
+        for ($i = 0; $i < count($jugadores); $i++) {
+            $puntos = $cantidadJugadores - $i;
+            if (!empty($jugadores[$i]->constantes)) {
+                $politica = $votaciones->where('id', $jugadores[$i]->constantes->id)->first();
+                if (!empty($politica)) {
+                    $politica->votos += $puntos;
+                } else {
+                    $politica = new \stdClass();
+                    $politica->id = $jugadores[$i]->constantes->id;
+                    $politica->votos = $puntos;
+                    $votaciones->push($politica);
+                }
+            } else {
+                $politica = null;
+            }
+        }
+        $ordenado = $votaciones->sortBy([
+            ['votos', 'desc'],
+        ]);
+
+        $cantidadPoliticas = 2; //Constantes::where('codigo', 'cantidadPoliticasAceptadas')->first()->valor;
+        $orden = collect($ordenado->values()->all());
+        for ($i = 0; $i < $cantidadPoliticas; $i++) {
+            $politica = Constantes::find($orden[$i]->id);
+            if ($politica->accion == "Aumentar" && $politica->valor < $politica->maximo && $politica->valor >= $politica->minimo) {
+                $escalon = ($politica->maximo - $politica->minimo) / 6;
+                $politica->valor += $escalon;
+                $politica->estado += 1;
+                $politica->save();
+            } elseif ($politica->accion == "Disminuir" && $politica->valor <= $politica->maximo && $politica->valor > $politica->minimo) {
+                $escalon = ($politica->maximo - $politica->minimo) / 6;
+                $politica->valor -= $escalon;
+                $politica->estado -= 1;
+                $politica->save();
+            }
+        }
+        $propuestas = Constantes::where('propuesta', 1)->get();
+        foreach ($propuestas as $propuesta) {
+            $propuesta->propuesta = false;
+            $propuesta->accion = null;
+            $propuesta->save();
+        }
+        $jugadores = Jugadores::all()->update(['propuestas' => 1]);
+        // foreach ($jugadores as $jugador) {
+        //     $jugador->propuestas = 1;
+        //     $jugador->save();
+        // }
+        Log::info();
     }
 }

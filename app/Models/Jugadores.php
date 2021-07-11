@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class Jugadores extends Model
 {
@@ -75,9 +77,14 @@ class Jugadores extends Model
         return $this->hasMany(RutasPredefinidas::class);
     }
 
+    public function constantes()
+    {
+        return $this->belongsTo(Constantes::class);
+    }
+
     public static function calcularPuntos($idJugador)
     {
-        $jugador = Auth::user()->jugador;
+        $jugador = Jugadores::find($idJugador);
         if (!empty($jugador->planetas)) {
             // Multiplicador costes recursos
             $multiplicadorMineral = Constantes::where('codigo', 'multiplicadorMineral')->first()->valor;
@@ -189,7 +196,6 @@ class Jugadores extends Model
 
             $nombreJugon = substr($jugador->nombre, 4);
             $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
-            $jugador->baliza = substr($nombreJugon, 0, 3) . substr($timestamp, 5);
             $jugador->movimientos = 1;
 
             $jugador->save();
@@ -201,5 +207,16 @@ class Jugadores extends Model
         GruposNaves::crearGrupoPorDefecto($jugador->id);
 
         return $jugador;
+    }
+
+    public static function calcularPuntosInversos()
+    {
+        $jugadores = Jugadores::orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion` + `puntos_flotas`"), 'desc')->get();
+        $cantidadJugadores = count($jugadores);
+        // Log::info($cantidadJugadores . " / " . $jugadores);
+        for ($i=0; $i < count($jugadores); $i++) {
+            $jugadores[$i]->puntos_victoria += ($cantidadJugadores - $i);
+            $jugadores[$i]->save();
+        }
     }
 }
