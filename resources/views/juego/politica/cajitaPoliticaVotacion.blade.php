@@ -33,7 +33,7 @@
                     <td>
                         {{ $politica->accion }}
                     </td>
-                    <td>
+                    <td style="width: 250px;">
                         @if ($politica->id == Auth::user()->jugador->constantes_id)
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="far fa-thumbs-up"></i> Ya votada

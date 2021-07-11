@@ -2,7 +2,7 @@
 return [
     'velocidadConst' => '',
     'velocidadConstDesc' => '',
-    'costoLiquido' => 'Coste de produccion de liquidos',
+    'costoLiquido' => '',
     'costoLiquidoDesc' => '',
     'costoMicros' => '',
     'costoMicrosDesc' => '',

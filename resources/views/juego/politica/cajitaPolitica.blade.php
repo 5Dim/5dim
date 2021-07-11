@@ -1,7 +1,7 @@
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
-            <table class="table table-sm table-dark table-borderless text-center align-middle anchofijo"
+            <table class="table table-sm table-dark table-borderless text-center align-middle"
                 style="--bs-table-bg: transparent !important; margin-bottom: 0px !important">
                 <tr class="text-success">
                     <th>
@@ -50,7 +50,7 @@
                             </select>
                         @endif
                     </td>
-                    <td>
+                    <td style="width: 250px;">
                         @if ($politica->propuesta)
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="far fa-thumbs-up"></i> Ya propuesta
