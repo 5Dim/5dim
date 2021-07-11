@@ -1537,7 +1537,7 @@ class Constantes extends Model
                 $politica->save();
             }
         }
-        $propuestas = Constantes::where('propuesta', 1)->get();
+        $propuestas = Constantes::where('propuesta', true)->get();
         foreach ($propuestas as $propuesta) {
             $propuesta->propuesta = false;
             $propuesta->accion = null;

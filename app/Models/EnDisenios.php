@@ -88,7 +88,6 @@ class EnDisenios extends Model
             Log::error("[ERROR] COLA DISEÑOS");
             Log::error($e);
         }
-        Jugadores::calcularPuntos(session()->get('jugadores_id'));
     }
 
 

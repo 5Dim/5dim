@@ -122,22 +122,24 @@ class Jugadores extends Model
 
             $puntosInvestigacion = 0;
             $investiga = new CostesInvestigaciones();
-            $costeInvestigaciones = $investiga->generaCostesInvestigaciones($jugador->investigaciones, false, false);
-            foreach ($costeInvestigaciones as $coste) {
-                if (!empty($coste)) {
-                    $costeTotal = 0;
-                    $costeTotal += ($coste->mineral * $multiplicadorMineral) +
-                        ($coste->cristal * $multiplicadorCristal) +
-                        ($coste->gas * $multiplicadorGas) +
-                        ($coste->plastico * $multiplicadorPlastico) +
-                        ($coste->ceramica * $multiplicadorCeramica) +
+            if (!empty($jugador->investigaciones[0])) {
+                $costeInvestigaciones = $investiga->generaCostesInvestigaciones($jugador->investigaciones, false, false);
+                foreach ($costeInvestigaciones as $coste) {
+                    if (!empty($coste)) {
+                        $costeTotal = 0;
+                        $costeTotal += ($coste->mineral * $multiplicadorMineral) +
+                            ($coste->cristal * $multiplicadorCristal) +
+                            ($coste->gas * $multiplicadorGas) +
+                            ($coste->plastico * $multiplicadorPlastico) +
+                            ($coste->ceramica * $multiplicadorCeramica) +
 
-                        ($coste->liquido * ($multiplicadorMineral * $costoLiquido)) +
-                        ($coste->micros * ($multiplicadorCristal * $costoMicros)) +
-                        ($coste->fuel * ($multiplicadorGas * $costoFuel)) +
-                        ($coste->ma * ($multiplicadorPlastico * $costoMa)) +
-                        ($coste->municion * ($multiplicadorCeramica * $costoMunicion));
-                    $puntosInvestigacion += $costeTotal;
+                            ($coste->liquido * ($multiplicadorMineral * $costoLiquido)) +
+                            ($coste->micros * ($multiplicadorCristal * $costoMicros)) +
+                            ($coste->fuel * ($multiplicadorGas * $costoFuel)) +
+                            ($coste->ma * ($multiplicadorPlastico * $costoMa)) +
+                            ($coste->municion * ($multiplicadorCeramica * $costoMunicion));
+                        $puntosInvestigacion += $costeTotal;
+                    }
                 }
             }
 
@@ -214,7 +216,7 @@ class Jugadores extends Model
         $jugadores = Jugadores::orderBy(DB::raw("`puntos_construccion` + `puntos_investigacion` + `puntos_flotas`"), 'desc')->get();
         $cantidadJugadores = count($jugadores);
         // Log::info($cantidadJugadores . " / " . $jugadores);
-        for ($i=0; $i < count($jugadores); $i++) {
+        for ($i = 0; $i < count($jugadores); $i++) {
             $jugadores[$i]->puntos_victoria += ($cantidadJugadores - $i);
             $jugadores[$i]->save();
         }
