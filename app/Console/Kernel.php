@@ -33,8 +33,7 @@ class Kernel extends ConsoleKernel
             ->hourly();
         $schedule->call('App\Http\Controllers\JuegoController@aplicarPoliticas')
             ->description("Politicas")
-            ->everyMinute();
-        // ->weeklyOn(1, '2:00');
+            ->weeklyOn(1, '2:00');
     }
 
     /**
