@@ -1,7 +1,7 @@
 <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
-            <table class="table table-sm table-dark table-borderless text-center align-middle anchofijo"
+            <table class="table table-sm table-dark table-borderless text-center align-middle"
                 style="--bs-table-bg: transparent !important; margin-bottom: 0px !important">
                 <tr class="text-success">
                     <th>
@@ -22,10 +22,10 @@
                 </tr>
                 <tr>
                     <td>
-                        {{ __($politica->codigo) }}
+                        {{ __('constantes.' . $politica->codigo) }}
                     </td>
                     <td>
-                        {{ __($politica->codigo . 'Desc') }}
+                        {{ __('constantes.' . $politica->codigo . 'Desc') }}
                     </td>
                     <td>
                         {{ $politica->estado }}
@@ -33,7 +33,7 @@
                     <td>
                         {{ $politica->accion }}
                     </td>
-                    <td>
+                    <td style="width: 250px;">
                         @if ($politica->id == Auth::user()->jugador->constantes_id)
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="far fa-thumbs-up"></i> Ya votada

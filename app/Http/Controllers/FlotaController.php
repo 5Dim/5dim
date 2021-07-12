@@ -292,7 +292,8 @@ class FlotaController extends Controller
             $jugadoryAlianza = [];
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
-            if ($jugadorActual['alianzas_id'] != null) {
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if (!empty($jugadorActual->alianzas) && $jugadorAlianza == 1) {
                 array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
             }
             array_push($jugadoryAlianza, $jugadorActual->id);
@@ -921,7 +922,9 @@ class FlotaController extends Controller
 
             $jugadoryAlianza = [];
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-            if ($jugadorActual['alianzas_id'] != null) {
+
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if (!empty($jugadorActual->alianzas) && $jugadorAlianza == 1) {
                 array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
             }
             array_push($jugadoryAlianza, $jugadorActual->id);
@@ -1111,7 +1114,7 @@ class FlotaController extends Controller
         // Log::info("destinos");Log::info($destinos);
 
         $errores = "";
-        $modificarRuta=false;
+        $modificarRuta = false;
 
 
         //se envia la ruta  ////////////////////
@@ -1120,16 +1123,16 @@ class FlotaController extends Controller
             //construyendo flota
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
-            $rutaExistente=RutasPredefinidas::where([
+            $rutaExistente = RutasPredefinidas::where([
                 ['nombre', $flota['nombre']],
                 ['jugadores_id', $jugadorActual->id]
-            ])->with("destinos.prioridades","destinos.recursos","disenios")->first();
+            ])->with("destinos.prioridades", "destinos.recursos", "disenios")->first();
 
             //Log::info($rutaExistente);
 
             DB::beginTransaction();
             //Log::info("Jugador ID= ".$jugadorEnviador->id);
-            if (isset($rutaExistente)){
+            if (isset($rutaExistente)) {
                 $rutaExistente->delete();
             }
 
@@ -1232,18 +1235,17 @@ class FlotaController extends Controller
     public function borrarRuta(Request $request, $id = null)
     {
         //Log::info("idf ".$id);
-        if (isset($id)){
+        if (isset($id)) {
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->first();
-            $rutaBorrar=RutasPredefinidas::where([
+            $rutaBorrar = RutasPredefinidas::where([
                 ['id', $id],
                 ['jugadores_id', $jugadorActual->id]
             ])->first();
 
-            if (isset($rutaBorrar)){
+            if (isset($rutaBorrar)) {
                 $rutaBorrar->delete();
                 return "true";
             }
-
         }
         return "false";
     }
@@ -1251,18 +1253,17 @@ class FlotaController extends Controller
     public function traerRuta($id = null)
     {
         //Log::info("idruta ").$id ;
-        if (isset($id)){
+        if (isset($id)) {
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'))->first();
-            $rutaSeleccionada=RutasPredefinidas::where([
+            $rutaSeleccionada = RutasPredefinidas::where([
                 ['id', $id],
                 ['jugadores_id', $jugadorActual->id]
-            ])->with("destinos.prioridades","destinos.recursos","disenios")->first();
+            ])->with("destinos.prioridades", "destinos.recursos", "disenios")->first();
 
             //Log::info($rutaSeleccionada);
             return $rutaSeleccionada;
-
         } else {
-            $errores="Ruta no encontrada ";
+            $errores = "Ruta no encontrada ";
         }
 
         return compact('errores');

@@ -254,17 +254,6 @@
                     <td class="anchofijo text-secondary borderless">
                         <div class="input-group mb-3 borderless"
                             style="padding-left: 5px !important; padding-right: 5px !important">
-                            <div class="input-group-append">
-                                <span class="input-group-text bg-dark text-light">Descripcion</span>
-                            </div>
-                            <input type="text" id="descripcion" class="form-control input"
-                                placeholder="Descripcion del disenio" aria-label="Recipient's username"
-                                aria-describedby="basic-addon2">
-                        </div>
-                    </td>
-                    <td class="anchofijo text-secondary borderless">
-                        <div class="input-group mb-3 borderless"
-                            style="padding-left: 5px !important; padding-right: 5px !important">
                             <div class="input-group-prepend col-3">
                                 <label class="input-group-text bg-dark text-light"
                                     for="posicionCombate">Posicion</label>

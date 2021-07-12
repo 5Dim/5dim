@@ -24,7 +24,7 @@
                             <p>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>
                         </div>
                     @else
-                        <div class="alert alert-success cajita-success" role="alert">
+                        <div class="alert alert-success cajita-success text-light" role="alert">
                             <h4 class="alert-heading">Bienvenidos a una version en desarrollo de 5Dim.es</h4>
                             <p> Ahí van unos consejos de inicio:</p>
                             <ul>
@@ -59,7 +59,7 @@
                                     naves mas avanzadas son mas caras de construir.
                                 </li>
                                 <li>
-                                    Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/2BB7JV48'class="btn btn-success btn-sm">Discord</a>.
+                                    Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/2BB7JV48'class="btn btn-outline-success"><i class="fab fa-discord"></i> Discord</a>.
                                 </li>
                             </ul>
 

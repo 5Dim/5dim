@@ -208,10 +208,10 @@
                                 <h5 class="card-title text-primary">{{ Auth::user()->jugador->nombre }}</h5>
                                 <p class="card-text">
                                     @if (strpos(Request::fullUrl(), 'opciones'))
-                                        <a href="{{ url('/juego/opciones') }}" class="align-middle text-warning">
+                                        <a href="{{ url('/juego/jugador/opciones') }}" class="align-middle text-warning">
                                             <i class="fas fa-user-cog"></i> Opciones</a>
                                     @else
-                                        <a href="{{ url('/juego/opciones') }}" class="align-middle">
+                                        <a href="{{ url('/juego/jugador/opciones') }}" class="align-middle">
                                             <i class="fas fa-user-cog"></i> Opciones</a>
                                     @endif
                                     <a href="https://discord.gg/2BB7JV48" class="">
@@ -224,14 +224,14 @@
                 </div>
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 300px">
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 300px; color: {{ $planetaActual->color }}">
                         {{ $planetaActual->nombre }}
                         ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
                     </button>
                     <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton"
                         style="width: 300px">
                         @foreach ($planetasJugador as $planeta)
-                            <a class="dropdown-item" style="font-size: inherit;"
+                            <a class="dropdown-item" style="font-size: inherit; color: {{ $planeta->color }}"
                                 href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
                                 ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                         @endforeach
@@ -240,7 +240,7 @@
                                 @if ($loop->iteration == 1)
                                     <div class="dropdown-divider"></div>
                                 @endif
-                                <a class="dropdown-item text-info"
+                                <a class="dropdown-item text-info" style="color: {{ $planeta->color }}"
                                     href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
                                     ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                             @endforeach
@@ -477,89 +477,89 @@
                                 <td class="text-danger borderless"></td>
                             </tr>
                             <tr>
-                                <td id="personal" class="text-warning borderless">
+                                <td id="personal" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
                                 </td>
-                                <td id="mineral" class="text-warning borderless">
+                                <td id="mineral" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->mineral, 0, ',', '.') }}
                                 </td>
-                                <td id="cristal" class="text-warning borderless">
+                                <td id="cristal" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->cristal, 0, ',', '.') }}
                                 </td>
-                                <td id="gas" class="text-warning borderless">
+                                <td id="gas" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->gas, 0, ',', '.') }}
                                 </td>
-                                <td id="plastico" class="text-warning borderless">
+                                <td id="plastico" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->plastico, 0, ',', '.') }}
                                 </td>
-                                <td id="ceramica" class="text-warning borderless">
+                                <td id="ceramica" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->ceramica, 0, ',', '.') }}
                                 </td>
-                                <td id="liquido" class="text-warning borderless">
+                                <td id="liquido" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->liquido, 0, ',', '.') }}
                                 </td>
-                                <td id="micros" class="text-warning borderless">
+                                <td id="micros" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->micros, 0, ',', '.') }}
                                 </td>
-                                <td id="fuel" class="text-warning borderless">
+                                <td id="fuel" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->fuel, 0, ',', '.') }}
                                 </td>
-                                <td id="ma" class="text-warning borderless">
+                                <td id="ma" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->ma, 0, ',', '.') }}
                                 </td>
-                                <td id="municion" class="text-warning borderless">
+                                <td id="municion" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->municion, 0, ',', '.') }}
                                 </td>
-                                <td class="text-warning borderless">
+                                <td id="crditos" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->creditos, 0, ',', '.') }}
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->personal, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->mineral, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->cristal, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->gas, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->plastico, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->ceramica, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->liquido, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->micros, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->fuel, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->ma, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->municion, 0, ',', '.') }}</span>
                                 </td>
-                                <td class="text-primary borderless">
+                                <td class="text-info borderless">
                                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="Producción de este recurso por hora">{{ number_format($produccion->creditos / 24, 0, ',', '.') }}</span>
                                 </td>

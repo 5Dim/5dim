@@ -286,7 +286,11 @@ class Astrometria extends Model
             //saco flotas aliadas
             $jugadorAlianzaSinMi = Alianzas::idMiembrosSinMi($jugadorActual['alianzas_id'], $jugadorActual->id);
             $flotasVisiblesAliadas = EnVuelo::whereIn('jugadores_id', $jugadorAlianzaSinMi)->get();
-            array_push($jugadoresPropios, Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
+
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if ($jugadorAlianza == 1) {
+                array_push($jugadoresPropios, Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
+            }
         } else {
             array_push($jugadoresAlianzas, $jugadorActual->id);
         }
@@ -294,7 +298,7 @@ class Astrometria extends Model
         //Log::info('jugadoresAlianzas: '.$jugadoresAlianzas);
 
         //determina caja de visibilidad
-        $minCoordx = 9999999;
+        $minCoordx = 99999999;
         $maxCoordx = -1;
         $minCoordy = 99999999;
         $maxCoordy = -1;
@@ -702,7 +706,7 @@ class Astrometria extends Model
 
         $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Log::info($jugadorActual);
         array_push($jugadoresPropios, $jugadorActual->id);
-        if ($jugadorActual['alianzas_id'] != null) {
+        if (!empty($jugadorActual->alianzas)) {
             $jugadoresAlianzas = Alianzas::idMiembros($jugadorActual['alianzas_id']); //Log::info($jugadoresAlianzas);
 
             //saco flotas aliadas
@@ -713,7 +717,10 @@ class Astrometria extends Model
                 $flotasVisiblesAliadas = EnOrbita::whereIn('jugadores_id', $jugadorAlianzaSinMi)->get();
             }
 
-            array_push($jugadoresPropios, Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if ($jugadorAlianza == 1) {
+                array_push($jugadoresPropios, Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
+            }
         } else {
             array_push($jugadoresAlianzas, $jugadorActual->id);
         }

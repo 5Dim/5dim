@@ -21,7 +21,7 @@ class CreateConstantesTable extends Migration
             $table->decimal('maximo', 12, 3);
             $table->boolean('votable')->default(true);
             $table->boolean('propuesta')->default(false);
-            $table->unsignedTinyInteger('estado')->default(0);
+            $table->tinyInteger('estado')->default(0);
             $table->string('accion')->nullable();
             $table->string('descripcion');
             $table->string('tipo')->index();

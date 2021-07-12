@@ -41,20 +41,32 @@ class MensajesIntervinientes extends Model
 
         if ($duenioFlota == $duenioDestino) {
             $receptor = new MensajesIntervinientes();
-            $receptor->leido = false;
+            if (Jugadores::find($duenioFlota)->mensajes_flota) {
+                $receptor->leido = false;
+            } else {
+                $receptor->leido = true;
+            }
             $receptor->mensajes_id = $idMensaje;
             $receptor->receptor = $duenioFlota;
             $receptor->save();
         } else {
             $receptor = new MensajesIntervinientes();
-            $receptor->leido = false;
+            if (Jugadores::find($duenioFlota)->mensajes_flota) {
+                $receptor->leido = false;
+            } else {
+                $receptor->leido = true;
+            }
             $receptor->mensajes_id = $idMensaje;
             $receptor->receptor = $duenioFlota;
             $receptor->save();
 
-            if(!empty($duenioDestino)){
+            if (!empty($duenioDestino)) {
                 $receptor = new MensajesIntervinientes();
-                $receptor->leido = false;
+                if (Jugadores::find($duenioDestino)->mensajes_flota) {
+                    $receptor->leido = false;
+                } else {
+                    $receptor->leido = true;
+                }
                 $receptor->mensajes_id = $idMensaje;
                 $receptor->receptor = $duenioDestino;
                 $receptor->save();

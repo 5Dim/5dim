@@ -28,6 +28,12 @@ class Kernel extends ConsoleKernel
         $schedule->call('App\Http\Controllers\JuegoController@terminarColas')
             ->description("Terminar Colas")
             ->everyMinute();
+        $schedule->call('App\Http\Controllers\JuegoController@sumarPuntosDeVictoria')
+            ->description("Puntos de victoria")
+            ->hourly();
+        $schedule->call('App\Http\Controllers\JuegoController@aplicarPoliticas')
+            ->description("Politicas")
+            ->weeklyOn(1, '2:00');
     }
 
     /**
