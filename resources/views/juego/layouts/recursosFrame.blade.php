@@ -477,40 +477,40 @@
                                 <td class="text-danger borderless"></td>
                             </tr>
                             <tr>
-                                <td id="personal" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="personal" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
                                 </td>
-                                <td id="mineral" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="mineral" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->mineral, 0, ',', '.') }}
                                 </td>
-                                <td id="cristal" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="cristal" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->cristal, 0, ',', '.') }}
                                 </td>
-                                <td id="gas" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="gas" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->gas, 0, ',', '.') }}
                                 </td>
-                                <td id="plastico" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="plastico" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->plastico, 0, ',', '.') }}
                                 </td>
-                                <td id="ceramica" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="ceramica" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->ceramica, 0, ',', '.') }}
                                 </td>
-                                <td id="liquido" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="liquido" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->liquido, 0, ',', '.') }}
                                 </td>
-                                <td id="micros" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="micros" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->micros, 0, ',', '.') }}
                                 </td>
-                                <td id="fuel" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="fuel" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->fuel, 0, ',', '.') }}
                                 </td>
-                                <td id="ma" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="ma" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->ma, 0, ',', '.') }}
                                 </td>
-                                <td id="municion" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="municion" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->municion, 0, ',', '.') }}
                                 </td>
-                                <td id="crditos" class="borderless" style="color: rgb(185, 183, 183)">
+                                <td id="crditos" class="borderless" style="color: rgb(214, 214, 214)">
                                     {{ number_format($recursos->creditos, 0, ',', '.') }}
                                 </td>
                             </tr>
