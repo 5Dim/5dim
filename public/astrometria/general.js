@@ -812,7 +812,7 @@ function botonH() {
     // add it to the stage
     botones.addChild(botH);
 
-    var nueva_pos = window.innerWidth / 2 - botones.width / 2;
+    var nueva_pos = (window.innerWidth / 2 - botones.width / 2);
     botones.x = nueva_pos;
 
     function onButtonDown() {
@@ -1231,6 +1231,8 @@ function buscar(value) {
         if (universo.sistemas[i].estrella == value) {
             var y = Math.floor(universo.sistemas[i].estrella / universo.ancho) * 70;
             var x = (universo.sistemas[i].estrella - Math.floor(universo.sistemas[i].estrella / universo.ancho) * universo.ancho) * 70;
+            x+=300;//ajustepor menus
+            y+=100;
             viewport.snap(x, y, { topLeft: false, time: 2000, ease: "easeInOutSine", removeOnComplete: true, removeOnInterrupt: true });
             sis = true;
         }

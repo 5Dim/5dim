@@ -549,7 +549,7 @@ function createWorld() {
     botonE();
 
     //centro el mapa
-    viewport.snap(homex, homey, { topLeft: false, time: 2000, ease: "easeInOutSine", removeOnComplete: true, removeOnInterrupt: true });
+    viewport.snap(homex+300, homey+100, { topLeft: false, time: 2000, ease: "easeInOutSine", removeOnComplete: true, removeOnInterrupt: true });
 
     //se crea la marcaHome, el punto verde que indica la posición del sistema de inicio
     let texturamarcaHome = PIXI.Texture.from("/astrometria/img/flechahome.png");

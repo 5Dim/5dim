@@ -52,8 +52,13 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-
         }
+
+        #astrometria {
+            position: absolute;
+            overflow: hidden;
+        }
+
 
         #dragFlotas {
             width: 120px;
