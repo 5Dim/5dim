@@ -16,5 +16,6 @@ class GruposNaves extends Model
         $grupoDefecto->jugadores_id= $jugador_id;
         $grupoDefecto->nombre= "Por defecto";
         $grupoDefecto->pordefecto= 1;
+        $grupoDefecto->save();
     }
 }
