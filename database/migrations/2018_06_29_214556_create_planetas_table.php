@@ -19,7 +19,7 @@ class CreatePlanetasTable extends Migration
             $table->unsignedTinyInteger('orbita');
             $table->string('nombre')->nullable()->index();
             $table->integer('orden')->default(0);
-            $table->integer('color')->default('#818181');
+            $table->string('color')->default('#818181');
             $table->unsignedTinyInteger('imagen');
             $table->string('tipo');
             $table->unsignedInteger('creacion')->nullable();
