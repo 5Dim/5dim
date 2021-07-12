@@ -921,7 +921,9 @@ class FlotaController extends Controller
 
             $jugadoryAlianza = [];
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-            if ($jugadorActual['alianzas_id'] != null) {
+
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if (!empty($jugadorActual->alianzas) && $jugadorAlianza == 1) {
                 array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
             }
             array_push($jugadoryAlianza, $jugadorActual->id);
