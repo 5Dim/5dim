@@ -208,10 +208,10 @@
                                 <h5 class="card-title text-primary">{{ Auth::user()->jugador->nombre }}</h5>
                                 <p class="card-text">
                                     @if (strpos(Request::fullUrl(), 'opciones'))
-                                        <a href="{{ url('/juego/opciones') }}" class="align-middle text-warning">
+                                        <a href="{{ url('/juego/jugador/opciones') }}" class="align-middle text-warning">
                                             <i class="fas fa-user-cog"></i> Opciones</a>
                                     @else
-                                        <a href="{{ url('/juego/opciones') }}" class="align-middle">
+                                        <a href="{{ url('/juego/jugador/opciones') }}" class="align-middle">
                                             <i class="fas fa-user-cog"></i> Opciones</a>
                                     @endif
                                     <a href="https://discord.gg/2BB7JV48" class="">
@@ -224,14 +224,14 @@
                 </div>
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 300px">
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 300px; color: {{ $planetaActual->color }}">
                         {{ $planetaActual->nombre }}
                         ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
                     </button>
                     <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton"
                         style="width: 300px">
                         @foreach ($planetasJugador as $planeta)
-                            <a class="dropdown-item" style="font-size: inherit;"
+                            <a class="dropdown-item" style="font-size: inherit; color: {{ $planeta->color }}"
                                 href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
                                 ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                         @endforeach
@@ -240,7 +240,7 @@
                                 @if ($loop->iteration == 1)
                                     <div class="dropdown-divider"></div>
                                 @endif
-                                <a class="dropdown-item text-info"
+                                <a class="dropdown-item text-info" style="color: {{ $planeta->color }}"
                                     href="{{ url('/cambiarPlaneta/' . $planeta->id) }}">{{ $planeta->nombre }}
                                     ({{ $planeta->estrella }}x{{ $planeta->orbita }})</a>
                             @endforeach

@@ -17,6 +17,7 @@ class CreateJugadoresTable extends Migration
             $table->id();
             $table->string('nombre')->index();
             $table->string('avatar')->default('http://5dim.es/imagenes/avatar.jpg');
+            $table->boolean('mensajes_flota')->default(true);
             $table->unsignedBigInteger('puntos_construccion')->default(0);
             $table->unsignedBigInteger('puntos_investigacion')->default(0);
             $table->unsignedBigInteger('puntos_flotas')->default(0);

@@ -93,11 +93,11 @@ Route::middleware(
     //Rutas generales
     Route::get('/juego', [JuegoController::class, 'index']);
     Route::get('/cambiarPlaneta/{planeta}', [JuegoController::class, 'planeta']);
-    // Route::get('/jugador', [JuegoController::class, 'jugador']);
-
     Route::get('/juego/tienda', [JuegoController::class, 'tienda']);
     Route::get('/juego/estadisticas', [JuegoController::class, 'estadisticas']);
     Route::get('/juego/calcularPuntos', [JuegoController::class, 'calcularPuntos']);
+    Route::get('/juego/jugador/opciones', [JuegoController::class, 'opcionesJugador']);
+    Route::post('/juego/jugador/guardar', [JuegoController::class, 'cambiarOpciones'])->name('guardarJugador');
 
     //Construccion
     Route::get('/juego/construccion/{tab?}', [ConstruccionController::class, 'index']);

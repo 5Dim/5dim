@@ -103,7 +103,7 @@
                                                     (60x60px)</span>
                                             </div>
                                             <input type="text" class="form-control input" name="estandarte" id="estandarte"
-                                                placeholder="Imagen de url" aria-label="Recipient's username"
+                                                placeholder="URL de la imagen" aria-label="Recipient's username"
                                                 aria-describedby="basic-addon2">
                                         </div>
                                     </td>
@@ -114,7 +114,7 @@
                                                 <span class="input-group-text bg-dark text-light">Logo (400x400px)</span>
                                             </div>
                                             <input type="text" class="form-control input" name="logo" id="logo"
-                                                placeholder="Imagen de url " aria-label="Recipient's username"
+                                                placeholder="URL de la imagen " aria-label="Recipient's username"
                                                 aria-describedby="basic-addon2">
                                         </div>
                                     </td>

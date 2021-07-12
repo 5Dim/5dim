@@ -31,7 +31,7 @@ class Controller extends BaseController
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->orderBy('creacion')->get();
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->orderBy('orden')->get();
         $planetasAlianza = null;
         $jugadorAlianza = null;
         if (
@@ -39,7 +39,7 @@ class Controller extends BaseController
             $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor == 1
         ) {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->orderBy('creacion')->get();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->orderBy('orden')->get();
         }
 
 

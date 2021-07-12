@@ -19,26 +19,14 @@ use App\Models\Flotas;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
 use App\Models\Tiendas;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class JuegoController extends Controller
 {
     public function index()
     {
-        extract($this->recursos());
-
-        return view('juego.layouts.recursosFrame', compact(
-            'recursos',
-            'capacidadAlmacenes',
-            'producciones',
-            'personal',
-            'tipoPlaneta',
-            'planetaActual',
-            'nivelImperio',
-            'nivelEnsamblajeFuselajes',
-            'mensajeNuevo',
-            'consImperio',
-        ));
+        return redirect('/juego/general');
     }
 
     public function estadisticas()
@@ -128,6 +116,51 @@ class JuegoController extends Controller
         } else {
             return back();
         }
+        return back();
+    }
+
+    //Cambiar de planeta
+    public function opcionesJugador()
+    {
+        extract($this->recursos());
+
+        return view('juego.jugador.opciones', compact(
+            // Recursos
+            'recursos',
+            'personalOcupado',
+            'capacidadAlmacenes',
+            'produccion',
+            'planetasJugador',
+            'planetasAlianza',
+            'mensajeNuevo',
+            'consImperio',
+
+            'planetaActual',
+            'nivelImperio',
+            'nivelEnsamblajeFuselajes',
+            'investigaciones',
+        ));
+    }
+
+    //Cambiar de planeta
+    public function cambiarOpciones(Request $request)
+    {
+        extract($this->recursos());
+        $jugadorActual->avatar = $request->input('avatar');
+        if ($request->input('mensajesFlota') == 'on') {
+            $jugadorActual->mensajes_flota = true;
+        } else {
+            $jugadorActual->mensajes_flota = false;
+        }
+        $jugadorActual->save();
+
+        foreach ($planetasJugador as $planeta) {
+            $planeta->orden = $request->input($planeta->id . "orden");
+            $planeta->color = $request->input($planeta->id . "color");
+            Log::info($request->input($planeta->id . "color"));
+            $planeta->save();
+        }
+
         return back();
     }
 

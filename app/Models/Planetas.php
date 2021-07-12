@@ -134,9 +134,11 @@ class Planetas extends Model
 
         $puntosImperioLibres = $nivelImperio * $adminImperioPuntos + $piPorPlanetaColonizado - count($jugador->planetas) * $piPorPlanetaColonizado;
 
-        $boolPlaneta= false;
-        if ($puntosImperioLibres > $piMinimosColonizar) {
+        $boolPlaneta = false;
+        if (($puntosImperioLibres + $piPorPlanetaColonizado) >= $piMinimosColonizar) {
             $boolPlaneta = true;
+            $jugador->movimientos = 0;
+            $jugador->save();
         }
 
         return $boolPlaneta;
