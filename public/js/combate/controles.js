@@ -22,6 +22,11 @@ this.addEventListener('mouseup', mouseup, false);
 this.addEventListener('mousemove', mousemove, false);
 //$('.rendererView').click(function(){ seleccion();});
 
+//si el cursosr esta dentro del div de combate
+var isOnDiv = false;
+$("#combate").mouseenter(function(){isOnDiv=true;});
+$("#combate").mouseleave(function(){isOnDiv=false;});
+
 
 function onKeyDown(event) {
 	switch (event.keyCode) {
@@ -282,10 +287,11 @@ function click(event) {
 
 
 function mousedown(event) {
-	//console.log('mousedown');
-	prevX = event.offsetX+$('#combate').offset().left;
-	prevY = event.offsetY+$('#combate').offset().top;
-	isDragging = true;
+	if(isOnDiv){
+        prevX = event.offsetX+$('#combate').offset().left;
+        prevY = event.offsetY+$('#combate').offset().top;
+        isDragging = true;
+    }
 	DeselectGrupo();
 };
 
