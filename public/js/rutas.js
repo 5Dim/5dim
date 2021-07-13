@@ -96,7 +96,10 @@ function guardarRuta(){
                 $("#botonCrearRuta").html(spinner);
             },
             success: function(response) {
-                modal.show();
+                if (typeof(modal)!="undefined"){
+                    modal.show();
+                }
+
                 $("#botonCrearRuta").text(EnviarFlotaTxt);
                 $("#botonCrearRuta").prop("disabled", false);
                 if (response.errores == "") {
@@ -110,7 +113,9 @@ function guardarRuta(){
                 }
             },
             error: function(xhr, textStatus, thrownError) {
-                modal.show();
+                if (typeof(modal)!="undefined"){
+                    modal.show();
+                }
                 $("#botonCrearRuta").text(EnviarFlotaTxt);
                 $("#botonCrearRuta").prop("disabled", false);
                 console.log("status", xhr.status);

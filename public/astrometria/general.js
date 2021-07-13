@@ -1265,6 +1265,7 @@ function buscar(value) {
         // document.body.appendChild(renderer.view)
         $("input").css({ color: "red" });
     }
+    $("input").css({ fontSize:16 });
 }
 
 function alerta(texto) {

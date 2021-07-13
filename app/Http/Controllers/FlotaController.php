@@ -1139,6 +1139,7 @@ class FlotaController extends Controller
             $flotax->save();
 
             //construyendo destinos
+            //Log::info($destinos);
 
             for ($dest = 0; $dest < count($destinos); $dest++) {
 
@@ -1146,12 +1147,17 @@ class FlotaController extends Controller
 
                     $destAnt = $dest - 1;
                     //Log::info("flotax ".$flotax);
+                    //Log::info($destinos[$dest]);
 
                     $destino = new DestinosEnRuta();
                     $destino->porcentVel = $destinos[$dest]['porcentVel'];
                     $destino->mision = ucfirst($destinos[$dest]['mision']);
                     $destino->estrella = $destinos[$dest]['estrella'];
-                    $destino->orbita = $destinos[$dest]['orbita'];
+
+                    if (!empty($destinos[$dest]['orbita'])){
+                        $destino->orbita = $destinos[$dest]['orbita'];
+                    }
+
 
                     $destino->rutas_predefinidas_id = $flotax->id;
                     $destino->save(); //Log::info("coso".$dest." ".$flotax->id);
@@ -1197,17 +1203,18 @@ class FlotaController extends Controller
             //Log::info("navesEnPlaneta ".$navesEnPlaneta);
 
             // naves a flota
+            if (isset($navex)){
+                foreach ($navesEstacionadas as $navex) {
+                    //Log::info($navex);
+                    if ($navex['enflota'] > 0 || $navex['enhangar'] > 0) {
 
-            foreach ($navesEstacionadas as $navex) {
-                //Log::info($navex);
-                if ($navex['enflota'] > 0 || $navex['enhangar'] > 0) {
-
-                    $naveSale = new DiseniosEnRuta();
-                    $naveSale->enFlota = $navex['enflota'];
-                    $naveSale->enHangar = $navex['enhangar'];
-                    $naveSale->disenios_id = $navex['id'];
-                    $naveSale->rutas_predefinidas_id = $flotax->id;
-                    $naveSale->save();
+                        $naveSale = new DiseniosEnRuta();
+                        $naveSale->enFlota = $navex['enflota'];
+                        $naveSale->enHangar = $navex['enhangar'];
+                        $naveSale->disenios_id = $navex['id'];
+                        $naveSale->rutas_predefinidas_id = $flotax->id;
+                        $naveSale->save();
+                    }
                 }
             }
 

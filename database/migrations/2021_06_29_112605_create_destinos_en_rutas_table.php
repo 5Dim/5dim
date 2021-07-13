@@ -15,10 +15,10 @@ class CreateDestinosEnRutasTable extends Migration
     {
         Schema::create('destinos_en_rutas', function (Blueprint $table) {
             $table->id();
-            $table->decimal('porcentVel', 5, 2, true);
-            $table->string('mision');
-            $table->unsignedMediumInteger('estrella');
-            $table->unsignedTinyInteger('orbita');
+            $table->decimal('porcentVel', 5, 2, true)->nullable()->default(null);
+            $table->string('mision')->nullable()->default(null);
+            $table->string('estrella')->nullable()->default(null);
+            $table->unsignedTinyInteger('orbita')->nullable()->default(null);
             $table->timestamps();
 
             $table->unsignedBigInteger('rutas_predefinidas_id')->nullable();

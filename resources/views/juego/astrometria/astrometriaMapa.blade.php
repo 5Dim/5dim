@@ -158,7 +158,7 @@
             text-align: center;
         }
         .dg.ac{
-            top:120px !important;
+            top:10px !important;
         }
 
 
@@ -192,6 +192,7 @@
     </script>
 </head>
 
+<div id="astrometria" name="astrometria"></div>
 
     <div id="dragFlotas">
         <p id=tituloDrag1>FLOTAS EN VUELO</p>
@@ -224,5 +225,5 @@
         </form>
     </div>
 
-    <div id="astrometria" name="astrometria"></div>
+
 
