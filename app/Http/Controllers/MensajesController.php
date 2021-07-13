@@ -20,9 +20,10 @@ class MensajesController extends Controller
         $jugadores = Jugadores::orderBy("nombre")->get();
 
         //Lista de mensajes recibidos
+        $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
         if (
             !empty($jugadorActual->alianzas) &&
-            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor == 1
+            $jugadorAlianza == 1
         ) {
             $recibidos = Mensajes::whereHas('intervinientes', function (Builder $query) use ($jugadorAlianza) {
                 $query->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])

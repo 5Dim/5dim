@@ -91,4 +91,16 @@ class MensajesIntervinientes extends Model
         $receptor->receptor = $idJugador;
         $receptor->save();
     }
+
+    public static function intervinientesPolitica($idMensaje)
+    {
+        $jugadores = Jugadores::all();
+        foreach ($jugadores as $jugador) {
+            $receptor = new MensajesIntervinientes();
+            $receptor->leido = false;
+            $receptor->mensajes_id = $idMensaje;
+            $receptor->receptor = $jugador->id;
+            $receptor->save();
+        }
+    }
 }

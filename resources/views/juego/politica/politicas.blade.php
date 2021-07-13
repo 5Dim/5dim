@@ -31,7 +31,7 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade" id="construcciones" role="tabpanel" aria-labelledby="construcciones-tab">
-                    @if (date('l') == 'Monday' || date('l') == 'Tuesday' || date('l') == 'Wednesday')
+                    @if (date('l') == 'Monday')
                         @foreach ($politicaConstruccion as $politica)
                             @include('juego.politica.cajitaPolitica', [
                             'politica'=> $politica,
@@ -46,7 +46,7 @@
                     @endif
                 </div>
                 <div class="tab-pane fade" id="investigaciones" role="tabpanel" aria-labelledby="investigaciones-tab">
-                    @if (date('l') == 'Monday' || date('l') == 'Tuesday' || date('l') == 'Wednesday')
+                    @if (date('l') == 'Monday')
                         @foreach ($politicaInvestigacion as $politica)
                             @include('juego.politica.cajitaPolitica', [
                             'politica'=> $politica,
@@ -61,7 +61,7 @@
                     @endif
                 </div>
                 <div class="tab-pane fade " id="fuselajes" role="tabpanel " aria-labelledby="fuselajes-tab">
-                    @if (date('l') == 'Monday' || date('l') == 'Tuesday' || date('l') == 'Wednesday')
+                    @if (date('l') == 'Monday')
                         @foreach ($politicaFuselajes as $politica)
                             @include('juego.politica.cajitaPolitica', [
                             'politica'=> $politica,
@@ -76,7 +76,7 @@
                     @endif
                 </div>
                 <div class="tab-pane fade" id="universo" role="tabpanel" aria-labelledby="universo-tab">
-                    @if (date('l') == 'Monday' || date('l') == 'Tuesday' || date('l') == 'Wednesday')
+                    @if (date('l') == 'Monday')
                         @foreach ($politicaUniverso as $politica)
                             @include('juego.politica.cajitaPolitica', [
                             'politica'=> $politica,

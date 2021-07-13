@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use DateTime;
+use DateTimeZone;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -701,5 +703,27 @@ class Mensajes extends Model
         $mensaje->save();
 
         MensajesIntervinientes::intervinientesBienvenida($mensaje->id, $idJugador);
+    }
+
+    public static function enviarMensajePoliticas($politicasModificadas)
+    {
+        $fecha = (new DateTime(now(), new DateTimeZone('UTC')))->setTimezone(new DateTimeZone("Europe/Madrid"))->format("Y-m-d");
+        $contenido = "<p>Resultados de las votaciones del dia " . $fecha . "</p>";
+        $contenido .= "<ul>";
+        foreach ($politicasModificadas as $politica) {
+            $contenido .= "<li>" . __('constantes.' . $politica->codigo) . " ha " . $politica->accion == 'Aumentar' ? 'aumentado' : 'disminuido' . " </li>";
+        }
+        $contenido .= "</ul>";
+        $contenido .= "<p>Ya está disponibles las votaciones de esta semana, ¡pásate a proponer tus politicas!</p>";
+
+        $mensaje = new Mensajes();
+        $mensaje->mensaje = $contenido;
+        $mensaje->asunto = "Resultado de las votaciones del día " . $fecha;
+        $mensaje->categoria = 'recibidos';
+        $mensaje->emisor = null;
+        $mensaje->emisor_sys = 'Comandante';
+        $mensaje->save();
+
+        MensajesIntervinientes::intervinientesPolitica($mensaje->id);
     }
 }

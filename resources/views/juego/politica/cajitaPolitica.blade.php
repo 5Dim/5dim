@@ -17,20 +17,19 @@
                         Acción
                     </th>
                     <th>
-
                     </th>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="width: 350px;">
                         {{ __('constantes.' . $politica->codigo) }}
                     </td>
                     <td>
                         {{ __('constantes.' . $politica->codigo . 'Desc') }}
                     </td>
-                    <td>
+                    <td style="width: 200px;">
                         {{ $politica->estado }}
                     </td>
-                    <td>
+                    <td style="width: 200px;">
                         @if ($politica->propuesta || Auth::user()->jugador->propuestas == 0)
                             <select name="orden" id="accion{{ $politica->codigo }}" class="select form-control"
                                 disabled>
@@ -50,7 +49,7 @@
                             </select>
                         @endif
                     </td>
-                    <td style="width: 250px;">
+                    <td style="width: 350px;">
                         @if ($politica->propuesta)
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="far fa-thumbs-up"></i> Ya propuesta

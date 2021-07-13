@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Constantes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PoliticasController extends Controller
 {
@@ -12,7 +13,7 @@ class PoliticasController extends Controller
     {
         extract($this->recursos());
 
-        if (date('l') == 'Monday' || date('l') == 'Tuesday' || date('l') == 'Wednesday') {
+        if (date('l') == 'Monday') {
             $politicaConstruccion = Constantes::where([['votable', 1], ['tipo', 'construccion']])->get();
             $politicaInvestigacion = Constantes::where([['votable', 1], ['tipo', 'investigacion']])->get();
             $politicaFuselajes = Constantes::where([['votable', 1], ['tipo', 'fuselajes']])->get();
@@ -81,5 +82,11 @@ class PoliticasController extends Controller
         }
 
         return redirect('/juego/politica');
+    }
+
+    public function aplicarPoliticas()
+    {
+        Constantes::votacionPolitica();
+        Log::info("VOTACIONES");
     }
 }

@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->call('App\Http\Controllers\JuegoController@sumarPuntosDeVictoria')
             ->description("Puntos de victoria")
             ->hourly();
-        $schedule->call('App\Http\Controllers\JuegoController@aplicarPoliticas')
+        $schedule->call('App\Http\Controllers\PoliticasController@aplicarPoliticas')
             ->description("Politicas")
             ->weeklyOn(1, '2:00');
     }

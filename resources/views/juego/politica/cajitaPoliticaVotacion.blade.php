@@ -21,19 +21,19 @@
                     </th>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="width: 350px;">
                         {{ __('constantes.' . $politica->codigo) }}
                     </td>
                     <td>
                         {{ __('constantes.' . $politica->codigo . 'Desc') }}
                     </td>
-                    <td>
+                    <td style="width: 200px;">
                         {{ $politica->estado }}
                     </td>
-                    <td>
+                    <td style="width: 200px;">
                         {{ $politica->accion }}
                     </td>
-                    <td style="width: 250px;">
+                    <td style="width: 350px;">
                         @if ($politica->id == Auth::user()->jugador->constantes_id)
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="far fa-thumbs-up"></i> Ya votada
