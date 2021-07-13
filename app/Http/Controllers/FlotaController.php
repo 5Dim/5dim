@@ -168,11 +168,6 @@ class FlotaController extends Controller
         ));
     }
 
-
-
-
-
-
     public function traerRecursos($estrella, $orbita)
     {
         Recursos::calcularRecursos(session()->get('planetas_id'));
@@ -848,7 +843,7 @@ class FlotaController extends Controller
                 //try {
             } catch (Exception $e) {
                 DB::rollBack();
-                $errores = "Error en Commit de envio de flotas " . $e->getLine() . " " . $e->getFile() ."<br>". $errores; //.$e;
+                $errores = "Error en Commit de envio de flotas " . $e->getLine() . " " . $e->getFile() . "<br>" . $errores; //.$e;
                 Log::info($errores . " " . $e);
             }
             //return redirect('/juego/flota');
