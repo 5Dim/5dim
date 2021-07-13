@@ -25,6 +25,8 @@ class CreateEnInvestigacionesTable extends Migration
             $table->foreign('planetas_id')->references('id')->on('planetas');
             $table->timestamps();
             $table->timestamp('finished_at')->nullable();
+            $table->softDeletes();
+            $table->string("motivo_delete")->nullable();
         });
     }
 

@@ -64,7 +64,6 @@ class EnDisenios extends Model
                         $disenio->cantidad += $cola->cantidad;
                         $disenio->disenios_id = $cola->disenios_id;
                         $coste = $cola->disenios->costes;
-                        $disenio->tipo = $cola->disenios->fuselajes->tipo;
                         $disenio->save();
                     } else {
                         //Restaurar beneficio por reciclaje
@@ -81,6 +80,7 @@ class EnDisenios extends Model
                 $cola->motivo_delete = "Finalizado";
                 $cola->save();
                 $cola->delete();
+                Jugadores::calcularPuntos($cola->planetas->jugadores->id);
             }
             DB::commit();
         } catch (\Throwable $e) {

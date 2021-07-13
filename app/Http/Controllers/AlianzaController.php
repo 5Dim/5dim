@@ -12,6 +12,7 @@ use App\Models\EnConstrucciones;
 use App\Models\EnInvestigaciones;
 use App\Models\Investigaciones;
 use App\Models\Alianzas;
+use App\Models\Constantes;
 use App\Models\Jugadores;
 use App\Models\SolicitudesAlianzas;
 use App\Models\Mensajes;
@@ -81,18 +82,18 @@ class AlianzaController extends Controller
         $solicitud->jugadores_id = session()->get('jugadores_id');
         $solicitud->save();
 
-        $mensaje = new Mensajes();
-        $mensaje->asunto = "Nueva solicitud de acceso a la alianza: " . Jugadores::find(session()->get('jugadores_id'))->nombre;
-        $mensaje->mensaje = "<p>El jugador " . Jugadores::find(session()->get('jugadores_id'))->nombre . " solicita unirse a nuestra alianza</p>";
-        $mensaje->categoria = "recibidos";
-        $mensaje->emisor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
-        $mensaje->save();
+        // $mensaje = new Mensajes();
+        // $mensaje->asunto = "Nueva solicitud de acceso a la alianza: " . Jugadores::find(session()->get('jugadores_id'))->nombre;
+        // $mensaje->mensaje = "<p>El jugador " . Jugadores::find(session()->get('jugadores_id'))->nombre . " solicita unirse a nuestra alianza</p>";
+        // $mensaje->categoria = "recibidos";
+        // $mensaje->emisor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
+        // $mensaje->save();
 
-        $interviniente = new MensajesIntervinientes();
-        $interviniente->receptor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
-        $interviniente->leido = false;
-        $interviniente->mensajes_id = $mensaje->id;
-        $interviniente->save();
+        // $interviniente = new MensajesIntervinientes();
+        // $interviniente->receptor = Jugadores::where('nombre', $alianza->nombre)->first()->id;
+        // $interviniente->leido = false;
+        // $interviniente->mensajes_id = $mensaje->id;
+        // $interviniente->save();
 
         return redirect('/juego/alianza');
     }
@@ -114,23 +115,26 @@ class AlianzaController extends Controller
         $alianza->jugadores_id = session()->get('jugadores_id');
         $alianza->save();
 
-        $jugador = new Jugadores();
-        $jugador->nombre = request()->input('nombre');
-        $jugador->alianzas_id = $alianza->id;
-        $jugador->save();
+        $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+        if ($jugadorAlianza == 1) {
+            $jugador = new Jugadores();
+            $jugador->nombre = request()->input('nombre');
+            $jugador->alianzas_id = $alianza->id;
+            $jugador->save();
 
-        $listaInvestigaciones = [];
-        foreach ($jugadorActual->investigaciones as $investigacion) {
-            $investigaciones = new Investigaciones();
-            $investigaciones->nivel = $investigacion->nivel;
-            $investigaciones->categoria = $investigacion->categoria;
-            $investigaciones->codigo = $investigacion->codigo;
-            $investigaciones->jugadores_id = $jugador->id;
-            array_push($listaInvestigaciones, $investigaciones);
-        }
+            $listaInvestigaciones = [];
+            foreach ($jugadorActual->investigaciones as $investigacion) {
+                $investigaciones = new Investigaciones();
+                $investigaciones->nivel = $investigacion->nivel;
+                $investigaciones->categoria = $investigacion->categoria;
+                $investigaciones->codigo = $investigacion->codigo;
+                $investigaciones->jugadores_id = $jugador->id;
+                array_push($listaInvestigaciones, $investigaciones);
+            }
 
-        foreach ($listaInvestigaciones as $investigacion) {
-            $investigacion->save();
+            foreach ($listaInvestigaciones as $investigacion) {
+                $investigacion->save();
+            }
         }
 
         $jugadorActual->alianzas_id = $alianza->id;
@@ -173,24 +177,29 @@ class AlianzaController extends Controller
         $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Jugador que soy
         $alianza = $jugadorActual->alianzas; // Alianza
         if ($alianza->creador->id == $jugadorActual->id) {
-            $planetas = Jugadores::where('nombre', $alianza->nombre)->first()->planetas;
-            foreach ($planetas as $planeta) {
-                foreach ($planeta->construcciones as $construccion) {
-                    $construccion->delete();
-                }
-                $planeta->jugadores_id = null;
-                $planeta->save();
-            }
             foreach ($alianza->miembros as $miembro) {
                 $miembro->alianzas_id = null;
                 $miembro->save();
             }
-            $jugadorAlianza = Alianzas::jugadorAlianza($alianza->id);
-            foreach ($jugadorAlianza->investigaciones as $investigacion) {
-                $investigacion->delete();
+
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if ($jugadorAlianza == 1) {
+                $planetas = Jugadores::where('nombre', $alianza->nombre)->first()->planetas;
+                foreach ($planetas as $planeta) {
+                    foreach ($planeta->construcciones as $construccion) {
+                        $construccion->delete();
+                    }
+                    $planeta->jugadores_id = null;
+                    $planeta->save();
+                }
+                $jugadorAlianza = Alianzas::jugadorAlianza($alianza->id);
+                foreach ($jugadorAlianza->investigaciones as $investigacion) {
+                    $investigacion->delete();
+                }
+                $jugadorAlianza->delete();
             }
-            $jugadorAlianza->delete();
         }
+        $alianza->delete();
 
         return redirect('/juego/alianza');
     }
@@ -213,14 +222,14 @@ class AlianzaController extends Controller
 
         foreach ($jugadorNuevo->investigaciones as $investigacion) {
             $codigoBusqueda = $investigacion->codigo;
-            if ($investigacion->nivel > $solicitud->alianzas->miembros[1]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel) {
+            if ($investigacion->nivel > $solicitud->alianzas->miembros[0]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel) {
                 foreach ($solicitud->alianzas->miembros as $jugadorAlianza) {
                     $investigacionAlianza = $jugadorAlianza->investigaciones->where('codigo', $codigoBusqueda)->first();
                     $investigacionAlianza->nivel = $investigacion->nivel;
                     $investigacionAlianza->save();
                 }
-            } elseif ($investigacion->nivel < $solicitud->alianzas->miembros[1]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel) {
-                $investigacion->nivel = $solicitud->alianzas->miembros[1]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel;
+            } elseif ($investigacion->nivel < $solicitud->alianzas->miembros[0]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel) {
+                $investigacion->nivel = $solicitud->alianzas->miembros[0]->investigaciones->where('codigo', $codigoBusqueda)->first()->nivel;
                 $investigacion->save();
             }
         }

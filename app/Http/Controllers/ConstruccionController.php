@@ -17,6 +17,7 @@ use App\Models\EnInvestigaciones;
 use App\Models\CostesConstrucciones;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ConstruccionController extends Controller

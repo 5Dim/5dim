@@ -7,9 +7,9 @@ var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
     return new bootstrap.Popover(popoverTriggerEl);
 });
-var popover = new bootstrap.Popover(document.querySelector(".popover-dismiss"), {
-    trigger: "focus",
-});
+// var popover = new bootstrap.Popover(document.querySelector(".popover-dismiss"), {
+//     trigger: "focus",
+// });
 
 // Tooltip
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -24,6 +24,10 @@ function sendConstruir(id, codigo, modal) {
     var personal = $("#personal" + codigo).val();
     if (personal == "") {
         personal = 0;
+    }
+    var botones = $(".btn");
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].disabled = true;
     }
     window.location.href = "/juego/construccion/construir/" + id + "/" + personal + "/" + modal;
 }
@@ -43,6 +47,10 @@ function sendIndustria(industria) {
 
 function sendInvestigar(id, codigo, tab) {
     var personal = $("#personal" + codigo).val();
+    var botones = $(".btn");
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].disabled = true;
+    }
     window.location.href = "/juego/investigacion/construir/" + id + "/" + personal + "/" + tab;
 }
 
@@ -77,9 +85,31 @@ function sendRenombrarColonia() {
     window.location.href = "/juego/renombrarPlaneta/" + nombre;
 }
 
+function sendMoverColonia() {
+    let sistema = $("#localizacion").val();
+    window.location.href = "/juego/moverPlaneta/" + sistema;
+}
+
 function sendCederColonia() {
     let idJugador = $("#listaJugadores").val();
     window.location.href = "/juego/cederColonia/" + idJugador;
+}
+
+function sendProponer(codigo) {
+    var accion = $("#accion" + codigo).val();
+    var botones = $(".btn");
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].disabled = true;
+    }
+    window.location.href = "/juego/politica/proponer/" + codigo + '/' + accion;
+}
+
+function sendVotar(codigo) {
+    var botones = $(".btn");
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].disabled = true;
+    }
+    window.location.href = "/juego/politica/votar/" + codigo;
 }
 
 function formatTimestamp(timestamp) {
@@ -930,4 +960,12 @@ function tabsMensajes(tab) {
 
 function tabsPlanetas(tab) {
     window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/planeta/" + tab);
+}
+
+function tabsGeneral(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/general/" + tab);
+}
+
+function tabsPolitica(tab) {
+    window.history.pushState(null, null, "http://" + window.location.hostname + "/juego/politica/" + tab);
 }

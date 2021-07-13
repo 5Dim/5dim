@@ -22,6 +22,8 @@ class CreateEnConstruccionesTable extends Migration
             $table->foreign('construcciones_id')->references('id')->on('construcciones');
             $table->timestamps();
             $table->timestamp('finished_at')->nullable();
+            $table->softDeletes();
+            $table->string("motivo_delete")->nullable();
         });
     }
 

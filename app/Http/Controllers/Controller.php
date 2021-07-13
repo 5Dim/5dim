@@ -19,6 +19,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class Controller extends BaseController
@@ -30,12 +31,15 @@ class Controller extends BaseController
         // Planeta, jugador y alianza
         $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
-        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->orderBy('creacion')->get();
+        $planetasJugador = Planetas::where('jugadores_id', $jugadorActual->id)->orderBy('orden')->get();
         $planetasAlianza = null;
         $jugadorAlianza = null;
-        if (!empty($jugadorActual->alianzas)) {
+        if (
+            !empty($jugadorActual->alianzas) &&
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor == 1
+        ) {
             $jugadorAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first();
-            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->orderBy('creacion')->get();
+            $planetasAlianza = Planetas::where('jugadores_id', $jugadorAlianza->id)->orderBy('orden')->get();
         }
 
 
@@ -65,13 +69,13 @@ class Controller extends BaseController
         $nivelEnsamblajeFuselajes = Investigaciones::sumatorio($investigaciones->where('codigo', 'invEnsamblajeFuselajes')->first()->nivel); //Calcular nivel de puntos de ensamlaje (PE)
 
         if (!empty($jugadorActual->alianzas)) {
-            $emisorSinLeer = MensajesIntervinientes::where('leido', false)->whereIn('receptor', [session()->get('jugadores_id'), $jugadorAlianza->id])->first();
-        }else{
-            $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->first();
+            $emisorSinLeer = MensajesIntervinientes::where('leido', false)->where('receptor', session()->get('jugadores_id'))->get();
+        } else {
+            $emisorSinLeer = MensajesIntervinientes::where([['receptor', session()->get('jugadores_id')], ['leido', false]])->get();
         }
-        $mensajeNuevo = false;
+        $mensajeNuevo = 0;
         if (!empty($emisorSinLeer)) {
-            $mensajeNuevo = true;
+            $mensajeNuevo = count($emisorSinLeer);
         }
         // Fin obligatorio por recursos
 
@@ -93,7 +97,6 @@ class Controller extends BaseController
             'mensajeNuevo',
             'jugadorActual',
             'consImperio',
-            'jugadorAlianza'
         );
     }
 

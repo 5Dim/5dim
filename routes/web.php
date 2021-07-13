@@ -21,6 +21,8 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Middleware\JugadorLogueado;
 use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\TerminarColas;
+use App\Http\Controllers\GruposNavesController;
+use App\Http\Controllers\PoliticasController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\MailtrapExample;
 use Illuminate\Support\Facades\Mail;
@@ -91,11 +93,11 @@ Route::middleware(
     //Rutas generales
     Route::get('/juego', [JuegoController::class, 'index']);
     Route::get('/cambiarPlaneta/{planeta}', [JuegoController::class, 'planeta']);
-    // Route::get('/jugador', [JuegoController::class, 'jugador']);
-
     Route::get('/juego/tienda', [JuegoController::class, 'tienda']);
     Route::get('/juego/estadisticas', [JuegoController::class, 'estadisticas']);
     Route::get('/juego/calcularPuntos', [JuegoController::class, 'calcularPuntos']);
+    Route::get('/juego/jugador/opciones', [JuegoController::class, 'opcionesJugador']);
+    Route::post('/juego/jugador/guardar', [JuegoController::class, 'cambiarOpciones'])->name('guardarJugador');
 
     //Construccion
     Route::get('/juego/construccion/{tab?}', [ConstruccionController::class, 'index']);
@@ -114,6 +116,7 @@ Route::middleware(
     //Planeta
     Route::get('/juego/planeta/{tab?}', [PlanetaController::class, 'index']);
     Route::get('/juego/renombrarPlaneta/{nombre}', [PlanetaController::class, 'renombrarPlaneta']);
+    Route::get('/juego/moverPlaneta/{posicion}', [PlanetaController::class, 'moverPlaneta']);
     Route::get('/juego/cederColonia/{nombre}', [PlanetaController::class, 'cederColonia']);
     Route::get('/juego/destruirColonia', [PlanetaController::class, 'destruirColonia']);
 
@@ -131,7 +134,7 @@ Route::middleware(
     Route::get('/juego/disenio/editarDisenio/{id}', [DisenioController::class, 'editarDisenio']);
 
     //Fabricas
-    Route::get('/juego/fabricas', [FabricasController::class, 'index']);
+    // Route::get('/juego/fabricas', [FabricasController::class, 'index']);
     Route::get('/juego/fabricar/construir/{id}/{cantidad}', [FabricasController::class, 'construir']);
     Route::get('/juego/fabricar/reciclar/{id}/{cantidad}', [FabricasController::class, 'reciclar']);
     Route::get('/juego/fabricar/cancelar/{id}', [FabricasController::class, 'cancelar']);
@@ -159,9 +162,18 @@ Route::middleware(
     Route::post('/juego/flotas/enviarFlota/{id?}', [FlotaController::class, 'enviarFlota']);
     Route::post('/juego/flotas/modificarFlota/{id?}', [FlotaController::class, 'modificarFlota']);
     Route::get('/juego/flotas/{nombreflota?}/{tipoflota?}', [FlotaController::class, 'editarFlota']);
+    Route::post('/juego/flotas/rutas/guardarRuta', [FlotaController::class, 'guardarRuta']);
+    Route::post('/juego/flotas/rutas/borrarRuta/{id?}', [FlotaController::class, 'borrarRuta']);
+    Route::post('/juego/flotas/rutas/traerRuta/{id?}', [FlotaController::class, 'traerRuta']);
+    Route::post('/juego/flotas/rutas/cargarListaRutas', [FlotaController::class, 'cargarListaRutas']);
 
     //Banco
     Route::get('/juego/banco', [BancoController::class, 'index']);
+
+    //Politica
+    Route::get('/juego/politica/{tab?}', [PoliticasController::class, 'index']);
+    Route::get('/juego/politica/proponer/{codigo}/{accion}', [PoliticasController::class, 'proponer']);
+    Route::get('/juego/politica/votar/{codigo}', [PoliticasController::class, 'votar']);
 
     //Comercio
     Route::get('/juego/comercio', [ComercioController::class, 'index']);
@@ -184,4 +196,7 @@ Route::middleware(
     Route::get('/juego/mensajes/{tab?}', [MensajesController::class, 'index']);
     Route::post('/juego/mensajes/enviarMensaje', [MensajesController::class, 'enviarMensaje']);
     Route::get('/juego/mensajes/borrar/{idMensaje}/{idJugador}/{tab?}', [MensajesController::class, 'borrarMensaje']);
+
+    //Grupos Naves
+    Route::get('/juego/gruposNaves/{tab?}', [GruposNavesController::class, 'index']);
 });

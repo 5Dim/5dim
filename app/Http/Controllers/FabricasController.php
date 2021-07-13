@@ -21,27 +21,27 @@ use Illuminate\Support\Facades\Log;
 
 class FabricasController extends Controller
 {
-    public function index()
-    {
-        extract($this->recursos());
+    // public function index()
+    // {
+    //     extract($this->recursos());
 
-        return view('juego.fabrica', compact(
-            // Recursos
-            'recursos',
-            'personalOcupado',
-            'capacidadAlmacenes',
-            'produccion',
-            'planetasJugador',
-            'planetasAlianza',
-            'mensajeNuevo',
-            'consImperio',
+    //     return view('juego.fabrica', compact(
+    //         // Recursos
+    //         'recursos',
+    //         'personalOcupado',
+    //         'capacidadAlmacenes',
+    //         'produccion',
+    //         'planetasJugador',
+    //         'planetasAlianza',
+    //         'mensajeNuevo',
+    //         'consImperio',
 
-            'planetaActual',
-            'nivelImperio',
-            'nivelEnsamblajeFuselajes',
-            'investigaciones',
-        ));
-    }
+    //         'planetaActual',
+    //         'nivelImperio',
+    //         'nivelEnsamblajeFuselajes',
+    //         'investigaciones',
+    //     ));
+    // }
 
     public function construir($idDisenio, $cantidad)
     {
@@ -86,6 +86,9 @@ class FabricasController extends Controller
         if ($recursos->micros < ($costes->micros * $cantidad)) {
             $error = true;
         }
+        if ($recursos->personal < ($costes->personal * $cantidad)) {
+            $error = true;
+        }
 
         if (!$error) {
             $cadenaProduccion = 1; //factor de ahorro por cantidad de produccion
@@ -98,6 +101,7 @@ class FabricasController extends Controller
             $recursos->ceramica -= (($costes->ceramica * $cantidad) * $cadenaProduccion);
             $recursos->liquido -= (($costes->liquido * $cantidad) * $cadenaProduccion);
             $recursos->micros -= (($costes->micros * $cantidad) * $cadenaProduccion);
+            $recursos->personal -= (($costes->personal * $cantidad) * $cadenaProduccion);
             $recursos->save();
 
             $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
@@ -155,7 +159,8 @@ class FabricasController extends Controller
             $nivelHangar = $planetaActual->construcciones->where('codigo', 'hangar')->first()->nivel;
             $constanteVelocidad = Constantes::where('codigo', 'velocidadHangar')->first()->valor;
             $cadenaProduccion = 1;
-            $final = (strtotime($inicio) + ((($tiempo * $cantidad) * $cadenaProduccion)) / (1 + ($constanteVelocidad * $nivelHangar / 100)));
+            $tiempoReciclaje = Constantes::where('codigo', 'tiempoReciclar')->first()->valor;
+            $final = (strtotime($inicio) + (((($tiempo * $cantidad) * $cadenaProduccion)) / (1 + ($constanteVelocidad * $nivelHangar / 100)) * $tiempoReciclaje));
 
             //Generamos la cola
             $cola = new EnDisenios();

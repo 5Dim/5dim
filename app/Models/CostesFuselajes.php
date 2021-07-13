@@ -144,7 +144,7 @@ class CostesFuselajes extends Model
             case "AFRODITA":
                 $Tnave = "ligera";
                 $factn = 1;
-                $r1cce = [$codigo, 200000, 50000, 20000, 20000, 20000, 25000, 33000, 0, 190];
+                $r1cce = [$codigo,100000, 35000, 30000, 25000, 20000, 15000, 20000, .3, 0, 100];
                 $coste = $costesc->calculos($r1cce, $constantes, $fuselajes_id, 'nave', $Tnave, $factn);
                 break;
 
@@ -896,7 +896,7 @@ class CostesFuselajes extends Model
 
         $factorCostoT = $constantes->where('codigo', 'fuselaje' . $tipo . 'RecursosTodas')->first()->valor;
         $factorCosto = $constantes->where('codigo', 'fuselaje' . $tipo . 'Recursos' . $tamano)->first()->valor;
-        $factorPuntos = $constantes->where('codigo', 'fuselajenaveCostoPuntosTodas')->first()->valor;
+        $factorPuntos = 1; //$constantes->where('codigo', 'fuselajenaveCostoPuntosTodas')->first()->valor;
 
         $n = 1;
 

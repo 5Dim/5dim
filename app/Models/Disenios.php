@@ -170,32 +170,32 @@ class Disenios extends Model
 
             // Carga
             if ($mejoras->carga > 0) {
-                $datos->carga = floor($mejoras->carga * (1 + ($investigaciones->where('codigo', 'invCarga')->first()->nivel * $constantes->where('codigo', 'mejorainvCarga')->first()->valor)));
+                $datos->carga = ceil($mejoras->carga * (1 + ($investigaciones->where('codigo', 'invCarga')->first()->nivel * $constantes->where('codigo', 'mejorainvCarga')->first()->valor)));
             } else {
                 $datos->carga = 0;
             }
             if ($mejoras->cargaPequenia > 0) {
-                $datos->cargaPequenia = floor($mejoras->cargaPequenia * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
+                $datos->cargaPequenia = ceil($mejoras->cargaPequenia * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
             } else {
                 $datos->cargaPequenia = 0;
             }
             if ($mejoras->cargaMediana > 0) {
-                $datos->cargaMediana = floor($mejoras->cargaMediana * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
+                $datos->cargaMediana = ceil($mejoras->cargaMediana * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
             } else {
                 $datos->cargaMediana = 0;
             }
             if ($mejoras->cargaGrande > 0) {
-                $datos->cargaGrande = floor($mejoras->cargaGrande * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
+                $datos->cargaGrande = ceil($mejoras->cargaGrande * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
             } else {
                 $datos->cargaGrande = 0;
             }
             if ($mejoras->cargaEnorme > 0) {
-                $datos->cargaEnorme = floor($mejoras->cargaEnorme * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
+                $datos->cargaEnorme = ceil($mejoras->cargaEnorme * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
             } else {
                 $datos->cargaEnorme = 0;
             }
             if ($mejoras->cargaMega > 0) {
-                $datos->cargaMega = floor($mejoras->cargaMega * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
+                $datos->cargaMega = ceil($mejoras->cargaMega * (1 + ($investigaciones->where('codigo', 'invHangar')->first()->nivel * $constantes->where('codigo', 'mejorainvHangar')->first()->valor)));
             } else {
                 $datos->cargaMega = 0;
             }

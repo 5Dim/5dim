@@ -1198,7 +1198,7 @@ class CostesArmas extends Model
         $coste->cargaEnorme = 0;
         $coste->cargaMega = 0;
         $coste->recolector = 0;
-        $coste->extractor = 50000;
+        $coste->extractor = 20000;
         array_push($costes, $coste);
 
 

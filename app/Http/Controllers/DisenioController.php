@@ -27,6 +27,7 @@ use App\Models\MensajesIntervinientes;
 use App\Models\ViewDaniosDisenios;
 use Illuminate\Database\Eloquent\Builder;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -1553,6 +1554,17 @@ class DisenioController extends Controller
                 $disenioS->codigo = $disenio->codigo;
                 $disenioS->skin = $datosBasicos['skin'];
                 $disenioS->jugadores_id = $jugadorActual->id;
+
+                $nombreJugon = substr(Auth::user()->jugador['nombre'], 4);
+                $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
+                $publico = substr($nombreJugon, 0, 3) . substr($timestamp, 5);
+                $disenioS->publico = $publico;
+
+                $nombreJugon = substr($datosBasicos['nombre'], 4);
+                $timestamp = (int) round(now()->format('Uu') / pow(10, 6 - 3));
+                $privado = substr($nombreJugon, 0, 3) . substr($timestamp, 5);
+                $disenioS->privado = $privado;
+
                 $disenioS->save();
                 $jugadorActual->disenios()->attach($disenioS->id);
 

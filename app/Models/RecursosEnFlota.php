@@ -9,27 +9,7 @@ class RecursosEnFlota extends Model
 {
     use HasFactory;
 
-    public function envuelo()
-    {
-        return $this->hasOne(EnVuelo::class);
-    }
-
-    public function enrecoleccion()
-    {
-        return $this->hasOne(EnRecoleccion::class);
-    }
-
-    public function enextraccion()
-    {
-        return $this->hasOne(EnExtraccion::class);
-    }
-
-    public function destino()
-    {
-        return $this->hasOne(Destinos::class);
-    }
-
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -51,5 +31,25 @@ class RecursosEnFlota extends Model
         'municion',
         'creditos'
     ];
+
+    public function envuelo()
+    {
+        return $this->hasOne(EnVuelo::class);
+    }
+
+    public function enrecoleccion()
+    {
+        return $this->hasOne(EnRecoleccion::class);
+    }
+
+    public function enorbita()
+    {
+        return $this->hasOne(EnOrbita::class);
+    }
+
+    public function destino()
+    {
+        return $this->hasOne(Destinos::class);
+    }
 
 }

@@ -59,9 +59,9 @@ class Planetas extends Model
     public static function nuevoPlaneta($idJugador)
     {
         //
-        $i = 0;
-        $sistema = 0;
         $planetaElegido = new Planetas();
+        $sistema = 0;
+        $i = 0;
         while (!empty($planetaElegido) && $i < 500) {
             $sistema = rand(0, 9999);
             $planetaElegido = Planetas::where('estrella', $sistema)->first();
@@ -134,9 +134,11 @@ class Planetas extends Model
 
         $puntosImperioLibres = $nivelImperio * $adminImperioPuntos + $piPorPlanetaColonizado - count($jugador->planetas) * $piPorPlanetaColonizado;
 
-        $boolPlaneta= false;
-        if ($puntosImperioLibres > $piMinimosColonizar) {
+        $boolPlaneta = false;
+        if (($puntosImperioLibres + $piPorPlanetaColonizado) >= $piMinimosColonizar) {
             $boolPlaneta = true;
+            $jugador->movimientos = 0;
+            $jugador->save();
         }
 
         return $boolPlaneta;

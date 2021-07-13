@@ -17,12 +17,18 @@ class CreateJugadoresTable extends Migration
             $table->id();
             $table->string('nombre')->index();
             $table->string('avatar')->default('http://5dim.es/imagenes/avatar.jpg');
-            $table->unsignedMediumInteger('puntos_construccion')->default(0);
-            $table->unsignedMediumInteger('puntos_investigacion')->default(0);
-            $table->unsignedMediumInteger('puntos_flotas')->default(0);
+            $table->boolean('mensajes_flota')->default(true);
+            $table->unsignedBigInteger('puntos_construccion')->default(0);
+            $table->unsignedBigInteger('puntos_investigacion')->default(0);
+            $table->unsignedBigInteger('puntos_flotas')->default(0);
+            $table->unsignedBigInteger('puntos_victoria')->default(0);
+            $table->unsignedTinyInteger('movimientos')->default(0);
+            $table->unsignedTinyInteger('propuestas')->default(1);
             $table->timestamp('premiun_at')->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('constantes_id')->unsigned()->nullable();
+            $table->foreign('constantes_id')->references('id')->on('constantes');
             $table->timestamps();
         });
     }

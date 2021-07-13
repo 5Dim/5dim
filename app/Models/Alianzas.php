@@ -75,4 +75,21 @@ class Alianzas extends Model
         }
         return false;
     }
+
+    public static function sobrecostoInvestigacionAlianza($idJugador)
+    {
+        $jugador = Jugadores::find($idJugador);
+        if (!empty($jugador->alianzas)) {
+            $numeroMiembros = count(Jugadores::where('alianzas_id', $jugador->alianzas_id)->get());
+        } else {
+            $numeroMiembros = 1;
+        }
+
+        $factorAumentoCostoAlianza = Constantes::where('codigo', 'factoraumentocostoalianza')->first()->valor;
+        if ($numeroMiembros == 1) {
+            return 1;
+        } else {
+            return pow(2, $numeroMiembros / ($factorAumentoCostoAlianza + ($numeroMiembros / 10))) - 0.2;
+        }
+    }
 }

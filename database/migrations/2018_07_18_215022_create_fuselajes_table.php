@@ -17,7 +17,6 @@ class CreateFuselajesTable extends Migration
             $table->id();
             $table->string('codigo')->index();
             $table->string('tamanio');
-            $table->string('tipo');
             $table->unsignedTinyInteger('tnave');
             $table->unsignedTinyInteger('coste');
             $table->string('categoria')->index();

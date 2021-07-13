@@ -172,7 +172,7 @@
                             </td>
                     @endif
                     <td id="tiempo{{ $disenio->id }}" class=" text-light">
-                        {{ round($disenio->mejoras->tiempo / (1 + ($constanteVelocidad * $nivelHangar) / 100) / 3600) }}:{{ gmdate('i:s', round($disenio->mejoras->tiempo / (1 + ($constanteVelocidad * $nivelHangar) / 100))) }}
+                        {{ floor($disenio->mejoras->tiempo / (1 + ($constanteVelocidad * $nivelHangar) / 100) / 3600) }}:{{ gmdate('i:s', round($disenio->mejoras->tiempo / (1 + ($constanteVelocidad * $nivelHangar) / 100))) }}
                     </td>
                 </tr>
                 <tr>
@@ -349,7 +349,7 @@
                                 <i class="fa fa-eraser "></i> Diseño borrado
                             </button>
                         @else
-                            <a type="button" class="btn btn-outline-danger col-12 text-danger"
+                            <a type="button" class="btn btn-outline-danger col-12"
                                 href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
                                 <i class="fa fa-eraser "></i> Borrar diseño
                             </a>
@@ -375,7 +375,7 @@
                                 <i class="fa fa-edit "></i> Diseño borrado
                             </button>
                         @else
-                            <a type="button" class="btn btn-outline-success col-12 text-success"
+                            <a type="button" class="btn btn-outline-success col-12"
                                 href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
                                 <i class="fa fa-edit "></i> Editar diseño
                             </a>

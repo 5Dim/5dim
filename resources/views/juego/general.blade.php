@@ -2,134 +2,85 @@
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
-            @if (count($colaConstruccion) > 0)
-                <div class="row rounded cajita">
-                    <div class="col-12">
-                        <div id="cuadro1" class="table-responsive">
-                            <table class="table table-borderless borderless table-sm text-center anchofijo"
-                                style="margin-bottom: 15px !important;">
-                                <tr>
-                                    <td colspan="7" class=" text-success">Cola construcciones</td>
-                                </tr>
-                                <tr>
-                                    <td class=" text-warning">Edificio</td>
-                                    <td class=" text-warning">Accion</td>
-                                    <td class=" text-warning">Nivel</td>
-                                    <td class=" text-warning">Personal</td>
-                                    <td class=" text-warning">Empeza a las</td>
-                                    <td class=" text-warning">Acaba a las</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                @for ($i = 0; $i < count($colaConstruccion); $i++)
-                                    <tr>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ trans('construccion.' . $colaConstruccion[$i]->construcciones->codigo) }}
-                                        </td>
-                                        <td
-                                            class=" {{ $colaConstruccion[$i]->accion == 'Construyendo' ? 'text-success' : 'text-danger' }} text-success align-middle borderless">
-                                            {{ $colaConstruccion[$i]->accion }}
-                                        </td>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ $colaConstruccion[$i]->nivel }}
-                                        </td>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ number_format($colaConstruccion[$i]->personal, 0, ',', '.') }}
-                                        </td>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ $colaConstruccion[$i]->created_at }}
-                                        </td>
-                                        <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
-                                            {{ $colaConstruccion[$i]->finished_at }}
-                                        </td>
-                                        <td class=" text-light align-middle borderless">
-                                            <button type="button" class="btn btn-outline-danger col-12 btn-sm"
-                                                onclick="sendCancelar('{{ $colaConstruccion[$i]->id }}')">
-                                                <i class="fa fa-trash"></i> Cancelar
-                                            </button>
-                                        </td>
-                                    </tr>
-
-                                @endfor
-                            </table>
+            <nav>
+                <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
+                    align="center">
+                    <a class="nav-item nav-link" id="general-tab" data-bs-toggle="tab" href="#general" role="tab"
+                        aria-controls="general" aria-selected="false" onclick="tabsGeneral('general-tab')">
+                        General
+                    </a>
+                    {{-- <a class="nav-item nav-link" id="eventos-tab" data-bs-toggle="tab" href="#eventos" role="tab"
+                        aria-controls="eventos" aria-selected="true" onclick="tabsGeneral('eventos-tab')">
+                        Eventos y misiones
+                    </a> --}}
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
+                    @if (false)
+                        <div class="alert alert-danger cajita-danger" role="alert">
+                            <h4 class="alert-heading">Final de la ronda</h4>
+                            <p>La ronda terminará el dia 10 de julio de 2021.</p>
+                            <p>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>
                         </div>
-                    </div>
-                </div>
-            @endif
-            @if (count($colaInvestigacion) > 0)
-                <div class="row rounded cajita">
-                    <div class="col-12">
-                        <div id="cuadro1" class="table-responsive">
-                            <table class="table table-borderless borderless table-sm text-center anchofijo"
-                                style="margin-bottom: 15px !important;">
-                                <tr>
-                                    <td colspan="7" class=" text-success">Cola investigaciones</td>
-                                </tr>
-                                <tr>
-                                    <td class=" text-warning">Edificio</td>
-                                    <td class=" text-warning">Accion</td>
-                                    <td class=" text-warning">Nivel</td>
-                                    <td class=" text-warning">Personal</td>
-                                    <td class=" text-warning">Empeza a las</td>
-                                    <td class=" text-warning">Acaba a las</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                @for ($i = 0; $i < count($colaInvestigacion); $i++)
-                                    <tr>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ trans('investigacion.' . $colaInvestigacion[$i]->investigaciones->codigo) }}
-                                        </td>
-                                        <td class="text-success text-success align-middle borderless">
-                                            {{ $colaInvestigacion[$i]->accion }}
-                                        </td>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ $colaInvestigacion[$i]->nivel }}
-                                        </td>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ number_format($colaInvestigacion[$i]->personal, 0, ',', '.') }}
-                                        </td>
-                                        <td class=" text-light align-middle borderless">
-                                            {{ $colaInvestigacion[$i]->created_at }}
-                                        </td>
-                                        <td id="fechaFin{{ $i }}" class=" text-light align-middle borderless">
-                                            {{ $colaInvestigacion[$i]->finished_at }}
-                                        </td>
-                                        <td class=" text-light align-middle borderless">
-                                            <button type="button" class="btn btn-outline-danger col-12 btn-sm"
-                                                onclick="sendCancelarInvestigacion('{{ $colaInvestigacion[$i]->id }}')">
-                                                <i class="fa fa-trash"></i> Cancelar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endfor
-                            </table>
+                    @else
+                        <div class="alert alert-success cajita-success text-light" role="alert">
+                            <h4 class="alert-heading">Bienvenidos a una version V0.5 de 5Dim.es</h4>
+                            <p> Ahí van unos consejos de inicio:</p>
+                            <ul>
+                                <li>
+                                    Si acabas de entrar y no te gusta tu posición de inicio,<span class="text-warning"> puedes mover  tu colonia </span>
+                                    desde el menu de planeta (una sola vez), poniendo una posición vacía del mapa.
+                                </li>
+                                <li>
+                                    Todo lo relacionado con combates NO está implementado, de modo que no investigues ni
+                                    diseñes con armas o blindajes.
+                                </li>
+                                <li>
+                                    Céntrate al inicio en subir las minas de tu planeta inicial, priorizando el mineral.
+                                </li>
+                                <li>
+                                    Construir una nave con recolección y mandarla a recolectar en los asteroides que tienes al lado de tu
+                                    planeta es una buena idea una vez puedas permitirte construirla.
+                                </li>
+                                <li>
+                                    Colonizar planetas cercanos es una buena opción, puedes hacerlo incluso con una sonda
+                                    ya que es muy barata.
+                                </li>
+                                <li>
+                                    Además puedes mandar una sonda (con combustible) a orbitar otras estrellas fuera de tu
+                                    visión, ya que también da algo de visión.
+                                </li>
+                                <li>
+                                    Crear una alianza o aliarte con amigos es muy buena idea ya que las tecnologías se
+                                    comparten de forma automática.
+                                </li>
+                                <li>
+                                    Las naves se mejoran automaticamente cada vez que subes una tecnología.
+                                </li>
+                                <li>
+                                    Subir la tecnología de fuselajes es siempre muy rentable, pero ten en cuenta que las
+                                    naves mas avanzadas son mas caras de construir.
+                                </li>
+                                <li>
+                                    Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/2BB7JV48'class="btn btn-outline-success"><i class="fab fa-discord"></i> Discord</a>.
+                                </li>
+                            </ul>
+
+                            <p>Disfruta del juego, y gracias por participar en la versión alpha de 5dim.es.</p>
                         </div>
+                    @endif
+                </div>
+                {{-- <div class="tab-pane fade" id="eventos" role="tabpanel" aria-labelledby="eventos-tab">
+                    <div class="alert alert-info cajita-info" role="alert">
+                        <h4 class="alert-heading">Versión final V1.0</h4>
+                        <p>Piratas gestionados por la IA.</p>
                     </div>
-                </div>
-            @endif
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="datosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalTitulo"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="datosContenido">
-                    ...
-                </div>
-                <div class="modal-footer">
-                </div>
+                </div> --}}
             </div>
         </div>
-    </div>
 
-    <script>
-    </script>
-@endsection
+        <script>
+            mostrarTab(@json($tab));
+        </script>
+    @endsection

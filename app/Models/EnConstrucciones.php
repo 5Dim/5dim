@@ -50,6 +50,7 @@ class EnConstrucciones extends Model
                 $cola->motivo_delete = "Finalizado";
                 $cola->save();
                 $cola->delete();
+                Jugadores::calcularPuntos($cola->construcciones->planetas->jugadores->id);
             }
             DB::commit();
         } catch (\Throwable $e) {

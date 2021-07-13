@@ -25,7 +25,7 @@ var loader = PIXI.loader.add('cloudstars',"img/botones/atacar0.png")
 */
 
 function versistema(texto) {
-    sis_posfinaly = window.innerHeight - 210;
+    sis_posfinaly = window.innerHeight - 320;
     txtsistema.text = "";
     txtsistema.text = texto.n;
 
@@ -239,6 +239,8 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
     planet = new PIXI.Sprite(this.texturaPlaneta);
     planet.interactive = true;
     planet.buttonMode = true;
+    planet.height = 100;
+    planet.width = 100;
 
     planet.anchor.set(0.5);
     planet.position.set(n * 100 + 44, 50);

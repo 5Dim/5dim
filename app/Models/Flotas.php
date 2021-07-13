@@ -517,7 +517,8 @@ class Flotas extends Model
             $jugadoryAlianza = [];
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
-            if ($jugadorActual['alianzas_id'] != null) {
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if (!empty($jugadorActual->alianzas) && $jugadorAlianza == 1) {
                 array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
             }
             array_push($jugadoryAlianza, $jugadorActual->id);
@@ -663,18 +664,19 @@ class Flotas extends Model
     public static function eliminarFlota($nombreflota, $auto = false)
     {
         $errores = "";
-        $posicion="enorbita";
+        $posicion = "enorbita";
         if ($auto) {
             $flotax = EnOrbita::where('publico', $nombreflota)->first();
-            if (empty($flotax)){
+            if (empty($flotax)) {
                 $flotax = EnRecoleccion::where('publico', $nombreflota)->first();
-                $posicion="enrecoleccion";
+                $posicion = "enrecoleccion";
             };
         } else {
             $jugadoryAlianza = [];
             $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
 
-            if ($jugadorActual['alianzas_id'] != null) {
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if (!empty($jugadorActual->alianzas) && $jugadorAlianza == 1) {
                 array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
             }
             array_push($jugadoryAlianza, $jugadorActual->id);
@@ -683,9 +685,9 @@ class Flotas extends Model
             //Log::info("nombreflota: ".$nombreflota);
 
             $flotax = EnOrbita::whereIn('jugadores_id', $jugadoryAlianza)->where('publico', $nombreflota)->first();
-            if (empty($flotax)){
+            if (empty($flotax)) {
                 $flotax = EnRecoleccion::whereIn('jugadores_id', $jugadoryAlianza)->where('publico', $nombreflota)->first();
-                $posicion="enrecoleccion";
+                $posicion = "enrecoleccion";
             };
 
             //Log::info($jugadoryAlianza);
@@ -697,27 +699,27 @@ class Flotas extends Model
         if ($flotax != null) {
             try {
                 //existen flotas que vienen:
-                $flotaLlega=Destinos::where("en_recoleccion_id",$flotax->id)->orWhere("en_orbita_id",$flotax->id)->get();
-                if (!empty($flotaLlega)){
+                $flotaLlega = Destinos::where("en_recoleccion_id", $flotax->id)->orWhere("en_orbita_id", $flotax->id)->get();
+                if (!empty($flotaLlega)) {
                     $errores = ("Esta flota es destino de otras ");
                 } else {
                     $flotax->delete();
                 }
 
 
-            // try {
+                // try {
             } catch (Exception $e) {
                 DB::rollBack();
                 Log::error("Error en Commit de cancelar flota " . $e->getLine() . " " . $nombreflota . " " . $e);
                 $errores = "No ha sido posible, la flota es destino de otra flota";
             }
-        //return redirect('/juego/flota');
-    } else {
-        $errores = ("No se encuentra la flota: " . $nombreflota);
+            //return redirect('/juego/flota');
+        } else {
+            $errores = ("No se encuentra la flota: " . $nombreflota);
+        }
+        //Log::info("errores de eliminar flota ".$errores);
+        return compact('errores');
     }
-    //Log::info("errores de eliminar flota ".$errores);
-    return compact('errores');
-}
 
 
     ///////////////  recepción de flotas   ///////////////////////////////////////////////////////////////
@@ -895,8 +897,22 @@ class Flotas extends Model
                                     }
                                 }
                             }
+
+                            foreach ($recursosArray as $recurso) { //jamas nos quedamos en negativo
+
+                                if ($recursosDestino[$recurso] < 0) {
+                                    Log::info("PELIGRO, recurso " . $recurso . " quieren ser negativos en destino " . $recursosDestino[$recurso] . " Destino id: " . $destino->id);
+                                    $recursosDestino[$recurso] = 0;
+                                }
+                                if ($recursosFlota[$recurso] < 0) {
+                                    Log::info("PELIGRO, recurso " . $recurso . " quieren ser negativos en flota " . $recursosFlota[$recurso] . " Destino id: " . $destino->id);
+                                    $recursosFlota[$recurso] = 0;
+                                }
+                            }
+
                             $recursosDestino["personal"] += $personalOcupado;
                             $destinoAlcanzado = true;
+
                             break;
                         case "Transferir":
                             //si los ids de todos los destinos es nulo es orbitar el planeta
@@ -970,13 +986,13 @@ class Flotas extends Model
                                     }
 
                                     break;
-                                    default:
-                                        $cambioMision = true;
-                                        $destino['mision'] = "Orbitar";
-                                        //$destino['planetas_id'] = null;
-                                        $destino['en_vuelo_id'] = null;
-                                        $destino['en_recoleccion_id'] = null;
-                                        $destino['en_orbita_id'] = null;
+                                default:
+                                    $cambioMision = true;
+                                    $destino['mision'] = "Orbitar";
+                                    //$destino['planetas_id'] = null;
+                                    $destino['en_vuelo_id'] = null;
+                                    $destino['en_recoleccion_id'] = null;
+                                    $destino['en_orbita_id'] = null;
                                     break;
                             }
                             break;
@@ -1105,30 +1121,30 @@ class Flotas extends Model
 
                         switch ($tipodestino) {
                             case "planeta":
-                                $navesEnDestino=DiseniosEnFlota::where([['planetas_id',$destino->planetas->id]])->get();
+                                $navesEnDestino = DiseniosEnFlota::where([['planetas_id', $destino->planetas->id]])->get();
                                 break;
                             case "enorbita":
-                                $navesEnDestino=DiseniosEnFlota::where([['em_orbita_id',$destino->enOrbita->id]])->get();
+                                $navesEnDestino = DiseniosEnFlota::where([['em_orbita_id', $destino->enOrbita->id]])->get();
                                 break;
                             case "enrecoleccion":
-                                $navesEnDestino=DiseniosEnFlota::where([['en_recoleccion_id',$destino->enRecoleccion->id]])->get();
+                                $navesEnDestino = DiseniosEnFlota::where([['en_recoleccion_id', $destino->enRecoleccion->id]])->get();
                                 break;
-                            }
+                        }
 
-                            //Log::info("Entregando Naves: ".$tipodestino);
-                            //Log::info($navesEnDestino);
+                        //Log::info("Entregando Naves: ".$tipodestino);
+                        //Log::info($navesEnDestino);
 
                         foreach ($estaFlota->diseniosEnFlota as $diseno) {
                             $cuantas = $diseno['enFlota'] + $diseno['enHangar'];
-                            $naveEnDestino=null;
+                            $naveEnDestino = null;
                             foreach ($navesEnDestino as $naveEnDestino) {
                                 //Log::info($naveEnDestino);
                                 //Log::info($naveEnDestino->disenios_id);
                                 //Log::info($diseno->disenios);
-                                if ($naveEnDestino->disenios_id == $diseno->disenios->id){
+                                if ($naveEnDestino->disenios_id == $diseno->disenios->id) {
                                     break;
                                 } else {
-                                    $naveEnDestino=null;
+                                    $naveEnDestino = null;
                                 }
                             }
 
@@ -1136,28 +1152,27 @@ class Flotas extends Model
                             //Log::info($naveEnDestino);
                             //Log::info("cuantas: ".$cuantas);
 
-                            if(empty($naveEnDestino)){
+                            if (empty($naveEnDestino)) {
                                 $naveNueva = new DiseniosEnFlota();
-                                if ($tipodestino=="planeta"){
+                                if ($tipodestino == "planeta") {
                                     $naveNueva->cantidad = $cuantas;
                                 } else {
                                     $naveNueva->enFlota = $diseno['enFlota'];
                                     $naveNueva->enHangar = $diseno['enHangar'];
                                 }
 
-                                if(!empty($destino->planetas)){
+                                if (!empty($destino->planetas)) {
                                     $naveNueva->planetas_id = $destino->planetas->id;
                                 }
 
                                 $naveNueva->disenios_id = $diseno->disenios->id;
-                                $naveNueva->tipo = "nave";
                                 $naveNueva->save();
                                 //Log::info("nueva");
                                 //Log::info($naveNueva);
 
                             } else {
-                                if ($tipodestino=="planeta"){
-                                    $naveEnDestino->cantidad+=$cuantas;
+                                if ($tipodestino == "planeta") {
+                                    $naveEnDestino->cantidad += $cuantas;
                                 } else {
                                     $naveEnDestino->enFlota += $diseno['enFlota'];
                                     $naveEnDestino->enHangar += $diseno['enHangar'];
@@ -1189,6 +1204,7 @@ class Flotas extends Model
 
                     if ($guardarCambiosColonizacion) {
                         //Log::info($destino->planetas);
+                        //poner jugador movientos a true para que no mueva el planeta
                         $planetaColonizar = $destino->planetas;
                         $planetaColonizar['jugadores_id'] = $estaFlota->jugadores_id;
                         $planetaColonizar['nombre'] = "Nueva Colonia";
@@ -1380,13 +1396,13 @@ class Flotas extends Model
 
                 // naves a flota
 
-                if ( !empty($flotaExiste)) {
+                if (!empty($flotaExiste)) {
 
                     foreach ($flotaLlega->diseniosEnFlota as $diseno) {
                         //Log::info("columnNaves ".$columnNaves);
-                        $naveEnDestino=DiseniosEnFlota::where([['disenios_id',$diseno->disenios->id],[$columnNaves,$flotaExiste->id]])->first();
+                        $naveEnDestino = DiseniosEnFlota::where([['disenios_id', $diseno->disenios->id], [$columnNaves, $flotaExiste->id]])->first();
                         //Log::info($naveEnDestino);
-                        if(empty($naveEnDestino)){
+                        if (empty($naveEnDestino)) {
                             //Log::info("añado nueva ");
                             $naveNueva = new DiseniosEnFlota();
                             $naveNueva->enFlota = $diseno['enFlota'];
@@ -1395,7 +1411,6 @@ class Flotas extends Model
 
                             $naveNueva->disenios_id = $diseno->disenios->id;
                             $naveNueva->$columnNaves = $flotaExiste->id;
-                            $naveNueva->tipo = "nave";
                             $naveNueva->save();
 
                             //Log::info("flota: ".$diseno['enFlota']);
@@ -1432,16 +1447,15 @@ class Flotas extends Model
 
                         $naveNueva->disenios_id = $diseno->disenios->id;
                         $naveNueva->$columnNaves = $flotax->id;
-                        $naveNueva->tipo = "nave";
                         $naveNueva->save();
                     }
 
-                    $prioridadAnt=$destino->prioridades;
+                    $prioridadAnt = $destino->prioridades;
 
-                    $prioridades=new PrioridadesEnFlota();
+                    $prioridades = new PrioridadesEnFlota();
                     $prioridades->$columnNaves = $flotax->id;
 
-                    if (!empty($prioridadAnt)){
+                    if (!empty($prioridadAnt)) {
                         foreach ($recursosArray as $recurso) {
                             $prioridades[$recurso] = $prioridadAnt[$recurso];
                         }
@@ -1507,7 +1521,7 @@ class Flotas extends Model
                 //try {
                 DB::commit();
                 //Log::info("Enviada");
-               // try {
+                // try {
             } catch (Exception $e) {
                 DB::rollBack();
                 $errores = "Error en Commit de poner en " . $quehacer . " " . $e->getLine() . " " . $errores . $e;
@@ -1718,7 +1732,9 @@ class Flotas extends Model
         $navesEstacionadas = null;
         $recursosFlota = null;
         // Log::info($jugadorActual);
-        if ($jugadorActual['alianzas_id'] != null) {
+
+        $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+        if (!empty($jugadorActual->alianzas) && $jugadorAlianza == 1) {
             array_push($jugadoryAlianza, Alianzas::jugadorAlianza($jugadorActual->alianzas_id)->id);
         }
         array_push($jugadoryAlianza, $jugadorActual->id);

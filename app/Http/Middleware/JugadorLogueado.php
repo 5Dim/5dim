@@ -34,27 +34,28 @@ class JugadorLogueado
             $jugador = Auth::user()->jugador;
         }
         // Control usuario
-        $jugador->ultima_actividad = date("Y-m-d H:i:s");
-        $jugador->navegador = $request->server('HTTP_USER_AGENT');
+        $usuario = Auth::user();
+        $usuario->ultima_actividad = date("Y-m-d H:i:s");
+        $usuario->navegador = $request->server('HTTP_USER_AGENT');
         $existe = false;
-        if ($jugador->ip1 == $request->ip()) {
+        if ($usuario->ip1 == $request->ip()) {
             $existe = true;
-        } elseif ($jugador->ip2 == $request->ip()) {
+        } elseif ($usuario->ip2 == $request->ip()) {
             $existe = true;
-        } elseif ($jugador->ip3 == $request->ip()) {
+        } elseif ($usuario->ip3 == $request->ip()) {
             $existe = true;
-        } elseif ($jugador->ip4 == $request->ip()) {
+        } elseif ($usuario->ip4 == $request->ip()) {
             $existe = true;
         }
 
         if (!$existe) {
-            $jugador->ip4 = $jugador->ip3;
-            $jugador->ip3 = $jugador->ip2;
-            $jugador->ip2 = $jugador->ip1;
-            $jugador->ip1 = $request->ip();
+            $usuario->ip4 = $usuario->ip3;
+            $usuario->ip3 = $usuario->ip2;
+            $usuario->ip2 = $usuario->ip1;
+            $usuario->ip1 = $request->ip();
         }
 
-        $jugador->save();
+        $usuario->save();
 
         // Añadimos el jugador
         if (!session()->has('jugadores_id')) {
@@ -63,11 +64,6 @@ class JugadorLogueado
 
         //Comprobamos que el planeta que tiene asignado sea propio
         $jugadorActual = $jugador;
-        if (!empty($jugadorActual->alianzas)) {
-            $idAlianza = Jugadores::where('nombre', $jugadorActual->alianzas->nombre)->first()->id;
-        } else {
-            $idAlianza = "nulo";
-        }
         if (session()->has('planetas_id')) {
             $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
         }
@@ -75,8 +71,7 @@ class JugadorLogueado
         // Comprobar si el planeta pertenece a un jugador
         if (!empty($planetaActual->jugadores)) {
             if (
-                $planetaActual->jugadores->id != $jugadorActual->id and
-                $planetaActual->jugadores->id != $idAlianza
+                $planetaActual->jugadores->id != $jugadorActual->id
             ) {
                 //Si el planeta coincide con la alianza o el jugador
                 session()->forget('planetas_id');

@@ -44,6 +44,7 @@
                     <div id="selectorPlaneta{{ $numero }}">
                         <select id="listaPlanetas{{ $numero }}" class="form-control ediciondestino">
                             <option value="none">Selecciona un planeta</option>
+                            {{-- JUGADOR --}}
                             <optgroup label="Planetas propios">
                                 @foreach ($planetasJugador as $planeta)
                                     <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
@@ -70,6 +71,7 @@
                                     @endforeach
                                 </optgroup>
                             @endif
+                            {{-- ALIANZA --}}
                             @if (!empty($planetasAlianza))
                                 <optgroup label="Planetas de alianza">
                                     @foreach ($planetasAlianza as $planeta)
@@ -117,8 +119,8 @@
                             <option value="Transportar">Transportar</option>
                             <option value="Transferir">Transferir</option>
                             <option value="Orbitar">Orbitar</option>
-                            <option value="Recolectar">Recolectar</option>
-                            <option value="Extraer">Extraer</option>
+                            <option value="Recolectar">Recolectar(asteroides)</option>
+                            <option value="Extraer">Extraer(planeta)</option>
                             <option value="Colonizar">Colonizar</option>
                         </select>
                     </div>

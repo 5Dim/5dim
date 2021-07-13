@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +25,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call('App\Http\Controllers\JuegoController@terminarColas')
+            ->description("Terminar Colas")
+            ->everyMinute();
+        $schedule->call('App\Http\Controllers\JuegoController@sumarPuntosDeVictoria')
+            ->description("Puntos de victoria")
+            ->hourly();
+        $schedule->call('App\Http\Controllers\JuegoController@aplicarPoliticas')
+            ->description("Politicas")
+            ->weeklyOn(1, '2:00');
     }
 
     /**
@@ -34,7 +43,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

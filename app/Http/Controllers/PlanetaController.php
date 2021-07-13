@@ -3,18 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Recursos;
 use App\Models\Almacenes;
 use App\Models\Armas;
 use App\Models\Planetas;
 use App\Models\Constantes;
 use App\Models\Producciones;
 use App\Models\Construcciones;
-use App\Models\EnConstrucciones;
-use App\Models\EnInvestigaciones;
-use App\Models\Investigaciones;
 use App\Models\Jugadores;
-use App\Models\MensajesIntervinientes;
 
 class PlanetaController extends Controller
 {
@@ -87,6 +82,24 @@ class PlanetaController extends Controller
         $planeta = Planetas::find(session()->get('planetas_id'));
         $planeta->nombre = $nombre;
         $planeta->save();
+
+        return redirect('/juego/planeta');
+    }
+
+    public function moverPlaneta($posicion)
+    {
+        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+        $destino = Planetas::where('estrella', $posicion)->get();
+        if ($jugadorActual->movimientos > 0 && $destino->isEmpty()) {
+            $planetaActual = Planetas::where('id', session()->get('planetas_id'))->first();
+            $planetas = Planetas::where('estrella', $planetaActual->estrella)->get();
+            foreach ($planetas as $planeta) {
+                $planeta->estrella = $posicion;
+                $planeta->save();
+            }
+            $jugadorActual->movimientos -= 1;
+            $jugadorActual->save();
+        }
 
         return redirect('/juego/planeta');
     }

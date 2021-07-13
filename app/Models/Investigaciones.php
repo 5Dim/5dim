@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\CostesInvestigaciones;
 use App\Models\Construcciones;
 use App\Models\Constantes;
+use Illuminate\Support\Facades\Log;
 
 class Investigaciones extends Model
 {
@@ -165,9 +166,14 @@ class Investigaciones extends Model
         $nivelLaboratorio = Construcciones::where([
             ['planetas_id', $planetaActual->id],
             ['codigo', 'laboratorio'],
-        ])->first()->nivel + 1;
+        ])->first()->nivel;
         if ($personal > 0 && $nivelLaboratorio > 0) {
-            $result = ($factinvest * ($nivel) * (($preciototal) / ($personal * $nivelLaboratorio)));
+            $result = ($factinvest * $nivel * ($preciototal / ($personal * $nivelLaboratorio)));
+            Log::info(1000 . " factinvest " . $factinvest);
+            Log::info(36 . " nivel " . $nivel);
+            Log::info(177131475 . " preciototal " . $preciototal);
+            Log::info(99999648 . " personal " . $personal);
+            Log::info(80 . " nivelLaboratorio " . $nivelLaboratorio);
             if ($result == 0) {
                 $result = 0.01;
             }

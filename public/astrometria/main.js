@@ -21,8 +21,8 @@ const HEIGHT = 0;
 var width = 0,
     height = 0;
 var cambios = 0;
-var sis_posfinaly = window.innerHeight + 100; //posición y de la vista planetaria
-var sis_posfinalx = window.innerWidth / 2 - 512; //posición x de la vista planetaria
+var sis_posfinaly = window.innerHeight ; //posición y de la vista planetaria
+var sis_posfinalx = (window.innerWidth-240) / 2 - 512; //posición x de la vista planetaria
 var txt_fps = "";
 var txt_num_flotas = "";
 var txt_zoom = "";
@@ -369,13 +369,14 @@ function creainfoRutas() {
     panelRuta.addChild(b_borrar);
 }
 
-function createViewport() {
+function createViewport() {  /// https://www.pixiplayground.com/#/edit/47~W4JKeToE8KP34Z6YeP
+
     viewport = app.stage.addChild(
-        new PIXI.extras.Viewport({
-            screenWidth: window.innerWidth,
-            screenHeight: window.innerHeight,
-            worldWidth: universo.ancho * 70,
-            worldHeight: universo.global / universo.ancho * 70,
+        new Viewport.Viewport({
+        screenWidth: window.innerWidth,
+        screenHeight: window.innerHeight,
+        worldWidth: universo.ancho * 70,
+        worldHeight: universo.global / universo.ancho * 70,
         }),
     );
 
@@ -411,6 +412,8 @@ function createViewport() {
             }
             /////////////////////////////////////////////////
         });
+
+
 
     barra1 = app.stage.addChild(new PIXI.Container()); // crea la capa botones
     auxImg = app.stage.addChild(new PIXI.Container()); // contenedor para dibujos temporales
@@ -454,6 +457,8 @@ function createViewport() {
     //resize();
     PIXI.Ticker.shared.add(function(dt) {
         app.render();
+
+        viewport.zlevel=viewport.scale.x*100;
 
         mueve_sis(sis_posfinalx, sis_posfinaly);
         ajusta_zoom(viewport.zlevel);
@@ -544,7 +549,7 @@ function createWorld() {
     botonE();
 
     //centro el mapa
-    viewport.snap(homex, homey, { topLeft: false, time: 2000, ease: "easeInOutSine", removeOnComplete: true, removeOnInterrupt: true });
+    viewport.snap(homex+300, homey+100, { topLeft: false, time: 2000, ease: "easeInOutSine", removeOnComplete: true, removeOnInterrupt: true });
 
     //se crea la marcaHome, el punto verde que indica la posición del sistema de inicio
     let texturamarcaHome = PIXI.Texture.from("/astrometria/img/flechahome.png");
@@ -684,8 +689,9 @@ function resize() {
     // Resize the renderer
 
     var nueva_pos = window.innerWidth / 2 - botones.width / 2;
-    app.renderer.resize(window.innerWidth, window.innerHeight);
+    app.renderer.resize(window.innerWidth-300, window.innerHeight);
     botones.position.set(nueva_pos, 0);
+    document.body.style.overflow = 'hidden'; // vaya mierda no?
     //openFullscreen()
     // You can use the 'screen' property as the renderer visible
     // area, this is more useful than view.width/height because
@@ -700,6 +706,7 @@ function resize() {
 var app, viewport;
 
 window.onload = function() {
+    document.body.style.overflow = 'hidden'; // vaya mierda no?
     app = new PIXI.Application({
         transparent: true,
         width: window.innerWidth,
@@ -709,17 +716,23 @@ window.onload = function() {
         autoResize: true,
         resolution: devicePixelRatio,
     });
-    document.body.appendChild(app.view);
+
+    //document.body.appendChild(app.view);
     // app.view.style.position = 'fixed';
+    document.getElementById('astrometria').appendChild(app.view);
+
     app.view.style.width = "100vw";
     app.view.style.height = "100vh";
     app.view.style.top = 0;
     app.view.style.left = 0;
+    app.view.style.backgroundImage = "url('"+backgroundAstrometria+"')";
+
 
     // todo empieza con esta función, solo se empieza a generar el universo cuando se ha cargado la página por completo
     // y estamos seguros que todos los ficheros javascript están cargados y disponibles
     // empieza la magia...
     carga_universo();
+
 };
 
 var docu = document.documentElement;

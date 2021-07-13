@@ -365,6 +365,36 @@
                 </tr>
             </table>
         </div>
+        <div id="lineaRutas" class="col-12 cajita-info rounded">
+            <table class="table table-sm table-borderless text-center anchofijo align-middle borderless">
+                <tr>
+                    <td>
+                        <button id="botonBorrarRuta" type="button" class="btn btn-danger  col-12" onclick="borrarRuta()">
+                            Borrar ruta seleccionada
+                        </button>
+                    </td>
+                    <td class="text-light">
+                        <div id="selectorRuta">
+                            <select id="listaRutas" class="form-control ediciondestino">
+                                <option value="none">Selecciona una ruta</option>
+                                    @foreach ($planetasJugador as $planeta)
+                                        <option value="{{ $planeta->estrella }}x{{ $planeta->orbita }}">
+                                            {{ $planeta->nombre }}
+                                            ({{ $planeta->estrella }}x{{ $planeta->orbita }})
+                                        </option>
+                                    @endforeach
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <button id="botonNombrarRuta" type="button" class="btn btn-success  col-12"  onclick="nombrarRuta()">
+                            Guardar Ruta
+                        </button>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
         @for ($dest = 0; $dest < $cantidadDestinos + 1; $dest++)
             @include('juego.flotas.destino', [ 'destino' => 'destino'.$dest, 'numero' => $dest, 'estrellaDestino' => "",
             'orbitaDestino' => ""])
@@ -401,3 +431,4 @@
 
 <!-- Personalizado -->
 <script src="{{ asset('js/flotas.js') }}"></script>
+<script src="{{ asset('js/rutas.js') }}"></script>

@@ -39,7 +39,7 @@
                         Mineral</td>
                     <td
                         class=" {{ $investigacion->coste->cristal == 0 ? 'text-muted' : 'text-warning' }}">
-                        cristal</td>
+                        Cristal</td>
                     <td
                         class=" {{ $investigacion->coste->gas == 0 ? 'text-muted' : 'text-warning' }}">
                         Gas</td>
@@ -405,5 +405,11 @@
 <script>
     calculaTiempoInvestigacion(@json($investigacion->coste), @json($velInvest->valor), @json($investigacion->
         codigo), @json($investigacion->nivel), @json($nivelLaboratorio->nivel));
+
+    // Tooltip
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 
 </script>

@@ -11,6 +11,89 @@ class Astrometria extends Model
 {
     use HasFactory;
 
+    // Sistema
+    public static function sistema($numeroSistema)
+    {
+        $seVe = Astrometria::sistemaEnRadares($numeroSistema);
+        $sistema = new Planetas();
+        $sistema->idioma = 0;
+        $sistema->sistema = (int)$numeroSistema;
+        $sistema->imgsol = '/astrometria/img/sistema/sol1.png';
+        $sistema->imgfondo = '/astrometria/img/sistema/f1.png';
+        $planetas = [];
+        if ($seVe) { // Si se ve mandamos los datos reales
+            for ($i = 1; $i < 10; $i++) {
+                $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
+                $orbita = new \stdClass();
+                if (!empty($planetaActual)) {
+                    if (empty($planetaActual->cualidades)) {
+                        CualidadesPlanetas::agregarCualidades($planetaActual->id, 0);
+                        $planetaActual->cualidades = CualidadesPlanetas::where('planetas_id', $planetaActual->id)->first();
+                    }
+                    $orbita->planeta = $i;
+                    $orbita->nom_pla = !empty($planetaActual->nombre) ? $planetaActual->nombre : "";
+                    $orbita->nom_jug = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->nombre) ? $planetaActual->jugadores->nombre : "";
+                    $orbita->alianza = !empty($planetaActual->jugadores) && !empty($planetaActual->jugadores->alianzas) && !empty($planetaActual->jugadores->alianzas->nombre) ? $planetaActual->jugadores->alianzas->nombre : "";
+                    $orbita->img_planeta = !empty($planetaActual->imagen) ? "planetaG" . $planetaActual->imagen . ".png" : "";
+                    $orbita->mineral = !empty($planetaActual->cualidades->mineral) ? $planetaActual->cualidades->mineral : 0;
+                    $orbita->cristal = !empty($planetaActual->cualidades->cristal) ? $planetaActual->cualidades->cristal : 0;
+                    $orbita->gas = !empty($planetaActual->cualidades->gas) ? $planetaActual->cualidades->gas : 0;
+                    $orbita->plastico = !empty($planetaActual->cualidades->plastico) ? $planetaActual->cualidades->plastico : 0;
+                    $orbita->ceramica = !empty($planetaActual->cualidades->ceramica) ? $planetaActual->cualidades->ceramica : 0;
+                    $orbita->naves = !empty(EnOrbita::where([['estrella', $planetaActual->estrella], ['orbita', $planetaActual->orbita]])->first()) ? 1 : 0;
+                    $orbita->recoleccion = !empty($planetaActual->enRecoleccion) ? 1 : 0;
+                    $orbita->b_observar = ""; // Posibilidad de incluirlo dentro del mapa
+                    $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
+                    $orbita->b_verorbita = "/juego/flotas/orbita-tab";
+                } else {
+                    $orbita = new \stdClass();
+                    $orbita->planeta = $i;
+                    $orbita->nom_pla = "";
+                    $orbita->nom_jug = "";
+                    $orbita->alianza = "";
+                    $orbita->img_planeta = "";
+                    $orbita->mineral = "";
+                    $orbita->cristal = "";
+                    $orbita->gas = "";
+                    $orbita->plastico = "";
+                    $orbita->ceramica = "";
+                    $orbita->naves = 0;
+                    $orbita->recoleccion = 0;
+                    $orbita->b_observar = "";
+                    $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
+                    $orbita->b_verorbita = "/juego/flotas/orbita-tab";
+                }
+                array_push($planetas, $orbita);
+            }
+        } else { // Si no se ve mandamos los datos ocultos
+            for ($i = 1; $i < 10; $i++) {
+                $planetaActual = Planetas::where([['estrella', $numeroSistema], ['orbita', $i]])->first();
+                $orbita = new \stdClass();
+                $orbita->planeta = $i;
+                $orbita->nom_pla = "";
+                $orbita->nom_jug = "";
+                $orbita->alianza = "";
+                if (empty($planetaActual)) {
+                    $orbita->img_planeta = "";
+                } else {
+                    $orbita->img_planeta = "planeta0.png";
+                }
+                $orbita->mineral = "";
+                $orbita->cristal = "";
+                $orbita->gas = "";
+                $orbita->plastico = "";
+                $orbita->ceramica = "";
+                $orbita->naves = 0;
+                $orbita->recoleccion = 0;
+                $orbita->b_observar = "";
+                $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
+                $orbita->b_verorbita = "/juego/flotas/orbita-tab";
+                array_push($planetas, $orbita);
+            }
+        }
+        $sistema->planetas = $planetas;
+        return $sistema;
+    }
     // Generar radares para el usuario
     public static function radares()
     {
@@ -203,7 +286,11 @@ class Astrometria extends Model
             //saco flotas aliadas
             $jugadorAlianzaSinMi = Alianzas::idMiembrosSinMi($jugadorActual['alianzas_id'], $jugadorActual->id);
             $flotasVisiblesAliadas = EnVuelo::whereIn('jugadores_id', $jugadorAlianzaSinMi)->get();
-            array_push($jugadoresPropios, Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
+
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if ($jugadorAlianza == 1) {
+                array_push($jugadoresPropios, Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
+            }
         } else {
             array_push($jugadoresAlianzas, $jugadorActual->id);
         }
@@ -211,7 +298,7 @@ class Astrometria extends Model
         //Log::info('jugadoresAlianzas: '.$jugadoresAlianzas);
 
         //determina caja de visibilidad
-        $minCoordx = 9999999;
+        $minCoordx = 99999999;
         $maxCoordx = -1;
         $minCoordy = 99999999;
         $maxCoordy = -1;
@@ -619,7 +706,7 @@ class Astrometria extends Model
 
         $jugadorActual = Jugadores::find(session()->get('jugadores_id')); // Log::info($jugadorActual);
         array_push($jugadoresPropios, $jugadorActual->id);
-        if ($jugadorActual['alianzas_id'] != null) {
+        if (!empty($jugadorActual->alianzas)) {
             $jugadoresAlianzas = Alianzas::idMiembros($jugadorActual['alianzas_id']); //Log::info($jugadoresAlianzas);
 
             //saco flotas aliadas
@@ -630,7 +717,10 @@ class Astrometria extends Model
                 $flotasVisiblesAliadas = EnOrbita::whereIn('jugadores_id', $jugadorAlianzaSinMi)->get();
             }
 
-            array_push($jugadoresPropios, Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if ($jugadorAlianza == 1) {
+                array_push($jugadoresPropios, Alianzas::jugadorAlianza($jugadorActual['alianzas_id'])->id);
+            }
         } else {
             array_push($jugadoresAlianzas, $jugadorActual->id);
         }
@@ -798,19 +888,19 @@ class Astrometria extends Model
             case "enrecoleccion":
                 $nombreDestino = $destino->enRecoleccion["publico"];
                 if ($nombreprivado) {
-                    $nombreDestino .= "(" . $destino->enRecoleccion["nombre"] . ")";
+                    $nombreDestino .= " (" . $destino->enRecoleccion["nombre"] . ")";
                 }
                 break;
             case "enorbita":
                 $nombreDestino = $destino->enOrbita["publico"];
                 if ($nombreprivado) {
-                    $nombreDestino .= "(" . $destino->enOrbita["nombre"] . ")";
+                    $nombreDestino .= " (" . $destino->enOrbita["nombre"] . ")";
                 }
                 break;
             case "envuelo":
                 $nombreDestino = $destino->enVuelo["publico"];
                 if ($nombreprivado) {
-                    $nombreDestino .= "(" . $destino->enVuelo["nombre"] . ")";
+                    $nombreDestino .= " (" . $destino->enVuelo["nombre"] . ")";
                 }
                 break;
             default:
@@ -830,6 +920,99 @@ class Astrometria extends Model
     public static function colonizarZonaPosible($planetaid)
     {
         return true;
+    }
+
+    public static function generarUniverso()
+    {
+        // Estrellas
+        $cantidadEstrellas = Constantes::where("codigo", 'cantidadestrellas')->first()->valor;
+        $estrellaMaxima = Constantes::where('codigo', 'estrellamaxima')->first()->valor;
+
+        // Cantidad objetos
+        $objetosMax = Constantes::where("codigo", 'cantidadobjetossistema')->first()->maximo;
+        $objetosMin = Constantes::where("codigo", 'cantidadobjetossistema')->first()->minimo;
+
+        // Porcentajes de cada objeto
+        $probabilidadPlanetas = Constantes::where("codigo", 'cantidadplanetas')->first()->valor;
+        $probabilidadAsteroides = Constantes::where("codigo", 'cantidadporplanetaasteroides')->first()->valor;
+        $probabilidadSoles = Constantes::where("codigo", 'cantidadporplanetasoles')->first()->valor;
+        $probabilidadEnclaves = Constantes::where("codigo", 'cantidadplanetasenclave')->first()->valor;
+        $probabilidadAgujeroRojo = Constantes::where("codigo", 'cantidadagujerosrojos')->first()->valor;
+        $probabilidadAgujeroAzul = Constantes::where("codigo", 'cantidadagujerosazul')->first()->valor;
+        $probabilidadAgujeroNegro = Constantes::where("codigo", 'cantidadagujerosnegros')->first()->valor;
+
+        for ($i = 0; $i < $cantidadEstrellas; $i++) {
+            // Constrol de sistema
+            $planetaElegido = new Planetas();
+            $sistema = 0;
+            $intentos = 0;
+            while (!empty($planetaElegido) && $intentos < 500) {
+                $sistema = random_int(0, $estrellaMaxima);
+                $planetaElegido = Planetas::where('estrella', $sistema)->first();
+                $intentos++;
+            }
+            $cantidadObjetos = random_int($objetosMin, $objetosMax);
+            $posiciones = [];
+            for ($j = 0; $j < $cantidadObjetos; $j++) {
+                //Control de orbita
+                $orbita = random_int(1, 9);
+                $intentos = 0;
+                while (in_array($orbita, $posiciones) && $intentos < 15) {
+                    $orbita = random_int(1, 9);
+                    $intentos++;
+                }
+                array_push($posiciones, $orbita);
+
+                $planetaElegido = new Planetas();
+                $planetaElegido->estrella = $sistema;
+                $planetaElegido->orbita = $orbita;
+                $objeto = random_int(0, $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo + $probabilidadAgujeroAzul + $probabilidadAgujeroNegro);
+                if (
+                    $objeto >= 0 &&
+                    $objeto < $probabilidadPlanetas
+                ) {
+                    $planetaElegido->tipo = "planeta";
+                    $planetaElegido->imagen = random_int(10, 69);
+                } elseif (
+                    $objeto >= $probabilidadPlanetas &&
+                    $objeto < $probabilidadPlanetas + $probabilidadAsteroides
+                ) {
+                    $planetaElegido->tipo = "asteroide";
+                    $planetaElegido->imagen = random_int(70, 79);
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles
+                ) {
+                    $planetaElegido->tipo = "sol";
+                    $planetaElegido->imagen = random_int(80, 89);
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves
+                ) {
+                    $planetaElegido->tipo = "enclave";
+                    $planetaElegido->imagen = random_int(90, 95);
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo
+                ) {
+                    $planetaElegido->tipo = "agujero rojo";
+                    $planetaElegido->imagen = 3;
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo + $probabilidadAgujeroAzul
+                ) {
+                    $planetaElegido->tipo = "agujero azul";
+                    $planetaElegido->imagen = 2;
+                } elseif (
+                    $objeto >= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo + $probabilidadAgujeroAzul &&
+                    $objeto <= $probabilidadPlanetas + $probabilidadAsteroides + $probabilidadSoles + $probabilidadEnclaves + $probabilidadAgujeroRojo + $probabilidadAgujeroAzul + $probabilidadAgujeroNegro
+                ) {
+                    $planetaElegido->tipo = "agujero negro";
+                    $planetaElegido->imagen = 4;
+                }
+                $planetaElegido->save();
+            }
+        }
     }
 }
 
