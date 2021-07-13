@@ -186,9 +186,9 @@
     </style>
 </head>
 
-<body class="bg" id="recursosFrame">
+<body class="bg" id="recursosFrame" style="overflow: hidden">
     <div class="d-flex flex-row">
-        <div class="">
+        <div class="d-flex flex-column">
             <span class="text-white boton-menu" onclick="openNav()">
                 <i class="fas fa-bars"></i>
             </span>
@@ -392,19 +392,8 @@
                 </footer>
             </div>
         </div>
-        <div class="" style="height: 100vh !important; overflow: overlay">
+        <div class="d-flex flex-column" style="height: 100vh !important; overflow: auto">
             <div id="menuC" class="container-fluid ">
-                <div id="menuCuenta" class="row d-flex overflow-auto ">
-                    <table class="table table-borderless table-sm text-center borderless anchofijo"
-                        style="margin: 0px;">
-                        <thead>
-                            <tr>
-                                <th class="text-warning ">
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
                 <div id="menuRecursos" class="py-1">
                     <table class="table table-borderless table-sm text-center borderless">
                         <thead>
