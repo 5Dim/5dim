@@ -392,7 +392,7 @@
                 </footer>
             </div>
         </div>
-        <div class="d-flex flex-column" style="height: 100vh !important; overflow: auto">
+        <div class="d-flex flex-column" style="height: 100vh !important; overflow: auto; width: 100%;">
             <div id="menuC" class="container-fluid ">
                 <div id="menuRecursos" class="py-1">
                     <table class="table table-borderless table-sm text-center borderless">
