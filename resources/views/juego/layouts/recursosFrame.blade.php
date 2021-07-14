@@ -17,9 +17,9 @@
     @elseif(strpos(Request::fullUrl(), 'fuselajes'))
         <title>Fuselajes - Quinta Dimension</title>
     @elseif(strpos(Request::fullUrl(), 'fabricas'))
-        <title>Fabricas - Quinta Dimension</title>
+        <title>Fábricas - Quinta Dimension</title>
     @elseif(strpos(Request::fullUrl(), 'astrometria'))
-        <title>Astrometria - Quinta Dimension</title>
+        <title>Astrometría - Quinta Dimension</title>
     @elseif(strpos(Request::fullUrl(), 'flotas'))
         <title>Flotas - Quinta Dimension</title>
     @elseif(strpos(Request::fullUrl(), 'banco'))
@@ -33,11 +33,11 @@
     @elseif(strpos(Request::fullUrl(), 'mensajes'))
         <title>Mensajes - Quinta Dimension</title>
     @elseif(strpos(Request::fullUrl(), 'estadisticas'))
-        <title>Estadisticas - Quinta Dimension</title>
+        <title>Estadísticas - Quinta Dimension</title>
     @elseif(strpos(Request::fullUrl(), 'tienda'))
         <title>Tienda - Quinta Dimension</title>
     @elseif(strpos(Request::fullUrl(), 'politica'))
-        <title>Politicas - Quinta Dimension</title>
+        <title>Políticas - Quinta Dimension</title>
     @else
         <title>Quinta Dimension</title>
     @endif
@@ -292,17 +292,17 @@
                 @endif
                 @if (strpos(Request::fullUrl(), '/juego/politica'))
                     <a href="{{ url('/juego/politica') }}" class="align-middle text-warning">
-                        <i class="far fa-handshake"></i> Politica</a>
+                        <i class="far fa-handshake"></i> Política</a>
                 @else
                     <a href="{{ url('/juego/politica') }}" class="align-middle">
-                        <i class="far fa-handshake"></i> Politica</a>
+                        <i class="far fa-handshake"></i> Política</a>
                 @endif
                 @if (strpos(Request::fullUrl(), '/juego/astrometria'))
                     <a href="{{ url('/juego/astrometria') }}" class="align-middle text-warning">
-                        <i class="fas fa-map-marked-alt"></i> Astrometria</a>
+                        <i class="fas fa-map-marked-alt"></i> Astrometría</a>
                 @else
                     <a href="{{ url('/juego/astrometria') }}" class="align-middle">
-                        <i class="fas fa-map-marked-alt"></i> Astrometria</a>
+                        <i class="fas fa-map-marked-alt"></i> Astrometría</a>
                 @endif
                 @if (strpos(Request::fullUrl(), '/juego/flotas'))
                     <a href="{{ url('/juego/flotas') }}" class="align-middle text-warning">
@@ -311,26 +311,30 @@
                     <a href="{{ url('/juego/flotas') }}" class="align-middle">
                         <i class="fas fa-space-shuttle"></i> Flotas</a>
                 @endif
-                @if (strpos(Request::fullUrl(), '/juego/banco'))
-                    <a href="{{ url('/juego/banco') }}" class="align-middle text-warning">
-                        <i class="fas fa-money-bill-alt"></i> Banco</a>
-                @else
-                    <a href="{{ url('/juego/banco') }}" class="align-middle">
-                        <i class="fas fa-money-bill-alt"></i> Banco</a>
-                @endif
-                @if (strpos(Request::fullUrl(), '/juego/comercio'))
-                    <a href="{{ url('/juego/comercio') }}" class="align-middle text-warning">
-                        <i class="fas fa-industry"></i> Comercio</a>
-                @else
-                    <a href="{{ url('/juego/comercio') }}" class="align-middle">
-                        <i class="fas fa-industry"></i> Comercio</a>
-                @endif
-                @if (strpos(Request::fullUrl(), '/juego/gruposNaves'))
-                    <a href="{{ url('/juego/gruposNaves') }}" class="align-middle text-warning">
-                        <i class="far fa-object-group"></i> Grupos</a>
-                @else
-                    <a href="{{ url('/juego/gruposNaves') }}" class="align-middle">
-                        <i class="far fa-object-group"></i> Grupos</a>
+                @if(1>2)
+                    @if (strpos(Request::fullUrl(), '/juego/banco'))
+                        <a href="{{ url('/juego/banco') }}" class="align-middle text-warning">
+                            <i class="fas fa-money-bill-alt"></i> Banco</a>
+                    @else
+                        <a href="{{ url('/juego/banco') }}" class="align-middle">
+                            <i class="fas fa-money-bill-alt"></i> Banco</a>
+                    @endif
+
+                    @if (strpos(Request::fullUrl(), '/juego/comercio'))
+                        <a href="{{ url('/juego/comercio') }}" class="align-middle text-warning">
+                            <i class="fas fa-industry"></i> Comercio</a>
+                    @else
+                        <a href="{{ url('/juego/comercio') }}" class="align-middle">
+                            <i class="fas fa-industry"></i> Comercio</a>
+                    @endif
+
+                    @if (strpos(Request::fullUrl(), '/juego/gruposNaves'))
+                        <a href="{{ url('/juego/gruposNaves') }}" class="align-middle text-warning">
+                            <i class="far fa-object-group"></i> Grupos</a>
+                    @else
+                        <a href="{{ url('/juego/gruposNaves') }}" class="align-middle">
+                            <i class="far fa-object-group"></i> Grupos</a>
+                    @endif
                 @endif
                 @if (strpos(Request::fullUrl(), '/juego/alianza'))
                     <a href="{{ url('/juego/alianza') }}" class="align-middle text-warning">
@@ -341,10 +345,10 @@
                 @endif
                 @if (strpos(Request::fullUrl(), '/juego/estadisticas'))
                     <a href="{{ url('/juego/estadisticas') }}" class="align-middle text-warning">
-                        <i class="fas fa-chart-bar"></i> Estadisticas</a>
+                        <i class="fas fa-chart-bar"></i> Estadísticas</a>
                 @else
                     <a href="{{ url('/juego/estadisticas') }}" class="align-middle">
-                        <i class="fas fa-chart-bar"></i> Estadisticas</a>
+                        <i class="fas fa-chart-bar"></i> Estadísticas</a>
                 @endif
 
                 {{-- <hr class="text-light"> --}}

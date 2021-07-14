@@ -103,6 +103,7 @@
                                         aria-describedby="basic-addon2">
                                 </div>
                             </td>
+                            @if ((Auth::user()->jugador->movimientos) > 0)
                             <td class="anchofijo text-secondary borderless">
                                 <div class="input-group mb-3 borderless"
                                     style="padding-left: 10px !important; padding-right: 5px !important">
@@ -117,6 +118,7 @@
                                         aria-describedby="basic-addon3">
                                 </div>
                             </td>
+                            @endif
                         </tr>
                     </table>
                     <table

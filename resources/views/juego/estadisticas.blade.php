@@ -8,7 +8,7 @@
                     <tr>
                         <th colspan="6" class=" text-success">
                             <big>
-                                Estadisticas
+                                Estadísticas
                             </big>
                         </th>
                     </tr>

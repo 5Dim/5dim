@@ -1210,6 +1210,11 @@ class Flotas extends Model
                         $planetaColonizar['nombre'] = "Nueva Colonia";
                         $planetaColonizar['creacion'] = time();
                         $planetaColonizar->save();
+
+                        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+                        $jugadorActual->movimientos=0;//ya no puede moverse el planeta
+                        $jugadorActual->save();
+
                         //Log::info("hecho ");
 
                         Recursos::initRecursos($destino->planetas->id);
