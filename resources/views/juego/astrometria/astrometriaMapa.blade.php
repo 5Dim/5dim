@@ -158,7 +158,7 @@
             text-align: center;
         }
         .dg.ac{
-            top:10px !important;
+            top:110px !important;
         }
 
 
