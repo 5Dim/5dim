@@ -157,7 +157,6 @@ class JuegoController extends Controller
         foreach ($planetasJugador as $planeta) {
             $planeta->orden = $request->input($planeta->id . "orden");
             $planeta->color = $request->input($planeta->id . "color");
-            Log::info($request->input($planeta->id . "color"));
             $planeta->save();
         }
 

@@ -142,6 +142,7 @@ class Constantes extends Model
         $constante->codigo = 'recursosPorPuntos';
         $constante->descripcion = 'Cantidad de recursos para conseguir un punto en estadisticas';
         $constante->tipo = 'construccion';
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -151,6 +152,7 @@ class Constantes extends Model
         $constante->codigo = 'multiplicadorMineral';
         $constante->descripcion = 'Multiplicador de puntos por mineral';
         $constante->tipo = 'construccion';
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -160,6 +162,7 @@ class Constantes extends Model
         $constante->codigo = 'multiplicadorCristal';
         $constante->descripcion = 'Multiplicador de puntos por cristal';
         $constante->tipo = 'construccion';
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -169,6 +172,7 @@ class Constantes extends Model
         $constante->codigo = 'multiplicadorGas';
         $constante->descripcion = 'Multiplicador de puntos por gas';
         $constante->tipo = 'construccion';
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -178,6 +182,7 @@ class Constantes extends Model
         $constante->codigo = 'multiplicadorPlastico';
         $constante->descripcion = 'Multiplicador de puntos por plastico';
         $constante->tipo = 'construccion';
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
         $constante = new Constantes();
@@ -187,6 +192,7 @@ class Constantes extends Model
         $constante->codigo = 'multiplicadorCeramica';
         $constante->descripcion = 'Multiplicador de puntos por ceramica';
         $constante->tipo = 'construccion';
+        $constante->votable = 0;
         array_push($producciones, $constante);
 
 
