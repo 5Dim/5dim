@@ -28,7 +28,7 @@
                 <span class="text-danger borderless">  </span>
 
                 <button type="button" class="btn btn-dark me-md-2" onclick="location.href='{{ url('/juego/general') }}'">
-                    Entrar (Cierre ronda actual el miércoles 14-7-2021, apertura viernes 16-7-2021)
+                    Entrar
                 </button>
             </p>
         </div>
