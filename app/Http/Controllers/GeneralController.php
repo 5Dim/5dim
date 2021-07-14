@@ -22,7 +22,6 @@ class GeneralController extends Controller
     {
         extract($this->recursos());
 
-        // dd();
         if (empty(Auth::user()->jugador)) {
             return redirect('/juego/general/' . $tab);
         }

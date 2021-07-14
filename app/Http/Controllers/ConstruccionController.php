@@ -58,6 +58,10 @@ class ConstruccionController extends Controller
         // vemos las dependencias
         $dependencias = Dependencias::where('tipo', 'construccion')->get();
 
+        if (empty(Auth::user()->jugador)) {
+            return redirect('/juego/general/' . $tab);
+        }
+
         //Devolvemos la vista con todas las variables
         return view('juego.construcciones.construccion', compact(
             // Recursos
