@@ -27,7 +27,7 @@
             <p class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <span class="text-danger borderless">  </span>
 
-                <button type="button" class="btn btn-dark me-md-2" onclick="location.href='{{ url('/juego/construccion') }}'">
+                <button type="button" class="btn btn-dark me-md-2" onclick="location.href='{{ url('/juego/general') }}'">
                     Entrar (Cierre ronda actual el miércoles 14-7-2021, apertura viernes 16-7-2021)
                 </button>
             </p>
