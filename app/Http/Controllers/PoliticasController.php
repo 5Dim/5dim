@@ -13,7 +13,7 @@ class PoliticasController extends Controller
     {
         extract($this->recursos());
 
-        if (date('l') == 'Monday') {
+        if (date('l') == 'Monday' || date('l') == 'Tuesday' || date('l') == 'Wednesday') {
             $politicaConstruccion = Constantes::where([['votable', 1], ['tipo', 'construccion']])->get();
             $politicaInvestigacion = Constantes::where([['votable', 1], ['tipo', 'investigacion']])->get();
             $politicaFuselajes = Constantes::where([['votable', 1], ['tipo', 'fuselajes']])->get();
@@ -71,7 +71,8 @@ class PoliticasController extends Controller
         extract($this->recursos());
         $jugador = Auth::user()->jugador;
         $politica = Constantes::where('codigo', $codigo)->first();
-        if (empty($jugador->constantes_id) && $politica->propuesta
+        if (
+            empty($jugador->constantes_id) && $politica->propuesta
         ) {
             // $politica->propuesta = true;
             // $politica->accion = $accion;

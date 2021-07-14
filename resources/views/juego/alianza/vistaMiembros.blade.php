@@ -3,7 +3,7 @@
         <div id="cuadro1" class="table-responsive">
             <table class="table table-borderless table-sm text-center">
                 <tr>
-                    <th colspan="7" class="text-success text-center align-middle">
+                    <th colspan="8" class="text-success text-center align-middle">
                         Miembros
                     </th>
                 </tr>
