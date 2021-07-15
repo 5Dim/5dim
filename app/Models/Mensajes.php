@@ -653,40 +653,40 @@ class Mensajes extends Model
     {
         $contenido = "<p>Bienvenido a la <b>Alfa 0.5</b> de 5dim.es. Ahí van unos consejos de inicio:</p>
                             <ul>
-                            <li>
-                            Si acabas de entrar y no te gusta tu posición de inicio,<span class='text-warning'> puedes mover  tu colonia </span>
-                            desde el menu de planeta (una sola vez), poniendo una posición vacía del mapa.
-                            </li>
-                            <li>
-                                Todo lo relacionado con combates NO está implementado, de modo que no investigues ni
-                                diseñes con armas o blindajes.
-                            </li>
-                            <li>
-                                Céntrate al inicio en subir las minas de tu planeta inicial, priorizando el mineral.
-                            </li>
-                            <li>
-                                Construir una nave con recolección y mandarla a recolectar en los asteroides que tienes al lado de tu
-                                planeta es una buena idea una vez puedas permitirte construirla.
-                            </li>
-                            <li>
-                                Colonizar planetas cercanos es una buena opción, puedes hacerlo incluso con una sonda
-                                ya que es muy barata.
-                            </li>
-                            <li>
-                                Además puedes mandar una sonda (con combustible) a orbitar otras estrellas fuera de tu
-                                visión, ya que también da algo de visión.
-                            </li>
-                            <li>
-                                Crear una alianza o aliarte con amigos es muy buena idea ya que las tecnologías se
-                                comparten de forma automática.
-                            </li>
-                            <li>
-                                Las naves se mejoran automaticamente cada vez que subes una tecnología.
-                            </li>
-                            <li>
-                                Subir la tecnología de fuselajes es siempre muy rentable, pero ten en cuenta que las
-                                naves mas avanzadas son mas caras de construir.
-                            </li>
+                                <li>
+                                    Si acabas de entrar y no te gusta tu posición de inicio,<span class='text-warning'> puedes mover  tu colonia </span>
+                                    desde el menu de planeta (una sola vez), poniendo una posición vacía del mapa.
+                                </li>
+                                <li>
+                                    Todo lo relacionado con combates NO está implementado, de modo que no investigues ni
+                                    diseñes con armas o blindajes.
+                                </li>
+                                <li>
+                                    Céntrate al inicio en subir las minas de tu planeta inicial, priorizando el mineral.
+                                </li>
+                                <li>
+                                    Construir una nave con recolección y mandarla a recolectar en los asteroides que tienes al lado de tu
+                                    planeta es una buena idea una vez puedas permitirte construirla.
+                                </li>
+                                <li>
+                                    Colonizar planetas cercanos es una buena opción, puedes hacerlo incluso con una sonda
+                                    ya que es muy barata.
+                                </li>
+                                <li>
+                                    Además puedes mandar una sonda (con combustible) a orbitar otras estrellas fuera de tu
+                                    visión, ya que también da algo de visión.
+                                </li>
+                                <li>
+                                    Crear una alianza o aliarte con amigos es muy buena idea ya que las tecnologías se
+                                    comparten de forma automática.
+                                </li>
+                                <li>
+                                    Las naves se mejoran automaticamente cada vez que subes una tecnología.
+                                </li>
+                                <li>
+                                    Subir la tecnología de fuselajes es siempre muy rentable, pero ten en cuenta que las
+                                    naves mas avanzadas son mas caras de construir.
+                                </li>
                                 <li>
                                     Si tienes preguntas no dudes en conectarte nuestro canal de <a href='https://discord.gg/2BB7JV48'>discord</a>.
                                 </li>
@@ -711,7 +711,7 @@ class Mensajes extends Model
         $contenido = "<p>Resultados de las votaciones del dia " . $fecha . "</p>";
         $contenido .= "<ul>";
         foreach ($politicasModificadas as $politica) {
-            $contenido .= "<li>" . __('constantes.' . $politica->codigo) . " ha " . $politica->accion == 'Aumentar' ? 'aumentado' : 'disminuido' . " </li>";
+            $contenido .= "<li>" . __('constantes.' . $politica->codigo) . " ha " . ($politica->accion == 'Aumentar' ? 'aumentado' : 'disminuido') . " </li>";
         }
         $contenido .= "</ul>";
         $contenido .= "<p>Ya está disponibles las votaciones de esta semana, ¡pásate a proponer tus politicas!</p>";
