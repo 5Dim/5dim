@@ -1549,7 +1549,7 @@ class Constantes extends Model
                 $politica->save();
             }
         }
-        Log::info($politicasModificadas);
+        // Log::info($politicasModificadas);
         Mensajes::enviarMensajePoliticas($politicasModificadas);
         $propuestas = Constantes::where('propuesta', true)->get();
         foreach ($propuestas as $propuesta) {

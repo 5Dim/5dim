@@ -88,6 +88,6 @@ class PoliticasController extends Controller
     public function aplicarPoliticas()
     {
         Constantes::votacionPolitica();
-        Log::info("VOTACIONES");
+        // Log::info("VOTACIONES");
     }
 }
