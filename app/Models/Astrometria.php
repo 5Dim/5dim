@@ -18,8 +18,34 @@ class Astrometria extends Model
         $sistema = new Planetas();
         $sistema->idioma = 0;
         $sistema->sistema = (int)$numeroSistema;
-        $sistema->imgsol = '/astrometria/img/sistema/sol1.png';
-        $sistema->imgfondo = '/astrometria/img/sistema/f1.png';
+
+        //sumo losdigitos del sistema
+        function sumardigitos($number){
+            $sum = 0;
+            do {
+                $sum += $number % 10;
+            }
+            while ($number = (int) $number / 10);
+            return $sum;
+        }
+
+        $imagensol=1;
+        $fondosistema=30;
+
+        $nimage=sumardigitos($numeroSistema);//Log::info("m ".$nimage);
+        if($nimage<31){
+            $fondosistema=$nimage;
+        }
+        if($nimage>11){
+            $nimage=sumardigitos($nimage);//Log::info("f ".$nimage);
+            if($nimage<11){
+                $imagensol=$nimage;
+            }
+        }
+
+
+        $sistema->imgsol = '/astrometria/img/sistema/sol'.$imagensol.'.png';
+        $sistema->imgfondo = '/astrometria/img/sistema/f'.$fondosistema.'.png';
         $planetas = [];
         if ($seVe) { // Si se ve mandamos los datos reales
             for ($i = 1; $i < 10; $i++) {
