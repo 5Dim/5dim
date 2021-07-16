@@ -305,7 +305,7 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
     nom_planet.text = nompla.toUpperCase();
     nom_planet.anchor.set(0.5);
     nom_planet.position.set(n * 100 + 44, 100);
-    yacimientos="Desconocido";
+    yacimientos="desconocido";
 
     // si no hay nombre de planeta no muestra las marcas azules
     if (this.nompla != 0) {
