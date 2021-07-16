@@ -77,6 +77,7 @@ function creaplanetas() {
                     sistema_solar.planetas[i].b_enviar,
                     sistema_solar.planetas[i].b_verorbita,
                     sistema_solar.planetas[i].naves,
+                    sistema_solar.planetas[i].tipo,
                 );
             }
         }
@@ -167,7 +168,7 @@ function creasistemasolar(texto) {
     sistemas.addChild(b_cerrar);
 }
 //planetas[i] = planeta,nom_pla,nom_jug,alianza,img_planeta,mineral,cristal,gas,plastico,ceramica,b_observar,b_enviar,b_verorbita,naves);
-function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, gas, plastico, ceramica, b_obs, b_envia, b_orbita, naves) {
+function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, gas, plastico, ceramica, b_obs, b_envia, b_orbita, naves,tipoPlaneta) {
     efEnergia = new PIXI.AnimatedSprite(ef_general.animations["energia"]);
     efEnergia.width = 60;
     efEnergia.anchor.set(0.5, 0.5);
@@ -202,6 +203,7 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
     this.bot_verflotas = b_orbita;
     this.naves_orbitando = naves;
     this.img_planet = imagen_planeta;
+    this.tipoPlaneta = tipoPlaneta;
 
     // this.bloqueado=bloqueo; // 0=sin bloqueo, 1=defendiendo, 2=bloqueado
 
@@ -307,6 +309,11 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
     // si no hay nombre de planeta no muestra las marcas azules
     if (this.nompla != 0) {
         var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from("/astrometria/img/marca-nombre-planeta.png")));
+        marca_planet.anchor.set(0.5, 0.5);
+        marca_planet.position.set(n * 100 + 44, 100);
+    } else {
+        nom_planet.text=this.tipoPlaneta.toUpperCase();
+        var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from("/astrometria/img/marca-nombre-tipo.png")));
         marca_planet.anchor.set(0.5, 0.5);
         marca_planet.position.set(n * 100 + 44, 100);
     }

@@ -45,6 +45,7 @@ class Astrometria extends Model
                     $orbita->b_observar = ""; // Posibilidad de incluirlo dentro del mapa
                     $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
                     $orbita->b_verorbita = "/juego/flotas/orbita-tab";
+                    $orbita->tipo=$planetaActual->tipo;
                 } else {
                     $orbita = new \stdClass();
                     $orbita->planeta = $i;
@@ -62,6 +63,7 @@ class Astrometria extends Model
                     $orbita->b_observar = "";
                     $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
                     $orbita->b_verorbita = "/juego/flotas/orbita-tab";
+                    $orbita->tipo="";
                 }
                 array_push($planetas, $orbita);
             }
@@ -88,6 +90,7 @@ class Astrometria extends Model
                 $orbita->b_observar = "";
                 $orbita->b_enviar = "/juego/flotas/enviar/" . $numeroSistema . "/" . $i . "/enviar-tab";
                 $orbita->b_verorbita = "/juego/flotas/orbita-tab";
+                $orbita->tipo="";
                 array_push($planetas, $orbita);
             }
         }
