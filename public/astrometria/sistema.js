@@ -305,17 +305,20 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
     nom_planet.text = nompla.toUpperCase();
     nom_planet.anchor.set(0.5);
     nom_planet.position.set(n * 100 + 44, 100);
+    yacimientos="Desconocido";
 
     // si no hay nombre de planeta no muestra las marcas azules
     if (this.nompla != 0) {
         var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from("/astrometria/img/marca-nombre-planeta.png")));
         marca_planet.anchor.set(0.5, 0.5);
         marca_planet.position.set(n * 100 + 44, 100);
-    } else {
+        yacimientos="yacimientos";
+    } else if (this.mineral>0){
         nom_planet.text=this.tipoPlaneta.toUpperCase();
         var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from("/astrometria/img/marca-nombre-tipo.png")));
         marca_planet.anchor.set(0.5, 0.5);
         marca_planet.position.set(n * 100 + 44, 100);
+        yacimientos="yacimientos";
     }
 
     // formato para el nombre del jugador
@@ -349,7 +352,7 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
         }),
     );
 
-    txt_recursos.text = "yacimientos";
+    txt_recursos.text = yacimientos;
     txt_recursos.anchor.set(0.5);
     txt_recursos.position.set(n * 100 + 44, 140);
 
