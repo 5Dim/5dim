@@ -31,6 +31,9 @@ class CualidadesPlanetas extends Model
         } elseif ($planeta->tipo == "asteroide") {
             $max = Constantes::where('codigo', 'yacimientosasteroidesminimo')->first()->valor;
             $min = Constantes::where('codigo', 'yacimientosasteroidesmaximo')->first()->valor;
+        } elseif ($planeta->tipo == "enclave") {
+            $max = Constantes::where('codigo', 'yacimientosEnclavesMinimo')->first()->valor;
+            $min = Constantes::where('codigo', 'yacimientosEnclavesMaximo')->first()->valor;
         } else {
             $max = 0;
             $min = 0;

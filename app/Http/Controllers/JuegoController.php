@@ -169,12 +169,12 @@ class JuegoController extends Controller
         EnInvestigaciones::terminarColaInvestigaciones();
         EnDisenios::terminarColaDisenios();
         Flotas::llegadaFlotas();
-        Log::info("TERMINAR COLAS");
+        // Log::info("TERMINAR COLAS");
     }
 
     public function sumarPuntosDeVictoria()
     {
         Jugadores::calcularPuntosInversos();
-        Log::info("CALCULAR PUNTOS DE VICTORIA");
+        // Log::info("CALCULAR PUNTOS DE VICTORIA");
     }
 }

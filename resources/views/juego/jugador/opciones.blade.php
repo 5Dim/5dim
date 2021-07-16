@@ -15,12 +15,12 @@
                 </div>
             </div>
             @foreach ($planetasJugador as $planeta)
-                <div class="cajita">
-                    <div class="row">
+                <div class="cajita p-3">
+                    <div class="row align-middle text-center">
                         <div class="col-6">
                             <h4 class="text-success text-center">{{ $planeta->nombre }} ({{ $planeta->estrella }}x{{ $planeta->orbita }})</h4>
                         </div>
-                        <div class="col-1 text-light text-center">Color:</div>
+                        <div class="col-1 text-light text-center align-middle">Color:</div>
                         <div class="col-1">
                             <div class="text-center align-left">
                                 {{-- <label for="{{ $planeta->id . "color" }}" class="form-label text-light">Color</label> --}}

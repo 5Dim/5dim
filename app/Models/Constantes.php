@@ -1242,6 +1242,26 @@ class Constantes extends Model
         array_push($producciones, $constante);
 
         $constante = new Constantes();
+        $constante->valor = 60;
+        $constante->minimo = 45;
+        $constante->maximo = 75;
+        $constante->codigo = 'yacimientosEnclavesMinimo';
+        $constante->descripcion = 'valor inicial minimo de los asteroides vacios';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
+        $constante->valor = 99;
+        $constante->minimo = 90;
+        $constante->maximo = 99;
+        $constante->codigo = 'yacimientosEnclavesMaximo';
+        $constante->descripcion = 'valor inicial maximo de los asteroides vacios';
+        $constante->tipo = 'universo';
+        $constante->votable = 0;
+        array_push($producciones, $constante);
+
+        $constante = new Constantes();
         $constante->valor = 50;
         $constante->minimo = 20;
         $constante->maximo = 80;
@@ -1549,7 +1569,7 @@ class Constantes extends Model
                 $politica->save();
             }
         }
-        Log::info($politicasModificadas);
+        // Log::info($politicasModificadas);
         Mensajes::enviarMensajePoliticas($politicasModificadas);
         $propuestas = Constantes::where('propuesta', true)->get();
         foreach ($propuestas as $propuesta) {
