@@ -39,11 +39,16 @@
                             ])
                         @endforeach
                     @else
-                        @foreach ($politicaConstruccion as $politica)
-                            @include('juego.politica.cajitaPoliticaVotacion', [
-                            'politica'=> $politica,
-                            ])
-                        @endforeach
+                        @if (!empty($politicaConstruccion[0]))
+                            @foreach ($politicaConstruccion as $politica)
+                                @include('juego.politica.cajitaPoliticaVotacion', [
+                                'politica'=> $politica,
+                                ])
+                            @endforeach
+                        @else
+                            <h2 class="text-center text-warning cajita rounded p-2">No hay politicas propuestas en esta
+                                categoria.</h2>
+                        @endif
                     @endif
                 </div>
                 <div class="tab-pane fade" id="investigaciones" role="tabpanel" aria-labelledby="investigaciones-tab">
@@ -54,11 +59,16 @@
                             ])
                         @endforeach
                     @else
-                        @foreach ($politicaInvestigacion as $politica)
-                            @include('juego.politica.cajitaPoliticaVotacion', [
-                            'politica'=> $politica,
-                            ])
-                        @endforeach
+                        @if (!empty($politicaInvestigacion[0]))
+                            @foreach ($politicaInvestigacion as $politica)
+                                @include('juego.politica.cajitaPoliticaVotacion', [
+                                'politica'=> $politica,
+                                ])
+                            @endforeach
+                        @else
+                            <h2 class="text-center text-warning cajita rounded p-2">No hay politicas propuestas en esta
+                                categoria.</h2>
+                        @endif
                     @endif
                 </div>
                 <div class="tab-pane fade " id="fuselajes" role="tabpanel " aria-labelledby="fuselajes-tab">
@@ -69,11 +79,16 @@
                             ])
                         @endforeach
                     @else
-                        @foreach ($politicaFuselajes as $politica)
-                            @include('juego.politica.cajitaPoliticaVotacion', [
-                            'politica'=> $politica,
-                            ])
-                        @endforeach
+                        @if (!empty($politicaFuselajes[0]))
+                            @foreach ($politicaFuselajes as $politica)
+                                @include('juego.politica.cajitaPoliticaVotacion', [
+                                'politica'=> $politica,
+                                ])
+                            @endforeach
+                        @else
+                            <h2 class="text-center text-warning cajita rounded p-2">No hay politicas propuestas en esta
+                                categoria.</h2>
+                        @endif
                     @endif
                 </div>
                 <div class="tab-pane fade" id="universo" role="tabpanel" aria-labelledby="universo-tab">
@@ -84,11 +99,16 @@
                             ])
                         @endforeach
                     @else
-                        @foreach ($politicaUniverso as $politica)
-                            @include('juego.politica.cajitaPoliticaVotacion', [
-                            'politica'=> $politica,
-                            ])
-                        @endforeach
+                        @if (!empty($politicaUniverso[0]))
+                            @foreach ($politicaUniverso as $politica)
+                                @include('juego.politica.cajitaPoliticaVotacion', [
+                                'politica'=> $politica,
+                                ])
+                            @endforeach
+                        @else
+                            <h2 class="text-center text-warning cajita rounded p-2">No hay politicas propuestas en esta
+                                categoria.</h2>
+                        @endif
                     @endif
                 </div>
                 <div class="tab-pane fade" id="instrucciones" role="tabpanel" aria-labelledby="instrucciones-tab">
