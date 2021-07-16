@@ -313,7 +313,7 @@ function Planeta(n, nompla, nomjug, alianza, imagen_planeta, mineral, cristal, g
         marca_planet.anchor.set(0.5, 0.5);
         marca_planet.position.set(n * 100 + 44, 100);
         yacimientos="yacimientos";
-    } else if (this.mineral>0){
+    } else if (this.mineral>0 || this.tipoPlaneta.toUpperCase()=="SOL"){
         nom_planet.text=this.tipoPlaneta.toUpperCase();
         var marca_planet = cont_sistema.addChild(new PIXI.Sprite(PIXI.Texture.from("/astrometria/img/marca-nombre-tipo.png")));
         marca_planet.anchor.set(0.5, 0.5);
