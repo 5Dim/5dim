@@ -100,8 +100,8 @@
                     <div class="col-md-3 text-end">
                         <a class="" href="{{ url('/login') }}"><button type="button"
                                 class="btn btn-primary me-2">Login</button></a>
-                        {{-- <a class="" href="{{ url('/register') }}"><button type="button"
-                                class="btn btn-primary">Registrar</button></a> --}}
+                        <a class="" href="{{ url('/register') }}"><button type="button"
+                                class="btn btn-primary">Registrar</button></a>
                     </div>
                 @endguest
             </div>
