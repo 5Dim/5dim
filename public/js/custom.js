@@ -136,6 +136,8 @@ function calcularRecursos() {
     recursos.fuel = parseFloat(recursos.fuel);
     recursos.ma = parseFloat(recursos.ma);
     recursos.municion = parseFloat(recursos.municion);
+    recursos.creditos = parseFloat(recursos.creditos);
+
     //Calculos
     recursos.personal += produccion.personal / 3600 / 4;
     recursos.mineral += produccion.mineral / 3600 / 4;
