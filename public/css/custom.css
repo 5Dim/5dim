@@ -11,6 +11,10 @@ body.bg {
     color: rgba(255, 255, 255, 0.897) !important;
 }
 
+.text-gray {
+    color: var(--bs-gray);
+}
+
 .dropdown-item:hover {
     background: #292b2c;
 }

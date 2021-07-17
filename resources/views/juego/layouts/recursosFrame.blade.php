@@ -208,7 +208,8 @@
                                 <h5 class="card-title text-primary">{{ Auth::user()->jugador->nombre }}</h5>
                                 <p class="card-text">
                                     @if (strpos(Request::fullUrl(), 'opciones'))
-                                        <a href="{{ url('/juego/jugador/opciones') }}" class="align-middle text-warning">
+                                        <a href="{{ url('/juego/jugador/opciones') }}"
+                                            class="align-middle text-warning">
                                             <i class="fas fa-user-cog"></i> Opciones</a>
                                     @else
                                         <a href="{{ url('/juego/jugador/opciones') }}" class="align-middle">
@@ -224,7 +225,8 @@
                 </div>
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 300px; color: {{ $planetaActual->color }}">
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        style="width: 300px; color: {{ $planetaActual->color }}">
                         {{ $planetaActual->nombre }}
                         ({{ $planetaActual->estrella }}x{{ $planetaActual->orbita }})
                     </button>
@@ -311,7 +313,7 @@
                     <a href="{{ url('/juego/flotas') }}" class="align-middle">
                         <i class="fas fa-space-shuttle"></i> Flotas</a>
                 @endif
-                @if(1>2)
+                @if (1 > 2)
                     @if (strpos(Request::fullUrl(), '/juego/banco'))
                         <a href="{{ url('/juego/banco') }}" class="align-middle text-warning">
                             <i class="fas fa-money-bill-alt"></i> Banco</a>
@@ -396,8 +398,8 @@
                 </footer>
             </div>
         </div>
-        <div class=" flex-column" style="height: 100vh !important; overflow: auto; width: 100%;">
-            <div id="menuC" class="container-fluid ">
+        <div class=" flex-column" style="height: 100vh !important; overflow-x: hidden; width: 100%;">
+            {{-- <div id="menuC" class="container-fluid ">
                 <div id="menuRecursos" class="py-1">
                     <table class="table table-borderless table-sm text-center borderless">
                         <thead>
@@ -559,6 +561,357 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div> --}}
+            <div class="row text-light text-center pt-1" style="background-color: rgba(0, 0, 0, 0.5);">
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Personal
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Personal ocupado en el planeta">
+                                ({{ number_format($personalOcupado, 0, ',', '.') }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="personal">
+                            {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->personal, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Mineral
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="El almacenamiento de mineral es ilimitado">
+                                Ilimitado
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="mineral">
+                            {{ number_format($recursos->mineral, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->mineral, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-block d-sm-none"></div>
+                <div class="w-100 d-none d-sm-block d-md-none"></div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Cristal
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="El almacenamiento de cristal es ilimitado">
+                                Ilimitado
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="cristal">
+                            {{ number_format($recursos->cristal, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->cristal, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-none d-md-block d-lg-none"></div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Gas
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Cantidad de este recurso que puedes almacenar en el planeta">
+                                {{ number_format($capacidadAlmacenes[0]->capacidad, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="gas">
+                            {{ number_format($recursos->gas, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->gas, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-block d-sm-none"></div>
+                <div class="w-100 d-none d-sm-block d-md-none"></div>
+                <div class="w-100 d-none d-lg-block d-xl-none"></div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Plastico
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Cantidad de este recurso que puedes almacenar en el planeta">
+                                {{ number_format($capacidadAlmacenes[1]->capacidad, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="plastico">
+                            {{ number_format($recursos->plastico, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->plastico, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Ceramica
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Cantidad de este recurso que puedes almacenar en el planeta">
+                                {{ number_format($capacidadAlmacenes[2]->capacidad, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="ceramica">
+                            {{ number_format($recursos->ceramica, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->ceramica, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-block d-sm-none"></div>
+                <div class="w-100 d-none d-sm-block d-md-none"></div>
+                <div class="w-100 d-none d-md-block d-lg-none"></div>
+                <div class="w-100 d-none d-xl-block d-xxl-none"></div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Liquidos
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Cantidad de este recurso que puedes almacenar en el planeta">
+                                {{ number_format($capacidadAlmacenes[3]->capacidad, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="liquido">
+                            {{ number_format($recursos->liquido, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->liquido, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Micros
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Cantidad de este recurso que puedes almacenar en el planeta">
+                                {{ number_format($capacidadAlmacenes[4]->capacidad, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="micros">
+                            {{ number_format($recursos->micros, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->micros, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-block d-sm-none"></div>
+                <div class="w-100 d-none d-sm-block d-md-none"></div>
+                <div class="w-100 d-none d-lg-block d-xl-none"></div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Fuel
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Cantidad de este recurso que puedes almacenar en el planeta">
+                                {{ number_format($capacidadAlmacenes[5]->capacidad, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="fuel">
+                            {{ number_format($recursos->fuel, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->fuel, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-none d-md-block d-lg-none"></div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            M-A
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Cantidad de este recurso que puedes almacenar en el planeta">
+                                {{ number_format($capacidadAlmacenes[6]->capacidad, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="ma">
+                            {{ number_format($recursos->ma, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->ma, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-block d-sm-none"></div>
+                <div class="w-100 d-none d-sm-block d-md-none"></div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Munición
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Cantidad de este recurso que puedes almacenar en el planeta">
+                                {{ number_format($capacidadAlmacenes[7]->capacidad, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="municion">
+                            {{ number_format($recursos->municion, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->municion, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1 container-xl">
+                    <div class="row">
+                        <div class="col text-warning">
+                            Créditos
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-danger">
+                            0
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-gray" id="creditos">
+                            {{ number_format($recursos->creditos, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-info">
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="Producción de este recurso por hora">
+                                {{ number_format($produccion->creditos / 24, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
