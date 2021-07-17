@@ -1211,7 +1211,7 @@ class Flotas extends Model
                         $planetaColonizar['creacion'] = time();
                         $planetaColonizar->save();
 
-                        $jugadorActual = Jugadores::find(session()->get('jugadores_id'));
+                        $jugadorActual = Jugadores::find($estaFlota->jugadores_id);
                         $jugadorActual->movimientos=0;//ya no puede moverse el planeta
                         $jugadorActual->save();
 
