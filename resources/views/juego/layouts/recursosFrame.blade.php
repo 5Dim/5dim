@@ -399,172 +399,8 @@
             </div>
         </div>
         <div class=" flex-column" style="height: 100vh !important; overflow-x: hidden; width: 100%;">
-            {{-- <div id="menuC" class="container-fluid ">
-                <div id="menuRecursos" class="py-1">
-                    <table class="table table-borderless table-sm text-center borderless">
-                        <thead>
-                            <tr>
-                                <th class="text-warning borderless">
-                                    Personal
-                                </th>
-                                <th class="text-warning borderless">
-                                    Mineral
-                                </th>
-                                <th class="text-warning borderless">
-                                    Cristal
-                                </th>
-                                <th class="text-warning borderless">
-                                    Gas
-                                </th>
-                                <th class="text-warning borderless">
-                                    Plástico
-                                </th>
-                                <th class="text-warning borderless">
-                                    Cerámica
-                                </th>
-                                <th class="text-warning borderless">
-                                    Liquido
-                                </th>
-                                <th class="text-warning borderless">
-                                    Micros
-                                </th>
-                                <th class="text-warning borderless">
-                                    Fuel
-                                </th>
-                                <th class="text-warning borderless">
-                                    M-A
-                                </th>
-                                <th class="text-warning borderless">
-                                    Munición
-                                </th>
-                                <th class="text-warning borderless">
-                                    Creditos
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-danger borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Personal ocupado en el planeta">({{ number_format($personalOcupado, 0, ',', '.') }})</span>
-                                </td>
-                                <td class="text-danger borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="El almacenamiento de mineral es ilimitado">Ilimitado</span>
-                                </td>
-                                <td class="text-danger borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="El almacenamiento de cristal es ilimitado">Ilimitado</span>
-                                </td>
-                                @foreach ($capacidadAlmacenes as $almacen)
-                                    @if ($loop->index == 3)
-                                    @endif
-                                    <td class="text-danger borderless" data-bs-toggle="tooltip">
-                                        @if ($almacen->capacidad != 'Almacen')
-                                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                title="Cantidad de este recurso que puedes almacenar en el planeta">{{ number_format($almacen->capacidad, 0, ',', '.') }}</span>
-                                        @else
-                                            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                title="Cantidad de este recurso que puedes almacenar en el planeta">{{ $almacen->capacidad }}</span>
-                                        @endif
-                                    </td>
-                                @endforeach
-                                <td class="text-danger borderless"></td>
-                            </tr>
-                            <tr>
-                                <td id="personal" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
-                                </td>
-                                <td id="mineral" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->mineral, 0, ',', '.') }}
-                                </td>
-                                <td id="cristal" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->cristal, 0, ',', '.') }}
-                                </td>
-                                <td id="gas" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->gas, 0, ',', '.') }}
-                                </td>
-                                <td id="plastico" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->plastico, 0, ',', '.') }}
-                                </td>
-                                <td id="ceramica" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->ceramica, 0, ',', '.') }}
-                                </td>
-                                <td id="liquido" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->liquido, 0, ',', '.') }}
-                                </td>
-                                <td id="micros" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->micros, 0, ',', '.') }}
-                                </td>
-                                <td id="fuel" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->fuel, 0, ',', '.') }}
-                                </td>
-                                <td id="ma" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->ma, 0, ',', '.') }}
-                                </td>
-                                <td id="municion" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->municion, 0, ',', '.') }}
-                                </td>
-                                <td id="crditos" class="borderless" style="color: rgb(214, 214, 214)">
-                                    {{ number_format($recursos->creditos, 0, ',', '.') }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->personal, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->mineral, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->cristal, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->gas, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->plastico, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->ceramica, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->liquido, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->micros, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->fuel, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->ma, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->municion, 0, ',', '.') }}</span>
-                                </td>
-                                <td class="text-info borderless">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Producción de este recurso por hora">{{ number_format($produccion->creditos / 24, 0, ',', '.') }}</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div> --}}
-            <div class="row text-light text-center pt-1" style="background-color: rgba(0, 0, 0, 0.5);">
-                <div class="col-1 container-xl">
+            <div class="row text-light text-center align-items-center pt-1" style="background-color: rgba(0, 0, 0, 0.5);">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Personal
@@ -580,7 +416,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="personal">
-                            {{ number_format($recursos->personal - $personalOcupado, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->personal) - $personalOcupado, 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -592,7 +428,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Mineral
@@ -608,7 +444,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="mineral">
-                            {{ number_format($recursos->mineral, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->mineral), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -622,7 +458,7 @@
                 </div>
                 <div class="w-100 d-block d-sm-none"></div>
                 <div class="w-100 d-none d-sm-block d-md-none"></div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Cristal
@@ -638,7 +474,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="cristal">
-                            {{ number_format($recursos->cristal, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->cristal), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -651,7 +487,7 @@
                     </div>
                 </div>
                 <div class="w-100 d-none d-md-block d-lg-none"></div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Gas
@@ -667,7 +503,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="gas">
-                            {{ number_format($recursos->gas, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->gas), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -682,7 +518,7 @@
                 <div class="w-100 d-block d-sm-none"></div>
                 <div class="w-100 d-none d-sm-block d-md-none"></div>
                 <div class="w-100 d-none d-lg-block d-xl-none"></div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Plastico
@@ -698,7 +534,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="plastico">
-                            {{ number_format($recursos->plastico, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->plastico), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -710,7 +546,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Ceramica
@@ -726,7 +562,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="ceramica">
-                            {{ number_format($recursos->ceramica, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->ceramica), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -742,7 +578,7 @@
                 <div class="w-100 d-none d-sm-block d-md-none"></div>
                 <div class="w-100 d-none d-md-block d-lg-none"></div>
                 <div class="w-100 d-none d-xl-block d-xxl-none"></div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Liquidos
@@ -758,7 +594,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="liquido">
-                            {{ number_format($recursos->liquido, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->liquido), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -770,7 +606,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Micros
@@ -786,7 +622,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="micros">
-                            {{ number_format($recursos->micros, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->micros), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -801,7 +637,7 @@
                 <div class="w-100 d-block d-sm-none"></div>
                 <div class="w-100 d-none d-sm-block d-md-none"></div>
                 <div class="w-100 d-none d-lg-block d-xl-none"></div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Fuel
@@ -817,7 +653,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="fuel">
-                            {{ number_format($recursos->fuel, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->fuel), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -830,7 +666,7 @@
                     </div>
                 </div>
                 <div class="w-100 d-none d-md-block d-lg-none"></div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             M-A
@@ -846,7 +682,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="ma">
-                            {{ number_format($recursos->ma, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->ma), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -860,7 +696,7 @@
                 </div>
                 <div class="w-100 d-block d-sm-none"></div>
                 <div class="w-100 d-none d-sm-block d-md-none"></div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Munición
@@ -876,7 +712,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="municion">
-                            {{ number_format($recursos->municion, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->municion), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
@@ -888,7 +724,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-1 container-xl">
+                <div class="col container-xl">
                     <div class="row">
                         <div class="col text-warning">
                             Créditos
@@ -901,7 +737,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-gray" id="creditos">
-                            {{ number_format($recursos->creditos, 0, ',', '.') }}
+                            {{ number_format(floor($recursos->creditos), 0, ',', '.') }}
                         </div>
                     </div>
                     <div class="row">
