@@ -17,6 +17,7 @@ use App\Models\Investigaciones;
 use App\Models\Jugadores;
 use App\Models\MensajesIntervinientes;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class GruposNavesController extends Controller
 {
@@ -56,5 +57,16 @@ class GruposNavesController extends Controller
             'listaGruposNaves',
             'constantesC'
         ));
+    }
+
+    public function GuardarGruposNaves(Request $request) {
+
+        Log::info("llegando...");
+        $gruponave = $request->input('gruponave');
+        Log::info($request);
+        Log::info($gruponave);
+
+        return "ok";
+
     }
 }

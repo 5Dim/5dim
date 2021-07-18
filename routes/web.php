@@ -199,4 +199,5 @@ Route::middleware(
 
     //Grupos Naves
     Route::get('/juego/gruposNaves/{tab?}', [GruposNavesController::class, 'index']);
+    Route::post('/juego/gruposNaves/guardar/gruposnaves', [GruposNavesController::class, 'GuardarGruposNaves']);
 });

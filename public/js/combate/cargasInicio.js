@@ -176,7 +176,8 @@ function Creagrupo(grupoacrear) { // crea el grupo con su circulo
     }
 
     gnave[ngrupo] = new PIXI.Container();
-    gnave[ngrupo].ngrupo = ngrupo;
+    gnave[ngrupo].id = grupoacrear[0].id; //id de la DB
+    gnave[ngrupo].ngrupo = ngrupo;  //ordinal de cliente
     gnave[ngrupo].tamagrupo = tamagrupo;
     gnave[ngrupo].x = posix;
     gnave[ngrupo].y = posiy;

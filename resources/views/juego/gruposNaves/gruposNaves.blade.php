@@ -67,7 +67,7 @@
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success col-12" onclick="BotonPausa()">
+                        <button type="button" class="btn btn-outline-success col-12" id="guardarGrupos" onclick="guardarGrupos()">
                             <i class="fas fa-arrow-alt-circle-up"></i> Guardar Todo
                         </button>
                     </td>
@@ -136,18 +136,16 @@ window.Handlebars.registerHelper('select', function( value, options ){
     })()
 
     function cargarGruposNavesExistentes(){
-        $('#gruposNavesHay').load('{{ asset("templates/gruposNaves.js") }}', function(){
+            $('#gruposNavesHay').load('{{ asset("templates/gruposNaves.js") }}', function(){
 
-        var template = Handlebars.compile( $('#cajitaGruposExisten').text() );
+            var template = Handlebars.compile( $('#cajitaGruposExisten').text() );
 
-        var data = {
-            listaGruposNaves:listaGruposNaves
-        };
+            var data = {
+                listaGruposNaves:listaGruposNaves
+            };
 
-        $('#gruposNavesHay').append( template(data) );
-});
-
-
+            $('#gruposNavesHay').append( template(data) );
+        });
     }
 
 </script>
