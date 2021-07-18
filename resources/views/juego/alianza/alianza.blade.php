@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <nav class="cajita-info rounded">
+    <nav class="cajita-dark rounded">
         <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
             align="center">
             <a class="nav-item nav-link active" id="general-tab" data-bs-toggle="tab" href="#general" role="tab"
