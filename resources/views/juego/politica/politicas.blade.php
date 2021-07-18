@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
-            <nav>
+            <nav class="cajita-info rounded">
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
                     <a class="nav-item nav-link" id="construcciones-tab" data-bs-toggle="tab" href="#construcciones"

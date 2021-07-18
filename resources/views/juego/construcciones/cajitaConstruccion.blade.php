@@ -1,4 +1,4 @@
-<div class="cajita rounded text-center p-2">
+<div class="cajita-warning rounded text-center p-2">
     {{-- CABECERA --}}
     <div class="row align-items-center">
         <div class="col text-success fs-5 fw-bold">
