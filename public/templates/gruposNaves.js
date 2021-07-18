@@ -17,12 +17,12 @@
                             {{#if visible}}
                                 <tr>
                                     <td class="text-light">
-                                        <input id="nombreGrupo" type="text" class="form-control input"
+                                        <input id="nombreGrupo{{id}}" type="text" class="form-control input"
                                             placeholder="Nombre del grupo" value="{{nombre}}"/>
                                     </td>
                                     <td class="text-light">
                                         <div>
-                                            <select name="actitud" id="actitud"
+                                            <select name="actitud" id="actitud{{id}}"
                                                 class="select form-control">
                                                     {{#select actitud}}
                                                         <option value="Huida" >Huida</option>
@@ -36,7 +36,7 @@
                                     </td>
                                     <td class="text-light">
                                         <div>
-                                            <select name="objetivo" id="objetivo"
+                                            <select name="objetivo" id="objetivo{{id}}"
                                                 class="select form-control">
                                                     {{#select objetivo}}
                                                         <option value="MasHace">Al que mas daño me hace</option>
@@ -48,7 +48,7 @@
                                     </td>
                                     <td class="text-light">
                                         <div>
-                                            <select name="relacion" id="relacion"
+                                            <select name="relacion" id="relacion{{id}}"
                                                 class="select form-control">
                                                     {{#select relacion}}
                                                         <option value="Ninguna" >Ninguna</option>
@@ -60,19 +60,24 @@
                                     </td>
                                     <td class="text-light">
                                         <div>
-                                            <select name="objrelacion" id="objrelacion"
+                                            <select name="objrelacion" id="objrelacion{{id}}"
                                                 class="select form-control">
-                                                <option value="Ninguna" selected>Ninguna</option>
+                                                    {{#select grupos_naves_id}}
+                                                        <option value="Ninguna" selected>Ninguna</option>
+                                                        {{#each ../listaGruposNaves}}
+                                                            <option value="{{id}}">{{nombre}}</option>
+                                                        {{/each}}
+                                                    {{/select}}
                                             </select>
                                         </div>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-danger col-12" onclick="BorrarGrupo({{id}})">
+                                        <button type="button" class="btn btn-outline-danger col-12" onclick="BorrarGrupo({{id}})" id="botonBorrarGrupo{{id}}">
                                         <i class="fa fa-trash "></i> Borrar
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-success col-12" onclick="ModificarGrupo({{id}})">
+                                        <button type="button" class="btn btn-outline-success col-12" onclick="ModificarGrupo({{id}})" id="botonModificarGrupo{{id}}">
                                         <i class="fa fa-arrow-alt-circle-up "></i> Modificar
                                         </button>
                                     </td>

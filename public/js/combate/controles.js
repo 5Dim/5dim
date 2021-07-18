@@ -181,15 +181,19 @@ function DeselectGrupo() {
                 if(posifinaly<0){posifinaly=0;}
                 if(posifinaly>altoDespliegue){posifinaly=altoDespliegue;}
 
-                //esteGrupo.x=posifinalx;
-                //esteGrupo.y=posifinaly;
-                //generar 1 por segundo
-                //movGrupo[Math.round(tiempo)+1]=[posifinalx,posifinaly];
-                //movGrupos[gruposSeleccionados[0].ngrupo]=movGrupo;
+                posifinalx=Math.round(posifinalx);
+                posifinaly=Math.round(posifinaly);
+
                 esteGrupo.destinox=posifinalx;
                 esteGrupo.destinoy=posifinaly;
                 esteGrupo.moverse=true;
                 calculoVelmaxGrupo(esteGrupo);
+
+                var grupoDLista= $.grep(listaGruposNaves, function(grupo) {
+                    return grupo.id == esteGrupo.id;
+                    })[0];
+                grupoDLista.coordx=posifinalx;
+                grupoDLista.coordy=posifinaly;
             }
 
         }
@@ -342,8 +346,6 @@ function mousemove(event) {
                 pdestino[3] = circuloDestino.y + grupoSelecionado.y;
             }
         }
-
-
 		return;
 	}
 	DeselectGrupo();

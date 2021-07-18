@@ -148,6 +148,11 @@ window.Handlebars.registerHelper('select', function( value, options ){
         });
     }
 
+    $(document).ready(function() {
+
+
+        });
+
 </script>
 
 @endsection

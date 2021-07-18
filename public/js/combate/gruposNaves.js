@@ -178,7 +178,7 @@ function CrearGrupoYa(nombre="",actitud="huida",objetivo="dhago"){
     respawgrupo=new Array();
     grupo=new Array();
 
-    grupo['id']=1*gnave.length;
+    grupo['id']=1+gnave[gnave.length-1].id;//1*gnave.length;
     grupo['coordx']=50+10*gnave.length;
     grupo['coordy']=50+10*gnave.length;
     if (nombre.length<1){nombre="grupo"+gnave.length;}
@@ -257,6 +257,26 @@ function DivideNavesGrupoNave(nnave,ngrupo,cantidad){
     naveaCrear=CrearNaveGrupoNaves(disenio,cantidad,turnoactual,nave.length);
     Creanave(naveaCrear,ngrupo);
     nave[nnave].cantidad-=cantidad;
+}
+
+
+function ModificarGrupo(idGrupo){
+
+    var ggnaves= $.grep(gnave, function(grupo) {
+        return grupo.id == idGrupo;
+        })[0];
+
+    var grupoDLista= $.grep(listaGruposNaves, function(grupo) {
+        return grupo.id == idGrupo;
+        })[0];
+
+        grupoDLista.nombre=$("#nombreGrupo"+idGrupo).val();
+        grupoDLista.actitud=$("#actitud"+idGrupo).val();
+        grupoDLista.objetivo=$("#objetivo"+idGrupo).val();
+        grupoDLista.relacion=$("#relacion"+idGrupo).val();
+        grupoDLista.relacion=$("#objrelacion"+idGrupo).val();
+        grupoDLista.coordx=ggnaves.destinox;
+        grupoDLista.coordy=ggnaves.destinoy;
 }
 
 let GuardarGruposTxt="Guardar Todo";
