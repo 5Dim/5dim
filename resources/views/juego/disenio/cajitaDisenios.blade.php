@@ -1,4 +1,4 @@
-<div class="row rounded cajita">
+{{-- <div class="row rounded cajita">
     <div class="col-12">
         <div id="cuadro1" class="table-responsive">
             <table class="table table-sm table-dark table-borderless text-center overflow-auto" style="--bs-table-bg: transparent !important; margin-bottom: 0px !important;">
@@ -330,7 +330,18 @@
                         </div>
                     </td>
                     <td>
-                        @if ($nivelHangar < 1 || $disenio->costes->mineral > $recursos->mineral || $disenio->costes->cristal > $recursos->cristal || $disenio->costes->gas > $recursos->gas || $disenio->costes->plastico > $recursos->plastico || $disenio->costes->ceramica > $recursos->ceramica || $disenio->costes->liquidos > $recursos->liquidos || $disenio->costes->micros > $recursos->micros || $disenio->costes->personal > $recursos->personal || empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
+                        @if ($nivelHangar < 1 ||
+                            $disenio->costes->mineral > $recursos->mineral ||
+                            $disenio->costes->cristal > $recursos->cristal ||
+                            $disenio->costes->gas > $recursos->gas ||
+                            $disenio->costes->plastico > $recursos->plastico ||
+                            $disenio->costes->ceramica > $recursos->ceramica ||
+                            $disenio->costes->liquidos > $recursos->liquidos ||
+                            $disenio->costes->micros > $recursos->micros ||
+                            $disenio->costes->personal > $recursos->personal ||
+                            empty(
+                                Auth::user()->jugador->disenios->where('id', $disenio->id)->first()
+                            ))
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="fa fa-plus"></i> Construir nave
                             </button>
@@ -344,7 +355,9 @@
                 </tr>
                 <tr>
                     <td>
-                        @if (empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
+                        @if (empty(
+                            Auth::user()->jugador->disenios->where('id', $disenio->id)->first()
+                        ))
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="fa fa-eraser "></i> Diseño borrado
                             </button>
@@ -370,7 +383,9 @@
                         </div>
                     </td>
                     <td>
-                        @if (empty(Auth::user()->jugador->disenios->where('id', $disenio->id)->first()))
+                        @if (empty(
+                            Auth::user()->jugador->disenios->where('id', $disenio->id)->first()
+                        ))
                             <button type="button" class="btn btn-outline-light col-12" disabled>
                                 <i class="fa fa-edit "></i> Diseño borrado
                             </button>
@@ -428,6 +443,365 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</div> --}}
+
+<div class="cajita-warning rounded text-center p-2">
+    {{-- CABECERA --}}
+    <div class="row align-items-center text-success">
+        <div class="col fs-5 fw-bold">
+            {{ $disenio->nombre }}
+        </div>
+        <div class="col">
+            Modelo: {{ ucfirst(strtolower($disenio->fuselajes->codigo)) }}
+        </div>
+        <div class="col">
+            Tamaño: {{ $disenio->fuselajes->tamanio }}
+        </div>
+        <div class="col">
+            Creador: {{ $disenio->creador->nombre }}
+        </div>
+        <div class="col">
+            Cantidad: {{ !empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()) ? number_format($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad, 0, ',', '.') : 0 }}
+        </div>
+    </div>
+
+    {{-- CUERPO --}}
+    <div class="row align-items-center">
+        <div class="col d-none d-sm-block">
+            <img class="img-fluid"
+                src="{{ asset('img/fotos naves/skin' . $disenio->skin . '/nave' . $disenio->fuselajes_id . '.png') }}">
+        </div>
+
+        <div class="col {{ $disenio->costes->mineral == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->mineral == 0 ? 'text-muted' : 'text-warning' }}">
+                    Mineral
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->mineral > 0 && $disenio->costes->mineral > $recursos->mineral ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para la construcción">
+                        {{ $disenio->costes->mineral > 0 ? number_format($disenio->costes->mineral, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->mineral > 0 && $disenio->costes->mineral > $recursos->mineral ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de construir">
+                        {{ $disenio->costes->mineral > 0 ? number_format($recursos->mineral - $disenio->costes->mineral, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col {{ $disenio->costes->cristal == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->cristal == 0 ? 'text-muted' : 'text-warning' }}">
+                    Cristal
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->cristal > 0 && $disenio->costes->cristal > $recursos->cristal ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para la construcción">
+                        {{ $disenio->costes->cristal > 0 ? number_format($disenio->costes->cristal, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->cristal > 0 && $disenio->costes->cristal > $recursos->cristal ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de construir">
+                        {{ $disenio->costes->cristal > 0 ? number_format($recursos->cristal - $disenio->costes->cristal, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col {{ $disenio->costes->gas == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->gas == 0 ? 'text-muted' : 'text-warning' }}">
+                    Gas
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->gas > 0 && $disenio->costes->gas > $recursos->gas ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para la construcción">
+                        {{ $disenio->costes->gas > 0 ? number_format($disenio->costes->gas, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->gas > 0 && $disenio->costes->gas > $recursos->gas ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de construir">
+                        {{ $disenio->costes->gas > 0 ? number_format($recursos->gas - $disenio->costes->gas, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col {{ $disenio->costes->plastico == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->plastico == 0 ? 'text-muted' : 'text-warning' }}">
+                    Plastico
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->plastico > 0 && $disenio->costes->plastico > $recursos->plastico ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para la construcción">
+                        {{ $disenio->costes->plastico > 0 ? number_format($disenio->costes->plastico, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->plastico > 0 && $disenio->costes->plastico > $recursos->plastico ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de construir">
+                        {{ $disenio->costes->plastico > 0 ? number_format($recursos->plastico - $disenio->costes->plastico, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col {{ $disenio->costes->ceramica == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->ceramica == 0 ? 'text-muted' : 'text-warning' }}">
+                    Ceramica
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->ceramica > 0 && $disenio->costes->ceramica > $recursos->ceramica ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para la construcción">
+                        {{ $disenio->costes->ceramica > 0 ? number_format($disenio->costes->ceramica, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->ceramica > 0 && $disenio->costes->ceramica > $recursos->ceramica ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de construir">
+                        {{ $disenio->costes->ceramica > 0 ? number_format($recursos->ceramica - $disenio->costes->ceramica, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col {{ $disenio->costes->liquido == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->liquido == 0 ? 'text-muted' : 'text-warning' }}">
+                    Liquido
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->liquido > 0 && $disenio->costes->liquido > $recursos->liquido ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para la construcción">
+                        {{ $disenio->costes->liquido > 0 ? number_format($disenio->costes->liquido, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->liquido > 0 && $disenio->costes->liquido > $recursos->liquido ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de construir">
+                        {{ $disenio->costes->liquido > 0 ? number_format($recursos->liquido - $disenio->costes->liquido, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col {{ $disenio->costes->micros == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->micros == 0 ? 'text-muted' : 'text-warning' }}">
+                    Micros
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->micros > 0 && $disenio->costes->micros > $recursos->micros ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para la construcción">
+                        {{ $disenio->costes->micros > 0 ? number_format($disenio->costes->micros, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->micros > 0 && $disenio->costes->micros > $recursos->micros ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de construir">
+                        {{ $disenio->costes->micros > 0 ? number_format($recursos->micros - $disenio->costes->micros, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col {{ $disenio->costes->personal == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->personal == 0 ? 'text-muted' : 'text-warning' }}">
+                    Personal
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->personal > 0 && $disenio->costes->personal > $recursos->personal ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Coste de este recurso para la construcción">
+                        {{ $disenio->costes->personal > 0 ? number_format($disenio->costes->personal, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col p-1 {{ $disenio->costes->personal > 0 && $disenio->costes->personal > $recursos->personal ? 'text-danger' : 'text-light' }}">
+                    <span data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Recursos restantes una vez demos la orden de construir">
+                        {{ $disenio->costes->personal > 0 ? number_format($recursos->personal - $disenio->costes->personal, 0, ',', '.') : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col {{ $disenio->costes->micros == 0 ? 'd-none d-lg-block' : '' }}">
+            <div class="row">
+                <div class="col p-1 {{ $disenio->costes->micros == 0 ? 'text-muted' : 'text-warning' }}">
+                    Tiempo
+                </div>
+            </div>
+            <div class="row">
+                <div id="tiempo{{ $disenio->id }}"
+                    class="col p-1 {{ $disenio->costes->micros > 0 && $disenio->costes->micros > $recursos->micros ? 'text-danger' : 'text-light' }}">
+                    {{ floor($disenio->mejoras->tiempo / (1 + ($constanteVelocidad * $nivelHangar) / 100) / 3600) }}:{{ gmdate('i:s', round($disenio->mejoras->tiempo / (1 + ($constanteVelocidad * $nivelHangar) / 100))) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- BOTONERA --}}
+    <div class="row align-items-center">
+        <div class="col">
+            @if ($nivelHangar < 1 || empty($planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()) || $planetaActual->estacionadas->where('disenios_id', $disenio->id)->first()->cantidad == 0)
+                <button type="button" class="btn btn-outline-light col-12" disabled>
+                    <i class="fa fa-recycle"></i> Reciclar nave
+                </button>
+            @else
+                <button type="button" class="btn btn-danger col-12" onclick="reciclarDisenio({{ $disenio->id }})">
+                    <i class="fa fa-recycle"></i> Reciclar nave
+                </button>
+            @endif
+        </div>
+
+        <div class="col">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text bg-dark text-light">
+                    <button type="button" class="btn btn-dark btn-sm text-warning"
+                        onclick='resetCantidad(@json($disenio->costes), @json($disenio->id))'>
+                        1
+                    </button>
+                </span>
+                <input type="number" class="form-control input" value="1" aria-label="" aria-describedby="basic-addon2"
+                    id="disenio{{ $disenio->id }}" min="1"
+                    onkeyup='recalculaCostos(@json($disenio->id), @json($disenio->costes))'
+                    onchange='recalculaCostos(@json($disenio->id), @json($disenio->costes))'>
+                <span class="input-group-text bg-dark text-light">
+                    <button type="button" class="btn btn-dark btn-sm text-warning"
+                        onclick='calculaMaximo(@json($disenio->costes), @json($disenio->id))'>
+                        M
+                    </button>
+                </span>
+            </div>
+        </div>
+
+        <div class="col">
+            @if ($nivelHangar < 1 ||
+                $disenio->costes->mineral > $recursos->mineral ||
+                $disenio->costes->cristal > $recursos->cristal ||
+                $disenio->costes->gas > $recursos->gas ||
+                $disenio->costes->plastico > $recursos->plastico ||
+                $disenio->costes->ceramica > $recursos->ceramica ||
+                $disenio->costes->liquidos > $recursos->liquidos ||
+                $disenio->costes->micros > $recursos->micros ||
+                $disenio->costes->personal > $recursos->personal ||
+                empty(
+                    Auth::user()->jugador->disenios->where('id', $disenio->id)->first()
+                ))
+                <button type="button" class="btn btn-outline-light col-12" disabled>
+                    <i class="fa fa-plus"></i> Construir nave
+                </button>
+            @else
+                <button type="button" class="btn btn-success col-12" onclick="construirDisenio({{ $disenio->id }})"
+                    id="disenioConstruir{{ $disenio->id }}">
+                    <i class="fa fa-plus"></i> Construir nave
+                </button>
+            @endif
+        </div>
+    </div>
+
+    {{-- BOTONERA 2 --}}
+    <div class="row align-items-center">
+        <div class="col">
+            @if (empty(
+                Auth::user()->jugador->disenios->where('id', $disenio->id)->first()
+            ))
+                <button type="button" class="btn btn-outline-light col-12" disabled>
+                    <i class="fa fa-eraser "></i> Diseño borrado
+                </button>
+            @else
+                <a type="button" class="btn btn-outline-danger col-12"
+                    href="{{ url('juego/disenio/borrarDisenio/' . $disenio->id) }}">
+                    <i class="fa fa-eraser "></i> Borrar diseño
+                </a>
+            @endif
+        </div>
+
+        <div class="col">
+            <div class="accordion accordion-flush" id="button{{ $disenio->id }}">
+                <div class="accordion-item bg-transparent">
+                    <h2 class="accordion-header" id="flush-headingOne" style="margin-bottom: 5px;">
+                        <a class="btn btn-outline-info col-12" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#info{{ $disenio->id }}"
+                            aria-expanded="false" aria-controls="info{{ $disenio->id }}"
+                            onclick="MostrarResultadoDisenio({{ $disenio }})">
+                            <i class="fa fa-info"></i> Información
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            @if (empty(
+                Auth::user()->jugador->disenios->where('id', $disenio->id)->first()
+            ))
+                <button type="button" class="btn btn-outline-light col-12" disabled>
+                    <i class="fa fa-edit "></i> Diseño borrado
+                </button>
+            @else
+                <a type="button" class="btn btn-outline-success col-12"
+                    href="{{ url('juego/disenio/editarDisenio/' . $disenio->id) }}">
+                    <i class="fa fa-edit "></i> Editar diseño
+                </a>
+            @endif
         </div>
     </div>
 </div>

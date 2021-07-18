@@ -59,7 +59,7 @@ table.anchofijo {
 .active {
     background-color: #3c3e41 !important;
     color: white !important;
-    /* border: 1px solid orange !important; */
+    border: 1px solid #5bc0de !important;
 }
 
 .tab-content > .active {
