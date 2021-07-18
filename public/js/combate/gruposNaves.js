@@ -260,23 +260,23 @@ function DivideNavesGrupoNave(nnave,ngrupo,cantidad){
 }
 
 
-function ModificarGrupo(idGrupo){
+function ModificarGrupos(){
 
-    var ggnaves= $.grep(gnave, function(grupo) {
-        return grupo.id == idGrupo;
-        })[0];
+    gnave.forEach(ggnaves => {
+        idGrupo=ggnaves.id;
 
-    var grupoDLista= $.grep(listaGruposNaves, function(grupo) {
-        return grupo.id == idGrupo;
-        })[0];
+        var grupoDLista= $.grep(listaGruposNaves, function(grupo) {
+            return grupo.id == idGrupo;
+            })[0];
 
-        grupoDLista.nombre=$("#nombreGrupo"+idGrupo).val();
-        grupoDLista.actitud=$("#actitud"+idGrupo).val();
-        grupoDLista.objetivo=$("#objetivo"+idGrupo).val();
-        grupoDLista.relacion=$("#relacion"+idGrupo).val();
-        grupoDLista.relacion=$("#objrelacion"+idGrupo).val();
-        grupoDLista.coordx=ggnaves.destinox;
-        grupoDLista.coordy=ggnaves.destinoy;
+            grupoDLista.nombre=$("#nombreGrupo"+idGrupo).val();
+            grupoDLista.actitud=$("#actitud"+idGrupo).val();
+            grupoDLista.objetivo=$("#objetivo"+idGrupo).val();
+            grupoDLista.relacion=$("#relacion"+idGrupo).val();
+            grupoDLista.grupos_naves_id=$("#objrelacion"+idGrupo).val();
+            grupoDLista.coordx=ggnaves.destinox;
+            grupoDLista.coordy=ggnaves.destinoy;
+    });
 }
 
 let GuardarGruposTxt="Guardar Todo";

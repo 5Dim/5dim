@@ -15,15 +15,15 @@
                             </tr>
                             {{#each listaGruposNaves}}
                             {{#if visible}}
-                                <tr>
+                                <tr id="grupoDeNaves{{id}}">
                                     <td class="text-light">
-                                        <input id="nombreGrupo{{id}}" type="text" class="form-control input"
+                                        <input id="nombreGrupo{{id}}" type="text" class="form-control input nombreDgrupo" onfocusout="ModificarGrupos()"
                                             placeholder="Nombre del grupo" value="{{nombre}}"/>
                                     </td>
                                     <td class="text-light">
                                         <div>
-                                            <select name="actitud" id="actitud{{id}}"
-                                                class="select form-control">
+                                            <select name="actitud" id="actitud{{id}}" onchange="ModificarGrupos()"
+                                                class="select form-control selectorDgrupo">
                                                     {{#select actitud}}
                                                         <option value="Huida" >Huida</option>
                                                         <option value="MantenerDistancia">Mantener Distancia</option>
@@ -36,8 +36,8 @@
                                     </td>
                                     <td class="text-light">
                                         <div>
-                                            <select name="objetivo" id="objetivo{{id}}"
-                                                class="select form-control">
+                                            <select name="objetivo" id="objetivo{{id}}" onchange="ModificarGrupos()"
+                                                class="select form-control selectorDgrupo">
                                                     {{#select objetivo}}
                                                         <option value="MasHace">Al que mas daño me hace</option>
                                                         <option value="DanioHago">Al que mas daño hago yo</option>
@@ -48,8 +48,8 @@
                                     </td>
                                     <td class="text-light">
                                         <div>
-                                            <select name="relacion" id="relacion{{id}}"
-                                                class="select form-control">
+                                            <select name="relacion" id="relacion{{id}}" onchange="ModificarGrupos()"
+                                                class="select form-control selectorDgrupo">
                                                     {{#select relacion}}
                                                         <option value="Ninguna" >Ninguna</option>
                                                         <option value="EscoltaCorta">Escolta corta</option>
@@ -60,12 +60,14 @@
                                     </td>
                                     <td class="text-light">
                                         <div>
-                                            <select name="objrelacion" id="objrelacion{{id}}"
-                                                class="select form-control">
+                                            <select name="objrelacion" id="objrelacion{{id}}" onchange="ModificarGrupos()"
+                                                class="select form-control selectorDgrupo">
                                                     {{#select grupos_naves_id}}
                                                         <option value="Ninguna" selected>Ninguna</option>
                                                         {{#each ../listaGruposNaves}}
-                                                            <option value="{{id}}">{{nombre}}</option>
+                                                            {{#if visible}}
+                                                                <option value="{{id}}">{{nombre}}</option>
+                                                            {{/if}}
                                                         {{/each}}
                                                     {{/select}}
                                             </select>
@@ -74,11 +76,6 @@
                                     <td>
                                         <button type="button" class="btn btn-outline-danger col-12" onclick="BorrarGrupo({{id}})" id="botonBorrarGrupo{{id}}">
                                         <i class="fa fa-trash "></i> Borrar
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-success col-12" onclick="ModificarGrupo({{id}})" id="botonModificarGrupo{{id}}">
-                                        <i class="fa fa-arrow-alt-circle-up "></i> Modificar
                                         </button>
                                     </td>
                                 </tr>

@@ -135,23 +135,24 @@ window.Handlebars.registerHelper('select', function( value, options ){
     cargarGruposNavesExistentes();
     })()
 
-    function cargarGruposNavesExistentes(){
-            $('#gruposNavesHay').load('{{ asset("templates/gruposNaves.js") }}', function(){
+function cargarGruposNavesExistentes(){
+        $('#gruposNavesHay').load('{{ asset("templates/gruposNaves.js") }}', function(){
 
-            var template = Handlebars.compile( $('#cajitaGruposExisten').text() );
+        var template = Handlebars.compile( $('#cajitaGruposExisten').text() );
 
-            var data = {
-                listaGruposNaves:listaGruposNaves
-            };
+        var data = {
+            listaGruposNaves:listaGruposNaves
+        };
 
-            $('#gruposNavesHay').append( template(data) );
-        });
-    }
+        $('#gruposNavesHay').append( template(data) );
+    });
+}
 
-    $(document).ready(function() {
+$(document).ready(function() {
 
 
-        });
+
+});
 
 </script>
 

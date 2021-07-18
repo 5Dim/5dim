@@ -143,20 +143,27 @@ grupoSelecionado = new Array();
 
 function SeleccionGrupo(event) {
 	//console.log("grupo");
-    DeselectNave();
-	DeselectGrupo();
-	ngrupo = event.currentTarget.ngrupo;
-	event.currentTarget.alpha = 2;
-	grupoSelecionado.ngrupo = ngrupo;
-	grupoSelecionado.x = gnave[grupoSelecionado.ngrupo].x;
-	grupoSelecionado.y = gnave[grupoSelecionado.ngrupo].y;
-	gruposSeleccionados.push(grupoSelecionado);
-	CreaCirculoDestino(gnave[ngrupo].x, gnave[ngrupo].y, gnave[ngrupo].colorBase);
 
-	basicTextGrupoNombre.text="Grupo: "+gnave[grupoSelecionado.ngrupo].nombregrupo;
-	basicTextGrupoActitud.text="Actitud: "+gnave[grupoSelecionado.ngrupo].actitud;
-	basicTextGrupoTipogrupo.text = "Tipo: "+gnave[grupoSelecionado.ngrupo].tipogrupo;
-	menuGruposeleccionadaObjetivo=0;
+        DeselectNave();
+        DeselectGrupo();
+        ngrupo = event.currentTarget.ngrupo;
+
+        event.currentTarget.alpha = 2;
+        grupoSelecionado.ngrupo = ngrupo;
+        grupoSelecionado.x = gnave[grupoSelecionado.ngrupo].x;
+        grupoSelecionado.y = gnave[grupoSelecionado.ngrupo].y;
+        gruposSeleccionados.push(grupoSelecionado);
+        CreaCirculoDestino(gnave[ngrupo].x, gnave[ngrupo].y, gnave[ngrupo].colorBase);
+
+        basicTextGrupoNombre.text="Grupo: "+gnave[grupoSelecionado.ngrupo].nombregrupo;
+        basicTextGrupoActitud.text="Actitud: "+gnave[grupoSelecionado.ngrupo].actitud;
+        basicTextGrupoTipogrupo.text = "Tipo: "+gnave[grupoSelecionado.ngrupo].tipogrupo;
+        menuGruposeleccionadaObjetivo=0;
+
+        if (PantallaGruposNaves){
+            idgrupo=gnave[grupoSelecionado.ngrupo].id;
+            $("#grupoDeNaves"+idgrupo).css('background-color', 'blue');
+        }
 }
 
 /*
@@ -194,6 +201,8 @@ function DeselectGrupo() {
                     })[0];
                 grupoDLista.coordx=posifinalx;
                 grupoDLista.coordy=posifinaly;
+
+                $("#grupoDeNaves"+gnave[gruposSeleccionados[0].ngrupo].id).css('background-color', '');
             }
 
         }
