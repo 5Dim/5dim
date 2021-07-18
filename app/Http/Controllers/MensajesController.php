@@ -106,7 +106,11 @@ class MensajesController extends Controller
         }
 
         if ($idJugador == session()->get('jugadores_id')) {
-            if (!empty($jugadorActual->alianzas)) {
+            $jugadorAlianza = Constantes::where('codigo', 'jugadoralianza')->first()->valor;
+            if (
+                !empty($jugadorActual->alianzas) &&
+                $jugadorAlianza == 1
+            ) {
                 MensajesIntervinientes::whereIn('receptor', [$jugadorActual->id, $jugadorAlianza->id])->where('mensajes_id', $idMensaje)->first()->delete();
             } else {
                 MensajesIntervinientes::where([['mensajes_id', $idMensaje], ['receptor', $jugadorActual->id]])->first()->delete();
