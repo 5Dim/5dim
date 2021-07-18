@@ -2,14 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="col-12 rounded cajita">
+        <div class="rounded cajita">
             <div id="cuadro1" class="table-responsive">
                 <table class="table table-dark table-borderless text-center" style="--bs-table-bg: transparent !important">
                     <tr>
-                        <th colspan="6" class=" text-success">
-                            <big>
-                                Estadísticas
-                            </big>
+                        <th colspan="6" class=" text-success fs-3 fw-bold">
+                            Estadísticas
                         </th>
                     </tr>
                     <tr>

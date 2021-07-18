@@ -7,7 +7,7 @@
 
     <div class="container-fluid">
         <div class="container-fluid">
-            <nav>
+            <nav class="cajita-info rounded">
                 <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist" style="border: 0px; margin: 5px"
                     align="center">
                     <a class="nav-item nav-link" id="colonia-tab" data-bs-toggle="tab" href="#colonia" role="tab"
@@ -30,99 +30,102 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade" id="colonia" role="tabpanel" aria-labelledby="colonia-tab">
-                    <table class="table table-sm text-center table-borderless cajita rounded align-middle">
-                        <tr>
-                            <th colspan="5" class="anchofijo text-success borderless">
-                                <big>Resumen de la colonia</big>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="text-warning " style="max-width: 240px;">
-                                <a tabindex="0" type="button" class="btn btn-dark" data-bs-toggle="popover"
-                                    data-bs-trigger="focus" title="Puntos de imperio"
-                                    data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir {{ (int) $consImperio }} por cada nivel de administracion de imperio (investigacion)">
-                                    Puntos de imperio <span
-                                        class="badge bg-warning text-dark">{{ $nivelImperio * $consImperio + 10 - count($planetasJugador) * 10 }}</span>
-                                </a>
-                            </td>
-                            <td>
-                                @if (count(Auth::user()->jugador->planetas) > 1)
-                                    <button type="button" class="btn btn-outline-danger col-12"
-                                        onclick="window.location.href = '/juego/destruirColonia'">
-                                        <i class="fa fa-times-circle"></i> Destruir colonia
-                                    </button>
-                                @else
-                                    <button type="button" class="btn btn-outline-light col-12" disabled>
-                                        <i class="fa fa-times-circle"></i> No puedes destruir tu último planeta
-                                    </button>
-                                @endif
-                            </td>
-                            <td class="anchofijo text-secondary borderless">
-                                <div class="input-group mb-3 borderless"
-                                    style="padding-left: 5px !important; padding-right: 5px !important">
-                                    <span class="input-group-text bg-dark text-light" style="padding: 0px">
-                                        @if (count(Auth::user()->jugador->planetas) > 1)
+                    <div class="cajita rounded">
+                        <table class="table table-sm text-center table-borderless  align-middle">
+                            <tr>
+                                <th colspan="5" class="anchofijo text-success borderless">
+                                    <big>Resumen de la colonia</big>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="text-warning " style="max-width: 240px;">
+                                    <a tabindex="0" type="button" class="btn btn-dark" data-bs-toggle="popover"
+                                        data-bs-trigger="focus" title="Puntos de imperio"
+                                        data-bs-content="Estos son los puntos de imperio, consume 10 por cada planeta colonizado y se pueden conseguir {{ (int) $consImperio }} por cada nivel de administracion de imperio (investigacion)">
+                                        Puntos de imperio <span
+                                            class="badge bg-warning text-dark">{{ $nivelImperio * $consImperio + 10 - count($planetasJugador) * 10 }}</span>
+                                    </a>
+                                </td>
+                                <td>
+                                    @if (count(Auth::user()->jugador->planetas) > 1)
+                                        <button type="button" class="btn btn-outline-danger col-12"
+                                            onclick="window.location.href = '/juego/destruirColonia'">
+                                            <i class="fa fa-times-circle"></i> Destruir colonia
+                                        </button>
+                                    @else
+                                        <button type="button" class="btn btn-outline-light col-12" disabled>
+                                            <i class="fa fa-times-circle"></i> No puedes destruir tu último planeta
+                                        </button>
+                                    @endif
+                                </td>
+                                <td class="anchofijo text-secondary borderless">
+                                    <div class="input-group mb-3 borderless"
+                                        style="padding-left: 5px !important; padding-right: 5px !important">
+                                        <span class="input-group-text bg-dark text-light" style="padding: 0px">
+                                            @if (count(Auth::user()->jugador->planetas) > 1)
+                                                <button type="button" class="btn btn-dark text-light"
+                                                    onclick="sendCederColonia()">
+                                                    Ceder colonia
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-dark text-light" disabled>
+                                                    Ceder colonia
+                                                </button>
+                                            @endif
+                                        </span>
+                                        <select name="listaJugadores" id="listaJugadores" class="form-control"></select>
+                                        <script>
+                                            $('#listaJugadores').select2({
+                                                placeholder: "Nombre del jugador",
+                                                data: [{
+                                                        id: 0,
+                                                        text: "Nombre del jugador"
+                                                    },
+                                                    @foreach ($jugadores as $jugador)
+                                                        { id: {{ $jugador->id }}, text: "{{ $jugador->nombre }}" },
+                                                    @endforeach
+                                                ],
+                                                language: "es"
+                                            });
+                                        </script>
+                                    </div>
+                                </td>
+                                <td class="anchofijo text-secondary borderless">
+                                    <div class="input-group mb-3 borderless"
+                                        style="padding-left: 10px !important; padding-right: 5px !important">
+                                        <span class="input-group-text bg-dark text-light" style="padding: 0px">
                                             <button type="button" class="btn btn-dark text-light"
-                                                onclick="sendCederColonia()">
-                                                Ceder colonia
+                                                onclick="sendRenombrarColonia()">
+                                                Renombrar colonia
                                             </button>
-                                        @else
-                                            <button type="button" class="btn btn-dark text-light" disabled>
-                                                Ceder colonia
+                                        </span>
+                                        <input id="nombreColonia" type="text" class="form-control input"
+                                            placeholder="Nombre de la colonia" aria-label="Recipient's username"
+                                            aria-describedby="basic-addon2">
+                                    </div>
+                                </td>
+                                @if ((Auth::user()->jugador->movimientos) > 0)
+                                <td class="anchofijo text-secondary borderless">
+                                    <div class="input-group mb-3 borderless"
+                                        style="padding-left: 10px !important; padding-right: 5px !important">
+                                        <span class="input-group-text bg-dark text-light" style="padding: 0px">
+                                            <button type="button" class="btn btn-dark text-light"
+                                                onclick="sendMoverColonia()">
+                                                Mover colonia
                                             </button>
-                                        @endif
-                                    </span>
-                                    <select name="listaJugadores" id="listaJugadores" class="form-control"></select>
-                                    <script>
-                                        $('#listaJugadores').select2({
-                                            placeholder: "Nombre del jugador",
-                                            data: [{
-                                                    id: 0,
-                                                    text: "Nombre del jugador"
-                                                },
-                                                @foreach ($jugadores as $jugador)
-                                                    { id: {{ $jugador->id }}, text: "{{ $jugador->nombre }}" },
-                                                @endforeach
-                                            ],
-                                            language: "es"
-                                        });
-                                    </script>
-                                </div>
-                            </td>
-                            <td class="anchofijo text-secondary borderless">
-                                <div class="input-group mb-3 borderless"
-                                    style="padding-left: 10px !important; padding-right: 5px !important">
-                                    <span class="input-group-text bg-dark text-light" style="padding: 0px">
-                                        <button type="button" class="btn btn-dark text-light"
-                                            onclick="sendRenombrarColonia()">
-                                            Renombrar colonia
-                                        </button>
-                                    </span>
-                                    <input id="nombreColonia" type="text" class="form-control input"
-                                        placeholder="Nombre de la colonia" aria-label="Recipient's username"
-                                        aria-describedby="basic-addon2">
-                                </div>
-                            </td>
-                            @if ((Auth::user()->jugador->movimientos) > 0)
-                            <td class="anchofijo text-secondary borderless">
-                                <div class="input-group mb-3 borderless"
-                                    style="padding-left: 10px !important; padding-right: 5px !important">
-                                    <span class="input-group-text bg-dark text-light" style="padding: 0px">
-                                        <button type="button" class="btn btn-dark text-light"
-                                            onclick="sendMoverColonia()">
-                                            Mover colonia
-                                        </button>
-                                    </span>
-                                    <input id="localizacion" type="text" class="form-control input"
-                                        placeholder="Posición vacía" aria-label="localizacion"
-                                        aria-describedby="basic-addon3">
-                                </div>
-                            </td>
-                            @endif
-                        </tr>
-                    </table>
+                                        </span>
+                                        <input id="localizacion" type="text" class="form-control input"
+                                            placeholder="Posición vacía" aria-label="localizacion"
+                                            aria-describedby="basic-addon3">
+                                    </div>
+                                </td>
+                                @endif
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="cajita rounded">
                     <table
-                        class="table table-sm table-dark table-borderless text-center anchofijo cajita rounded align-middle"
+                        class="table table-sm table-dark table-borderless text-center anchofijo align-middle"
                         style="--bs-table-bg: transparent !important">
                         <tr>
                             <th colspan="6" class="anchofijo text-success ">
@@ -221,6 +224,7 @@
                             </td>
                         </tr>
                     </table>
+                    </div>
                     <div class="cajita rounded">
                         <table
                             class="table table-sm table-dark table-hover table-borderless text-center anchofijo align-middle"

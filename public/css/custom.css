@@ -19,18 +19,8 @@ body.bg {
     background: #292b2c;
 }
 
-#menuCuenta {
+.oscurecido {
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-#menuRecursos {
-    background-color: rgba(0, 0, 0, 0.5);
-    /* padding-top: 5px !important; */
-}
-
-#menuIconos {
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    /* padding-top: 15px !important; */
 }
 
 .borderless {
@@ -67,9 +57,9 @@ table.anchofijo {
 }
 
 .active {
-    background-color: #495057 !important;
+    background-color: #3c3e41 !important;
     color: white !important;
-    border: 1px solid orange !important;
+    /* border: 1px solid orange !important; */
 }
 
 .tab-content > .active {
